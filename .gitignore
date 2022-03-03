@@ -1,0 +1,14 @@
+__pycache__
+app.egg-info
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+# local dir
+**/local/
