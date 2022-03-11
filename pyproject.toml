@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "abis-mapping"
+version = "0.0.1"
+description = "Provides templates and mappings to translate tabular data to ABIS rdf"
+authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+rdflib = "^6.1.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
