@@ -22,11 +22,11 @@ def get_mapper(template_id: str) -> Optional[type[base.ABISMapper]]:
     return base.ABISMapper.registry.get(template_id)
 
 
-def get_mappers() -> dict[str, base.ABISMapper]:
+def get_mappers() -> dict[str, type[base.ABISMapper]]:
     """Retrieves the full registry of ABIS Mappers.
 
     Returns:
-        dict[str, base.ABISMapper]: Dictionary of template ID to ABIS Mapper.
+        dict[str, type[base.ABISMapper]]: Dictionary of template ID to ABIS Mapper.
     """
     # Retrieve and return the mappers
     return base.ABISMapper.registry
