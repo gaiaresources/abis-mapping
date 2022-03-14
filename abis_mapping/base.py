@@ -6,9 +6,15 @@ import abc
 
 # Third-Party
 import rdflib
+import pandas._typing as pdt
 
 # Typing
 from typing import final
+
+
+# Constants
+# See: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
+CSVType = pdt.FilePath | pdt.ReadCsvBuffer[bytes] | pdt.ReadCsvBuffer[str]
 
 
 class ABISMapper(abc.ABC):
@@ -18,11 +24,13 @@ class ABISMapper(abc.ABC):
     registry: dict[str, type["ABISMapper"]] = {}
 
     @abc.abstractmethod
-    def apply_mapping(self, data: bytes) -> rdflib.Graph:
+    def apply_mapping(self, data: CSVType) -> rdflib.Graph:
         """Applies mapping from csv to ABIS conformant rdf
 
         Args:
-            data (bytes): Raw csv data
+            data (CSVType): Pandas readable CSV type.
+                i.e., `FilePath | ReadCsvBuffer[bytes] | ReadCsvBuffer[str]`.
+                See: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 
         Returns:
             rdflib.Graph: ABIS conformant rdf graph

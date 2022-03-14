@@ -7,8 +7,10 @@ authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 rdflib = "^6.1.1"
+pandas = "^1.4.1"
 
 [tool.poetry.dev-dependencies]
+pandas-stubs = "^1.2.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

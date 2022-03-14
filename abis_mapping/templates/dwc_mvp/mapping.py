@@ -11,11 +11,11 @@ from abis_mapping import base
 class DWCMVPMapper(base.ABISMapper):
     """ABIS Mapper for `dwc_mvp"""
 
-    def apply_mapping(self, data: bytes) -> rdflib.Graph:
+    def apply_mapping(self, data: base.CSVType) -> rdflib.Graph:
         """Applies Mapping for the `dwc_mvp` Template
 
         Args:
-            data (bytes): Raw csv data to be mapped
+            data (base.CSVType): Raw pandas readable csv data to be mapped
 
         Returns:
             rdflib.Graph: ABIS conformant rdf mapped from the csv
