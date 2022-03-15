@@ -8,6 +8,7 @@ authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
 python = "^3.10"
 rdflib = "^6.1.1"
 pandas = "^1.4.1"
+python-slugify = "^6.1.1"
 
 [tool.poetry.dev-dependencies]
 pandas-stubs = "^1.2.0"

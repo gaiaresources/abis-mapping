@@ -9,7 +9,7 @@ import rdflib
 import pandas._typing as pdt
 
 # Typing
-from typing import final
+from typing import Optional, final
 
 
 # Constants
@@ -51,3 +51,27 @@ class ABISMapper(abc.ABC):
         """
         # Register the mapper
         cls.registry[template_id] = mapper
+
+
+def get_mapper(template_id: str) -> Optional[type[ABISMapper]]:
+    """Retrieves ABIS Mapper class for the specified template ID.
+
+    Args:
+        template_id (str): Template ID to retrieve the mapper for.
+
+    Returns:
+        Optional[type[ABISMapper]]: ABIS mapper class associated with the
+            specified template ID if found, otherwise `None`.
+    """
+    # Retrieve and return the mapper
+    return ABISMapper.registry.get(template_id)
+
+
+def get_mappers() -> dict[str, type[ABISMapper]]:
+    """Retrieves the full registry of ABIS Mappers.
+
+    Returns:
+        dict[str, type[ABISMapper]]: Dictionary of template ID to ABIS Mapper.
+    """
+    # Retrieve and return the mappers
+    return ABISMapper.registry
