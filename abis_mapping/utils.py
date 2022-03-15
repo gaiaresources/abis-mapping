@@ -24,10 +24,11 @@ EXAMPLE = rdflib.Namespace("http://example.org/")
 
 
 def create_graph() -> rdflib.Graph:
-    """_summary_
+    """Utility function that creates a base rdflib.Graph with the required
+    namespaces bound with their expected prefix.
 
     Returns:
-        rdflib.Graph: _description_
+        rdflib.Graph: Graph with expected namespaces bound.
     """
     # Create Graph
     graph = rdflib.Graph()
@@ -82,13 +83,15 @@ def uri(
 
 
 def read_csv(data: base.CSVType) -> pd.DataFrame:
-    """_summary_
+    """Reads raw csv data into a pandas DataFrame
 
     Args:
-        data (base.CSVType): _description_
+        data (CSVType): Pandas readable CSV type.
+            i.e., `FilePath | ReadCsvBuffer[bytes] | ReadCsvBuffer[str]`.
+            See: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 
     Returns:
-        pd.DataFrame: _description_
+        pd.DataFrame: Pandas DataFrame containing CSV data.
     """
     # Read CSV and Return
     return pd.read_csv(data, keep_default_na=False)
