@@ -1,4 +1,4 @@
-"""Provides ABIS Mapper for `dwc_mvp` Template"""
+"""Provides ABIS Mapper for `dwc_mvp.xlsx` Template"""
 
 
 # Third-Party
@@ -9,14 +9,14 @@ from abis_mapping import base
 
 
 class DWCMVPMapper(base.mapper.ABISMapper):
-    """ABIS Mapper for `dwc_mvp"""
+    """ABIS Mapper for `dwc_mvp.xlsx`"""
 
     def apply_mapping(
         self,
         data: base.types.CSVType,
         metadata: base.metadata.DatasetMetadata,
         ) -> rdflib.Graph:
-        """Applies Mapping for the `dwc_mvp` Template
+        """Applies Mapping for the `dwc_mvp.xlsx` Template
 
         Args:
             data (base.types.CSVType): Raw pandas csv data to be mapped
