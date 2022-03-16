@@ -1,26 +1,19 @@
-"""Provides utilities for the package"""
+"""Provides rdf utilities for the package"""
 
 
 # Standard
 import uuid
 
 # Third-Party
-import pandas as pd
 import rdflib
 import slugify
 
 # Local
-from . import base
+from . import namespaces
 
 # Typing
 from typing import Optional
 
-
-# Constants
-GEO = rdflib.Namespace("http://www.opengis.net/ont/geosparql#")
-TERN = rdflib.Namespace("https://w3id.org/tern/ontologies/tern/")
-DWC = rdflib.Namespace("http://rs.tdwg.org/dwc/terms/")
-EXAMPLE = rdflib.Namespace("http://example.org/")
 
 
 def create_graph() -> rdflib.Graph:
@@ -43,10 +36,9 @@ def create_graph() -> rdflib.Graph:
     graph.bind("time", rdflib.TIME)
     graph.bind("xsd", rdflib.XSD)
     graph.bind("sdo", rdflib.SDO)
-    graph.bind("geo", GEO)
-    graph.bind("tern", TERN)
-    graph.bind("dwc", DWC)
-    graph.bind("ex", EXAMPLE)
+    graph.bind("geo", namespaces.GEO)
+    graph.bind("tern", namespaces.TERN)
+    graph.bind("dwc", namespaces.DWC)
 
     # Return
     return graph
@@ -54,7 +46,7 @@ def create_graph() -> rdflib.Graph:
 
 def uri(
     internal_id: Optional[str] = None,
-    namespace: rdflib.Namespace = EXAMPLE,
+    namespace: rdflib.Namespace = namespaces.EXAMPLE,
     ) -> rdflib.URIRef:
     """Generates an rdflib.URIRef using the EXAMPLE namespace
 
@@ -62,7 +54,8 @@ def uri(
     generated instead.
 
     Args:
-        internal_id (Optional[str]): Optional human readable id
+        internal_id (Optional[str]): Optional human readable id.
+        namespace (rdflib.Namespace): Namespace for the uri.
 
     Returns:
         rdflib.URIRef: Generated URI for internal usage.
@@ -80,18 +73,3 @@ def uri(
 
     # Create URIRef and Return
     return namespace[internal_id]
-
-
-def read_csv(data: base.CSVType) -> pd.DataFrame:
-    """Reads raw csv data into a pandas DataFrame
-
-    Args:
-        data (CSVType): Pandas readable CSV type.
-            i.e., `FilePath | ReadCsvBuffer[bytes] | ReadCsvBuffer[str]`.
-            See: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
-
-    Returns:
-        pd.DataFrame: Pandas DataFrame containing CSV data.
-    """
-    # Read CSV and Return
-    return pd.read_csv(data, keep_default_na=False)

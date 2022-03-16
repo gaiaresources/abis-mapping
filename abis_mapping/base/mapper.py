@@ -1,4 +1,4 @@
-"""Provides ABIS Mapper Base Class"""
+"""Provides Mapper Base Class for the Package"""
 
 
 # Standard
@@ -6,31 +6,32 @@ import abc
 
 # Third-Party
 import rdflib
-import pandas._typing as pdt
+
+# Local
+from . import metadata
+from . import types
 
 # Typing
 from typing import Optional, final
 
 
-# Constants
-# See: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
-CSVType = pdt.FilePath | pdt.ReadCsvBuffer[bytes] | pdt.ReadCsvBuffer[str]
-
-
 class ABISMapper(abc.ABC):
     """ABIS Mapper Base Class"""
 
-    # Concrete ABIS Mapper Registry
+    # ABIS Mapper Registry
     registry: dict[str, type["ABISMapper"]] = {}
 
     @abc.abstractmethod
-    def apply_mapping(self, data: CSVType) -> rdflib.Graph:
+    def apply_mapping(
+        self,
+        data: types.CSVType,
+        metadata: metadata.DatasetMetadata,
+        ) -> rdflib.Graph:
         """Applies mapping from csv to ABIS conformant rdf
 
         Args:
             data (CSVType): Pandas readable CSV type.
-                i.e., `FilePath | ReadCsvBuffer[bytes] | ReadCsvBuffer[str]`.
-                See: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
+            metadata (DatasetMetadata): Metadata for the submitted dataset.
 
         Returns:
             rdflib.Graph: ABIS conformant rdf graph

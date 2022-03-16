@@ -1,4 +1,5 @@
 """Exports package interface"""
 
 # Local
-from .base import get_mapper, get_mappers
+from .base import loader  # Dynamically load the template mappers
+from .base.mapper import get_mapper, get_mappers

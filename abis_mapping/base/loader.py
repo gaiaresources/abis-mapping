@@ -7,7 +7,7 @@ import pathlib
 
 
 # Constants
-PACKAGE_DIRECTORY = pathlib.Path(__file__).parent
+PACKAGE_DIRECTORY = pathlib.Path(__file__).parent.parent
 TEMPLATES_DIRECTORY = PACKAGE_DIRECTORY / "templates"
 
 
