@@ -11,4 +11,4 @@ class DatasetMetadata:
     """Metadata for the Dataset"""
     name: str
     description: str
-    issue: datetime.date
+    issued: datetime.date
