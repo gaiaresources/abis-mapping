@@ -12,6 +12,20 @@ import rdflib
 from abis_mapping import base
 from abis_mapping import utils
 
+# Typing
+from typing import Union
+
+
+# Custom Types
+DateOrDateTime = Union[datetime.date, datetime.datetime]
+
+# Temporary Metadata
+# The mappings need a method of retrieving dataset "metadata" external to the
+# CSV. For example: Dataset Name, Dataset Description, Dataset Issue Date.
+# Defining them as temporary constants for now
+DATASET_NAME = "Example DWC MVP Dataset"  # TODO -> Real metadata
+DATASET_DESCRIPTION = "Example DWC MVP Dataset by Gaia Resources"  # TODO -> Real metadata
+DATASET_DATE = datetime.date.today()  # TODO -> Real metadata
 
 # Constants and Shortcuts
 # These constants are specific to this template, and as such are defined here
@@ -27,14 +41,6 @@ CONCEPT_PLANT_OCCURRENCE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/
 CONCEPT_PLANT_INDIVIDUAL = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/60d7edf8-98c6-43e9-841c-e176c334d270")
 CONCEPT_PROCEDURE_ID = rdflib.URIRef("identification-method/")  # TODO -> Need real URI
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("field-sub-sampling/")  # TODO -> Need real URI
-
-# Temporary Metadata
-# The mappings need a method of retrieving dataset "metadata" external to the
-# CSV. For example: Dataset Name, Dataset Description, Dataset Issue Date.
-# Defining them as temporary constants for now
-DATASET_NAME = "Example DWC MVP Dataset"
-DATASET_DESCRIPTION = "Example DWC MVP Dataset by Gaia Resources"
-DATASET_DATE = datetime.date.today()
 
 
 class DWCMVPMapper(base.mapper.ABISMapper):
@@ -320,7 +326,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Timestamp
-        timestamp = rdflib.Literal(row["eventDate"])  # TODO -> Smart Data Type
+        timestamp = parse_timestamp(row["eventDate"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -328,7 +334,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, site))
         graph.add((uri, rdflib.SOSA.hasResult, site))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, timestamp))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_HUMAN_OBSERVATION))
 
         # Patch
@@ -362,7 +368,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Timestamp
-        timestamp = rdflib.Literal(row["dateIdentified"])  # TODO -> Smart Data Type
+        timestamp = parse_timestamp(row["dateIdentified"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -376,8 +382,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, rdflib.TIME.inXSDDate, timestamp))  # TODO -> Smart Predicate?
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, timestamp))
+        graph.add((phenomenon_time, time_predicate(timestamp), rdflib.Literal(timestamp)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
     def add_observation_verbatim_id(
@@ -403,7 +409,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Timestamp
-        timestamp = rdflib.Literal(row["dateIdentified"])  # TODO -> Smart Data Type
+        timestamp = parse_timestamp(row["dateIdentified"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -417,8 +423,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, rdflib.TIME.inXSDDate, timestamp))  # TODO -> Smart Predicate?
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, timestamp))
+        graph.add((phenomenon_time, time_predicate(timestamp), rdflib.Literal(timestamp)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
     def add_sampling_field(
@@ -448,7 +454,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         )
 
         # Retrieve Timestamp
-        timestamp = rdflib.Literal(row["eventDate"])  # Smart Data Type?
+        timestamp = parse_timestamp(row["eventDate"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -460,7 +466,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, site))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, timestamp))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_HUMAN_OBSERVATION))
 
     def add_id_qualifier_attribute(
@@ -596,14 +602,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Timestamp
-        timestamp = rdflib.Literal(row["eventDate"])  # Smart Data Type?
+        timestamp = parse_timestamp(row["eventDate"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, timestamp))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
 
     def add_text_verbatim_id(
@@ -630,7 +636,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["verbatimIdentification"])))
 
-        # Check Existence
+        # Check for Qualifier and Remarks
         if row.get("identificationQualifier"):
             graph.add((uri, utils.namespaces.TERN.hasAttribute, qualifier))
         if row.get("identificationRemarks"):
@@ -709,6 +715,55 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
         graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_PLANT_INDIVIDUAL))
+
+
+# Utility Functions
+def parse_timestamp(raw: str) -> DateOrDateTime:
+    """Parses a string to a date or datetime
+
+    Args:
+        raw (str): Raw string to be parsed
+
+    Returns:
+        DateOrDateTime: Either a date or timezone aware datetime.
+
+    Raises:
+        ValueError: Raised if the string cannot be parsed as either a date or
+            timezone aware datetime
+    """
+    # Catch Errors
+    try:
+        # Parse as `Date` first
+        timestamp = datetime.date.fromisoformat(raw)
+
+    except ValueError:
+        # Timestamp is not a date, try `DateTime`
+        timestamp = datetime.datetime.fromisoformat(raw)
+
+        # Check for Timezone
+        if not timestamp.tzinfo:
+            raise ValueError("Datetime must include timezone")
+
+    # Return
+    return timestamp
+
+
+def time_predicate(timestamp: DateOrDateTime) -> rdflib.URIRef:
+    """Generates the correct TIME.inXSDxxx predicate for date or datetime
+
+    Args:
+        timestamp (DateOrDateTime): The timestamp to generate predicate for
+
+    Returns:
+        rdflib.URIRef: The smartly generated predicate
+    """
+    # Check Type
+    if isinstance(timestamp, datetime.date):
+        # inXSDDate
+        return rdflib.TIME.inXSDDate
+
+    # inXSDDateTimeStamp
+    return rdflib.TIME.inXSDDateTimeStamp
 
 
 # Register Mapper
