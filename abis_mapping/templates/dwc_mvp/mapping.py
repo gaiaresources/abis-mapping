@@ -98,7 +98,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             rdflib.Graph: Graph with row mapped into it.
         """
         # Create URIs
-        provider = utils.rdf.uri(f"provider/{row['identifiedBy']}")
+        provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}")
+        provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}")
         site = utils.rdf.uri(f"site/{row['locality']}")
         site_landform = utils.rdf.uri(f"site-landform/{row['locality']}")  # TODO -> Where does this come from?
         site_establishment = utils.rdf.uri(f"site-establishment/{row['locality']}")  # TODO -> Where does this come from?
@@ -115,9 +116,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_number}")
         id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_number}")
 
-        # Add Provider
+        # Add Providers
         self.add_provider(
-            uri=provider,
+            uri=provider_identified,
+            row=row,
+            graph=graph,
+        )
+        self.add_provider(
+            uri=provider_recorded,
             row=row,
             graph=graph,
         )
@@ -143,7 +149,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self.add_site_establishment(
             uri=site_establishment,
             row=row,
-            provider=provider,
+            provider=provider_recorded,
             site=site,
             graph=graph,
         )
@@ -161,7 +167,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self.add_sampling_field(
             uri=sampling_field,
             row=row,
-            provider=provider,
+            provider=provider_recorded,
             site=site,
             sample_field=sample_field,
             graph=graph,
@@ -238,7 +244,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             uri=observation_scientific_name,
             row=row,
             dataset=dataset,
-            provider=provider,
+            provider=provider_identified,
             sample_specimen=sample_specimen,
             scientific_name=text_scientific_name,
             graph=graph,
@@ -249,7 +255,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             uri=observation_verbatim_id,
             row=row,
             dataset=dataset,
-            provider=provider,
+            provider=provider_identified,
             sample_specimen=sample_specimen,
             verbatim_id=text_verbatim_id,
             graph=graph,
