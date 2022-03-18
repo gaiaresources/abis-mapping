@@ -8,7 +8,6 @@ import abc
 import rdflib
 
 # Local
-from . import metadata
 from . import types
 
 # Typing
@@ -25,13 +24,11 @@ class ABISMapper(abc.ABC):
     def apply_mapping(
         self,
         data: types.CSVType,
-        metadata: metadata.DatasetMetadata,
         ) -> rdflib.Graph:
         """Applies mapping from csv to ABIS conformant rdf
 
         Args:
             data (CSVType): Pandas readable CSV type.
-            metadata (DatasetMetadata): Metadata for the submitted dataset.
 
         Returns:
             rdflib.Graph: ABIS conformant rdf graph

@@ -1,6 +1,9 @@
 """Provides ABIS Mapper for `dwc_mvp.xlsx` Template"""
 
 
+# Standard
+import datetime
+
 # Third-Party
 import pandas as pd
 import rdflib
@@ -25,6 +28,14 @@ CONCEPT_PLANT_INDIVIDUAL = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/
 CONCEPT_PROCEDURE_ID = rdflib.URIRef("identification-method/")  # TODO -> Need real URI
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("field-sub-sampling/")  # TODO -> Need real URI
 
+# Temporary Metadata
+# The mappings need a method of retrieving dataset "metadata" external to the
+# CSV. For example: Dataset Name, Dataset Description, Dataset Issue Date.
+# Defining them as temporary constants for now
+DATASET_NAME = "Example DWC MVP Dataset"
+DATASET_DESCRIPTION = "Example DWC MVP Dataset by Gaia Resources"
+DATASET_DATE = datetime.date.today()
+
 
 class DWCMVPMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `dwc_mvp.xlsx`"""
@@ -32,13 +43,11 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def apply_mapping(
         self,
         data: base.types.CSVType,
-        metadata: base.metadata.DatasetMetadata,
         ) -> rdflib.Graph:
         """Applies Mapping for the `dwc_mvp.xlsx` Template
 
         Args:
             data (base.types.CSVType): Raw pandas csv data to be mapped
-            metadata (base.metadata.DatasetMetadata): Metadata for dataset
 
         Returns:
             rdflib.Graph: ABIS conformant rdf mapped from the csv
@@ -50,11 +59,11 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph = utils.rdf.create_graph()
 
         # Create Dataset
-        dataset = utils.rdf.uri(f"dataset/{metadata.name}")
+        dataset = utils.rdf.uri(f"dataset/{DATASET_NAME}")
         graph.add((dataset, a, utils.namespaces.TERN.RDFDataset))
-        graph.add((dataset, rdflib.DCTERMS.title, rdflib.Literal(metadata.name)))
-        graph.add((dataset, rdflib.DCTERMS.description, rdflib.Literal(metadata.description)))
-        graph.add((dataset, rdflib.DCTERMS.issued, rdflib.Literal(metadata.issued)))
+        graph.add((dataset, rdflib.DCTERMS.title, rdflib.Literal(DATASET_NAME)))
+        graph.add((dataset, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DESCRIPTION)))
+        graph.add((dataset, rdflib.DCTERMS.issued, rdflib.Literal(DATASET_DATE)))
 
         # Loop through Rows
         for row_number, row in df.iterrows():
