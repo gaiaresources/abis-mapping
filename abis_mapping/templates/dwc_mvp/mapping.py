@@ -39,8 +39,9 @@ CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86a
 CONCEPT_LANDFORM = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2cf3ed29-440e-4a50-9bbc-5aab30df9fcd")
 CONCEPT_PLANT_OCCURRENCE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611")
 CONCEPT_PLANT_INDIVIDUAL = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/60d7edf8-98c6-43e9-841c-e176c334d270")
-CONCEPT_PROCEDURE_ID = rdflib.URIRef("identification-method/")  # TODO -> Need real URI
-CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("field-sub-sampling/")  # TODO -> Need real URI
+CONCEPT_PROCEDURE_ID = utils.rdf.uri("concept/identification-method")  # TODO -> Need real URI
+CONCEPT_PROCEDURE_SAMPLING = utils.rdf.uri("concept/field-sub-sampling")  # TODO -> Need real URI
+CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName")  # TODO -> Need real URI
 
 
 class DWCMVPMapper(base.mapper.ABISMapper):
@@ -194,6 +195,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add Text for Scientific Name
         self.add_text_scientific_name(
             uri=text_scientific_name,
+            dataset=dataset,
             row=row,
             graph=graph,
         )
@@ -573,6 +575,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def add_text_scientific_name(
         self,
         uri: rdflib.URIRef,
+        dataset: rdflib.URIRef,
         row: pd.Series,
         graph: rdflib.Graph,
         ) -> None:
@@ -580,13 +583,18 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
+            dataset (rdflib.URIRef): Dataset this belongs to
             row (pd.Series): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("scientificName")))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["scientificName"])))
+        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SCIENTIFIC_NAME))
 
     def add_sampling_specimen(
         self,
