@@ -310,7 +310,7 @@
 
 <http://example.org/sampling/field/0> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(115.21, -33.8)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT(115.21, -33.80)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://example.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://example.org/site/Cowaramup-Bay-Road> ;
@@ -784,5 +784,5 @@
 
 <http://example.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-03-21"^^xsd:date ;
+    dcterms:issued "2022-03-25"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .

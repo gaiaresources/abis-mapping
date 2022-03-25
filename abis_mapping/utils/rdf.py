@@ -15,7 +15,6 @@ from . import namespaces
 from typing import Optional
 
 
-
 def create_graph() -> rdflib.Graph:
     """Utility function that creates a base rdflib.Graph with the required
     namespaces bound with their expected prefix.
