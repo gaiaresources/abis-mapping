@@ -5,99 +5,121 @@
       "title": "Locality",
       "description": "...",
       "example": "Cowaramup Bay Road",
-      "required": true,
       "type": "string",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
     },
     {
       "name": "decimalLatitude",
       "title": "Decimal Latitude",
       "description": "...",
       "example": "-33.80",
-      "required": true,
       "type": "number",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
     },
     {
       "name": "decimalLongitude",
       "title": "Decimal Longitude",
       "description": "...",
       "example": "115.21",
-      "required": true,
       "type": "number",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
     },
     {
       "name": "eventDate",
       "title": "Event Date",
       "description": "...",
       "example": "2019-09-23",
-      "required": true,
       "type": "date",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
     },
     {
       "name": "recordedBy",
       "title": "Recorded By",
       "description": "...",
       "example": "Stream Environment and Water Pty Ltd",
-      "required": true,
       "type": "string",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
     },
     {
       "name": "verbatimIdentification",
       "title": "Verbatim Identification",
       "description": "...",
       "example": "Caladenia ?excelsa",
-      "required": true,
       "type": "string",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
     },
     {
       "name": "dateIdentified",
       "title": "Date Identified",
       "description": "...",
       "example": "2019-09-23",
-      "required": true,
       "type": "date",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
     },
     {
       "name": "identifiedBy",
       "title": "Identified By",
       "description": "...",
       "example": "Stream Environment and Water Pty Ltd",
-      "required": true,
       "type": "string",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
     },
     {
       "name": "scientificName",
       "title": "Scientific Name",
       "description": "...",
       "example": "Caladenia excelsa",
-      "required": true,
       "type": "string",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
     },
     {
       "name": "identificationQualifier",
       "title": "Identification Qualifier",
       "description": "...",
       "example": "?",
-      "required": false,
       "type": "string",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
     },
     {
       "name": "identificationRemarks",
       "title": "Identification Remarks",
       "description": "...",
       "example": "One unopened flower when recorded and one leaf only. ID not confirmed",
-      "required": false,
       "type": "string",
-      "format": "default"
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
     }
   ]
 }
