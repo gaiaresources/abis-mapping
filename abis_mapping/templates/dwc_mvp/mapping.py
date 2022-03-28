@@ -70,6 +70,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             source=resource,
             checks=[
                 # Extra Custom Checks
+                utils.checks.NotTabular(),
                 utils.checks.NotEmpty(),
                 utils.checks.ValidCoordinates(
                     latitude_name="decimalLatitude",
