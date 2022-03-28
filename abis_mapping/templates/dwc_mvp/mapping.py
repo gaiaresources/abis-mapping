@@ -15,7 +15,7 @@ from abis_mapping import utils
 
 # Temporary Metadata
 # The mappings need a method of retrieving dataset "metadata" external to the
-# CSV. For example: Dataset Name, Dataset Description, Dataset Issue Date.
+# raw data. For example: Dataset Name, Dataset Description, Dataset Issue Date.
 # Defining them as temporary constants for now
 DATASET_NAME = "Example DWC MVP Dataset"  # TODO -> Real metadata
 DATASET_DESCRIPTION = "Example DWC MVP Dataset by Gaia Resources"  # TODO -> Real metadata
@@ -46,15 +46,15 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
     def apply_validation(
         self,
-        data: base.types.CSVType,
+        data: base.types.ReadableType,
         ) -> frictionless.Resource:
-        """Applies Validation for the `dwc_mvp.xlsx` Template
+        """Applies Frictionless Validation for the `dwc_mvp.xlsx` Template
 
         Args:
-            data (base.types.CSVType): Raw csv data to be loaded and validated
+            data (base.types.ReadableType): Raw data to be loaded and validated
 
         Returns:
-            frictionless.Resource: Validated csv data as Frictionless Resource
+            frictionless.Resource: Validated data as a Frictionless Resource.
         """
         # Retrieve Schema
         schema = self.schema()
@@ -76,10 +76,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         """Applies Mapping for the `dwc_mvp.xlsx` Template
 
         Args:
-            table (frictionless.Resource): Validated frictionless resource
+            table (frictionless.Resource): Validated Frictionless Table.
 
         Returns:
-            rdflib.Graph: ABIS conformant rdf mapped from the csv
+            rdflib.Graph: ABIS Conformant RDF Graph.
         """
         # Initialise Graph
         graph = utils.rdf.create_graph()

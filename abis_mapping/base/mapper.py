@@ -31,15 +31,15 @@ class ABISMapper(abc.ABC):
     @abc.abstractmethod
     def apply_validation(
         self,
-        data: types.CSVType,
+        data: types.ReadableType,
         ) -> frictionless.Resource:
-        """Applies Frictionless Validation to CSV.
+        """Applies Frictionless Validation to Raw Data.
 
         Args:
-            data (CSVType): Readable CSV Type.
+            data (ReadableType): Readable raw data.
 
         Returns:
-            frictionless.Resource: Validated CSV as a Frictionless Resource.
+            frictionless.Resource: Validated data as a Frictionless Resource.
         """
 
     @abc.abstractmethod

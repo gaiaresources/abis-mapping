@@ -6,11 +6,9 @@ from os import PathLike
 from typing import IO, Union
 
 
-# Define Filepath and IO Types
-FilePath = Union[str, PathLike[str]]
-ReadCsvBuffer = IO
-CSVType = Union[
-    FilePath,
-    ReadCsvBuffer[bytes],
-    ReadCsvBuffer[str],
+# Define Readable Filepath and IO Type
+ReadableType = Union[
+    Union[str, PathLike[str]],
+    IO[bytes],
+    IO[str],
 ]
