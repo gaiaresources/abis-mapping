@@ -82,7 +82,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not report.valid:
             # Raise Exception
             raise base.exceptions.ABISMapperValidationError(
-                report=report.to_dict()
+                report=report  # Include Validation Report
             )
 
         # Return Validated Resource

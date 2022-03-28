@@ -4,8 +4,8 @@
 # Standard
 import dataclasses
 
-# Typing
-from typing import Any
+# Third-Party
+import frictionless
 
 
 class ABISMapperError(Exception):
@@ -19,4 +19,4 @@ class ABISMapperMappingError(ABISMapperError):
 @dataclasses.dataclass
 class ABISMapperValidationError(ABISMapperError):
     """ABIS Mapper Validation Exception for Validation Errors"""
-    report: dict[str, Any]  # Validation Report
+    report: frictionless.Report  # Validation Report
