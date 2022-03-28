@@ -74,7 +74,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             checks=[
                 # Inbuilt Checks
                 frictionless.checks.table_dimensions(min_rows=1),  # Cannot be blank
-                frictionless.checks.duplicate_row(),  # Cannot have duplicates
                 # Custom Checks
                 check_coordinates,  # Coordinates must be in Australia
             ]
