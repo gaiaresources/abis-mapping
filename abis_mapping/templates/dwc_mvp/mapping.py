@@ -66,8 +66,41 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             onerror="raise",  # Raise Exception on Validation Error
         )
 
+        # Loop through Rows
+        for row in resource:
+            # Validate Row
+            self.validate_row(row)
+
         # Return
         return resource
+
+    def validate_row(
+        self,
+        row: frictionless.Row,
+        ) -> None:
+        """Validates row with extra checks not in the `schema.json`
+
+        Args:
+            row (frictionless.Row): Row to be validated
+
+        Raises:
+            frictionless.FrictionlessException
+        """
+        # Validate Coordinates
+        coords_valid = utils.coords.validate_coordinates(
+            latitude=row["decimalLatitude"],
+            longitude=row["decimalLongitude"],
+        )
+
+        # Check Validity
+        if not coords_valid:
+            # Raise Exception
+            raise frictionless.FrictionlessException(
+                error=frictionless.errors.RowConstraintError.from_row(
+                    row=row,
+                    note="the specified coordinates are not within Australia"
+                )
+            )
 
     def apply_mapping(
         self,
