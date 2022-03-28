@@ -8,6 +8,9 @@ import datetime
 import frictionless
 import rdflib
 
+# Typing
+from typing import Iterator
+
 # Local
 from abis_mapping import base
 from abis_mapping import utils
@@ -59,48 +62,33 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Retrieve Schema
         schema = self.schema()
 
-        # Apply Validation
+        # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
             source=data,
             schema=schema,
-            onerror="raise",  # Raise Exception on Validation Error
         )
 
-        # Loop through Rows
-        for row in resource:
-            # Validate Row
-            self.validate_row(row)
-
-        # Return
-        return resource
-
-    def validate_row(
-        self,
-        row: frictionless.Row,
-        ) -> None:
-        """Validates row with extra checks not in the `schema.json`
-
-        Args:
-            row (frictionless.Row): Row to be validated
-
-        Raises:
-            frictionless.FrictionlessException
-        """
-        # Validate Coordinates
-        coords_valid = utils.coords.validate_coordinates(
-            latitude=row["decimalLatitude"],
-            longitude=row["decimalLongitude"],
+        # Validate
+        report: frictionless.Report = frictionless.validate_resource(
+            source=resource,
+            checks=[
+                # Inbuilt Checks
+                frictionless.checks.table_dimensions(min_rows=1),  # Cannot be blank
+                frictionless.checks.duplicate_row(),  # Cannot have duplicates
+                # Custom Checks
+                check_coordinates,  # Coordinates must be in Australia
+            ]
         )
 
-        # Check Validity
-        if not coords_valid:
+        # Check if Invalid
+        if not report.valid:
             # Raise Exception
-            raise frictionless.FrictionlessException(
-                error=frictionless.errors.RowConstraintError.from_row(
-                    row=row,
-                    note="the specified coordinates are not within Australia"
-                )
+            raise base.exceptions.ABISMapperValidationError(
+                report=report.to_dict()
             )
+
+        # Return Validated Resource
+        return resource
 
     def apply_mapping(
         self,
@@ -766,6 +754,31 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
         graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_PLANT_INDIVIDUAL))
+
+
+# Helper Functions
+def check_coordinates(row: frictionless.Row) -> Iterator[frictionless.Error]:
+    """Checks whether the latitude and longitude of the row are valid.
+
+    Args:
+        row (frictionless.Row): The row to check the coordinates of.
+
+    Yields:
+        frictionless.Error: Yielded when the coordinates are deemed invalid.
+    """
+    # Validate Coordinates
+    coords_valid = utils.coords.validate_coordinates(
+        latitude=row["decimalLatitude"],
+        longitude=row["decimalLongitude"],
+    )
+
+    # Check Validity
+    if not coords_valid:
+        # Yield Error
+        yield frictionless.errors.RowConstraintError.from_row(
+            row=row,
+            note="the specified coordinates are not within the allowed boundaries",
+        )
 
 
 # Register Mapper

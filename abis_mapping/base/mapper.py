@@ -40,6 +40,10 @@ class ABISMapper(abc.ABC):
 
         Returns:
             frictionless.Resource: Validated data as a Frictionless Resource.
+
+        Raises:
+            exceptions.ABISMapperValidationError: Raised if a validation error
+                occurs.
         """
 
     @abc.abstractmethod
@@ -54,6 +58,10 @@ class ABISMapper(abc.ABC):
 
         Returns:
             rdflib.Graph: ABIS Conformant RDF Graph.
+
+        Raises:
+            exceptions.ABISMapperMappingError: Raised if a mapping error
+                occurs.
         """
 
     @final
