@@ -19,7 +19,9 @@
       "type": "number",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": true,
+        "minimum": -90.0,
+        "maximum": 90.0
       }
     },
     {
@@ -30,7 +32,9 @@
       "type": "number",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": true,
+        "minimum": -180.0,
+        "maximum": 180.0
       }
     },
     {
