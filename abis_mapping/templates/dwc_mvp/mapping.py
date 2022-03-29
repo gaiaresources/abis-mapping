@@ -47,22 +47,20 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def apply_validation(
         self,
         data: base.types.ReadableType,
-        ) -> frictionless.Resource:
+        ) -> frictionless.Report:
         """Applies Frictionless Validation for the `dwc_mvp.xlsx` Template
 
         Args:
-            data (base.types.ReadableType): Raw data to be loaded and validated
+            data (base.types.ReadableType): Raw data to be validated.
 
         Returns:
-            frictionless.Resource: Validated data as a Frictionless Resource.
+            frictionless.Report: Validation report for the specified data.
         """
-        # Retrieve Schema
-        schema = self.schema()
-
         # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
             source=data,
-            schema=schema,
+            schema=self.schema(),
+            onerror="ignore",  # Ignore errors, they will be handled in the report
         )
 
         # Validate
@@ -79,28 +77,28 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             ]
         )
 
-        # Check if Invalid
-        if not report.valid:
-            # Raise Exception
-            raise base.exceptions.ABISMapperValidationError(
-                report=report  # Include Validation Report
-            )
-
-        # Return Validated Resource
-        return resource
+        # Return Validation Report
+        return report
 
     def apply_mapping(
         self,
-        table: frictionless.Resource,
+        data: base.types.ReadableType,
         ) -> rdflib.Graph:
         """Applies Mapping for the `dwc_mvp.xlsx` Template
 
         Args:
-            table (frictionless.Resource): Validated Frictionless Table.
+            data (base.types.ReadableType): Valid raw data to be mapped.
 
         Returns:
             rdflib.Graph: ABIS Conformant RDF Graph.
         """
+        # Construct Resource (Table with Schema)
+        resource = frictionless.Resource(
+            source=data,
+            schema=self.schema(),
+            onerror="raise",  # Raise errors, it should already be valid here
+        )
+
         # Initialise Graph
         graph = utils.rdf.create_graph()
 
@@ -112,7 +110,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((dataset, rdflib.DCTERMS.issued, rdflib.Literal(DATASET_DATE)))
 
         # Loop through Rows
-        for row_number, row in enumerate(table):
+        for row_number, row in enumerate(resource):
             # Map Row
             self.apply_mapping_row(row, row_number, dataset, graph)
 

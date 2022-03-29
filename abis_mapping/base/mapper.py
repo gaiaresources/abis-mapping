@@ -32,36 +32,28 @@ class ABISMapper(abc.ABC):
     def apply_validation(
         self,
         data: types.ReadableType,
-        ) -> frictionless.Resource:
-        """Applies Frictionless Validation to Raw Data.
+        ) -> frictionless.Report:
+        """Applies Frictionless Validation to Raw Data to Generate Report.
 
         Args:
             data (ReadableType): Readable raw data.
 
         Returns:
-            frictionless.Resource: Validated data as a Frictionless Resource.
-
-        Raises:
-            exceptions.ABISMapperValidationError: Raised if a validation error
-                occurs.
+            frictionless.Report: Validation report for the data.
         """
 
     @abc.abstractmethod
     def apply_mapping(
         self,
-        table: frictionless.Resource,
+        data: types.ReadableType,
         ) -> rdflib.Graph:
-        """Applies Mapping from Frictionless Resource to ABIS conformant RDF.
+        """Applies Mapping from Raw Data to ABIS conformant RDF.
 
         Args:
-            table (frictionless.Resource): Validated Frictionless Table.
+            data (ReadableType): Readable raw data.
 
         Returns:
             rdflib.Graph: ABIS Conformant RDF Graph.
-
-        Raises:
-            exceptions.ABISMapperMappingError: Raised if a mapping error
-                occurs.
         """
 
     @final

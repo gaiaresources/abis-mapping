@@ -1,7 +1,6 @@
 """Exports sub-package interface"""
 
 # Local
-from . import exceptions
 from . import mapper
 from . import types
 
