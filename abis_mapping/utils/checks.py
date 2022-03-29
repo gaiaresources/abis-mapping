@@ -49,7 +49,7 @@ class ValidCoordinates(frictionless.Check):
         # Check Existence
         if latitude is None or longitude is None:
             # Short-circuit
-            return None
+            return
 
         # Validate Coordinates
         coords_valid = coords.validate_coordinates(
@@ -83,7 +83,7 @@ class NotEmpty(frictionless.Check):
         if not self.resource.stats.get("rows"):
             # Yield Error
             yield frictionless.errors.TableDimensionsError(
-                note=f"Current number of rows is 0, the minimum is 1",
+                note="Current number of rows is 0, the minimum is 1",
                 limits={"minRows": 1, "numberRows": 0},
             )
 
