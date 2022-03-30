@@ -5,23 +5,17 @@
 import datetime
 
 # Third-Party
-import pandas as pd
+import frictionless
 import rdflib
 
 # Local
 from abis_mapping import base
 from abis_mapping import utils
 
-# Typing
-from typing import Union
-
-
-# Custom Types
-DateOrDateTime = Union[datetime.date, datetime.datetime]
 
 # Temporary Metadata
 # The mappings need a method of retrieving dataset "metadata" external to the
-# CSV. For example: Dataset Name, Dataset Description, Dataset Issue Date.
+# raw data. For example: Dataset Name, Dataset Description, Dataset Issue Date.
 # Defining them as temporary constants for now
 DATASET_NAME = "Example DWC MVP Dataset"  # TODO -> Real metadata
 DATASET_DESCRIPTION = "Example DWC MVP Dataset by Gaia Resources"  # TODO -> Real metadata
@@ -47,20 +41,63 @@ CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName")  # TODO -> Nee
 class DWCMVPMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `dwc_mvp.xlsx`"""
 
+    # Template ID
+    template_id = "dwc_mvp.xlsx"
+
+    def apply_validation(
+        self,
+        data: base.types.ReadableType,
+    ) -> frictionless.Report:
+        """Applies Frictionless Validation for the `dwc_mvp.xlsx` Template
+
+        Args:
+            data (base.types.ReadableType): Raw data to be validated.
+
+        Returns:
+            frictionless.Report: Validation report for the specified data.
+        """
+        # Construct Resource (Table with Schema)
+        resource = frictionless.Resource(
+            source=data,
+            schema=self.schema(),
+            onerror="ignore",  # Ignore errors, they will be handled in the report
+        )
+
+        # Validate
+        report: frictionless.Report = frictionless.validate_resource(
+            source=resource,
+            checks=[
+                # Extra Custom Checks
+                utils.checks.NotTabular(),
+                utils.checks.NotEmpty(),
+                utils.checks.ValidCoordinates(
+                    latitude_name="decimalLatitude",
+                    longitude_name="decimalLongitude",
+                ),
+            ]
+        )
+
+        # Return Validation Report
+        return report
+
     def apply_mapping(
         self,
-        data: base.types.CSVType,
-        ) -> rdflib.Graph:
+        data: base.types.ReadableType,
+    ) -> rdflib.Graph:
         """Applies Mapping for the `dwc_mvp.xlsx` Template
 
         Args:
-            data (base.types.CSVType): Raw pandas csv data to be mapped
+            data (base.types.ReadableType): Valid raw data to be mapped.
 
         Returns:
-            rdflib.Graph: ABIS conformant rdf mapped from the csv
+            rdflib.Graph: ABIS Conformant RDF Graph.
         """
-        # Read CSV into DataFrame
-        df = utils.csv.read_csv(data)
+        # Construct Resource (Table with Schema)
+        resource = frictionless.Resource(
+            source=data,
+            schema=self.schema(),
+            onerror="raise",  # Raise errors, it should already be valid here
+        )
 
         # Initialise Graph
         graph = utils.rdf.create_graph()
@@ -73,7 +110,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((dataset, rdflib.DCTERMS.issued, rdflib.Literal(DATASET_DATE)))
 
         # Loop through Rows
-        for row_number, row in df.iterrows():
+        for row_number, row in enumerate(resource):
             # Map Row
             self.apply_mapping_row(row, row_number, dataset, graph)
 
@@ -82,15 +119,15 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
     def apply_mapping_row(
         self,
-        row: pd.Series,
+        row: frictionless.Row,
         row_number: int,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> rdflib.Graph:
+    ) -> rdflib.Graph:
         """Applies Mapping for a Row in the `dwc_mvp.xlsx` Template
 
         Args:
-            row (pd.Series): Row to be processed in the dataset.
+            row (frictionless.Row): Row to be processed in the dataset.
             row_number (int): Row number to be processed.
             dataset (rdflib.URIRef): Dataset uri this row is apart of.
             graph (rdflib.Graph): Graph to map row into.
@@ -102,8 +139,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}")
         provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}")
         site = utils.rdf.uri(f"site/{row['locality']}")
-        site_landform = utils.rdf.uri(f"site-landform/{row['locality']}")  # TODO -> Where does this come from?
-        site_establishment = utils.rdf.uri(f"site-establishment/{row['locality']}")  # TODO -> Where does this come from?
+        site_landform = utils.rdf.uri(f"site-landform/{row['locality']}")  # TODO -> Under investigation
+        site_establishment = utils.rdf.uri(f"site-establishment/{row['locality']}")  # TODO -> Under investigation
         sample_field = utils.rdf.uri(f"sample/field/{row_number}")
         sampling_field = utils.rdf.uri(f"sampling/field/{row_number}")
         sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}")
@@ -269,14 +306,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def add_provider(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Provider to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
         # Add to Graph
@@ -287,17 +324,17 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def add_site(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         dataset: rdflib.URIRef,
         site_establishment: rdflib.URIRef,
         site_landform: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Site to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             site_establishment (rdflib.URIRef): Site Establishment associated
                 with this node
@@ -318,31 +355,28 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def add_site_establishment(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         provider: rdflib.URIRef,
         site: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Site Establishment to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             provider (rdflib.URIRef): Provider associated with this node
             site (rdflib.URIRef): Site associated with this node
             graph (rdflib.Graph): Graph to add to
         """
-        # Retrieve Timestamp
-        timestamp = parse_timestamp(row["eventDate"])
-
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("site-establishment")))
         graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, site))
         graph.add((uri, rdflib.SOSA.hasResult, site))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_HUMAN_OBSERVATION))
 
         # Patch
@@ -355,18 +389,18 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def add_observation_scientific_name(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         dataset: rdflib.URIRef,
         provider: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Observation Scientific Name to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             provider (rdflib.URIRef): Provider associated with this node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
@@ -375,9 +409,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 this node
             graph (rdflib.Graph): Graph to add to
         """
-        # Retrieve Timestamp
-        timestamp = parse_timestamp(row["dateIdentified"])
-
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -390,25 +421,25 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, time_predicate(timestamp), rdflib.Literal(timestamp)))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
+        graph.add((phenomenon_time, rdflib.TIME.inXSDDate, rdflib.Literal(row["dateIdentified"])))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["dateIdentified"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
     def add_observation_verbatim_id(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         dataset: rdflib.URIRef,
         provider: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         verbatim_id: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Observation Verbatim ID to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             provider (rdflib.URIRef): Provider associated with this node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
@@ -416,9 +447,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             verbatim_id (rdflib.URIRef): Verbatim ID associated with this node
             graph (rdflib.Graph): Graph to add to
         """
-        # Retrieve Timestamp
-        timestamp = parse_timestamp(row["dateIdentified"])
-
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -431,24 +459,24 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, time_predicate(timestamp), rdflib.Literal(timestamp)))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
+        graph.add((phenomenon_time, rdflib.TIME.inXSDDate, rdflib.Literal(row["dateIdentified"])))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["dateIdentified"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
     def add_sampling_field(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         provider: rdflib.URIRef,
         site: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Sampling Field to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             provider (rdflib.URIRef): Provider associated with this node
             site (rdflib.URIRef): Site associated with this node
             sample_field (rdflib.URIRef): Sample Field associated with this
@@ -461,9 +489,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             datatype=utils.namespaces.GEO.wktLiteral,
         )
 
-        # Retrieve Timestamp
-        timestamp = parse_timestamp(row["eventDate"])
-
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
@@ -474,22 +499,22 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, site))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_HUMAN_OBSERVATION))
 
     def add_id_qualifier_attribute(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         dataset: rdflib.URIRef,
         id_qualifier_value: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Identification Qualifier Attribute to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             row_number (int): Row number for this row
             dataset (rdflib.URIRef): Dataset this belongs to
             id_qualifier_value (rdflib.URIRef): Identification Qualifier Value
@@ -508,14 +533,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def add_id_qualifier_value(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Identification Qualifier Value to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -528,16 +553,16 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def add_id_remarks_attribute(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         dataset: rdflib.URIRef,
         id_remarks_value: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Identification Remarks Attribute to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             id_remarks_value (rdflib.URIRef): Identification Remarks Value
                 associated with this node
@@ -555,14 +580,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def add_id_remarks_value(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Identification Remarks Value to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -576,15 +601,15 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Text Scientific Name to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             dataset (rdflib.URIRef): Dataset this belongs to
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
         # Add to Graph
@@ -599,46 +624,43 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def add_sampling_specimen(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         sample_field: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Sampling Specimen to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             sample_field (rdflib.URIRef): Sample Field associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
             graph (rdflib.Graph): Graph to add to
         """
-        # Retrieve Timestamp
-        timestamp = parse_timestamp(row["eventDate"])
-
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
 
     def add_text_verbatim_id(
         self,
         uri: rdflib.URIRef,
-        row: pd.Series,
+        row: frictionless.Row,
         qualifier: rdflib.URIRef,
         remarks: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Text Verbatim ID to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             qualifier (rdflib.URIRef): Identification Qualifier attribute
                 associated with this node
             remarks (rdflib.URIRef): Identification Remarks attribute
@@ -661,7 +683,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Site Landform to the Graph
 
         Args:
@@ -681,7 +703,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         sampling_field: rdflib.URIRef,
         site: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Sample Field to the Graph
 
         Args:
@@ -708,12 +730,12 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         sampling_specimen: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Sample Specimen to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (pd.Series): Row to retrieve data from
+            row (frictionless.Row): Row to retrieve data from
             sampling_specimen (rdflib.URIRef): Sampling Specimen associated
                 with this node
             sample_field (rdflib.URIRef): Sample Field associated with this
@@ -731,54 +753,5 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_PLANT_INDIVIDUAL))
 
 
-# Utility Functions
-def parse_timestamp(raw: str) -> DateOrDateTime:
-    """Parses a string to a date or datetime
-
-    Args:
-        raw (str): Raw string to be parsed
-
-    Returns:
-        DateOrDateTime: Either a date or timezone aware datetime.
-
-    Raises:
-        ValueError: Raised if the string cannot be parsed as either a date or
-            timezone aware datetime
-    """
-    # Catch Errors
-    try:
-        # Parse as `Date` first
-        timestamp = datetime.date.fromisoformat(raw)
-
-    except ValueError:
-        # Timestamp is not a date, try `DateTime`
-        timestamp = datetime.datetime.fromisoformat(raw)
-
-        # Check for Timezone
-        if not timestamp.tzinfo:
-            raise ValueError("Datetime must include timezone")
-
-    # Return
-    return timestamp
-
-
-def time_predicate(timestamp: DateOrDateTime) -> rdflib.URIRef:
-    """Generates the correct TIME.inXSDxxx predicate for date or datetime
-
-    Args:
-        timestamp (DateOrDateTime): The timestamp to generate predicate for
-
-    Returns:
-        rdflib.URIRef: The smartly generated predicate
-    """
-    # Check Type
-    if isinstance(timestamp, datetime.date):
-        # inXSDDate
-        return rdflib.TIME.inXSDDate
-
-    # inXSDDateTimeStamp
-    return rdflib.TIME.inXSDDateTimeStamp
-
-
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(DWCMVPMapper, "dwc_mvp.xlsx")
+base.mapper.ABISMapper.register_mapper(DWCMVPMapper)

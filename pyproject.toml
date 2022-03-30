@@ -7,11 +7,12 @@ authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 rdflib = "^6.1.1"
-pandas = "^1.4.1"
 python-slugify = "^6.1.1"
+frictionless = {extras = ["excel"], version = "^4.26.1"}
 
 [tool.poetry.dev-dependencies]
-pandas-stubs = "^1.2.0"
+flake8 = "^4.0.1"
+flake8-bugbear = "^22.3.23"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
