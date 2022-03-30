@@ -4,4 +4,5 @@
 from . import checks
 from . import coords
 from . import namespaces
+from . import plugin
 from . import rdf
