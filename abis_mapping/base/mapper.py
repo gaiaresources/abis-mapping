@@ -32,7 +32,7 @@ class ABISMapper(abc.ABC):
     def apply_validation(
         self,
         data: types.ReadableType,
-        ) -> frictionless.Report:
+    ) -> frictionless.Report:
         """Applies Frictionless Validation to Raw Data to Generate Report.
 
         Args:
@@ -46,7 +46,7 @@ class ABISMapper(abc.ABC):
     def apply_mapping(
         self,
         data: types.ReadableType,
-        ) -> rdflib.Graph:
+    ) -> rdflib.Graph:
         """Applies Mapping from Raw Data to ABIS conformant RDF.
 
         Args:
@@ -93,7 +93,7 @@ class ABISMapper(abc.ABC):
     def register_mapper(
         cls,
         mapper: type["ABISMapper"],
-        ) -> None:
+    ) -> None:
         """Registers a concrete ABIS Mapper with the Base Class
 
         Args:

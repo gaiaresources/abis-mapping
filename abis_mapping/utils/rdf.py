@@ -46,7 +46,7 @@ def create_graph() -> rdflib.Graph:
 def uri(
     internal_id: Optional[str] = None,
     namespace: rdflib.Namespace = namespaces.EXAMPLE,
-    ) -> rdflib.URIRef:
+) -> rdflib.URIRef:
     """Generates an rdflib.URIRef using the EXAMPLE namespace
 
     The internal id is sanitised (slugified), or if not a provided a uuidv4 is

@@ -89,7 +89,7 @@ VALID_COORDINATE_RANGES: list[CoordinateRange] = [
 def validate_coordinates(
     latitude: decimal.Decimal,
     longitude: decimal.Decimal,
-    ) -> bool:
+) -> bool:
     """Validates a given latitude and longitude within Australia
 
     Args:

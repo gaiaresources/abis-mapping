@@ -20,11 +20,11 @@ class ValidCoordinates(frictionless.Check):
 
     def __init__(
         self,
-        descriptor: Any=None,
+        descriptor: Any = None,
         *,
         latitude_name: str,
         longitude_name: str,
-        ) -> None:
+    ) -> None:
         """Instantiate the ValidCoordinates Checker"""
         # Initialise Super Class
         super().__init__(descriptor)
