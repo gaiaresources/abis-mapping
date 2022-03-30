@@ -59,6 +59,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
             source=data,
+            format="csv",  # TODO -> Hardcoded to csv for now
             schema=self.schema(),
             onerror="ignore",  # Ignore errors, they will be handled in the report
         )
@@ -95,6 +96,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
             source=data,
+            format="csv",  # TODO -> Hardcoded to csv for now
             schema=self.schema(),
             onerror="raise",  # Raise errors, it should already be valid here
         )
