@@ -1,4 +1,4 @@
-"""Provides ABIS Mapper for `dwc_mvp.xlsx` Template"""
+"""Provides ABIS Mapper for `dwc_mvp.csv` Template"""
 
 
 # Standard
@@ -39,16 +39,16 @@ CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName")  # TODO -> Nee
 
 
 class DWCMVPMapper(base.mapper.ABISMapper):
-    """ABIS Mapper for `dwc_mvp.xlsx`"""
+    """ABIS Mapper for `dwc_mvp.csv`"""
 
     # Template ID
-    template_id = "dwc_mvp.xlsx"
+    template_id = "dwc_mvp.csv"
 
     def apply_validation(
         self,
         data: base.types.ReadableType,
     ) -> frictionless.Report:
-        """Applies Frictionless Validation for the `dwc_mvp.xlsx` Template
+        """Applies Frictionless Validation for the `dwc_mvp.csv` Template
 
         Args:
             data (base.types.ReadableType): Raw data to be validated.
@@ -85,7 +85,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self,
         data: base.types.ReadableType,
     ) -> rdflib.Graph:
-        """Applies Mapping for the `dwc_mvp.xlsx` Template
+        """Applies Mapping for the `dwc_mvp.csv` Template
 
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
@@ -126,7 +126,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> rdflib.Graph:
-        """Applies Mapping for a Row in the `dwc_mvp.xlsx` Template
+        """Applies Mapping for a Row in the `dwc_mvp.csv` Template
 
         Args:
             row (frictionless.Row): Row to be processed in the dataset.

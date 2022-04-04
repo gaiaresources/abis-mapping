@@ -1,7 +1,7 @@
 {
-    "id": "dwc_mvp.xlsx",
+    "id": "dwc_mvp.csv",
     "description": "A template to translate some Darwin Core fields",
     "version": "0.0.1",
-    "template_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/dwc_mvp/dwc_mvp.xlsx",
+    "template_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/dwc_mvp/dwc_mvp.csv",
     "schema_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/dwc_mvp/schema.json"
 }
