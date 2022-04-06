@@ -20,7 +20,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://example.org/observation/scientificName/1> a tern:Observation ;
@@ -33,7 +33,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/scientificName/10> a tern:Observation ;
@@ -46,7 +46,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-23"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://example.org/observation/scientificName/2> a tern:Observation ;
@@ -59,7 +59,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/scientificName/3> a tern:Observation ;
@@ -72,7 +72,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/scientificName/4> a tern:Observation ;
@@ -85,7 +85,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/scientificName/5> a tern:Observation ;
@@ -98,7 +98,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/scientificName/6> a tern:Observation ;
@@ -111,7 +111,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/scientificName/7> a tern:Observation ;
@@ -124,7 +124,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/scientificName/8> a tern:Observation ;
@@ -137,7 +137,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-23"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://example.org/observation/scientificName/9> a tern:Observation ;
@@ -150,7 +150,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-23"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://example.org/observation/verbatimID/0> a tern:Observation ;
@@ -163,7 +163,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://example.org/observation/verbatimID/1> a tern:Observation ;
@@ -176,7 +176,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/verbatimID/10> a tern:Observation ;
@@ -189,7 +189,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-23"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://example.org/observation/verbatimID/2> a tern:Observation ;
@@ -202,7 +202,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/verbatimID/3> a tern:Observation ;
@@ -215,7 +215,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/verbatimID/4> a tern:Observation ;
@@ -228,7 +228,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/verbatimID/5> a tern:Observation ;
@@ -241,7 +241,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/verbatimID/6> a tern:Observation ;
@@ -254,7 +254,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/verbatimID/7> a tern:Observation ;
@@ -267,7 +267,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://example.org/observation/verbatimID/8> a tern:Observation ;
@@ -280,7 +280,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-23"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://example.org/observation/verbatimID/9> a tern:Observation ;
@@ -293,7 +293,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-23"^^xsd:date ] ;
-    sosa:usedProcedure <http://example.org/concept/identification-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://example.org/attribute/identificationQualifier/10> a tern:Attribute ;
@@ -422,77 +422,77 @@
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/0> ;
     sosa:hasResult <http://example.org/sample/specimen/0> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://example.org/sampling/specimen/1> a tern:Sampling ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/1> ;
     sosa:hasResult <http://example.org/sample/specimen/1> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://example.org/sampling/specimen/10> a tern:Sampling ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/10> ;
     sosa:hasResult <http://example.org/sample/specimen/10> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://example.org/sampling/specimen/2> a tern:Sampling ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/2> ;
     sosa:hasResult <http://example.org/sample/specimen/2> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://example.org/sampling/specimen/3> a tern:Sampling ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/3> ;
     sosa:hasResult <http://example.org/sample/specimen/3> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://example.org/sampling/specimen/4> a tern:Sampling ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/4> ;
     sosa:hasResult <http://example.org/sample/specimen/4> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://example.org/sampling/specimen/5> a tern:Sampling ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/5> ;
     sosa:hasResult <http://example.org/sample/specimen/5> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://example.org/sampling/specimen/6> a tern:Sampling ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/6> ;
     sosa:hasResult <http://example.org/sample/specimen/6> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://example.org/sampling/specimen/7> a tern:Sampling ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/7> ;
     sosa:hasResult <http://example.org/sample/specimen/7> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://example.org/sampling/specimen/8> a tern:Sampling ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/8> ;
     sosa:hasResult <http://example.org/sample/specimen/8> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://example.org/sampling/specimen/9> a tern:Sampling ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://example.org/sample/field/9> ;
     sosa:hasResult <http://example.org/sample/specimen/9> ;
-    sosa:usedProcedure <http://example.org/concept/field-sub-sampling> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://example.org/scientificName/Calothamnus-lateralis-var-crassus> a tern:FeatureOfInterest,
@@ -508,7 +508,7 @@
     prov:wasAssociatedWith <http://example.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://example.org/site/Cowaramup-Bay-Road> ;
     sosa:hasResult <http://example.org/site/Cowaramup-Bay-Road> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/a1685655-f8e2-46ee-9a74-767c648b54f4> ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://example.org/site-landform/Cowaramup-Bay-Road> a tern:FeatureOfInterest ;
@@ -784,5 +784,5 @@
 
 <http://example.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-03-25"^^xsd:date ;
+    dcterms:issued "2022-04-06"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
