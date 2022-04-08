@@ -45,16 +45,16 @@ def create_graph() -> rdflib.Graph:
 
 def uri(
     internal_id: Optional[str] = None,
-    namespace: rdflib.Namespace = namespaces.EXAMPLE,
+    namespace: Optional[rdflib.Namespace] = None,
 ) -> rdflib.URIRef:
-    """Generates an rdflib.URIRef using the EXAMPLE namespace
+    """Generates an rdflib.URIRef using the supplied namespace
 
     The internal id is sanitised (slugified), or if not a provided a uuidv4 is
     generated instead.
 
     Args:
         internal_id (Optional[str]): Optional human readable id.
-        namespace (rdflib.Namespace): Namespace for the uri.
+        namespace (Optional[rdflib.Namespace]): Optional namespace for the uri.
 
     Returns:
         rdflib.URIRef: Generated URI for internal usage.
@@ -63,6 +63,11 @@ def uri(
     if internal_id is None:
         # Generate a UUID
         internal_id = str(uuid.uuid4())
+
+    # Check for namespace
+    if namespace is None:
+        # Set Default Namespace
+        namespace = namespaces.CREATEME
 
     # Slugify
     # We split and re-join on the `/`, as forward-slashes are valid for our

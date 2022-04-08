@@ -46,11 +46,13 @@ class ABISMapper(abc.ABC):
     def apply_mapping(
         self,
         data: types.ReadableType,
+        base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
         """Applies Mapping from Raw Data to ABIS conformant RDF.
 
         Args:
             data (ReadableType): Readable raw data.
+            base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
         Returns:
             rdflib.Graph: ABIS Conformant RDF Graph.

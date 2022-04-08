@@ -12,6 +12,9 @@ import rdflib
 from abis_mapping import base
 from abis_mapping import utils
 
+# Typing
+from typing import Optional
+
 
 # Temporary Metadata
 # The mappings need a method of retrieving dataset "metadata" external to the
@@ -85,11 +88,13 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def apply_mapping(
         self,
         data: base.types.ReadableType,
+        base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
         """Applies Mapping for the `dwc_mvp.csv` Template
 
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
+            base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
         Returns:
             rdflib.Graph: ABIS Conformant RDF Graph.
@@ -106,7 +111,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph = utils.rdf.create_graph()
 
         # Create Dataset
-        dataset = utils.rdf.uri(f"dataset/{DATASET_NAME}")
+        dataset = utils.rdf.uri(f"dataset/{DATASET_NAME}", base_iri)
         graph.add((dataset, a, utils.namespaces.TERN.RDFDataset))
         graph.add((dataset, rdflib.DCTERMS.title, rdflib.Literal(DATASET_NAME)))
         graph.add((dataset, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DESCRIPTION)))
@@ -115,7 +120,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Loop through Rows
         for row_number, row in enumerate(resource):
             # Map Row
-            self.apply_mapping_row(row, row_number, dataset, graph)
+            self.apply_mapping_row(row, row_number, dataset, graph, base_iri)
 
         # Return
         return graph
@@ -126,6 +131,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         row_number: int,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace,
     ) -> rdflib.Graph:
         """Applies Mapping for a Row in the `dwc_mvp.csv` Template
 
@@ -134,28 +140,29 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             row_number (int): Row number to be processed.
             dataset (rdflib.URIRef): Dataset uri this row is apart of.
             graph (rdflib.Graph): Graph to map row into.
+            base_iri (rdflib.Namespace): Base IRI namespace to use for mapping.
 
         Returns:
             rdflib.Graph: Graph with row mapped into it.
         """
         # Create URIs
-        provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}")
-        provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}")
-        site = utils.rdf.uri(f"site/{row['locality']}")
-        site_landform = utils.rdf.uri(f"site-landform/{row['locality']}")  # TODO -> Under investigation
-        site_establishment = utils.rdf.uri(f"site-establishment/{row['locality']}")  # TODO -> Under investigation
-        sample_field = utils.rdf.uri(f"sample/field/{row_number}")
-        sampling_field = utils.rdf.uri(f"sampling/field/{row_number}")
-        sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}")
-        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_number}")
-        text_scientific_name = utils.rdf.uri(f"scientificName/{row['scientificName']}")
-        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row_number}")
-        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row_number}")
-        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row_number}")
-        id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{row_number}")
-        id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row_number}")
-        id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_number}")
-        id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_number}")
+        provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
+        provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
+        site = utils.rdf.uri(f"site/{row['locality']}", base_iri)
+        site_landform = utils.rdf.uri(f"site-landform/{row['locality']}", base_iri)  # TODO -> Not final
+        site_establishment = utils.rdf.uri(f"site-establishment/{row['locality']}", base_iri)  # TODO -> Not final
+        sample_field = utils.rdf.uri(f"sample/field/{row_number}", base_iri)
+        sampling_field = utils.rdf.uri(f"sampling/field/{row_number}", base_iri)
+        sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}", base_iri)
+        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_number}", base_iri)
+        text_scientific_name = utils.rdf.uri(f"scientificName/{row['scientificName']}", base_iri)
+        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row_number}", base_iri)
+        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row_number}", base_iri)
+        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row_number}", base_iri)
+        id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{row_number}", base_iri)
+        id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row_number}", base_iri)
+        id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_number}", base_iri)
+        id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_number}", base_iri)
 
         # Add Providers
         self.add_provider(
