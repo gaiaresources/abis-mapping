@@ -47,7 +47,7 @@ def uri(
     internal_id: Optional[str] = None,
     namespace: Optional[rdflib.Namespace] = None,
 ) -> rdflib.URIRef:
-    """Generates an rdflib.URIRef using the EXAMPLE namespace
+    """Generates an rdflib.URIRef using the supplied namespace
 
     The internal id is sanitised (slugified), or if not a provided a uuidv4 is
     generated instead.
@@ -67,7 +67,7 @@ def uri(
     # Check for namespace
     if namespace is None:
         # Set Default Namespace
-        namespace = namespaces.EXAMPLE
+        namespace = namespaces.CREATEME
 
     # Slugify
     # We split and re-join on the `/`, as forward-slashes are valid for our
