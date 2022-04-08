@@ -108,7 +108,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph = utils.rdf.create_graph()
 
         # Create Dataset
-        dataset = utils.rdf.uri(f"dataset/{DATASET_NAME}", namespace=base_iri)
+        dataset = utils.rdf.uri(f"dataset/{DATASET_NAME}", base_iri)
         graph.add((dataset, a, utils.namespaces.TERN.RDFDataset))
         graph.add((dataset, rdflib.DCTERMS.title, rdflib.Literal(DATASET_NAME)))
         graph.add((dataset, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DESCRIPTION)))
