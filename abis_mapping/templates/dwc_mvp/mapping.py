@@ -12,6 +12,9 @@ import rdflib
 from abis_mapping import base
 from abis_mapping import utils
 
+# Typing
+from typing import Optional
+
 
 # Temporary Metadata
 # The mappings need a method of retrieving dataset "metadata" external to the
@@ -85,13 +88,13 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def apply_mapping(
         self,
         data: base.types.ReadableType,
-        base_iri: rdflib.Namespace = utils.namespaces.EXAMPLE,
+        base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
         """Applies Mapping for the `dwc_mvp.csv` Template
 
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
-            base_iri (rdflib.Namespace): Base IRI namespace to use for mapping.
+            base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
         Returns:
             rdflib.Graph: ABIS Conformant RDF Graph.
@@ -146,8 +149,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
         provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
         site = utils.rdf.uri(f"site/{row['locality']}", base_iri)
-        site_landform = utils.rdf.uri(f"site-landform/{row['locality']}", base_iri)  # TODO -> Under investigation
-        site_establishment = utils.rdf.uri(f"site-establishment/{row['locality']}", base_iri)  # TODO -> Under investigation
+        site_landform = utils.rdf.uri(f"site-landform/{row['locality']}", base_iri)  # TODO -> Not final
+        site_establishment = utils.rdf.uri(f"site-establishment/{row['locality']}", base_iri)  # TODO -> Not final
         sample_field = utils.rdf.uri(f"sample/field/{row_number}", base_iri)
         sampling_field = utils.rdf.uri(f"sampling/field/{row_number}", base_iri)
         sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}", base_iri)

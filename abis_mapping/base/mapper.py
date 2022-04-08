@@ -14,7 +14,6 @@ import rdflib
 
 # Local
 from . import types
-from abis_mapping import utils
 
 # Typing
 from typing import Any, Optional, final
@@ -47,13 +46,13 @@ class ABISMapper(abc.ABC):
     def apply_mapping(
         self,
         data: types.ReadableType,
-        base_iri: rdflib.Namespace = utils.namespaces.EXAMPLE,
+        base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
         """Applies Mapping from Raw Data to ABIS conformant RDF.
 
         Args:
             data (ReadableType): Readable raw data.
-            base_iri (rdflib.Namespace): Base IRI namespace to use for mapping.
+            base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
         Returns:
             rdflib.Graph: ABIS Conformant RDF Graph.
