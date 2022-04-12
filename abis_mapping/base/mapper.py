@@ -61,6 +61,22 @@ class ABISMapper(abc.ABC):
     @final
     @classmethod
     @functools.lru_cache
+    def template(cls) -> pathlib.Path:
+        """Retrieves and Caches the Template Filepath
+
+        Returns:
+            pathlib.Path: Filepath for this Template
+        """
+        # Retrieve Template Filepath
+        directory = pathlib.Path(inspect.getfile(cls)).parent
+        template_file = directory / cls.template_id  # Template File is the Template ID
+
+        # Return
+        return template_file
+
+    @final
+    @classmethod
+    @functools.lru_cache
     def metadata(cls) -> dict[str, Any]:
         """Retrieves and Caches the Template Metadata for this Template
 
