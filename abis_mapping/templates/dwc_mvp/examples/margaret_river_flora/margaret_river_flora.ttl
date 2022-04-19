@@ -310,7 +310,7 @@
 
 <http://createme.org/sampling/field/0> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(115.21, -33.80)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -320,7 +320,7 @@
 
 <http://createme.org/sampling/field/1> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(115.01, -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -330,7 +330,7 @@
 
 <http://createme.org/sampling/field/10> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(115.02, -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -340,7 +340,7 @@
 
 <http://createme.org/sampling/field/2> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(115.01, -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -350,7 +350,7 @@
 
 <http://createme.org/sampling/field/3> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(115.01, -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -360,7 +360,7 @@
 
 <http://createme.org/sampling/field/4> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(114.99, -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -370,7 +370,7 @@
 
 <http://createme.org/sampling/field/5> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(114.99, -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -380,7 +380,7 @@
 
 <http://createme.org/sampling/field/6> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(114.99, -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -390,7 +390,7 @@
 
 <http://createme.org/sampling/field/7> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(114.99, -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -400,7 +400,7 @@
 
 <http://createme.org/sampling/field/8> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(115.02, -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -410,7 +410,7 @@
 
 <http://createme.org/sampling/field/9> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT(115.02, -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
@@ -784,5 +784,5 @@
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-04-08"^^xsd:date ;
+    dcterms:issued "2022-04-14"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .

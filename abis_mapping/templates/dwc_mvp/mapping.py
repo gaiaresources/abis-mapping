@@ -495,7 +495,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         """
         # Create WKT from Lat/Long
         wkt = rdflib.Literal(
-            f"POINT({row['decimalLongitude']}, {row['decimalLatitude']})",
+            f"POINT ({row['decimalLongitude']} {row['decimalLatitude']})",
             datatype=utils.namespaces.GEO.wktLiteral,
         )
 
