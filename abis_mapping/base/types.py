@@ -11,6 +11,8 @@ from typing import IO, Union
 
 # Define Readable Filepath and IO Type
 ReadableType = Union[
+    str,
+    bytes,
     Union[str, PathLike[str]],
     IO[bytes],
     IO[str],

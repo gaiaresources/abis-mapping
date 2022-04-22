@@ -34,52 +34,52 @@ VALID_COORDINATE_RANGES: list[CoordinateRange] = [
     ),
     # Lord Howe Island
     CoordinateRange(
-        decimal.Decimal("-31.787767354279936"),
-        decimal.Decimal("159.03680760268878"),
-        decimal.Decimal("-31.486129946639664"),
-        decimal.Decimal("159.28036851389584"),
+        decimal.Decimal("-31.787767"),
+        decimal.Decimal("159.036807"),
+        decimal.Decimal("-31.486129"),
+        decimal.Decimal("159.280368"),
     ),
     # Macquarie Island
     CoordinateRange(
-        decimal.Decimal("-55.123198591741584"),
-        decimal.Decimal("158.67492926247553"),
-        decimal.Decimal("-54.35587401197603"),
-        decimal.Decimal("158.998625266443"),
+        decimal.Decimal("-55.123198"),
+        decimal.Decimal("158.674929"),
+        decimal.Decimal("-54.355874"),
+        decimal.Decimal("158.998625"),
     ),
     # Norfolk Island
     CoordinateRange(
-        decimal.Decimal("-28.994170999591915"),
-        decimal.Decimal("167.9137700000855"),
-        decimal.Decimal("-29.136568000312934"),
-        decimal.Decimal("167.9980350000153"),
+        decimal.Decimal("-28.994170"),
+        decimal.Decimal("167.913770"),
+        decimal.Decimal("-29.136568"),
+        decimal.Decimal("167.998035"),
     ),
     # Ashmore and Cartier Islands
     CoordinateRange(
-        decimal.Decimal("-12.547300808985085"),
-        decimal.Decimal("122.92701027970077"),
-        decimal.Decimal("-12.184700176471893"),
-        decimal.Decimal("123.58185450628048"),
+        decimal.Decimal("-12.547300"),
+        decimal.Decimal("122.927010"),
+        decimal.Decimal("-12.184700"),
+        decimal.Decimal("123.581854"),
     ),
     # Christmas Island
     CoordinateRange(
-        decimal.Decimal("-10.570559999744148"),
-        decimal.Decimal("105.53314999957286"),
-        decimal.Decimal("-10.412390000098355"),
-        decimal.Decimal("105.7128100000815"),
+        decimal.Decimal("-10.570559"),
+        decimal.Decimal("105.533149"),
+        decimal.Decimal("-10.412390"),
+        decimal.Decimal("105.712810"),
     ),
     # Cocos Islands
     CoordinateRange(
-        decimal.Decimal("-12.21100099090296"),
-        decimal.Decimal("96.8154973639123"),
-        decimal.Decimal("-11.822133252347669"),
-        decimal.Decimal("96.93076388874255"),
+        decimal.Decimal("-12.211000"),
+        decimal.Decimal("96.815497"),
+        decimal.Decimal("-11.822133"),
+        decimal.Decimal("96.930763"),
     ),
     # Coral Sea Islands
     CoordinateRange(
-        decimal.Decimal("-29.982747999620415"),
-        decimal.Decimal("147.83945691360577"),
-        decimal.Decimal("-15.721024000057525"),
-        decimal.Decimal("159.1407290000434"),
+        decimal.Decimal("-29.982747"),
+        decimal.Decimal("147.839456"),
+        decimal.Decimal("-15.721024"),
+        decimal.Decimal("159.140729"),
     ),
     # Australian Antarctic Territory
     # TODO -> TBC (BDR-397)
@@ -89,7 +89,7 @@ VALID_COORDINATE_RANGES: list[CoordinateRange] = [
 def validate_coordinates(
     latitude: decimal.Decimal,
     longitude: decimal.Decimal,
-    ) -> bool:
+) -> bool:
     """Validates a given latitude and longitude within Australia
 
     Args:

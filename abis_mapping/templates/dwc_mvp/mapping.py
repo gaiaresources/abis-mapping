@@ -1,4 +1,4 @@
-"""Provides ABIS Mapper for `dwc_mvp.xlsx` Template"""
+"""Provides ABIS Mapper for `dwc_mvp.csv` Template"""
 
 
 # Standard
@@ -11,6 +11,9 @@ import rdflib
 # Local
 from abis_mapping import base
 from abis_mapping import utils
+
+# Typing
+from typing import Optional
 
 
 # Temporary Metadata
@@ -28,27 +31,28 @@ a = rdflib.RDF.type
 CONCEPT_TAXON = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")
 CONCEPT_SITE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4")
 CONCEPT_HUMAN_OBSERVATION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157")
+CONCEPT_SITE_ESTABLISHMENT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/a1685655-f8e2-46ee-9a74-767c648b54f4")
 CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7")
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
 CONCEPT_LANDFORM = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2cf3ed29-440e-4a50-9bbc-5aab30df9fcd")
 CONCEPT_PLANT_OCCURRENCE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611")
 CONCEPT_PLANT_INDIVIDUAL = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/60d7edf8-98c6-43e9-841c-e176c334d270")
-CONCEPT_PROCEDURE_ID = utils.rdf.uri("concept/identification-method")  # TODO -> Need real URI
-CONCEPT_PROCEDURE_SAMPLING = utils.rdf.uri("concept/field-sub-sampling")  # TODO -> Need real URI
+CONCEPT_PROCEDURE_ID = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653")
+CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName")  # TODO -> Need real URI
 
 
 class DWCMVPMapper(base.mapper.ABISMapper):
-    """ABIS Mapper for `dwc_mvp.xlsx`"""
+    """ABIS Mapper for `dwc_mvp.csv`"""
 
     # Template ID
-    template_id = "dwc_mvp.xlsx"
+    template_id = "dwc_mvp.csv"
 
     def apply_validation(
         self,
         data: base.types.ReadableType,
-        ) -> frictionless.Report:
-        """Applies Frictionless Validation for the `dwc_mvp.xlsx` Template
+    ) -> frictionless.Report:
+        """Applies Frictionless Validation for the `dwc_mvp.csv` Template
 
         Args:
             data (base.types.ReadableType): Raw data to be validated.
@@ -59,6 +63,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
             source=data,
+            format="csv",  # TODO -> Hardcoded to csv for now
             schema=self.schema(),
             onerror="ignore",  # Ignore errors, they will be handled in the report
         )
@@ -83,11 +88,13 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def apply_mapping(
         self,
         data: base.types.ReadableType,
-        ) -> rdflib.Graph:
-        """Applies Mapping for the `dwc_mvp.xlsx` Template
+        base_iri: Optional[rdflib.Namespace] = None,
+    ) -> rdflib.Graph:
+        """Applies Mapping for the `dwc_mvp.csv` Template
 
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
+            base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
         Returns:
             rdflib.Graph: ABIS Conformant RDF Graph.
@@ -95,6 +102,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
             source=data,
+            format="csv",  # TODO -> Hardcoded to csv for now
             schema=self.schema(),
             onerror="raise",  # Raise errors, it should already be valid here
         )
@@ -103,7 +111,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph = utils.rdf.create_graph()
 
         # Create Dataset
-        dataset = utils.rdf.uri(f"dataset/{DATASET_NAME}")
+        dataset = utils.rdf.uri(f"dataset/{DATASET_NAME}", base_iri)
         graph.add((dataset, a, utils.namespaces.TERN.RDFDataset))
         graph.add((dataset, rdflib.DCTERMS.title, rdflib.Literal(DATASET_NAME)))
         graph.add((dataset, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DESCRIPTION)))
@@ -112,7 +120,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Loop through Rows
         for row_number, row in enumerate(resource):
             # Map Row
-            self.apply_mapping_row(row, row_number, dataset, graph)
+            self.apply_mapping_row(row, row_number, dataset, graph, base_iri)
 
         # Return
         return graph
@@ -123,36 +131,38 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         row_number: int,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> rdflib.Graph:
-        """Applies Mapping for a Row in the `dwc_mvp.xlsx` Template
+        base_iri: rdflib.Namespace,
+    ) -> rdflib.Graph:
+        """Applies Mapping for a Row in the `dwc_mvp.csv` Template
 
         Args:
             row (frictionless.Row): Row to be processed in the dataset.
             row_number (int): Row number to be processed.
             dataset (rdflib.URIRef): Dataset uri this row is apart of.
             graph (rdflib.Graph): Graph to map row into.
+            base_iri (rdflib.Namespace): Base IRI namespace to use for mapping.
 
         Returns:
             rdflib.Graph: Graph with row mapped into it.
         """
         # Create URIs
-        provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}")
-        provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}")
-        site = utils.rdf.uri(f"site/{row['locality']}")
-        site_landform = utils.rdf.uri(f"site-landform/{row['locality']}")  # TODO -> Where does this come from?
-        site_establishment = utils.rdf.uri(f"site-establishment/{row['locality']}")  # TODO -> Where does this come from?
-        sample_field = utils.rdf.uri(f"sample/field/{row_number}")
-        sampling_field = utils.rdf.uri(f"sampling/field/{row_number}")
-        sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}")
-        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_number}")
-        text_scientific_name = utils.rdf.uri(f"scientificName/{row['scientificName']}")
-        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row_number}")
-        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row_number}")
-        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row_number}")
-        id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{row_number}")
-        id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row_number}")
-        id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_number}")
-        id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_number}")
+        provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
+        provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
+        site = utils.rdf.uri(f"site/{row['locality']}", base_iri)
+        site_landform = utils.rdf.uri(f"site-landform/{row['locality']}", base_iri)  # TODO -> Not final
+        site_establishment = utils.rdf.uri(f"site-establishment/{row['locality']}", base_iri)  # TODO -> Not final
+        sample_field = utils.rdf.uri(f"sample/field/{row_number}", base_iri)
+        sampling_field = utils.rdf.uri(f"sampling/field/{row_number}", base_iri)
+        sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}", base_iri)
+        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_number}", base_iri)
+        text_scientific_name = utils.rdf.uri(f"scientificName/{row['scientificName']}", base_iri)
+        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row_number}", base_iri)
+        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row_number}", base_iri)
+        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row_number}", base_iri)
+        id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{row_number}", base_iri)
+        id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row_number}", base_iri)
+        id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_number}", base_iri)
+        id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_number}", base_iri)
 
         # Add Providers
         self.add_provider(
@@ -308,7 +318,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Provider to the Graph
 
         Args:
@@ -329,7 +339,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         site_establishment: rdflib.URIRef,
         site_landform: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Site to the Graph
 
         Args:
@@ -359,7 +369,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         provider: rdflib.URIRef,
         site: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Site Establishment to the Graph
 
         Args:
@@ -377,7 +387,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, site))
         graph.add((uri, rdflib.SOSA.hasResult, site))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
-        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_HUMAN_OBSERVATION))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_SITE_ESTABLISHMENT))
 
         # Patch
         # Remove all except minimum `tern:resultDateTime` on Site Establishment
@@ -395,7 +405,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         sample_specimen: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Observation Scientific Name to the Graph
 
         Args:
@@ -434,7 +444,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         sample_specimen: rdflib.URIRef,
         verbatim_id: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Observation Verbatim ID to the Graph
 
         Args:
@@ -471,7 +481,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         site: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Sampling Field to the Graph
 
         Args:
@@ -485,7 +495,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         """
         # Create WKT from Lat/Long
         wkt = rdflib.Literal(
-            f"POINT({row['decimalLongitude']}, {row['decimalLatitude']})",
+            f"POINT ({row['decimalLongitude']} {row['decimalLatitude']})",
             datatype=utils.namespaces.GEO.wktLiteral,
         )
 
@@ -509,7 +519,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         id_qualifier_value: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Identification Qualifier Attribute to the Graph
 
         Args:
@@ -535,7 +545,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Identification Qualifier Value to the Graph
 
         Args:
@@ -557,7 +567,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         id_remarks_value: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Identification Remarks Attribute to the Graph
 
         Args:
@@ -582,7 +592,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Identification Remarks Value to the Graph
 
         Args:
@@ -603,7 +613,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Text Scientific Name to the Graph
 
         Args:
@@ -628,7 +638,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         sample_field: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Sampling Specimen to the Graph
 
         Args:
@@ -655,7 +665,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         qualifier: rdflib.URIRef,
         remarks: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Text Verbatim ID to the Graph
 
         Args:
@@ -683,7 +693,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Site Landform to the Graph
 
         Args:
@@ -703,7 +713,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         sampling_field: rdflib.URIRef,
         site: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Sample Field to the Graph
 
         Args:
@@ -730,7 +740,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         sampling_specimen: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         graph: rdflib.Graph,
-        ) -> None:
+    ) -> None:
         """Adds Sample Specimen to the Graph
 
         Args:
