@@ -2,6 +2,7 @@
 
 
 # Standard
+import datetime
 import uuid
 
 # Third-Party
@@ -10,6 +11,7 @@ import slugify
 
 # Local
 from . import namespaces
+from abis_mapping.base import types
 
 # Typing
 from typing import Optional
@@ -77,3 +79,22 @@ def uri(
 
     # Create URIRef and Return
     return namespace[internal_id]  # type: ignore[no-any-return]
+
+
+def inXSDSmart(timestamp: types.DateOrDatetime) -> rdflib.URIRef:
+    """Generates the correct TIME.inXSD<xxx> predicate for date or datetime.
+
+    Args:
+        timestamp (types.DateOrDateTime): Timestamp to generate a
+            time:inXSD<Date/DateTimeStamp> predicate for.
+
+    Returns:
+        rdflib.URIRef: The smartly generated predicate
+    """
+    # Check for Datetime
+    if isinstance(timestamp, datetime.datetime):
+        # inXSDDateTimeStamp
+        return rdflib.TIME.inXSDDateTimeStamp
+
+    # inXSDDate
+    return rdflib.TIME.inXSDDate

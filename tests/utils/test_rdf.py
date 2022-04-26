@@ -1,6 +1,9 @@
 """Provides Unit Tests for the `abis_mapping.utils.rdf` module"""
 
 
+# Standard
+import datetime
+
 # Third-Party
 import rdflib
 
@@ -34,3 +37,16 @@ def test_rdf_uri() -> None:
     assert isinstance(b, rdflib.URIRef)
     assert isinstance(c, rdflib.URIRef)
     assert isinstance(d, rdflib.URIRef)
+
+
+def test_rdf_inXSDSmart() -> None:
+    """Tests the inXSDSmart() Function"""
+    # Test Date
+    date = datetime.date.today()
+    predicate = utils.rdf.inXSDSmart(date)
+    assert predicate == rdflib.TIME.inXSDDate
+
+    # Test Datetime
+    time = datetime.datetime.now()
+    predicate = utils.rdf.inXSDSmart(time)
+    assert predicate == rdflib.TIME.inXSDDateTimeStamp

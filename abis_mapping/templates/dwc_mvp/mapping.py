@@ -432,7 +432,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, rdflib.TIME.inXSDDate, rdflib.Literal(row["dateIdentified"])))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(row["dateIdentified"]), rdflib.Literal(row["dateIdentified"])))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["dateIdentified"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
@@ -470,7 +470,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, rdflib.TIME.inXSDDate, rdflib.Literal(row["dateIdentified"])))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(row["dateIdentified"]), rdflib.Literal(row["dateIdentified"])))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["dateIdentified"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
