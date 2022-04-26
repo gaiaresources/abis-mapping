@@ -76,4 +76,4 @@ def uri(
     internal_id = "/".join(slugify.slugify(part, lowercase=False) for part in internal_id.split("/"))
 
     # Create URIRef and Return
-    return namespace[internal_id]
+    return namespace[internal_id]  # type: ignore[no-any-return]

@@ -78,7 +78,7 @@ class TimestampType(frictionless.Type):
                 return None
 
         # Return Validated Cell
-        return cell
+        return cell  # type: ignore[no-any-return]
 
     def write_cell(self, cell: types.DateOrDatetime) -> str:
         """Convert cell (write direction)

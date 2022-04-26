@@ -88,7 +88,7 @@ class ABISMapper(abc.ABC):
         metadata_file = directory / "metadata.json"
 
         # Read Metadata and Return
-        return json.loads(metadata_file.read_text())
+        return json.loads(metadata_file.read_text())  # type: ignore[no-any-return]
 
     @final
     @classmethod
@@ -104,7 +104,7 @@ class ABISMapper(abc.ABC):
         schema_file = directory / "schema.json"
 
         # Read Schema and Return
-        return json.loads(schema_file.read_text())
+        return json.loads(schema_file.read_text())  # type: ignore[no-any-return]
 
     @final
     @classmethod
