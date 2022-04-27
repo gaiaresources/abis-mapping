@@ -49,6 +49,7 @@ def test_base_get_template() -> None:
     assert real_mapper is not None
     template = real_mapper.template()
     assert isinstance(template, pathlib.Path)
+    assert template.is_file()
 
 
 def test_base_get_metadata() -> None:
@@ -67,3 +68,13 @@ def test_base_get_schema() -> None:
     assert real_mapper is not None
     schema = real_mapper.schema()
     assert isinstance(schema, dict)
+
+
+def test_base_get_instructions() -> None:
+    """Tests the functionality of the base mapper"""
+    # Test Real Template ID
+    real_mapper = base.mapper.get_mapper(TEMPLATE_ID_REAL)
+    assert real_mapper is not None
+    instructions = real_mapper.instructions()
+    assert isinstance(instructions, pathlib.Path)
+    assert instructions.is_file()
