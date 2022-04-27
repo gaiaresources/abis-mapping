@@ -42,7 +42,7 @@
       "title": "Event Date",
       "description": "...",
       "example": "2019-09-23",
-      "type": "date",
+      "type": "timestamp",
       "format": "default",
       "constraints": {
         "required": true
@@ -75,7 +75,7 @@
       "title": "Date Identified",
       "description": "...",
       "example": "2019-09-23",
-      "type": "date",
+      "type": "timestamp",
       "format": "default",
       "constraints": {
         "required": true

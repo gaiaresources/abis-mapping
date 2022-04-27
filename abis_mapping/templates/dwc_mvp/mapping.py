@@ -131,7 +131,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         row_number: int,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace,
+        base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
         """Applies Mapping for a Row in the `dwc_mvp.csv` Template
 
@@ -140,7 +140,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             row_number (int): Row number to be processed.
             dataset (rdflib.URIRef): Dataset uri this row is apart of.
             graph (rdflib.Graph): Graph to map row into.
-            base_iri (rdflib.Namespace): Base IRI namespace to use for mapping.
+            base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
+                to use for mapping.
 
         Returns:
             rdflib.Graph: Graph with row mapped into it.
@@ -392,7 +393,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Patch
         # Remove all except minimum `tern:resultDateTime` on Site Establishment
         triples = list(graph.triples((uri, utils.namespaces.TERN.resultDateTime, None)))
-        triples.remove(min(triples, key=lambda t: t[2]))
+        triples.remove(min(triples, key=lambda t: t[2]))  # type: ignore[no-any-return]
         for triple in triples:
             graph.remove(triple)
 
@@ -431,7 +432,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, rdflib.TIME.inXSDDate, rdflib.Literal(row["dateIdentified"])))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(row["dateIdentified"]), rdflib.Literal(row["dateIdentified"])))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["dateIdentified"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
@@ -469,7 +470,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, rdflib.TIME.inXSDDate, rdflib.Literal(row["dateIdentified"])))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(row["dateIdentified"]), rdflib.Literal(row["dateIdentified"])))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["dateIdentified"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
