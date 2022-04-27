@@ -45,8 +45,9 @@ CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName")  # TODO -> Nee
 class DWCMVPMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `dwc_mvp.csv`"""
 
-    # Template ID
+    # Template ID and Instructions File
     template_id = "dwc_mvp.csv"
+    instructions_file = "README.md"
 
     def apply_validation(
         self,

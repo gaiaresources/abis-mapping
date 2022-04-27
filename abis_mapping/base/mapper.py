@@ -25,8 +25,9 @@ class ABISMapper(abc.ABC):
     # ABIS Mapper Registry
     registry: dict[str, type["ABISMapper"]] = {}
 
-    # ABIS Mapper Template ID
+    # ABIS Mapper Template ID and Instructions File
     template_id: str = NotImplemented  # Must be implemented
+    instructions_file: str = NotImplemented  # Must be implemented
 
     @abc.abstractmethod
     def apply_validation(
@@ -105,6 +106,22 @@ class ABISMapper(abc.ABC):
 
         # Read Schema and Return
         return json.loads(schema_file.read_text())  # type: ignore[no-any-return]
+
+    @final
+    @classmethod
+    @functools.lru_cache
+    def instructions(cls) -> pathlib.Path:
+        """Retrieves and Caches the Template Instructions
+
+        Returns:
+            pathlib.Path: Filepath for this Template's Instructions
+        """
+        # Retrieve Template Filepath
+        directory = pathlib.Path(inspect.getfile(cls)).parent
+        instructions_file = directory / cls.instructions_file
+
+        # Return
+        return instructions_file
 
     @final
     @classmethod
