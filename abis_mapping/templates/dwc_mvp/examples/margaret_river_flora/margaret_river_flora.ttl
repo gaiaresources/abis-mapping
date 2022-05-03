@@ -313,7 +313,7 @@
             geo:asWKT "POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
@@ -323,7 +323,7 @@
             geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
@@ -333,7 +333,7 @@
             geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/10> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
@@ -343,7 +343,7 @@
             geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/2> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
@@ -353,7 +353,7 @@
             geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
@@ -363,7 +363,7 @@
             geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/4> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
@@ -373,7 +373,7 @@
             geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/5> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
@@ -383,7 +383,7 @@
             geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/6> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
@@ -393,7 +393,7 @@
             geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/7> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
@@ -403,7 +403,7 @@
             geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/8> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
@@ -413,7 +413,7 @@
             geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/9> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
@@ -423,6 +423,8 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/0> ;
     sosa:hasResult <http://createme.org/sample/specimen/0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/specimen/1> a tern:Sampling ;
@@ -430,6 +432,8 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
     sosa:hasResult <http://createme.org/sample/specimen/1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/10> a tern:Sampling ;
@@ -437,6 +441,8 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/10> ;
     sosa:hasResult <http://createme.org/sample/specimen/10> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/2> a tern:Sampling ;
@@ -444,6 +450,8 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/2> ;
     sosa:hasResult <http://createme.org/sample/specimen/2> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/3> a tern:Sampling ;
@@ -451,6 +459,8 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/3> ;
     sosa:hasResult <http://createme.org/sample/specimen/3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/4> a tern:Sampling ;
@@ -458,6 +468,8 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/4> ;
     sosa:hasResult <http://createme.org/sample/specimen/4> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/5> a tern:Sampling ;
@@ -465,6 +477,8 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/5> ;
     sosa:hasResult <http://createme.org/sample/specimen/5> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/6> a tern:Sampling ;
@@ -472,6 +486,8 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/6> ;
     sosa:hasResult <http://createme.org/sample/specimen/6> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/7> a tern:Sampling ;
@@ -479,6 +495,8 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/7> ;
     sosa:hasResult <http://createme.org/sample/specimen/7> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/8> a tern:Sampling ;
@@ -486,6 +504,8 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/8> ;
     sosa:hasResult <http://createme.org/sample/specimen/8> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/9> a tern:Sampling ;
@@ -493,27 +513,16 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/9> ;
     sosa:hasResult <http://createme.org/sample/specimen/9> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
+            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
-<http://createme.org/scientificName/Calothamnus-lateralis-var-crassus> a tern:FeatureOfInterest,
-        tern:Text,
+<http://createme.org/scientificName/Calothamnus-lateralis-var-crassus> a tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Calothamnus lateralis var. crassus" ;
     tern:featureType <http://createme.org/concept/scientificName> .
-
-<http://createme.org/site-establishment/Cowaramup-Bay-Road> a tern:Sampling ;
-    rdfs:comment "site-establishment" ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/site/Cowaramup-Bay-Road> ;
-    sosa:hasResult <http://createme.org/site/Cowaramup-Bay-Road> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/a1685655-f8e2-46ee-9a74-767c648b54f4> ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
-
-<http://createme.org/site-landform/Cowaramup-Bay-Road> a tern:FeatureOfInterest ;
-    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/2cf3ed29-440e-4a50-9bbc-5aab30df9fcd> .
 
 <http://createme.org/value/identificationQualifier/10> a tern:Text,
         tern:Value ;
@@ -574,7 +583,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/0> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/field/1> a tern:FeatureOfInterest,
@@ -582,7 +591,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/1> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/field/10> a tern:FeatureOfInterest,
@@ -590,7 +599,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/10> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/field/2> a tern:FeatureOfInterest,
@@ -598,7 +607,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/2> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/field/3> a tern:FeatureOfInterest,
@@ -606,7 +615,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/3> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/field/4> a tern:FeatureOfInterest,
@@ -614,7 +623,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/4> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/field/5> a tern:FeatureOfInterest,
@@ -622,7 +631,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/5> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/field/6> a tern:FeatureOfInterest,
@@ -630,7 +639,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/6> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/field/7> a tern:FeatureOfInterest,
@@ -638,7 +647,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/7> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/field/8> a tern:FeatureOfInterest,
@@ -646,7 +655,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/8> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/field/9> a tern:FeatureOfInterest,
@@ -654,7 +663,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/9> ;
-    sosa:isSampleOf <http://createme.org/site/Cowaramup-Bay-Road> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <http://createme.org/sample/specimen/0> a tern:FeatureOfInterest,
@@ -745,45 +754,38 @@
     sosa:isSampleOf <http://createme.org/sample/field/9> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/60d7edf8-98c6-43e9-841c-e176c334d270> .
 
-<http://createme.org/scientificName/Boronia-anceps> a tern:FeatureOfInterest,
-        tern:Text,
+<http://createme.org/scientificName/Boronia-anceps> a tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Boronia anceps" ;
     tern:featureType <http://createme.org/concept/scientificName> .
 
-<http://createme.org/scientificName/Caladenia-excelsa> a tern:FeatureOfInterest,
-        tern:Text,
+<http://createme.org/scientificName/Caladenia-excelsa> a tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://createme.org/concept/scientificName> .
 
-<http://createme.org/scientificName/Banksia-sessilis-var-cordata> a tern:FeatureOfInterest,
-        tern:Text,
+<http://createme.org/scientificName/Banksia-sessilis-var-cordata> a tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Banksia sessilis var. cordata" ;
     tern:featureType <http://createme.org/concept/scientificName> .
 
-<http://createme.org/site/Cowaramup-Bay-Road> a tern:FeatureOfInterest,
-        tern:Sample,
-        tern:Site ;
+<http://createme.org/location/Australia> a tern:FeatureOfInterest ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    sosa:isResultOf <http://createme.org/site-establishment/Cowaramup-Bay-Road> ;
-    sosa:isSampleOf <http://createme.org/site-landform/Cowaramup-Bay-Road> ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
-    tern:locationDescription "Cowaramup Bay Road" .
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:sfWithin <https://sws.geonames.org/2077456/> ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
 
-<http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent,
-        prov:Organization ;
+<http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
     foaf:name "Stream Environment and Water Pty Ltd" .
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-04-14"^^xsd:date ;
+    dcterms:issued "2022-04-29"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
 

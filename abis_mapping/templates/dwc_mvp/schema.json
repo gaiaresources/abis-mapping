@@ -78,7 +78,7 @@
       "type": "timestamp",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": false
       }
     },
     {

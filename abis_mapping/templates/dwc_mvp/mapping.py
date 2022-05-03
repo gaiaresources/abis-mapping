@@ -28,13 +28,12 @@ DATASET_DATE = datetime.date.today()  # TODO -> Real metadata
 # These constants are specific to this template, and as such are defined here
 # rather than in a common `utils` module.
 a = rdflib.RDF.type
+CONCEPT_AUSTRALIA = rdflib.URIRef("https://sws.geonames.org/2077456/")
 CONCEPT_TAXON = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")
 CONCEPT_SITE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4")
 CONCEPT_HUMAN_OBSERVATION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157")
-CONCEPT_SITE_ESTABLISHMENT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/a1685655-f8e2-46ee-9a74-767c648b54f4")
 CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7")
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
-CONCEPT_LANDFORM = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2cf3ed29-440e-4a50-9bbc-5aab30df9fcd")
 CONCEPT_PLANT_OCCURRENCE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611")
 CONCEPT_PLANT_INDIVIDUAL = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/60d7edf8-98c6-43e9-841c-e176c334d270")
 CONCEPT_PROCEDURE_ID = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653")
@@ -118,10 +117,20 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((dataset, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DESCRIPTION)))
         graph.add((dataset, rdflib.DCTERMS.issued, rdflib.Literal(DATASET_DATE)))
 
+        # Create Terminal FOI (Australia)
+        australia = utils.rdf.uri("location/Australia")
+        geometry = rdflib.BNode()
+        graph.add((australia, a, utils.namespaces.TERN.FeatureOfInterest))
+        graph.add((australia, utils.namespaces.GEO.hasGeometry, geometry))
+        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry, utils.namespaces.GEO.sfWithin, CONCEPT_AUSTRALIA))
+        graph.add((australia, rdflib.VOID.inDataset, dataset))
+        graph.add((australia, utils.namespaces.TERN.featureType, CONCEPT_SITE))
+
         # Loop through Rows
         for row_number, row in enumerate(resource):
             # Map Row
-            self.apply_mapping_row(row, row_number, dataset, graph, base_iri)
+            self.apply_mapping_row(row, row_number, dataset, australia, graph, base_iri)
 
         # Return
         return graph
@@ -131,6 +140,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         row_number: int,
         dataset: rdflib.URIRef,
+        terminal_foi: rdflib.URIRef,
         graph: rdflib.Graph,
         base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
@@ -140,6 +150,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to be processed in the dataset.
             row_number (int): Row number to be processed.
             dataset (rdflib.URIRef): Dataset uri this row is apart of.
+            terminal_foi (rdflib.URIRef): Terminal feature of interest.
             graph (rdflib.Graph): Graph to map row into.
             base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
                 to use for mapping.
@@ -150,9 +161,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Create URIs
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
         provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
-        site = utils.rdf.uri(f"site/{row['locality']}", base_iri)
-        site_landform = utils.rdf.uri(f"site-landform/{row['locality']}", base_iri)  # TODO -> Not final
-        site_establishment = utils.rdf.uri(f"site-establishment/{row['locality']}", base_iri)  # TODO -> Not final
         sample_field = utils.rdf.uri(f"sample/field/{row_number}", base_iri)
         sampling_field = utils.rdf.uri(f"sampling/field/{row_number}", base_iri)
         sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}", base_iri)
@@ -178,38 +186,12 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add Site
-        self.add_site(
-            uri=site,
-            row=row,
-            dataset=dataset,
-            site_establishment=site_establishment,
-            site_landform=site_landform,
-            graph=graph,
-        )
-
-        # Add Feature of Interest for Site
-        self.add_site_landform(
-            uri=site_landform,
-            dataset=dataset,
-            graph=graph,
-        )
-
-        # Add Site Establishment
-        self.add_site_establishment(
-            uri=site_establishment,
-            row=row,
-            provider=provider_recorded,
-            site=site,
-            graph=graph,
-        )
-
         # Add Sample Field
         self.add_sample_field(
             uri=sample_field,
             dataset=dataset,
+            feature_of_interest=terminal_foi,
             sampling_field=sampling_field,
-            site=site,
             graph=graph,
         )
 
@@ -218,7 +200,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             uri=sampling_field,
             row=row,
             provider=provider_recorded,
-            site=site,
+            feature_of_interest=terminal_foi,
             sample_field=sample_field,
             graph=graph,
         )
@@ -330,73 +312,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         """
         # Add to Graph
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, a, rdflib.PROV.Organization))
         graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["identifiedBy"])))
-
-    def add_site(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        site_establishment: rdflib.URIRef,
-        site_landform: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Site to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            site_establishment (rdflib.URIRef): Site Establishment associated
-                with this node
-            site_landform (rdflib.URIRef): Site Lanform associated with this
-                node
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Add to Graph
-        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
-        graph.add((uri, a, utils.namespaces.TERN.Sample))
-        graph.add((uri, a, utils.namespaces.TERN.Site))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, rdflib.SOSA.isResultOf, site_establishment))
-        graph.add((uri, rdflib.SOSA.isSampleOf, site_landform))
-        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SITE))
-        graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(row["locality"])))
-
-    def add_site_establishment(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        provider: rdflib.URIRef,
-        site: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Site Establishment to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            provider (rdflib.URIRef): Provider associated with this node
-            site (rdflib.URIRef): Site associated with this node
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Add to Graph
-        graph.add((uri, a, utils.namespaces.TERN.Sampling))
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("site-establishment")))
-        graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, site))
-        graph.add((uri, rdflib.SOSA.hasResult, site))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
-        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_SITE_ESTABLISHMENT))
-
-        # Patch
-        # Remove all except minimum `tern:resultDateTime` on Site Establishment
-        triples = list(graph.triples((uri, utils.namespaces.TERN.resultDateTime, None)))
-        triples.remove(min(triples, key=lambda t: t[2]))  # type: ignore[no-any-return]
-        for triple in triples:
-            graph.remove(triple)
 
     def add_observation_scientific_name(
         self,
@@ -421,6 +337,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 this node
             graph (rdflib.Graph): Graph to add to
         """
+        # Get Timestamp
+        timestamp = row["dateIdentified"] or row["eventDate"]
+
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -433,9 +352,17 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(row["dateIdentified"]), rdflib.Literal(row["dateIdentified"])))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["dateIdentified"])))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(timestamp), rdflib.Literal(timestamp)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
+
+        # Check
+        if not row["dateIdentified"]:
+            qualifier = rdflib.BNode()
+            graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
+            graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
+            graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
 
     def add_observation_verbatim_id(
         self,
@@ -459,6 +386,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             verbatim_id (rdflib.URIRef): Verbatim ID associated with this node
             graph (rdflib.Graph): Graph to add to
         """
+        # Get Timestamp
+        timestamp = row["dateIdentified"] or row["eventDate"]
+
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -471,16 +401,24 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(row["dateIdentified"]), rdflib.Literal(row["dateIdentified"])))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["dateIdentified"])))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(timestamp), rdflib.Literal(timestamp)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
+
+        # Check
+        if not row["dateIdentified"]:
+            qualifier = rdflib.BNode()
+            graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
+            graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
+            graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
 
     def add_sampling_field(
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
         provider: rdflib.URIRef,
-        site: rdflib.URIRef,
+        feature_of_interest: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -490,7 +428,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             provider (rdflib.URIRef): Provider associated with this node
-            site (rdflib.URIRef): Site associated with this node
+            feature_of_interest (rdflib.URIRef): Feature of Interest associated
+                with this node.
             sample_field (rdflib.URIRef): Sample Field associated with this
                 node
             graph (rdflib.Graph): Graph to add to
@@ -509,7 +448,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((geometry, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
         graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, site))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_HUMAN_OBSERVATION))
@@ -627,7 +566,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
-        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("scientificName")))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["scientificName"])))
@@ -658,6 +596,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
+        qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
+        graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
 
     def add_text_verbatim_id(
@@ -690,30 +632,12 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if row.get("identificationRemarks"):
             graph.add((uri, utils.namespaces.TERN.hasAttribute, remarks))
 
-    def add_site_landform(
-        self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Site Landform to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            dataset (rdflib.URIRef): Dataset this belongs to
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Add to Graph
-        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_LANDFORM))
-
     def add_sample_field(
         self,
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
+        feature_of_interest: rdflib.URIRef,
         sampling_field: rdflib.URIRef,
-        site: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Field to the Graph
@@ -721,9 +645,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             dataset (rdflib.URIRef): Dataset this belongs to
+            feature_of_interest (rdflib.URIRef): Feature of Interest associated
+                with this node.
             sampling_field (rdflib.URIRef): Sampling Field associated with this
                 node
-            site (rdflib.URIRef): Site associated with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Add to Graph
@@ -732,7 +657,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_field))
-        graph.add((uri, rdflib.SOSA.isSampleOf, site))
+        graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_PLANT_OCCURRENCE))
 
     def add_sample_specimen(
