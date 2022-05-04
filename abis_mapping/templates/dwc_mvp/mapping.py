@@ -165,7 +165,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         sampling_field = utils.rdf.uri(f"sampling/field/{row_number}", base_iri)
         sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}", base_iri)
         sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_number}", base_iri)
-        text_scientific_name = utils.rdf.uri(f"scientificName/{row['scientificName']}", base_iri)
+        text_scientific_name = utils.rdf.uri(f"scientificName/{row_number}", base_iri)
         text_verbatim_id = utils.rdf.uri(f"verbatimID/{row_number}", base_iri)
         observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row_number}", base_iri)
         observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row_number}", base_iri)
@@ -356,13 +356,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
-        # Check
-        if not row["dateIdentified"]:
-            qualifier = rdflib.BNode()
-            graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
-            graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
-            graph.add((qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
-            graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
+        # TODO: Waiting for: https://github.com/ternaustralia/ontology_tern/issues/176
+        # # Check
+        # if not row["dateIdentified"]:
+        #     qualifier = rdflib.BNode()
+        #     graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
+        #     graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        #     graph.add((qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
+        #     graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
 
     def add_observation_verbatim_id(
         self,
@@ -405,13 +406,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
-        # Check
-        if not row["dateIdentified"]:
-            qualifier = rdflib.BNode()
-            graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
-            graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
-            graph.add((qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
-            graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
+        # TODO: Waiting for: https://github.com/ternaustralia/ontology_tern/issues/176
+        # # Check
+        # if not row["dateIdentified"]:
+        #     qualifier = rdflib.BNode()
+        #     graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
+        #     graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        #     graph.add((qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
+        #     graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
 
     def add_sampling_field(
         self,
@@ -566,6 +568,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("scientificName")))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["scientificName"])))
@@ -596,10 +599,11 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
-        qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
-        graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
-        graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
+        # TODO: Waiting for: https://github.com/ternaustralia/ontology_tern/issues/176
+        # qualifier = rdflib.BNode()
+        # graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
+        # graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        # graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
 
     def add_text_verbatim_id(

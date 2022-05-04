@@ -15,7 +15,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/0> ;
-    sosa:hasResult <http://createme.org/scientificName/Calothamnus-lateralis-var-crassus> ;
+    sosa:hasResult <http://createme.org/scientificName/0> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -28,7 +28,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/1> ;
-    sosa:hasResult <http://createme.org/scientificName/Boronia-anceps> ;
+    sosa:hasResult <http://createme.org/scientificName/1> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -41,7 +41,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/10> ;
-    sosa:hasResult <http://createme.org/scientificName/Caladenia-excelsa> ;
+    sosa:hasResult <http://createme.org/scientificName/10> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -54,7 +54,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/2> ;
-    sosa:hasResult <http://createme.org/scientificName/Boronia-anceps> ;
+    sosa:hasResult <http://createme.org/scientificName/2> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -67,7 +67,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/3> ;
-    sosa:hasResult <http://createme.org/scientificName/Boronia-anceps> ;
+    sosa:hasResult <http://createme.org/scientificName/3> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -80,7 +80,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/4> ;
-    sosa:hasResult <http://createme.org/scientificName/Banksia-sessilis-var-cordata> ;
+    sosa:hasResult <http://createme.org/scientificName/4> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -93,7 +93,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/5> ;
-    sosa:hasResult <http://createme.org/scientificName/Banksia-sessilis-var-cordata> ;
+    sosa:hasResult <http://createme.org/scientificName/5> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -106,7 +106,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/6> ;
-    sosa:hasResult <http://createme.org/scientificName/Banksia-sessilis-var-cordata> ;
+    sosa:hasResult <http://createme.org/scientificName/6> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -119,7 +119,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/7> ;
-    sosa:hasResult <http://createme.org/scientificName/Banksia-sessilis-var-cordata> ;
+    sosa:hasResult <http://createme.org/scientificName/7> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -132,7 +132,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/8> ;
-    sosa:hasResult <http://createme.org/scientificName/Caladenia-excelsa> ;
+    sosa:hasResult <http://createme.org/scientificName/8> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -145,7 +145,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/9> ;
-    sosa:hasResult <http://createme.org/scientificName/Caladenia-excelsa> ;
+    sosa:hasResult <http://createme.org/scientificName/9> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
@@ -423,8 +423,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/0> ;
     sosa:hasResult <http://createme.org/sample/specimen/0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/specimen/1> a tern:Sampling ;
@@ -432,8 +430,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
     sosa:hasResult <http://createme.org/sample/specimen/1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/10> a tern:Sampling ;
@@ -441,8 +437,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/10> ;
     sosa:hasResult <http://createme.org/sample/specimen/10> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/2> a tern:Sampling ;
@@ -450,8 +444,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/2> ;
     sosa:hasResult <http://createme.org/sample/specimen/2> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/3> a tern:Sampling ;
@@ -459,8 +451,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/3> ;
     sosa:hasResult <http://createme.org/sample/specimen/3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/4> a tern:Sampling ;
@@ -468,8 +458,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/4> ;
     sosa:hasResult <http://createme.org/sample/specimen/4> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/5> a tern:Sampling ;
@@ -477,8 +465,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/5> ;
     sosa:hasResult <http://createme.org/sample/specimen/5> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/6> a tern:Sampling ;
@@ -486,8 +472,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/6> ;
     sosa:hasResult <http://createme.org/sample/specimen/6> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/7> a tern:Sampling ;
@@ -495,8 +479,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/7> ;
     sosa:hasResult <http://createme.org/sample/specimen/7> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/8> a tern:Sampling ;
@@ -504,8 +486,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/8> ;
     sosa:hasResult <http://createme.org/sample/specimen/8> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/9> a tern:Sampling ;
@@ -513,15 +493,94 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/9> ;
     sosa:hasResult <http://createme.org/sample/specimen/9> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ rdf:value tern:resultDateTime ;
-            rdfs:comment "Date inferred from the eventDate" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
-<http://createme.org/scientificName/Calothamnus-lateralis-var-crassus> a tern:Text,
+<http://createme.org/scientificName/0> a tern:FeatureOfInterest,
+        tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Calothamnus lateralis var. crassus" ;
+    tern:featureType <http://createme.org/concept/scientificName> .
+
+<http://createme.org/scientificName/1> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Boronia anceps" ;
+    tern:featureType <http://createme.org/concept/scientificName> .
+
+<http://createme.org/scientificName/10> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Caladenia excelsa" ;
+    tern:featureType <http://createme.org/concept/scientificName> .
+
+<http://createme.org/scientificName/2> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Boronia anceps" ;
+    tern:featureType <http://createme.org/concept/scientificName> .
+
+<http://createme.org/scientificName/3> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Boronia anceps" ;
+    tern:featureType <http://createme.org/concept/scientificName> .
+
+<http://createme.org/scientificName/4> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Banksia sessilis var. cordata" ;
+    tern:featureType <http://createme.org/concept/scientificName> .
+
+<http://createme.org/scientificName/5> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Banksia sessilis var. cordata" ;
+    tern:featureType <http://createme.org/concept/scientificName> .
+
+<http://createme.org/scientificName/6> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Banksia sessilis var. cordata" ;
+    tern:featureType <http://createme.org/concept/scientificName> .
+
+<http://createme.org/scientificName/7> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Banksia sessilis var. cordata" ;
+    tern:featureType <http://createme.org/concept/scientificName> .
+
+<http://createme.org/scientificName/8> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Caladenia excelsa" ;
+    tern:featureType <http://createme.org/concept/scientificName> .
+
+<http://createme.org/scientificName/9> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Caladenia excelsa" ;
     tern:featureType <http://createme.org/concept/scientificName> .
 
 <http://createme.org/value/identificationQualifier/10> a tern:Text,
@@ -754,27 +813,6 @@
     sosa:isSampleOf <http://createme.org/sample/field/9> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/60d7edf8-98c6-43e9-841c-e176c334d270> .
 
-<http://createme.org/scientificName/Boronia-anceps> a tern:Text,
-        tern:Value ;
-    rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    rdf:value "Boronia anceps" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
-
-<http://createme.org/scientificName/Caladenia-excelsa> a tern:Text,
-        tern:Value ;
-    rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    rdf:value "Caladenia excelsa" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
-
-<http://createme.org/scientificName/Banksia-sessilis-var-cordata> a tern:Text,
-        tern:Value ;
-    rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    rdf:value "Banksia sessilis var. cordata" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
-
 <http://createme.org/location/Australia> a tern:FeatureOfInterest ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
@@ -786,6 +824,6 @@
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-04-29"^^xsd:date ;
+    dcterms:issued "2022-05-04"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
 
