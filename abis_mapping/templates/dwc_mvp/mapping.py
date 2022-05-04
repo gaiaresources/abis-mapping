@@ -130,7 +130,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Loop through Rows
         for row_number, row in enumerate(resource):
             # Map Row
-            self.apply_mapping_row(row, row_number, dataset_iri, graph, base_iri)
+            self.apply_mapping_row(row, row_number, dataset_iri, australia, graph, base_iri)
 
         # Return
         return graph
