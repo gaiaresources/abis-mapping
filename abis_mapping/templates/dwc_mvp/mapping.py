@@ -16,13 +16,9 @@ from abis_mapping import utils
 from typing import Optional
 
 
-# Temporary Metadata
-# The mappings need a method of retrieving dataset "metadata" external to the
-# raw data. For example: Dataset Name, Dataset Description, Dataset Issue Date.
-# Defining them as temporary constants for now
-DATASET_NAME = "Example DWC MVP Dataset"  # TODO -> Real metadata
-DATASET_DESCRIPTION = "Example DWC MVP Dataset by Gaia Resources"  # TODO -> Real metadata
-DATASET_DATE = datetime.date.today()  # TODO -> Real metadata
+# Default Dataset Metadata
+DATASET_DEFAULT_NAME = "Example DWC MVP Dataset"
+DATASET_DEFAULT_DESCRIPTION = "Example DWC MVP Dataset by Gaia Resources"
 
 # Constants and Shortcuts
 # These constants are specific to this template, and as such are defined here
@@ -89,12 +85,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def apply_mapping(
         self,
         data: base.types.ReadableType,
+        dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
         """Applies Mapping for the `dwc_mvp.csv` Template
 
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
+            dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
         Returns:
@@ -111,17 +109,19 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Initialise Graph
         graph = utils.rdf.create_graph()
 
-        # Create Dataset
-        dataset = utils.rdf.uri(f"dataset/{DATASET_NAME}", base_iri)
-        graph.add((dataset, a, utils.namespaces.TERN.RDFDataset))
-        graph.add((dataset, rdflib.DCTERMS.title, rdflib.Literal(DATASET_NAME)))
-        graph.add((dataset, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DESCRIPTION)))
-        graph.add((dataset, rdflib.DCTERMS.issued, rdflib.Literal(DATASET_DATE)))
+        # Check if Dataset IRI Supplied
+        if not dataset_iri:
+            # Create Default Dataset if not Supplied
+            dataset_iri = utils.rdf.uri(f"dataset/{DATASET_DEFAULT_NAME}", base_iri)
+            graph.add((dataset_iri, a, utils.namespaces.TERN.RDFDataset))
+            graph.add((dataset_iri, rdflib.DCTERMS.title, rdflib.Literal(DATASET_DEFAULT_NAME)))
+            graph.add((dataset_iri, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DEFAULT_DESCRIPTION)))
+            graph.add((dataset_iri, rdflib.DCTERMS.issued, rdflib.Literal(datetime.date.today())))
 
         # Loop through Rows
         for row_number, row in enumerate(resource):
             # Map Row
-            self.apply_mapping_row(row, row_number, dataset, graph, base_iri)
+            self.apply_mapping_row(row, row_number, dataset_iri, graph, base_iri)
 
         # Return
         return graph
