@@ -98,3 +98,20 @@ def inXSDSmart(timestamp: types.DateOrDatetime) -> rdflib.URIRef:
 
     # inXSDDate
     return rdflib.TIME.inXSDDate
+
+
+def toWKT(latitude: float, longitude: float) -> rdflib.Literal:
+    """Generates a Literal WKT Point Representation of Latitude and Longitude.
+
+    Args:
+        latitude (float): Latitude to generate WKT.
+        longitude (float): Longitude to generate WKT.
+
+    Returns:
+        rdflib.Literal: Literal WKT Point.
+    """
+    # Create and Return WKT from Latitude and Longitude
+    return rdflib.Literal(
+        f"POINT ({longitude} {latitude})",
+        datatype=namespaces.GEO.wktLiteral,
+    )

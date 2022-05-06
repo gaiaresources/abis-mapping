@@ -50,3 +50,16 @@ def test_rdf_inXSDSmart() -> None:
     time = datetime.datetime.now()
     predicate = utils.rdf.inXSDSmart(time)
     assert predicate == rdflib.TIME.inXSDDateTimeStamp
+
+
+def test_rdf_toWKT() -> None:
+    """Tests the toWKT() Function"""
+    # Test Lat and Long
+    wkt = utils.rdf.toWKT(
+        latitude=-31.953512,
+        longitude=115.857048,
+    )
+    assert wkt == rdflib.Literal(
+        "POINT (115.857048 -31.953512)",
+        datatype=utils.namespaces.GEO.wktLiteral,
+    )

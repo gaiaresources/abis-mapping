@@ -118,7 +118,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph.add((dataset_iri, rdflib.DCTERMS.issued, rdflib.Literal(datetime.date.today())))
 
         # Create Terminal FOI (Australia)
-        australia = utils.rdf.uri("location/Australia")
+        australia = utils.rdf.uri("location/Australia", base_iri)
         geometry = rdflib.BNode()
         graph.add((australia, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((australia, utils.namespaces.GEO.hasGeometry, geometry))
@@ -174,13 +174,15 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_number}", base_iri)
         id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_number}", base_iri)
 
-        # Add Providers
-        self.add_provider(
+        # Add Provider Identified By
+        self.add_provider_identified(
             uri=provider_identified,
             row=row,
             graph=graph,
         )
-        self.add_provider(
+
+        # Add Provider Recorded By
+        self.add_provider_recorded(
             uri=provider_recorded,
             row=row,
             graph=graph,
@@ -297,13 +299,13 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Return
         return graph
 
-    def add_provider(
+    def add_provider_identified(
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds Provider to the Graph
+        """Adds Identified By Provider to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
@@ -313,6 +315,23 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add to Graph
         graph.add((uri, a, rdflib.PROV.Agent))
         graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["identifiedBy"])))
+
+    def add_provider_recorded(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Recorded By Provider to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Add to Graph
+        graph.add((uri, a, rdflib.PROV.Agent))
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["recordedBy"])))
 
     def add_observation_scientific_name(
         self,
@@ -356,14 +375,15 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
-        # TODO: Waiting for: https://github.com/ternaustralia/ontology_tern/issues/176
-        # # Check
-        # if not row["dateIdentified"]:
-        #     qualifier = rdflib.BNode()
-        #     graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
-        #     graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
-        #     graph.add((qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
-        #     graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
+        # Check for dateIdentified
+        if not row["dateIdentified"]:
+            # Add Temporal Qualifier
+            temporal_qualifier = rdflib.BNode()
+            graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+            graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
+            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
 
     def add_observation_verbatim_id(
         self,
@@ -406,14 +426,15 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
-        # TODO: Waiting for: https://github.com/ternaustralia/ontology_tern/issues/176
-        # # Check
-        # if not row["dateIdentified"]:
-        #     qualifier = rdflib.BNode()
-        #     graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
-        #     graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
-        #     graph.add((qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
-        #     graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
+        # Check for dateIdentified
+        if not row["dateIdentified"]:
+            # Add Temporal Qualifier
+            temporal_qualifier = rdflib.BNode()
+            graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+            graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
+            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
 
     def add_sampling_field(
         self,
@@ -436,11 +457,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 node
             graph (rdflib.Graph): Graph to add to
         """
-        # Create WKT from Lat/Long
-        wkt = rdflib.Literal(
-            f"POINT ({row['decimalLongitude']} {row['decimalLatitude']})",
-            datatype=utils.namespaces.GEO.wktLiteral,
-        )
+        # Create WKT from Latitude and Longitude
+        wkt = utils.rdf.toWKT(row["decimalLatitude"], row["decimalLongitude"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -593,18 +611,34 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 this node
             graph (rdflib.Graph): Graph to add to
         """
+        # Create WKT from Latitude and Longitude
+        wkt = utils.rdf.toWKT(row["decimalLatitude"], row["decimalLongitude"])
+
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
-        # TODO: Waiting for: https://github.com/ternaustralia/ontology_tern/issues/176
-        # qualifier = rdflib.BNode()
-        # graph.add((uri, utils.namespaces.TERN.qualifiedValue, qualifier))
-        # graph.add((qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
-        # graph.add((qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
+        geometry = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
+        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
+
+        # Add Temporal Qualifier
+        temporal_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
+
+        # Add Spatial Qualifier
+        spatial_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, spatial_qualifier))
+        graph.add((spatial_qualifier, a, rdflib.RDF.Statement))
+        graph.add((spatial_qualifier, rdflib.RDF.value, utils.namespaces.GEO.hasGeometry))
+        graph.add((spatial_qualifier, rdflib.RDFS.comment, rdflib.Literal("Location inferred from the field sampling")))
 
     def add_text_verbatim_id(
         self,
