@@ -118,7 +118,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph.add((dataset_iri, rdflib.DCTERMS.issued, rdflib.Literal(datetime.date.today())))
 
         # Create Terminal FOI (Australia)
-        australia = utils.rdf.uri("location/Australia")
+        australia = utils.rdf.uri("location/Australia", base_iri)
         geometry = rdflib.BNode()
         graph.add((australia, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((australia, utils.namespaces.GEO.hasGeometry, geometry))
