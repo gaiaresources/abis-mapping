@@ -42,7 +42,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
     # Template ID and Instructions File
     template_id = "dwc_mvp.csv"
-    instructions_file = "README.md"
+    instructions_file = "instructions.pdf"
 
     def apply_validation(
         self,
