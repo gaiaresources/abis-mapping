@@ -38,14 +38,61 @@
       }
     },
     {
+      "name": "geodeticDatum",
+      "title": "Geodetic Datum",
+      "description": "...",
+      "example": "WGS84",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true,
+        "enum": ["WGS84", "EPSG:4326"]
+      }
+    },
+    {
+      "name": "coordinateUncertaintyInMeters",
+      "title": "Coordinate Uncertainty In Meters",
+      "description": "...",
+      "example": "50.0",
+      "type": "number",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "minimum": 0.0
+      }
+    },
+    {
+      "name": "dataGeneralizations",
+      "title": "Data Generalizations",
+      "description": "...",
+      "example": "Coordinates rounded to the nearest 10 km for conservation concern",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "eventDate",
       "title": "Event Date",
       "description": "...",
-      "example": "2019-09-23",
+      "example": "2019-09-23T14:03+08:00",
       "type": "timestamp",
       "format": "default",
       "constraints": {
         "required": true
+      }
+    },
+    {
+      "name": "samplingProtocol",
+      "title": "Sampling Protocol",
+      "description": "...",
+      "example": "Human observation",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": ["Human observation"]
       }
     },
     {
@@ -56,7 +103,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": false
       }
     },
     {
@@ -67,14 +114,14 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": false
       }
     },
     {
       "name": "dateIdentified",
       "title": "Date Identified",
       "description": "...",
-      "example": "2019-09-23",
+      "example": "2019-09-23T14:03+08:00",
       "type": "timestamp",
       "format": "default",
       "constraints": {
@@ -123,6 +170,30 @@
       "format": "default",
       "constraints": {
         "required": false
+      }
+    },
+    {
+      "name": "kingdom",
+      "title": "Kingdom",
+      "description": "...",
+      "example": "Plantae",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true,
+        "enum": ["Plantae", "Animalia"]
+      }
+    },
+    {
+      "name": "taxonRank",
+      "title": "Taxon Rank",
+      "description": "...",
+      "example": "species",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": ["species"]
       }
     }
   ]

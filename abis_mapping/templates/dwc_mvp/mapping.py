@@ -27,14 +27,43 @@ a = rdflib.RDF.type
 CONCEPT_AUSTRALIA = rdflib.URIRef("https://sws.geonames.org/2077456/")
 CONCEPT_TAXON = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")
 CONCEPT_SITE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4")
-CONCEPT_HUMAN_OBSERVATION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157")
 CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7")
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
-CONCEPT_PLANT_OCCURRENCE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611")
-CONCEPT_PLANT_INDIVIDUAL = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/60d7edf8-98c6-43e9-841c-e176c334d270")
 CONCEPT_PROCEDURE_ID = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653")
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName")  # TODO -> Need real URI
+
+# Controlled Vocabularies
+VOCAB_GEODETIC_DATUM = {
+    # AGD84
+    "AGD84": rdflib.URIRef("http://example.org/bdr/geodetic-datum/agd844"),
+    "EPSG:4203": rdflib.URIRef("http://example.org/bdr/geodetic-datum/agd844"),
+    # GDA2020
+    "GDA2020": rdflib.URIRef("http://example.org/bdr/geodetic-datum/gda2020"),
+    "EPSG:7844": rdflib.URIRef("http://example.org/bdr/geodetic-datum/gda2020"),
+    # GDA94
+    "GDA94": rdflib.URIRef("http://example.org/bdr/geodetic-datum/gda94"),
+    "EPSG:4283": rdflib.URIRef("http://example.org/bdr/geodetic-datum/gda94"),
+    # WGS84
+    "WGS84": rdflib.URIRef("http://example.org/bdr/geodetic-datum/wgs84"),
+    "EPSG:4326": rdflib.URIRef("http://example.org/bdr/geodetic-datum/wgs84"),
+}
+VOCAB_SAMPLING_PROTOCOL = {
+    None: utils.rdf.uri("sampling-protocol/default"),  # Default  # TODO -> Need real URI
+    "Human observation": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
+}
+VOCAB_KINGDOM_OCCURRENCE = {
+    "Plantae": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611"),
+    "Animalia": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2361dea8-598c-4b6f-a641-2b98ff199e9e"),
+}
+VOCAB_KINGDOM_SPECIMEN = {
+    "Plantae": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb"),
+    "Animalia": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/cd5cbdbb-07d9-4a5b-9b11-5ab9d6015be6"),
+}
+VOCAB_TAXON_RANK = {
+    None: utils.rdf.uri("taxon-rank/default"),  # Default  # TODO -> Need real URI
+    "species": utils.rdf.uri("taxon-rank/species"),  # TODO -> Need real URI
+}
 
 
 class DWCMVPMapper(base.mapper.ABISMapper):
@@ -191,6 +220,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add Sample Field
         self.add_sample_field(
             uri=sample_field,
+            row=row,
             dataset=dataset,
             feature_of_interest=terminal_foi,
             sampling_field=sampling_field,
@@ -210,6 +240,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add Sample Specimen
         self.add_sample_specimen(
             uri=sample_specimen,
+            row=row,
             dataset=dataset,
             sampling_specimen=sampling_specimen,
             sample_field=sample_field,
@@ -356,8 +387,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 this node
             graph (rdflib.Graph): Graph to add to
         """
-        # Get Timestamp
-        timestamp = row["dateIdentified"] or row["eventDate"]
+        # Get Timestamps
+        event_date = row["eventDate"]
+        date_identified = row["dateIdentified"] or row["eventDate"]
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -371,19 +403,21 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(timestamp), rdflib.Literal(timestamp)))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), rdflib.Literal(event_date)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(date_identified)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
         # Check for dateIdentified
         if not row["dateIdentified"]:
+            # Comment
+            comment = "Date unknown, template eventDate used as proxy"
+
             # Add Temporal Qualifier
             temporal_qualifier = rdflib.BNode()
             graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
             graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
             graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
-            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
-            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
+            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_observation_verbatim_id(
         self,
@@ -407,8 +441,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             verbatim_id (rdflib.URIRef): Verbatim ID associated with this node
             graph (rdflib.Graph): Graph to add to
         """
-        # Get Timestamp
-        timestamp = row["dateIdentified"] or row["eventDate"]
+        # Get Timestamps
+        event_date = row["eventDate"]
+        date_identified = row["dateIdentified"] or row["eventDate"]
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -418,23 +453,25 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_specimen))
         graph.add((uri, rdflib.SOSA.hasResult, verbatim_id))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["verbatimIdentification"])))
-        graph.add((uri, rdflib.SOSA.observedProperty, rdflib.URIRef(CONCEPT_TAXON)))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(timestamp), rdflib.Literal(timestamp)))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(timestamp)))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), rdflib.Literal(event_date)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(date_identified)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
 
         # Check for dateIdentified
         if not row["dateIdentified"]:
+            # Comment
+            comment = "Date unknown, template eventDate used as proxy"
+
             # Add Temporal Qualifier
             temporal_qualifier = rdflib.BNode()
             graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
             graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
             graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
-            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.SOSA.phenomenonTime))
-            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
+            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_sampling_field(
         self,
@@ -463,6 +500,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
+        graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(row["locality"])))
         geometry = rdflib.BNode()
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
         graph.add((geometry, a, utils.namespaces.GEO.Geometry))
@@ -471,7 +509,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
-        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_HUMAN_OBSERVATION))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL[row["samplingProtocol"]]))
 
     def add_id_qualifier_attribute(
         self,
@@ -627,18 +665,20 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
 
         # Add Temporal Qualifier
+        temporal_comment = "Date unknown, template eventDate used as proxy"
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
         graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
-        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal("Date inferred from the eventDate")))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Spatial Qualifier
+        spatial_comment = "Location unknown, location of field sampling used as proxy"
         spatial_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, spatial_qualifier))
         graph.add((spatial_qualifier, a, rdflib.RDF.Statement))
         graph.add((spatial_qualifier, rdflib.RDF.value, utils.namespaces.GEO.hasGeometry))
-        graph.add((spatial_qualifier, rdflib.RDFS.comment, rdflib.Literal("Location inferred from the field sampling")))
+        graph.add((spatial_qualifier, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
 
     def add_text_verbatim_id(
         self,
@@ -673,6 +713,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def add_sample_field(
         self,
         uri: rdflib.URIRef,
+        row: frictionless.Row,
         dataset: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
         sampling_field: rdflib.URIRef,
@@ -682,6 +723,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             feature_of_interest (rdflib.URIRef): Feature of Interest associated
                 with this node.
@@ -696,11 +738,12 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_field))
         graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
-        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_PLANT_OCCURRENCE))
+        graph.add((uri, utils.namespaces.TERN.featureType, VOCAB_KINGDOM_OCCURRENCE[row["kingdom"]]))
 
     def add_sample_specimen(
         self,
         uri: rdflib.URIRef,
+        row: frictionless.Row,
         dataset: rdflib.URIRef,
         sampling_specimen: rdflib.URIRef,
         sample_field: rdflib.URIRef,
@@ -725,7 +768,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
         graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
-        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_PLANT_INDIVIDUAL))
+        graph.add((uri, utils.namespaces.TERN.featureType, VOCAB_KINGDOM_SPECIMEN[row["kingdom"]]))
 
 
 # Register Mapper
