@@ -32,21 +32,22 @@ CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86a
 CONCEPT_PROCEDURE_ID = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653")
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName")  # TODO -> Need real URI
+CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations")  # TODO -> Need real URI
 
 # Controlled Vocabularies
 VOCAB_GEODETIC_DATUM = {
     # AGD84
-    "AGD84": rdflib.URIRef("http://example.org/bdr/geodetic-datum/agd844"),
-    "EPSG:4203": rdflib.URIRef("http://example.org/bdr/geodetic-datum/agd844"),
+    "AGD84": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4203"),
+    "EPSG:4203": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4203"),
     # GDA2020
-    "GDA2020": rdflib.URIRef("http://example.org/bdr/geodetic-datum/gda2020"),
-    "EPSG:7844": rdflib.URIRef("http://example.org/bdr/geodetic-datum/gda2020"),
+    "GDA2020": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/7844"),
+    "EPSG:7844": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/7844"),
     # GDA94
-    "GDA94": rdflib.URIRef("http://example.org/bdr/geodetic-datum/gda94"),
-    "EPSG:4283": rdflib.URIRef("http://example.org/bdr/geodetic-datum/gda94"),
+    "GDA94": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
+    "EPSG:4283": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
     # WGS84
-    "WGS84": rdflib.URIRef("http://example.org/bdr/geodetic-datum/wgs84"),
-    "EPSG:4326": rdflib.URIRef("http://example.org/bdr/geodetic-datum/wgs84"),
+    "WGS84": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4326"),
+    "EPSG:4326": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4326"),
 }
 VOCAB_SAMPLING_PROTOCOL = {
     None: utils.rdf.uri("sampling-protocol/default"),  # Default  # TODO -> Need real URI
@@ -55,10 +56,12 @@ VOCAB_SAMPLING_PROTOCOL = {
 VOCAB_KINGDOM_OCCURRENCE = {
     "Plantae": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611"),
     "Animalia": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2361dea8-598c-4b6f-a641-2b98ff199e9e"),
+    "Fungi": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),
 }
 VOCAB_KINGDOM_SPECIMEN = {
     "Plantae": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb"),
     "Animalia": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/cd5cbdbb-07d9-4a5b-9b11-5ab9d6015be6"),
+    "Fungi": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),  # TODO (?)
 }
 VOCAB_TAXON_RANK = {
     None: utils.rdf.uri("taxon-rank/default"),  # Default  # TODO -> Need real URI
@@ -94,8 +97,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         )
 
         # Validate
-        report: frictionless.Report = frictionless.validate_resource(
-            source=resource,
+        report: frictionless.Report = resource.validate(
             checks=[
                 # Extra Custom Checks
                 utils.checks.NotTabular(),
@@ -189,7 +191,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         """
         # Create URIs
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
-        provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
+        provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)  # TODO -> What to do when missing
         sample_field = utils.rdf.uri(f"sample/field/{row_number}", base_iri)
         sampling_field = utils.rdf.uri(f"sampling/field/{row_number}", base_iri)
         sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}", base_iri)
@@ -202,6 +204,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row_number}", base_iri)
         id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_number}", base_iri)
         id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_number}", base_iri)
+        data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/{row_number}", base_iri)
+        data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{row_number}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -234,6 +238,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             provider=provider_recorded,
             feature_of_interest=terminal_foi,
             sample_field=sample_field,
+            generalizations=data_generalizations_attribute,
             graph=graph,
         )
 
@@ -253,6 +258,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             row=row,
             sample_field=sample_field,
             sample_specimen=sample_specimen,
+            generalizations=data_generalizations_attribute,
             graph=graph,
         )
 
@@ -324,6 +330,22 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             provider=provider_identified,
             sample_specimen=sample_specimen,
             verbatim_id=text_verbatim_id,
+            graph=graph,
+        )
+
+        # Add Data Generalizations Attribute
+        self.add_data_generalizations_attribute(
+            uri=data_generalizations_attribute,
+            row=row,
+            dataset=dataset,
+            data_generalizations_value=data_generalizations_value,
+            graph=graph,
+        )
+
+        # Add Data Generalizations Value
+        self.add_data_generalizations_value(
+            uri=data_generalizations_value,
+            row=row,
             graph=graph,
         )
 
@@ -480,6 +502,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         provider: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
         sample_field: rdflib.URIRef,
+        generalizations: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Field to the Graph
@@ -492,10 +515,16 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 with this node.
             sample_field (rdflib.URIRef): Sample Field associated with this
                 node
+            generalizations (rdflib.URIRef): Data Generalizations associated
+                with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.toWKT(row["decimalLatitude"], row["decimalLongitude"])
+        wkt = utils.rdf.toWKT(
+            latitude=row["decimalLatitude"],
+            longitude=row["decimalLongitude"],
+            datum=VOCAB_GEODETIC_DATUM[row["geodeticDatum"]],
+        )
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -510,6 +539,17 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL[row["samplingProtocol"]]))
+
+        # Check for coordinateUncertaintyInMeters
+        if row["coordinateUncertaintyInMeters"]:
+            # Add Spatial Accuracy
+            accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
+            graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+
+        # Check for dataGeneralizations
+        if row["dataGeneralizations"]:
+            # Add Data Generalizations Attribute
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, generalizations))
 
     def add_id_qualifier_attribute(
         self,
@@ -636,6 +676,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         sample_field: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
+        generalizations: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Specimen to the Graph
@@ -647,10 +688,16 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
+            generalizations (rdflib.URIRef): Data Generalizations associated
+                with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.toWKT(row["decimalLatitude"], row["decimalLongitude"])
+        wkt = utils.rdf.toWKT(
+            latitude=row["decimalLatitude"],
+            longitude=row["decimalLongitude"],
+            datum=VOCAB_GEODETIC_DATUM[row["geodeticDatum"]],
+        )
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -679,6 +726,17 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((spatial_qualifier, a, rdflib.RDF.Statement))
         graph.add((spatial_qualifier, rdflib.RDF.value, utils.namespaces.GEO.hasGeometry))
         graph.add((spatial_qualifier, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
+
+        # Check for coordinateUncertaintyInMeters
+        if row["coordinateUncertaintyInMeters"]:
+            # Add Spatial Accuracy
+            accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
+            graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+
+        # Check for dataGeneralizations
+        if row["dataGeneralizations"]:
+            # Add Data Generalizations Attribute
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, generalizations))
 
     def add_text_verbatim_id(
         self,
@@ -769,6 +827,53 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
         graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
         graph.add((uri, utils.namespaces.TERN.featureType, VOCAB_KINGDOM_SPECIMEN[row["kingdom"]]))
+
+    def add_data_generalizations_attribute(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        data_generalizations_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Data Generalizations Attribute to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            data_generalizations_value (rdflib.URIRef): Data Generlizations
+                Value associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if row.get("dataGeneralizations"):
+            # Data Generalizations Attribute
+            graph.add((uri, a, utils.namespaces.TERN.Attribute))
+            graph.add((uri, rdflib.VOID.inDataset, dataset))
+            graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_DATA_GENERALIZATIONS))
+            graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["dataGeneralizations"])))
+            graph.add((uri, utils.namespaces.TERN.hasValue, data_generalizations_value))
+
+    def add_data_generalizations_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Data Generalizations Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if row.get("dataGeneralizations"):
+            # Data Generalizations Value
+            graph.add((uri, a, utils.namespaces.TERN.Text))
+            graph.add((uri, a, utils.namespaces.TERN.Value))
+            graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["dataGeneralizations"])))
 
 
 # Register Mapper

@@ -41,6 +41,7 @@ def test_plugin_timestamp_type() -> None:
     # Read Valid Cells
     assert type.read_cell("2022-04-26")  # Date
     assert type.read_cell("26/04/2022")  # Date
+    assert type.read_cell("2022-04-26T22:00:00Z")  # Date Time with Timezone
     assert type.read_cell("2022-04-26T22:00:00+08:00")  # Date Time with Timezone
 
     # Write Cell
@@ -56,10 +57,19 @@ def test_plugin_parse_timestamp() -> None:
         utils.plugin.parse_timestamp("hello world")
     with pytest.raises(ValueError):
         utils.plugin.parse_timestamp("2022-04-26T22:00:00")
+    with pytest.raises(ValueError):
+        utils.plugin.parse_timestamp("2022")
+    with pytest.raises(ValueError):
+        utils.plugin.parse_timestamp("2022-04")
 
     # Parse Valid Timestamps
     assert utils.plugin.parse_timestamp("2022-04-26").isoformat() == "2022-04-26"
     assert utils.plugin.parse_timestamp("26/04/2022").isoformat() == "2022-04-26"
+    assert utils.plugin.parse_timestamp("2022-04-26T22Z").isoformat() == "2022-04-26T22:00:00+00:00"
+    assert utils.plugin.parse_timestamp("2022-04-26T22:00Z").isoformat() == "2022-04-26T22:00:00+00:00"
+    assert utils.plugin.parse_timestamp("2022-04-26T22:00:00Z").isoformat() == "2022-04-26T22:00:00+00:00"
+    assert utils.plugin.parse_timestamp("2022-04-26T22:00:00.000Z").isoformat() == "2022-04-26T22:00:00+00:00"
+    assert utils.plugin.parse_timestamp("2022-04-26T22:00:00.000000Z").isoformat() == "2022-04-26T22:00:00+00:00"
     assert utils.plugin.parse_timestamp("2022-04-26T22+08:00").isoformat() == "2022-04-26T22:00:00+08:00"
     assert utils.plugin.parse_timestamp("2022-04-26T22:00+08:00").isoformat() == "2022-04-26T22:00:00+08:00"
     assert utils.plugin.parse_timestamp("2022-04-26T22:00:00+08:00").isoformat() == "2022-04-26T22:00:00+08:00"

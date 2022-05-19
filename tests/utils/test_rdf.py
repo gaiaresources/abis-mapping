@@ -63,3 +63,14 @@ def test_rdf_toWKT() -> None:
         "POINT (115.857048 -31.953512)",
         datatype=utils.namespaces.GEO.wktLiteral,
     )
+
+    # Test Lat and Long with Datum
+    wkt = utils.rdf.toWKT(
+        latitude=-31.953512,
+        longitude=115.857048,
+        datum=rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
+    )
+    assert wkt == rdflib.Literal(
+        "<http://www.opengis.net/def/crs/EPSG/9.9.1/4283> POINT (115.857048 -31.953512)",
+        datatype=utils.namespaces.GEO.wktLiteral,
+    )

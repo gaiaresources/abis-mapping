@@ -46,7 +46,7 @@
       "format": "default",
       "constraints": {
         "required": true,
-        "enum": ["WGS84", "EPSG:4326"]
+        "enum": ["AGD84", "EPSG:4203", "GDA2020", "EPSG:7844", "GDA94", "EPSG:4283", "WGS84", "EPSG:4326"]
       }
     },
     {

@@ -100,18 +100,26 @@ def inXSDSmart(timestamp: types.DateOrDatetime) -> rdflib.URIRef:
     return rdflib.TIME.inXSDDate
 
 
-def toWKT(latitude: float, longitude: float) -> rdflib.Literal:
+def toWKT(
+    latitude: float,
+    longitude: float,
+    datum: Optional[rdflib.URIRef] = None,
+) -> rdflib.Literal:
     """Generates a Literal WKT Point Representation of Latitude and Longitude.
 
     Args:
         latitude (float): Latitude to generate WKT.
         longitude (float): Longitude to generate WKT.
+        datum (Optional[rdflib.URIRef]): Optional geodetic datum to include.
 
     Returns:
         rdflib.Literal: Literal WKT Point.
     """
+    # Construct Datum URI to be Embedded
+    datum_string = f"<{datum}> " if datum else ""
+
     # Create and Return WKT from Latitude and Longitude
     return rdflib.Literal(
-        f"POINT ({longitude} {latitude})",
+        f"{datum_string}POINT ({longitude} {latitude})",
         datatype=namespaces.GEO.wktLiteral,
     )

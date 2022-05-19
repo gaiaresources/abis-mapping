@@ -354,7 +354,7 @@
 
 <http://createme.org/sampling/field/0> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -365,7 +365,7 @@
 
 <http://createme.org/sampling/field/1> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -376,7 +376,7 @@
 
 <http://createme.org/sampling/field/10> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -387,7 +387,7 @@
 
 <http://createme.org/sampling/field/11> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -398,7 +398,7 @@
 
 <http://createme.org/sampling/field/2> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -409,7 +409,7 @@
 
 <http://createme.org/sampling/field/3> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -420,7 +420,7 @@
 
 <http://createme.org/sampling/field/4> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -431,7 +431,7 @@
 
 <http://createme.org/sampling/field/5> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -442,7 +442,7 @@
 
 <http://createme.org/sampling/field/6> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -453,7 +453,7 @@
 
 <http://createme.org/sampling/field/7> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -464,7 +464,7 @@
 
 <http://createme.org/sampling/field/8> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -475,7 +475,7 @@
 
 <http://createme.org/sampling/field/9> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -486,7 +486,7 @@
 
 <http://createme.org/sampling/specimen/0> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/0> ;
     sosa:hasResult <http://createme.org/sample/specimen/0> ;
@@ -501,22 +501,22 @@
 
 <http://createme.org/sampling/specimen/1> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
     sosa:hasResult <http://createme.org/sample/specimen/1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/10> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/10> ;
     sosa:hasResult <http://createme.org/sample/specimen/10> ;
@@ -531,7 +531,7 @@
 
 <http://createme.org/sampling/specimen/11> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/11> ;
     sosa:hasResult <http://createme.org/sample/specimen/11> ;
@@ -546,25 +546,10 @@
 
 <http://createme.org/sampling/specimen/2> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/2> ;
     sosa:hasResult <http://createme.org/sample/specimen/2> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2020-09-21"^^xsd:date .
-
-<http://createme.org/sampling/specimen/3> a tern:Sampling ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
-    rdfs:comment "specimen-sampling" ;
-    sosa:hasFeatureOfInterest <http://createme.org/sample/field/3> ;
-    sosa:hasResult <http://createme.org/sample/specimen/3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
@@ -574,12 +559,12 @@
             rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
-<http://createme.org/sampling/specimen/4> a tern:Sampling ;
+<http://createme.org/sampling/specimen/3> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
-    sosa:hasFeatureOfInterest <http://createme.org/sample/field/4> ;
-    sosa:hasResult <http://createme.org/sample/specimen/4> ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/field/3> ;
+    sosa:hasResult <http://createme.org/sample/specimen/3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
@@ -589,9 +574,24 @@
             rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
+<http://createme.org/sampling/specimen/4> a tern:Sampling ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+    rdfs:comment "specimen-sampling" ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/field/4> ;
+    sosa:hasResult <http://createme.org/sample/specimen/4> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+    tern:resultDateTime "2020-09-21"^^xsd:date .
+
 <http://createme.org/sampling/specimen/5> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/5> ;
     sosa:hasResult <http://createme.org/sample/specimen/5> ;
@@ -606,7 +606,7 @@
 
 <http://createme.org/sampling/specimen/6> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/6> ;
     sosa:hasResult <http://createme.org/sample/specimen/6> ;
@@ -621,7 +621,7 @@
 
 <http://createme.org/sampling/specimen/7> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/7> ;
     sosa:hasResult <http://createme.org/sample/specimen/7> ;
@@ -636,32 +636,32 @@
 
 <http://createme.org/sampling/specimen/8> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/8> ;
     sosa:hasResult <http://createme.org/sample/specimen/8> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/9> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/9> ;
     sosa:hasResult <http://createme.org/sample/specimen/9> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/scientificName/0> a tern:FeatureOfInterest,
@@ -1031,6 +1031,6 @@
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-05-18"^^xsd:date ;
+    dcterms:issued "2022-05-19"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
 

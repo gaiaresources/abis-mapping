@@ -6,6 +6,7 @@ import contextlib
 import datetime
 
 # Third-Party
+import dateutil.parser
 import frictionless
 
 # Local
@@ -123,7 +124,8 @@ def parse_timestamp(raw: str) -> types.DateOrDatetime:
 
     # (3) Try Parse as ISO Datetime with Timezone
     with contextlib.suppress(Exception):
-        timestamp = datetime.datetime.fromisoformat(raw)
+        assert len(raw) > 10  # Shortcut to disable some formats we don't want
+        timestamp = dateutil.parser.isoparse(raw)
         assert timestamp.tzinfo is not None
         return timestamp
 
