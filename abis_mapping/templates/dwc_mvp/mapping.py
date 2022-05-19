@@ -46,8 +46,8 @@ VOCAB_GEODETIC_DATUM = {
     "GDA94": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
     "EPSG:4283": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
     # WGS84
-    "WGS84": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4326"),
-    "EPSG:4326": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4326"),
+    "WGS84": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
+    "EPSG:4326": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
 }
 VOCAB_SAMPLING_PROTOCOL = {
     None: utils.rdf.uri("sampling-protocol/default"),  # Default  # TODO -> Need real URI
