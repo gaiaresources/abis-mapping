@@ -191,7 +191,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         """
         # Create URIs
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
-        provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)  # TODO -> What to do when missing
+        provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
         sample_field = utils.rdf.uri(f"sample/field/{row_number}", base_iri)
         sampling_field = utils.rdf.uri(f"sampling/field/{row_number}", base_iri)
         sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}", base_iri)
