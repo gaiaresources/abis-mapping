@@ -306,8 +306,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self.add_text_verbatim_id(
             uri=text_verbatim_id,
             row=row,
-            qualifier=id_qualifier_attribute,
-            remarks=id_remarks_attribute,
             graph=graph,
         )
 
@@ -319,6 +317,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             provider=provider_identified,
             sample_specimen=sample_specimen,
             scientific_name=text_scientific_name,
+            qualifier=id_qualifier_attribute,
+            remarks=id_remarks_attribute,
             graph=graph,
         )
 
@@ -383,10 +383,12 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check for recordedBy
-        if row["recordedBy"]:
-            # Add to Graph
-            graph.add((uri, a, rdflib.PROV.Agent))
-            graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["recordedBy"])))
+        if not row["recordedBy"]:
+            return
+
+        # Add to Graph
+        graph.add((uri, a, rdflib.PROV.Agent))
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["recordedBy"])))
 
     def add_observation_scientific_name(
         self,
@@ -396,6 +398,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         provider: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
+        qualifier: rdflib.URIRef,
+        remarks: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Observation Scientific Name to the Graph
@@ -409,6 +413,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 this node
             scientific_name (rdflib.URIRef): Scientific Name associated with
                 this node
+            qualifier (rdflib.URIRef): Identification Qualifier attribute
+                associated with this node
+            remarks (rdflib.URIRef): Identification Remarks attribute
+                associated with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Get Timestamps
@@ -443,6 +451,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
+        # Check for identificationQualifier
+        if row["identificationQualifier"]:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, qualifier))
+
+        # Check for identificationRemarks
+        if row["identificationRemarks"]:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, remarks))
+
     def add_observation_verbatim_id(
         self,
         uri: rdflib.URIRef,
@@ -465,6 +481,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             verbatim_id (rdflib.URIRef): Verbatim ID associated with this node
             graph (rdflib.Graph): Graph to add to
         """
+        # Check for verbatimIdentification
+        if not row["verbatimIdentification"]:
+            return
+
         # Get Timestamps
         event_date = row["eventDate"]
         date_identified = row["dateIdentified"] or row["eventDate"]
@@ -580,14 +600,16 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 associated with this node.
             graph (rdflib.Graph): Graph to add to
         """
-        # Check Existence
-        if row["identificationQualifier"]:
-            # Identification Qualifier Attribute
-            graph.add((uri, a, utils.namespaces.TERN.Attribute))
-            graph.add((uri, rdflib.VOID.inDataset, dataset))
-            graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_ID_UNCERTAINTY))
-            graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["identificationQualifier"])))
-            graph.add((uri, utils.namespaces.TERN.hasValue, id_qualifier_value))
+        # Check identificationQualifier
+        if not row["identificationQualifier"]:
+            return
+
+        # Identification Qualifier Attribute
+        graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_ID_UNCERTAINTY))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["identificationQualifier"])))
+        graph.add((uri, utils.namespaces.TERN.hasValue, id_qualifier_value))
 
     def add_id_qualifier_value(
         self,
@@ -602,12 +624,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
-        # Check Existence
-        if row["identificationQualifier"]:
-            # Identification Qualifier Value
-            graph.add((uri, a, utils.namespaces.TERN.Text))
-            graph.add((uri, a, utils.namespaces.TERN.Value))
-            graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["identificationQualifier"])))
+        # Check identificationQualifier
+        if not row["identificationQualifier"]:
+            return
+
+        # Identification Qualifier Value
+        graph.add((uri, a, utils.namespaces.TERN.Text))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["identificationQualifier"])))
 
     def add_id_remarks_attribute(
         self,
@@ -627,14 +651,16 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 associated with this node
             graph (rdflib.Graph): Graph to add to
         """
-        # Check Existence
-        if row["identificationRemarks"]:
-            # Identification Remarks Attribute
-            graph.add((uri, a, utils.namespaces.TERN.Attribute))
-            graph.add((uri, rdflib.VOID.inDataset, dataset))
-            graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_ID_REMARKS))
-            graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["identificationRemarks"])))
-            graph.add((uri, utils.namespaces.TERN.hasValue, id_remarks_value))
+        # Check identificationRemarks
+        if not row["identificationRemarks"]:
+            return
+
+        # Identification Remarks Attribute
+        graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_ID_REMARKS))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["identificationRemarks"])))
+        graph.add((uri, utils.namespaces.TERN.hasValue, id_remarks_value))
 
     def add_id_remarks_value(
         self,
@@ -649,12 +675,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
-        # Check Existence
-        if row["identificationRemarks"]:
-            # Identification Remarks Value
-            graph.add((uri, a, utils.namespaces.TERN.Text))
-            graph.add((uri, a, utils.namespaces.TERN.Value))
-            graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["identificationRemarks"])))
+        # Check identificationRemarks
+        if not row["identificationRemarks"]:
+            return
+
+        # Identification Remarks Value
+        graph.add((uri, a, utils.namespaces.TERN.Text))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["identificationRemarks"])))
 
     def add_text_scientific_name(
         self,
@@ -752,8 +780,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
-        qualifier: rdflib.URIRef,
-        remarks: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Text Verbatim ID to the Graph
@@ -761,22 +787,16 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
-            qualifier (rdflib.URIRef): Identification Qualifier attribute
-                associated with this node
-            remarks (rdflib.URIRef): Identification Remarks attribute
-                associated with this node
             graph (rdflib.Graph): Graph to add to
         """
+        # Check for verbatimIdentification
+        if not row["verbatimIdentification"]:
+            return
+
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["verbatimIdentification"])))
-
-        # Check for Qualifier and Remarks
-        if row["identificationQualifier"]:
-            graph.add((uri, utils.namespaces.TERN.hasAttribute, qualifier))
-        if row["identificationRemarks"]:
-            graph.add((uri, utils.namespaces.TERN.hasAttribute, remarks))
 
     def add_sample_field(
         self,
@@ -857,13 +877,15 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if row["dataGeneralizations"]:
-            # Data Generalizations Attribute
-            graph.add((uri, a, utils.namespaces.TERN.Attribute))
-            graph.add((uri, rdflib.VOID.inDataset, dataset))
-            graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_DATA_GENERALIZATIONS))
-            graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["dataGeneralizations"])))
-            graph.add((uri, utils.namespaces.TERN.hasValue, data_generalizations_value))
+        if not row["dataGeneralizations"]:
+            return
+
+        # Data Generalizations Attribute
+        graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_DATA_GENERALIZATIONS))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["dataGeneralizations"])))
+        graph.add((uri, utils.namespaces.TERN.hasValue, data_generalizations_value))
 
     def add_data_generalizations_value(
         self,
@@ -879,11 +901,13 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if row["dataGeneralizations"]:
-            # Data Generalizations Value
-            graph.add((uri, a, utils.namespaces.TERN.Text))
-            graph.add((uri, a, utils.namespaces.TERN.Value))
-            graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["dataGeneralizations"])))
+        if not row["dataGeneralizations"]:
+            return
+
+        # Data Generalizations Value
+        graph.add((uri, a, utils.namespaces.TERN.Text))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["dataGeneralizations"])))
 
 
 # Register Mapper
