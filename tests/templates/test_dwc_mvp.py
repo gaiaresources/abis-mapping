@@ -47,3 +47,6 @@ def test_mapping() -> None:
         graph1=graph,
         graph2=expected,
     )
+
+    # Check that no `None`s are in the Graph
+    assert "None" not in graph.serialize(format="ttl")

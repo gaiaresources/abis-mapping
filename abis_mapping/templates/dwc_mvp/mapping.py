@@ -529,7 +529,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
-        graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(row["locality"])))
         geometry = rdflib.BNode()
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
         graph.add((geometry, a, utils.namespaces.GEO.Geometry))
@@ -539,6 +538,11 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL[row["samplingProtocol"]]))
+
+        # Check for locality
+        if row["locality"]:
+            # Add Location Description
+            graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(row["locality"])))
 
         # Check for coordinateUncertaintyInMeters
         if row["coordinateUncertaintyInMeters"]:
@@ -571,7 +575,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if row.get("identificationQualifier"):
+        if row["identificationQualifier"]:
             # Identification Qualifier Attribute
             graph.add((uri, a, utils.namespaces.TERN.Attribute))
             graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -593,7 +597,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if row.get("identificationQualifier"):
+        if row["identificationQualifier"]:
             # Identification Qualifier Value
             graph.add((uri, a, utils.namespaces.TERN.Text))
             graph.add((uri, a, utils.namespaces.TERN.Value))
@@ -618,7 +622,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if row.get("identificationRemarks"):
+        if row["identificationRemarks"]:
             # Identification Remarks Attribute
             graph.add((uri, a, utils.namespaces.TERN.Attribute))
             graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -640,7 +644,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if row.get("identificationRemarks"):
+        if row["identificationRemarks"]:
             # Identification Remarks Value
             graph.add((uri, a, utils.namespaces.TERN.Text))
             graph.add((uri, a, utils.namespaces.TERN.Value))
@@ -763,9 +767,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["verbatimIdentification"])))
 
         # Check for Qualifier and Remarks
-        if row.get("identificationQualifier"):
+        if row["identificationQualifier"]:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, qualifier))
-        if row.get("identificationRemarks"):
+        if row["identificationRemarks"]:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, remarks))
 
     def add_sample_field(
@@ -847,7 +851,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if row.get("dataGeneralizations"):
+        if row["dataGeneralizations"]:
             # Data Generalizations Attribute
             graph.add((uri, a, utils.namespaces.TERN.Attribute))
             graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -869,7 +873,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if row.get("dataGeneralizations"):
+        if row["dataGeneralizations"]:
             # Data Generalizations Value
             graph.add((uri, a, utils.namespaces.TERN.Text))
             graph.add((uri, a, utils.namespaces.TERN.Value))
