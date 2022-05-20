@@ -382,9 +382,11 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
-        # Add to Graph
-        graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["recordedBy"])))
+        # Check for recordedBy
+        if row["recordedBy"]:
+            # Add to Graph
+            graph.add((uri, a, rdflib.PROV.Agent))
+            graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["recordedBy"])))
 
     def add_observation_scientific_name(
         self,
@@ -533,11 +535,15 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
         graph.add((geometry, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
-        graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(row["eventDate"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL[row["samplingProtocol"]]))
+
+        # Check for recordedBy
+        if row["recordedBy"]:
+            # Add Associated Provider
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
 
         # Check for locality
         if row["locality"]:

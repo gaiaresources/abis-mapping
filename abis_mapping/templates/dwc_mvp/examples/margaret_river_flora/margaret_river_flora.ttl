@@ -378,9 +378,6 @@
     tern:hasSimpleValue "no flowers present" ;
     tern:hasValue <http://createme.org/value/identificationRemarks/12> .
 
-<http://createme.org/provider/None> a prov:Agent ;
-    foaf:name "None" .
-
 <http://createme.org/sampling/field/0> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
@@ -418,7 +415,6 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
-    prov:wasAssociatedWith <http://createme.org/provider/None> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/11> ;
     sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
@@ -533,11 +529,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/specimen/1> a tern:Sampling ;
@@ -548,11 +544,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/10> a tern:Sampling ;
@@ -578,11 +574,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/11> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/specimen/12> a tern:Sampling ;
@@ -655,11 +651,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/5> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/6> a tern:Sampling ;
@@ -670,11 +666,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/6> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/7> a tern:Sampling ;
@@ -700,11 +696,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/8> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/9> a tern:Sampling ;
