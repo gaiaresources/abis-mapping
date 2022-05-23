@@ -21,6 +21,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/0> ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/scientificName/1> a tern:Observation ;
@@ -34,6 +35,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/1> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/10> a tern:Observation ;
@@ -48,13 +50,13 @@
             time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/10>,
-        <http://createme.org/attribute/identificationRemarks/10> ;
+        <http://createme.org/attribute/identificationRemarks/10>,
+        <http://createme.org/attribute/kingdom/10> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://createme.org/observation/scientificName/11> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "scientificName-observation" ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/11> ;
     sosa:hasResult <http://createme.org/scientificName/11> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
@@ -62,6 +64,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/11> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
             rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
@@ -79,7 +82,8 @@
             time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/12>,
-        <http://createme.org/attribute/identificationRemarks/12> ;
+        <http://createme.org/attribute/identificationRemarks/12>,
+        <http://createme.org/attribute/kingdom/12> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
             rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
@@ -97,7 +101,9 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/13>,
-        <http://createme.org/attribute/identificationRemarks/13> ;
+        <http://createme.org/attribute/identificationRemarks/13>,
+        <http://createme.org/attribute/kingdom/13>,
+        <http://createme.org/attribute/taxonRank/13> ;
     tern:resultDateTime "2019-09-27"^^xsd:date .
 
 <http://createme.org/observation/scientificName/2> a tern:Observation ;
@@ -111,6 +117,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/2> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/3> a tern:Observation ;
@@ -124,6 +131,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/3> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/4> a tern:Observation ;
@@ -137,6 +145,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/4> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/5> a tern:Observation ;
@@ -150,6 +159,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/5> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/6> a tern:Observation ;
@@ -163,6 +173,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/6> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/7> a tern:Observation ;
@@ -176,6 +187,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/7> ;
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/8> a tern:Observation ;
@@ -189,6 +201,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/8> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://createme.org/observation/scientificName/9> a tern:Observation ;
@@ -202,6 +215,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    tern:hasAttribute <http://createme.org/attribute/kingdom/9> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/0> a tern:Observation ;
@@ -412,6 +426,96 @@
     tern:hasSimpleValue "no flowers present" ;
     tern:hasValue <http://createme.org/value/identificationRemarks/13> .
 
+<http://createme.org/attribute/kingdom/0> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/0> .
+
+<http://createme.org/attribute/kingdom/1> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/1> .
+
+<http://createme.org/attribute/kingdom/10> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/10> .
+
+<http://createme.org/attribute/kingdom/11> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/11> .
+
+<http://createme.org/attribute/kingdom/12> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/12> .
+
+<http://createme.org/attribute/kingdom/13> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/13> .
+
+<http://createme.org/attribute/kingdom/2> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/2> .
+
+<http://createme.org/attribute/kingdom/3> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/3> .
+
+<http://createme.org/attribute/kingdom/4> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/4> .
+
+<http://createme.org/attribute/kingdom/5> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/5> .
+
+<http://createme.org/attribute/kingdom/6> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/6> .
+
+<http://createme.org/attribute/kingdom/7> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/7> .
+
+<http://createme.org/attribute/kingdom/8> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/8> .
+
+<http://createme.org/attribute/kingdom/9> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:hasSimpleValue "Plantae" ;
+    tern:hasValue <http://createme.org/value/kingdom/9> .
+
+<http://createme.org/attribute/taxonRank/13> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/taxonRank> ;
+    tern:hasSimpleValue "species" ;
+    tern:hasValue <http://createme.org/value/taxonRank/13> .
+
 <http://createme.org/sampling/field/0> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
@@ -589,11 +693,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/10> a tern:Sampling ;
@@ -634,11 +738,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/12> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/13> a tern:Sampling ;
@@ -651,11 +755,11 @@
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/13> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/specimen/2> a tern:Sampling ;
@@ -666,11 +770,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/2> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/3> a tern:Sampling ;
@@ -681,11 +785,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/4> a tern:Sampling ;
@@ -696,11 +800,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/4> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/5> a tern:Sampling ;
@@ -711,11 +815,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/5> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/specimen/6> a tern:Sampling ;
@@ -917,6 +1021,81 @@
 <http://createme.org/value/identificationRemarks/13> a tern:Text,
         tern:Value ;
     rdf:value "no flowers present" .
+
+<http://createme.org/value/kingdom/0> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/1> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/10> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/11> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/12> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/13> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/2> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/3> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/4> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/5> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/6> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/7> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/8> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/kingdom/9> a tern:IRI,
+        tern:Value ;
+    rdfs:label "kingdom = Plantae" ;
+    rdf:value <http://createme.org/kingdom/plantae> .
+
+<http://createme.org/value/taxonRank/13> a tern:IRI,
+        tern:Value ;
+    rdfs:label "taxon rank = species" ;
+    rdf:value <http://createme.org/taxonRank/species> .
 
 <http://createme.org/verbatimID/0> a tern:Text,
         tern:Value ;
@@ -1211,6 +1390,6 @@
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-05-20"^^xsd:date ;
+    dcterms:issued "2022-05-23"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
 

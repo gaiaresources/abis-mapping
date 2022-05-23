@@ -33,6 +33,8 @@ CONCEPT_PROCEDURE_ID = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName")  # TODO -> Need real URI
 CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations")  # TODO -> Need real URI
+CONCEPT_KINGDOM = utils.rdf.uri("concept/kingdom")  # TODO -> Need real URI
+CONCEPT_TAXON_RANK = utils.rdf.uri("concept/taxonRank")  # TODO -> Need real URI
 
 # Controlled Vocabularies
 VOCAB_GEODETIC_DATUM = {
@@ -51,7 +53,8 @@ VOCAB_GEODETIC_DATUM = {
 }
 VOCAB_SAMPLING_PROTOCOL = {
     None: utils.rdf.uri("sampling-protocol/default"),  # Default  # TODO -> Need real URI
-    "Human observation": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
+    "human observation": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
+    "by hand": utils.rdf.uri("sampling-protocol/by-hand"),  # TODO -> Need real URI,
 }
 VOCAB_KINGDOM_OCCURRENCE = {
     "Plantae": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611"),
@@ -61,11 +64,22 @@ VOCAB_KINGDOM_OCCURRENCE = {
 VOCAB_KINGDOM_SPECIMEN = {
     "Plantae": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb"),
     "Animalia": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/cd5cbdbb-07d9-4a5b-9b11-5ab9d6015be6"),
-    "Fungi": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),  # TODO (?)
+    "Fungi": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),  # TODO -> ?
+}
+VOCAB_KINGDOM = {
+    "Plantae": utils.rdf.uri("kingdom/plantae"),  # TODO -> Need real URI,
+    "Animalia": utils.rdf.uri("kingdom/animalia"),  # TODO -> Need real URI,
+    "Fungi": utils.rdf.uri("kingdom/fungi"),  # TODO -> Need real URI,
 }
 VOCAB_TAXON_RANK = {
-    None: utils.rdf.uri("taxon-rank/default"),  # Default  # TODO -> Need real URI
-    "species": utils.rdf.uri("taxon-rank/species"),  # TODO -> Need real URI
+    None: utils.rdf.uri("taxonRank/default"),  # Default  # TODO -> Need real URI
+    "kingdom": utils.rdf.uri("taxonRank/kingdom"),  # TODO -> Need real URI
+    "phylum": utils.rdf.uri("taxonRank/phylum"),  # TODO -> Need real URI
+    "class": utils.rdf.uri("taxonRank/class"),  # TODO -> Need real URI
+    "order": utils.rdf.uri("taxonRank/order"),  # TODO -> Need real URI
+    "family": utils.rdf.uri("taxonRank/family"),  # TODO -> Need real URI
+    "genus": utils.rdf.uri("taxonRank/genus"),  # TODO -> Need real URI
+    "species": utils.rdf.uri("taxonRank/species"),  # TODO -> Need real URI
 }
 
 
@@ -206,6 +220,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_number}", base_iri)
         data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/{row_number}", base_iri)
         data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{row_number}", base_iri)
+        kingdom_attribute = utils.rdf.uri(f"attribute/kingdom/{row_number}", base_iri)
+        kingdom_value = utils.rdf.uri(f"value/kingdom/{row_number}", base_iri)
+        taxon_rank_attribute = utils.rdf.uri(f"attribute/taxonRank/{row_number}", base_iri)
+        taxon_rank_value = utils.rdf.uri(f"value/taxonRank/{row_number}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -319,6 +337,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             scientific_name=text_scientific_name,
             qualifier=id_qualifier_attribute,
             remarks=id_remarks_attribute,
+            kingdom=kingdom_attribute,
+            taxon_rank=taxon_rank_attribute,
             graph=graph,
         )
 
@@ -349,6 +369,38 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
+        # Add Kingdom Attribute
+        self.add_kingdom_attribute(
+            uri=kingdom_attribute,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            kingdom_value=kingdom_value,
+        )
+
+        # Add Kingdom Value
+        self.add_kingdom_value(
+            uri=kingdom_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add Taxon Rank Attribute
+        self.add_taxon_rank_attribute(
+            uri=taxon_rank_attribute,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            taxon_rank_value=taxon_rank_value,
+        )
+
+        # Add Taxon Rank Value
+        self.add_taxon_rank_value(
+            uri=taxon_rank_value,
+            row=row,
+            graph=graph,
+        )
+
         # Return
         return graph
 
@@ -365,6 +417,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
+        # Check for identifiedBy
+        if not row["identifiedBy"]:
+            return
+
         # Add to Graph
         graph.add((uri, a, rdflib.PROV.Agent))
         graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["identifiedBy"])))
@@ -400,6 +456,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         scientific_name: rdflib.URIRef,
         qualifier: rdflib.URIRef,
         remarks: rdflib.URIRef,
+        kingdom: rdflib.URIRef,
+        taxon_rank: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Observation Scientific Name to the Graph
@@ -417,6 +475,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 associated with this node
             remarks (rdflib.URIRef): Identification Remarks attribute
                 associated with this node
+            kingdom (rdflib.URIRef): Kingdom attribute associated with this
+                node
+            taxon_rank (rdflib.URIRef): Taxon Rank attribute associated with
+                this node
             graph (rdflib.Graph): Graph to add to
         """
         # Get Timestamps
@@ -427,7 +489,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("scientificName-observation")))
-        graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_specimen))
         graph.add((uri, rdflib.SOSA.hasResult, scientific_name))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["scientificName"])))
@@ -438,6 +499,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), rdflib.Literal(event_date)))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(date_identified)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
+
+        # Check for identifiedBy
+        if row["identifiedBy"]:
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
 
         # Check for dateIdentified
         if not row["dateIdentified"]:
@@ -458,6 +523,13 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Check for identificationRemarks
         if row["identificationRemarks"]:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, remarks))
+
+        # Add Kingdom
+        graph.add((uri, utils.namespaces.TERN.hasAttribute, kingdom))
+
+        # Check for taxonRank
+        if row["taxonRank"]:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, taxon_rank))
 
     def add_observation_verbatim_id(
         self,
@@ -493,7 +565,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("verbatimID-observation")))
-        graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_specimen))
         graph.add((uri, rdflib.SOSA.hasResult, verbatim_id))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["verbatimIdentification"])))
@@ -504,6 +575,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), rdflib.Literal(event_date)))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, rdflib.Literal(date_identified)))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
+
+        # Check for identifiedBy
+        if row["identifiedBy"]:
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
 
         # Check for dateIdentified
         if not row["dateIdentified"]:
@@ -872,7 +947,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            data_generalizations_value (rdflib.URIRef): Data Generlizations
+            data_generalizations_value (rdflib.URIRef): Data Generalizations
                 Value associated with this node
             graph (rdflib.Graph): Graph to add to
         """
@@ -908,6 +983,102 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["dataGeneralizations"])))
+
+    def add_kingdom_attribute(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        kingdom_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Kingdom Attribute to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            kingdom_value (rdflib.URIRef): Kingdom Value associated with this
+                node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Kingdom Attribute
+        graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_KINGDOM))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["kingdom"])))
+        graph.add((uri, utils.namespaces.TERN.hasValue, kingdom_value))
+
+    def add_kingdom_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Kingdom Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Kingdom Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"kingdom = {row['kingdom']}")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_KINGDOM[row["kingdom"]]))
+
+    def add_taxon_rank_attribute(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        taxon_rank_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Taxon Rank Attribute to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            taxon_rank_value (rdflib.URIRef): Taxon Rank Value associated with
+                this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["taxonRank"]:
+            return
+
+        # Taxon Rank Attribute
+        graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_TAXON_RANK))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["taxonRank"])))
+        graph.add((uri, utils.namespaces.TERN.hasValue, taxon_rank_value))
+
+    def add_taxon_rank_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Taxon Rank Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["taxonRank"]:
+            return
+
+        # Taxon Rank Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"taxon rank = {row['taxonRank']}")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_TAXON_RANK[row["taxonRank"]]))
 
 
 # Register Mapper

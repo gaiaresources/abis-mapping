@@ -87,12 +87,12 @@
       "name": "samplingProtocol",
       "title": "Sampling Protocol",
       "description": "...",
-      "example": "Human observation",
+      "example": "human observation",
       "type": "string",
       "format": "default",
       "constraints": {
         "required": false,
-        "enum": ["Human observation"]
+        "enum": ["human observation", "by hand"]
       }
     },
     {
@@ -136,7 +136,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": false
       }
     },
     {
