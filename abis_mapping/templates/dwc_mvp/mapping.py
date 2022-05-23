@@ -13,7 +13,7 @@ from abis_mapping import base
 from abis_mapping import utils
 
 # Typing
-from typing import Optional
+from typing import Iterator, Optional
 
 
 # Default Dataset Metadata
@@ -115,18 +115,20 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def apply_mapping(
         self,
         data: base.types.ReadableType,
+        chunk_size: Optional[int] = None,
         dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
-    ) -> rdflib.Graph:
+    ) -> Iterator[rdflib.Graph]:
         """Applies Mapping for the `dwc_mvp.csv` Template
 
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
+            chunk_size (Optional[int]): Optional number of rows to chunk into.
             dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
-        Returns:
-            rdflib.Graph: ABIS Conformant RDF Graph.
+        Yields:
+            rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
         """
         # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
@@ -136,7 +138,11 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             onerror="raise",  # Raise errors, it should already be valid here
         )
 
-        # Initialise Graph
+        # Infer Statistics and Count Number of Rows
+        resource.infer(stats=True)
+        rows = resource.stats["rows"]
+
+        # Initialise New Graph
         graph = utils.rdf.create_graph()
 
         # Check if Dataset IRI Supplied
@@ -159,17 +165,21 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((australia, utils.namespaces.TERN.featureType, CONCEPT_SITE))
 
         # Loop through Rows
-        for row_number, row in enumerate(resource):
+        for row in resource:
             # Map Row
-            self.apply_mapping_row(row, row_number, dataset_iri, australia, graph, base_iri)
+            self.apply_mapping_row(row, dataset_iri, australia, graph, base_iri)
 
-        # Return
-        return graph
+            # Check Whether to Yield a Chunk
+            if utils.chunking.should_chunk(row, rows, chunk_size):
+                # Yield Chunk
+                yield graph
+
+                # Initialise New Graph
+                graph = utils.rdf.create_graph()
 
     def apply_mapping_row(
         self,
         row: frictionless.Row,
-        row_number: int,
         dataset: rdflib.URIRef,
         terminal_foi: rdflib.URIRef,
         graph: rdflib.Graph,
@@ -179,7 +189,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
         Args:
             row (frictionless.Row): Row to be processed in the dataset.
-            row_number (int): Row number to be processed.
             dataset (rdflib.URIRef): Dataset uri this row is apart of.
             terminal_foi (rdflib.URIRef): Terminal feature of interest.
             graph (rdflib.Graph): Graph to map row into.
@@ -192,20 +201,20 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Create URIs
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
         provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
-        sample_field = utils.rdf.uri(f"sample/field/{row_number}", base_iri)
-        sampling_field = utils.rdf.uri(f"sampling/field/{row_number}", base_iri)
-        sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}", base_iri)
-        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_number}", base_iri)
-        text_scientific_name = utils.rdf.uri(f"scientificName/{row_number}", base_iri)
-        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row_number}", base_iri)
-        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row_number}", base_iri)
-        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row_number}", base_iri)
-        id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{row_number}", base_iri)
-        id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row_number}", base_iri)
-        id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_number}", base_iri)
-        id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_number}", base_iri)
-        data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/{row_number}", base_iri)
-        data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{row_number}", base_iri)
+        sample_field = utils.rdf.uri(f"sample/field/{row.row_number}", base_iri)
+        sampling_field = utils.rdf.uri(f"sampling/field/{row.row_number}", base_iri)
+        sample_specimen = utils.rdf.uri(f"sample/specimen/{row.row_number}", base_iri)
+        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row.row_number}", base_iri)
+        text_scientific_name = utils.rdf.uri(f"scientificName/{row.row_number}", base_iri)
+        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row.row_number}", base_iri)
+        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row.row_number}", base_iri)
+        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row.row_number}", base_iri)
+        id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{row.row_number}", base_iri)
+        id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row.row_number}", base_iri)
+        id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row.row_number}", base_iri)
+        id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row.row_number}", base_iri)
+        data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/{row.row_number}", base_iri)
+        data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{row.row_number}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -594,7 +603,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
-            row_number (int): Row number for this row
             dataset (rdflib.URIRef): Dataset this belongs to
             id_qualifier_value (rdflib.URIRef): Identification Qualifier Value
                 associated with this node.
