@@ -25,7 +25,7 @@
             rdfs:comment "Date unknown, template eventDate used as proxy" ],
         [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "observation method unknown, human observation used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/organismRemarks/13> a tern:Observation ;
@@ -40,7 +40,7 @@
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "observation method unknown, human observation used as proxy" ],
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
         [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
             rdfs:comment "Date unknown, template eventDate used as proxy" ] ;

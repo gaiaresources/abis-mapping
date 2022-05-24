@@ -1285,7 +1285,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
-        method_comment = "observation method unknown, human observation used as proxy"
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
         method_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
         graph.add((method_qualifier, a, rdflib.RDF.Statement))
@@ -1367,7 +1367,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
-        method_comment = "observation method unknown, human observation used as proxy"
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
         method_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
         graph.add((method_qualifier, a, rdflib.RDF.Statement))
