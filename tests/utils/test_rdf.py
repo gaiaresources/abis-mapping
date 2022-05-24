@@ -41,15 +41,38 @@ def test_rdf_uri() -> None:
 
 def test_rdf_inXSDSmart() -> None:
     """Tests the inXSDSmart() Function"""
+    # Test Datetime with Timezone
+    time = datetime.datetime.now().astimezone(datetime.timezone.utc)
+    predicate = utils.rdf.inXSDSmart(time)
+    assert predicate == rdflib.TIME.inXSDDateTimeStamp
+
+    # Test Datetime without Timezone
+    time = datetime.datetime.now()
+    predicate = utils.rdf.inXSDSmart(time)
+    assert predicate == rdflib.TIME.inXSDDateTime
+
     # Test Date
     date = datetime.date.today()
     predicate = utils.rdf.inXSDSmart(date)
     assert predicate == rdflib.TIME.inXSDDate
 
-    # Test Datetime
+
+def test_rdf_toTimestamp() -> None:
+    """Tests the toTimestamp() Function"""
+    # Test Datetime with Timezone
+    time = datetime.datetime.now().astimezone(datetime.timezone.utc)
+    literal = utils.rdf.toTimestamp(time)
+    assert literal == rdflib.Literal(time, datatype=rdflib.XSD.dateTimeStamp)
+
+    # Test Datetime without Timezone
     time = datetime.datetime.now()
-    predicate = utils.rdf.inXSDSmart(time)
-    assert predicate == rdflib.TIME.inXSDDateTimeStamp
+    literal = utils.rdf.toTimestamp(time)
+    assert literal == rdflib.Literal(time, datatype=rdflib.XSD.dateTime)
+
+    # Test Date
+    date = datetime.date.today()
+    literal = utils.rdf.toTimestamp(date)
+    assert literal == rdflib.Literal(date, datatype=rdflib.XSD.date)
 
 
 def test_rdf_toWKT() -> None:

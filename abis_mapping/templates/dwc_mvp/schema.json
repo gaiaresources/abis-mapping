@@ -96,11 +96,56 @@
       }
     },
     {
+      "name": "habitat",
+      "title": "Habitat",
+      "description": "...",
+      "example": "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "recordedBy",
       "title": "Recorded By",
       "description": "...",
       "example": "Stream Environment and Water Pty Ltd",
       "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "basisOfRecord",
+      "title": "Basis Of Record",
+      "description": "...",
+      "example": "HumanObservation",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": ["HumanObservation", "Occurrence", "PreservedSpecimen", "FossilSpecimen", "LivingSpecimen", "MachineObservation", "MaterialSample"]
+      }
+    },
+    {
+      "name": "organismRemarks",
+      "title": "Organism Remarks",
+      "description": "...",
+      "example": "Dried out leaf tips.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "individualCount",
+      "title": "Individual Count",
+      "description": "...",
+      "example": "26",
+      "type": "integer",
       "format": "default",
       "constraints": {
         "required": false

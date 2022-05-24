@@ -86,18 +86,57 @@ def inXSDSmart(timestamp: types.DateOrDatetime) -> rdflib.URIRef:
 
     Args:
         timestamp (types.DateOrDateTime): Timestamp to generate a
-            time:inXSD<Date/DateTimeStamp> predicate for.
+            time:inXSD<Date/DateTime/DateTimeStamp> predicate for.
 
     Returns:
-        rdflib.URIRef: The smartly generated predicate
+        rdflib.URIRef: The smartly generated predicate.
     """
-    # Check for Datetime
-    if isinstance(timestamp, datetime.datetime):
+    # Check for Datetime with Time Zone
+    if isinstance(timestamp, datetime.datetime) and timestamp.tzinfo is not None:
         # inXSDDateTimeStamp
-        return rdflib.TIME.inXSDDateTimeStamp
+        predicate = rdflib.TIME.inXSDDateTimeStamp
 
-    # inXSDDate
-    return rdflib.TIME.inXSDDate
+    # Check for Datetime without Time Zone
+    elif isinstance(timestamp, datetime.datetime):
+        # inXSDDateTime
+        predicate = rdflib.TIME.inXSDDateTime
+
+    # Just Date
+    else:
+        # inXSDDate
+        predicate = rdflib.TIME.inXSDDate
+
+    # Return
+    return predicate
+
+
+def toTimestamp(timestamp: types.DateOrDatetime) -> rdflib.Literal:
+    """Generates the correct rdflib.Literal for date or datetime.
+
+    Args:
+        timestamp (types.DateOrDateTime): Timestamp to generate a
+            rdflib.Literal for.
+
+    Returns:
+        rdflib.Literal: The smartly generated literal.
+    """
+    # Check for Datetime with Time Zone
+    if isinstance(timestamp, datetime.datetime) and timestamp.tzinfo is not None:
+        # xsd:dateTimeStamp
+        literal = rdflib.Literal(timestamp, datatype=rdflib.XSD.dateTimeStamp)
+
+    # Check for Datetime without Time Zone
+    elif isinstance(timestamp, datetime.datetime):
+        # xsd:dateTime
+        literal = rdflib.Literal(timestamp, datatype=rdflib.XSD.dateTime)
+
+    # Just Date
+    else:
+        # xsd:date
+        literal = rdflib.Literal(timestamp, datatype=rdflib.XSD.date)
+
+    # Return
+    return literal
 
 
 def toWKT(
