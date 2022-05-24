@@ -39,11 +39,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "observation method unknown, human observation used as proxy" ] ;
+            rdfs:comment "observation method unknown, human observation used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/scientificName/0> a tern:Observation ;
@@ -110,7 +110,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/sample/field/12> ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/12> ;
     sosa:hasResult <http://createme.org/scientificName/12> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
@@ -297,7 +297,7 @@
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/sample/field/12> ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/12> ;
     sosa:hasResult <http://createme.org/verbatimID/12> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
@@ -425,6 +425,12 @@
             time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
+
+<http://createme.org/attribute/basisOfRecord/12> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/basisOfRecord> ;
+    tern:hasSimpleValue "PreservedSpecimen" ;
+    tern:hasValue <http://createme.org/value/basisOfRecord/12> .
 
 <http://createme.org/attribute/basisOfRecord/13> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
@@ -615,11 +621,13 @@
 <http://createme.org/sampling/field/12> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+    geo:hasMetricSpatialAccuracy 2e+01 ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/12> ;
     sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/12> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
@@ -724,6 +732,24 @@
     sosa:hasResult <http://createme.org/sample/field/9> ;
     sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
+    tern:resultDateTime "2020-09-23"^^xsd:date .
+
+<http://createme.org/sampling/specimen/12> a tern:Sampling ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+    geo:hasMetricSpatialAccuracy 2e+01 ;
+    rdfs:comment "specimen-sampling" ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/field/12> ;
+    sosa:hasResult <http://createme.org/sample/specimen/12> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    tern:hasAttribute <http://createme.org/attribute/basisOfRecord/12>,
+        <http://createme.org/attribute/dataGeneralizations/12> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/scientificName/0> a tern:FeatureOfInterest,
@@ -838,10 +864,19 @@
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://createme.org/concept/scientificName> .
 
+<http://createme.org/value/basisOfRecord/12> a tern:IRI,
+        tern:Value ;
+    rdfs:label "basisOfRecord" ;
+    rdf:value <http://createme.org/basisOfRecord/PreservedSpecimen> .
+
 <http://createme.org/value/basisOfRecord/13> a tern:IRI,
         tern:Value ;
     rdfs:label "basisOfRecord" ;
     rdf:value <http://createme.org/basisOfRecord/HumanObservation> .
+
+<http://createme.org/value/dataGeneralizations/12> a tern:Text,
+        tern:Value ;
+    rdf:value "Coordinates rounded to the nearest 10 km for conservation concern" .
 
 <http://createme.org/value/dataGeneralizations/13> a tern:Text,
         tern:Value ;
@@ -1013,6 +1048,12 @@
         tern:Value ;
     rdf:value "Caladenia excelsa" .
 
+<http://createme.org/attribute/dataGeneralizations/12> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/data-generalizations> ;
+    tern:hasSimpleValue "Coordinates rounded to the nearest 10 km for conservation concern" ;
+    tern:hasValue <http://createme.org/value/dataGeneralizations/12> .
+
 <http://createme.org/sample/field/11> a tern:FeatureOfInterest,
         tern:Sample ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
@@ -1116,6 +1157,14 @@
     sosa:isResultOf <http://createme.org/sampling/field/9> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
+
+<http://createme.org/sample/specimen/12> a tern:FeatureOfInterest,
+        tern:Sample ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "specimen-sample" ;
+    sosa:isResultOf <http://createme.org/sampling/specimen/12> ;
+    sosa:isSampleOf <http://createme.org/sample/field/12> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
 
 <http://createme.org/sample/field/13> a tern:FeatureOfInterest,
         tern:Sample ;
