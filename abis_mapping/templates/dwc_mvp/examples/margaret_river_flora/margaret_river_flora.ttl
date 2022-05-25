@@ -4,11 +4,27 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://createme.org/attribute/preparations/13> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/preparations> ;
+    tern:hasSimpleValue "Wet (in ethanol or some other preservative)" ;
+    tern:hasValue <http://createme.org/value/preparations/13> .
+
+<http://createme.org/datatype/WAM> a rdfs:Datatype ;
+    rdfs:label "WAM identifiers" ;
+    rdfs:comment "This is the identifier code system nominated by WAM" ;
+    prov:wasAssociatedWith <http://createme.org/provider/WAM> .
+
+<http://createme.org/datatype/dandjoo> a rdfs:Datatype ;
+    rdfs:label "Dandjoo identifiers" ;
+    rdfs:comment "This is the GUID identifier code system to identify records from Dandjoo" .
 
 <http://createme.org/observation/individualCount/13> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
@@ -28,6 +44,21 @@
             rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
+<http://createme.org/observation/occurrenceStatus/13> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "occurrenceStatus-observation" ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/field/13> ;
+    sosa:hasResult <http://createme.org/value/occurrenceStatus/13> ;
+    sosa:hasSimpleResult "present" ;
+    sosa:observedProperty <http://createme.org/concept/occurrenceStatus> ;
+    sosa:phenomenonTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+    tern:resultDateTime "2019-09-24"^^xsd:date .
+
 <http://createme.org/observation/organismRemarks/13> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "organismRemarks-observation" ;
@@ -39,11 +70,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/scientificName/0> a tern:Observation ;
@@ -140,7 +171,7 @@
         <http://createme.org/attribute/identificationRemarks/13>,
         <http://createme.org/attribute/kingdom/13>,
         <http://createme.org/attribute/taxonRank/13> ;
-    tern:resultDateTime "2019-09-27"^^xsd:date .
+    tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
 
 <http://createme.org/observation/scientificName/2> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
@@ -320,7 +351,7 @@
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-27"^^xsd:date .
+    tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
 
 <http://createme.org/observation/verbatimID/2> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
@@ -570,11 +601,21 @@
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/9> .
 
+<http://createme.org/attribute/preparations/12> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    tern:attribute <http://createme.org/concept/preparations> ;
+    tern:hasSimpleValue "Wet (in ethanol or some other preservative)" ;
+    tern:hasValue <http://createme.org/value/preparations/12> .
+
 <http://createme.org/attribute/taxonRank/13> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     tern:attribute <http://createme.org/concept/taxonRank> ;
     tern:hasSimpleValue "species" ;
     tern:hasValue <http://createme.org/value/taxonRank/13> .
+
+<http://createme.org/provider/WAM> a schema:Organization ;
+    schema:name "WAM" ;
+    schema:url "https://example.org/"^^xsd:anyURI .
 
 <http://createme.org/sampling/field/0> a tern:Sampling ;
     geo:hasGeometry [ a geo:Geometry ;
@@ -986,10 +1027,25 @@
     rdfs:label "kingdom = Plantae" ;
     rdf:value <http://createme.org/kingdom/plantae> .
 
+<http://createme.org/value/occurrenceStatus/13> a tern:IRI,
+        tern:Value ;
+    rdfs:label "occurrenceStatus = present" ;
+    rdf:value <http://createme.org/occurrenceStatus/present> .
+
 <http://createme.org/value/organismRemarks/13> a tern:Text,
         tern:Value ;
     rdfs:label "organism-remarks" ;
     rdf:value "Dried out leaf tips" .
+
+<http://createme.org/value/preparations/12> a tern:Text,
+        tern:Value ;
+    rdfs:label "preparations" ;
+    rdf:value "Wet (in ethanol or some other preservative)" .
+
+<http://createme.org/value/preparations/13> a tern:Text,
+        tern:Value ;
+    rdfs:label "preparations" ;
+    rdf:value "Wet (in ethanol or some other preservative)" .
 
 <http://createme.org/value/taxonRank/13> a tern:IRI,
         tern:Value ;
@@ -1160,14 +1216,18 @@
 
 <http://createme.org/sample/specimen/12> a tern:FeatureOfInterest,
         tern:Sample ;
+    dcterms:identifier "ARACH32237"^^<http://createme.org/datatype/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "specimen-sample" ;
     sosa:isResultOf <http://createme.org/sampling/specimen/12> ;
     sosa:isSampleOf <http://createme.org/sample/field/12> ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> ;
+    tern:hasAttribute <http://createme.org/attribute/preparations/12> .
 
 <http://createme.org/sample/field/13> a tern:FeatureOfInterest,
         tern:Sample ;
+    dcterms:identifier "MR-456"^^<http://createme.org/datatype/WAM>,
+        "8022FSJMJ079c5cf"^^<http://createme.org/datatype/dandjoo> ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/13> ;
@@ -1185,6 +1245,6 @@
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-05-24"^^xsd:date ;
+    dcterms:issued "2022-05-25"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
 

@@ -36,7 +36,7 @@ def create_graph() -> rdflib.Graph:
     graph.bind("prov", rdflib.PROV)
     graph.bind("time", rdflib.TIME)
     graph.bind("xsd", rdflib.XSD)
-    graph.bind("sdo", rdflib.SDO)
+    graph.bind("schema", rdflib.SDO)
     graph.bind("geo", namespaces.GEO)
     graph.bind("tern", namespaces.TERN)
     graph.bind("dwc", namespaces.DWC)

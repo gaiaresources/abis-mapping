@@ -39,6 +39,8 @@ CONCEPT_INDIVIDUAL_COUNT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/
 CONCEPT_ORGANISM_REMARKS = utils.rdf.uri("concept/organismRemarks")  # TODO -> Need real URI
 CONCEPT_HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99")
 CONCEPT_BASIS_OF_RECORD = utils.rdf.uri("concept/basisOfRecord")  # TODO -> Need real URI
+CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus")  # TODO -> Need real URI
+CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations")  # TODO -> Need real URI
 
 # Controlled Vocabularies
 VOCAB_GEODETIC_DATUM = {
@@ -90,6 +92,10 @@ VOCAB_BASIS_OF_RECORD = {
     "HumanObservation": utils.rdf.uri("basisOfRecord/HumanObservation"),  # TODO -> Need real URI
     "Occurrence": utils.rdf.uri("basisOfRecord/Occurrence"),  # TODO -> Need real URI
     "PreservedSpecimen": utils.rdf.uri("basisOfRecord/PreservedSpecimen"),  # TODO -> Need real URI
+}
+VOCAB_OCCURRENCE_STATUS = {
+    "present": utils.rdf.uri("occurrenceStatus/present"),  # TODO -> Need real URI
+    "absent": utils.rdf.uri("occurrenceStatus/absent"),  # TODO -> Need real URI
 }
 
 # Basis Of Record Differentiators
@@ -227,6 +233,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             rdflib.Graph: Graph with row mapped into it.
         """
         # Create URIs
+        institution_provider = utils.rdf.uri(f"provider/{row['institutionCode']}", base_iri)
+        institution_datatype = utils.rdf.uri(f"datatype/{row['institutionCode']}", base_iri)
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
         provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
         sample_field = utils.rdf.uri(f"sample/field/{row_number}", base_iri)
@@ -255,6 +263,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         habitat_value = utils.rdf.uri(f"value/habitat/{row_number}", base_iri)
         basis_attribute = utils.rdf.uri(f"attribute/basisOfRecord/{row_number}", base_iri)
         basis_value = utils.rdf.uri(f"value/basisOfRecord/{row_number}", base_iri)
+        occurrence_status_observation = utils.rdf.uri(f"observation/occurrenceStatus/{row_number}", base_iri)
+        occurrence_status_value = utils.rdf.uri(f"value/occurrenceStatus/{row_number}", base_iri)
+        preparations_attribute = utils.rdf.uri(f"attribute/preparations/{row_number}", base_iri)
+        preparations_value = utils.rdf.uri(f"value/preparations/{row_number}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -277,6 +289,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             dataset=dataset,
             feature_of_interest=terminal_foi,
             sampling_field=sampling_field,
+            institution_datatype=institution_datatype,
             graph=graph,
         )
 
@@ -300,6 +313,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             dataset=dataset,
             sampling_specimen=sampling_specimen,
             sample_field=sample_field,
+            institution_datatype=institution_datatype,
+            preparations=preparations_attribute,
             graph=graph,
         )
 
@@ -499,6 +514,54 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add Basis of Record Value
         self.add_basis_value(
             uri=basis_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add Institution Provider
+        self.add_institution_provider(
+            uri=institution_provider,
+            row=row,
+            graph=graph,
+        )
+
+        # Add Institution Datatype
+        self.add_institution_datatype(
+            uri=institution_datatype,
+            row=row,
+            provider=institution_provider,
+            graph=graph,
+        )
+
+        # Add Occurrence Status Observation
+        self.add_occurrence_status_observation(
+            uri=occurrence_status_observation,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            sample_field=sample_field,
+            occurrence_status_value=occurrence_status_value,
+        )
+
+        # Add Occurrence Status Value
+        self.add_occurrence_status_value(
+            uri=occurrence_status_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add Preparations Attribute
+        self.add_preparations_attribute(
+            uri=preparations_attribute,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            preparations_value=preparations_value,
+        )
+
+        # Add Preparations Value
+        self.add_preparations_value(
+            uri=preparations_value,
             row=row,
             graph=graph,
         )
@@ -956,25 +1019,20 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             datum=VOCAB_GEODETIC_DATUM[row["geodeticDatum"]],
         )
 
+        # Get Timestamp
+        timestamp = row["preparedDate"] or row["eventDate"]
+
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(row["eventDate"])))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(timestamp)))
         geometry = rdflib.BNode()
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
         graph.add((geometry, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
-
-        # Add Temporal Qualifier
-        temporal_comment = "Date unknown, template eventDate used as proxy"
-        temporal_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
-        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Spatial Qualifier
         spatial_comment = "Location unknown, location of field sampling used as proxy"
@@ -983,6 +1041,16 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((spatial_qualifier, a, rdflib.RDF.Statement))
         graph.add((spatial_qualifier, rdflib.RDF.value, utils.namespaces.GEO.hasGeometry))
         graph.add((spatial_qualifier, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
+
+        # Check for preparedDate
+        if not row["preparedDate"]:
+            # Add Temporal Qualifier
+            temporal_comment = "Date unknown, template eventDate used as proxy"
+            temporal_qualifier = rdflib.BNode()
+            graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+            graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Check for coordinateUncertaintyInMeters
         if row["coordinateUncertaintyInMeters"]:
@@ -1029,6 +1097,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
         sampling_field: rdflib.URIRef,
+        institution_datatype: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Field to the Graph
@@ -1041,6 +1110,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 with this node.
             sampling_field (rdflib.URIRef): Sampling Field associated with this
                 node
+            institution_datatype (rdflib.URIRef): Institution Datatype
+                associated with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Add to Graph
@@ -1052,6 +1123,31 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
         graph.add((uri, utils.namespaces.TERN.featureType, VOCAB_KINGDOM_OCCURRENCE[row["kingdom"]]))
 
+        # Check for recordID
+        if row["recordID"]:
+            # TODO -> Remove this
+            # Create Dandjoo Datatype (Temporary)
+            dandjoo = utils.rdf.uri("datatype/dandjoo", utils.namespaces.CREATEME)
+            label = "Dandjoo identifiers"
+            comment = "This is the GUID identifier code system to identify records from Dandjoo"
+            graph.add((dandjoo, a, rdflib.RDFS.Datatype))
+            graph.add((dandjoo, rdflib.RDFS.label, rdflib.Literal(label)))
+            graph.add((dandjoo, rdflib.RDFS.comment, rdflib.Literal(comment)))
+
+            # Create Record ID
+            record_id = rdflib.Literal(row["recordID"], datatype=dandjoo)  # TODO -> ?
+
+            # Add to Graph
+            graph.add((uri, rdflib.DCTERMS.identifier, record_id))
+
+        # Check for occurrenceID and institutionCode
+        if row["occurrenceID"] and row["institutionCode"]:
+            # Create Occurrence ID
+            occurrence_id = rdflib.Literal(row["occurrenceID"], datatype=institution_datatype)
+
+            # Add to Graph
+            graph.add((uri, rdflib.DCTERMS.identifier, occurrence_id))
+
     def add_sample_specimen(
         self,
         uri: rdflib.URIRef,
@@ -1059,6 +1155,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sampling_specimen: rdflib.URIRef,
         sample_field: rdflib.URIRef,
+        institution_datatype: rdflib.URIRef,
+        preparations: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Specimen to the Graph
@@ -1066,11 +1164,15 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             sampling_specimen (rdflib.URIRef): Sampling Specimen associated
                 with this node
             sample_field (rdflib.URIRef): Sample Field associated with this
                 node
-            dataset (rdflib.URIRef): Dataset this belongs to
+            institution_datatype (rdflib.URIRef): Institution Datatype
+                associated with this node
+            preparations (rdflib.URIRef): Preparations Attribute associated
+                with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Check Basis of Record
@@ -1085,6 +1187,19 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
         graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
         graph.add((uri, utils.namespaces.TERN.featureType, VOCAB_KINGDOM_SPECIMEN[row["kingdom"]]))
+
+        # Check for collectionCode, materialSampleID and institutionCode
+        if row["collectionCode"] and row["materialSampleID"] and row["institutionCode"]:
+            # Create Identifier by Concatenating `collectionCode` and `materialSampleID`
+            identifier = f"{row['collectionCode']}{row['materialSampleID']}"
+
+            # Add Identifier
+            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(identifier, datatype=institution_datatype)))
+
+        # Check for preparations
+        if row["preparations"]:
+            # Add Preparations
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, preparations))
 
     def add_data_generalizations_attribute(
         self,
@@ -1500,6 +1615,185 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("basisOfRecord")))
         graph.add((uri, rdflib.RDF.value, VOCAB_BASIS_OF_RECORD[row["basisOfRecord"]]))
+
+    def add_institution_provider(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Instititution Provider to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # TODO -> Retrieve this from a known list of institutions
+        # Check Existence
+        if not row["institutionCode"]:
+            return
+
+        # Institution Provider
+        graph.add((uri, a, rdflib.SDO.Organization))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["institutionCode"])))
+        graph.add((uri, rdflib.SDO.url, rdflib.Literal("https://example.org/", datatype=rdflib.XSD.anyURI)))
+
+    def add_institution_datatype(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        provider: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Institution Datatype to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            provider (rdflib.URIRef): Provider this datatype is attached to
+            graph (rdflib.Graph): Graph to add to
+        """
+        # TODO -> Retrieve this from a known list of institutions
+        # Check Existence
+        if not row["institutionCode"]:
+            return
+
+        # Label and Comment
+        label = f"{row['institutionCode']} identifiers"
+        comment = f"This is the identifier code system nominated by {row['institutionCode']}"
+
+        # Institution Data Type
+        graph.add((uri, a, rdflib.RDFS.Datatype))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
+
+    def add_occurrence_status_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        occurrence_status_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Occurrence Status Observation to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            occurrence_status_value (rdflib.URIRef): Occurrence Status Value
+                associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["occurrenceStatus"]:
+            return
+
+        # Get Timestamp
+        event_date = row["eventDate"]
+
+        # Occurrence Status Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("occurrenceStatus-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasResult, occurrence_status_value))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["occurrenceStatus"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_OCCURRENCE_STATUS))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
+
+        # Add Method Qualifier
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
+        method_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
+        graph.add((method_qualifier, a, rdflib.RDF.Statement))
+        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
+        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+
+    def add_occurrence_status_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Occurrence Status Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["occurrenceStatus"]:
+            return
+
+        # Occurrence Status Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"occurrenceStatus = {row['occurrenceStatus']}")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_OCCURRENCE_STATUS[row["occurrenceStatus"]]))
+
+    def add_preparations_attribute(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        preparations_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Preparations Attribute to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            preparations_value (rdflib.URIRef): Preparations Value associated
+                with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["preparations"]:
+            return
+
+        # Preparations Attribute
+        graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_PREPARATIONS))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["preparations"])))
+        graph.add((uri, utils.namespaces.TERN.hasValue, preparations_value))
+
+    def add_preparations_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Preparations Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["preparations"]:
+            return
+
+        # Preparations Value
+        graph.add((uri, a, utils.namespaces.TERN.Text))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("preparations")))
+        graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["preparations"])))
 
 
 # Register Mapper

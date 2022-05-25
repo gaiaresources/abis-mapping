@@ -1,6 +1,17 @@
 {
   "fields": [
     {
+      "name": "recordID",
+      "title": "Record ID",
+      "description": "...",
+      "example": "8022FSJMJ079c5cf",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "locality",
       "title": "Locality",
       "description": "...",
@@ -46,7 +57,16 @@
       "format": "default",
       "constraints": {
         "required": true,
-        "enum": ["AGD84", "EPSG:4203", "GDA2020", "EPSG:7844", "GDA94", "EPSG:4283", "WGS84", "EPSG:4326"]
+        "enum": [
+          "AGD84",
+          "EPSG:4203",
+          "GDA2020",
+          "EPSG:7844",
+          "GDA94",
+          "EPSG:4283",
+          "WGS84",
+          "EPSG:4326"
+        ]
       }
     },
     {
@@ -92,7 +112,10 @@
       "format": "default",
       "constraints": {
         "required": false,
-        "enum": ["human observation", "by hand"]
+        "enum": [
+          "human observation",
+          "by hand"
+        ]
       }
     },
     {
@@ -126,7 +149,92 @@
       "format": "default",
       "constraints": {
         "required": false,
-        "enum": ["HumanObservation", "Occurrence", "PreservedSpecimen", "FossilSpecimen", "LivingSpecimen", "MachineObservation", "MaterialSample"]
+        "enum": [
+          "HumanObservation",
+          "Occurrence",
+          "PreservedSpecimen",
+          "FossilSpecimen",
+          "LivingSpecimen",
+          "MachineObservation",
+          "MaterialSample"
+        ]
+      }
+    },
+    {
+      "name": "occurrenceID",
+      "title": "Occurrence ID",
+      "description": "...",
+      "example": "MR-456",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "occurrenceStatus",
+      "title": "Occurrence Status",
+      "description": "...",
+      "example": "Present",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "preparations",
+      "title": "Preparations",
+      "description": "...",
+      "example": "Wet (in ethanol or some other preservative)",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "preparedDate",
+      "title": "Prepared Date",
+      "description": "...",
+      "example": "2019-09-25T10:02+08:00",
+      "type": "timestamp",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "institutionCode",
+      "title": "Institution Code",
+      "description": "...",
+      "example": "WAM",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "collectionCode",
+      "title": "Collection Code",
+      "description": "...",
+      "example": "ARACH",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "materialSampleID",
+      "title": "Material Sample ID",
+      "description": "...",
+      "example": "32237",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
       }
     },
     {
@@ -226,7 +334,11 @@
       "format": "default",
       "constraints": {
         "required": true,
-        "enum": ["Plantae", "Animalia", "Fungi"]
+        "enum": [
+          "Plantae",
+          "Animalia",
+          "Fungi"
+        ]
       }
     },
     {
@@ -238,7 +350,15 @@
       "format": "default",
       "constraints": {
         "required": false,
-        "enum": ["kingdom", "phylum", "class", "order", "family", "genus", "species"]
+        "enum": [
+          "kingdom",
+          "phylum",
+          "class",
+          "order",
+          "family",
+          "genus",
+          "species"
+        ]
       }
     }
   ]

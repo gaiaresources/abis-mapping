@@ -18,7 +18,7 @@ def test_rdf_create_graph() -> None:
 
     # Check Graph
     assert isinstance(graph, rdflib.Graph)
-    assert len(list(graph.namespaces())) == 31
+    assert len(list(graph.namespaces())) == 30
 
 
 def test_rdf_uri() -> None:
