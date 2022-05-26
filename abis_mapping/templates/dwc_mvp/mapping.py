@@ -184,27 +184,36 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
         # Check if Dataset IRI Supplied
         if not dataset_iri:
-            # Create Default Dataset if not Supplied
+            # Create Dataset IRI
             dataset_iri = utils.rdf.uri(f"dataset/{DATASET_DEFAULT_NAME}", base_iri)
-            graph.add((dataset_iri, a, utils.namespaces.TERN.RDFDataset))
-            graph.add((dataset_iri, rdflib.DCTERMS.title, rdflib.Literal(DATASET_DEFAULT_NAME)))
-            graph.add((dataset_iri, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DEFAULT_DESCRIPTION)))
-            graph.add((dataset_iri, rdflib.DCTERMS.issued, rdflib.Literal(datetime.date.today())))
 
-        # Create Terminal FOI (Australia)
-        australia = utils.rdf.uri("location/Australia", base_iri)
-        geometry = rdflib.BNode()
-        graph.add((australia, a, utils.namespaces.TERN.FeatureOfInterest))
-        graph.add((australia, utils.namespaces.GEO.hasGeometry, geometry))
-        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry, utils.namespaces.GEO.sfWithin, CONCEPT_AUSTRALIA))
-        graph.add((australia, rdflib.VOID.inDataset, dataset_iri))
-        graph.add((australia, utils.namespaces.TERN.featureType, CONCEPT_SITE))
+            # Add Example Default Dataset if not Supplied
+            self.add_default_dataset(
+                uri=dataset_iri,
+                graph=graph,
+            )
+
+        # Create Terminal Feature of Interest IRI
+        terminal_foi = utils.rdf.uri("location/Australia", base_iri)
+
+        # Add Terminal Feature of Interest (Australia)
+        self.add_terminal_feature_of_interest(
+            uri=terminal_foi,
+            dataset=dataset_iri,
+            graph=graph,
+        )
 
         # Loop through Rows
         for row_number, row in enumerate(resource):
             # Map Row
-            self.apply_mapping_row(row, row_number, dataset_iri, australia, graph, base_iri)
+            self.apply_mapping_row(
+                row=row,
+                row_number=row_number,
+                dataset=dataset_iri,
+                terminal_foi=terminal_foi,
+                graph=graph,
+                base_iri=base_iri,
+            )
 
         # Return
         return graph
@@ -568,6 +577,46 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
         # Return
         return graph
+
+    def add_default_dataset(
+        self,
+        uri: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Default Example Dataset to the Graph
+
+        Args:
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Add Default Dataset to Graph
+        graph.add((uri, a, utils.namespaces.TERN.RDFDataset))
+        graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(DATASET_DEFAULT_NAME)))
+        graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DEFAULT_DESCRIPTION)))
+        graph.add((uri, rdflib.DCTERMS.issued, utils.rdf.toTimestamp(datetime.date.today())))
+
+    def add_terminal_feature_of_interest(
+        self,
+        uri: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """_summary_
+
+        Args:
+            uri (rdflib.URIRef): _description_
+            dataset (rdflib.URIRef): description
+            graph (rdflib.Graph): _description_
+        """
+        # Add Terminal Feature of Interest to Graph
+        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SITE))
+
+        # Add Geometry
+        geometry = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
+        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry, utils.namespaces.GEO.sfWithin, CONCEPT_AUSTRALIA))
 
     def add_provider_identified(
         self,
