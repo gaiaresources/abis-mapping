@@ -1237,10 +1237,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
         graph.add((uri, utils.namespaces.TERN.featureType, VOCAB_KINGDOM_SPECIMEN[row["kingdom"]]))
 
-        # Check for collectionCode, materialSampleID and institutionCode
-        if row["collectionCode"] and row["materialSampleID"] and row["institutionCode"]:
-            # Create Identifier by Concatenating `collectionCode` and `materialSampleID`
-            identifier = f"{row['collectionCode']}{row['materialSampleID']}"
+        # Check for materialSampleID and institutionCode
+        if row["materialSampleID"] and row["institutionCode"]:
+            # Create Identifier by Concatenating `collectionCode` (if provided) and `materialSampleID`
+            identifier = f"{row['collectionCode'] or ''}{row['materialSampleID']}"
 
             # Add Identifier
             graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(identifier, datatype=institution_datatype)))

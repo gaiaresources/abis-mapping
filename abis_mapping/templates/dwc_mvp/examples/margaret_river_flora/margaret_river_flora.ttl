@@ -1216,7 +1216,7 @@
 
 <http://createme.org/sample/specimen/12> a tern:FeatureOfInterest,
         tern:Sample ;
-    dcterms:identifier "ARACH32237"^^<http://createme.org/datatype/WAM> ;
+    dcterms:identifier "32237"^^<http://createme.org/datatype/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "specimen-sample" ;
     sosa:isResultOf <http://createme.org/sampling/specimen/12> ;
@@ -1245,6 +1245,6 @@
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-05-25"^^xsd:date ;
+    dcterms:issued "2022-05-26"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
 
