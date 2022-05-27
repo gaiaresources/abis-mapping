@@ -78,7 +78,6 @@ VOCAB_KINGDOM = {
     "Fungi": utils.rdf.uri("kingdom/fungi"),  # TODO -> Need real URI,
 }
 VOCAB_TAXON_RANK = {
-    None: utils.rdf.uri("taxonRank/default"),  # Default  # TODO -> Need real URI
     "kingdom": utils.rdf.uri("taxonRank/kingdom"),  # TODO -> Need real URI
     "phylum": utils.rdf.uri("taxonRank/phylum"),  # TODO -> Need real URI
     "class": utils.rdf.uri("taxonRank/class"),  # TODO -> Need real URI
@@ -88,10 +87,13 @@ VOCAB_TAXON_RANK = {
     "species": utils.rdf.uri("taxonRank/species"),  # TODO -> Need real URI
 }
 VOCAB_BASIS_OF_RECORD = {
-    None: utils.rdf.uri("basisOfRecord/default"),  # Default  # TODO -> Need real URI
     "HumanObservation": utils.rdf.uri("basisOfRecord/HumanObservation"),  # TODO -> Need real URI
     "Occurrence": utils.rdf.uri("basisOfRecord/Occurrence"),  # TODO -> Need real URI
     "PreservedSpecimen": utils.rdf.uri("basisOfRecord/PreservedSpecimen"),  # TODO -> Need real URI
+    "FossilSpecimen": utils.rdf.uri("basisOfRecord/FossilSpecimen"),  # TODO -> Need real URI
+    "LivingSpecimen": utils.rdf.uri("basisOfRecord/LivingSpecimen"),  # TODO -> Need real URI
+    "MachineObservation": utils.rdf.uri("basisOfRecord/MachineObservation"),  # TODO -> Need real URI
+    "MaterialSample": utils.rdf.uri("basisOfRecord/MaterialSample"),  # TODO -> Need real URI
 }
 VOCAB_OCCURRENCE_STATUS = {
     "present": utils.rdf.uri("occurrenceStatus/present"),  # TODO -> Need real URI
