@@ -98,19 +98,6 @@ VOCAB_OCCURRENCE_STATUS = {
     "absent": utils.rdf.uri("occurrenceStatus/absent"),  # TODO -> Need real URI
 }
 
-# Basis Of Record Differentiators
-BASIS_OF_RECORD_FIELD = (
-    "HumanObservation",
-    "Occurrence",
-)
-BASIS_OF_RECORD_SPECIMEN = (
-    "PreservedSpecimen",
-    "FossilSpecimen",
-    "LivingSpecimen",
-    "MachineObservation",
-    "MaterialSample",
-)
-
 
 class DWCMVPMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `dwc_mvp.csv`"""
@@ -703,12 +690,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         date_identified = row["dateIdentified"] or row["eventDate"]
 
         # Choose Feature of Interest
-        if row["basisOfRecord"] in BASIS_OF_RECORD_SPECIMEN:
-            # Basis of Record is Sample Specimen
-            foi = sample_specimen
-        else:
-            # Basis of Record is Blank or Sample Field
-            foi = sample_field
+        # The Feature of Interest is the Specimen Sample if it is determined
+        # that this row has a specimen, otherwise it is Field Sample
+        foi = sample_specimen if has_specimen(row) else sample_field
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -790,12 +774,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         date_identified = row["dateIdentified"] or row["eventDate"]
 
         # Choose Feature of Interest
-        if row["basisOfRecord"] in BASIS_OF_RECORD_SPECIMEN:
-            # Basis of Record is Sample Specimen
-            foi = sample_specimen
-        else:
-            # Basis of Record is Blank or Sample Field
-            foi = sample_field
+        # The Feature of Interest is the Specimen Sample if it is determined
+        # that this row has a specimen, otherwise it is Field Sample
+        foi = sample_specimen if has_specimen(row) else sample_field
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -901,8 +882,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             # Add Habitat Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, habitat))
 
-        # Check for Basis Of Record
-        if row["basisOfRecord"] in BASIS_OF_RECORD_FIELD:
+        # Check for basisOfRecord and if Row has no Specimen
+        if not has_specimen(row) and row["basisOfRecord"]:
             # Add Basis Of Record Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
 
@@ -1057,8 +1038,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             basis (rdflib.URIRef): Basis Of Record associated with this node
             graph (rdflib.Graph): Graph to add to
         """
-        # Check Basis of Record
-        if row["basisOfRecord"] not in BASIS_OF_RECORD_SPECIMEN:
+        # Check if Row has a Specimen
+        if not has_specimen(row):
             return
 
         # Create WKT from Latitude and Longitude
@@ -1112,8 +1093,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             # Add Data Generalizations Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, generalizations))
 
-        # Check for Basis Of Record
-        if row["basisOfRecord"] in BASIS_OF_RECORD_SPECIMEN:
+        # Check for basisOfRecord and if Row has a Specimen
+        if has_specimen(row) and row["basisOfRecord"]:
             # Add Basis Of Record Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
 
@@ -1224,8 +1205,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 with this node
             graph (rdflib.Graph): Graph to add to
         """
-        # Check Basis of Record
-        if row["basisOfRecord"] not in BASIS_OF_RECORD_SPECIMEN:
+        # Check if Row has a Specimen
+        if not has_specimen(row):
             return
 
         # Add to Graph
@@ -1843,6 +1824,45 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("preparations")))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["preparations"])))
+
+
+# Helper Functions
+# These utility helper functions are specific to this template, and as such are
+# defined here instead of in a common utilities module.
+def has_specimen(row: frictionless.Row) -> bool:
+    """Determines whether a row has a specimen associated with it or not.
+
+    This method is used when determining whether to add the specimen specific
+    `/sampling/specimen/x` and `/sample/specimen/x` nodes to the graph.
+
+    Args:
+        row (frictionless.Row): Row to retrieve data from.
+
+    Returns:
+        bool: Whether this row has a specimen associated with it.
+    """
+    # Check Specimen Rules
+    if row["preparations"] or row["materialSampleID"]:
+        # If `preparations` and/or `materialSampleID` are provided, regardless
+        # of the value of `basisOfRecord` we can infer that there is a specimen
+        # associated with the row.
+        specimen = True
+
+    elif not row["basisOfRecord"] or row["basisOfRecord"] in ("HumanObservation", "Occurrence"):
+        # Otherwise, if neither of `preparations` and `materialSampleID` were
+        # provided, and the `basisOfRecord` is either blank or one of
+        # "HumanObservation" or "Occurrence", then we cannot infer that there
+        # is a specimen associated with the row.
+        specimen = False
+
+    else:
+        # Finally, neither of `preparations` and `materialSampleID` were
+        # provided, but the `basisOfRecord` is a value that implies that there
+        # is a specimen associated with the row.
+        specimen = True
+
+    # Return
+    return specimen
 
 
 # Register Mapper
