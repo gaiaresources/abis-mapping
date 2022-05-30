@@ -16,7 +16,7 @@ import rdflib
 from . import types
 
 # Typing
-from typing import Any, Optional, final
+from typing import Any, Iterator, Optional, final
 
 
 class ABISMapper(abc.ABC):
@@ -47,18 +47,20 @@ class ABISMapper(abc.ABC):
     def apply_mapping(
         self,
         data: types.ReadableType,
+        chunk_size: Optional[int] = None,
         dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
-    ) -> rdflib.Graph:
+    ) -> Iterator[rdflib.Graph]:
         """Applies Mapping from Raw Data to ABIS conformant RDF.
 
         Args:
             data (ReadableType): Readable raw data.
+            chunk_size (Optional[int]): Optional number of rows to chunk into.
             dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
-        Returns:
-            rdflib.Graph: ABIS Conformant RDF Graph.
+        Yields:
+            rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
         """
 
     @final

@@ -13,7 +13,7 @@ from abis_mapping import base
 from abis_mapping import utils
 
 # Typing
-from typing import Optional
+from typing import Iterator, Optional
 
 
 # Default Dataset Metadata
@@ -147,9 +147,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def apply_mapping(
         self,
         data: base.types.ReadableType,
+        chunk_size: Optional[int] = None,
         dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
-    ) -> rdflib.Graph:
+    ) -> Iterator[rdflib.Graph]:
         """Applies Mapping for the `dwc_mvp.csv` Template
 
         Args:
@@ -157,8 +158,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
-        Returns:
-            rdflib.Graph: ABIS Conformant RDF Graph.
+        Yields:
+            rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
         """
         # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
@@ -167,6 +168,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             schema=self.schema(),
             onerror="raise",  # Raise errors, it should already be valid here
         )
+
+        # Infer Statistics and Count Number of Rows
+        resource.infer(stats=True)
+        rows = resource.stats["rows"]
 
         # Initialise Graph
         graph = utils.rdf.create_graph()
@@ -203,6 +208,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 graph=graph,
                 base_iri=base_iri,
             )
+
+            # Check Whether to Yield a Chunk
+            if utils.chunking.should_chunk(row, rows, chunk_size):
+                # Yield Chunk
+                yield graph
+
+                # Initialise New Graph
+                graph = utils.rdf.create_graph()
 
         # Return
         return graph

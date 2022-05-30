@@ -40,11 +40,14 @@ def test_mapping() -> None:
     assert mapper
 
     # Map
-    graph = mapper().apply_mapping(data)
+    graphs = list(mapper().apply_mapping(data))
+
+    # Assert
+    assert len(graphs) == 1
 
     # Compare Graphs
     assert tests.conftest.compare_graphs(
-        graph1=graph,
+        graph1=graphs[0],
         graph2=expected,
     )
 
