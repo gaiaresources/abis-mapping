@@ -57,4 +57,4 @@ def test_mapping() -> None:
     # including string formatting. This means that type-checking is unable to
     # determine whether a statement is valid in our specific context. As such,
     # we check here to see if any `None`s have snuck their way into the RDF.
-    assert "None" not in graph.serialize(format="ttl")
+    assert "None" not in graphs[0].serialize(format="ttl")
