@@ -198,11 +198,10 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         )
 
         # Loop through Rows
-        for row_number, row in enumerate(resource):
+        for row in resource:
             # Map Row
             self.apply_mapping_row(
                 row=row,
-                row_number=row_number,
                 dataset=dataset_iri,
                 terminal_foi=terminal_foi,
                 graph=graph,
@@ -223,7 +222,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
     def apply_mapping_row(
         self,
         row: frictionless.Row,
-        row_number: int,
         dataset: rdflib.URIRef,
         terminal_foi: rdflib.URIRef,
         graph: rdflib.Graph,
@@ -233,7 +231,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
         Args:
             row (frictionless.Row): Row to be processed in the dataset.
-            row_number (int): Row number to be processed.
             dataset (rdflib.URIRef): Dataset uri this row is apart of.
             terminal_foi (rdflib.URIRef): Terminal feature of interest.
             graph (rdflib.Graph): Graph to map row into.
@@ -248,36 +245,36 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         institution_datatype = utils.rdf.uri(f"datatype/{row['institutionCode']}", base_iri)
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
         provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
-        sample_field = utils.rdf.uri(f"sample/field/{row_number}", base_iri)
-        sampling_field = utils.rdf.uri(f"sampling/field/{row_number}", base_iri)
-        sample_specimen = utils.rdf.uri(f"sample/specimen/{row_number}", base_iri)
-        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_number}", base_iri)
-        text_scientific_name = utils.rdf.uri(f"scientificName/{row_number}", base_iri)
-        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row_number}", base_iri)
-        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row_number}", base_iri)
-        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row_number}", base_iri)
-        id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{row_number}", base_iri)
-        id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row_number}", base_iri)
-        id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_number}", base_iri)
-        id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_number}", base_iri)
-        data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/{row_number}", base_iri)
-        data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{row_number}", base_iri)
-        kingdom_attribute = utils.rdf.uri(f"attribute/kingdom/{row_number}", base_iri)
-        kingdom_value = utils.rdf.uri(f"value/kingdom/{row_number}", base_iri)
-        taxon_rank_attribute = utils.rdf.uri(f"attribute/taxonRank/{row_number}", base_iri)
-        taxon_rank_value = utils.rdf.uri(f"value/taxonRank/{row_number}", base_iri)
-        individual_count_observation = utils.rdf.uri(f"observation/individualCount/{row_number}", base_iri)
-        individual_count_value = utils.rdf.uri(f"value/individualCount/{row_number}", base_iri)
-        organism_remarks_observation = utils.rdf.uri(f"observation/organismRemarks/{row_number}", base_iri)
-        organism_remarks_value = utils.rdf.uri(f"value/organismRemarks/{row_number}", base_iri)
-        habitat_attribute = utils.rdf.uri(f"attribute/habitat/{row_number}", base_iri)
-        habitat_value = utils.rdf.uri(f"value/habitat/{row_number}", base_iri)
-        basis_attribute = utils.rdf.uri(f"attribute/basisOfRecord/{row_number}", base_iri)
-        basis_value = utils.rdf.uri(f"value/basisOfRecord/{row_number}", base_iri)
-        occurrence_status_observation = utils.rdf.uri(f"observation/occurrenceStatus/{row_number}", base_iri)
-        occurrence_status_value = utils.rdf.uri(f"value/occurrenceStatus/{row_number}", base_iri)
-        preparations_attribute = utils.rdf.uri(f"attribute/preparations/{row_number}", base_iri)
-        preparations_value = utils.rdf.uri(f"value/preparations/{row_number}", base_iri)
+        sample_field = utils.rdf.uri(f"sample/field/{row.row_number}", base_iri)
+        sampling_field = utils.rdf.uri(f"sampling/field/{row.row_number}", base_iri)
+        sample_specimen = utils.rdf.uri(f"sample/specimen/{row.row_number}", base_iri)
+        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row.row_number}", base_iri)
+        text_scientific_name = utils.rdf.uri(f"scientificName/{row.row_number}", base_iri)
+        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row.row_number}", base_iri)
+        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row.row_number}", base_iri)
+        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row.row_number}", base_iri)
+        id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{row.row_number}", base_iri)
+        id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row.row_number}", base_iri)
+        id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row.row_number}", base_iri)
+        id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row.row_number}", base_iri)
+        data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/{row.row_number}", base_iri)
+        data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{row.row_number}", base_iri)
+        kingdom_attribute = utils.rdf.uri(f"attribute/kingdom/{row.row_number}", base_iri)
+        kingdom_value = utils.rdf.uri(f"value/kingdom/{row.row_number}", base_iri)
+        taxon_rank_attribute = utils.rdf.uri(f"attribute/taxonRank/{row.row_number}", base_iri)
+        taxon_rank_value = utils.rdf.uri(f"value/taxonRank/{row.row_number}", base_iri)
+        individual_count_observation = utils.rdf.uri(f"observation/individualCount/{row.row_number}", base_iri)
+        individual_count_value = utils.rdf.uri(f"value/individualCount/{row.row_number}", base_iri)
+        organism_remarks_observation = utils.rdf.uri(f"observation/organismRemarks/{row.row_number}", base_iri)
+        organism_remarks_value = utils.rdf.uri(f"value/organismRemarks/{row.row_number}", base_iri)
+        habitat_attribute = utils.rdf.uri(f"attribute/habitat/{row.row_number}", base_iri)
+        habitat_value = utils.rdf.uri(f"value/habitat/{row.row_number}", base_iri)
+        basis_attribute = utils.rdf.uri(f"attribute/basisOfRecord/{row.row_number}", base_iri)
+        basis_value = utils.rdf.uri(f"value/basisOfRecord/{row.row_number}", base_iri)
+        occurrence_status_observation = utils.rdf.uri(f"observation/occurrenceStatus/{row.row_number}", base_iri)
+        occurrence_status_value = utils.rdf.uri(f"value/occurrenceStatus/{row.row_number}", base_iri)
+        preparations_attribute = utils.rdf.uri(f"attribute/preparations/{row.row_number}", base_iri)
+        preparations_value = utils.rdf.uri(f"value/preparations/{row.row_number}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -915,7 +912,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
-            row_number (int): Row number for this row
             dataset (rdflib.URIRef): Dataset this belongs to
             id_qualifier_value (rdflib.URIRef): Identification Qualifier Value
                 associated with this node.
