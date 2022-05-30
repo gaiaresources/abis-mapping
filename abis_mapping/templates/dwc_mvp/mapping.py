@@ -1157,20 +1157,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
         # Check for recordID
         if row["recordID"]:
-            # TODO -> Remove this
-            # Create Dandjoo Datatype (Temporary)
-            dandjoo = utils.rdf.uri("datatype/dandjoo", utils.namespaces.CREATEME)
-            label = "Dandjoo identifiers"
-            comment = "This is the GUID identifier code system to identify records from Dandjoo"
-            graph.add((dandjoo, a, rdflib.RDFS.Datatype))
-            graph.add((dandjoo, rdflib.RDFS.label, rdflib.Literal(label)))
-            graph.add((dandjoo, rdflib.RDFS.comment, rdflib.Literal(comment)))
-
-            # Create Record ID
-            record_id = rdflib.Literal(row["recordID"], datatype=dandjoo)  # TODO -> ?
-
             # Add to Graph
-            graph.add((uri, rdflib.DCTERMS.identifier, record_id))
+            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(row["recordID"])))
 
         # Check for occurrenceID and institutionCode
         if row["occurrenceID"] and row["institutionCode"]:

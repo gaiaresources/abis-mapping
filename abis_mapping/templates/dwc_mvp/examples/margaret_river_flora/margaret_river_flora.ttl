@@ -16,10 +16,6 @@
     rdfs:comment "This is the identifier code system nominated by WAM" ;
     prov:wasAssociatedWith <http://createme.org/provider/WAM> .
 
-<http://createme.org/datatype/dandjoo> a rdfs:Datatype ;
-    rdfs:label "Dandjoo identifiers" ;
-    rdfs:comment "This is the GUID identifier code system to identify records from Dandjoo" .
-
 <http://createme.org/observation/individualCount/14> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "individualCount-observation" ;
@@ -1303,7 +1299,7 @@
 <http://createme.org/sample/field/14> a tern:FeatureOfInterest,
         tern:Sample ;
     dcterms:identifier "MR-456"^^<http://createme.org/datatype/WAM>,
-        "8022FSJMJ079c5cf"^^<http://createme.org/datatype/dandjoo> ;
+        "8022FSJMJ079c5cf" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/14> ;
@@ -1321,6 +1317,6 @@
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-05-27"^^xsd:date ;
+    dcterms:issued "2022-05-30"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
 
