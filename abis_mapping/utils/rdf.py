@@ -36,7 +36,7 @@ def create_graph() -> rdflib.Graph:
     graph.bind("prov", rdflib.PROV)
     graph.bind("time", rdflib.TIME)
     graph.bind("xsd", rdflib.XSD)
-    graph.bind("sdo", rdflib.SDO)
+    graph.bind("schema", rdflib.SDO)
     graph.bind("geo", namespaces.GEO)
     graph.bind("tern", namespaces.TERN)
     graph.bind("dwc", namespaces.DWC)
@@ -86,32 +86,79 @@ def inXSDSmart(timestamp: types.DateOrDatetime) -> rdflib.URIRef:
 
     Args:
         timestamp (types.DateOrDateTime): Timestamp to generate a
-            time:inXSD<Date/DateTimeStamp> predicate for.
+            time:inXSD<Date/DateTime/DateTimeStamp> predicate for.
 
     Returns:
-        rdflib.URIRef: The smartly generated predicate
+        rdflib.URIRef: The smartly generated predicate.
     """
-    # Check for Datetime
-    if isinstance(timestamp, datetime.datetime):
+    # Check for Datetime with Time Zone
+    if isinstance(timestamp, datetime.datetime) and timestamp.tzinfo is not None:
         # inXSDDateTimeStamp
-        return rdflib.TIME.inXSDDateTimeStamp
+        predicate = rdflib.TIME.inXSDDateTimeStamp
 
-    # inXSDDate
-    return rdflib.TIME.inXSDDate
+    # Check for Datetime without Time Zone
+    elif isinstance(timestamp, datetime.datetime):
+        # inXSDDateTime
+        predicate = rdflib.TIME.inXSDDateTime
+
+    # Just Date
+    else:
+        # inXSDDate
+        predicate = rdflib.TIME.inXSDDate
+
+    # Return
+    return predicate
 
 
-def toWKT(latitude: float, longitude: float) -> rdflib.Literal:
+def toTimestamp(timestamp: types.DateOrDatetime) -> rdflib.Literal:
+    """Generates the correct rdflib.Literal for date or datetime.
+
+    Args:
+        timestamp (types.DateOrDateTime): Timestamp to generate a
+            rdflib.Literal for.
+
+    Returns:
+        rdflib.Literal: The smartly generated literal.
+    """
+    # Check for Datetime with Time Zone
+    if isinstance(timestamp, datetime.datetime) and timestamp.tzinfo is not None:
+        # xsd:dateTimeStamp
+        literal = rdflib.Literal(timestamp, datatype=rdflib.XSD.dateTimeStamp)
+
+    # Check for Datetime without Time Zone
+    elif isinstance(timestamp, datetime.datetime):
+        # xsd:dateTime
+        literal = rdflib.Literal(timestamp, datatype=rdflib.XSD.dateTime)
+
+    # Just Date
+    else:
+        # xsd:date
+        literal = rdflib.Literal(timestamp, datatype=rdflib.XSD.date)
+
+    # Return
+    return literal
+
+
+def toWKT(
+    latitude: float,
+    longitude: float,
+    datum: Optional[rdflib.URIRef] = None,
+) -> rdflib.Literal:
     """Generates a Literal WKT Point Representation of Latitude and Longitude.
 
     Args:
         latitude (float): Latitude to generate WKT.
         longitude (float): Longitude to generate WKT.
+        datum (Optional[rdflib.URIRef]): Optional geodetic datum to include.
 
     Returns:
         rdflib.Literal: Literal WKT Point.
     """
+    # Construct Datum URI to be Embedded
+    datum_string = f"<{datum}> " if datum else ""
+
     # Create and Return WKT from Latitude and Longitude
     return rdflib.Literal(
-        f"POINT ({longitude} {latitude})",
+        f"{datum_string}POINT ({longitude} {latitude})",
         datatype=namespaces.GEO.wktLiteral,
     )

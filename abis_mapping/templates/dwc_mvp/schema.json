@@ -1,6 +1,17 @@
 {
   "fields": [
     {
+      "name": "recordID",
+      "title": "Record ID",
+      "description": "...",
+      "example": "8022FSJMJ079c5cf",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "locality",
       "title": "Locality",
       "description": "...",
@@ -8,7 +19,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": false
       }
     },
     {
@@ -38,14 +49,84 @@
       }
     },
     {
+      "name": "geodeticDatum",
+      "title": "Geodetic Datum",
+      "description": "...",
+      "example": "WGS84",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "AGD84",
+          "EPSG:4203",
+          "GDA2020",
+          "EPSG:7844",
+          "GDA94",
+          "EPSG:4283",
+          "WGS84",
+          "EPSG:4326"
+        ]
+      }
+    },
+    {
+      "name": "coordinateUncertaintyInMeters",
+      "title": "Coordinate Uncertainty In Meters",
+      "description": "...",
+      "example": "50.0",
+      "type": "number",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "minimum": 0.0
+      }
+    },
+    {
+      "name": "dataGeneralizations",
+      "title": "Data Generalizations",
+      "description": "...",
+      "example": "Coordinates rounded to the nearest 10 km for conservation concern",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "eventDate",
       "title": "Event Date",
       "description": "...",
-      "example": "2019-09-23",
+      "example": "2019-09-23T14:03+08:00",
       "type": "timestamp",
       "format": "default",
       "constraints": {
         "required": true
+      }
+    },
+    {
+      "name": "samplingProtocol",
+      "title": "Sampling Protocol",
+      "description": "...",
+      "example": "human observation",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "human observation",
+          "by hand"
+        ]
+      }
+    },
+    {
+      "name": "habitat",
+      "title": "Habitat",
+      "description": "...",
+      "example": "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
       }
     },
     {
@@ -56,7 +137,130 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": false
+      }
+    },
+    {
+      "name": "basisOfRecord",
+      "title": "Basis Of Record",
+      "description": "...",
+      "example": "HumanObservation",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "HumanObservation",
+          "Occurrence",
+          "PreservedSpecimen",
+          "FossilSpecimen",
+          "LivingSpecimen",
+          "MachineObservation",
+          "MaterialSample"
+        ]
+      }
+    },
+    {
+      "name": "occurrenceID",
+      "title": "Occurrence ID",
+      "description": "...",
+      "example": "MR-456",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "occurrenceStatus",
+      "title": "Occurrence Status",
+      "description": "...",
+      "example": "present",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "present",
+          "absent"
+        ]
+      }
+    },
+    {
+      "name": "preparations",
+      "title": "Preparations",
+      "description": "...",
+      "example": "Wet (in ethanol or some other preservative)",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "preparedDate",
+      "title": "Prepared Date",
+      "description": "...",
+      "example": "2019-09-25T10:02+08:00",
+      "type": "timestamp",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "institutionCode",
+      "title": "Institution Code",
+      "description": "...",
+      "example": "WAM",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "collectionCode",
+      "title": "Collection Code",
+      "description": "...",
+      "example": "ARACH",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "materialSampleID",
+      "title": "Material Sample ID",
+      "description": "...",
+      "example": "32237",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "organismRemarks",
+      "title": "Organism Remarks",
+      "description": "...",
+      "example": "Dried out leaf tips.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "individualCount",
+      "title": "Individual Count",
+      "description": "...",
+      "example": "26",
+      "type": "integer",
+      "format": "default",
+      "constraints": {
+        "required": false
       }
     },
     {
@@ -67,14 +271,14 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": false
       }
     },
     {
       "name": "dateIdentified",
       "title": "Date Identified",
       "description": "...",
-      "example": "2019-09-23",
+      "example": "2019-09-23T14:03+08:00",
       "type": "timestamp",
       "format": "default",
       "constraints": {
@@ -89,7 +293,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": false
       }
     },
     {
@@ -123,6 +327,42 @@
       "format": "default",
       "constraints": {
         "required": false
+      }
+    },
+    {
+      "name": "kingdom",
+      "title": "Kingdom",
+      "description": "...",
+      "example": "Plantae",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "Plantae",
+          "Animalia",
+          "Fungi"
+        ]
+      }
+    },
+    {
+      "name": "taxonRank",
+      "title": "Taxon Rank",
+      "description": "...",
+      "example": "species",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "kingdom",
+          "phylum",
+          "class",
+          "order",
+          "family",
+          "genus",
+          "species"
+        ]
       }
     }
   ]

@@ -27,8 +27,7 @@ def test_checks_valid_coordinates() -> None:
     )
 
     # Validate
-    report: frictionless.Report = frictionless.validate_resource(
-        source=resource,
+    report: frictionless.Report = resource.validate(
         checks=[
             utils.checks.ValidCoordinates(
                 latitude_name="lat",
@@ -50,8 +49,7 @@ def test_checks_not_empty() -> None:
     )
 
     # Validate
-    report: frictionless.Report = frictionless.validate_resource(
-        source=resource,
+    report: frictionless.Report = resource.validate(
         checks=[
             utils.checks.NotEmpty(),
         ]
@@ -70,8 +68,7 @@ def test_checks_not_tabular() -> None:
     )
 
     # Validate
-    report: frictionless.Report = frictionless.validate_resource(
-        source=resource,
+    report: frictionless.Report = resource.validate(
         checks=[
             utils.checks.NotTabular(),
         ]

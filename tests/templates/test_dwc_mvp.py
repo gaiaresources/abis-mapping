@@ -50,3 +50,11 @@ def test_mapping() -> None:
         graph1=graphs[0],
         graph2=expected,
     )
+
+    # Check that there are no `None`s in the Graph
+    # This check is important. As some fields are optional they can be `None`
+    # at runtime. Unfortunately, `None` is valid in many contexts in Python,
+    # including string formatting. This means that type-checking is unable to
+    # determine whether a statement is valid in our specific context. As such,
+    # we check here to see if any `None`s have snuck their way into the RDF.
+    assert "None" not in graphs[0].serialize(format="ttl")
