@@ -74,3 +74,4 @@ dmypy.json
 # Misc
 /TODO.md
 Dockerfile
+abis_mapping/templates/dwc_mvp/examples/margaret_river_flora/.~lock.margaret_river_flora.csv#

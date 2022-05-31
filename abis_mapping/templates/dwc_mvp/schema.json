@@ -257,6 +257,20 @@
       }
     },
     {
+      "name": "associatedSequences",
+      "title": "Associated Sequences",
+      "description": "...",
+      "example": "test@test1.com test@test2.com",
+      "type": "array",
+      "items": {
+        "type": "string"
+       },
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "sequencingMethod",
       "title": "Sequencing Method",
       "description": "...",
