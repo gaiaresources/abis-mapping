@@ -187,6 +187,21 @@
       }
     },
     {
+      "name": "establishmentMeans",
+      "title": "Establishment Means",
+      "description": "...",
+      "example": "native",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "native",
+          "uncertain"
+        ]
+      }
+    },
+    {
       "name": "preparations",
       "title": "Preparations",
       "description": "...",
@@ -242,6 +257,17 @@
       }
     },
     {
+      "name": "sequencingMethod",
+      "title": "Sequencing Method",
+      "description": "...",
+      "example": "ABC",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "organismRemarks",
       "title": "Organism Remarks",
       "description": "...",
@@ -261,6 +287,52 @@
       "format": "default",
       "constraints": {
         "required": false
+      }
+    },
+    {
+      "name": "lifeStage",
+      "title": "Life Stage",
+      "description": "...",
+      "example": "seedling",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "seedling",
+          "adult"
+        ]
+      }
+    },
+    {
+      "name": "sex",
+      "title": "Sex",
+      "description": "...",
+      "example": "female",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "male",
+          "female",
+          "undetermined"
+        ]
+      }
+    },
+    {
+      "name": "reproductiveCondition",
+      "title": "Reproductive Condition",
+      "description": "...",
+      "example": "No breeding evident",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "Gravid",
+          "No breeding evident"
+        ]
       }
     },
     {
@@ -308,6 +380,21 @@
       }
     },
     {
+      "name": "identificationMethod",
+      "title": "Identification Method",
+      "description": "...",
+      "example": "Visually identified in the field (sighting)",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "Visually identified in the field (sighting)",
+          "Visually identified based on collected evidence (voucher specimen)"
+        ]
+      }
+    },
+    {
       "name": "identificationQualifier",
       "title": "Identification Qualifier",
       "description": "...",
@@ -327,6 +414,21 @@
       "format": "default",
       "constraints": {
         "required": false
+      }
+    },
+    {
+      "name": "acceptedNameUsage",
+      "title": "Accepted Name Usage",
+      "description": "...",
+      "example": "Banksia L.f.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "Banksia L.f.",
+          "Occiperipatoides gilesii (Spencer, 1909)"
+        ]
       }
     },
     {
