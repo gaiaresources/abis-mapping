@@ -42,6 +42,7 @@ CONCEPT_BASIS_OF_RECORD = utils.rdf.uri("concept/basisOfRecord")  # TODO -> Need
 CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus")  # TODO -> Need real URI
 CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri("concept/establishmentMeans")  # TODO -> Need real URI
 CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations")  # TODO -> Need real URI
+CONCEPT_LIFE_STAGE = utils.rdf.uri("concept/lifeStage")  # TODO -> Need real URI
 
 # Controlled Vocabularies
 VOCAB_GEODETIC_DATUM = {
@@ -103,6 +104,10 @@ VOCAB_OCCURRENCE_STATUS = {
 VOCAB_ESTABLISHMENT_MEANS = {
     "native": utils.rdf.uri("establishmentMeans/native"),  # TODO -> Need real URI
     "uncertain": utils.rdf.uri("establishmentMeans/uncertain"),  # TODO -> Need real URI
+}
+VOCAB_LIFE_STAGE = {
+    "seedling": utils.rdf.uri("lifeStage/seedling"),  # TODO -> Need real URI
+    "adult": utils.rdf.uri("lifeStage/adult"),  # TODO -> Need real URI
 }
 
 
@@ -282,6 +287,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         establishment_means_value = utils.rdf.uri(f"value/establishmentMeans/{row.row_number}", base_iri)
         preparations_attribute = utils.rdf.uri(f"attribute/preparations/{row.row_number}", base_iri)
         preparations_value = utils.rdf.uri(f"value/preparations/{row.row_number}", base_iri)
+        lifeStage_observation = utils.rdf.uri(f"observation/lifeStage/{row.row_number}", base_iri)
+        lifeStage_value = utils.rdf.uri(f"value/lifeStage/{row.row_number}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -572,7 +579,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph=graph,
             dataset=dataset,
             sample_field=sample_field,
-            establishment_means_value=occurrence_status_value,
+            establishment_means_value=establishment_means_value,
         )
 
         # Add establishmentMeans Value
@@ -594,6 +601,23 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add Preparations Value
         self.add_preparations_value(
             uri=preparations_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add lifeStage observation
+        self.add_life_stage_observation(
+            uri=lifeStage_observation,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            sample_field=sample_field,
+            val=lifeStage_value,
+        )
+
+        # Add lifeStage Value
+        self.add_life_stage_value(
+            uri=lifeStage_value,
             row=row,
             graph=graph,
         )
@@ -1824,7 +1848,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Get Timestamp
         event_date = row["eventDate"]
 
-        # Occurrence Status Observation
+        # establishment means Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("establishmentMeans-observation")))
@@ -1931,6 +1955,79 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("preparations")))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["preparations"])))
 
+    def add_life_stage_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        val: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds lifeStage to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            val (rdflib.URIRef): lifeStage Value
+                associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["lifeStage"]:
+            return
+
+        # Get Timestamp
+        event_date = row["eventDate"]
+
+        # life Stage Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("lifeStage-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasResult, val))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["lifeStage"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_LIFE_STAGE))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
+
+        # Add Method Qualifier
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
+        method_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
+        graph.add((method_qualifier, a, rdflib.RDF.Statement))
+        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
+        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+
+    def add_life_stage_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds establishment means Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["lifeStage"]:
+            return
+
+        # life Stage Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"lifeStage = {row['lifeStage']}")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_LIFE_STAGE[row["lifeStage"]]))
 
 # Helper Functions
 # These utility helper functions are specific to this template, and as such are

@@ -124,6 +124,53 @@
             rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
+<http://createme.org/observation/lifeStage/0> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "lifeStage-observation" ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/field/0> ;
+    sosa:hasResult <http://createme.org/value/lifeStage/0> ;
+    sosa:hasSimpleResult "seedling" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
+    sosa:phenomenonTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+    tern:resultDateTime "2019-09-24"^^xsd:date .
+
+<http://createme.org/observation/lifeStage/1> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "lifeStage-observation" ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/1> ;
+    sosa:hasResult <http://createme.org/value/lifeStage/1> ;
+
+    sosa:hasSimpleResult "adult" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
+    sosa:phenomenonTime [ a time:Instant ;
+            time:inXSDDate "1992-08-14"^^xsd:date ] ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+    tern:resultDateTime "1992-08-14"^^xsd:date .
+
+<http://createme.org/value/lifeStage/0> a tern:IRI,
+        tern:Value ;
+    rdfs:label "lifeStage-value" ;
+    rdf:value <http://createme.org/bdr-cv/lifeStage/seedling> .
+
+<http://createme.org/value/lifeStage/1> a tern:IRI,
+        tern:Value ;
+    rdfs:label "lifeStage-value" ;
+    rdf:value <http://createme.org/bdr-cv/lifeStage/adult> .
+
 <http://createme.org/observation/individualCount/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "individualCount-observation" ;

@@ -279,6 +279,21 @@
       }
     },
     {
+      "name": "lifeStage",
+      "title": "Life Stage",
+      "description": "...",
+      "example": "seedling",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "seedling",
+          "adult"
+        ]
+      }
+    },
+    {
       "name": "verbatimIdentification",
       "title": "Verbatim Identification",
       "description": "...",
