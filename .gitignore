@@ -75,3 +75,5 @@ dmypy.json
 /TODO.md
 Dockerfile
 abis_mapping/templates/dwc_mvp/examples/margaret_river_flora/.~lock.margaret_river_flora.csv#
+abis_mapping/templates/dwc_mvp/examples/margaret_river_flora/.~lock.margaret_river_flora_working.csv#
+abis_mapping/templates/dwc_mvp/examples/margaret_river_flora/margaret_river_flora_working.csv
