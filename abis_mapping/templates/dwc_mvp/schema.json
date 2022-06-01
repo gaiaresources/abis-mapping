@@ -260,11 +260,8 @@
       "name": "associatedSequences",
       "title": "Associated Sequences",
       "description": "...",
-      "example": "test@test1.com test@test2.com",
-      "type": "array",
-      "items": {
-        "type": "string"
-       },
+      "example": "test@test1.com;test@test2.com",
+      "type": "string",
       "format": "default",
       "constraints": {
         "required": false

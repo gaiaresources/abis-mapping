@@ -40,6 +40,7 @@ CONCEPT_ORGANISM_REMARKS = utils.rdf.uri("concept/organismRemarks")  # TODO -> N
 CONCEPT_HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99")
 CONCEPT_BASIS_OF_RECORD = utils.rdf.uri("concept/basisOfRecord")  # TODO -> Need real URI
 CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus")  # TODO -> Need real URI
+CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri("concept/establishmentMeans")  # TODO -> Need real URI
 CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations")  # TODO -> Need real URI
 
 # Controlled Vocabularies
@@ -273,6 +274,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         basis_value = utils.rdf.uri(f"value/basisOfRecord/{row.row_number}", base_iri)
         occurrence_status_observation = utils.rdf.uri(f"observation/occurrenceStatus/{row.row_number}", base_iri)
         occurrence_status_value = utils.rdf.uri(f"value/occurrenceStatus/{row.row_number}", base_iri)
+        establishment_means_observation = utils.rdf.uri(f"observation/establishmentMeans/{row.row_number}", base_iri)
+        establishment_means_value = utils.rdf.uri(f"value/establishmentMeans/{row.row_number}", base_iri)
         preparations_attribute = utils.rdf.uri(f"attribute/preparations/{row.row_number}", base_iri)
         preparations_value = utils.rdf.uri(f"value/preparations/{row.row_number}", base_iri)
 
@@ -554,6 +557,23 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add Occurrence Status Value
         self.add_occurrence_status_value(
             uri=occurrence_status_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add establishmentMeans observation
+        self.add_establishment_means_observation(
+            uri=establishment_means_observation,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            sample_field=sample_field,
+            establishment_means_status_value=occurrence_status_value,
+        )
+
+        # Add establishmentMeans Value
+        self.add_establishment_means_value(
+            uri=establishment_means_value,
             row=row,
             graph=graph,
         )
@@ -1771,6 +1791,81 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"occurrenceStatus = {row['occurrenceStatus']}")))
         graph.add((uri, rdflib.RDF.value, VOCAB_OCCURRENCE_STATUS[row["occurrenceStatus"]]))
+
+    def add_establishment_means_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        establishment_means_status_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds establishment Means to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            establishment_means_status_value (rdflib.URIRef): establishment means Value
+                associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["establishmentMeans"]:
+            return
+
+        # Get Timestamp
+        event_date = row["eventDate"]
+
+        # Occurrence Status Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("establishmentMeans-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasResult, establishment_means_status_value))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["establishmentMeans"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ESTABLISHMENT_MEANS))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
+
+        # Add Method Qualifier
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
+        method_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
+        graph.add((method_qualifier, a, rdflib.RDF.Statement))
+        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
+        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+
+    def add_establishment_means_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds establishment means Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["establishmentMeans"]:
+            return
+
+        # Occurrence Status Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"establishmentMeans = {row['establishmentMeans']}")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_OCCURRENCE_STATUS[row["establishmentMeans"]]))
+
 
     def add_preparations_attribute(
         self,
