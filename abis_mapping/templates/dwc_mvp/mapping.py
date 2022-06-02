@@ -31,16 +31,16 @@ CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
 CONCEPT_PROCEDURE_ID = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653")
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
-CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName")  # TODO -> Need real URI
-CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations")  # TODO -> Need real URI
-CONCEPT_KINGDOM = utils.rdf.uri("concept/kingdom")  # TODO -> Need real URI
-CONCEPT_TAXON_RANK = utils.rdf.uri("concept/taxonRank")  # TODO -> Need real URI
+CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa:E501
+CONCEPT_KINGDOM = utils.rdf.uri("concept/kingdom", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_TAXON_RANK = utils.rdf.uri("concept/taxonRank", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_INDIVIDUAL_COUNT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1")
-CONCEPT_ORGANISM_REMARKS = utils.rdf.uri("concept/organismRemarks")  # TODO -> Need real URI
+CONCEPT_ORGANISM_REMARKS = utils.rdf.uri("concept/organismRemarks", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99")
-CONCEPT_BASIS_OF_RECORD = utils.rdf.uri("concept/basisOfRecord")  # TODO -> Need real URI
-CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus")  # TODO -> Need real URI
-CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations")  # TODO -> Need real URI
+CONCEPT_BASIS_OF_RECORD = utils.rdf.uri("concept/basisOfRecord", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 
 # Controlled Vocabularies
 VOCAB_GEODETIC_DATUM = {
@@ -58,9 +58,9 @@ VOCAB_GEODETIC_DATUM = {
     "EPSG:4326": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
 }
 VOCAB_SAMPLING_PROTOCOL = {
-    None: utils.rdf.uri("sampling-protocol/default"),  # Default  # TODO -> Need real URI
+    None: utils.rdf.uri("sampling-protocol/default", utils.namespaces.EXAMPLE),  # Default  # TODO -> Need real URI
     "human observation": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
-    "by hand": utils.rdf.uri("sampling-protocol/by-hand"),  # TODO -> Need real URI,
+    "by hand": utils.rdf.uri("sampling-protocol/by-hand", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 }
 VOCAB_KINGDOM_OCCURRENCE = {
     "Plantae": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611"),
@@ -73,31 +73,31 @@ VOCAB_KINGDOM_SPECIMEN = {
     "Fungi": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),  # TODO -> ?
 }
 VOCAB_KINGDOM = {
-    "Plantae": utils.rdf.uri("kingdom/plantae"),  # TODO -> Need real URI,
-    "Animalia": utils.rdf.uri("kingdom/animalia"),  # TODO -> Need real URI,
-    "Fungi": utils.rdf.uri("kingdom/fungi"),  # TODO -> Need real URI,
+    "Plantae": utils.rdf.uri("kingdom/plantae", utils.namespaces.EXAMPLE),  # TODO -> Need real URI,
+    "Animalia": utils.rdf.uri("kingdom/animalia", utils.namespaces.EXAMPLE),  # TODO -> Need real URI,
+    "Fungi": utils.rdf.uri("kingdom/fungi", utils.namespaces.EXAMPLE),  # TODO -> Need real URI,
 }
 VOCAB_TAXON_RANK = {
-    "kingdom": utils.rdf.uri("taxonRank/kingdom"),  # TODO -> Need real URI
-    "phylum": utils.rdf.uri("taxonRank/phylum"),  # TODO -> Need real URI
-    "class": utils.rdf.uri("taxonRank/class"),  # TODO -> Need real URI
-    "order": utils.rdf.uri("taxonRank/order"),  # TODO -> Need real URI
-    "family": utils.rdf.uri("taxonRank/family"),  # TODO -> Need real URI
-    "genus": utils.rdf.uri("taxonRank/genus"),  # TODO -> Need real URI
-    "species": utils.rdf.uri("taxonRank/species"),  # TODO -> Need real URI
+    "kingdom": utils.rdf.uri("taxonRank/kingdom", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "phylum": utils.rdf.uri("taxonRank/phylum", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "class": utils.rdf.uri("taxonRank/class", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "order": utils.rdf.uri("taxonRank/order", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "family": utils.rdf.uri("taxonRank/family", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "genus": utils.rdf.uri("taxonRank/genus", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "species": utils.rdf.uri("taxonRank/species", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 }
 VOCAB_BASIS_OF_RECORD = {
-    "HumanObservation": utils.rdf.uri("basisOfRecord/HumanObservation"),  # TODO -> Need real URI
-    "Occurrence": utils.rdf.uri("basisOfRecord/Occurrence"),  # TODO -> Need real URI
-    "PreservedSpecimen": utils.rdf.uri("basisOfRecord/PreservedSpecimen"),  # TODO -> Need real URI
-    "FossilSpecimen": utils.rdf.uri("basisOfRecord/FossilSpecimen"),  # TODO -> Need real URI
-    "LivingSpecimen": utils.rdf.uri("basisOfRecord/LivingSpecimen"),  # TODO -> Need real URI
-    "MachineObservation": utils.rdf.uri("basisOfRecord/MachineObservation"),  # TODO -> Need real URI
-    "MaterialSample": utils.rdf.uri("basisOfRecord/MaterialSample"),  # TODO -> Need real URI
+    "HumanObservation": utils.rdf.uri("basisOfRecord/HumanObservation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
+    "Occurrence": utils.rdf.uri("basisOfRecord/Occurrence", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "PreservedSpecimen": utils.rdf.uri("basisOfRecord/PreservedSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
+    "FossilSpecimen": utils.rdf.uri("basisOfRecord/FossilSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "LivingSpecimen": utils.rdf.uri("basisOfRecord/LivingSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "MachineObservation": utils.rdf.uri("basisOfRecord/MachineObservation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
+    "MaterialSample": utils.rdf.uri("basisOfRecord/MaterialSample", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 }
 VOCAB_OCCURRENCE_STATUS = {
-    "present": utils.rdf.uri("occurrenceStatus/present"),  # TODO -> Need real URI
-    "absent": utils.rdf.uri("occurrenceStatus/absent"),  # TODO -> Need real URI
+    "present": utils.rdf.uri("occurrenceStatus/present", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "absent": utils.rdf.uri("occurrenceStatus/absent", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 }
 
 
@@ -305,6 +305,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self.add_sampling_field(
             uri=sampling_field,
             row=row,
+            dataset=dataset,
             provider=provider_recorded,
             feature_of_interest=terminal_foi,
             sample_field=sample_field,
@@ -330,6 +331,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self.add_sampling_specimen(
             uri=sampling_specimen,
             row=row,
+            dataset=dataset,
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             generalizations=data_generalizations_attribute,
@@ -825,6 +827,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         provider: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
         sample_field: rdflib.URIRef,
@@ -838,6 +841,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             provider (rdflib.URIRef): Provider associated with this node
             feature_of_interest (rdflib.URIRef): Feature of Interest associated
                 with this node.
@@ -858,6 +862,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
         geometry = rdflib.BNode()
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
@@ -1029,6 +1034,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         generalizations: rdflib.URIRef,
@@ -1040,6 +1046,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             sample_field (rdflib.URIRef): Sample Field associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
@@ -1065,6 +1072,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
