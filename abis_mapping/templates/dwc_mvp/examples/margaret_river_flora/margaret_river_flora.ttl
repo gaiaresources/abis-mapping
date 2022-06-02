@@ -27,11 +27,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/occurrenceStatus/15> a tern:Observation ;
@@ -40,7 +40,7 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/occurrenceStatus/15> ;
     sosa:hasSimpleResult "present" ;
-    sosa:observedProperty <http://createme.org/concept/occurrenceStatus> ;
+    sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
@@ -55,7 +55,7 @@
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/organismRemarks/15> ;
     sosa:hasSimpleResult "Dried out leaf tips" ;
-    sosa:observedProperty <http://createme.org/concept/organismRemarks> ;
+    sosa:observedProperty <http://example.com/concept/organismRemarks> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
@@ -466,25 +466,25 @@
 
 <http://createme.org/attribute/basisOfRecord/13> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/basisOfRecord> ;
+    tern:attribute <http://example.com/concept/basisOfRecord> ;
     tern:hasSimpleValue "PreservedSpecimen" ;
     tern:hasValue <http://createme.org/value/basisOfRecord/13> .
 
 <http://createme.org/attribute/basisOfRecord/14> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/basisOfRecord> ;
+    tern:attribute <http://example.com/concept/basisOfRecord> ;
     tern:hasSimpleValue "HumanObservation" ;
     tern:hasValue <http://createme.org/value/basisOfRecord/14> .
 
 <http://createme.org/attribute/basisOfRecord/15> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/basisOfRecord> ;
+    tern:attribute <http://example.com/concept/basisOfRecord> ;
     tern:hasSimpleValue "PreservedSpecimen" ;
     tern:hasValue <http://createme.org/value/basisOfRecord/15> .
 
 <http://createme.org/attribute/dataGeneralizations/14> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/data-generalizations> ;
+    tern:attribute <http://example.com/concept/data-generalizations> ;
     tern:hasSimpleValue "Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasValue <http://createme.org/value/dataGeneralizations/14> .
 
@@ -532,103 +532,103 @@
 
 <http://createme.org/attribute/kingdom/1> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/1> .
 
 <http://createme.org/attribute/kingdom/10> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/10> .
 
 <http://createme.org/attribute/kingdom/11> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/11> .
 
 <http://createme.org/attribute/kingdom/12> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/12> .
 
 <http://createme.org/attribute/kingdom/13> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/13> .
 
 <http://createme.org/attribute/kingdom/14> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/14> .
 
 <http://createme.org/attribute/kingdom/15> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/15> .
 
 <http://createme.org/attribute/kingdom/2> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/2> .
 
 <http://createme.org/attribute/kingdom/3> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/3> .
 
 <http://createme.org/attribute/kingdom/4> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/4> .
 
 <http://createme.org/attribute/kingdom/5> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/5> .
 
 <http://createme.org/attribute/kingdom/6> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/6> .
 
 <http://createme.org/attribute/kingdom/7> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/7> .
 
 <http://createme.org/attribute/kingdom/8> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/8> .
 
 <http://createme.org/attribute/kingdom/9> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/kingdom> ;
+    tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/9> .
 
 <http://createme.org/attribute/preparations/15> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/preparations> ;
+    tern:attribute <http://example.com/concept/preparations> ;
     tern:hasSimpleValue "Wet (in ethanol or some other preservative)" ;
     tern:hasValue <http://createme.org/value/preparations/15> .
 
 <http://createme.org/attribute/taxonRank/15> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/taxonRank> ;
+    tern:attribute <http://example.com/concept/taxonRank> ;
     tern:hasSimpleValue "species" ;
     tern:hasValue <http://createme.org/value/taxonRank/15> .
 
@@ -637,59 +637,65 @@
     schema:url "https://example.org/"^^xsd:anyURI .
 
 <http://createme.org/sampling/field/1> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/1> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/field/10> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/10> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/field/11> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/11> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/field/12> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/12> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/field/13> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/13> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/field/14> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 2e+01 ;
@@ -697,13 +703,14 @@
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/14> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/14>,
         <http://createme.org/attribute/dataGeneralizations/14> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/field/15> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
@@ -718,94 +725,103 @@
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/field/2> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/2> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/3> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/3> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/4> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/4> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/5> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/5> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/6> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/6> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/7> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/7> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/8> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/8> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/9> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/9> ;
-    sosa:usedProcedure <http://createme.org/sampling-protocol/default> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/13> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
@@ -822,6 +838,7 @@
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/15> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
@@ -842,7 +859,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Calothamnus lateralis var. crassus" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/10> a tern:FeatureOfInterest,
         tern:Text,
@@ -850,7 +867,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Caladenia excelsa" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/11> a tern:FeatureOfInterest,
         tern:Text,
@@ -858,7 +875,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Caladenia excelsa" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/12> a tern:FeatureOfInterest,
         tern:Text,
@@ -866,7 +883,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Caladenia excelsa" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/13> a tern:FeatureOfInterest,
         tern:Text,
@@ -874,7 +891,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Caladenia excelsa" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/14> a tern:FeatureOfInterest,
         tern:Text,
@@ -882,7 +899,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Caladenia excelsa" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/15> a tern:FeatureOfInterest,
         tern:Text,
@@ -890,7 +907,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Caladenia excelsa" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/2> a tern:FeatureOfInterest,
         tern:Text,
@@ -898,7 +915,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Boronia anceps" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/3> a tern:FeatureOfInterest,
         tern:Text,
@@ -906,7 +923,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Boronia anceps" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/4> a tern:FeatureOfInterest,
         tern:Text,
@@ -914,7 +931,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Boronia anceps" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/5> a tern:FeatureOfInterest,
         tern:Text,
@@ -922,7 +939,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Banksia sessilis var. cordata" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/6> a tern:FeatureOfInterest,
         tern:Text,
@@ -930,7 +947,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Banksia sessilis var. cordata" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/7> a tern:FeatureOfInterest,
         tern:Text,
@@ -938,7 +955,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Banksia sessilis var. cordata" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/8> a tern:FeatureOfInterest,
         tern:Text,
@@ -946,7 +963,7 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Banksia sessilis var. cordata" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/9> a tern:FeatureOfInterest,
         tern:Text,
@@ -954,22 +971,22 @@
     rdfs:label "scientificName" ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdf:value "Caladenia excelsa" ;
-    tern:featureType <http://createme.org/concept/scientificName> .
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/value/basisOfRecord/13> a tern:IRI,
         tern:Value ;
     rdfs:label "basisOfRecord" ;
-    rdf:value <http://createme.org/basisOfRecord/PreservedSpecimen> .
+    rdf:value <http://example.com/basisOfRecord/PreservedSpecimen> .
 
 <http://createme.org/value/basisOfRecord/14> a tern:IRI,
         tern:Value ;
     rdfs:label "basisOfRecord" ;
-    rdf:value <http://createme.org/basisOfRecord/HumanObservation> .
+    rdf:value <http://example.com/basisOfRecord/HumanObservation> .
 
 <http://createme.org/value/basisOfRecord/15> a tern:IRI,
         tern:Value ;
     rdfs:label "basisOfRecord" ;
-    rdf:value <http://createme.org/basisOfRecord/PreservedSpecimen> .
+    rdf:value <http://example.com/basisOfRecord/PreservedSpecimen> .
 
 <http://createme.org/value/dataGeneralizations/14> a tern:Text,
         tern:Value ;
@@ -1016,82 +1033,82 @@
 <http://createme.org/value/kingdom/1> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/10> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/11> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/12> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/13> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/14> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/15> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/2> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/3> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/4> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/5> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/6> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/7> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/8> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/kingdom/9> a tern:IRI,
         tern:Value ;
     rdfs:label "kingdom = Plantae" ;
-    rdf:value <http://createme.org/kingdom/plantae> .
+    rdf:value <http://example.com/kingdom/plantae> .
 
 <http://createme.org/value/occurrenceStatus/15> a tern:IRI,
         tern:Value ;
     rdfs:label "occurrenceStatus = present" ;
-    rdf:value <http://createme.org/occurrenceStatus/present> .
+    rdf:value <http://example.com/occurrenceStatus/present> .
 
 <http://createme.org/value/organismRemarks/15> a tern:Text,
         tern:Value ;
@@ -1106,7 +1123,7 @@
 <http://createme.org/value/taxonRank/15> a tern:IRI,
         tern:Value ;
     rdfs:label "taxon rank = species" ;
-    rdf:value <http://createme.org/taxonRank/species> .
+    rdf:value <http://example.com/taxonRank/species> .
 
 <http://createme.org/verbatimID/1> a tern:Text,
         tern:Value ;
@@ -1162,7 +1179,7 @@
 
 <http://createme.org/attribute/dataGeneralizations/15> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    tern:attribute <http://createme.org/concept/data-generalizations> ;
+    tern:attribute <http://example.com/concept/data-generalizations> ;
     tern:hasSimpleValue "Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasValue <http://createme.org/value/dataGeneralizations/15> .
 
@@ -1317,6 +1334,6 @@
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-05-30"^^xsd:date ;
+    dcterms:issued "2022-06-02"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
 
