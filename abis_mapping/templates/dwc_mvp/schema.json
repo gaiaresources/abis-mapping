@@ -391,6 +391,21 @@
       }
     },
     {
+      "name": "acceptedNameUsage",
+      "title": "Accepted Name Usage",
+      "description": "...",
+      "example": "Banksia L.f.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "Banksia L.f.",
+          "Occiperipatoides gilesii (Spencer, 1909)"
+        ]
+      }
+    },
+    {
       "name": "kingdom",
       "title": "Kingdom",
       "description": "...",

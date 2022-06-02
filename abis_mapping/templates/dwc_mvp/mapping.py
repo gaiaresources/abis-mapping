@@ -45,6 +45,7 @@ CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations")  # TODO -> Need rea
 CONCEPT_LIFE_STAGE = utils.rdf.uri("concept/lifeStage")  # TODO -> Need real URI
 CONCEPT_SEX = utils.rdf.uri("concept/sex")  # TODO -> Need real URI
 REPRODUCTIVE_CONDITION = utils.rdf.uri("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157")  # TODO -> Need real URI
+ACCEPTED_NAME_USAGE = utils.rdf.uri("concept/scientificName")  # TODO -> Need real URI
 
 # Controlled Vocabularies
 VOCAB_GEODETIC_DATUM = {
@@ -119,6 +120,10 @@ VOCAB_SEX = {
 VOCAB_REPRODUCTIVE_CONDITION = {
     "No breeding evident": utils.rdf.uri("reproductiveCondition/NoBreedingEvident"),  # TODO -> Need real URI
     "Gravid": utils.rdf.uri("reproductiveCondition/Gravid"),  # TODO -> Need real URI
+}
+VOCAB_ACCEPTED_NAME_USAGE = {
+    "Occiperipatoides gilesii (Spencer, 1909)": utils.rdf.uri("acceptedNameUsage/OcciperipatoidesGilesii"),  # TODO -> Need real URI
+    "Banksia L.f.": utils.rdf.uri("acceptedNameUsage/BanksiaLf"),  # TODO -> Need real URI
 }
 
 
@@ -304,6 +309,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         sex_value = utils.rdf.uri(f"value/sex/{row.row_number}", base_iri)
         reproductive_condition_observation = utils.rdf.uri(f"observation/reproductiveCondition/{row.row_number}", base_iri)
         reproductive_condition_value = utils.rdf.uri(f"value/reproductiveCondition/{row.row_number}", base_iri)
+        accepted_name_usage_observation = utils.rdf.uri(f"observation/acceptedNameUsage/{row.row_number}", base_iri)
+        accepted_name_usage_value = utils.rdf.uri(f"value/acceptedNameUsage/{row.row_number}", base_iri)
 
 
         # Add Provider Identified By
@@ -668,6 +675,23 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add sex Value
         self.add_reproductive_condition_value(
             uri=reproductive_condition_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add accepted Name Usage observation
+        self.add_accepted_name_usage_observation(
+            uri=accepted_name_usage_observation,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            sample_field=sample_field,
+            val=accepted_name_usage_value,
+        )
+
+        # Add accepted Name Usage Value
+        self.add_reproductive_condition_value(
+            uri=accepted_name_usage_value,
             row=row,
             graph=graph,
         )
@@ -2242,6 +2266,88 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"reproductiveCondition = {row['reproductiveCondition']}")))
         graph.add((uri, rdflib.RDF.value, VOCAB_REPRODUCTIVE_CONDITION[row["reproductiveCondition"]]))
+
+    def add_accepted_name_usage_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        val: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds reproductive Condition Observation to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            val (rdflib.URIRef): accepted Name Usage Value
+                associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["acceptedNameUsage"]:
+            return
+
+        # Get Timestamp
+        event_date = row["eventDate"]
+
+        # accepted Name Usage Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("acceptedNameUsage-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasResult, val))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["acceptedNameUsage"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, ACCEPTED_NAME_USAGE))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
+
+        # Add Temporal Qualifier
+        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+
+        # Add Method Qualifier
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
+        method_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
+        graph.add((method_qualifier, a, rdflib.RDF.Statement))
+        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
+        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+
+    def add_accepted_name_usage_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds accepted Name Usage Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["acceptedNameUsage"]:
+            return
+
+        # acceptedNameUsage Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"acceptedNameUsage = {row['acceptedNameUsage']}")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_ACCEPTED_NAME_USAGE[row["acceptedNameUsage"]]))
 
 
 # Helper Functions
