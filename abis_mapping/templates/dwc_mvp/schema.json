@@ -310,6 +310,21 @@
       }
     },
     {
+      "name": "reproductiveCondition",
+      "title": "Reproductive Condition",
+      "description": "...",
+      "example": "No breeding evident",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "Gravid",
+          "No breeding evident"
+        ]
+      }
+    },
+    {
       "name": "verbatimIdentification",
       "title": "Verbatim Identification",
       "description": "...",
