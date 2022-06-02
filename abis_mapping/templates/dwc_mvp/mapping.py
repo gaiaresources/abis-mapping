@@ -43,6 +43,7 @@ CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus")  # TODO ->
 CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri("concept/establishmentMeans")  # TODO -> Need real URI
 CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations")  # TODO -> Need real URI
 CONCEPT_LIFE_STAGE = utils.rdf.uri("concept/lifeStage")  # TODO -> Need real URI
+CONCEPT_SEX = utils.rdf.uri("concept/sex")  # TODO -> Need real URI
 
 # Controlled Vocabularies
 VOCAB_GEODETIC_DATUM = {
@@ -106,6 +107,10 @@ VOCAB_ESTABLISHMENT_MEANS = {
     "uncertain": utils.rdf.uri("establishmentMeans/uncertain"),  # TODO -> Need real URI
 }
 VOCAB_LIFE_STAGE = {
+    "seedling": utils.rdf.uri("lifeStage/seedling"),  # TODO -> Need real URI
+    "adult": utils.rdf.uri("lifeStage/adult"),  # TODO -> Need real URI
+}
+VOCAB_SEX = {
     "seedling": utils.rdf.uri("lifeStage/seedling"),  # TODO -> Need real URI
     "adult": utils.rdf.uri("lifeStage/adult"),  # TODO -> Need real URI
 }
@@ -289,6 +294,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         preparations_value = utils.rdf.uri(f"value/preparations/{row.row_number}", base_iri)
         lifeStage_observation = utils.rdf.uri(f"observation/lifeStage/{row.row_number}", base_iri)
         lifeStage_value = utils.rdf.uri(f"value/lifeStage/{row.row_number}", base_iri)
+        sex_observation = utils.rdf.uri(f"observation/sex/{row.row_number}", base_iri)
+        sex_value = utils.rdf.uri(f"value/sex/{row.row_number}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -618,6 +625,23 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Add lifeStage Value
         self.add_life_stage_value(
             uri=lifeStage_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add sex observation
+        self.add_life_stage_observation(
+            uri=sex_observation,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            sample_field=sample_field,
+            val=sex_value,
+        )
+
+        # Add sex Value
+        self.add_life_stage_value(
+            uri=sex_value,
             row=row,
             graph=graph,
         )
@@ -2028,6 +2052,89 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"lifeStage = {row['lifeStage']}")))
         graph.add((uri, rdflib.RDF.value, VOCAB_LIFE_STAGE[row["lifeStage"]]))
+
+    def add_sex_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        val: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds sex Observation to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            val (rdflib.URIRef): Sex Value
+                associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["sex"]:
+            return
+
+        # Get Timestamp
+        event_date = row["eventDate"]
+
+        # Individual Count Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sex-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasResult, val))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["sex"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SEX))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
+
+        # Add Temporal Qualifier
+        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+
+        # Add Method Qualifier
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
+        method_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
+        graph.add((method_qualifier, a, rdflib.RDF.Statement))
+        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
+        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+
+    def add_sex_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds sex Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["sex"]:
+            return
+
+        # sex Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"sex = {row['sex']}")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_SEX[row["sex"]]))
+
 
 # Helper Functions
 # These utility helper functions are specific to this template, and as such are

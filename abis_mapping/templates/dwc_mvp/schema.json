@@ -294,6 +294,22 @@
       }
     },
     {
+      "name": "sex",
+      "title": "Sex",
+      "description": "...",
+      "example": "female",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "male",
+          "female",
+          "undetermined"
+        ]
+      }
+    },
+    {
       "name": "verbatimIdentification",
       "title": "Verbatim Identification",
       "description": "...",
