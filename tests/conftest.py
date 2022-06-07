@@ -22,11 +22,19 @@ def compare_graphs(
     Returns:
         bool: Whether the graphs are isomorphically equivalent.
     """
-    # Check and Parse Graphs if Applicable
-    if isinstance(graph1, str):
-        graph1 = rdflib.Graph().parse(data=graph1, format="text/turtle")
-    if isinstance(graph2, str):
-        graph2 = rdflib.Graph().parse(data=graph2, format="text/turtle")
+    # Serialize Graphs if Applicable
+    # There appears to be a difference between the handling of blank-nodes in
+    # graphs *constructed* programmatically by `rdflib`, and graphs *parsed* by
+    # `rdflib`. As such, an easy work-around for testing is to do a round trip
+    # of serialization and de-serialization before the isomorphic comparison.
+    if isinstance(graph1, rdflib.Graph):
+        graph1 = graph1.serialize(format="text/turtle")
+    if isinstance(graph2, rdflib.Graph):
+        graph2 = graph2.serialize(format="text/turtle")
+
+    # Re-Parse Graphs
+    graph1 = rdflib.Graph().parse(data=graph1, format="text/turtle")
+    graph2 = rdflib.Graph().parse(data=graph2, format="text/turtle")
 
     # Asserts
     assert isinstance(graph1, rdflib.Graph)
