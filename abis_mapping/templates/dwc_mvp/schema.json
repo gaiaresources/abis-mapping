@@ -387,7 +387,11 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false
+        "required": false,
+        "enum": [
+          "Visually identified in the field (sighting)",
+          "Visually identified based on collected evidence (voucher specimen)"
+        ]
       }
     },
     {

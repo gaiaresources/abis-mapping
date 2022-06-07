@@ -30,7 +30,6 @@ CONCEPT_TAXON = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6d
 CONCEPT_SITE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4")
 CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7")
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
-CONCEPT_PROCEDURE_ID = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653")
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa:E501
@@ -63,7 +62,7 @@ VOCAB_GEODETIC_DATUM = {
     "EPSG:4326": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
 }
 VOCAB_SAMPLING_PROTOCOL = {
-    None: utils.rdf.uri("sampling-protocol/default", utils.namespaces.EXAMPLE),  # TODO -> Remove and create vocab
+    None: utils.rdf.uri("sampling-protocol/default", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     "human observation": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
     "by hand": utils.rdf.uri("sampling-protocol/by-hand", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 }
@@ -120,6 +119,11 @@ VOCAB_SEX = {
 VOCAB_REPRODUCTIVE_CONDITION = {
     "No breeding evident": utils.rdf.uri("reproductiveCondition/NoBreedingEvident", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
     "Gravid": utils.rdf.uri("reproductiveCondition/Gravid", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+}
+VOCAB_IDENTIFICATION_METHOD = {
+    None: rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653"),  # Default
+    "Visually identified in the field (sighting)": utils.rdf.uri("identificationMethod/Sighting", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
+    "Visually identified based on collected evidence (voucher specimen)": utils.rdf.uri("identificationMethod/Voucher", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
 }
 
 
@@ -822,7 +826,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(date_identified)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_IDENTIFICATION_METHOD[row["identificationMethod"]]))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
@@ -906,7 +910,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(date_identified)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_IDENTIFICATION_METHOD[row["identificationMethod"]]))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
