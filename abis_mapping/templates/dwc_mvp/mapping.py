@@ -59,6 +59,7 @@ VOCAB_GEODETIC_DATUM = {
     "EPSG:4326": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
 }
 VOCAB_SAMPLING_PROTOCOL = {
+    None: rdflib.URIRef("sampling-protocol/default"),  # TODO -> Remove and create vocab
     "human observation": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
     "by hand": utils.rdf.uri("sampling-protocol/by-hand", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 }

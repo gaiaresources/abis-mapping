@@ -187,6 +187,85 @@
       }
     },
     {
+      "name": "establishmentMeans",
+      "title": "Establishment Means",
+      "description": "...",
+      "example": "native",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "native",
+          "uncertain"
+        ]
+      }
+    },
+    {
+      "name": "organismRemarks",
+      "title": "Organism Remarks",
+      "description": "...",
+      "example": "Dried out leaf tips.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "individualCount",
+      "title": "Individual Count",
+      "description": "...",
+      "example": "26",
+      "type": "integer",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "lifeStage",
+      "title": "Life Stage",
+      "description": "...",
+      "example": "adult",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "adult",
+          "seedling"
+        ]
+      }
+    },
+    {
+      "name": "sex",
+      "title": "Sex",
+      "description": "...",
+      "example": "male",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "male",
+          "female",
+          "undetermined"
+        ]
+      }
+    },
+    {
+      "name": "reproductiveCondition",
+      "title": "Reproductive Condition",
+      "description": "...",
+      "example": "No breeding evident",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "preparations",
       "title": "Preparations",
       "description": "...",
@@ -242,22 +321,22 @@
       }
     },
     {
-      "name": "organismRemarks",
-      "title": "Organism Remarks",
+      "name": "associatedSequences",
+      "title": "Associated Sequences",
       "description": "...",
-      "example": "Dried out leaf tips.",
-      "type": "string",
-      "format": "default",
+      "example": "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1 https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
+      "type": "sequence",
+      "format": "uri",
       "constraints": {
         "required": false
       }
     },
     {
-      "name": "individualCount",
-      "title": "Individual Count",
+      "name": "sequencingMethod",
+      "title": "Sequencing Method",
       "description": "...",
-      "example": "26",
-      "type": "integer",
+      "example": "?????",
+      "type": "string",
       "format": "default",
       "constraints": {
         "required": false
@@ -297,6 +376,17 @@
       }
     },
     {
+      "name": "identificationMethod",
+      "title": "Identification Method",
+      "description": "...",
+      "example": "Visually identified in the field (sighting)",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "scientificName",
       "title": "Scientific Name",
       "description": "...",
@@ -323,6 +413,17 @@
       "title": "Identification Remarks",
       "description": "...",
       "example": "One unopened flower when recorded and one leaf only. ID not confirmed",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "acceptedNameUsage",
+      "title": "Accepted Name Usage",
+      "description": "...",
+      "example": "Occiperipatoides gilesii (Spencer, 1909)",
       "type": "string",
       "format": "default",
       "constraints": {

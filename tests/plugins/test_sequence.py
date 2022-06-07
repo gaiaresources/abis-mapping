@@ -27,17 +27,17 @@ def test_sequence_plugin() -> None:
 def test_sequence_type() -> None:
     """Tests the Sequence Type"""
     # Instantiate the Type
-    type = plugins.sequence.SequenceType(field=frictionless.Field())
+    type = plugins.sequence.SequenceType(field=frictionless.Field(format="uri"))
 
     # Read Invalid Cells
     assert type.read_cell(123) is None
+    assert type.read_cell("a") is None
+    assert type.read_cell("a b c") is None
 
     # Read Valid Cells
-    assert type.read_cell("a") == ["a"]
-    assert type.read_cell(["a"]) == ["a"]
-    assert type.read_cell("a b c") == ["a", "b", "c"]
-    assert type.read_cell(["a", "b", "c"]) == ["a", "b", "c"]
+    assert type.read_cell("https://a.com") == ["https://a.com"]
+    assert type.read_cell("https://a.com https://b.com") == ["https://a.com", "https://b.com"]
 
     # Write Cell
-    assert type.write_cell(["a"]) == "a"
-    assert type.write_cell(["a", "b", "c"]) == "a b c"
+    assert type.write_cell(["https://a.com"]) == "https://a.com"
+    assert type.write_cell(["https://a.com", "https://b.com"]) == "https://a.com https://b.com"
