@@ -5,7 +5,7 @@
 import frictionless
 
 # Local
-from . import coords
+from abis_mapping.utils import coords
 
 # Typing
 from typing import Any, Iterator

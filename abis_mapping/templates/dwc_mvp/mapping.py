@@ -11,6 +11,7 @@ import rdflib
 # Local
 from abis_mapping import base
 from abis_mapping import utils
+from abis_mapping import plugins
 
 # Typing
 from typing import Iterator, Optional
@@ -58,7 +59,6 @@ VOCAB_GEODETIC_DATUM = {
     "EPSG:4326": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
 }
 VOCAB_SAMPLING_PROTOCOL = {
-    None: utils.rdf.uri("sampling-protocol/default", utils.namespaces.EXAMPLE),  # Default  # TODO -> Need real URI
     "human observation": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
     "by hand": utils.rdf.uri("sampling-protocol/by-hand", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 }
@@ -132,9 +132,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         report: frictionless.Report = resource.validate(
             checks=[
                 # Extra Custom Checks
-                utils.checks.NotTabular(),
-                utils.checks.NotEmpty(),
-                utils.checks.ValidCoordinates(
+                plugins.checks.NotTabular(),
+                plugins.checks.NotEmpty(),
+                plugins.checks.ValidCoordinates(
                     latitude_name="decimalLatitude",
                     longitude_name="decimalLongitude",
                 ),

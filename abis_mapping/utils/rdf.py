@@ -11,7 +11,7 @@ import slugify
 
 # Local
 from . import namespaces
-from abis_mapping.base import types
+from abis_mapping.utils import types
 
 # Typing
 from typing import Optional
