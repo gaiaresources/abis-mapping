@@ -47,6 +47,7 @@ CONCEPT_SEX = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/05cbf534-c233
 CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri("concept/reproductiveCondition", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa:E501
 CONCEPT_ACCEPTED_NAME_USAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")  # noqa: E501
 CONCEPT_METHOD_UNKNOWN = utils.rdf.uri("methods/unknown", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 
 # Controlled Vocabularies
 VOCAB_GEODETIC_DATUM = {
@@ -126,6 +127,10 @@ VOCAB_IDENTIFICATION_METHOD = {
     None: rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653"),  # Default
     "Visually identified in the field (sighting)": utils.rdf.uri("identificationMethod/Sighting", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
     "Visually identified based on collected evidence (voucher specimen)": utils.rdf.uri("identificationMethod/Voucher", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
+}
+VOCAB_SEQUENCING_METHOD = {
+    None: utils.rdf.uri("sequencingMethod/default", utils.namespaces.EXAMPLE),  # Default  # TODO -> Need real URI
+    "Sanger dideoxy sequencing": utils.rdf.uri("sequencingMethod/Sanger-dideoxy-sequencing", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
 }
 
 
@@ -313,6 +318,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         reproductive_condition_value = utils.rdf.uri(f"value/reproductiveCondition/{row.row_number}", base_iri)
         accepted_name_usage_observation = utils.rdf.uri(f"observation/acceptedNameUsage/{row.row_number}", base_iri)  # noqa: E501
         accepted_name_usage_value = utils.rdf.uri(f"value/acceptedNameUsage/{row.row_number}", base_iri)
+        sampling_sequencing = utils.rdf.uri(f"sampling/sequencing/{row.row_number}", base_iri)
+        sample_sequence = utils.rdf.uri(f"sample/sequence/{row.row_number}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -699,6 +706,28 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         self.add_accepted_name_usage_value(
             uri=accepted_name_usage_value,
             row=row,
+            graph=graph,
+        )
+
+        # Add Sampling Sequencing
+        self.add_sampling_sequencing(
+            uri=sampling_sequencing,
+            row=row,
+            dataset=dataset,
+            sample_field=sample_field,
+            sample_specimen=sample_specimen,
+            sample_sequence=sample_sequence,
+            graph=graph,
+        )
+
+        # Add Sample Sequence
+        self.add_sample_sequence(
+            uri=sample_sequence,
+            row=row,
+            dataset=dataset,
+            sample_field=sample_field,
+            sample_specimen=sample_specimen,
+            sampling_sequencing=sampling_sequencing,
             graph=graph,
         )
 
@@ -2392,6 +2421,128 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("acceptedNameUsage-value")))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["acceptedNameUsage"])))
+
+    def add_sampling_sequencing(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        sample_specimen: rdflib.URIRef,
+        sample_sequence: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Sampling Sequencing to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            sample_specimen (rdflib.URIRef): Sample Specimen associated with
+                this node
+            sample_sequence (rdflib.URIRef): Sample Sequence associated with
+                this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["associatedSequences"]:
+            return
+
+        # Choose Feature of Interest
+        # The Feature of Interest is the Specimen Sample if it is determined
+        # that this row has a specimen, otherwise it is Field Sample
+        foi = sample_specimen if has_specimen(row) else sample_field
+
+        # Create WKT from Latitude and Longitude
+        wkt = utils.rdf.toWKT(
+            latitude=row["decimalLatitude"],
+            longitude=row["decimalLongitude"],
+            datum=VOCAB_GEODETIC_DATUM[row["geodeticDatum"]],
+        )
+
+        # Add to Graph
+        graph.add((uri, a, utils.namespaces.TERN.Sampling))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequencing-sampling")))
+        geometry = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
+        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
+        graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(row["eventDate"])))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SEQUENCING_METHOD[row["sequencingMethod"]]))
+
+        # Check for coordinateUncertaintyInMeters
+        if row["coordinateUncertaintyInMeters"]:
+            # Add Spatial Accuracy
+            accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
+            graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+
+        # Add Temporal Qualifier
+        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+
+        # Add Spatial Qualifier
+        spatial_comment = "Location unknown, location of field sampling used as proxy"
+        spatial_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, spatial_qualifier))
+        graph.add((spatial_qualifier, a, rdflib.RDF.Statement))
+        graph.add((spatial_qualifier, rdflib.RDF.value, utils.namespaces.GEO.hasGeometry))
+        graph.add((spatial_qualifier, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
+
+    def add_sample_sequence(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        sample_specimen: rdflib.URIRef,
+        sampling_sequencing: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Sample Sequence to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            sample_specimen (rdflib.URIRef): Sample Specimen associated with
+                this node
+            sampling_sequencing (rdflib.URIRef): Sampling Sequencing associated
+                with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["associatedSequences"]:
+            return
+
+        # Choose Feature of Interest
+        # The Feature of Interest is the Specimen Sample if it is determined
+        # that this row has a specimen, otherwise it is Field Sample
+        foi = sample_specimen if has_specimen(row) else sample_field
+
+        # Add to Graph
+        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
+        graph.add((uri, a, utils.namespaces.TERN.Sample))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequence-sample")))
+        graph.add((uri, rdflib.SOSA.isResultOf, sampling_sequencing))
+        graph.add((uri, rdflib.SOSA.isSampleOf, foi))
+        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SEQUENCE))
+
+        # Loop Through Associated Sequences
+        for identifier in row["associatedSequences"]:
+            # Add Identifier
+            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(identifier)))
 
 
 # Helper Functions

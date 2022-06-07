@@ -339,11 +339,14 @@
       "name": "sequencingMethod",
       "title": "Sequencing Method",
       "description": "...",
-      "example": "?????",
+      "example": "Sanger dideoxy sequencing",
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false
+        "required": false,
+        "enum": [
+          "Sanger dideoxy sequencing"
+        ]
       }
     },
     {
