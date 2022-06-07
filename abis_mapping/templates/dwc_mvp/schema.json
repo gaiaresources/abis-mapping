@@ -262,7 +262,11 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false
+        "required": false,
+        "enum": [
+          "No breeding evident",
+          "Gravid"
+        ]
       }
     },
     {
