@@ -2,5 +2,5 @@
 
 # Local
 from . import checks
-from . import sequence
+from . import list
 from . import timestamp

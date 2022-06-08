@@ -46,7 +46,7 @@ CONCEPT_LIFE_STAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/abb0ee
 CONCEPT_SEX = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36")
 CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri("concept/reproductiveCondition", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa:E501
 CONCEPT_ACCEPTED_NAME_USAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")  # noqa: E501
-CONCEPT_METHOD_UNKNOWN = utils.rdf.uri("methods/unknown", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 
 # Controlled Vocabularies
@@ -2377,7 +2377,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_METHOD_UNKNOWN))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_NAME_CHECK_METHOD))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(date_identified)))
 
         # Add Temporal Qualifier
@@ -2388,14 +2388,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
         graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
-
-        # Add Method Qualifier
-        method_comment = "Observation method unknown, 'human observation' used as proxy"
-        method_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
-        graph.add((method_qualifier, a, rdflib.RDF.Statement))
-        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
-        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_accepted_name_usage_value(
         self,

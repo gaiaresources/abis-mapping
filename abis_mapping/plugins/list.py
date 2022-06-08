@@ -1,4 +1,4 @@
-"""Provides custom frictionless sequence plugin for the package"""
+"""Provides custom frictionless list plugin for the package"""
 
 
 # Third-Party
@@ -8,11 +8,11 @@ import frictionless
 from typing import Any, Optional
 
 
-class SequencePlugin(frictionless.Plugin):
-    """Custom Sequence Plugin"""
+class ListPlugin(frictionless.Plugin):
+    """Custom List Plugin"""
 
     # Class Attributes
-    code = "sequence"
+    code = "list"
     status = "stable"
 
     def create_type(self, field: frictionless.Field) -> Optional[frictionless.Type]:
@@ -25,19 +25,19 @@ class SequencePlugin(frictionless.Plugin):
             Optional[frictionless.Type]: Possible type from this plugin.
         """
         # Check for our type
-        if field.type == SequenceType.code:
+        if field.type == ListType.code:
             # Return
-            return SequenceType(field)
+            return ListType(field)
 
         # Not our type
         return None
 
 
-class SequenceType(frictionless.Type):
-    """Custom Sequence Type Implementation."""
+class ListType(frictionless.Type):
+    """Custom List Type Implementation."""
 
     # Class Attributes
-    code = "sequence"
+    code = "list"
     builtin = False
     constraints = [
         "required",
@@ -96,8 +96,8 @@ class SequenceType(frictionless.Type):
         )
 
 
-# Register Sequence Plugin
+# Register List Plugin
 frictionless.system.register(
-    name=SequencePlugin.code,
-    plugin=SequencePlugin(),
+    name=ListPlugin.code,
+    plugin=ListPlugin(),
 )

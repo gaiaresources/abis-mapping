@@ -1,4 +1,4 @@
-"""Provides Unit Tests for the `abis_mapping.plugins.sequence` module"""
+"""Provides Unit Tests for the `abis_mapping.plugins.list` module"""
 
 
 # Third-Party
@@ -8,10 +8,10 @@ import frictionless
 from abis_mapping import plugins
 
 
-def test_sequence_plugin() -> None:
-    """Tests the Sequence Plugin"""
+def test_list_plugin() -> None:
+    """Tests the List Plugin"""
     # Instantiate the Plugin
-    plugin = plugins.sequence.SequencePlugin()
+    plugin = plugins.list.ListPlugin()
 
     # Incorrect Type
     field = frictionless.Field(type="any")
@@ -19,15 +19,15 @@ def test_sequence_plugin() -> None:
     assert result is None
 
     # Correct Type
-    field = frictionless.Field(type="sequence")
+    field = frictionless.Field(type="list")
     result = plugin.create_type(field)
-    assert isinstance(result, plugins.sequence.SequenceType)
+    assert isinstance(result, plugins.list.ListType)
 
 
-def test_sequence_type() -> None:
-    """Tests the Sequence Type"""
+def test_list_type() -> None:
+    """Tests the List Type"""
     # Instantiate the Type
-    type = plugins.sequence.SequenceType(field=frictionless.Field(format="uri"))
+    type = plugins.list.ListType(field=frictionless.Field(format="uri"))
 
     # Read Invalid Cells
     assert type.read_cell(123) is None
