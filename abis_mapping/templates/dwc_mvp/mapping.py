@@ -11,6 +11,7 @@ import rdflib
 # Local
 from abis_mapping import base
 from abis_mapping import utils
+from abis_mapping import plugins
 
 # Typing
 from typing import Iterator, Optional
@@ -29,7 +30,6 @@ CONCEPT_TAXON = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6d
 CONCEPT_SITE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4")
 CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7")
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
-CONCEPT_PROCEDURE_ID = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653")
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa:E501
@@ -41,6 +41,13 @@ CONCEPT_HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-
 CONCEPT_BASIS_OF_RECORD = utils.rdf.uri("concept/basisOfRecord", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri("concept/establishmentMeans", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa:E501
+CONCEPT_LIFE_STAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3")
+CONCEPT_SEX = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36")
+CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri("concept/reproductiveCondition", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa:E501
+CONCEPT_ACCEPTED_NAME_USAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")  # noqa: E501
+CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 
 # Controlled Vocabularies
 VOCAB_GEODETIC_DATUM = {
@@ -58,7 +65,7 @@ VOCAB_GEODETIC_DATUM = {
     "EPSG:4326": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
 }
 VOCAB_SAMPLING_PROTOCOL = {
-    None: utils.rdf.uri("sampling-protocol/default", utils.namespaces.EXAMPLE),  # Default  # TODO -> Need real URI
+    None: utils.rdf.uri("sampling-protocol/default", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     "human observation": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
     "by hand": utils.rdf.uri("sampling-protocol/by-hand", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 }
@@ -99,6 +106,32 @@ VOCAB_OCCURRENCE_STATUS = {
     "present": utils.rdf.uri("occurrenceStatus/present", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     "absent": utils.rdf.uri("occurrenceStatus/absent", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 }
+VOCAB_ESTABLISHMENT_MEANS = {
+    "native": utils.rdf.uri("establishmentMeans/native", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "uncertain": utils.rdf.uri("establishmentMeans/uncertain", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+}
+VOCAB_LIFE_STAGE = {
+    "adult": utils.rdf.uri("lifeStage/adult", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "seedling": utils.rdf.uri("lifeStage/seedling", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+}
+VOCAB_SEX = {
+    "male": utils.rdf.uri("sex/male", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "female": utils.rdf.uri("sex/female", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    "undetermined": utils.rdf.uri("sex/undetermined", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+}
+VOCAB_REPRODUCTIVE_CONDITION = {
+    "No breeding evident": utils.rdf.uri("reproductiveCondition/NoBreedingEvident", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
+    "Gravid": utils.rdf.uri("reproductiveCondition/Gravid", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+}
+VOCAB_IDENTIFICATION_METHOD = {
+    None: rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653"),  # Default
+    "Visually identified in the field (sighting)": utils.rdf.uri("identificationMethod/Sighting", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
+    "Visually identified based on collected evidence (voucher specimen)": utils.rdf.uri("identificationMethod/Voucher", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
+}
+VOCAB_SEQUENCING_METHOD = {
+    None: utils.rdf.uri("sequencingMethod/default", utils.namespaces.EXAMPLE),  # Default  # TODO -> Need real URI
+    "Sanger dideoxy sequencing": utils.rdf.uri("sequencingMethod/Sanger-dideoxy-sequencing", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
+}
 
 
 class DWCMVPMapper(base.mapper.ABISMapper):
@@ -132,9 +165,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         report: frictionless.Report = resource.validate(
             checks=[
                 # Extra Custom Checks
-                utils.checks.NotTabular(),
-                utils.checks.NotEmpty(),
-                utils.checks.ValidCoordinates(
+                plugins.checks.NotTabular(),
+                plugins.checks.NotEmpty(),
+                plugins.checks.ValidCoordinates(
                     latitude_name="decimalLatitude",
                     longitude_name="decimalLongitude",
                 ),
@@ -275,6 +308,18 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         occurrence_status_value = utils.rdf.uri(f"value/occurrenceStatus/{row.row_number}", base_iri)
         preparations_attribute = utils.rdf.uri(f"attribute/preparations/{row.row_number}", base_iri)
         preparations_value = utils.rdf.uri(f"value/preparations/{row.row_number}", base_iri)
+        establishment_means_observation = utils.rdf.uri(f"observation/establishmentMeans/{row.row_number}", base_iri)
+        establishment_means_value = utils.rdf.uri(f"value/establishmentMeans/{row.row_number}", base_iri)
+        life_stage_observation = utils.rdf.uri(f"observation/lifeStage/{row.row_number}", base_iri)
+        life_stage_value = utils.rdf.uri(f"value/lifeStage/{row.row_number}", base_iri)
+        sex_observation = utils.rdf.uri(f"observation/sex/{row.row_number}", base_iri)
+        sex_value = utils.rdf.uri(f"value/sex/{row.row_number}", base_iri)
+        reproductive_condition_observation = utils.rdf.uri(f"observation/reproductiveCondition/{row.row_number}", base_iri)  # noqa: E501
+        reproductive_condition_value = utils.rdf.uri(f"value/reproductiveCondition/{row.row_number}", base_iri)
+        accepted_name_usage_observation = utils.rdf.uri(f"observation/acceptedNameUsage/{row.row_number}", base_iri)  # noqa: E501
+        accepted_name_usage_value = utils.rdf.uri(f"value/acceptedNameUsage/{row.row_number}", base_iri)
+        sampling_sequencing = utils.rdf.uri(f"sampling/sequencing/{row.row_number}", base_iri)
+        sample_sequence = utils.rdf.uri(f"sample/sequence/{row.row_number}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -576,6 +621,114 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
+        # Add Establishment Means Observation
+        self.add_establishment_means_observation(
+            uri=establishment_means_observation,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            sample_field=sample_field,
+            establishment_means_value=establishment_means_value,
+        )
+
+        # Add Establishment Means Value
+        self.add_establishment_means_value(
+            uri=establishment_means_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add Life Stage Observation
+        self.add_life_stage_observation(
+            uri=life_stage_observation,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            sample_field=sample_field,
+            sample_specimen=sample_specimen,
+            life_stage_value=life_stage_value,
+        )
+
+        # Add Life Stage Value
+        self.add_life_stage_value(
+            uri=life_stage_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add Sex Observation
+        self.add_sex_observation(
+            uri=sex_observation,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            sample_field=sample_field,
+            sample_specimen=sample_specimen,
+            sex_value=sex_value,
+        )
+
+        # Add Sex Value
+        self.add_sex_value(
+            uri=sex_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add Reproductive Condition Observation
+        self.add_reproductive_condition_observation(
+            uri=reproductive_condition_observation,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            sample_field=sample_field,
+            sample_specimen=sample_specimen,
+            reproductive_condition_value=reproductive_condition_value,
+        )
+
+        # Add Reproductive Condition Value
+        self.add_reproductive_condition_value(
+            uri=reproductive_condition_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add Accepted Name Usage Observation
+        self.add_accepted_name_usage_observation(
+            uri=accepted_name_usage_observation,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            scientific_name=text_scientific_name,
+            accepted_name_usage_value=accepted_name_usage_value,
+        )
+
+        # Add Accepted Name Usage Value
+        self.add_accepted_name_usage_value(
+            uri=accepted_name_usage_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add Sampling Sequencing
+        self.add_sampling_sequencing(
+            uri=sampling_sequencing,
+            row=row,
+            dataset=dataset,
+            feature_of_interest=sample_specimen,
+            sample_sequence=sample_sequence,
+            graph=graph,
+        )
+
+        # Add Sample Sequence
+        self.add_sample_sequence(
+            uri=sample_sequence,
+            row=row,
+            dataset=dataset,
+            feature_of_interest=sample_specimen,
+            sampling_sequencing=sampling_sequencing,
+            graph=graph,
+        )
+
         # Return
         return graph
 
@@ -721,7 +874,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(date_identified)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_IDENTIFICATION_METHOD[row["identificationMethod"]]))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
@@ -805,7 +958,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(date_identified)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_ID))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_IDENTIFICATION_METHOD[row["identificationMethod"]]))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
@@ -1832,6 +1985,541 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("preparations")))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["preparations"])))
 
+    def add_establishment_means_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        establishment_means_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Establishment Means Observation to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            establishment_means_value (rdflib.URIRef): Establishment Means
+                Value associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["establishmentMeans"]:
+            return
+
+        # Get Timestamp
+        event_date = row["eventDate"]
+
+        # Establishment Means Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("establishmentMeans-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasResult, establishment_means_value))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["establishmentMeans"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ESTABLISHMENT_MEANS))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
+
+        # Add Temporal Qualifier
+        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+
+        # Add Method Qualifier
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
+        method_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
+        graph.add((method_qualifier, a, rdflib.RDF.Statement))
+        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
+        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+
+    def add_establishment_means_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Establishment Means Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["establishmentMeans"]:
+            return
+
+        # Establishment Means Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("establishmentMeans-value")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_ESTABLISHMENT_MEANS[row["establishmentMeans"]]))
+
+    def add_life_stage_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        sample_specimen: rdflib.URIRef,
+        life_stage_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Life Stage Observation to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            sample_specimen (rdflib.URIRef): Sample Specimen associated with
+                this node
+            life_stage_value (rdflib.URIRef): Life Stage Value associated with
+                this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["lifeStage"]:
+            return
+
+        # Get Timestamp
+        event_date = row["eventDate"]
+
+        # Choose Feature of Interest
+        # The Feature of Interest is the Specimen Sample if it is determined
+        # that this row has a specimen, otherwise it is Field Sample
+        foi = sample_specimen if has_specimen(row) else sample_field
+
+        # Life Stage Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("lifeStage-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
+        graph.add((uri, rdflib.SOSA.hasResult, life_stage_value))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["lifeStage"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_LIFE_STAGE))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
+
+        # Add Temporal Qualifier
+        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+
+        # Add Method Qualifier
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
+        method_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
+        graph.add((method_qualifier, a, rdflib.RDF.Statement))
+        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
+        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+
+    def add_life_stage_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Life Stage Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["lifeStage"]:
+            return
+
+        # Life Stage Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("lifeStage-value")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_LIFE_STAGE[row["lifeStage"]]))
+
+    def add_sex_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        sample_specimen: rdflib.URIRef,
+        sex_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Sex Observation to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            sample_specimen (rdflib.URIRef): Sample Specimen associated with
+                this node
+            sex_value (rdflib.URIRef): Sex Value associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["sex"]:
+            return
+
+        # Get Timestamp
+        event_date = row["eventDate"]
+
+        # Choose Feature of Interest
+        # The Feature of Interest is the Specimen Sample if it is determined
+        # that this row has a specimen, otherwise it is Field Sample
+        foi = sample_specimen if has_specimen(row) else sample_field
+
+        # Sex Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sex-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
+        graph.add((uri, rdflib.SOSA.hasResult, sex_value))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["sex"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SEX))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
+
+        # Add Temporal Qualifier
+        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+
+        # Add Method Qualifier
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
+        method_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
+        graph.add((method_qualifier, a, rdflib.RDF.Statement))
+        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
+        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+
+    def add_sex_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Sex Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["sex"]:
+            return
+
+        # Sex Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("sex-value")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_SEX[row["sex"]]))
+
+    def add_reproductive_condition_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        sample_specimen: rdflib.URIRef,
+        reproductive_condition_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Reproductive Condition Observation to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            sample_specimen (rdflib.URIRef): Sample Specimen associated with
+                this node
+            reproductive_condition_value (rdflib.URIRef): Reproductive
+                Condition Value associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["reproductiveCondition"]:
+            return
+
+        # Get Timestamp
+        event_date = row["eventDate"]
+
+        # Choose Feature of Interest
+        # The Feature of Interest is the Specimen Sample if it is determined
+        # that this row has a specimen, otherwise it is Field Sample
+        foi = sample_specimen if has_specimen(row) else sample_field
+
+        # Reproductive Condition Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("reproductiveCondition-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
+        graph.add((uri, rdflib.SOSA.hasResult, reproductive_condition_value))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["reproductiveCondition"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_REPRODUCTIVE_CONDITION))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
+
+        # Add Temporal Qualifier
+        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+
+        # Add Method Qualifier
+        method_comment = "Observation method unknown, 'human observation' used as proxy"
+        method_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
+        graph.add((method_qualifier, a, rdflib.RDF.Statement))
+        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
+        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+
+    def add_reproductive_condition_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Reproductive Condition Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["reproductiveCondition"]:
+            return
+
+        # Reproductive Condition Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("reproductiveCondition-value")))
+        graph.add((uri, rdflib.RDF.value, VOCAB_REPRODUCTIVE_CONDITION[row["reproductiveCondition"]]))
+
+    def add_accepted_name_usage_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        scientific_name: rdflib.URIRef,
+        accepted_name_usage_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Accepted Name Usage Observation to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            scientific_name (rdflib.URIRef): Scientific Name associated with
+                this node
+            accepted_name_usage_value (rdflib.URIRef): Accepted Name Usage
+                Value associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["acceptedNameUsage"]:
+            return
+
+        # Get Timestamps
+        event_date = row["eventDate"]
+        date_identified = row["dateIdentified"] or row["eventDate"]
+
+        # Accepted Name Usage Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("acceptedNameUsage-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, scientific_name))
+        graph.add((uri, rdflib.SOSA.hasResult, accepted_name_usage_value))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["acceptedNameUsage"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ACCEPTED_NAME_USAGE))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_NAME_CHECK_METHOD))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(date_identified)))
+
+        # Add Temporal Qualifier
+        timestamp_used = "dateIdentified" if row["dateIdentified"] else "eventDate"  # Determine which field was used
+        temporal_comment = f"Date unknown, template {timestamp_used} used as proxy"
+        temporal_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+
+    def add_accepted_name_usage_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Accepted Name Usage Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["acceptedNameUsage"]:
+            return
+
+        # Accepted Name Usage Value
+        graph.add((uri, a, utils.namespaces.TERN.Text))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("acceptedNameUsage-value")))
+        graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["acceptedNameUsage"])))
+
+    def add_sampling_sequencing(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        feature_of_interest: rdflib.URIRef,
+        sample_sequence: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Sampling Sequencing to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sample_field (rdflib.URIRef): Sample Field associated with this
+                node
+            feature_of_interest (rdflib.URIRef): Feature of Interest associated
+                with this node
+            sample_sequence (rdflib.URIRef): Sample Sequence associated with
+                this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["associatedSequences"]:
+            return
+
+        # Create WKT from Latitude and Longitude
+        wkt = utils.rdf.toWKT(
+            latitude=row["decimalLatitude"],
+            longitude=row["decimalLongitude"],
+            datum=VOCAB_GEODETIC_DATUM[row["geodeticDatum"]],
+        )
+
+        # Add to Graph
+        graph.add((uri, a, utils.namespaces.TERN.Sampling))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequencing-sampling")))
+        geometry = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
+        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
+        graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(row["eventDate"])))
+        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SEQUENCING_METHOD[row["sequencingMethod"]]))
+
+        # Check for coordinateUncertaintyInMeters
+        if row["coordinateUncertaintyInMeters"]:
+            # Add Spatial Accuracy
+            accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
+            graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+
+        # Add Temporal Qualifier
+        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+
+        # Add Spatial Qualifier
+        spatial_comment = "Location unknown, location of field sampling used as proxy"
+        spatial_qualifier = rdflib.BNode()
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, spatial_qualifier))
+        graph.add((spatial_qualifier, a, rdflib.RDF.Statement))
+        graph.add((spatial_qualifier, rdflib.RDF.value, utils.namespaces.GEO.hasGeometry))
+        graph.add((spatial_qualifier, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
+
+    def add_sample_sequence(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        feature_of_interest: rdflib.URIRef,
+        sampling_sequencing: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Sample Sequence to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            feature_of_interest (rdflib.URIRef): Feature of Interest associated
+                with this node
+            sampling_sequencing (rdflib.URIRef): Sampling Sequencing associated
+                with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["associatedSequences"]:
+            return
+
+        # Add to Graph
+        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
+        graph.add((uri, a, utils.namespaces.TERN.Sample))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequence-sample")))
+        graph.add((uri, rdflib.SOSA.isResultOf, sampling_sequencing))
+        graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
+        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SEQUENCE))
+
+        # Loop Through Associated Sequences
+        for identifier in row["associatedSequences"]:
+            # Add Identifier
+            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(identifier)))
+
 
 # Helper Functions
 # These utility helper functions are specific to this template, and as such are
@@ -1849,23 +2537,23 @@ def has_specimen(row: frictionless.Row) -> bool:
         bool: Whether this row has a specimen associated with it.
     """
     # Check Specimen Rules
-    if row["preparations"] or row["materialSampleID"]:
-        # If `preparations` and/or `materialSampleID` are provided, regardless
-        # of the value of `basisOfRecord` we can infer that there is a specimen
-        # associated with the row.
+    if row["preparations"] or row["materialSampleID"] or row["associatedSequences"]:
+        # If any of `preparations`, `materialSampleID` or `associatedSequences`
+        # are provided, regardless of the value of `basisOfRecord` we can infer
+        # that there is a specimen associated with the row.
         specimen = True
 
     elif not row["basisOfRecord"] or row["basisOfRecord"] in ("HumanObservation", "Occurrence"):
-        # Otherwise, if neither of `preparations` and `materialSampleID` were
-        # provided, and the `basisOfRecord` is either blank or one of
-        # "HumanObservation" or "Occurrence", then we cannot infer that there
-        # is a specimen associated with the row.
+        # Otherwise, if none of `preparations`, `materialSampleID` or
+        # `associatedSequences` were provided, and the `basisOfRecord` is
+        # either blank or one of "HumanObservation" or "Occurrence", then we
+        # cannot infer that there is a specimen associated with the row.
         specimen = False
 
     else:
-        # Finally, neither of `preparations` and `materialSampleID` were
-        # provided, but the `basisOfRecord` is a value that implies that there
-        # is a specimen associated with the row.
+        # Finally, none of `preparations`, `materialSampleID` or
+        # `associatedSequences` were provided, but the `basisOfRecord` is a
+        # value that implies that there is a specimen associated with the row.
         specimen = True
 
     # Return

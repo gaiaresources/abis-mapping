@@ -16,6 +16,39 @@
     rdfs:comment "This is the identifier code system nominated by WAM" ;
     prov:wasAssociatedWith <http://createme.org/provider/WAM> .
 
+<http://createme.org/observation/acceptedNameUsage/15> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "acceptedNameUsage-observation" ;
+    sosa:hasFeatureOfInterest <http://createme.org/scientificName/15> ;
+    sosa:hasResult <http://createme.org/value/acceptedNameUsage/15> ;
+    sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:phenomenonTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:usedProcedure <http://example.com/methods/name-check-method> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] ;
+    tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
+
+<http://createme.org/observation/establishmentMeans/15> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "establishmentMeans-observation" ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
+    sosa:hasResult <http://createme.org/value/establishmentMeans/15> ;
+    sosa:hasSimpleResult "native" ;
+    sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
+    sosa:phenomenonTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+    tern:resultDateTime "2019-09-24"^^xsd:date .
+
 <http://createme.org/observation/individualCount/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "individualCount-observation" ;
@@ -23,6 +56,24 @@
     sosa:hasResult <http://createme.org/value/individualCount/15> ;
     sosa:hasSimpleResult 2 ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
+    sosa:phenomenonTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+    tern:resultDateTime "2019-09-24"^^xsd:date .
+
+<http://createme.org/observation/lifeStage/15> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "lifeStage-observation" ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
+    sosa:hasResult <http://createme.org/value/lifeStage/15> ;
+    sosa:hasSimpleResult "adult" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
@@ -56,6 +107,24 @@
     sosa:hasResult <http://createme.org/value/organismRemarks/15> ;
     sosa:hasSimpleResult "Dried out leaf tips" ;
     sosa:observedProperty <http://example.com/concept/organismRemarks> ;
+    sosa:phenomenonTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+    tern:resultDateTime "2019-09-24"^^xsd:date .
+
+<http://createme.org/observation/reproductiveCondition/15> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "reproductiveCondition-observation" ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
+    sosa:hasResult <http://createme.org/value/reproductiveCondition/15> ;
+    sosa:hasSimpleResult "No breeding evident" ;
+    sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
@@ -173,7 +242,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    sosa:usedProcedure <http://example.com/identificationMethod/Sighting> ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/15>,
         <http://createme.org/attribute/identificationRemarks/15>,
         <http://createme.org/attribute/kingdom/15>,
@@ -292,6 +361,24 @@
     tern:hasAttribute <http://createme.org/attribute/kingdom/9> ;
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
+<http://createme.org/observation/sex/15> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "sex-observation" ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
+    sosa:hasResult <http://createme.org/value/sex/15> ;
+    sosa:hasSimpleResult "male" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
+    sosa:phenomenonTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+    tern:resultDateTime "2019-09-24"^^xsd:date .
+
 <http://createme.org/observation/verbatimID/1> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
@@ -357,7 +444,7 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:phenomenonTime [ a time:Instant ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    sosa:usedProcedure <http://example.com/identificationMethod/Sighting> ;
     tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
 
 <http://createme.org/observation/verbatimID/2> a tern:Observation ;
@@ -636,10 +723,20 @@
     schema:name "WAM" ;
     schema:url "https://example.org/"^^xsd:anyURI .
 
+<http://createme.org/sample/sequence/15> a tern:FeatureOfInterest,
+        tern:Sample ;
+    dcterms:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
+        "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "sequence-sample" ;
+    sosa:isResultOf <http://createme.org/sampling/sequencing/15> ;
+    sosa:isSampleOf <http://createme.org/sample/specimen/15> ;
+    tern:featureType <http://example.com/concept/sequence> .
+
 <http://createme.org/sampling/field/1> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
@@ -675,7 +772,7 @@
 <http://createme.org/sampling/field/12> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/12> ;
@@ -712,7 +809,7 @@
 <http://createme.org/sampling/field/15> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "field-sampling" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
@@ -820,6 +917,23 @@
     tern:locationDescription "Cowaramup Bay Road" ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
+<http://createme.org/sampling/sequencing/15> a tern:Sampling ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    geo:hasMetricSpatialAccuracy 5e+01 ;
+    rdfs:comment "sequencing-sampling" ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
+    sosa:hasResult <http://createme.org/sample/sequence/15> ;
+    sosa:usedProcedure <http://example.com/sequencingMethod/Sanger-dideoxy-sequencing> ;
+    tern:qualifiedValue [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+    tern:resultDateTime "2019-09-24"^^xsd:date .
+
 <http://createme.org/sampling/specimen/13> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
@@ -830,17 +944,17 @@
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/13> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/15> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.80)"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
@@ -894,14 +1008,6 @@
     tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/scientificName/14> a tern:FeatureOfInterest,
-        tern:Text,
-        tern:Value ;
-    rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    rdf:value "Caladenia excelsa" ;
-    tern:featureType <http://example.com/concept/scientificName> .
-
-<http://createme.org/scientificName/15> a tern:FeatureOfInterest,
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
@@ -973,6 +1079,11 @@
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
+<http://createme.org/value/acceptedNameUsage/15> a tern:Text,
+        tern:Value ;
+    rdfs:label "acceptedNameUsage-value" ;
+    rdf:value "Caladenia excelsa Hopper & A.P.Br." .
+
 <http://createme.org/value/basisOfRecord/13> a tern:IRI,
         tern:Value ;
     rdfs:label "basisOfRecord" ;
@@ -995,6 +1106,11 @@
 <http://createme.org/value/dataGeneralizations/15> a tern:Text,
         tern:Value ;
     rdf:value "Coordinates rounded to the nearest 10 km for conservation concern" .
+
+<http://createme.org/value/establishmentMeans/15> a tern:IRI,
+        tern:Value ;
+    rdfs:label "establishmentMeans-value" ;
+    rdf:value <http://example.com/establishmentMeans/native> .
 
 <http://createme.org/value/habitat/15> a tern:Text,
         tern:Value ;
@@ -1105,6 +1221,11 @@
     rdfs:label "kingdom = Plantae" ;
     rdf:value <http://example.com/kingdom/plantae> .
 
+<http://createme.org/value/lifeStage/15> a tern:IRI,
+        tern:Value ;
+    rdfs:label "lifeStage-value" ;
+    rdf:value <http://example.com/lifeStage/adult> .
+
 <http://createme.org/value/occurrenceStatus/15> a tern:IRI,
         tern:Value ;
     rdfs:label "occurrenceStatus = present" ;
@@ -1119,6 +1240,16 @@
         tern:Value ;
     rdfs:label "preparations" ;
     rdf:value "Wet (in ethanol or some other preservative)" .
+
+<http://createme.org/value/reproductiveCondition/15> a tern:IRI,
+        tern:Value ;
+    rdfs:label "reproductiveCondition-value" ;
+    rdf:value <http://example.com/reproductiveCondition/NoBreedingEvident> .
+
+<http://createme.org/value/sex/15> a tern:IRI,
+        tern:Value ;
+    rdfs:label "sex-value" ;
+    rdf:value <http://example.com/sex/male> .
 
 <http://createme.org/value/taxonRank/15> a tern:IRI,
         tern:Value ;
@@ -1198,6 +1329,14 @@
     sosa:isResultOf <http://createme.org/sampling/specimen/13> ;
     sosa:isSampleOf <http://createme.org/sample/field/13> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
+
+<http://createme.org/scientificName/15> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdf:value "Caladenia excelsa" ;
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/sample/field/1> a tern:FeatureOfInterest,
         tern:Sample ;
@@ -1303,16 +1442,6 @@
     sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
-<http://createme.org/sample/specimen/15> a tern:FeatureOfInterest,
-        tern:Sample ;
-    dcterms:identifier "ARACH32237"^^<http://createme.org/datatype/WAM> ;
-    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
-    rdfs:comment "specimen-sample" ;
-    sosa:isResultOf <http://createme.org/sampling/specimen/15> ;
-    sosa:isSampleOf <http://createme.org/sample/field/15> ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> ;
-    tern:hasAttribute <http://createme.org/attribute/preparations/15> .
-
 <http://createme.org/sample/field/15> a tern:FeatureOfInterest,
         tern:Sample ;
     dcterms:identifier "MR-456"^^<http://createme.org/datatype/WAM>,
@@ -1322,6 +1451,16 @@
     sosa:isResultOf <http://createme.org/sampling/field/15> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
+
+<http://createme.org/sample/specimen/15> a tern:FeatureOfInterest,
+        tern:Sample ;
+    dcterms:identifier "ARACH32237"^^<http://createme.org/datatype/WAM> ;
+    void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
+    rdfs:comment "specimen-sample" ;
+    sosa:isResultOf <http://createme.org/sampling/specimen/15> ;
+    sosa:isSampleOf <http://createme.org/sample/field/15> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> ;
+    tern:hasAttribute <http://createme.org/attribute/preparations/15> .
 
 <http://createme.org/location/Australia> a tern:FeatureOfInterest ;
     void:inDataset <http://createme.org/dataset/Example-DWC-MVP-Dataset> ;
@@ -1334,6 +1473,6 @@
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-06-02"^^xsd:date ;
+    dcterms:issued "2022-06-08"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
 

@@ -1,11 +1,11 @@
-"""Provides Unit Tests for the `abis_mapping.utils.checks` module"""
+"""Provides Unit Tests for the `abis_mapping.plugins.checks` module"""
 
 
 # Third-Party
 import frictionless
 
 # Local
-from abis_mapping import utils
+from abis_mapping import plugins
 
 
 def test_checks_valid_coordinates() -> None:
@@ -29,7 +29,7 @@ def test_checks_valid_coordinates() -> None:
     # Validate
     report: frictionless.Report = resource.validate(
         checks=[
-            utils.checks.ValidCoordinates(
+            plugins.checks.ValidCoordinates(
                 latitude_name="lat",
                 longitude_name="lon",
             ),
@@ -51,7 +51,7 @@ def test_checks_not_empty() -> None:
     # Validate
     report: frictionless.Report = resource.validate(
         checks=[
-            utils.checks.NotEmpty(),
+            plugins.checks.NotEmpty(),
         ]
     )
 
@@ -70,7 +70,7 @@ def test_checks_not_tabular() -> None:
     # Validate
     report: frictionless.Report = resource.validate(
         checks=[
-            utils.checks.NotTabular(),
+            plugins.checks.NotTabular(),
         ]
     )
 

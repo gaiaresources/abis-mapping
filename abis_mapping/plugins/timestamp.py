@@ -1,16 +1,15 @@
-"""Provides custom frictionless types for the package"""
+"""Provides custom frictionless timestamp plugin for the package"""
 
 
 # Standard
-import contextlib
 import datetime
 
 # Third-Party
-import dateutil.parser
 import frictionless
 
 # Local
-from abis_mapping.base import types
+from abis_mapping.utils import types
+from abis_mapping.utils import timestamps
 
 # Typing
 from typing import Any, Optional
@@ -37,7 +36,7 @@ class TimestampPlugin(frictionless.Plugin):
             # Return
             return TimestampType(field)
 
-        # Not out type
+        # Not our type
         return None
 
 
@@ -73,7 +72,7 @@ class TimestampType(frictionless.Type):
             # Catch Parsing Errors
             try:
                 # Parse
-                cell = parse_timestamp(cell)
+                cell = timestamps.parse_timestamp(cell)
 
             except ValueError:
                 # Invalid
@@ -93,45 +92,6 @@ class TimestampType(frictionless.Type):
         """
         # Serialize to ISO-8601 Format
         return cell.isoformat()
-
-
-# Helper Functions
-def parse_timestamp(raw: str) -> types.DateOrDatetime:
-    """Parses a string to a date or datetime with timezone
-
-    This function allows for the following formats:
-        (1): ISO86001 Date
-        (2): dd/mm/YYYY Date
-        (3): ISO86001 Datetime with Timezone
-
-    Args:
-        raw (str): Raw string to be parsed
-
-    Returns:
-        types.DateOrDatetime: Either a date or timezone aware datetime.
-
-    Raises:
-        ValueError: Raised if the string cannot be parsed as either a date or
-            timezone aware datetime
-    """
-    # (1) Try Parse as ISO86001 Date
-    with contextlib.suppress(Exception):
-        return datetime.date.fromisoformat(raw)
-
-    # (2) Try Parse as `dd/mm/YYYY` Date
-    with contextlib.suppress(Exception):
-        return datetime.datetime.strptime(raw, "%d/%m/%Y").date()
-
-    # (3) Try Parse as ISO Datetime with Timezone
-    with contextlib.suppress(Exception):
-        assert len(raw) > 10  # Shortcut to disable some formats we don't want
-        timestamp = dateutil.parser.isoparse(raw)
-        assert timestamp.tzinfo is not None
-        return timestamp
-
-    # Could not parse the string to a date or a datetime
-    # Raise a ValueError
-    raise ValueError(f"Could not parse '{raw}' as date or datetime with timezone")
 
 
 # Register Timestamp Plugin
