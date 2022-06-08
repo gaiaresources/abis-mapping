@@ -714,8 +714,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             uri=sampling_sequencing,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
-            sample_specimen=sample_specimen,
+            feature_of_interest=sample_specimen,
             sample_sequence=sample_sequence,
             graph=graph,
         )
@@ -725,8 +724,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             uri=sample_sequence,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
-            sample_specimen=sample_specimen,
+            feature_of_interest=sample_specimen,
             sampling_sequencing=sampling_sequencing,
             graph=graph,
         )
@@ -2427,8 +2425,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        sample_specimen: rdflib.URIRef,
+        feature_of_interest: rdflib.URIRef,
         sample_sequence: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2440,8 +2437,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset this belongs to
             sample_field (rdflib.URIRef): Sample Field associated with this
                 node
-            sample_specimen (rdflib.URIRef): Sample Specimen associated with
-                this node
+            feature_of_interest (rdflib.URIRef): Feature of Interest associated
+                with this node
             sample_sequence (rdflib.URIRef): Sample Sequence associated with
                 this node
             graph (rdflib.Graph): Graph to add to
@@ -2449,11 +2446,6 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Check Existence
         if not row["associatedSequences"]:
             return
-
-        # Choose Feature of Interest
-        # The Feature of Interest is the Specimen Sample if it is determined
-        # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
 
         # Create WKT from Latitude and Longitude
         wkt = utils.rdf.toWKT(
@@ -2470,7 +2462,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
         graph.add((geometry, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(row["eventDate"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SEQUENCING_METHOD[row["sequencingMethod"]]))
@@ -2502,8 +2494,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        sample_specimen: rdflib.URIRef,
+        feature_of_interest: rdflib.URIRef,
         sampling_sequencing: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2513,10 +2504,8 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
-                node
-            sample_specimen (rdflib.URIRef): Sample Specimen associated with
-                this node
+            feature_of_interest (rdflib.URIRef): Feature of Interest associated
+                with this node
             sampling_sequencing (rdflib.URIRef): Sampling Sequencing associated
                 with this node
             graph (rdflib.Graph): Graph to add to
@@ -2525,18 +2514,13 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not row["associatedSequences"]:
             return
 
-        # Choose Feature of Interest
-        # The Feature of Interest is the Specimen Sample if it is determined
-        # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
-
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, a, utils.namespaces.TERN.Sample))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequence-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_sequencing))
-        graph.add((uri, rdflib.SOSA.isSampleOf, foi))
+        graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SEQUENCE))
 
         # Loop Through Associated Sequences
@@ -2561,10 +2545,10 @@ def has_specimen(row: frictionless.Row) -> bool:
         bool: Whether this row has a specimen associated with it.
     """
     # Check Specimen Rules
-    if row["preparations"] or row["materialSampleID"]:
-        # If `preparations` and/or `materialSampleID` are provided, regardless
-        # of the value of `basisOfRecord` we can infer that there is a specimen
-        # associated with the row.
+    if row["preparations"] or row["materialSampleID"] or row["associatedSequences"]:
+        # If any of `preparations`, `materialSampleID` or `associatedSequences`
+        # are provided, regardless of the value of `basisOfRecord` we can infer
+        # that there is a specimen associated with the row.
         specimen = True
 
     elif not row["basisOfRecord"] or row["basisOfRecord"] in ("HumanObservation", "Occurrence"):
