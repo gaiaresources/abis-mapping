@@ -9,7 +9,7 @@ import datetime
 import dateutil.parser
 
 # Local
-from abis_mapping.utils import types
+from . import types
 
 
 def parse_timestamp(raw: str) -> types.DateOrDatetime:
