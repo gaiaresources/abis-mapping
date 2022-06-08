@@ -2552,16 +2552,16 @@ def has_specimen(row: frictionless.Row) -> bool:
         specimen = True
 
     elif not row["basisOfRecord"] or row["basisOfRecord"] in ("HumanObservation", "Occurrence"):
-        # Otherwise, if neither of `preparations` and `materialSampleID` were
-        # provided, and the `basisOfRecord` is either blank or one of
-        # "HumanObservation" or "Occurrence", then we cannot infer that there
-        # is a specimen associated with the row.
+        # Otherwise, if none of `preparations`, `materialSampleID` or
+        # `associatedSequences` were provided, and the `basisOfRecord` is
+        # either blank or one of "HumanObservation" or "Occurrence", then we
+        # cannot infer that there is a specimen associated with the row.
         specimen = False
 
     else:
-        # Finally, neither of `preparations` and `materialSampleID` were
-        # provided, but the `basisOfRecord` is a value that implies that there
-        # is a specimen associated with the row.
+        # Finally, none of `preparations`, `materialSampleID` or
+        # `associatedSequences` were provided, but the `basisOfRecord` is a
+        # value that implies that there is a specimen associated with the row.
         specimen = True
 
     # Return
