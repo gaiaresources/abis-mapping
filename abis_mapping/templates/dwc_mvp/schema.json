@@ -111,11 +111,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "human observation",
-          "by hand"
-        ]
+        "required": false
       }
     },
     {
@@ -148,16 +144,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "HumanObservation",
-          "Occurrence",
-          "PreservedSpecimen",
-          "FossilSpecimen",
-          "LivingSpecimen",
-          "MachineObservation",
-          "MaterialSample"
-        ]
+        "required": false
       }
     },
     {
@@ -179,11 +166,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "present",
-          "absent"
-        ]
+        "required": false
       }
     },
     {
@@ -194,11 +177,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "native",
-          "uncertain"
-        ]
+        "required": false
       }
     },
     {
@@ -231,11 +210,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "adult",
-          "seedling"
-        ]
+        "required": false
       }
     },
     {
@@ -246,12 +221,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "male",
-          "female",
-          "undetermined"
-        ]
+        "required": false
       }
     },
     {
@@ -262,11 +232,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "No breeding evident",
-          "Gravid"
-        ]
+        "required": false
       }
     },
     {
@@ -343,10 +309,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "Sanger dideoxy sequencing"
-        ]
+        "required": false
       }
     },
     {
@@ -390,11 +353,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "Visually identified in the field (sighting)",
-          "Visually identified based on collected evidence (voucher specimen)"
-        ]
+        "required": false
       }
     },
     {
@@ -449,12 +408,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true,
-        "enum": [
-          "Plantae",
-          "Animalia",
-          "Fungi"
-        ]
+        "required": true
       }
     },
     {
@@ -465,16 +419,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "kingdom",
-          "phylum",
-          "class",
-          "order",
-          "family",
-          "genus",
-          "species"
-        ]
+        "required": false
       }
     }
   ]

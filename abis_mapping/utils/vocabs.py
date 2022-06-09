@@ -45,7 +45,7 @@ class RestrictedVocabulary:
                 existing vocabulary term.
         """
         # Retrieve if Applicable
-        if iri := self.mapping.get(value):
+        if iri := self.mapping.get(value.upper()):  # Uppercase
             # Return
             return iri
 
@@ -61,7 +61,7 @@ class FlexibleVocabulary:
         definition: rdflib.Literal,
         base: rdflib.URIRef,
         scheme: rdflib.URIRef,
-        broader: rdflib.URIRef,
+        broader: Optional[rdflib.URIRef],
         default: Optional[rdflib.URIRef],
         mapping: dict[str, rdflib.URIRef],
     ) -> None:
@@ -74,8 +74,8 @@ class FlexibleVocabulary:
                 vocabulary term 'on the fly'.
             scheme (rdflib.URIRef): Scheme IRI to use when creating a new
                 vocabulary term 'on the fly'.
-            broader (rdflib.URIRef): Broader IRI to use when creating a new
-                vocabulary term 'on the fly'.
+            broader (Optional[rdflib.URIRef]): Optional broader IRI to use when
+                creating a new vocabulary term 'on the fly'.
             default (Optional[rdflib.URIRef]): Optional default IRI to fall
                 back on if a value is not supplied.
             mapping (dict[str, str]): Mapping of raw string values that can be
@@ -112,7 +112,7 @@ class FlexibleVocabulary:
                 default fall-back value in the vocabulary.
         """
         # Retrieve if Applicable
-        if iri := self.mapping.get(value):
+        if iri := self.mapping.get(value.upper() if value else None):  # Uppercase
             # Return
             return iri
 
@@ -128,8 +128,12 @@ class FlexibleVocabulary:
         graph.add((iri, a, rdflib.SKOS.Concept))
         graph.add((iri, rdflib.SKOS.definition, self.definition))
         graph.add((iri, rdflib.SKOS.inScheme, self.scheme))
-        graph.add((iri, rdflib.SKOS.broader, self.broader))
         graph.add((iri, rdflib.SKOS.prefLabel, rdflib.Literal(value)))
+
+        # Check for Broader IRI
+        if self.broader:
+            # Add Broader
+            graph.add((iri, rdflib.SKOS.broader, self.broader))
 
         # Return
         return iri
