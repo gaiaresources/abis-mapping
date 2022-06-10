@@ -1,4 +1,4 @@
-"""Provides ABIS Mapper for `dwc_mvp.csv` Template"""
+"""Provides ABIS Mapper for `occurrence_data.csv` Template"""
 
 
 # Standard
@@ -19,8 +19,8 @@ from typing import Iterator, Optional
 
 
 # Default Dataset Metadata
-DATASET_DEFAULT_NAME = "Example DWC MVP Dataset"
-DATASET_DEFAULT_DESCRIPTION = "Example DWC MVP Dataset by Gaia Resources"
+DATASET_DEFAULT_NAME = "Example Occurrence Data Dataset"
+DATASET_DEFAULT_DESCRIPTION = "Example Occurrence Data Dataset by Gaia Resources"
 
 # Constants and Shortcuts
 # These constants are specific to this template, and as such are defined here
@@ -51,18 +51,18 @@ CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.nam
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 
 
-class DWCMVPMapper(base.mapper.ABISMapper):
-    """ABIS Mapper for `dwc_mvp.csv`"""
+class OccurrenceDataMapper(base.mapper.ABISMapper):
+    """ABIS Mapper for `occurrence_data.csv`"""
 
     # Template ID and Instructions File
-    template_id = "dwc_mvp.csv"
+    template_id = "occurrence_data.csv"
     instructions_file = "instructions.pdf"
 
     def apply_validation(
         self,
         data: base.types.ReadableType,
     ) -> frictionless.Report:
-        """Applies Frictionless Validation for the `dwc_mvp.csv` Template
+        """Applies Frictionless Validation for the `occurrence_data.csv` Template
 
         Args:
             data (base.types.ReadableType): Raw data to be validated.
@@ -101,7 +101,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
     ) -> Iterator[rdflib.Graph]:
-        """Applies Mapping for the `dwc_mvp.csv` Template
+        """Applies Mapping for the `occurrence_data.csv` Template
 
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
@@ -177,7 +177,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
-        """Applies Mapping for a Row in the `dwc_mvp.csv` Template
+        """Applies Mapping for a Row in the `occurrence_data.csv` Template
 
         Args:
             row (frictionless.Row): Row to be processed in the dataset.
@@ -2552,4 +2552,4 @@ def has_specimen(row: frictionless.Row) -> bool:
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(DWCMVPMapper)
+base.mapper.ABISMapper.register_mapper(OccurrenceDataMapper)
