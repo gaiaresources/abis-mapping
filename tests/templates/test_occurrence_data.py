@@ -1,4 +1,4 @@
-"""Provides Unit Tests for the `dwc_mvp.csv` Template"""
+"""Provides Unit Tests for the `occurrence_data.csv` Template"""
 
 
 # Standard
@@ -10,9 +10,9 @@ import tests.conftest
 
 
 # Constants
-TEMPLATE_ID = "dwc_mvp.csv"
-DATA = pathlib.Path("abis_mapping/templates/dwc_mvp/examples/margaret_river_flora/margaret_river_flora.csv")
-EXPECTED = pathlib.Path("abis_mapping/templates/dwc_mvp/examples/margaret_river_flora/margaret_river_flora.ttl")
+TEMPLATE_ID = "occurrence_data.csv"
+DATA = pathlib.Path("abis_mapping/templates/occurrence_data/examples/margaret_river_flora/margaret_river_flora.csv")
+EXPECTED = pathlib.Path("abis_mapping/templates/occurrence_data/examples/margaret_river_flora/margaret_river_flora.ttl")
 
 
 def test_validation() -> None:
