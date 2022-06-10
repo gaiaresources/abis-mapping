@@ -12,6 +12,7 @@ import rdflib
 from abis_mapping import base
 from abis_mapping import utils
 from abis_mapping import plugins
+from abis_mapping import vocabs
 
 # Typing
 from typing import Iterator, Optional
@@ -48,256 +49,6 @@ CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri("concept/reproductiveCondition", 
 CONCEPT_ACCEPTED_NAME_USAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")  # noqa: E501
 CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-
-# Controlled Vocabularies
-VOCAB_GEODETIC_DATUM = utils.vocabs.RestrictedVocabulary(
-    mapping={
-        "AGD84": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4203"),
-        "EPSG:4203": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4203"),
-        "GDA2020": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/7844"),
-        "EPSG:7844": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/7844"),
-        "GDA94": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
-        "EPSG:4283": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
-        "WGS84": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
-        "EPSG:4326": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
-    },
-)
-VOCAB_SAMPLING_PROTOCOL = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of samplingProtocol."),
-    base=utils.rdf.uri("bdr-cv/methods/samplingProtocol/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c"),
-    broader=utils.rdf.uri("bdr-cv/methods/samplingProtocol", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=utils.rdf.uri("sampling-protocol/default", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    mapping={
-        "HUMAN OBSERVATION": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),  # noqa: E501
-        "UNSPECIFIED": utils.rdf.uri("sampling-protocol/default", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    },
-)
-VOCAB_KINGDOM = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of kingdom."),
-    base=utils.rdf.uri("bdr-cv/attribute/kingdom/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
-    broader=utils.rdf.uri("bdr-cv/attribute/kingdom", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=None,  # No default, kingdom is required in the CSV
-    mapping={
-        "ANIMALIA": utils.rdf.uri("kingdom/animalia", utils.namespaces.EXAMPLE),  # TODO -> Need real URI,
-        "PLANTAE": utils.rdf.uri("kingdom/plantae", utils.namespaces.EXAMPLE),  # TODO -> Need real URI,
-        "FUNGI": utils.rdf.uri("kingdom/fungi", utils.namespaces.EXAMPLE),  # TODO -> Need real URI,
-    },
-)
-VOCAB_KINGDOM_OCCURRENCE = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("The existence of the organism sampled at a particular place at a particular time."),
-    base=utils.rdf.uri("bdr-cv/featureType/occurrence/kingdom/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d"),
-    broader=None,  # No broader, top level concept
-    default=None,  # No default, kingdom is required in the CSV
-    mapping={
-        "ANIMALIA": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2361dea8-598c-4b6f-a641-2b98ff199e9e"),
-        "PLANTAE": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611"),
-        "FUNGI": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),
-    },
-)
-VOCAB_KINGDOM_SPECIMEN = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("An organism specimen."),
-    base=utils.rdf.uri("bdr-cv/featureType/specimen/kingdom/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d"),
-    broader=None,  # No broader, top level concept
-    default=None,  # No default, kingdom is required in the CSV
-    mapping={
-        "ANIMALIA": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/cd5cbdbb-07d9-4a5b-9b11-5ab9d6015be6"),
-        "PLANTAE": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb"),
-        "FUNGI": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),
-    },
-)
-VOCAB_TAXON_RANK = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of taxonRank."),
-    base=utils.rdf.uri("bdr-cv/attribute/taxonRank/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
-    broader=utils.rdf.uri("bdr-cv/attribute/taxonRank", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=None,  # No default, ommitted if not provided
-    mapping={
-        "CLASS": utils.rdf.uri("class", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "CULTIVAR": utils.rdf.uri("cultivar", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "CULTIVARGROUP": utils.rdf.uri("cultivargroup", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "FAMILY": utils.rdf.uri("family", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "FORM": utils.rdf.uri("form", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "GENUS": utils.rdf.uri("genus", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "INFORMAL": utils.rdf.uri("informal", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "INFRAGENERICNAME": utils.rdf.uri("infragenericname", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "INFRAORDER": utils.rdf.uri("infraorder", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "INFRASPECIFICNAME": utils.rdf.uri("infraspecificname", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "INFRASUBSPECIFICNAME": utils.rdf.uri("infrasubspecificname", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "KINGDOM": utils.rdf.uri("kingdom", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "ORDER": utils.rdf.uri("order", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "PHYLUM": utils.rdf.uri("phylum", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SECTION": utils.rdf.uri("section", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SERIES": utils.rdf.uri("series", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SPECIES": utils.rdf.uri("species", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SPECIESAGGREGATE": utils.rdf.uri("speciesaggregate", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBFAMILY": utils.rdf.uri("subfamily", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBFORM": utils.rdf.uri("subform", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBGENUS": utils.rdf.uri("subgenus", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBKINGDOM": utils.rdf.uri("subkingdom", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBORDER": utils.rdf.uri("suborder", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBSECTION": utils.rdf.uri("subsection", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBSERIES": utils.rdf.uri("subseries", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBSPECIES": utils.rdf.uri("subspecies", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBSPECIFICAGGREGATE": utils.rdf.uri("subspecificaggregate", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "SUBTRIBE": utils.rdf.uri("subtribe", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBVARIETY": utils.rdf.uri("subvariety", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUPERFAMILY": utils.rdf.uri("superfamily", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUPRAGENERICNAME": utils.rdf.uri("supragenericname", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "TRIBE": utils.rdf.uri("tribe", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "UNRANKED": utils.rdf.uri("unranked", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "VARIETY": utils.rdf.uri("variety", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    },
-)
-VOCAB_BASIS_OF_RECORD = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of basisOfRecord."),
-    base=utils.rdf.uri("bdr-cv/attribute/basisOfRecord/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
-    broader=utils.rdf.uri("bdr-cv/attribute/basisOfRecord", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=None,  # No default, ommitted if not provided
-    mapping={
-        "HUMANOBSERVATION": utils.rdf.uri("basisOfRecord/HumanObservation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-        "OCCURRENCE": utils.rdf.uri("basisOfRecord/Occurrence", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "PRESERVEDSPECIMEN": utils.rdf.uri("basisOfRecord/PreservedSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-        "FOSSILSPECIMEN": utils.rdf.uri("basisOfRecord/FossilSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-        "LIVINGSPECIMEN": utils.rdf.uri("basisOfRecord/LivingSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-        "MACHINEOBSERVATION": utils.rdf.uri("basisOfRecord/MachineObservation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-        "MATERIALSAMPLE": utils.rdf.uri("basisOfRecord/MaterialSample", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-    },
-)
-VOCAB_OCCURRENCE_STATUS = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of occurrenceStatus."),
-    base=utils.rdf.uri("bdr-cv/parameter/occurrenceStatus/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e"),
-    broader=utils.rdf.uri("bdr-cv/parameter/occurrenceStatus", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=None,  # No default, ommitted if not provided
-    mapping={
-        "PRESENT": utils.rdf.uri("occurrenceStatus/present", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "ABSENT": utils.rdf.uri("occurrenceStatus/absent", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    },
-)
-VOCAB_ESTABLISHMENT_MEANS = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of establishmentMeans."),
-    base=utils.rdf.uri("bdr-cv/parameter/establishmentMeans/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e"),
-    broader=utils.rdf.uri("bdr-cv/parameter/establishmentMeans", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=None,  # No default, ommitted if not provided
-    mapping={
-        "INTRODUCED": utils.rdf.uri("establishmentMeans/introduced", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "INTRODUCEDASSISTEDCOLONISATION": utils.rdf.uri("establishmentMeans/introducedAssistedColonisation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "NATIVE": utils.rdf.uri("establishmentMeans/native", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "NATIVEREINTRODUCED": utils.rdf.uri("establishmentMeans/nativeReintroduced", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "UNCERTAIN": utils.rdf.uri("establishmentMeans/uncertain", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "VAGRANT": utils.rdf.uri("establishmentMeans/vagrant", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    },
-)
-VOCAB_LIFE_STAGE = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of lifeStage."),
-    base=utils.rdf.uri("bdr-cv/parameter/lifeStage/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e"),
-    broader=utils.rdf.uri("bdr-cv/parameter/lifeStage", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=None,  # No default, ommitted if not provided
-    mapping={
-        "ADULT": utils.rdf.uri("lifeStage/adult", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "EMBRYO": utils.rdf.uri("lifeStage/embryo", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "GAMETE": utils.rdf.uri("lifeStage/gamete", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "GAMETOPHYTE": utils.rdf.uri("lifeStage/gametophyte", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "JUVENILE": utils.rdf.uri("lifeStage/juvenile", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "LARVA": utils.rdf.uri("lifeStage/larva", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "PUPA": utils.rdf.uri("lifeStage/pupa", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SPORE": utils.rdf.uri("lifeStage/spore", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SPOROPHYTE": utils.rdf.uri("lifeStage/sporophyte", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "ZYGOTE": utils.rdf.uri("lifeStage/zygote", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    },
-)
-VOCAB_SEX = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of sex."),
-    base=utils.rdf.uri("bdr-cv/parameter/sex/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e"),
-    broader=utils.rdf.uri("bdr-cv/parameter/sex", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=None,  # No default, ommitted if not provided
-    mapping={
-        "FEMALE": utils.rdf.uri("sex/female", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "HERMAPHRODITE": utils.rdf.uri("sex/hermaphrodite", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "MALE": utils.rdf.uri("sex/male", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "UNDETERMINED": utils.rdf.uri("sex/undetermined", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    },
-)
-VOCAB_REPRODUCTIVE_CONDITION = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of reproductiveCondition."),
-    base=utils.rdf.uri("bdr-cv/parameter/reproductiveCondition/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e"),
-    broader=utils.rdf.uri("bdr-cv/parameter/reproductiveCondition", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=None,  # No default, ommitted if not provided
-    mapping={},  # No baseline vocabulary values
-)
-VOCAB_IDENTIFICATION_METHOD = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of identificationMethod."),
-    base=utils.rdf.uri("bdr-cv/methods/identificationMethod/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c"),
-    broader=utils.rdf.uri("bdr-cv/methods/identificationMethod", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653"),
-    mapping={},  # No baseline vocabulary values
-)
-VOCAB_SEQUENCING_METHOD = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of sequencingMethod."),
-    base=utils.rdf.uri("bdr-cv/methods/sequencingMethod/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c"),
-    broader=utils.rdf.uri("bdr-cv/methods/sequencingMethod", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=utils.rdf.uri("sequencingMethod/default", utils.namespaces.EXAMPLE),   # TODO -> Need real URI
-    mapping={},  # No baseline vocabulary values
-)
-VOCAB_PREPARATIONS = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of preparations."),
-    base=utils.rdf.uri("bdr-cv/attribute/preparations/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
-    broader=utils.rdf.uri("bdr-cv/attribute/preparations", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=None,  # No default, ommitted if not provided
-    mapping={
-        "ALCOHOL": utils.rdf.uri("preparations/alcohol", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "DEEPFROZEN": utils.rdf.uri("preparations/deepFrozen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "DRIED": utils.rdf.uri("preparations/dried", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "DRIEDANDPRESSED": utils.rdf.uri("preparations/driedAndPressed", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "FORMALIN": utils.rdf.uri("preparations/formalin", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "FREEZEDRIED": utils.rdf.uri("preparations/freezeDried", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "GLYCERIN": utils.rdf.uri("preparations/glycerin", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "GUMARABIC": utils.rdf.uri("preparations/gumArabic", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "MICROSCOPICPREPARATION": utils.rdf.uri("preparations/microscopicPreparation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "MOUNTED": utils.rdf.uri("preparations/mounted", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "NOTREATMENT": utils.rdf.uri("preparations/noTreatment", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "OTHER": utils.rdf.uri("preparations/other", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "PINNED": utils.rdf.uri("preparations/pinned", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "REFRIGERATED": utils.rdf.uri("preparations/refrigerated", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    },
-)
-VOCAB_IDENTIFICATION_QUALIFIER = utils.vocabs.FlexibleVocabulary(
-    definition=rdflib.Literal("A type of identificationQualifier."),
-    base=utils.rdf.uri("bdr-cv/attribute/identificationQualifier/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
-    broader=utils.rdf.uri("bdr-cv/attribute/identificationQualifier", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-    default=None,  # No default, ommitted if not provided
-    mapping={
-        "ANIMALIA-CETERA": utils.rdf.uri("identificationQualifier/animalia-cetera", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "CONFER": utils.rdf.uri("identificationQualifier/confer", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "EX-GREGE": utils.rdf.uri("identificationQualifier/ex-grege", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "FAMILIA-GENUS-SPECIES": utils.rdf.uri("identificationQualifier/familia-genus-species", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "GENUS-ET-SPECIES-NOVA": utils.rdf.uri("identificationQualifier/genus-et-species-nova", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "GENUS-NOVUM": utils.rdf.uri("identificationQualifier/genus-novum", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "GENUS-SPECIES": utils.rdf.uri("identificationQualifier/genus-species", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "SP": utils.rdf.uri("identificationQualifier/sp", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SPECIES-AFFINIS": utils.rdf.uri("identificationQualifier/species-affinis", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "SPECIES-INCERTA": utils.rdf.uri("identificationQualifier/species-incerta", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "SPECIES-INDETERMINABILIS": utils.rdf.uri("identificationQualifier/species-indeterminabilis", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "SPECIES-NOVA": utils.rdf.uri("identificationQualifier/species-nova", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "SPECIES-PROXIMA": utils.rdf.uri("identificationQualifier/species-proxima", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-        "SPP": utils.rdf.uri("identificationQualifier/spp", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "STETIT": utils.rdf.uri("identificationQualifier/stetit", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-        "SUBSPECIES": utils.rdf.uri("identificationQualifier/subspecies", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-    },
-)
 
 
 class DWCMVPMapper(base.mapper.ABISMapper):
@@ -1028,7 +779,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         foi = sample_specimen if has_specimen(row) else sample_field
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_IDENTIFICATION_METHOD.get(graph, row["identificationMethod"])
+        vocab = vocabs.identification_method.IDENTIFICATION_METHOD.get(graph, row["identificationMethod"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -1115,7 +866,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         foi = sample_specimen if has_specimen(row) else sample_field
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_IDENTIFICATION_METHOD.get(graph, row["identificationMethod"])
+        vocab = vocabs.identification_method.IDENTIFICATION_METHOD.get(graph, row["identificationMethod"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -1182,11 +933,11 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         wkt = utils.rdf.toWKT(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
-            datum=VOCAB_GEODETIC_DATUM.get(row["geodeticDatum"]),
+            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
         )
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_SAMPLING_PROTOCOL.get(graph, row["samplingProtocol"])
+        vocab = vocabs.sampling_protocol.SAMPLING_PROTOCOL.get(graph, row["samplingProtocol"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -1279,7 +1030,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_IDENTIFICATION_QUALIFIER.get(graph, row["identificationQualifier"])
+        vocab = vocabs.identification_qualifier.IDENTIFICATION_QUALIFIER.get(graph, row["identificationQualifier"])
 
         # Identification Qualifier Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -1396,7 +1147,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         wkt = utils.rdf.toWKT(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
-            datum=VOCAB_GEODETIC_DATUM.get(row["geodeticDatum"]),
+            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
         )
 
         # Get Timestamp
@@ -1496,7 +1247,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_KINGDOM_OCCURRENCE.get(graph, row["kingdom"])
+        vocab = vocabs.kingdom.KINGDOM_OCCURRENCE.get(graph, row["kingdom"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
@@ -1552,7 +1303,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_KINGDOM_SPECIMEN.get(graph, row["kingdom"])
+        vocab = vocabs.kingdom.KINGDOM_SPECIMEN.get(graph, row["kingdom"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
@@ -1666,7 +1417,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_KINGDOM.get(graph, row["kingdom"])
+        vocab = vocabs.kingdom.KINGDOM.get(graph, row["kingdom"])
 
         # Kingdom Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -1721,7 +1472,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_TAXON_RANK.get(graph, row["taxonRank"])
+        vocab = vocabs.taxon_tank.TAXON_RANK.get(graph, row["taxonRank"])
 
         # Taxon Rank Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -1758,7 +1509,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         event_date = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_SAMPLING_PROTOCOL.get(graph, "human observation")  # Always Human Observation
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
 
         # Individual Count Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -1843,7 +1594,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         event_date = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_SAMPLING_PROTOCOL.get(graph, "human observation")  # Always Human Observation
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
 
         # Organism Remarks Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -1998,7 +1749,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_BASIS_OF_RECORD.get(graph, row["basisOfRecord"])
+        vocab = vocabs.basis_of_record.BASIS_OF_RECORD.get(graph, row["basisOfRecord"])
 
         # Basis of Record Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2088,7 +1839,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         event_date = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_SAMPLING_PROTOCOL.get(graph, "human observation")  # Always Human Observation
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
 
         # Occurrence Status Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -2131,7 +1882,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_OCCURRENCE_STATUS.get(graph, row["occurrenceStatus"])
+        vocab = vocabs.occurrence_status.OCCURRENCE_STATUS.get(graph, row["occurrenceStatus"])
 
         # Occurrence Status Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2186,7 +1937,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_PREPARATIONS.get(graph, row["preparations"])
+        vocab = vocabs.preparations.PREPARATIONS.get(graph, row["preparations"])
 
         # Preparations Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2223,7 +1974,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         event_date = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_SAMPLING_PROTOCOL.get(graph, "human observation")  # Always Human Observation
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
 
         # Establishment Means Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -2274,7 +2025,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_ESTABLISHMENT_MEANS.get(graph, row["establishmentMeans"])
+        vocab = vocabs.establishment_means.ESTABLISHMENT_MEANS.get(graph, row["establishmentMeans"])
 
         # Establishment Means Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2319,7 +2070,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         foi = sample_specimen if has_specimen(row) else sample_field
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_SAMPLING_PROTOCOL.get(graph, "human observation")  # Always Human Observation
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
 
         # Life Stage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -2370,7 +2121,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_LIFE_STAGE.get(graph, row["lifeStage"])
+        vocab = vocabs.life_stage.LIFE_STAGE.get(graph, row["lifeStage"])
 
         # Life Stage Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2414,7 +2165,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         foi = sample_specimen if has_specimen(row) else sample_field
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_SAMPLING_PROTOCOL.get(graph, "human observation")  # Always Human Observation
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
 
         # Sex Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -2465,7 +2216,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_SEX.get(graph, row["sex"])
+        vocab = vocabs.sex.SEX.get(graph, row["sex"])
 
         # Sex Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2510,7 +2261,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         foi = sample_specimen if has_specimen(row) else sample_field
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_SAMPLING_PROTOCOL.get(graph, "human observation")  # Always Human Observation
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
 
         # Reproductive Condition Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -2561,7 +2312,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_REPRODUCTIVE_CONDITION.get(graph, row["reproductiveCondition"])
+        vocab = vocabs.reproductive_condition.REPRODUCTIVE_CONDITION.get(graph, row["reproductiveCondition"])
 
         # Reproductive Condition Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2676,11 +2427,11 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         wkt = utils.rdf.toWKT(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
-            datum=VOCAB_GEODETIC_DATUM.get(row["geodeticDatum"]),
+            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
         )
 
         # Retrieve Vocab or Create on the Fly
-        vocab = VOCAB_SEQUENCING_METHOD.get(graph, row["sequencingMethod"])
+        vocab = vocabs.sequencing_method.SEQUENCING_METHOD.get(graph, row["sequencingMethod"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -2779,7 +2530,11 @@ def has_specimen(row: frictionless.Row) -> bool:
         # that there is a specimen associated with the row.
         specimen = True
 
-    elif not row["basisOfRecord"] or row["basisOfRecord"] in ("HumanObservation", "Occurrence"):
+    elif (
+        not row["basisOfRecord"]  # Blank
+        or vocabs.basis_of_record.HUMAN_OBSERVATION.match(row["basisOfRecord"])  # HumanObservation
+        or vocabs.basis_of_record.OCCURRENCE.match(row["basisOfRecord"])  # Occurrence
+    ):
         # Otherwise, if none of `preparations`, `materialSampleID` or
         # `associatedSequences` were provided, and the `basisOfRecord` is
         # either blank or one of "HumanObservation" or "Occurrence", then we

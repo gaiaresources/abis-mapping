@@ -12,18 +12,45 @@ import rdflib
 from abis_mapping import utils
 
 
+def test_vocabs_term() -> None:
+    """Tests the Term Class"""
+    # Create Term
+    term = utils.vocabs.Term(
+        labels=("A", "B", "C"),
+        iri=rdflib.URIRef("D"),
+    )
+
+    # Test Mapping
+    assert term.to_mapping() == {
+        "A": rdflib.URIRef("D"),
+        "B": rdflib.URIRef("D"),
+        "C": rdflib.URIRef("D"),
+    }
+
+    # Test Match
+    assert term.match("a")
+    assert term.match("A")
+    assert term.match("b")
+    assert term.match("B")
+    assert term.match("c")
+    assert term.match("C")
+    assert not term.match("X")
+
+
 def test_vocabs_restricted_vocab() -> None:
     """Tests the RestrictedVocab Class"""
     # Create Vocab
     vocab = utils.vocabs.RestrictedVocabulary(
-        mapping={
-            "A": rdflib.URIRef("A"),
-            "B": rdflib.URIRef("B"),
-        }
+        terms=(
+            utils.vocabs.Term(("A", ), rdflib.URIRef("A")),
+            utils.vocabs.Term(("B", ), rdflib.URIRef("B")),
+        ),
     )
 
     # Assert Existing Values
+    assert vocab.get("a") == rdflib.URIRef("A")
     assert vocab.get("A") == rdflib.URIRef("A")
+    assert vocab.get("b") == rdflib.URIRef("B")
     assert vocab.get("B") == rdflib.URIRef("B")
 
     # Assert Invalid Values
@@ -40,17 +67,19 @@ def test_vocabs_flexible_vocab() -> None:
         scheme=rdflib.URIRef("scheme"),
         broader=rdflib.URIRef("broader"),
         default=None,
-        mapping={
-            "A": rdflib.URIRef("A"),
-            "B": rdflib.URIRef("B"),
-        }
+        terms=(
+            utils.vocabs.Term(("A", ), rdflib.URIRef("A")),
+            utils.vocabs.Term(("B", ), rdflib.URIRef("B")),
+        ),
     )
 
     # Create Graph
     graph = rdflib.Graph()
 
     # Assert Existing Values
+    assert vocab.get(graph, "a") == rdflib.URIRef("A")
     assert vocab.get(graph, "A") == rdflib.URIRef("A")
+    assert vocab.get(graph, "b") == rdflib.URIRef("B")
     assert vocab.get(graph, "B") == rdflib.URIRef("B")
 
     # Assert New Values

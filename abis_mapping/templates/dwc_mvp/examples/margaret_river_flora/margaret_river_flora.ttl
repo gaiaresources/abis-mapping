@@ -58,11 +58,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/establishmentMeans/16> a tern:Observation ;
@@ -112,11 +112,11 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/lifeStage/15> a tern:Observation ;
@@ -130,11 +130,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/lifeStage/16> a tern:Observation ;
@@ -196,11 +196,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/organismRemarks/16> a tern:Observation ;
@@ -214,11 +214,11 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/reproductiveCondition/15> a tern:Observation ;
@@ -232,11 +232,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/reproductiveCondition/16> a tern:Observation ;
@@ -250,11 +250,11 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/scientificName/1> a tern:Observation ;
@@ -510,11 +510,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/sex/16> a tern:Observation ;
@@ -528,11 +528,11 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/1> a tern:Observation ;
@@ -942,12 +942,6 @@
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new identification qualifier" .
 
-<http://createme.org/bdr-cv/attribute/identificationQualifier/species-incerta> a skos:Concept ;
-    skos:broader <http://example.com/bdr-cv/attribute/identificationQualifier> ;
-    skos:definition "A type of identificationQualifier." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "species incerta" .
-
 <http://createme.org/bdr-cv/attribute/kingdom/new-kingdom> a skos:Concept ;
     skos:broader <http://example.com/bdr-cv/attribute/kingdom> ;
     skos:definition "A type of kingdom." ;
@@ -1286,11 +1280,11 @@
     sosa:hasResult <http://createme.org/sample/sequence/16> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/sampling/specimen/13> a tern:Sampling ;
@@ -1303,11 +1297,11 @@
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/13> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/15> a tern:Sampling ;
@@ -1529,7 +1523,7 @@
 <http://createme.org/value/identificationQualifier/15> a tern:IRI,
         tern:Value ;
     rdfs:label "identificationQualifier" ;
-    rdf:value <http://createme.org/bdr-cv/attribute/identificationQualifier/species-incerta> .
+    rdf:value <http://example.com/identificationQualifier/species-incerta> .
 
 <http://createme.org/value/identificationQualifier/16> a tern:IRI,
         tern:Value ;
@@ -1985,6 +1979,6 @@
 
 <http://createme.org/dataset/Example-DWC-MVP-Dataset> a tern:RDFDataset ;
     dcterms:description "Example DWC MVP Dataset by Gaia Resources" ;
-    dcterms:issued "2022-06-09"^^xsd:date ;
+    dcterms:issued "2022-06-10"^^xsd:date ;
     dcterms:title "Example DWC MVP Dataset" .
 
