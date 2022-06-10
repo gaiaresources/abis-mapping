@@ -12,6 +12,7 @@ import rdflib
 from abis_mapping import base
 from abis_mapping import utils
 from abis_mapping import plugins
+from abis_mapping import vocabs
 
 # Typing
 from typing import Iterator, Optional
@@ -48,90 +49,6 @@ CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri("concept/reproductiveCondition", 
 CONCEPT_ACCEPTED_NAME_USAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")  # noqa: E501
 CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-
-# Controlled Vocabularies
-VOCAB_GEODETIC_DATUM = {
-    # AGD84
-    "AGD84": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4203"),
-    "EPSG:4203": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4203"),
-    # GDA2020
-    "GDA2020": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/7844"),
-    "EPSG:7844": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/7844"),
-    # GDA94
-    "GDA94": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
-    "EPSG:4283": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
-    # WGS84
-    "WGS84": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
-    "EPSG:4326": rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
-}
-VOCAB_SAMPLING_PROTOCOL = {
-    None: utils.rdf.uri("sampling-protocol/default", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "human observation": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
-    "by hand": utils.rdf.uri("sampling-protocol/by-hand", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-}
-VOCAB_KINGDOM_OCCURRENCE = {
-    "Plantae": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611"),
-    "Animalia": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2361dea8-598c-4b6f-a641-2b98ff199e9e"),
-    "Fungi": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),
-}
-VOCAB_KINGDOM_SPECIMEN = {
-    "Plantae": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb"),
-    "Animalia": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/cd5cbdbb-07d9-4a5b-9b11-5ab9d6015be6"),
-    "Fungi": rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),  # TODO -> ?
-}
-VOCAB_KINGDOM = {
-    "Plantae": utils.rdf.uri("kingdom/plantae", utils.namespaces.EXAMPLE),  # TODO -> Need real URI,
-    "Animalia": utils.rdf.uri("kingdom/animalia", utils.namespaces.EXAMPLE),  # TODO -> Need real URI,
-    "Fungi": utils.rdf.uri("kingdom/fungi", utils.namespaces.EXAMPLE),  # TODO -> Need real URI,
-}
-VOCAB_TAXON_RANK = {
-    "kingdom": utils.rdf.uri("taxonRank/kingdom", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "phylum": utils.rdf.uri("taxonRank/phylum", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "class": utils.rdf.uri("taxonRank/class", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "order": utils.rdf.uri("taxonRank/order", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "family": utils.rdf.uri("taxonRank/family", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "genus": utils.rdf.uri("taxonRank/genus", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "species": utils.rdf.uri("taxonRank/species", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-}
-VOCAB_BASIS_OF_RECORD = {
-    "HumanObservation": utils.rdf.uri("basisOfRecord/HumanObservation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-    "Occurrence": utils.rdf.uri("basisOfRecord/Occurrence", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "PreservedSpecimen": utils.rdf.uri("basisOfRecord/PreservedSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-    "FossilSpecimen": utils.rdf.uri("basisOfRecord/FossilSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "LivingSpecimen": utils.rdf.uri("basisOfRecord/LivingSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "MachineObservation": utils.rdf.uri("basisOfRecord/MachineObservation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-    "MaterialSample": utils.rdf.uri("basisOfRecord/MaterialSample", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-}
-VOCAB_OCCURRENCE_STATUS = {
-    "present": utils.rdf.uri("occurrenceStatus/present", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "absent": utils.rdf.uri("occurrenceStatus/absent", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-}
-VOCAB_ESTABLISHMENT_MEANS = {
-    "native": utils.rdf.uri("establishmentMeans/native", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "uncertain": utils.rdf.uri("establishmentMeans/uncertain", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-}
-VOCAB_LIFE_STAGE = {
-    "adult": utils.rdf.uri("lifeStage/adult", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "seedling": utils.rdf.uri("lifeStage/seedling", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-}
-VOCAB_SEX = {
-    "male": utils.rdf.uri("sex/male", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "female": utils.rdf.uri("sex/female", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    "undetermined": utils.rdf.uri("sex/undetermined", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-}
-VOCAB_REPRODUCTIVE_CONDITION = {
-    "No breeding evident": utils.rdf.uri("reproductiveCondition/NoBreedingEvident", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-    "Gravid": utils.rdf.uri("reproductiveCondition/Gravid", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-}
-VOCAB_IDENTIFICATION_METHOD = {
-    None: rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653"),  # Default
-    "Visually identified in the field (sighting)": utils.rdf.uri("identificationMethod/Sighting", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-    "Visually identified based on collected evidence (voucher specimen)": utils.rdf.uri("identificationMethod/Voucher", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-}
-VOCAB_SEQUENCING_METHOD = {
-    None: utils.rdf.uri("sequencingMethod/default", utils.namespaces.EXAMPLE),  # Default  # TODO -> Need real URI
-    "Sanger dideoxy sequencing": utils.rdf.uri("sequencingMethod/Sanger-dideoxy-sequencing", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa:E501
-}
 
 
 class DWCMVPMapper(base.mapper.ABISMapper):
@@ -861,6 +778,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # that this row has a specimen, otherwise it is Field Sample
         foi = sample_specimen if has_specimen(row) else sample_field
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.identification_method.IDENTIFICATION_METHOD.get(graph, row["identificationMethod"])
+
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -874,7 +794,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(date_identified)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_IDENTIFICATION_METHOD[row["identificationMethod"]]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
@@ -945,6 +865,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # that this row has a specimen, otherwise it is Field Sample
         foi = sample_specimen if has_specimen(row) else sample_field
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.identification_method.IDENTIFICATION_METHOD.get(graph, row["identificationMethod"])
+
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -958,7 +881,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(date_identified)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_IDENTIFICATION_METHOD[row["identificationMethod"]]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
@@ -1010,8 +933,11 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         wkt = utils.rdf.toWKT(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
-            datum=VOCAB_GEODETIC_DATUM[row["geodeticDatum"]],
+            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
         )
+
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.sampling_protocol.SAMPLING_PROTOCOL.get(graph, row["samplingProtocol"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -1024,7 +950,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(row["eventDate"])))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL[row["samplingProtocol"]]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for recordedBy
         if row["recordedBy"]:
@@ -1103,10 +1029,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not row["identificationQualifier"]:
             return
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.identification_qualifier.IDENTIFICATION_QUALIFIER.get(graph, row["identificationQualifier"])
+
         # Identification Qualifier Value
-        graph.add((uri, a, utils.namespaces.TERN.Text))
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
-        graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["identificationQualifier"])))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("identificationQualifier")))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_id_remarks_attribute(
         self,
@@ -1217,7 +1147,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         wkt = utils.rdf.toWKT(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
-            datum=VOCAB_GEODETIC_DATUM[row["geodeticDatum"]],
+            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
         )
 
         # Get Timestamp
@@ -1316,6 +1246,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
                 associated with this node
             graph (rdflib.Graph): Graph to add to
         """
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.kingdom.KINGDOM_OCCURRENCE.get(graph, row["kingdom"])
+
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, a, utils.namespaces.TERN.Sample))
@@ -1323,7 +1256,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_field))
         graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
-        graph.add((uri, utils.namespaces.TERN.featureType, VOCAB_KINGDOM_OCCURRENCE[row["kingdom"]]))
+        graph.add((uri, utils.namespaces.TERN.featureType, vocab))
 
         # Check for recordID
         if row["recordID"]:
@@ -1369,6 +1302,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not has_specimen(row):
             return
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.kingdom.KINGDOM_SPECIMEN.get(graph, row["kingdom"])
+
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, a, utils.namespaces.TERN.Sample))
@@ -1376,7 +1312,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
         graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
-        graph.add((uri, utils.namespaces.TERN.featureType, VOCAB_KINGDOM_SPECIMEN[row["kingdom"]]))
+        graph.add((uri, utils.namespaces.TERN.featureType, vocab))
 
         # Check for materialSampleID and institutionCode
         if row["materialSampleID"] and row["institutionCode"]:
@@ -1480,11 +1416,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.kingdom.KINGDOM.get(graph, row["kingdom"])
+
         # Kingdom Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"kingdom = {row['kingdom']}")))
-        graph.add((uri, rdflib.RDF.value, VOCAB_KINGDOM[row["kingdom"]]))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_taxon_rank_attribute(
         self,
@@ -1532,11 +1471,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not row["taxonRank"]:
             return
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.taxon_tank.TAXON_RANK.get(graph, row["taxonRank"])
+
         # Taxon Rank Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"taxon rank = {row['taxonRank']}")))
-        graph.add((uri, rdflib.RDF.value, VOCAB_TAXON_RANK[row["taxonRank"]]))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_individual_count_observation(
         self,
@@ -1566,6 +1508,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Get Timestamp
         event_date = row["eventDate"]
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
+
         # Individual Count Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -1578,7 +1523,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
 
         # Add Temporal Qualifier
@@ -1648,6 +1593,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Get Timestamp
         event_date = row["eventDate"]
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
+
         # Organism Remarks Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -1660,7 +1608,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
 
         # Add Temporal Qualifier
@@ -1800,11 +1748,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not row["basisOfRecord"]:
             return
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.basis_of_record.BASIS_OF_RECORD.get(graph, row["basisOfRecord"])
+
         # Basis of Record Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("basisOfRecord")))
-        graph.add((uri, rdflib.RDF.value, VOCAB_BASIS_OF_RECORD[row["basisOfRecord"]]))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_institution_provider(
         self,
@@ -1887,6 +1838,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Get Timestamp
         event_date = row["eventDate"]
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
+
         # Occurrence Status Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -1899,7 +1853,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
 
         # Add Method Qualifier
@@ -1927,11 +1881,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not row["occurrenceStatus"]:
             return
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.occurrence_status.OCCURRENCE_STATUS.get(graph, row["occurrenceStatus"])
+
         # Occurrence Status Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"occurrenceStatus = {row['occurrenceStatus']}")))
-        graph.add((uri, rdflib.RDF.value, VOCAB_OCCURRENCE_STATUS[row["occurrenceStatus"]]))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_preparations_attribute(
         self,
@@ -1979,11 +1936,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not row["preparations"]:
             return
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.preparations.PREPARATIONS.get(graph, row["preparations"])
+
         # Preparations Value
-        graph.add((uri, a, utils.namespaces.TERN.Text))
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("preparations")))
-        graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["preparations"])))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_establishment_means_observation(
         self,
@@ -2013,6 +1973,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # Get Timestamp
         event_date = row["eventDate"]
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
+
         # Establishment Means Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -2025,7 +1988,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
 
         # Add Temporal Qualifier
@@ -2061,11 +2024,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not row["establishmentMeans"]:
             return
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.establishment_means.ESTABLISHMENT_MEANS.get(graph, row["establishmentMeans"])
+
         # Establishment Means Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("establishmentMeans-value")))
-        graph.add((uri, rdflib.RDF.value, VOCAB_ESTABLISHMENT_MEANS[row["establishmentMeans"]]))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_life_stage_observation(
         self,
@@ -2103,6 +2069,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # that this row has a specimen, otherwise it is Field Sample
         foi = sample_specimen if has_specimen(row) else sample_field
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
+
         # Life Stage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -2115,7 +2084,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
 
         # Add Temporal Qualifier
@@ -2151,11 +2120,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not row["lifeStage"]:
             return
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.life_stage.LIFE_STAGE.get(graph, row["lifeStage"])
+
         # Life Stage Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("lifeStage-value")))
-        graph.add((uri, rdflib.RDF.value, VOCAB_LIFE_STAGE[row["lifeStage"]]))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_sex_observation(
         self,
@@ -2192,6 +2164,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # that this row has a specimen, otherwise it is Field Sample
         foi = sample_specimen if has_specimen(row) else sample_field
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
+
         # Sex Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -2204,7 +2179,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
 
         # Add Temporal Qualifier
@@ -2240,11 +2215,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not row["sex"]:
             return
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.sex.SEX.get(graph, row["sex"])
+
         # Sex Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("sex-value")))
-        graph.add((uri, rdflib.RDF.value, VOCAB_SEX[row["sex"]]))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_reproductive_condition_observation(
         self,
@@ -2282,6 +2260,9 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         # that this row has a specimen, otherwise it is Field Sample
         foi = sample_specimen if has_specimen(row) else sample_field
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
+
         # Reproductive Condition Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
@@ -2294,7 +2275,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SAMPLING_PROTOCOL["human observation"]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(event_date)))
 
         # Add Temporal Qualifier
@@ -2330,11 +2311,14 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         if not row["reproductiveCondition"]:
             return
 
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.reproductive_condition.REPRODUCTIVE_CONDITION.get(graph, row["reproductiveCondition"])
+
         # Reproductive Condition Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("reproductiveCondition-value")))
-        graph.add((uri, rdflib.RDF.value, VOCAB_REPRODUCTIVE_CONDITION[row["reproductiveCondition"]]))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_accepted_name_usage_observation(
         self,
@@ -2443,8 +2427,11 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         wkt = utils.rdf.toWKT(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
-            datum=VOCAB_GEODETIC_DATUM[row["geodeticDatum"]],
+            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
         )
+
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.sequencing_method.SEQUENCING_METHOD.get(graph, row["sequencingMethod"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -2457,7 +2444,7 @@ class DWCMVPMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(row["eventDate"])))
-        graph.add((uri, rdflib.SOSA.usedProcedure, VOCAB_SEQUENCING_METHOD[row["sequencingMethod"]]))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for coordinateUncertaintyInMeters
         if row["coordinateUncertaintyInMeters"]:
@@ -2543,7 +2530,11 @@ def has_specimen(row: frictionless.Row) -> bool:
         # that there is a specimen associated with the row.
         specimen = True
 
-    elif not row["basisOfRecord"] or row["basisOfRecord"] in ("HumanObservation", "Occurrence"):
+    elif (
+        not row["basisOfRecord"]  # Blank
+        or vocabs.basis_of_record.HUMAN_OBSERVATION.match(row["basisOfRecord"])  # HumanObservation
+        or vocabs.basis_of_record.OCCURRENCE.match(row["basisOfRecord"])  # Occurrence
+    ):
         # Otherwise, if none of `preparations`, `materialSampleID` or
         # `associatedSequences` were provided, and the `basisOfRecord` is
         # either blank or one of "HumanObservation" or "Occurrence", then we

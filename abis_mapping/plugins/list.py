@@ -47,8 +47,9 @@ class ListType(frictionless.Type):
         # "enum",  # TODO -> Check whether this works
     ]
 
-    # Delimiter
-    delimiter = " "
+    # Serialization and Deserialization Delimiters
+    delimiter_deserialize = None  # Deserialize: Split on * whitespace
+    delimiter_serialize = " "  # Serialize: Join on 1 whitespace
 
     def read_cell(self, cell: Any) -> Optional[list[str]]:
         """Convert cell (read direction)
@@ -69,7 +70,7 @@ class ListType(frictionless.Type):
             # Split and Delegate Cell Parsing to the String Type
             cell = [
                 frictionless.types.StringType.read_cell(self, c)
-                for c in cell.split(self.delimiter)
+                for c in cell.split(self.delimiter_deserialize)
             ]
 
             # Check for Cell Parsing Failures
@@ -90,7 +91,7 @@ class ListType(frictionless.Type):
             str: Converted cell
         """
         # Join and Delegate Cell Serialization to the String Type
-        return self.delimiter.join(
+        return self.delimiter_serialize.join(
             frictionless.types.StringType.write_cell(self, c)
             for c in cell
         )

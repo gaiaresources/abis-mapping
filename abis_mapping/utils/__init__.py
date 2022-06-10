@@ -7,3 +7,4 @@ from . import namespaces
 from . import rdf
 from . import timestamps
 from . import types
+from . import vocabs
