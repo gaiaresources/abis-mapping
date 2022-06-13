@@ -322,6 +322,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self.add_id_qualifier_value(
             uri=id_qualifier_value,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -405,6 +406,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self.add_kingdom_value(
             uri=kingdom_value,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -421,6 +423,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self.add_taxon_rank_value(
             uri=taxon_rank_value,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -487,6 +490,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self.add_basis_value(
             uri=basis_value,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -519,6 +523,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self.add_occurrence_status_value(
             uri=occurrence_status_value,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -535,6 +540,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self.add_preparations_value(
             uri=preparations_value,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -552,6 +558,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self.add_establishment_means_value(
             uri=establishment_means_value,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -570,6 +577,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self.add_life_stage_value(
             uri=life_stage_value,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -588,6 +596,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self.add_sex_value(
             uri=sex_value,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -606,6 +615,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self.add_reproductive_condition_value(
             uri=reproductive_condition_value,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -779,7 +789,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         foi = sample_specimen if has_specimen(row) else sample_field
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.identification_method.IDENTIFICATION_METHOD.get(graph, row["identificationMethod"])
+        vocab = vocabs.identification_method.IDENTIFICATION_METHOD.get(
+            graph=graph,
+            value=row["identificationMethod"],
+            source=dataset,
+        )
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -866,7 +880,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         foi = sample_specimen if has_specimen(row) else sample_field
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.identification_method.IDENTIFICATION_METHOD.get(graph, row["identificationMethod"])
+        vocab = vocabs.identification_method.IDENTIFICATION_METHOD.get(
+            graph=graph,
+            value=row["identificationMethod"],
+            source=dataset,
+        )
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -937,7 +955,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         )
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sampling_protocol.SAMPLING_PROTOCOL.get(graph, row["samplingProtocol"])
+        vocab = vocabs.sampling_protocol.SAMPLING_PROTOCOL.get(
+            graph=graph,
+            value=row["samplingProtocol"],
+            source=dataset,
+        )
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -1016,6 +1038,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Identification Qualifier Value to the Graph
@@ -1023,6 +1046,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Check identificationQualifier
@@ -1030,7 +1054,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.identification_qualifier.IDENTIFICATION_QUALIFIER.get(graph, row["identificationQualifier"])
+        vocab = vocabs.identification_qualifier.IDENTIFICATION_QUALIFIER.get(
+            graph=graph,
+            value=row["identificationQualifier"],
+            source=dataset,
+        )
 
         # Identification Qualifier Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -1247,7 +1275,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.kingdom.KINGDOM_OCCURRENCE.get(graph, row["kingdom"])
+        vocab = vocabs.kingdom.KINGDOM_OCCURRENCE.get(
+            graph=graph,
+            value=row["kingdom"],
+            source=dataset,
+        )
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
@@ -1303,7 +1335,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.kingdom.KINGDOM_SPECIMEN.get(graph, row["kingdom"])
+        vocab = vocabs.kingdom.KINGDOM_SPECIMEN.get(
+            graph=graph,
+            value=row["kingdom"],
+            source=dataset,
+        )
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
@@ -1407,6 +1443,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Kingdom Value to the Graph
@@ -1414,10 +1451,15 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.kingdom.KINGDOM.get(graph, row["kingdom"])
+        vocab = vocabs.kingdom.KINGDOM.get(
+            graph=graph,
+            value=row["kingdom"],
+            source=dataset,
+        )
 
         # Kingdom Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -1458,6 +1500,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Taxon Rank Value to the Graph
@@ -1465,6 +1508,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -1472,7 +1516,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.taxon_tank.TAXON_RANK.get(graph, row["taxonRank"])
+        vocab = vocabs.taxon_tank.TAXON_RANK.get(
+            graph=graph,
+            value=row["taxonRank"],
+            source=dataset,
+        )
 
         # Taxon Rank Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -1735,6 +1783,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Basis of Record Value to the Graph
@@ -1742,6 +1791,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -1749,7 +1799,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.basis_of_record.BASIS_OF_RECORD.get(graph, row["basisOfRecord"])
+        vocab = vocabs.basis_of_record.BASIS_OF_RECORD.get(
+            graph=graph,
+            value=row["basisOfRecord"],
+            source=dataset,
+        )
 
         # Basis of Record Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -1868,6 +1922,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Occurrence Status Value to the Graph
@@ -1875,6 +1930,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -1882,7 +1938,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.occurrence_status.OCCURRENCE_STATUS.get(graph, row["occurrenceStatus"])
+        vocab = vocabs.occurrence_status.OCCURRENCE_STATUS.get(
+            graph=graph,
+            value=row["occurrenceStatus"],
+            source=dataset,
+        )
 
         # Occurrence Status Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -1923,6 +1983,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Preparations Value to the Graph
@@ -1930,6 +1991,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -1937,7 +1999,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.preparations.PREPARATIONS.get(graph, row["preparations"])
+        vocab = vocabs.preparations.PREPARATIONS.get(
+            graph=graph,
+            value=row["preparations"],
+            source=dataset,
+        )
 
         # Preparations Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2011,6 +2077,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Establishment Means Value to the Graph
@@ -2018,6 +2085,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2025,7 +2093,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.establishment_means.ESTABLISHMENT_MEANS.get(graph, row["establishmentMeans"])
+        vocab = vocabs.establishment_means.ESTABLISHMENT_MEANS.get(
+            graph=graph,
+            value=row["establishmentMeans"],
+            source=dataset,
+        )
 
         # Establishment Means Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2107,6 +2179,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Life Stage Value to the Graph
@@ -2114,6 +2187,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2121,7 +2195,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.life_stage.LIFE_STAGE.get(graph, row["lifeStage"])
+        vocab = vocabs.life_stage.LIFE_STAGE.get(
+            graph=graph,
+            value=row["lifeStage"],
+            source=dataset,
+        )
 
         # Life Stage Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2202,6 +2280,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sex Value to the Graph
@@ -2209,6 +2288,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2216,7 +2296,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sex.SEX.get(graph, row["sex"])
+        vocab = vocabs.sex.SEX.get(
+            graph=graph,
+            value=row["sex"],
+            source=dataset,
+        )
 
         # Sex Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2298,6 +2382,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Reproductive Condition Value to the Graph
@@ -2305,6 +2390,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node
             row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2312,7 +2398,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.reproductive_condition.REPRODUCTIVE_CONDITION.get(graph, row["reproductiveCondition"])
+        vocab = vocabs.reproductive_condition.REPRODUCTIVE_CONDITION.get(
+            graph=graph,
+            value=row["reproductiveCondition"],
+            source=dataset,
+        )
 
         # Reproductive Condition Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -2431,7 +2521,11 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         )
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sequencing_method.SEQUENCING_METHOD.get(graph, row["sequencingMethod"])
+        vocab = vocabs.sequencing_method.SEQUENCING_METHOD.get(
+            graph=graph,
+            value=row["sequencingMethod"],
+            source=dataset,
+        )
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))

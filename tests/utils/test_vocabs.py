@@ -83,12 +83,15 @@ def test_vocabs_flexible_vocab() -> None:
     assert vocab.get(graph, "B") == rdflib.URIRef("B")
 
     # Assert New Values
-    assert vocab.get(graph, "C") == rdflib.URIRef("base/C")
+    assert vocab.get(graph, "C", rdflib.URIRef("D")) == rdflib.URIRef("base/C")
     assert graph.serialize(format="ttl").strip() == textwrap.dedent(
         """
+        @prefix dcterms: <http://purl.org/dc/terms/> .
         @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+        @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
         <base/C> a skos:Concept ;
+            dcterms:source "D"^^xsd:anyURI ;
             skos:broader <broader> ;
             skos:definition "definition" ;
             skos:inScheme <scheme> ;

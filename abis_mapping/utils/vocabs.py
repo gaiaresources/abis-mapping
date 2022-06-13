@@ -139,7 +139,12 @@ class FlexibleVocabulary:
         if self.default:
             self.mapping.update({None: self.default.iri})
 
-    def get(self, graph: rdflib.Graph, value: Optional[str]) -> rdflib.URIRef:
+    def get(
+        self,
+        graph: rdflib.Graph,
+        value: Optional[str],
+        source: Optional[rdflib.URIRef] = None,
+    ) -> rdflib.URIRef:
         """Retrieves an IRI from the Vocabulary.
 
         If the value supplied is `None` (i.e., it was left blank in the CSV)
@@ -153,6 +158,8 @@ class FlexibleVocabulary:
             graph (rdflib.Graph): Graph to create a new vocabulary term in.
             value (Optional[str]): Possible raw string value to search for in
                 vocabulary.
+            source (Optional[rdflib.URIRef]): Optional source URI to attribute
+                a new vocabulary term to.
 
         Returns:
             rdflib.URIRef: Default, matching or created vocabulary IRI.
@@ -184,6 +191,14 @@ class FlexibleVocabulary:
         if self.broader:
             # Add Broader
             graph.add((iri, rdflib.SKOS.broader, self.broader))
+
+        # Check for Source URI
+        if source:
+            # Construct Source URI Literal
+            uri = rdflib.Literal(source, datatype=rdflib.XSD.anyURI)
+
+            # Add Source
+            graph.add((iri, rdflib.DCTERMS.source, uri))
 
         # Return
         return iri
