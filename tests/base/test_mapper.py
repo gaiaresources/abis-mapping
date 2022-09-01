@@ -9,9 +9,9 @@ from abis_mapping import base
 
 
 # Constants
-TEMPLATE_ID_REAL = "occurrence_data.csv"
+TEMPLATE_ID_REAL = ["occurrence_data.csv", "occurrence_extended.csv"]
 TEMPLATE_ID_FAKE = "fake"
-NUMBER_OF_TEMPLATES = 1
+NUMBER_OF_TEMPLATES = 2
 
 
 def test_base_get_mapper() -> None:
@@ -20,10 +20,11 @@ def test_base_get_mapper() -> None:
     fake_mapper = base.mapper.get_mapper(TEMPLATE_ID_FAKE)
     assert fake_mapper is None
 
-    # Test Real Template ID
-    real_mapper = base.mapper.get_mapper(TEMPLATE_ID_REAL)
-    assert real_mapper is not None
-    assert issubclass(real_mapper, base.mapper.ABISMapper)
+    # Test Real Template IDs
+    for template_id in TEMPLATE_ID_REAL:
+        real_mapper = base.mapper.get_mapper(template_id)
+        assert real_mapper is not None
+        assert issubclass(real_mapper, base.mapper.ABISMapper)
 
 
 def test_base_get_mappers() -> None:
@@ -37,44 +38,49 @@ def test_base_get_mappers() -> None:
     assert fake_mapper is None
 
     # Test Real Template ID
-    real_mapper = mappers.get(TEMPLATE_ID_REAL)
-    assert real_mapper is not None
-    assert issubclass(real_mapper, base.mapper.ABISMapper)
+    for template_id in TEMPLATE_ID_REAL:
+        real_mapper = mappers.get(template_id)
+        assert real_mapper is not None
+        assert issubclass(real_mapper, base.mapper.ABISMapper)
 
 
 def test_base_get_template() -> None:
     """Tests the functionality of the base mapper"""
     # Test Real Template ID
-    real_mapper = base.mapper.get_mapper(TEMPLATE_ID_REAL)
-    assert real_mapper is not None
-    template = real_mapper.template()
-    assert isinstance(template, pathlib.Path)
-    assert template.is_file()
+    for template_id in TEMPLATE_ID_REAL:
+        real_mapper = base.mapper.get_mapper(template_id)
+        assert real_mapper is not None
+        template = real_mapper.template()
+        assert isinstance(template, pathlib.Path)
+        assert template.is_file()
 
 
 def test_base_get_metadata() -> None:
     """Tests the functionality of the base mapper"""
     # Test Real Template ID
-    real_mapper = base.mapper.get_mapper(TEMPLATE_ID_REAL)
-    assert real_mapper is not None
-    metadata = real_mapper.metadata()
-    assert isinstance(metadata, dict)
+    for template_id in TEMPLATE_ID_REAL:
+        real_mapper = base.mapper.get_mapper(template_id)
+        assert real_mapper is not None
+        metadata = real_mapper.metadata()
+        assert isinstance(metadata, dict)
 
 
 def test_base_get_schema() -> None:
     """Tests the functionality of the base mapper"""
     # Test Real Template ID
-    real_mapper = base.mapper.get_mapper(TEMPLATE_ID_REAL)
-    assert real_mapper is not None
-    schema = real_mapper.schema()
-    assert isinstance(schema, dict)
+    for template_id in TEMPLATE_ID_REAL:
+        real_mapper = base.mapper.get_mapper(template_id)
+        assert real_mapper is not None
+        schema = real_mapper.schema()
+        assert isinstance(schema, dict)
 
 
 def test_base_get_instructions() -> None:
     """Tests the functionality of the base mapper"""
     # Test Real Template ID
-    real_mapper = base.mapper.get_mapper(TEMPLATE_ID_REAL)
-    assert real_mapper is not None
-    instructions = real_mapper.instructions()
-    assert isinstance(instructions, pathlib.Path)
-    assert instructions.is_file()
+    for template_id in TEMPLATE_ID_REAL:
+        real_mapper = base.mapper.get_mapper(template_id)
+        assert real_mapper is not None
+        instructions = real_mapper.instructions()
+        assert isinstance(instructions, pathlib.Path)
+        assert instructions.is_file()

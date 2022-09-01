@@ -1,0 +1,12 @@
+{
+    "id": "occurrence_extended.csv",
+    "label": "Occurrence Data Template (Extended)",
+    "version": "1.0.0",
+    "description": "An extended template to translate some Darwin Core fields",
+    "biodiversity_type": "Species Occurrences",
+    "spatial_type": "Point",
+    "file_type": "CSV",
+    "template_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/occurrence_extended/occurrence_extended.csv",
+    "schema_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/occurrence_extended/schema.json",
+    "instructions_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/occurrence_extended/instructions.pdf"
+}
