@@ -191,8 +191,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             rdflib.Graph: Graph with row mapped into it.
         """
         # Create URIs
-        institution_provider = utils.rdf.uri(f"provider/{row['institutionCode']}", base_iri)
-        institution_datatype = utils.rdf.uri(f"datatype/{row['institutionCode']}", base_iri)
+        institution_provider = utils.rdf.uri(f"provider/{row['ownerInstitutionCode']}", base_iri)
+        institution_datatype = utils.rdf.uri(f"datatype/{row['ownerInstitutionCode']}", base_iri)
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
         provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
         sample_field = utils.rdf.uri(f"sample/field/{row.row_number}", base_iri)
@@ -1295,8 +1295,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             # Add to Graph
             graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(row["recordID"])))
 
-        # Check for occurrenceID and institutionCode
-        if row["occurrenceID"] and row["institutionCode"]:
+        # Check for occurrenceID and ownerInstitutionCode
+        if row["occurrenceID"] and row["ownerInstitutionCode"]:
             # Create Occurrence ID
             occurrence_id = rdflib.Literal(row["occurrenceID"], datatype=institution_datatype)
 
@@ -1350,10 +1350,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
         graph.add((uri, utils.namespaces.TERN.featureType, vocab))
 
-        # Check for materialSampleID and institutionCode
-        if row["materialSampleID"] and row["institutionCode"]:
-            # Create Identifier by Concatenating `collectionCode` (if provided) and `materialSampleID`
-            identifier = f"{row['collectionCode'] or ''}{row['materialSampleID']}"
+        # Check for catalogNumber and ownerInstitutionCode
+        if row["catalogNumber"] and row["ownerInstitutionCode"]:
+            # Create Identifier by Concatenating `collectionCode` (if provided) and `catalogNumber`
+            identifier = f"{row['collectionCode'] or ''}{row['catalogNumber']}"
 
             # Add Identifier
             graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(identifier, datatype=institution_datatype)))
@@ -1817,7 +1817,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds Instititution Provider to the Graph
+        """Adds Institution Provider to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node
@@ -1826,12 +1826,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         """
         # TODO -> Retrieve this from a known list of institutions
         # Check Existence
-        if not row["institutionCode"]:
+        if not row["ownerInstitutionCode"]:
             return
 
         # Institution Provider
         graph.add((uri, a, rdflib.SDO.Organization))
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["institutionCode"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["ownerInstitutionCode"])))
         graph.add((uri, rdflib.SDO.url, rdflib.Literal("https://example.org/", datatype=rdflib.XSD.anyURI)))
 
     def add_institution_datatype(
@@ -1851,12 +1851,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         """
         # TODO -> Retrieve this from a known list of institutions
         # Check Existence
-        if not row["institutionCode"]:
+        if not row["ownerInstitutionCode"]:
             return
 
         # Label and Comment
-        label = f"{row['institutionCode']} identifiers"
-        comment = f"This is the identifier code system nominated by {row['institutionCode']}"
+        label = f"{row['ownerInstitutionCode']} identifiers"
+        comment = f"This is the identifier code system nominated by {row['ownerInstitutionCode']}"
 
         # Institution Data Type
         graph.add((uri, a, rdflib.RDFS.Datatype))
@@ -2618,8 +2618,8 @@ def has_specimen(row: frictionless.Row) -> bool:
         bool: Whether this row has a specimen associated with it.
     """
     # Check Specimen Rules
-    if row["preparations"] or row["materialSampleID"] or row["associatedSequences"]:
-        # If any of `preparations`, `materialSampleID` or `associatedSequences`
+    if row["preparations"] or row["catalogNumber"] or row["associatedSequences"]:
+        # If any of `preparations`, `catalogNumber` or `associatedSequences`
         # are provided, regardless of the value of `basisOfRecord` we can infer
         # that there is a specimen associated with the row.
         specimen = True
@@ -2629,14 +2629,14 @@ def has_specimen(row: frictionless.Row) -> bool:
         or vocabs.basis_of_record.HUMAN_OBSERVATION.match(row["basisOfRecord"])  # HumanObservation
         or vocabs.basis_of_record.OCCURRENCE.match(row["basisOfRecord"])  # Occurrence
     ):
-        # Otherwise, if none of `preparations`, `materialSampleID` or
+        # Otherwise, if none of `preparations`, `catalogNumber` or
         # `associatedSequences` were provided, and the `basisOfRecord` is
         # either blank or one of "HumanObservation" or "Occurrence", then we
         # cannot infer that there is a specimen associated with the row.
         specimen = False
 
     else:
-        # Finally, none of `preparations`, `materialSampleID` or
+        # Finally, none of `preparations`, `catalogNumber` or
         # `associatedSequences` were provided, but the `basisOfRecord` is a
         # value that implies that there is a specimen associated with the row.
         specimen = True

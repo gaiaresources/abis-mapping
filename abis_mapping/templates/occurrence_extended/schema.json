@@ -115,10 +115,10 @@
       }
     },
     {
-      "name": "habitat",
-      "title": "Habitat",
+      "name": "basisOfRecord",
+      "title": "Basis Of Record",
       "description": "...",
-      "example": "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam.",
+      "example": "HumanObservation",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -137,21 +137,10 @@
       }
     },
     {
-      "name": "basisOfRecord",
-      "title": "Basis Of Record",
+      "name": "recordNumber",
+      "title": "Record Number",
       "description": "...",
-      "example": "HumanObservation",
-      "type": "string",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "occurrenceID",
-      "title": "Occurrence ID",
-      "description": "...",
-      "example": "MR-456",
+      "example": "PE:12:8832",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -163,6 +152,17 @@
       "title": "Occurrence Status",
       "description": "...",
       "example": "present",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "habitat",
+      "title": "Habitat",
+      "description": "...",
+      "example": "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam.",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -236,10 +236,10 @@
       }
     },
     {
-      "name": "preparations",
-      "title": "Preparations",
+      "name": "institutionCode",
+      "title": "Institution Code",
       "description": "...",
-      "example": "Wet (in ethanol or some other preservative)",
+      "example": "BHP",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -247,19 +247,30 @@
       }
     },
     {
-      "name": "preparedDate",
-      "title": "Prepared Date",
+      "name": "otherCatalogNumbers",
+      "title": "Other Catalog Numbers",
       "description": "...",
-      "example": "2019-09-25T10:02+08:00",
-      "type": "timestamp",
+      "example": "BHP2012-7521 | M12378",
+      "type": "list",
       "format": "default",
       "constraints": {
         "required": false
       }
     },
     {
-      "name": "institutionCode",
-      "title": "Institution Code",
+      "name": "occurrenceID",
+      "title": "Occurrence ID",
+      "description": "...",
+      "example": "MR-456",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "ownerInstitutionCode",
+      "title": "Owner Institution Code",
       "description": "...",
       "example": "WAM",
       "type": "string",
@@ -280,11 +291,33 @@
       }
     },
     {
-      "name": "materialSampleID",
-      "title": "Material Sample ID",
+      "name": "catalogNumber",
+      "title": "Catalog Number",
       "description": "...",
-      "example": "32237",
+      "example": "1234568.1",
       "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "preparations",
+      "title": "Preparations",
+      "description": "...",
+      "example": "Wet (in ethanol or some other preservative)",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "preparedDate",
+      "title": "Prepared Date",
+      "description": "...",
+      "example": "2019-09-25T10:02+08:00",
+      "type": "timestamp",
       "format": "default",
       "constraints": {
         "required": false
@@ -416,6 +449,81 @@
       "title": "Taxon Rank",
       "description": "...",
       "example": "species",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "threatStatus",
+      "title": "Threat Status",
+      "description": "...",
+      "example": "VU",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "EX",
+          "EW",
+          "CR",
+          "EN",
+          "VU",
+          "NT",
+          "LC"
+        ]
+      }
+    },
+    {
+      "name": "conservationJurisdiction",
+      "title": "Conservation Jurisdiction",
+      "description": "...",
+      "example": "WA",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "WA",
+          "NT",
+          "SA",
+          "QLD",
+          "NSW",
+          "VIC",
+          "TAS",
+          "ACT",
+          "JBT"
+        ]
+      }
+    },
+    {
+      "name": "threatStatusCheckProtocol",
+      "title": "Threat Status Check Protocol",
+      "description": "...",
+      "example": "Check against Threatened and Priority Fauna List WA available from https://www.dpaw.wa.gov.au/plants-and-animals/threatened-species-and-communities/threatened-animals. Last updated 13 June 2022",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "threatStatusDateDetermined",
+      "title": "Threat Status Date Determined",
+      "description": "...",
+      "example": "30/08/2022",
+      "type": "timestamp",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "threatStatusDeterminedBy",
+      "title": "Threat Status Determined By",
+      "description": "...",
+      "example": "WA-BIO",
       "type": "string",
       "format": "default",
       "constraints": {
