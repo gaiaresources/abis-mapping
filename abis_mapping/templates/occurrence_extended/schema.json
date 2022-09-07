@@ -236,28 +236,6 @@
       }
     },
     {
-      "name": "institutionCode",
-      "title": "Institution Code",
-      "description": "...",
-      "example": "BHP",
-      "type": "string",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "otherCatalogNumbers",
-      "title": "Other Catalog Numbers",
-      "description": "...",
-      "example": "BHP2012-7521 | M12378",
-      "type": "list",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
       "name": "occurrenceID",
       "title": "Occurrence ID",
       "description": "...",
@@ -296,6 +274,28 @@
       "description": "...",
       "example": "1234568.1",
       "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "institutionCode",
+      "title": "Institution Code",
+      "description": "...",
+      "example": "BHP",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "otherCatalogNumbers",
+      "title": "Other Catalog Numbers",
+      "description": "...",
+      "example": "BHP2012-7521 | M12378",
+      "type": "list",
       "format": "default",
       "constraints": {
         "required": false
