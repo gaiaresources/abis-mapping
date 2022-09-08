@@ -21,12 +21,12 @@ from typing import Optional
     argvalues=[
         # Valid
         ("list", True, " "),
-        ("list[]", True, " "),
         ("list[ ]", True, " "),
         ("list[|]", True, "|"),
 
         # Invalid
         ("any", False, None),
+        ("list[]", False, None),
         ("list[", False, None),
         ("list]", False, None),
         ("list[ ", False, None),

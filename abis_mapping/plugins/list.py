@@ -12,7 +12,7 @@ from typing import Any, Optional
 
 
 # Code and Delimiter Detection Regex
-REGEX_CODE_DELIMITER = re.compile(r"^list(?:\[(.*)\])?$")
+REGEX_CODE_DELIMITER = re.compile(r"^list(?:\[(.+)\])?$")
 
 
 class ListPlugin(frictionless.Plugin):
