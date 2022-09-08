@@ -9,7 +9,7 @@ import pytest
 from abis_mapping import plugins
 
 # Typing
-from typing import Optional
+from typing import Any, Optional
 
 
 @pytest.mark.parametrize(
@@ -20,12 +20,13 @@ from typing import Optional
     ],
     argvalues=[
         # Valid
-        ("list", True, " "),
-        ("list[ ]", True, " "),
+        ("list", True, "|"),
         ("list[|]", True, "|"),
+        ("list[ ]", True, " "),
+        ("list[anything]", True, "anything"),
 
         # Invalid
-        ("any", False, None),
+        ("anything", False, None),
         ("list[]", False, None),
         ("list[", False, None),
         ("list]", False, None),
@@ -65,47 +66,100 @@ def test_list_plugin(
         assert result is None
 
 
-def test_list_type_uris_space() -> None:
-    """Tests the List Type with URIs and Space Delimiter"""
+@pytest.mark.parametrize(
+    argnames=[
+        "format",
+        "delimiter",
+        "value",
+        "expected",
+    ],
+    argvalues=[
+        # Valid
+        ("default", " ", "a b c", ["a", "b", "c"]),
+        ("default", " ", "a   b   c", ["a", "b", "c"]),
+        ("default", "|", "a|b|c", ["a", "b", "c"]),
+        ("default", "|", "a | b | c", ["a", "b", "c"]),
+        ("uri", " ", "https://a.com", ["https://a.com"]),
+        ("uri", " ", "https://a.com https://b.com", ["https://a.com", "https://b.com"]),
+        ("uri", " ", "https://a.com  https://b.com", ["https://a.com", "https://b.com"]),
+        ("uri", " ", "https://a.com       https://b.com", ["https://a.com", "https://b.com"]),
+        ("uri", "|", "https://a.com", ["https://a.com"]),
+        ("uri", "|", "https://a.com|https://b.com", ["https://a.com", "https://b.com"]),
+        ("uri", "|", "https://a.com|||https://b.com", ["https://a.com", "https://b.com"]),
+        ("uri", "|", "https://a.com | https://b.com", ["https://a.com", "https://b.com"]),
+        ("uri", "|", "https://a.com   |   https://b.com", ["https://a.com", "https://b.com"]),
+        ("uri", "|", "https://a.com   ||||   https://b.com", ["https://a.com", "https://b.com"]),
+
+        # Invalid
+        ("uri", "|", 123, None),
+        ("uri", "|", "a", None),
+        ("uri", "|", "a|b|c", None),
+    ]
+)
+def test_list_type_read(
+    format: str,
+    delimiter: str,
+    value: Any,
+    expected: Optional[list[str]],
+) -> None:
+    """Tests the List Type Read Cell Functionality.
+
+    Args:
+        format (str): Format of the string field to test.
+        delimiter (str): Delimiter of the list type to test.
+        value (Any): Value to read and test.
+        expected (Optional[list[str]]): Expected outcome of reading the value.
+    """
     # Instantiate the Type
-    type = plugins.list.ListType(field=frictionless.Field(format="uri"))
-    type.delimiter = " "  # Space Delimiter
+    type = plugins.list.ListType(field=frictionless.Field(format=format))
+    type.delimiter = delimiter
 
-    # Read Invalid Cells
-    assert type.read_cell(123) is None
-    assert type.read_cell("a") is None
-    assert type.read_cell("a b c") is None
+    # Read Cell
+    result = type.read_cell(value)
 
-    # Read Valid Cells
-    assert type.read_cell("https://a.com") == ["https://a.com"]
-    assert type.read_cell("https://a.com https://b.com") == ["https://a.com", "https://b.com"]
-    assert type.read_cell("https://a.com  https://b.com") == ["https://a.com", "https://b.com"]
-    assert type.read_cell("https://a.com       https://b.com") == ["https://a.com", "https://b.com"]
+    # Check Result
+    assert result == expected
+
+
+@pytest.mark.parametrize(
+    argnames=[
+        "format",
+        "delimiter",
+        "value",
+        "expected",
+    ],
+    argvalues=[
+        # Valid
+        ("default", " ", ["a"], "a"),
+        ("default", " ", ["a", "b", "c"], "a b c"),
+        ("default", "|", ["a"], "a"),
+        ("default", "|", ["a", "b", "c"], "a|b|c"),
+        ("uri", " ", ["https://a.com"], "https://a.com"),
+        ("uri", " ", ["https://a.com", "https://b.com"], "https://a.com https://b.com"),
+        ("uri", "|", ["https://a.com"], "https://a.com"),
+        ("uri", "|", ["https://a.com", "https://b.com"], "https://a.com|https://b.com"),
+    ]
+)
+def test_list_type_write(
+    format: str,
+    delimiter: str,
+    value: list[str],
+    expected: str,
+) -> None:
+    """Tests the List Type Write Cell Functionality.
+
+    Args:
+        format (str): Format of the string field to test.
+        delimiter (str): Delimiter of the list type to test.
+        value (list[str]): Value to write and test.
+        expected (str): Expected outcome of writing the value.
+    """
+    # Instantiate the Type
+    type = plugins.list.ListType(field=frictionless.Field(format=format))
+    type.delimiter = delimiter
 
     # Write Cell
-    assert type.write_cell(["https://a.com"]) == "https://a.com"
-    assert type.write_cell(["https://a.com", "https://b.com"]) == "https://a.com https://b.com"
+    result = type.write_cell(value)
 
-
-def test_list_type_uris_pipe() -> None:
-    """Tests the List Type with URIs and Pipe Delimiter"""
-    # Instantiate the Type
-    type = plugins.list.ListType(field=frictionless.Field(format="uri"))
-    type.delimiter = "|"  # Pipe Delimiter
-
-    # Read Invalid Cells
-    assert type.read_cell(123) is None
-    assert type.read_cell("a") is None
-    assert type.read_cell("a b c") is None
-
-    # Read Valid Cells
-    assert type.read_cell("https://a.com") == ["https://a.com"]
-    assert type.read_cell("https://a.com|https://b.com") == ["https://a.com", "https://b.com"]
-    assert type.read_cell("https://a.com|||https://b.com") == ["https://a.com", "https://b.com"]
-    assert type.read_cell("https://a.com | https://b.com") == ["https://a.com", "https://b.com"]
-    assert type.read_cell("https://a.com   |   https://b.com") == ["https://a.com", "https://b.com"]
-    assert type.read_cell("https://a.com   ||||   https://b.com") == ["https://a.com", "https://b.com"]
-
-    # Write Cell
-    assert type.write_cell(["https://a.com"]) == "https://a.com"
-    assert type.write_cell(["https://a.com", "https://b.com"]) == "https://a.com|https://b.com"
+    # Check Result
+    assert result == expected

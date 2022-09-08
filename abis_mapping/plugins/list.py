@@ -67,7 +67,7 @@ class ListType(frictionless.Type):
     ]
 
     # Serialization and Deserialization Delimiter
-    delimiter = " "  # Default Delimiter is Space
+    delimiter = "|"  # Default Delimiter is Pipe
 
     def read_cell(self, cell: Any) -> Optional[list[str]]:
         """Convert cell (read direction)
