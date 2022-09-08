@@ -327,7 +327,7 @@
       "name": "associatedSequences",
       "title": "Associated Sequences",
       "description": "...",
-      "example": "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1 https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
+      "example": "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1 | https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
       "type": "list",
       "format": "default",
       "constraints": {

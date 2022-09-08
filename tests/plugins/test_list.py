@@ -36,8 +36,11 @@ def test_list_type() -> None:
 
     # Read Valid Cells
     assert type.read_cell("https://a.com") == ["https://a.com"]
-    assert type.read_cell("https://a.com https://b.com") == ["https://a.com", "https://b.com"]
+    assert type.read_cell("https://a.com|https://b.com") == ["https://a.com", "https://b.com"]
+    assert type.read_cell("https://a.com | https://b.com") == ["https://a.com", "https://b.com"]
+    assert type.read_cell("https://a.com   |   https://b.com") == ["https://a.com", "https://b.com"]
+    assert type.read_cell("https://a.com   |||   https://b.com") == ["https://a.com", "https://b.com"]
 
     # Write Cell
     assert type.write_cell(["https://a.com"]) == "https://a.com"
-    assert type.write_cell(["https://a.com", "https://b.com"]) == "https://a.com https://b.com"
+    assert type.write_cell(["https://a.com", "https://b.com"]) == "https://a.com|https://b.com"
