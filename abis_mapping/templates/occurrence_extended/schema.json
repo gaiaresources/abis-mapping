@@ -295,7 +295,7 @@
       "title": "Other Catalog Numbers",
       "description": "...",
       "example": "BHP2012-7521 | M12378",
-      "type": "list",
+      "type": "list[|]",
       "format": "default",
       "constraints": {
         "required": false
@@ -328,7 +328,7 @@
       "title": "Associated Sequences",
       "description": "...",
       "example": "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1 | https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
-      "type": "list",
+      "type": "list[|]",
       "format": "default",
       "constraints": {
         "required": false

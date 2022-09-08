@@ -1,11 +1,18 @@
 """Provides custom frictionless list plugin for the package"""
 
 
+# Standard
+import re
+
 # Third-Party
 import frictionless
 
 # Typing
 from typing import Any, Optional
+
+
+# Code and Delimiter Detection Regex
+REGEX_CODE_DELIMITER = re.compile(r"^list(?:\[(.*)\])?$")
 
 
 class ListPlugin(frictionless.Plugin):
@@ -24,10 +31,22 @@ class ListPlugin(frictionless.Plugin):
         Returns:
             Optional[frictionless.Type]: Possible type from this plugin.
         """
-        # Check for our type
-        if field.type == ListType.code:
+        # Perform Regex
+        matches = REGEX_CODE_DELIMITER.match(field.type)
+
+        # Check for Match
+        if matches:
+            # Extract Delimiter
+            delimiter = matches.group(1)
+
+            # Create List Type
+            field_type = ListType(field)
+
+            # Set Delimiter
+            field_type.delimiter = delimiter or ListType.delimiter  # Handle Default
+
             # Return
-            return ListType(field)
+            return field_type
 
         # Not our type
         return None
@@ -48,7 +67,7 @@ class ListType(frictionless.Type):
     ]
 
     # Serialization and Deserialization Delimiter
-    delimiter = "|"
+    delimiter = " "  # Default Delimiter is Space
 
     def read_cell(self, cell: Any) -> Optional[list[str]]:
         """Convert cell (read direction)
