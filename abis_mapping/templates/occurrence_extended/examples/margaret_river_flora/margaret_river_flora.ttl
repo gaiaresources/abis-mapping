@@ -12,6 +12,18 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<http://createme.org/attribute/conservationJurisdiction/15> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7> ;
+    tern:hasSimpleValue "WA" ;
+    tern:hasValue <http://createme.org/value/conservationJurisdiction/15> .
+
+<http://createme.org/attribute/conservationJurisdiction/16> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7> ;
+    tern:hasSimpleValue "WA" ;
+    tern:hasValue <http://createme.org/value/conservationJurisdiction/16> .
+
 <http://createme.org/datatype/WAM> a rdfs:Datatype ;
     rdfs:label "WAM identifiers" ;
     rdfs:comment "This is the identifier code system nominated by WAM" ;
@@ -94,11 +106,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/individualCount/16> a tern:Observation ;
@@ -112,11 +124,11 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/lifeStage/15> a tern:Observation ;
@@ -148,11 +160,11 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/occurrenceStatus/15> a tern:Observation ;
@@ -214,11 +226,11 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/reproductiveCondition/15> a tern:Observation ;
@@ -510,11 +522,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/sex/16> a tern:Observation ;
@@ -534,6 +546,32 @@
             rdf:value tern:resultDateTime ;
             rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
+
+<http://createme.org/observation/threatStatus/15> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    rdfs:comment "threatStatus-observation" ;
+    prov:wasInfluencedBy <https://sws.geonames.org/2058645/> ;
+    sosa:hasFeatureOfInterest <http://createme.org/value/acceptedNameUsage/15> ;
+    sosa:hasResult <http://createme.org/value/threatStatus/15> ;
+    sosa:hasSimpleResult "VU" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6> ;
+    sosa:phenomenonTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:usedProcedure <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https//www-dpaw-wa-gov-au/plants-and-animals/threatened-species-and-communities/threatened-animals-Last-updated-13-June-2022> ;
+    tern:resultDateTime "2022-09-12"^^xsd:date .
+
+<http://createme.org/observation/threatStatus/16> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    rdfs:comment "threatStatus-observation" ;
+    prov:wasInfluencedBy <https://sws.geonames.org/2058645/> ;
+    sosa:hasFeatureOfInterest <http://createme.org/value/acceptedNameUsage/16> ;
+    sosa:hasResult <http://createme.org/value/threatStatus/16> ;
+    sosa:hasSimpleResult "new threat status" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6> ;
+    sosa:phenomenonTime [ a time:Instant ;
+            time:inXSDDate "2019-09-25"^^xsd:date ] ;
+    sosa:usedProcedure <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> ;
+    tern:resultDateTime "2022-09-12"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/1> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
@@ -1005,6 +1043,20 @@
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "new sequencing method" .
 
+<http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https//www-dpaw-wa-gov-au/plants-and-animals/threatened-species-and-communities/threatened-animals-Last-updated-13-June-2022> a skos:Concept ;
+    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    skos:broader <http://example.com/bdr-cv/methods/threatStatusCheckProtocol> ;
+    skos:definition "A type of threatStatusCheckProtocol." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:prefLabel "Check against Threatened and Priority Fauna List WA available from https://www.dpaw.wa.gov.au/plants-and-animals/threatened-species-and-communities/threatened-animals. Last updated 13 June 2022" .
+
+<http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> a skos:Concept ;
+    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    skos:broader <http://example.com/bdr-cv/methods/threatStatusCheckProtocol> ;
+    skos:definition "A type of threatStatusCheckProtocol." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:prefLabel "a random selection" .
+
 <http://createme.org/bdr-cv/parameter/establishmentMeans/new-establishment-means> a skos:Concept ;
     dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/establishmentMeans> ;
@@ -1046,6 +1098,13 @@
     skos:definition "A type of sex." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new sex" .
+
+<http://createme.org/bdr-cv/parameter/threatStatus/WA/new-threat-status> a skos:Concept ;
+    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    skos:broader <http://example.com/bdr-cv/parameter/threatStatus> ;
+    skos:definition "A type of threatStatus." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:prefLabel "WA/new threat status" .
 
 <http://createme.org/provider/WAM> a schema:Organization ;
     schema:name "WAM" ;
@@ -1280,11 +1339,11 @@
     sosa:hasResult <http://createme.org/sample/sequence/15> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/sequencing/16> a tern:Sampling ;
@@ -1297,11 +1356,11 @@
     sosa:hasResult <http://createme.org/sample/sequence/16> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/sampling/specimen/13> a tern:Sampling ;
@@ -1465,16 +1524,6 @@
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
-<http://createme.org/value/acceptedNameUsage/15> a tern:Text,
-        tern:Value ;
-    rdfs:label "acceptedNameUsage-value" ;
-    rdf:value "Caladenia excelsa Hopper & A.P.Br." .
-
-<http://createme.org/value/acceptedNameUsage/16> a tern:Text,
-        tern:Value ;
-    rdfs:label "acceptedNameUsage-value" ;
-    rdf:value "Caladenia excelsa Hopper & A.P.Br." .
-
 <http://createme.org/value/basisOfRecord/13> a tern:IRI,
         tern:Value ;
     rdfs:label "basisOfRecord" ;
@@ -1494,6 +1543,16 @@
         tern:Value ;
     rdfs:label "basisOfRecord" ;
     rdf:value <http://createme.org/bdr-cv/attribute/basisOfRecord/new-basis-of-record> .
+
+<http://createme.org/value/conservationJurisdiction/15> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Conservation Jurisdiction = WA" ;
+    rdf:value <https://sws.geonames.org/2058645/> .
+
+<http://createme.org/value/conservationJurisdiction/16> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Conservation Jurisdiction = WA" ;
+    rdf:value <https://sws.geonames.org/2058645/> .
 
 <http://createme.org/value/dataGeneralizations/14> a tern:Text,
         tern:Value ;
@@ -1723,6 +1782,16 @@
     rdfs:label "taxon rank = new taxon rank" ;
     rdf:value <http://createme.org/bdr-cv/attribute/taxonRank/new-taxon-rank> .
 
+<http://createme.org/value/threatStatus/15> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Conservation status = VU" ;
+    rdf:value <http://example.com/threatStatus/WA/VU> .
+
+<http://createme.org/value/threatStatus/16> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Conservation status = new threat status" ;
+    rdf:value <http://createme.org/bdr-cv/parameter/threatStatus/WA/new-threat-status> .
+
 <http://createme.org/verbatimID/1> a tern:Text,
         tern:Value ;
     rdf:value "Calothamnus lateralis var. crassus" .
@@ -1843,6 +1912,18 @@
     void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
+
+<http://createme.org/value/acceptedNameUsage/15> a tern:Text,
+        tern:Value ;
+    rdfs:label "acceptedNameUsage-value" ;
+    rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
+    tern:featureType <http://createme.org/concept/acceptedNameUsage> .
+
+<http://createme.org/value/acceptedNameUsage/16> a tern:Text,
+        tern:Value ;
+    rdfs:label "acceptedNameUsage-value" ;
+    rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
+    tern:featureType <http://createme.org/concept/acceptedNameUsage> .
 
 <http://createme.org/sample/field/1> a tern:FeatureOfInterest,
         tern:Sample ;
@@ -1999,6 +2080,6 @@
 
 <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> a tern:RDFDataset ;
     dcterms:description "Example Occurrence Extended Dataset by Gaia Resources" ;
-    dcterms:issued "2022-06-13"^^xsd:date ;
+    dcterms:issued "2022-09-12"^^xsd:date ;
     dcterms:title "Example Occurrence Extended Dataset" .
 

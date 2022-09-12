@@ -463,16 +463,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
-        "enum": [
-          "EX",
-          "EW",
-          "CR",
-          "EN",
-          "VU",
-          "NT",
-          "LC"
-        ]
+        "required": false
       }
     },
     {
@@ -485,15 +476,13 @@
       "constraints": {
         "required": false,
         "enum": [
+          "EPBC",
           "WA",
-          "NT",
-          "SA",
+          "WESTERN AUSTRALIA",
+          "WESTERN-AUSTRALIA",
+          "WESTERN_AUSTRALIA",
           "QLD",
-          "NSW",
-          "VIC",
-          "TAS",
-          "ACT",
-          "JBT"
+          "QUEENSLAND"
         ]
       }
     },
