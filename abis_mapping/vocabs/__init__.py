@@ -2,6 +2,8 @@
 
 # Local
 from . import basis_of_record
+from . import check_protocol
+from . import conservation_jurisdiction
 from . import establishment_means
 from . import geodetic_datum
 from . import identification_method
@@ -15,3 +17,4 @@ from . import sampling_protocol
 from . import sequencing_method
 from . import sex
 from . import taxon_tank
+from . import threat_status

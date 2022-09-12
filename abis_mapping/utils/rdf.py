@@ -162,3 +162,21 @@ def toWKT(
         f"{datum_string}POINT ({longitude} {latitude})",
         datatype=namespaces.GEO.wktLiteral,
     )
+
+
+def toURL(url: Optional[str]) -> rdflib.Literal:
+    """Generates a Literal with Data Type xsd:anyURI from an Optional String.
+
+    If the supplied URL is `None`, the returned URL is "http://example.org/"
+
+    Args:
+        url (Optional[str]): Possible URL string to generate Literal from.
+
+    Returns:
+        rdflib.Literal: RDF Literal representation of URL.
+    """
+    # Generate and Return
+    return rdflib.Literal(
+        lexical_or_value=url or "http://example.org/",
+        datatype=rdflib.XSD.anyURI,
+    )
