@@ -1505,8 +1505,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             # Add to Graph
             graph.add((uri, utils.namespaces.DWC.catalogNumber, rdflib.Literal(row["catalogNumber"])))
 
-        # Check for collectionCode and ownerInstitutionCode
-        if row["collectionCode"] and row["ownerInstitutionCode"]:
+        # Check for catalogNumber and ownerInstitutionCode
+        if row["catalogNumber"] and row["ownerInstitutionCode"]:
             # Add Provenance (ownerInstitutionCode)
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
