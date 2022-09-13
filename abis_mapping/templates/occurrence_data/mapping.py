@@ -99,6 +99,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         data: base.types.ReadableType,
         chunk_size: Optional[int] = None,
         dataset_iri: Optional[rdflib.URIRef] = None,
+        provider_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping for the `occurrence_data.csv` Template
@@ -106,6 +107,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
             dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
+            provider_iri (Optional[rdflib.URIRef]): Optional provider IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
         Yields:
