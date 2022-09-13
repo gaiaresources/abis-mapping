@@ -1924,13 +1924,13 @@
         tern:Value ;
     rdfs:label "acceptedNameUsage-value" ;
     rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
-    tern:featureType <http://createme.org/concept/acceptedNameUsage> .
+    tern:featureType <http://example.com/concept/acceptedNameUsage> .
 
 <http://createme.org/value/acceptedNameUsage/16> a tern:Text,
         tern:Value ;
     rdfs:label "acceptedNameUsage-value" ;
     rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
-    tern:featureType <http://createme.org/concept/acceptedNameUsage> .
+    tern:featureType <http://example.com/concept/acceptedNameUsage> .
 
 <http://createme.org/sample/field/1> a tern:FeatureOfInterest,
         tern:Sample ;
