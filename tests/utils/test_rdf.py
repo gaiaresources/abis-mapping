@@ -97,14 +97,3 @@ def test_rdf_toWKT() -> None:
         "<http://www.opengis.net/def/crs/EPSG/9.9.1/4283> POINT (115.857048 -31.953512)",
         datatype=utils.namespaces.GEO.wktLiteral,
     )
-
-
-def test_rdf_toURL() -> None:
-    """Tests the toURL() Function"""
-    # Test Missing
-    url = utils.rdf.toURL(None)
-    assert url == rdflib.Literal("http://example.org/", datatype=rdflib.XSD.anyURI)
-
-    # Test String
-    url = utils.rdf.toURL("http://hello.org/")
-    assert url == rdflib.Literal("http://hello.org/", datatype=rdflib.XSD.anyURI)

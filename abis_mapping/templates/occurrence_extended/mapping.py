@@ -678,6 +678,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             accepted_name_usage=accepted_name_usage_value,
             scientific_name=text_scientific_name,
             threat_status_value=threat_status_value,
+            jurisdiction_attribute=conservation_jurisdiction_attribute,
             determined_by=provider_determined_by,
             graph=graph,
         )
@@ -2671,9 +2672,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, a, rdflib.SDO.Organization))
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["threatStatusDeterminedBy"])))
-        graph.add((uri, rdflib.SDO.URL, utils.rdf.toURL(None)))  # No source for URL currently
         graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["threatStatusDeterminedBy"])))
 
     def add_threat_status_observation(
@@ -2684,6 +2682,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         accepted_name_usage: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
         threat_status_value: rdflib.URIRef,
+        jurisdiction_attribute: rdflib.URIRef,
         determined_by: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2699,6 +2698,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 this node
             threat_status_value (rdflib.URIRef): Threat Status Value associated
                 with this node
+            jurisdiction_attribute (rdflib.URIRef): Conservation Jurisdiction
+                Attribute associated with this node
             determined_by (rdflib.URIRef): Determined By Provider associated
                 with this node
             graph (rdflib.Graph): Graph to add to
@@ -2715,16 +2716,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         # Get Timestamps
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDate` (fallback)
         event_date = row["eventDate"]
-        timestamp = (
+        date_determined = (
             row["threatStatusDateDetermined"]
             or row["dateIdentified"]
             or row["preparedDate"]
             or row["eventDate"]
         )
-
-        # Get conservationJurisdiction Vocab IRI
-        # conservationJurisdiction will always be populated here
-        jurisdiction = vocabs.conservation_jurisdiction.CONSERVATION_JURISDICTION.get(row["conservationJurisdiction"])
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.check_protocol.CHECK_PROTOCOL.get(
@@ -2741,13 +2738,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, threat_status_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["threatStatus"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
-        graph.add((uri, rdflib.PROV.wasInfluencedBy, jurisdiction))
+        graph.add((uri, rdflib.PROV.wasInfluencedBy, jurisdiction_attribute))
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
         graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(timestamp)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(date_determined)))
 
         # Check for threatStatusDeterminedBy
         if row["threatStatusDeterminedBy"]:
