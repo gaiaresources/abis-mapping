@@ -1,4 +1,4 @@
-"""Provides Unit Tests for the `abis_mapping.plugins.checks` module"""
+"""Provides Unit Tests for the `abis_mapping.plugins.coordinates` module"""
 
 
 # Third-Party
@@ -29,48 +29,10 @@ def test_checks_valid_coordinates() -> None:
     # Validate
     report: frictionless.Report = resource.validate(
         checks=[
-            plugins.checks.ValidCoordinates(
+            plugins.coordinates.ValidCoordinates(
                 latitude_name="lat",
                 longitude_name="lon",
             ),
-        ]
-    )
-
-    # Check
-    assert not report.valid
-    assert len(report.flatten()) == 1
-
-
-def test_checks_not_empty() -> None:
-    """Tests the NotEmpty Checker"""
-    # Construct Fake Resource
-    resource = frictionless.Resource(
-        source=__file__,
-    )
-
-    # Validate
-    report: frictionless.Report = resource.validate(
-        checks=[
-            plugins.checks.NotEmpty(),
-        ]
-    )
-
-    # Check
-    assert not report.valid
-    assert len(report.flatten()) == 1
-
-
-def test_checks_not_tabular() -> None:
-    """Tests the NotTabular Checker"""
-    # Construct Fake Resource
-    resource = frictionless.Resource(
-        source=__file__,
-    )
-
-    # Validate
-    report: frictionless.Report = resource.validate(
-        checks=[
-            plugins.checks.NotTabular(),
         ]
     )
 
