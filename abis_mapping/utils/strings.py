@@ -22,4 +22,4 @@ def sanitise(value: str) -> str:
         str: The stripped and capitalised string
     """
     # Strip, Capitalise and Return
-    return REGEX_STRIP.sub("", value.upper())
+    return REGEX_STRIP.sub("", value).upper()
