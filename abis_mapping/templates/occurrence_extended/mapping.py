@@ -324,7 +324,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             sample_field=sample_field,
             preparations=preparations_attribute,
             owner_institution_code=provider_owner_institution,
-            institution_code=provider_institution,
             graph=graph,
         )
 
@@ -1450,6 +1449,29 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((qualifier, rdflib.PROV.Agent, owner_institution_code))
             graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_CUSTODIAN))
 
+        # Check for otherCatalogNumbers
+        if row["otherCatalogNumbers"]:
+            # Loop through Other Catalog Numbers
+            for identifier in row["otherCatalogNumbers"]:
+                # Add to Graph
+                graph.add((uri, utils.namespaces.DWC.otherCatalogNumbers, rdflib.Literal(identifier)))
+
+        # Check for otherCatalogNumbers and institutionCode
+        if row["otherCatalogNumbers"] and row["institutionCode"]:
+            # Loop through Other Catalog Numbers
+            for identifier in row["otherCatalogNumbers"]:
+                # Add Provenance (institutionCode)
+                provenance = rdflib.BNode()
+                graph.add((provenance, a, rdflib.RDF.Statement))
+                graph.add((provenance, rdflib.RDF.subject, uri))
+                graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.otherCatalogNumbers))
+                graph.add((provenance, rdflib.RDF.object, rdflib.Literal(identifier)))
+                graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
+                qualifier = rdflib.BNode()
+                graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+                graph.add((qualifier, rdflib.PROV.Agent, institution_code))
+                graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_STAKEHOLDER))
+
     def add_sample_specimen(
         self,
         uri: rdflib.URIRef,
@@ -1459,7 +1481,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         sample_field: rdflib.URIRef,
         preparations: rdflib.URIRef,
         owner_institution_code: rdflib.URIRef,
-        institution_code: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Specimen to the Graph
@@ -1476,8 +1497,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 with this node
             owner_institution_code (rdflib.URIRef): Owner Institution Code
                 Agent associated with this node.
-            institution_code (rdflib.URIRef): Institution Code Agent associated
-                with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Check if Row has a Specimen
@@ -1523,29 +1542,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             if row["collectionCode"]:
                 # Add to Graph
                 graph.add((provenance, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
-
-        # Check for otherCatalogNumbers
-        if row["otherCatalogNumbers"]:
-            # Loop through Other Catalog Numbers
-            for identifier in row["otherCatalogNumbers"]:
-                # Add to Graph
-                graph.add((uri, utils.namespaces.DWC.otherCatalogNumbers, rdflib.Literal(identifier)))
-
-        # Check for otherCatalogNumbers and institutionCode
-        if row["otherCatalogNumbers"] and row["institutionCode"]:
-            # Loop through Other Catalog Numbers
-            for identifier in row["otherCatalogNumbers"]:
-                # Add Provenance (institutionCode)
-                provenance = rdflib.BNode()
-                graph.add((provenance, a, rdflib.RDF.Statement))
-                graph.add((provenance, rdflib.RDF.subject, uri))
-                graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.otherCatalogNumbers))
-                graph.add((provenance, rdflib.RDF.object, rdflib.Literal(identifier)))
-                graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
-                qualifier = rdflib.BNode()
-                graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-                graph.add((qualifier, rdflib.PROV.Agent, institution_code))
-                graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_STAKEHOLDER))
 
         # Check for preparations
         if row["preparations"]:
@@ -3012,17 +3008,10 @@ def has_specimen(row: frictionless.Row) -> bool:
         bool: Whether this row has a specimen associated with it.
     """
     # Check Specimen Rules
-    if any((
-        row["preparations"],
-        row["catalogNumber"],
-        row["associatedSequences"],
-        row["otherCatalogNumbers"],
-        row["recordNumber"],
-    )):
-        # If any of `preparations`, `catalogNumber`, `associatedSequences`,
-        # `otherCatalogNumbers` or `recordNumber` are provided, regardless of
-        # the value of `basisOfRecord` we can infer that there is a specimen
-        # associated with the row.
+    if row["preparations"] or row["catalogNumber"] or row["associatedSequences"]:
+        # If any of `preparations`, `catalogNumber` or `associatedSequences`
+        # are provided, regardless of the value of `basisOfRecord` we can infer
+        # that there is a specimen associated with the row.
         specimen = True
 
     elif (
@@ -3030,18 +3019,16 @@ def has_specimen(row: frictionless.Row) -> bool:
         or vocabs.basis_of_record.HUMAN_OBSERVATION.match(row["basisOfRecord"])  # HumanObservation
         or vocabs.basis_of_record.OCCURRENCE.match(row["basisOfRecord"])  # Occurrence
     ):
-        # Otherwise, if none of `preparations`, `catalogNumber`,
-        # `associatedSequences`, `otherCatalogNumbers` or `recordNumber` were
-        # provided, and the `basisOfRecord` is either blank or one of
-        # "HumanObservation" or "Occurrence", then we cannot infer that there
-        # is a specimen associated with the row.
+        # Otherwise, if none of `preparations`, `catalogNumber` or
+        # `associatedSequences` were provided, and the `basisOfRecord` is
+        # either blank or one of "HumanObservation" or "Occurrence", then we
+        # cannot infer that there is a specimen associated with the row.
         specimen = False
 
     else:
-        # Finally, none of `preparations`, `catalogNumber`,
-        # `associatedSequences`, `otherCatalogNumbers` or `recordNumber` were
-        # provided, but the `basisOfRecord` is a value that implies that there
-        # is a specimen associated with the row.
+        # Finally, none of `preparations`, `catalogNumber` or
+        # `associatedSequences` were provided, but the `basisOfRecord` is a
+        # value that implies that there is a specimen associated with the row.
         specimen = True
 
     # Return

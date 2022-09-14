@@ -55,11 +55,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/establishmentMeans/16> a tern:Observation ;
@@ -91,11 +91,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/individualCount/16> a tern:Observation ;
@@ -109,11 +109,11 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/lifeStage/15> a tern:Observation ;
@@ -145,11 +145,11 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/occurrenceStatus/15> a tern:Observation ;
@@ -193,11 +193,11 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/organismRemarks/16> a tern:Observation ;
@@ -1309,11 +1309,11 @@
     sosa:hasResult <http://createme.org/sample/sequence/15> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/sequencing/16> a tern:Sampling ;
@@ -1326,11 +1326,11 @@
     sosa:hasResult <http://createme.org/sample/sequence/16> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/sampling/specimen/13> a tern:Sampling ;
@@ -2045,32 +2045,10 @@
     schema:name "WAM" ;
     schema:url "https://example.org/"^^xsd:anyURI .
 
-<http://createme.org/sample/field/15> a tern:FeatureOfInterest,
-        tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
-    dwc:occurrenceID "MR-456" ;
-    dwc:recordNumber "PE:12:8832" ;
-    rdfs:comment "field-sample" ;
-    sosa:isResultOf <http://createme.org/sampling/field/15> ;
-    sosa:isSampleOf <http://createme.org/location/Australia> ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
-
-<http://createme.org/sample/field/16> a tern:FeatureOfInterest,
-        tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
-    dwc:occurrenceID "MR-457" ;
-    dwc:recordNumber "PE:12:8833" ;
-    rdfs:comment "field-sample" ;
-    sosa:isResultOf <http://createme.org/sampling/field/16> ;
-    sosa:isSampleOf <http://createme.org/location/Australia> ;
-    tern:featureType <http://createme.org/bdr-cv/featureType/occurrence/kingdom/new-kingdom> .
-
 <http://createme.org/sample/specimen/15> a tern:FeatureOfInterest,
         tern:Sample ;
     void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
     dwc:catalogNumber "32237" ;
-    dwc:otherCatalogNumbers "BHP2012-7521",
-        "M12378" ;
     rdfs:comment "specimen-sample" ;
     sosa:isResultOf <http://createme.org/sampling/specimen/15> ;
     sosa:isSampleOf <http://createme.org/sample/field/15> ;
@@ -2081,13 +2059,35 @@
         tern:Sample ;
     void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
     dwc:catalogNumber "32238" ;
-    dwc:otherCatalogNumbers "BHP2012-7522",
-        "M12379" ;
     rdfs:comment "specimen-sample" ;
     sosa:isResultOf <http://createme.org/sampling/specimen/16> ;
     sosa:isSampleOf <http://createme.org/sample/field/16> ;
     tern:featureType <http://createme.org/bdr-cv/featureType/specimen/kingdom/new-kingdom> ;
     tern:hasAttribute <http://createme.org/attribute/preparations/16> .
+
+<http://createme.org/sample/field/15> a tern:FeatureOfInterest,
+        tern:Sample ;
+    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    dwc:occurrenceID "MR-456" ;
+    dwc:otherCatalogNumbers "BHP2012-7521",
+        "M12378" ;
+    dwc:recordNumber "PE:12:8832" ;
+    rdfs:comment "field-sample" ;
+    sosa:isResultOf <http://createme.org/sampling/field/15> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
+
+<http://createme.org/sample/field/16> a tern:FeatureOfInterest,
+        tern:Sample ;
+    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    dwc:occurrenceID "MR-457" ;
+    dwc:otherCatalogNumbers "BHP2012-7522",
+        "M12379" ;
+    dwc:recordNumber "PE:12:8833" ;
+    rdfs:comment "field-sample" ;
+    sosa:isResultOf <http://createme.org/sampling/field/16> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
+    tern:featureType <http://createme.org/bdr-cv/featureType/occurrence/kingdom/new-kingdom> .
 
 <http://createme.org/location/Australia> a tern:FeatureOfInterest ;
     void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
@@ -2100,37 +2100,53 @@
 
 <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> a tern:RDFDataset ;
     dcterms:description "Example Occurrence Extended Dataset by Gaia Resources" ;
-    dcterms:issued "2022-09-13"^^xsd:date ;
+    dcterms:issued "2022-09-14"^^xsd:date ;
     dcterms:title "Example Occurrence Extended Dataset" .
 
 [] a rdf:Statement ;
-    rdf:object "M12379" ;
-    rdf:predicate dwc:otherCatalogNumbers ;
-    rdf:subject <http://createme.org/sample/specimen/16> ;
-    skos:prefLabel "otherCatalogNumbers stakeholder" ;
-    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/WAM> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
-
-[] a rdf:Statement ;
-    rdf:object "BHP2012-7522" ;
-    rdf:predicate dwc:otherCatalogNumbers ;
-    rdf:subject <http://createme.org/sample/specimen/16> ;
-    skos:prefLabel "otherCatalogNumbers stakeholder" ;
-    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/WAM> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
-
-[] a rdf:Statement ;
-    rdf:object "MR-457" ;
+    rdf:object "MR-456" ;
     rdf:predicate dwc:occurrenceID ;
-    rdf:subject <http://createme.org/sample/field/16> ;
+    rdf:subject <http://createme.org/sample/field/15> ;
     skos:prefLabel "occurrenceID source" ;
     prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/WAM> ;
             abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
-    rdf:object "ABC123" ;
+    rdf:object "M12378" ;
+    rdf:predicate dwc:otherCatalogNumbers ;
+    rdf:subject <http://createme.org/sample/field/15> ;
+    skos:prefLabel "otherCatalogNumbers stakeholder" ;
+    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/BHP> ;
+            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+
+[] a rdf:Statement ;
+    rdf:object "M12379" ;
+    rdf:predicate dwc:otherCatalogNumbers ;
+    rdf:subject <http://createme.org/sample/field/16> ;
+    skos:prefLabel "otherCatalogNumbers stakeholder" ;
+    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/WAM> ;
+            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+
+[] a rdf:Statement ;
+    rdf:object "PE:12:8832" ;
+    rdf:predicate dwc:recordNumber ;
+    rdf:subject <http://createme.org/sample/field/15> ;
+    skos:prefLabel "recordNumber source" ;
+    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
+
+[] a rdf:Statement ;
+    rdf:object "BHP2012-7522" ;
+    rdf:predicate dwc:otherCatalogNumbers ;
+    rdf:subject <http://createme.org/sample/field/16> ;
+    skos:prefLabel "otherCatalogNumbers stakeholder" ;
+    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/WAM> ;
+            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+
+[] a rdf:Statement ;
+    rdf:object "8022FSJMJ079c5cf" ;
     rdf:predicate dcterms:identifier ;
-    rdf:subject <http://createme.org/sampling/field/16> ;
+    rdf:subject <http://createme.org/sampling/field/15> ;
     skos:prefLabel "recordID source" ;
     prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/Example-Provider-Gaia-Resources> ;
             abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider> ] .
@@ -2144,59 +2160,43 @@
             abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
 
 [] a rdf:Statement ;
-    rdf:object "MR-456" ;
+    dwc:collectionCode "ARACH" ;
+    rdf:object "32237" ;
+    rdf:predicate dwc:catalogNumber ;
+    rdf:subject <http://createme.org/sample/specimen/15> ;
+    skos:prefLabel "catalogNumber source" ;
+    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/WAM> ;
+            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
+
+[] a rdf:Statement ;
+    rdf:object "ABC123" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/16> ;
+    skos:prefLabel "recordID source" ;
+    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/Example-Provider-Gaia-Resources> ;
+            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider> ] .
+
+[] a rdf:Statement ;
+    rdf:object "MR-457" ;
     rdf:predicate dwc:occurrenceID ;
-    rdf:subject <http://createme.org/sample/field/15> ;
+    rdf:subject <http://createme.org/sample/field/16> ;
     skos:prefLabel "occurrenceID source" ;
     prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/WAM> ;
             abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
+
+[] a rdf:Statement ;
+    rdf:object "BHP2012-7521" ;
+    rdf:predicate dwc:otherCatalogNumbers ;
+    rdf:subject <http://createme.org/sample/field/15> ;
+    skos:prefLabel "otherCatalogNumbers stakeholder" ;
+    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/BHP> ;
+            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
 
 [] a rdf:Statement ;
     dwc:collectionCode "ARACH" ;
     rdf:object "32238" ;
     rdf:predicate dwc:catalogNumber ;
     rdf:subject <http://createme.org/sample/specimen/16> ;
-    skos:prefLabel "catalogNumber source" ;
-    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/WAM> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
-
-[] a rdf:Statement ;
-    rdf:object "M12378" ;
-    rdf:predicate dwc:otherCatalogNumbers ;
-    rdf:subject <http://createme.org/sample/specimen/15> ;
-    skos:prefLabel "otherCatalogNumbers stakeholder" ;
-    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/BHP> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
-
-[] a rdf:Statement ;
-    rdf:object "PE:12:8832" ;
-    rdf:predicate dwc:recordNumber ;
-    rdf:subject <http://createme.org/sample/field/15> ;
-    skos:prefLabel "recordNumber source" ;
-    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
-
-[] a rdf:Statement ;
-    rdf:object "8022FSJMJ079c5cf" ;
-    rdf:predicate dcterms:identifier ;
-    rdf:subject <http://createme.org/sampling/field/15> ;
-    skos:prefLabel "recordID source" ;
-    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/Example-Provider-Gaia-Resources> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider> ] .
-
-[] a rdf:Statement ;
-    rdf:object "BHP2012-7521" ;
-    rdf:predicate dwc:otherCatalogNumbers ;
-    rdf:subject <http://createme.org/sample/specimen/15> ;
-    skos:prefLabel "otherCatalogNumbers stakeholder" ;
-    prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/BHP> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
-
-[] a rdf:Statement ;
-    dwc:collectionCode "ARACH" ;
-    rdf:object "32237" ;
-    rdf:predicate dwc:catalogNumber ;
-    rdf:subject <http://createme.org/sample/specimen/15> ;
     skos:prefLabel "catalogNumber source" ;
     prov:qualifiedAttribution [ prov:Agent <http://createme.org/provider/WAM> ;
             abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
