@@ -8,8 +8,8 @@ import frictionless
 from abis_mapping import plugins
 
 
-def test_checks_not_tabular() -> None:
-    """Tests the NotTabular Checker"""
+def test_checks_is_tabular() -> None:
+    """Tests the IsTabular Checker"""
     # Construct Fake Resource
     resource = frictionless.Resource(
         source=__file__,
@@ -18,7 +18,7 @@ def test_checks_not_tabular() -> None:
     # Validate
     report: frictionless.Report = resource.validate(
         checks=[
-            plugins.tabular.NotTabular(),
+            plugins.tabular.IsTabular(),
         ]
     )
 

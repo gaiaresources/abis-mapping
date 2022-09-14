@@ -82,7 +82,7 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
         report: frictionless.Report = resource.validate(
             checks=[
                 # Extra Custom Checks
-                plugins.tabular.NotTabular(),
+                plugins.tabular.IsTabular(),
                 plugins.empty.NotEmpty(),
                 plugins.coordinates.ValidCoordinates(
                     latitude_name="decimalLatitude",
