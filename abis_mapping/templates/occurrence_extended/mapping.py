@@ -33,7 +33,7 @@ CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa:E501
+CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_KINGDOM = utils.rdf.uri("concept/kingdom", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_TAXON_RANK = utils.rdf.uri("concept/taxonRank", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_INDIVIDUAL_COUNT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1")
@@ -42,13 +42,15 @@ CONCEPT_HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-
 CONCEPT_BASIS_OF_RECORD = utils.rdf.uri("concept/basisOfRecord", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri("concept/establishmentMeans", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa:E501
+CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri("concept/establishmentMeans", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_LIFE_STAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3")
 CONCEPT_SEX = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36")
-CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri("concept/reproductiveCondition", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa:E501
-CONCEPT_ACCEPTED_NAME_USAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")  # noqa: E501
+CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri("concept/reproductiveCondition", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_ACCEPTED_NAME_USAGE = utils.rdf.uri("concept/acceptedNameUsage", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_CONSERVATION_STATUS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6")  # noqa: E501
+CONCEPT_CONSERVATION_JURISDICTION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
 
 
 class OccurrenceExtendedMapper(base.mapper.ABISMapper):
@@ -240,6 +242,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         accepted_name_usage_value = utils.rdf.uri(f"value/acceptedNameUsage/{row.row_number}", base_iri)
         sampling_sequencing = utils.rdf.uri(f"sampling/sequencing/{row.row_number}", base_iri)
         sample_sequence = utils.rdf.uri(f"sample/sequence/{row.row_number}", base_iri)
+        threat_status_observation = utils.rdf.uri(f"observation/threatStatus/{row.row_number}", base_iri)
+        threat_status_value = utils.rdf.uri(f"value/threatStatus/{row.row_number}", base_iri)
+        conservation_jurisdiction_attribute = utils.rdf.uri(f"attribute/conservationJurisdiction/{row.row_number}", base_iri)  # noqa: E501
+        conservation_jurisdiction_value = utils.rdf.uri(f"value/conservationJurisdiction/{row.row_number}", base_iri)
+        provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -659,6 +666,50 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
+        # Add Provider Threat Status Determined By
+        self.add_provider_determined_by(
+            uri=provider_determined_by,
+            row=row,
+            graph=graph,
+        )
+
+        # Add Threat Status Observation
+        self.add_threat_status_observation(
+            uri=threat_status_observation,
+            row=row,
+            dataset=dataset,
+            accepted_name_usage=accepted_name_usage_value,
+            scientific_name=text_scientific_name,
+            threat_status_value=threat_status_value,
+            jurisdiction_attribute=conservation_jurisdiction_attribute,
+            determined_by=provider_determined_by,
+            graph=graph,
+        )
+
+        # Add Threat Status Value
+        self.add_threat_status_value(
+            uri=threat_status_value,
+            row=row,
+            dataset=dataset,
+            graph=graph,
+        )
+
+        # Add Conservation Jurisdiction Attribute
+        self.add_conservation_jurisdiction_attribute(
+            uri=conservation_jurisdiction_attribute,
+            row=row,
+            graph=graph,
+            dataset=dataset,
+            conservation_jurisdiction_value=conservation_jurisdiction_value,
+        )
+
+        # Add Conservation Jurisdiction Value
+        self.add_conservation_jurisdiction_value(
+            uri=conservation_jurisdiction_value,
+            row=row,
+            graph=graph,
+        )
+
         # Return
         return graph
 
@@ -684,12 +735,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
-        """_summary_
+        """Adds the Terminal Feature of Interest to the Graph
 
         Args:
-            uri (rdflib.URIRef): _description_
-            dataset (rdflib.URIRef): description
-            graph (rdflib.Graph): _description_
+            uri (rdflib.URIRef): URI to use for this node.
+            dataset (rdflib.URIRef): Dataset this belongs to
+            graph (rdflib.Graph): Graph to add to
         """
         # Add Terminal Feature of Interest to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
@@ -2449,7 +2500,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, scientific_name))
         graph.add((uri, rdflib.SOSA.hasResult, accepted_name_usage_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["acceptedNameUsage"])))
-        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ACCEPTED_NAME_USAGE))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
@@ -2488,6 +2539,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("acceptedNameUsage-value")))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["acceptedNameUsage"])))
+        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_ACCEPTED_NAME_USAGE))
 
     def add_sampling_sequencing(
         self,
@@ -2603,6 +2655,216 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         for identifier in row["associatedSequences"]:
             # Add Identifier
             graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(identifier)))
+
+    def add_provider_determined_by(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Determined By Provider to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check for threatStatusDeterminedBy
+        if not row["threatStatusDeterminedBy"]:
+            return
+
+        # Add to Graph
+        graph.add((uri, a, rdflib.PROV.Agent))
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["threatStatusDeterminedBy"])))
+
+    def add_threat_status_observation(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        accepted_name_usage: rdflib.URIRef,
+        scientific_name: rdflib.URIRef,
+        threat_status_value: rdflib.URIRef,
+        jurisdiction_attribute: rdflib.URIRef,
+        determined_by: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Threat Status Observation to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            accepted_name_usage (rdflib.URIRef): Accepted Name Usage associated
+                with this node
+            scientific_name (rdflib.URIRef): Scientific Name associated with
+                this node
+            threat_status_value (rdflib.URIRef): Threat Status Value associated
+                with this node
+            jurisdiction_attribute (rdflib.URIRef): Conservation Jurisdiction
+                Attribute associated with this node
+            determined_by (rdflib.URIRef): Determined By Provider associated
+                with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["threatStatus"]:
+            return
+
+        # Choose Feature of Interest
+        # Feature of Interest is the Accepted Name Usage Value if it exists,
+        # otherwise it is the Scientific Name Text
+        foi = accepted_name_usage if row["acceptedNameUsage"] else scientific_name
+
+        # Get Timestamps
+        # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDate` (fallback)
+        event_date = row["eventDate"]
+        date_determined = (
+            row["threatStatusDateDetermined"]
+            or row["dateIdentified"]
+            or row["preparedDate"]
+            or row["eventDate"]
+        )
+
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.check_protocol.CHECK_PROTOCOL.get(
+            graph=graph,
+            value=row["threatStatusCheckProtocol"],
+            source=dataset,
+        )
+
+        # Threat Status Observation
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("threatStatus-observation")))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
+        graph.add((uri, rdflib.SOSA.hasResult, threat_status_value))
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["threatStatus"])))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
+        graph.add((uri, rdflib.PROV.wasInfluencedBy, jurisdiction_attribute))
+        phenomenon_time = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
+        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
+        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.toTimestamp(event_date)))
+        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(date_determined)))
+
+        # Check for threatStatusDeterminedBy
+        if row["threatStatusDeterminedBy"]:
+            # Add wasAssociatedWith
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, determined_by))
+
+        # Check for threatStatusDateDetermined
+        if not row["threatStatusDateDetermined"]:
+            # Determine Used Date Column
+            date_used = (
+                "dateIdentified" if row["dateIdentified"] else
+                "preparedDate" if row["preparedDate"] else
+                "eventDate"
+            )
+
+            # Comment
+            comment = f"Date unknown, template {date_used} used as proxy"
+
+            # Add Temporal Qualifier
+            temporal_qualifier = rdflib.BNode()
+            graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
+            graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
+            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
+
+    def add_threat_status_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Threat Status Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["threatStatus"]:
+            return
+
+        # Combine conservationJurisdiction and threatStatus
+        value = f"{row['conservationJurisdiction']}/{row['threatStatus']}"
+
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.threat_status.THREAT_STATUS.get(
+            graph=graph,
+            value=value,
+            source=dataset,
+        )
+
+        # Threat Status Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"Conservation status = {row['threatStatus']}")))
+        graph.add((uri, rdflib.RDF.value, vocab))
+
+    def add_conservation_jurisdiction_attribute(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        conservation_jurisdiction_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Conservation Jurisdiction Attribute to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            conservation_jurisdiction_value (rdflib.URIRef): Conservation
+                Jurisdiction Value associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["conservationJurisdiction"]:
+            return
+
+        # Conservation Jurisdiction Attribute
+        graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_CONSERVATION_JURISDICTION))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["conservationJurisdiction"])))
+        graph.add((uri, utils.namespaces.TERN.hasValue, conservation_jurisdiction_value))
+
+    def add_conservation_jurisdiction_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Conservation Jurisdiction Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["conservationJurisdiction"]:
+            return
+
+        # Retrieve Vocab or Create on the Fly
+        vocab = vocabs.conservation_jurisdiction.CONSERVATION_JURISDICTION.get(row["conservationJurisdiction"])
+
+        # Construct Label
+        label = f"Conservation Jurisdiction = {row['conservationJurisdiction']}"
+
+        # Conservation Jurisdiction Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))
+        graph.add((uri, rdflib.RDF.value, vocab))
 
 
 # Helper Functions
