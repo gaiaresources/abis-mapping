@@ -6,6 +6,7 @@ import rdflib
 
 # Local
 from . import rdf
+from . import strings
 
 # Typing
 from typing import Optional, Iterable
@@ -28,7 +29,7 @@ class Term:
             iri: rdflib.URIRef: IRI for the vicabulary term.
         """
         # Set Instance Attributes
-        self.labels = tuple(label.upper() for label in labels)  # Uppercase
+        self.labels = tuple(strings.sanitise(label) for label in labels)  # Sanitise
         self.iri = iri
 
     def to_mapping(self) -> dict[str, rdflib.URIRef]:
@@ -49,8 +50,8 @@ class Term:
         Returns:
             bool: Whether the value matches this term.
         """
-        # Check and Return
-        return value.upper() in self.labels
+        # Sanitise, Check and Return
+        return strings.sanitise(value) in self.labels
 
 
 class RestrictedVocabulary:
@@ -86,8 +87,11 @@ class RestrictedVocabulary:
             VocabularyError: Raised if supplied value does not match an
                 existing vocabulary term.
         """
+        # Sanitise Value
+        sanitised_value = strings.sanitise(value)
+
         # Retrieve if Applicable
-        if iri := self.mapping.get(value.upper()):  # Uppercase
+        if iri := self.mapping.get(sanitised_value):
             # Return
             return iri
 
@@ -168,8 +172,11 @@ class FlexibleVocabulary:
             VocabularyError: Raised if a value is not supplied and there is no
                 default fall-back value in the vocabulary.
         """
+        # Sanitise Value if Applicable
+        sanitised_value = strings.sanitise(value) if value else None
+
         # Retrieve if Applicable
-        if iri := self.mapping.get(value.upper() if value else None):  # Uppercase
+        if iri := self.mapping.get(sanitised_value):
             # Return
             return iri
 

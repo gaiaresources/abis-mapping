@@ -10,7 +10,7 @@ from abis_mapping import utils
 
 # Terms
 HUMAN_OBSERVATION = utils.vocabs.Term(
-    labels=("HUMAN OBSERVATION", "HUMANOBSERVATION", "HUMAN_OBSERVATION", "HUMAN-OBSERVATION"),
+    labels=("HUMAN OBSERVATION", ),
     iri=utils.rdf.uri("basisOfRecord/HumanObservation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 OCCURRENCE = utils.vocabs.Term(
@@ -18,23 +18,23 @@ OCCURRENCE = utils.vocabs.Term(
     iri=utils.rdf.uri("basisOfRecord/Occurrence", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 PRESERVED_SPECIMEN = utils.vocabs.Term(
-    labels=("PRESERVED SPECIMEN", "PRESERVEDSPECIMEN", "PRESERVED_SPECIMEN", "PRESERVED-SPECIMEN"),
+    labels=("PRESERVED SPECIMEN", ),
     iri=utils.rdf.uri("basisOfRecord/PreservedSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 FOSSIL_SPECIMEN = utils.vocabs.Term(
-    labels=("FOSSIL SPECIMEN", "FOSSILSPECIMEN", "FOSSIL_SPECIMEN", "FOSSIL-SPECIMEN"),
+    labels=("FOSSIL SPECIMEN", ),
     iri=utils.rdf.uri("basisOfRecord/FossilSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 LIVING_SPECIMEN = utils.vocabs.Term(
-    labels=("LIVING SPECIMEN", "LIVINGSPECIMEN", "LIVING_SPECIMEN", "LIVING-SPECIMEN"),
+    labels=("LIVING SPECIMEN", ),
     iri=utils.rdf.uri("basisOfRecord/LivingSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 MACHINE_OBSERVATION = utils.vocabs.Term(
-    labels=("MACHINE OBSERVATION", "MACHINEOBSERVATION", "MACHINE_OBSERVATION", "MACHINE-OBSERVATION"),
+    labels=("MACHINE OBSERVATION", ),
     iri=utils.rdf.uri("basisOfRecord/MachineObservation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 MATERIAL_SAMPLE = utils.vocabs.Term(
-    labels=("MATERIAL SAMPLE", "MATERIALSAMPLE", "MATERIAL_SAMPLE", "MATERIAL-SAMPLE"),
+    labels=("MATERIAL SAMPLE", ),
     iri=utils.rdf.uri("basisOfRecord/MaterialSample", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 

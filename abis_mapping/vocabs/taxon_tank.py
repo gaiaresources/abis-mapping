@@ -18,7 +18,7 @@ CULTIVAR = utils.vocabs.Term(
     iri=utils.rdf.uri("cultivar", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 CULTIVARGROUP = utils.vocabs.Term(
-    labels=("CULTIVARGROUP", ),
+    labels=("CULTIVAR GROUP", ),
     iri=utils.rdf.uri("cultivargroup", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 FAMILY = utils.vocabs.Term(
@@ -38,7 +38,7 @@ INFORMAL = utils.vocabs.Term(
     iri=utils.rdf.uri("informal", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 INFRAGENERICNAME = utils.vocabs.Term(
-    labels=("INFRAGENERICNAME", ),
+    labels=("INFRAGENERIC NAME", ),
     iri=utils.rdf.uri("infragenericname", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 INFRAORDER = utils.vocabs.Term(
@@ -46,11 +46,11 @@ INFRAORDER = utils.vocabs.Term(
     iri=utils.rdf.uri("infraorder", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 INFRASPECIFICNAME = utils.vocabs.Term(
-    labels=("INFRASPECIFICNAME", ),
+    labels=("INFRASPECIFIC NAME", ),
     iri=utils.rdf.uri("infraspecificname", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 INFRASUBSPECIFICNAME = utils.vocabs.Term(
-    labels=("INFRASUBSPECIFICNAME", ),
+    labels=("INFRASUBSPECIFIC NAME", ),
     iri=utils.rdf.uri("infrasubspecificname", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 KINGDOM = utils.vocabs.Term(
@@ -78,7 +78,7 @@ SPECIES = utils.vocabs.Term(
     iri=utils.rdf.uri("species", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 SPECIESAGGREGATE = utils.vocabs.Term(
-    labels=("SPECIESAGGREGATE", ),
+    labels=("SPECIES AGGREGATE", ),
     iri=utils.rdf.uri("speciesaggregate", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 SUBFAMILY = utils.vocabs.Term(
@@ -114,7 +114,7 @@ SUBSPECIES = utils.vocabs.Term(
     iri=utils.rdf.uri("subspecies", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 SUBSPECIFICAGGREGATE = utils.vocabs.Term(
-    labels=("SUBSPECIFICAGGREGATE", ),
+    labels=("SUBSPECIFIC AGGREGATE", ),
     iri=utils.rdf.uri("subspecificaggregate", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 SUBTRIBE = utils.vocabs.Term(
@@ -130,7 +130,7 @@ SUPERFAMILY = utils.vocabs.Term(
     iri=utils.rdf.uri("superfamily", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 SUPRAGENERICNAME = utils.vocabs.Term(
-    labels=("SUPRAGENERICNAME", ),
+    labels=("SUPRAGENERIC NAME", ),
     iri=utils.rdf.uri("supragenericname", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 TRIBE = utils.vocabs.Term(
