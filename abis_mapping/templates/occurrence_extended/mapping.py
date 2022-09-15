@@ -1086,7 +1086,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordID source")))
             qualifier = rdflib.BNode()
             graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, rdflib.PROV.Agent, dataset_provider))
+            graph.add((qualifier, rdflib.PROV.agent, dataset_provider))
             graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_RESOURCE_PROVIDER))
 
         # Check for recordedBy
@@ -1411,6 +1411,17 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
         graph.add((uri, utils.namespaces.TERN.featureType, vocab))
 
+        # Check for institutionCode
+        if row["institutionCode"]:
+            # Add to Graph
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, institution_code))
+
+            # Add Role Qualifier
+            qualifier = rdflib.BNode()
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, rdflib.PROV.agent, institution_code))
+            graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_STAKEHOLDER))
+
         # Check for recordNumber
         if row["recordNumber"]:
             # Add to Graph
@@ -1427,7 +1438,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordNumber source")))
             qualifier = rdflib.BNode()
             graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, rdflib.PROV.Agent, recorded_by))
+            graph.add((qualifier, rdflib.PROV.agent, recorded_by))
             graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_ORIGINATOR))
 
         # Check for occurrenceID
@@ -1446,7 +1457,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("occurrenceID source")))
             qualifier = rdflib.BNode()
             graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, rdflib.PROV.Agent, owner_institution_code))
+            graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
             graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_CUSTODIAN))
 
         # Check for otherCatalogNumbers
@@ -1469,7 +1480,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
                 qualifier = rdflib.BNode()
                 graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-                graph.add((qualifier, rdflib.PROV.Agent, institution_code))
+                graph.add((qualifier, rdflib.PROV.agent, institution_code))
                 graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_STAKEHOLDER))
 
     def add_sample_specimen(
@@ -1535,7 +1546,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("catalogNumber source")))
             qualifier = rdflib.BNode()
             graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, rdflib.PROV.Agent, owner_institution_code))
+            graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
             graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_CUSTODIAN))
 
             # Check for collectionCode
