@@ -22,7 +22,6 @@ from typing import Iterator, Optional
 DATASET_DEFAULT_NAME = "Example Occurrence Extended Dataset"
 DATASET_DEFAULT_DESCRIPTION = "Example Occurrence Extended Dataset by Gaia Resources"
 DATASET_DEFAULT_PROVIDER = "Example Provider Gaia Resources"
-DATASET_DEFAULT_PROVIDER_URL = "https://www.gaiaresources.com.au/"
 
 # Constants and Shortcuts
 # These constants are specific to this template, and as such are defined here
@@ -435,9 +434,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_kingdom_attribute(
             uri=kingdom_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             kingdom_value=kingdom_value,
+            graph=graph,
         )
 
         # Add Kingdom Value
@@ -452,9 +451,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_taxon_rank_attribute(
             uri=taxon_rank_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             taxon_rank_value=taxon_rank_value,
+            graph=graph,
         )
 
         # Add Taxon Rank Value
@@ -469,10 +468,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_individual_count_observation(
             uri=individual_count_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             individual_count_value=individual_count_value,
+            graph=graph,
         )
 
         # Add Individual Count Value
@@ -486,10 +485,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_organism_remarks_observation(
             uri=organism_remarks_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             organism_remarks_value=organism_remarks_value,
+            graph=graph,
         )
 
         # Add Organism Remarks Value
@@ -503,9 +502,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_habitat_attribute(
             uri=habitat_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             habitat_value=habitat_value,
+            graph=graph,
         )
 
         # Add Habitat Value
@@ -519,9 +518,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_basis_attribute(
             uri=basis_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             basis_value=basis_value,
+            graph=graph,
         )
 
         # Add Basis of Record Value
@@ -550,10 +549,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_occurrence_status_observation(
             uri=occurrence_status_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             occurrence_status_value=occurrence_status_value,
+            graph=graph,
         )
 
         # Add Occurrence Status Value
@@ -568,9 +567,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_preparations_attribute(
             uri=preparations_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             preparations_value=preparations_value,
+            graph=graph,
         )
 
         # Add Preparations Value
@@ -585,10 +584,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_establishment_means_observation(
             uri=establishment_means_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             establishment_means_value=establishment_means_value,
+            graph=graph,
         )
 
         # Add Establishment Means Value
@@ -603,11 +602,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_life_stage_observation(
             uri=life_stage_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             life_stage_value=life_stage_value,
+            graph=graph,
         )
 
         # Add Life Stage Value
@@ -622,11 +621,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_sex_observation(
             uri=sex_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             sex_value=sex_value,
+            graph=graph,
         )
 
         # Add Sex Value
@@ -641,11 +640,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_reproductive_condition_observation(
             uri=reproductive_condition_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             reproductive_condition_value=reproductive_condition_value,
+            graph=graph,
         )
 
         # Add Reproductive Condition Value
@@ -660,15 +659,16 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_accepted_name_usage_observation(
             uri=accepted_name_usage_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             scientific_name=text_scientific_name,
             accepted_name_usage_value=accepted_name_usage_value,
+            graph=graph,
         )
 
         # Add Accepted Name Usage Value
         self.add_accepted_name_usage_value(
             uri=accepted_name_usage_value,
+            dataset=dataset,
             row=row,
             graph=graph,
         )
@@ -725,9 +725,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_conservation_jurisdiction_attribute(
             uri=conservation_jurisdiction_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             conservation_jurisdiction_value=conservation_jurisdiction_value,
+            graph=graph,
         )
 
         # Add Conservation Jurisdiction Value
@@ -767,9 +767,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Add Default Dataset Provider to Graph
-        graph.add((uri, a, rdflib.SDO.Organization))
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(DATASET_DEFAULT_PROVIDER)))
-        graph.add((uri, rdflib.SDO.url, rdflib.Literal(DATASET_DEFAULT_PROVIDER_URL, datatype=rdflib.XSD.anyURI)))
+        graph.add((uri, a, rdflib.PROV.Agent))
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(DATASET_DEFAULT_PROVIDER)))
 
     def add_terminal_feature_of_interest(
         self,
@@ -1086,8 +1085,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordID source")))
             qualifier = rdflib.BNode()
             graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, dataset_provider))
-            graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_RESOURCE_PROVIDER))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_RESOURCE_PROVIDER))
 
         # Check for recordedBy
         if row["recordedBy"]:
@@ -1419,8 +1419,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             # Add Role Qualifier
             qualifier = rdflib.BNode()
             graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, institution_code))
-            graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_STAKEHOLDER))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
 
         # Check for recordNumber
         if row["recordNumber"]:
@@ -1438,8 +1439,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordNumber source")))
             qualifier = rdflib.BNode()
             graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, recorded_by))
-            graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_ORIGINATOR))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_ORIGINATOR))
 
         # Check for occurrenceID
         if row["occurrenceID"]:
@@ -1457,8 +1459,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("occurrenceID source")))
             qualifier = rdflib.BNode()
             graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
-            graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_CUSTODIAN))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
 
         # Check for otherCatalogNumbers
         if row["otherCatalogNumbers"]:
@@ -1480,8 +1483,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
                 qualifier = rdflib.BNode()
                 graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+                graph.add((qualifier, a, rdflib.PROV.Attribution))
                 graph.add((qualifier, rdflib.PROV.agent, institution_code))
-                graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_STAKEHOLDER))
+                graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
 
     def add_sample_specimen(
         self,
@@ -1546,8 +1550,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("catalogNumber source")))
             qualifier = rdflib.BNode()
             graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
-            graph.add((qualifier, utils.namespaces.ABISDM.hadRole, ROLE_CUSTODIAN))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
 
             # Check for collectionCode
             if row["collectionCode"]:
@@ -2026,9 +2031,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             return
 
         # Owner Institution Provider
-        graph.add((uri, a, rdflib.SDO.Organization))
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["ownerInstitutionCode"])))
-        graph.add((uri, rdflib.SDO.url, rdflib.Literal("https://example.org/", datatype=rdflib.XSD.anyURI)))
+        graph.add((uri, a, rdflib.PROV.Agent))
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["ownerInstitutionCode"])))
 
     def add_institution_provider(
         self,
@@ -2049,9 +2053,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             return
 
         # Institution Provider
-        graph.add((uri, a, rdflib.SDO.Organization))
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["institutionCode"])))
-        graph.add((uri, rdflib.SDO.url, rdflib.Literal("https://example.org/", datatype=rdflib.XSD.anyURI)))
+        graph.add((uri, a, rdflib.PROV.Agent))
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["institutionCode"])))
 
     def add_occurrence_status_observation(
         self,
@@ -2655,6 +2658,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
     def add_accepted_name_usage_value(
         self,
         uri: rdflib.URIRef,
+        dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
@@ -2662,6 +2666,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         Args:
             uri (rdflib.URIRef): URI to use for this node
+            dataset (rdflib.URIRef): Dataset this belongs to
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
@@ -2674,6 +2679,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("acceptedNameUsage-value")))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["acceptedNameUsage"])))
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_ACCEPTED_NAME_USAGE))
 

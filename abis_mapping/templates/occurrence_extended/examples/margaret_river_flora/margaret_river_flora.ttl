@@ -1,4 +1,3 @@
-@prefix abisdm: <https://linked.data.gov.au/def/abisdm/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -6,7 +5,6 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
@@ -1851,13 +1849,11 @@
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "new identification method" .
 
-<http://createme.org/provider/BHP> a schema:Organization ;
-    schema:name "BHP" ;
-    schema:url "https://example.org/"^^xsd:anyURI .
+<http://createme.org/provider/BHP> a prov:Agent ;
+    foaf:name "BHP" .
 
-<http://createme.org/provider/Example-Provider-Gaia-Resources> a schema:Organization ;
-    schema:name "Example Provider Gaia Resources" ;
-    schema:url "https://www.gaiaresources.com.au/"^^xsd:anyURI .
+<http://createme.org/provider/Example-Provider-Gaia-Resources> a prov:Agent ;
+    foaf:name "Example Provider Gaia Resources" .
 
 <http://createme.org/sample/field/12> a tern:FeatureOfInterest,
         tern:Sample ;
@@ -1927,6 +1923,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "acceptedNameUsage-value" ;
+    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
     rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
     tern:featureType <http://example.com/concept/acceptedNameUsage> .
 
@@ -1934,6 +1931,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "acceptedNameUsage-value" ;
+    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
     rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
     tern:featureType <http://example.com/concept/acceptedNameUsage> .
 
@@ -2041,9 +2039,8 @@
     sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
-<http://createme.org/provider/WAM> a schema:Organization ;
-    schema:name "WAM" ;
-    schema:url "https://example.org/"^^xsd:anyURI .
+<http://createme.org/provider/WAM> a prov:Agent ;
+    foaf:name "WAM" .
 
 <http://createme.org/sample/specimen/15> a tern:FeatureOfInterest,
         tern:Sample ;
@@ -2073,8 +2070,9 @@
         "M12378" ;
     dwc:recordNumber "PE:12:8832" ;
     rdfs:comment "field-sample" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/BHP> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/BHP> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] ;
     prov:wasAssociatedWith <http://createme.org/provider/BHP> ;
     sosa:isResultOf <http://createme.org/sampling/field/15> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -2088,8 +2086,9 @@
         "M12379" ;
     dwc:recordNumber "PE:12:8833" ;
     rdfs:comment "field-sample" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/WAM> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] ;
     prov:wasAssociatedWith <http://createme.org/provider/WAM> ;
     sosa:isResultOf <http://createme.org/sampling/field/16> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -2114,56 +2113,63 @@
     rdf:predicate dwc:occurrenceID ;
     rdf:subject <http://createme.org/sample/field/15> ;
     skos:prefLabel "occurrenceID source" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/WAM> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
     rdf:object "M12378" ;
     rdf:predicate dwc:otherCatalogNumbers ;
     rdf:subject <http://createme.org/sample/field/15> ;
     skos:prefLabel "otherCatalogNumbers stakeholder" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/BHP> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/BHP> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
 
 [] a rdf:Statement ;
     rdf:object "M12379" ;
     rdf:predicate dwc:otherCatalogNumbers ;
     rdf:subject <http://createme.org/sample/field/16> ;
     skos:prefLabel "otherCatalogNumbers stakeholder" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/WAM> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
 
 [] a rdf:Statement ;
     rdf:object "PE:12:8832" ;
     rdf:predicate dwc:recordNumber ;
     rdf:subject <http://createme.org/sample/field/15> ;
     skos:prefLabel "recordNumber source" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
 
 [] a rdf:Statement ;
     rdf:object "BHP2012-7522" ;
     rdf:predicate dwc:otherCatalogNumbers ;
     rdf:subject <http://createme.org/sample/field/16> ;
     skos:prefLabel "otherCatalogNumbers stakeholder" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/WAM> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
 
 [] a rdf:Statement ;
     rdf:object "8022FSJMJ079c5cf" ;
     rdf:predicate dcterms:identifier ;
     rdf:subject <http://createme.org/sampling/field/15> ;
     skos:prefLabel "recordID source" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/Example-Provider-Gaia-Resources> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/Example-Provider-Gaia-Resources> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider> ] .
 
 [] a rdf:Statement ;
     rdf:object "PE:12:8833" ;
     rdf:predicate dwc:recordNumber ;
     rdf:subject <http://createme.org/sample/field/16> ;
     skos:prefLabel "recordNumber source" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
 
 [] a rdf:Statement ;
     dwc:collectionCode "ARACH" ;
@@ -2171,32 +2177,36 @@
     rdf:predicate dwc:catalogNumber ;
     rdf:subject <http://createme.org/sample/specimen/15> ;
     skos:prefLabel "catalogNumber source" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/WAM> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
     rdf:object "ABC123" ;
     rdf:predicate dcterms:identifier ;
     rdf:subject <http://createme.org/sampling/field/16> ;
     skos:prefLabel "recordID source" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/Example-Provider-Gaia-Resources> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/Example-Provider-Gaia-Resources> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider> ] .
 
 [] a rdf:Statement ;
     rdf:object "MR-457" ;
     rdf:predicate dwc:occurrenceID ;
     rdf:subject <http://createme.org/sample/field/16> ;
     skos:prefLabel "occurrenceID source" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/WAM> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
     rdf:object "BHP2012-7521" ;
     rdf:predicate dwc:otherCatalogNumbers ;
     rdf:subject <http://createme.org/sample/field/15> ;
     skos:prefLabel "otherCatalogNumbers stakeholder" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/BHP> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/BHP> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
 
 [] a rdf:Statement ;
     dwc:collectionCode "ARACH" ;
@@ -2204,6 +2214,7 @@
     rdf:predicate dwc:catalogNumber ;
     rdf:subject <http://createme.org/sample/specimen/16> ;
     skos:prefLabel "catalogNumber source" ;
-    prov:qualifiedAttribution [ prov:agent <http://createme.org/provider/WAM> ;
-            abisdm:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
