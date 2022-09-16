@@ -477,10 +477,9 @@
         "required": false,
         "enum": [
           "EPBC",
+          "ENVIRONMENT PROTECTION AND BIODIVERSITY CONSERVATION",
           "WA",
           "WESTERN AUSTRALIA",
-          "WESTERN-AUSTRALIA",
-          "WESTERN_AUSTRALIA",
           "QLD",
           "QUEENSLAND"
         ]
