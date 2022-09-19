@@ -10,7 +10,7 @@ from abis_mapping import utils
 
 # Terms
 HUMAN_OBSERVATION = utils.vocabs.Term(
-    labels=("HUMAN OBSERVATION", "HUMANOBSERVATION", "HUMAN_OBSERVATION", "HUMAN-OBSERVATION"),
+    labels=("HUMAN OBSERVATION", ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
 )
 UNSPECIFIED = utils.vocabs.Term(

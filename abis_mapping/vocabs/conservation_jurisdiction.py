@@ -10,11 +10,11 @@ from abis_mapping import utils
 
 # Terms
 EPBC = utils.vocabs.Term(
-    labels=("EPBC", ),
+    labels=("EPBC", "ENVIRONMENT PROTECTION AND BIODIVERSITY CONSERVATION"),
     iri=rdflib.URIRef("https://sws.geonames.org/2077456/"),
 )
 WA = utils.vocabs.Term(
-    labels=("WA", "WESTERN AUSTRALIA", "WESTERN-AUSTRALIA", "WESTERN_AUSTRALIA"),
+    labels=("WA", "WESTERN AUSTRALIA"),
     iri=rdflib.URIRef("https://sws.geonames.org/2058645/"),
 )
 QLD = utils.vocabs.Term(

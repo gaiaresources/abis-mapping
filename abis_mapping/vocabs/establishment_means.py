@@ -14,8 +14,7 @@ INTRODUCED = utils.vocabs.Term(
     iri=utils.rdf.uri("establishmentMeans/introduced", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 INTRODUCED_ASSISTED_COLONISATION = utils.vocabs.Term(
-    labels=("INTRODUCEDASSISTEDCOLONISATION", "INTRODUCED ASSISTED COLONISATION",
-            "INTRODUCED_ASSISTED_COLONISATION", "INTRODUCED-ASSISTED-COLONISATION"),
+    labels=("INTRODUCED ASSISTED COLONISATION", ),
     iri=utils.rdf.uri("establishmentMeans/introducedAssistedColonisation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
 )
 NATIVE = utils.vocabs.Term(
@@ -23,7 +22,7 @@ NATIVE = utils.vocabs.Term(
     iri=utils.rdf.uri("establishmentMeans/native", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 NATIVE_REINTRODUCED = utils.vocabs.Term(
-    labels=("NATIVEREINTRODUCED", "NATIVE REINTRODUCED", "NATIVE_REINTRODUCED", "NATIVE-REINTRODUCED"),
+    labels=("NATIVE REINTRODUCED", ),
     iri=utils.rdf.uri("establishmentMeans/nativeReintroduced", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
 )
 UNCERTAIN = utils.vocabs.Term(
