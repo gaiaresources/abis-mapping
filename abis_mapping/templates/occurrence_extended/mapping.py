@@ -1049,7 +1049,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((provenance, rdflib.RDF.predicate, rdflib.DCTERMS.identifier))
             graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["recordID"])))
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordID source")))
-            graph.add((provenance, rdflib.PROV.has_provenance, dataset))
+            graph.add((provenance, rdflib.DCTERMS.source, rdflib.Literal(dataset, datatype=rdflib.XSD.anyURI)))
 
         # Check for recordedBy
         if row["recordedBy"]:

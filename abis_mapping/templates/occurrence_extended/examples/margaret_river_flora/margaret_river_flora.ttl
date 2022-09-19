@@ -2156,7 +2156,7 @@
     rdf:predicate dcterms:identifier ;
     rdf:subject <http://createme.org/sampling/field/15> ;
     skos:prefLabel "recordID source" ;
-    prov:has_provenance <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> .
+    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI .
 
 [] a rdf:Statement ;
     rdf:object "PE:12:8833" ;
@@ -2182,7 +2182,7 @@
     rdf:predicate dcterms:identifier ;
     rdf:subject <http://createme.org/sampling/field/16> ;
     skos:prefLabel "recordID source" ;
-    prov:has_provenance <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> .
+    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI .
 
 [] a rdf:Statement ;
     rdf:object "MR-457" ;
