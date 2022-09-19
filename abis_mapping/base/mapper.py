@@ -49,7 +49,6 @@ class ABISMapper(abc.ABC):
         data: types.ReadableType,
         chunk_size: Optional[int] = None,
         dataset_iri: Optional[rdflib.URIRef] = None,
-        provider_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping from Raw Data to ABIS conformant RDF.
@@ -58,7 +57,6 @@ class ABISMapper(abc.ABC):
             data (ReadableType): Readable raw data.
             chunk_size (Optional[int]): Optional number of rows to chunk into.
             dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
-            provider_iri (Optional[rdflib.URIRef]): Optional provider IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
         Yields:

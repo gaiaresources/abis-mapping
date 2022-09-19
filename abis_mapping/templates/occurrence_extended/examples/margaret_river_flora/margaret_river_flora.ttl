@@ -1853,11 +1853,6 @@
 <http://createme.org/provider/BHP> a prov:Agent ;
     foaf:name "BHP" .
 
-<http://createme.org/provider/Example-Provider-Gaia-Resources> a schema:Organization,
-        prov:Agent ;
-    schema:name "Example Provider Gaia Resources" ;
-    schema:url "https://www.gaiaresources.com.au/"^^xsd:anyURI .
-
 <http://createme.org/sample/field/12> a tern:FeatureOfInterest,
         tern:Sample ;
     void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
@@ -2161,9 +2156,7 @@
     rdf:predicate dcterms:identifier ;
     rdf:subject <http://createme.org/sampling/field/15> ;
     skos:prefLabel "recordID source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/Example-Provider-Gaia-Resources> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider> ] .
+    prov:has_provenance <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> .
 
 [] a rdf:Statement ;
     rdf:object "PE:12:8833" ;
@@ -2189,9 +2182,7 @@
     rdf:predicate dcterms:identifier ;
     rdf:subject <http://createme.org/sampling/field/16> ;
     skos:prefLabel "recordID source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/Example-Provider-Gaia-Resources> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider> ] .
+    prov:has_provenance <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> .
 
 [] a rdf:Statement ;
     rdf:object "MR-457" ;

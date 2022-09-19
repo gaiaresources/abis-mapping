@@ -21,8 +21,6 @@ from typing import Iterator, Optional
 # Default Dataset Metadata
 DATASET_DEFAULT_NAME = "Example Occurrence Extended Dataset"
 DATASET_DEFAULT_DESCRIPTION = "Example Occurrence Extended Dataset by Gaia Resources"
-DATASET_DEFAULT_PROVIDER = "Example Provider Gaia Resources"
-DATASET_DEFAULT_PROVIDER_URL = "https://www.gaiaresources.com.au/"
 
 # Constants and Shortcuts
 # These constants are specific to this template, and as such are defined here
@@ -113,7 +111,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         data: base.types.ReadableType,
         chunk_size: Optional[int] = None,
         dataset_iri: Optional[rdflib.URIRef] = None,
-        provider_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping for the `occurrence_extended.csv` Template
@@ -121,7 +118,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
             dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
-            provider_iri (Optional[rdflib.URIRef]): Optional provider IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
         Yields:
@@ -153,17 +149,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
 
-        # Check if Dataset Provider IRI Supplied
-        if not provider_iri:
-            # Create Dataset Provider IRI
-            provider_iri = utils.rdf.uri(f"provider/{DATASET_DEFAULT_PROVIDER}", base_iri)
-
-            # Add Example Default Dataset Provider if not Supplied
-            self.add_default_provider(
-                uri=provider_iri,
-                graph=graph,
-            )
-
         # Create Terminal Feature of Interest IRI
         terminal_foi = utils.rdf.uri("location/Australia", base_iri)
 
@@ -180,7 +165,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             self.apply_mapping_row(
                 row=row,
                 dataset=dataset_iri,
-                provider=provider_iri,
                 terminal_foi=terminal_foi,
                 graph=graph,
                 base_iri=base_iri,
@@ -201,7 +185,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        provider: rdflib.URIRef,
         terminal_foi: rdflib.URIRef,
         graph: rdflib.Graph,
         base_iri: Optional[rdflib.Namespace] = None,
@@ -211,7 +194,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         Args:
             row (frictionless.Row): Row to be processed in the dataset.
             dataset (rdflib.URIRef): Dataset uri this row is apart of.
-            provider (rdflib.URIRef): Dataset Provider uri for this row.
             terminal_foi (rdflib.URIRef): Terminal feature of interest.
             graph (rdflib.Graph): Graph to map row into.
             base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
@@ -305,7 +287,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             uri=sampling_field,
             row=row,
             dataset=dataset,
-            dataset_provider=provider,
             provider=provider_recorded,
             feature_of_interest=terminal_foi,
             sample_field=sample_field,
@@ -757,22 +738,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DEFAULT_DESCRIPTION)))
         graph.add((uri, rdflib.DCTERMS.issued, utils.rdf.toTimestamp(datetime.date.today())))
 
-    def add_default_provider(
-        self,
-        uri: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Default Example Dataset Provider to the Graph
-
-        Args:
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Add Default Dataset Provider to Graph
-        graph.add((uri, a, rdflib.SDO.Organization))
-        graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(DATASET_DEFAULT_PROVIDER)))
-        graph.add((uri, rdflib.SDO.url, rdflib.Literal(DATASET_DEFAULT_PROVIDER_URL, datatype=rdflib.XSD.anyURI)))
-
     def add_terminal_feature_of_interest(
         self,
         uri: rdflib.URIRef,
@@ -1020,7 +985,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        dataset_provider: rdflib.URIRef,
         provider: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
         sample_field: rdflib.URIRef,
@@ -1035,7 +999,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            dataset_provider (rdflib.URIRef): Dataset Provider this belongs to
             provider (rdflib.URIRef): Provider associated with this node
             feature_of_interest (rdflib.URIRef): Feature of Interest associated
                 with this node.
@@ -1086,11 +1049,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((provenance, rdflib.RDF.predicate, rdflib.DCTERMS.identifier))
             graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["recordID"])))
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordID source")))
-            qualifier = rdflib.BNode()
-            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, a, rdflib.PROV.Attribution))
-            graph.add((qualifier, rdflib.PROV.agent, dataset_provider))
-            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_RESOURCE_PROVIDER))
+            graph.add((provenance, rdflib.PROV.has_provenance, dataset))
 
         # Check for recordedBy
         if row["recordedBy"]:
