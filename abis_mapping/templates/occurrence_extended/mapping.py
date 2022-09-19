@@ -22,6 +22,7 @@ from typing import Iterator, Optional
 DATASET_DEFAULT_NAME = "Example Occurrence Extended Dataset"
 DATASET_DEFAULT_DESCRIPTION = "Example Occurrence Extended Dataset by Gaia Resources"
 DATASET_DEFAULT_PROVIDER = "Example Provider Gaia Resources"
+DATASET_DEFAULT_PROVIDER_URL = "https://www.gaiaresources.com.au/"
 
 # Constants and Shortcuts
 # These constants are specific to this template, and as such are defined here
@@ -767,8 +768,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Add Default Dataset Provider to Graph
+        graph.add((uri, a, rdflib.SDO.Organization))
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(DATASET_DEFAULT_PROVIDER)))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(DATASET_DEFAULT_PROVIDER)))
+        graph.add((uri, rdflib.SDO.url, rdflib.Literal(DATASET_DEFAULT_PROVIDER_URL, datatype=rdflib.XSD.anyURI)))
 
     def add_terminal_feature_of_interest(
         self,

@@ -5,6 +5,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
@@ -1852,8 +1853,10 @@
 <http://createme.org/provider/BHP> a prov:Agent ;
     foaf:name "BHP" .
 
-<http://createme.org/provider/Example-Provider-Gaia-Resources> a prov:Agent ;
-    foaf:name "Example Provider Gaia Resources" .
+<http://createme.org/provider/Example-Provider-Gaia-Resources> a schema:Organization,
+        prov:Agent ;
+    schema:name "Example Provider Gaia Resources" ;
+    schema:url "https://www.gaiaresources.com.au/"^^xsd:anyURI .
 
 <http://createme.org/sample/field/12> a tern:FeatureOfInterest,
         tern:Sample ;
