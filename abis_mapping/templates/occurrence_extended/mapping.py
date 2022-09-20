@@ -52,6 +52,13 @@ CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  
 CONCEPT_CONSERVATION_STATUS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6")  # noqa: E501
 CONCEPT_CONSERVATION_JURISDICTION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
 
+# Roles
+ROLE_ORIGINATOR = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator")  # noqa: E501
+ROLE_RIGHTS_HOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/rightsHolder")  # noqa: E501
+ROLE_RESOURCE_PROVIDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider")  # noqa: E501
+ROLE_CUSTODIAN = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian")  # noqa: E501
+ROLE_STAKEHOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder")  # noqa: E501
+
 
 class OccurrenceExtendedMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `occurrence_extended.csv`"""
@@ -196,8 +203,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             rdflib.Graph: Graph with row mapped into it.
         """
         # Create URIs
-        institution_provider = utils.rdf.uri(f"provider/{row['ownerInstitutionCode']}", base_iri)
-        institution_datatype = utils.rdf.uri(f"datatype/{row['ownerInstitutionCode']}", base_iri)
+        provider_owner_institution = utils.rdf.uri(f"provider/{row['ownerInstitutionCode']}", base_iri)
+        provider_institution = utils.rdf.uri(f"provider/{row['institutionCode']}", base_iri)
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
         provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
         sample_field = utils.rdf.uri(f"sample/field/{row.row_number}", base_iri)
@@ -269,7 +276,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             dataset=dataset,
             feature_of_interest=terminal_foi,
             sampling_field=sampling_field,
-            institution_datatype=institution_datatype,
+            recorded_by=provider_recorded,
+            owner_institution_code=provider_owner_institution,
+            institution_code=provider_institution,
             graph=graph,
         )
 
@@ -294,8 +303,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             dataset=dataset,
             sampling_specimen=sampling_specimen,
             sample_field=sample_field,
-            institution_datatype=institution_datatype,
             preparations=preparations_attribute,
+            owner_institution_code=provider_owner_institution,
             graph=graph,
         )
 
@@ -407,9 +416,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_kingdom_attribute(
             uri=kingdom_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             kingdom_value=kingdom_value,
+            graph=graph,
         )
 
         # Add Kingdom Value
@@ -424,9 +433,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_taxon_rank_attribute(
             uri=taxon_rank_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             taxon_rank_value=taxon_rank_value,
+            graph=graph,
         )
 
         # Add Taxon Rank Value
@@ -441,10 +450,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_individual_count_observation(
             uri=individual_count_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             individual_count_value=individual_count_value,
+            graph=graph,
         )
 
         # Add Individual Count Value
@@ -458,10 +467,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_organism_remarks_observation(
             uri=organism_remarks_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             organism_remarks_value=organism_remarks_value,
+            graph=graph,
         )
 
         # Add Organism Remarks Value
@@ -475,9 +484,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_habitat_attribute(
             uri=habitat_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             habitat_value=habitat_value,
+            graph=graph,
         )
 
         # Add Habitat Value
@@ -491,9 +500,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_basis_attribute(
             uri=basis_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             basis_value=basis_value,
+            graph=graph,
         )
 
         # Add Basis of Record Value
@@ -504,18 +513,17 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add Institution Provider
-        self.add_institution_provider(
-            uri=institution_provider,
+        # Add Owner Institution Provider
+        self.add_owner_institution_provider(
+            uri=provider_owner_institution,
             row=row,
             graph=graph,
         )
 
-        # Add Institution Datatype
-        self.add_institution_datatype(
-            uri=institution_datatype,
+        # Add Institution Provider
+        self.add_institution_provider(
+            uri=provider_institution,
             row=row,
-            provider=institution_provider,
             graph=graph,
         )
 
@@ -523,10 +531,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_occurrence_status_observation(
             uri=occurrence_status_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             occurrence_status_value=occurrence_status_value,
+            graph=graph,
         )
 
         # Add Occurrence Status Value
@@ -541,9 +549,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_preparations_attribute(
             uri=preparations_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             preparations_value=preparations_value,
+            graph=graph,
         )
 
         # Add Preparations Value
@@ -558,10 +566,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_establishment_means_observation(
             uri=establishment_means_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             establishment_means_value=establishment_means_value,
+            graph=graph,
         )
 
         # Add Establishment Means Value
@@ -576,11 +584,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_life_stage_observation(
             uri=life_stage_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             life_stage_value=life_stage_value,
+            graph=graph,
         )
 
         # Add Life Stage Value
@@ -595,11 +603,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_sex_observation(
             uri=sex_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             sex_value=sex_value,
+            graph=graph,
         )
 
         # Add Sex Value
@@ -614,11 +622,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_reproductive_condition_observation(
             uri=reproductive_condition_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             reproductive_condition_value=reproductive_condition_value,
+            graph=graph,
         )
 
         # Add Reproductive Condition Value
@@ -633,15 +641,16 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_accepted_name_usage_observation(
             uri=accepted_name_usage_observation,
             row=row,
-            graph=graph,
             dataset=dataset,
             scientific_name=text_scientific_name,
             accepted_name_usage_value=accepted_name_usage_value,
+            graph=graph,
         )
 
         # Add Accepted Name Usage Value
         self.add_accepted_name_usage_value(
             uri=accepted_name_usage_value,
+            dataset=dataset,
             row=row,
             graph=graph,
         )
@@ -698,9 +707,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         self.add_conservation_jurisdiction_attribute(
             uri=conservation_jurisdiction_attribute,
             row=row,
-            graph=graph,
             dataset=dataset,
             conservation_jurisdiction_value=conservation_jurisdiction_value,
+            graph=graph,
         )
 
         # Add Conservation Jurisdiction Value
@@ -1028,6 +1037,20 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(row["eventDate"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
+        # Check for recordID
+        if row["recordID"]:
+            # Add Identifier
+            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(row["recordID"])))
+
+            # Add Identifier Provenance
+            provenance = rdflib.BNode()
+            graph.add((provenance, a, rdflib.RDF.Statement))
+            graph.add((provenance, rdflib.RDF.subject, uri))
+            graph.add((provenance, rdflib.RDF.predicate, rdflib.DCTERMS.identifier))
+            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["recordID"])))
+            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordID source")))
+            graph.add((provenance, rdflib.DCTERMS.source, rdflib.Literal(dataset, datatype=rdflib.XSD.anyURI)))
+
         # Check for recordedBy
         if row["recordedBy"]:
             # Add Associated Provider
@@ -1311,7 +1334,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
         sampling_field: rdflib.URIRef,
-        institution_datatype: rdflib.URIRef,
+        recorded_by: rdflib.URIRef,
+        owner_institution_code: rdflib.URIRef,
+        institution_code: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Field to the Graph
@@ -1324,8 +1349,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 with this node.
             sampling_field (rdflib.URIRef): Sampling Field associated with this
                 node
-            institution_datatype (rdflib.URIRef): Institution Datatype
-                associated with this node
+            recorded_by (rdflib.URIRef): Recorded By Agent associated with this
+                node
+            owner_institution_code (rdflib.URIRef): Owner Institution Code
+                Agent associated with this node
+            institution_code (rdflib.URIRef): Institution Code Agent associated
+                with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Vocab or Create on the Fly
@@ -1344,18 +1373,81 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
         graph.add((uri, utils.namespaces.TERN.featureType, vocab))
 
-        # Check for recordID
-        if row["recordID"]:
+        # Check for institutionCode
+        if row["institutionCode"]:
             # Add to Graph
-            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(row["recordID"])))
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, institution_code))
+
+            # Add Role Qualifier
+            qualifier = rdflib.BNode()
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
+            graph.add((qualifier, rdflib.PROV.agent, institution_code))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
+
+        # Check for recordNumber
+        if row["recordNumber"]:
+            # Add to Graph
+            graph.add((uri, utils.namespaces.DWC.recordNumber, rdflib.Literal(row["recordNumber"])))
+
+        # Check for recordNumber and recordedBy
+        if row["recordNumber"] and row["recordedBy"]:
+            # Add Provenance (recordedBy)
+            provenance = rdflib.BNode()
+            graph.add((provenance, a, rdflib.RDF.Statement))
+            graph.add((provenance, rdflib.RDF.subject, uri))
+            graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.recordNumber))
+            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["recordNumber"])))
+            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordNumber source")))
+            qualifier = rdflib.BNode()
+            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
+            graph.add((qualifier, rdflib.PROV.agent, recorded_by))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_ORIGINATOR))
+
+        # Check for occurrenceID
+        if row["occurrenceID"]:
+            # Add to Graph
+            graph.add((uri, utils.namespaces.DWC.occurrenceID, rdflib.Literal(row["occurrenceID"])))
 
         # Check for occurrenceID and ownerInstitutionCode
         if row["occurrenceID"] and row["ownerInstitutionCode"]:
-            # Create Occurrence ID
-            occurrence_id = rdflib.Literal(row["occurrenceID"], datatype=institution_datatype)
+            # Add Provenance (ownerInstitutionCode)
+            provenance = rdflib.BNode()
+            graph.add((provenance, a, rdflib.RDF.Statement))
+            graph.add((provenance, rdflib.RDF.subject, uri))
+            graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.occurrenceID))
+            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["occurrenceID"])))
+            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("occurrenceID source")))
+            qualifier = rdflib.BNode()
+            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
+            graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
 
-            # Add to Graph
-            graph.add((uri, rdflib.DCTERMS.identifier, occurrence_id))
+        # Check for otherCatalogNumbers
+        if row["otherCatalogNumbers"]:
+            # Loop through Other Catalog Numbers
+            for identifier in row["otherCatalogNumbers"]:
+                # Add to Graph
+                graph.add((uri, utils.namespaces.DWC.otherCatalogNumbers, rdflib.Literal(identifier)))
+
+        # Check for otherCatalogNumbers and institutionCode
+        if row["otherCatalogNumbers"] and row["institutionCode"]:
+            # Loop through Other Catalog Numbers
+            for identifier in row["otherCatalogNumbers"]:
+                # Add Provenance (institutionCode)
+                provenance = rdflib.BNode()
+                graph.add((provenance, a, rdflib.RDF.Statement))
+                graph.add((provenance, rdflib.RDF.subject, uri))
+                graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.otherCatalogNumbers))
+                graph.add((provenance, rdflib.RDF.object, rdflib.Literal(identifier)))
+                graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
+                qualifier = rdflib.BNode()
+                graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+                graph.add((qualifier, a, rdflib.PROV.Attribution))
+                graph.add((qualifier, rdflib.PROV.agent, institution_code))
+                graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
 
     def add_sample_specimen(
         self,
@@ -1364,8 +1456,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sampling_specimen: rdflib.URIRef,
         sample_field: rdflib.URIRef,
-        institution_datatype: rdflib.URIRef,
         preparations: rdflib.URIRef,
+        owner_institution_code: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Specimen to the Graph
@@ -1378,10 +1470,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 with this node
             sample_field (rdflib.URIRef): Sample Field associated with this
                 node
-            institution_datatype (rdflib.URIRef): Institution Datatype
-                associated with this node
             preparations (rdflib.URIRef): Preparations Attribute associated
                 with this node
+            owner_institution_code (rdflib.URIRef): Owner Institution Code
+                Agent associated with this node.
             graph (rdflib.Graph): Graph to add to
         """
         # Check if Row has a Specimen
@@ -1404,13 +1496,30 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
         graph.add((uri, utils.namespaces.TERN.featureType, vocab))
 
+        # Check for catalogNumber
+        if row["catalogNumber"]:
+            # Add to Graph
+            graph.add((uri, utils.namespaces.DWC.catalogNumber, rdflib.Literal(row["catalogNumber"])))
+
         # Check for catalogNumber and ownerInstitutionCode
         if row["catalogNumber"] and row["ownerInstitutionCode"]:
-            # Create Identifier by Concatenating `collectionCode` (if provided) and `catalogNumber`
-            identifier = f"{row['collectionCode'] or ''}{row['catalogNumber']}"
+            # Add Provenance (ownerInstitutionCode)
+            provenance = rdflib.BNode()
+            graph.add((provenance, a, rdflib.RDF.Statement))
+            graph.add((provenance, rdflib.RDF.subject, uri))
+            graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.catalogNumber))
+            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["catalogNumber"])))
+            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("catalogNumber source")))
+            qualifier = rdflib.BNode()
+            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
+            graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
 
-            # Add Identifier
-            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(identifier, datatype=institution_datatype)))
+            # Check for collectionCode
+            if row["collectionCode"]:
+                # Add to Graph
+                graph.add((provenance, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
         # Check for preparations
         if row["preparations"]:
@@ -1865,6 +1974,28 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("basisOfRecord")))
         graph.add((uri, rdflib.RDF.value, vocab))
 
+    def add_owner_institution_provider(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Owner Institution Provider to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            graph (rdflib.Graph): Graph to add to
+        """
+        # TODO -> Retrieve this from a known list of institutions
+        # Check Existence
+        if not row["ownerInstitutionCode"]:
+            return
+
+        # Owner Institution Provider
+        graph.add((uri, a, rdflib.PROV.Agent))
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["ownerInstitutionCode"])))
+
     def add_institution_provider(
         self,
         uri: rdflib.URIRef,
@@ -1880,43 +2011,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         """
         # TODO -> Retrieve this from a known list of institutions
         # Check Existence
-        if not row["ownerInstitutionCode"]:
+        if not row["institutionCode"]:
             return
 
         # Institution Provider
-        graph.add((uri, a, rdflib.SDO.Organization))
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["ownerInstitutionCode"])))
-        graph.add((uri, rdflib.SDO.url, rdflib.Literal("https://example.org/", datatype=rdflib.XSD.anyURI)))
-
-    def add_institution_datatype(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        provider: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Institution Datatype to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node
-            row (frictionless.Row): Row to retrieve data from
-            provider (rdflib.URIRef): Provider this datatype is attached to
-            graph (rdflib.Graph): Graph to add to
-        """
-        # TODO -> Retrieve this from a known list of institutions
-        # Check Existence
-        if not row["ownerInstitutionCode"]:
-            return
-
-        # Label and Comment
-        label = f"{row['ownerInstitutionCode']} identifiers"
-        comment = f"This is the identifier code system nominated by {row['ownerInstitutionCode']}"
-
-        # Institution Data Type
-        graph.add((uri, a, rdflib.RDFS.Datatype))
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(comment)))
-        graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
+        graph.add((uri, a, rdflib.PROV.Agent))
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["institutionCode"])))
 
     def add_occurrence_status_observation(
         self,
@@ -2520,6 +2620,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
     def add_accepted_name_usage_value(
         self,
         uri: rdflib.URIRef,
+        dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
@@ -2527,6 +2628,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         Args:
             uri (rdflib.URIRef): URI to use for this node
+            dataset (rdflib.URIRef): Dataset this belongs to
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
@@ -2537,7 +2639,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         # Accepted Name Usage Value
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("acceptedNameUsage-value")))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["acceptedNameUsage"])))
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_ACCEPTED_NAME_USAGE))
 
