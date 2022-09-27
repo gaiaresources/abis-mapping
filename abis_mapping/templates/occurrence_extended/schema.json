@@ -476,12 +476,24 @@
       "constraints": {
         "required": false,
         "enum": [
+          "ACT",
+          "AUSTRALIAN CAPITAL TERRITORY",
           "EPBC",
           "ENVIRONMENT PROTECTION AND BIODIVERSITY CONSERVATION",
-          "WA",
-          "WESTERN AUSTRALIA",
+          "NSW",
+          "NEW SOUTH WALES",
+          "NT",
+          "NORTHERN TERRITORY",
           "QLD",
-          "QUEENSLAND"
+          "QUEENSLAND",
+          "SA",
+          "SOUTH AUSTRALIA",
+          "TAS",
+          "TASMANIA",
+          "VIC",
+          "VICTORIA",
+          "WA",
+          "WESTERN AUSTRALIA"
         ]
       }
     },
