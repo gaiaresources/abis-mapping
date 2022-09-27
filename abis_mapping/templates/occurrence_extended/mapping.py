@@ -1425,6 +1425,32 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
 
+        # Handle Orphan ownerInstitutionCode (See: BDRC-89)
+        # If `ownerInstitutionCode` is provided, but both `catalogNumber` and
+        # `occurrenceID` have been omitted and there is no specimen associated
+        # with this row then we associate the orphaned `ownerInstitutionCode`
+        # with this Field Sample
+        if (
+            row["ownerInstitutionCode"]
+            and not row["catalogNumber"]
+            and not row["occurrenceID"]
+            and not has_specimen(row)
+        ):
+            # Add ownerInstitutionCode Association
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
+
+            # Add Orphan ownerInstitutionCode Qualifier
+            qualifier = rdflib.BNode()
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
+            graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
+
+            # Check for collectionCode
+            if row["collectionCode"]:
+                # Add to Graph
+                graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
+
         # Check for otherCatalogNumbers
         if row["otherCatalogNumbers"]:
             # Loop through Other Catalog Numbers
@@ -1520,6 +1546,30 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             if row["collectionCode"]:
                 # Add to Graph
                 graph.add((provenance, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
+
+        # Handle Orphan ownerInstitutionCode (See: BDRC-89)
+        # If `ownerInstitutionCode` is provided, but both `catalogNumber` and
+        # `occurrenceID` have been omitted then we associate the orphaned
+        # `ownerInstitutionCode` with this Specimen Sample
+        if (
+            row["ownerInstitutionCode"]
+            and not row["catalogNumber"]
+            and not row["occurrenceID"]
+        ):
+            # Add ownerInstitutionCode Association
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
+
+            # Add Orphan ownerInstitutionCode Qualifier
+            qualifier = rdflib.BNode()
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
+            graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
+
+            # Check for collectionCode
+            if row["collectionCode"]:
+                # Add to Graph
+                graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
         # Check for preparations
         if row["preparations"]:
