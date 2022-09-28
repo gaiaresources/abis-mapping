@@ -1375,7 +1375,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Check for institutionCode
         if row["institutionCode"]:
-            # Add to Graph
+            # Add institutionCode Association
             graph.add((uri, rdflib.PROV.wasAssociatedWith, institution_code))
 
             # Add Role Qualifier
@@ -1392,15 +1392,20 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Check for recordNumber and recordedBy
         if row["recordNumber"] and row["recordedBy"]:
-            # Add Provenance (recordedBy)
+            # Add recordedBy Association
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, recorded_by))
+
+            # Add Reification (recordedBy)
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
             graph.add((provenance, rdflib.RDF.subject, uri))
             graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.recordNumber))
             graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["recordNumber"])))
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordNumber source")))
+
+            # Add Qualifier
             qualifier = rdflib.BNode()
-            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
             graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, recorded_by))
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_ORIGINATOR))
@@ -1412,15 +1417,20 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Check for occurrenceID and ownerInstitutionCode
         if row["occurrenceID"] and row["ownerInstitutionCode"]:
-            # Add Provenance (ownerInstitutionCode)
+            # Add ownerInstitutionCode Association
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
+
+            # Add Reification (ownerInstitutionCode)
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
             graph.add((provenance, rdflib.RDF.subject, uri))
             graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.occurrenceID))
             graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["occurrenceID"])))
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("occurrenceID source")))
+
+            # Add Qualifier
             qualifier = rdflib.BNode()
-            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
             graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
@@ -1446,10 +1456,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
 
-            # Check for collectionCode
-            if row["collectionCode"]:
-                # Add to Graph
-                graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
+        # Handle Orphan collectionCode (See: BDRC-89)
+        if (
+            row["collectionCode"]
+            and not has_specimen(row)
+        ):
+            # Add to Graph
+            graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
         # Check for otherCatalogNumbers
         if row["otherCatalogNumbers"]:
@@ -1462,18 +1475,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         if row["otherCatalogNumbers"] and row["institutionCode"]:
             # Loop through Other Catalog Numbers
             for identifier in row["otherCatalogNumbers"]:
-                # Add Provenance (institutionCode)
+                # Add Reification (institutionCode)
                 provenance = rdflib.BNode()
                 graph.add((provenance, a, rdflib.RDF.Statement))
                 graph.add((provenance, rdflib.RDF.subject, uri))
                 graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.otherCatalogNumbers))
                 graph.add((provenance, rdflib.RDF.object, rdflib.Literal(identifier)))
                 graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
-                qualifier = rdflib.BNode()
-                graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-                graph.add((qualifier, a, rdflib.PROV.Attribution))
-                graph.add((qualifier, rdflib.PROV.agent, institution_code))
-                graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
 
     def add_sample_specimen(
         self,
@@ -1529,15 +1537,20 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Check for catalogNumber and ownerInstitutionCode
         if row["catalogNumber"] and row["ownerInstitutionCode"]:
-            # Add Provenance (ownerInstitutionCode)
+            # Add ownerInstitutionCode Association
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
+
+            # Add Reification (ownerInstitutionCode)
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
             graph.add((provenance, rdflib.RDF.subject, uri))
             graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.catalogNumber))
             graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["catalogNumber"])))
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("catalogNumber source")))
+
+            # Add Qualifier
             qualifier = rdflib.BNode()
-            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
             graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
@@ -1566,10 +1579,14 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
 
-            # Check for collectionCode
-            if row["collectionCode"]:
-                # Add to Graph
-                graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
+        # Handle Orphan collectionCode (See: BDRC-89)
+        if (
+            row["collectionCode"]
+            and not row["ownerInstitutionCode"]
+            or not row["catalogNumber"]
+        ):
+            # Add to Graph
+            graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
         # Check for preparations
         if row["preparations"]:
