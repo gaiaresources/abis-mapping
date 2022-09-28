@@ -1582,8 +1582,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         # Handle Orphan collectionCode (See: BDRC-89)
         if (
             row["collectionCode"]
-            and not row["ownerInstitutionCode"]
-            or not row["catalogNumber"]
+            and (not row["ownerInstitutionCode"] or not row["catalogNumber"])
         ):
             # Add to Graph
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
