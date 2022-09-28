@@ -515,8 +515,10 @@ VIC_VULNERABLE = utils.vocabs.Term(
 WA_CD = utils.vocabs.Term(
     labels=(
         "WA/CD",
+        "WA/CONSERVATION DEPENDENT",
         "WA/SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA",
         "WESTERN AUSTRALIA/CD",
+        "WESTERN AUSTRALIA/CONSERVATION DEPENDENT",
         "WESTERN AUSTRALIA/SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA",
     ),
     iri=utils.rdf.uri("threatStatus/WA/species-of-special-conservation-interest-conservation-dependent-fauna", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
@@ -524,8 +526,10 @@ WA_CD = utils.vocabs.Term(
 WA_CR = utils.vocabs.Term(
     labels=(
         "WA/CR",
+        "WA/CRITICALLY ENDANGERED",
         "WA/CRITICALLY ENDANGERED SPECIES",
         "WESTERN AUSTRALIA/CR",
+        "WESTERN AUSTRALIA/CRITICALLY ENDANGERED",
         "WESTERN AUSTRALIA/CRITICALLY ENDANGERED SPECIES",
     ),
     iri=utils.rdf.uri("threatStatus/WA/critically-endangered", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
@@ -533,8 +537,10 @@ WA_CR = utils.vocabs.Term(
 WA_EN = utils.vocabs.Term(
     labels=(
         "WA/EN",
+        "WA/ENDANGERED",
         "WA/ENDANGERED SPECIES",
         "WESTERN AUSTRALIA/EN",
+        "WESTERN AUSTRALIA/ENDANGERED",
         "WESTERN AUSTRALIA/ENDANGERED SPECIES",
     ),
     iri=utils.rdf.uri("threatStatus/WA/endangered-species", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
@@ -551,8 +557,10 @@ WA_EW = utils.vocabs.Term(
 WA_EX = utils.vocabs.Term(
     labels=(
         "WA/EX",
+        "WA/EXTINCT",
         "WA/EXTINCT SPECIES",
         "WESTERN AUSTRALIA/EX",
+        "WESTERN AUSTRALIA/EXTINCT",
         "WESTERN AUSTRALIA/EXTINCT SPECIES",
     ),
     iri=utils.rdf.uri("threatStatus/WA/extinct-species", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
@@ -560,8 +568,10 @@ WA_EX = utils.vocabs.Term(
 WA_MI = utils.vocabs.Term(
     labels=(
         "WA/MI",
+        "WA/MIGRATORY",
         "WA/MIGRATORY SPECIES",
         "WESTERN AUSTRALIA/MI",
+        "WESTERN AUSTRALIA/MIGRATORY",
         "WESTERN AUSTRALIA/MIGRATORY SPECIES",
     ),
     iri=utils.rdf.uri("threatStatus/WA/migratory-species", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
@@ -578,27 +588,33 @@ WA_OS = utils.vocabs.Term(
 WA_P1 = utils.vocabs.Term(
     labels=(
         "WA/P1",
-        "WA/PRIORITY 1 POORLYKNOWN SPECIES",
+        "WA/PRIORITY 1 POORLY KNOWN",
+        "WA/PRIORITY 1 POORLY KNOWN SPECIES",
         "WESTERN AUSTRALIA/P1",
-        "WESTERN AUSTRALIA/PRIORITY 1 POORLYKNOWN SPECIES",
+        "WESTERN AUSTRALIA/PRIORITY 1 POORLY KNOWN",
+        "WESTERN AUSTRALIA/PRIORITY 1 POORLY KNOWN SPECIES",
     ),
     iri=utils.rdf.uri("threatStatus/WA/P1-poorly-known-species", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 )
 WA_P2 = utils.vocabs.Term(
     labels=(
         "WA/P2",
-        "WA/PRIORITY 2 POORLYKNOWN SPECIES",
+        "WA/PRIORITY 2 POORLY KNOWN",
+        "WA/PRIORITY 2 POORLY KNOWN SPECIES",
         "WESTERN AUSTRALIA/P2",
-        "WESTERN AUSTRALIA/PRIORITY 2 POORLYKNOWN SPECIES",
+        "WESTERN AUSTRALIA/PRIORITY 2 POORLY KNOWN",
+        "WESTERN AUSTRALIA/PRIORITY 2 POORLY KNOWN SPECIES",
     ),
     iri=utils.rdf.uri("threatStatus/WA/P2-poorly-known-species", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 )
 WA_P3 = utils.vocabs.Term(
     labels=(
         "WA/P3",
-        "WA/PRIORITY 3 POORLYKNOWN SPECIES",
+        "WA/PRIORITY 3 POORLY KNOWN",
+        "WA/PRIORITY 3 POORLY KNOWN SPECIES",
         "WESTERN AUSTRALIA/P3",
-        "WESTERN AUSTRALIA/PRIORITY 3 POORLYKNOWN SPECIES",
+        "WESTERN AUSTRALIA/PRIORITY 3 POORLY KNOWN",
+        "WESTERN AUSTRALIA/PRIORITY 3 POORLY KNOWN SPECIES",
     ),
     iri=utils.rdf.uri("threatStatus/WA/P3-poorly-known-species", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 )
@@ -613,7 +629,9 @@ WA_P4 = utils.vocabs.Term(
 )
 WA_SPECIALLY_PROTECTED_SPECIES = utils.vocabs.Term(
     labels=(
+        "WA/SPECIALLY PROTECTED",
         "WA/SPECIALLY PROTECTED SPECIES",
+        "WESTERN AUSTRALIA/SPECIALLY PROTECTED",
         "WESTERN AUSTRALIA/SPECIALLY PROTECTED SPECIES",
     ),
     iri=utils.rdf.uri("threatStatus/WA/specially-protected-species", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
@@ -621,15 +639,21 @@ WA_SPECIALLY_PROTECTED_SPECIES = utils.vocabs.Term(
 WA_T = utils.vocabs.Term(
     labels=(
         "WA/T",
+        "WA/THREATENED",
+        "WA/THREATENED SPECIES",
         "WESTERN AUSTRALIA/T",
+        "WESTERN AUSTRALIA/THREATENED",
+        "WESTERN AUSTRALIA/THREATENED SPECIES",
     ),
     iri=utils.rdf.uri("threatStatus/WA/threatened", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 )
 WA_VU = utils.vocabs.Term(
     labels=(
         "WA/VU",
+        "WA/VULNERABLE",
         "WA/VULNERABLE SPECIES",
         "WESTERN AUSTRALIA/VU",
+        "WESTERN AUSTRALIA/VULNERABLE",
         "WESTERN AUSTRALIA/VULNERABLE SPECIES",
     ),
     iri=utils.rdf.uri("threatStatus/WA/vulnerable-species", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
