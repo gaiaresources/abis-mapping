@@ -1392,9 +1392,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Check for recordNumber and recordedBy
         if row["recordNumber"] and row["recordedBy"]:
-            # Add recordedBy Association
-            graph.add((uri, rdflib.PROV.wasAssociatedWith, recorded_by))
-
             # Add Reification (recordedBy)
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
@@ -1405,7 +1402,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
             # Add Qualifier
             qualifier = rdflib.BNode()
-            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
             graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, recorded_by))
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_ORIGINATOR))
@@ -1417,9 +1414,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Check for occurrenceID and ownerInstitutionCode
         if row["occurrenceID"] and row["ownerInstitutionCode"]:
-            # Add ownerInstitutionCode Association
-            graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
-
             # Add Reification (ownerInstitutionCode)
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
@@ -1430,7 +1424,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
             # Add Qualifier
             qualifier = rdflib.BNode()
-            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
             graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
@@ -1482,6 +1476,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.otherCatalogNumbers))
                 graph.add((provenance, rdflib.RDF.object, rdflib.Literal(identifier)))
                 graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
+
+                # Add Qualifier
+                qualifier = rdflib.BNode()
+                graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+                graph.add((qualifier, a, rdflib.PROV.Attribution))
+                graph.add((qualifier, rdflib.PROV.agent, institution_code))
+                graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
 
     def add_sample_specimen(
         self,
@@ -1537,9 +1538,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Check for catalogNumber and ownerInstitutionCode
         if row["catalogNumber"] and row["ownerInstitutionCode"]:
-            # Add ownerInstitutionCode Association
-            graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
-
             # Add Reification (ownerInstitutionCode)
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
@@ -1550,7 +1548,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
             # Add Qualifier
             qualifier = rdflib.BNode()
-            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
             graph.add((qualifier, a, rdflib.PROV.Attribution))
             graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
