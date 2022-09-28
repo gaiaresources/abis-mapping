@@ -1754,7 +1754,7 @@
 <http://createme.org/value/threatStatus/15> a tern:IRI,
         tern:Value ;
     rdfs:label "Conservation status = VU" ;
-    rdf:value <http://example.com/threatStatus/WA/VU> .
+    rdf:value <http://example.com/threatStatus/WA/vulnerable-species> .
 
 <http://createme.org/value/threatStatus/16> a tern:IRI,
         tern:Value ;
