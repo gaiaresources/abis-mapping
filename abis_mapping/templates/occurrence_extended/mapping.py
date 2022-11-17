@@ -100,7 +100,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 plugins.mutual_inclusion.MutuallyInclusive(
                     field_names=["threatStatus", "conservationJurisdiction"],
                 )
-            ]
+            ],
+            limit_memory=base.FRICTIONLESS_LIMIT_MEMORY
         )
 
         # Return Validation Report
