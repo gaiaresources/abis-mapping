@@ -88,7 +88,8 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
                     latitude_name="decimalLatitude",
                     longitude_name="decimalLongitude",
                 ),
-            ]
+            ],
+            limit_memory=base.FRICTIONLESS_LIMIT_MEMORY
         )
 
         # Return Validation Report
