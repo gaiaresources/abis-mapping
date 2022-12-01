@@ -84,10 +84,6 @@ class OccurrenceDataMapper(base.mapper.ABISMapper):
                 # Extra Custom Checks
                 plugins.tabular.IsTabular(),
                 plugins.empty.NotEmpty(),
-                plugins.coordinates.ValidCoordinates(
-                    latitude_name="decimalLatitude",
-                    longitude_name="decimalLongitude",
-                ),
             ],
             limit_memory=base.FRICTIONLESS_LIMIT_MEMORY
         )

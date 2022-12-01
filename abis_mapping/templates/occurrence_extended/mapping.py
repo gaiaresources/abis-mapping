@@ -93,10 +93,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 # Extra Custom Checks
                 plugins.tabular.IsTabular(),
                 plugins.empty.NotEmpty(),
-                plugins.coordinates.ValidCoordinates(
-                    latitude_name="decimalLatitude",
-                    longitude_name="decimalLongitude",
-                ),
                 plugins.mutual_inclusion.MutuallyInclusive(
                     field_names=["threatStatus", "conservationJurisdiction"],
                 )
