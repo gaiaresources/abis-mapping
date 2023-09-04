@@ -89,7 +89,6 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Validate
         report: frictionless.Report = resource.validate(
-            skip_errors=['incorrect-label'],
             checks=[
                 # Extra Custom Checks
                 plugins.tabular.IsTabular(),
@@ -126,6 +125,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             source=data,
             format="csv",  # TODO -> Hardcoded to csv for now
             schema=self.schema(),
+            onerror="raise",  # Raise errors, it should already be valid here
         )
 
         # Infer Statistics and Count Number of Rows
