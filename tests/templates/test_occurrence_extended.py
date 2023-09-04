@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `occurrence_extended.csv` Template"""
 
-
 # Standard
 import pathlib
 
@@ -8,11 +7,12 @@ import pathlib
 import abis_mapping
 import tests.conftest
 
-
 # Constants
 TEMPLATE_ID = "occurrence_extended.csv"
 DATA = pathlib.Path("abis_mapping/templates/occurrence_extended/examples/margaret_river_flora/margaret_river_flora.csv")
-EXPECTED = pathlib.Path("abis_mapping/templates/occurrence_extended/examples/margaret_river_flora/margaret_river_flora.ttl")  # noqa: E501
+EXPECTED = pathlib.Path(
+    "abis_mapping/templates/occurrence_extended/examples/margaret_river_flora/margaret_river_flora.ttl")  # noqa: E501
+REORDERED_COLUMN_DATA = pathlib.Path("tests/templates/data/margaret_river_flora_columns_reordered.csv")
 
 
 def test_validation() -> None:
@@ -23,6 +23,19 @@ def test_validation() -> None:
     # Get Mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)
     assert mapper
+
+    # Validate
+    report = mapper().apply_validation(data)
+    assert report.valid
+
+
+def test_validation_columns_reordered() -> None:
+    """Tests validation still works with unordered data"""
+    # Load Data
+    data = REORDERED_COLUMN_DATA.read_bytes()
+
+    # Get Mapper
+    mapper = abis_mapping.get_mapper(TEMPLATE_ID)
 
     # Validate
     report = mapper().apply_validation(data)
@@ -43,6 +56,35 @@ def test_mapping() -> None:
     graphs = list(mapper().apply_mapping(data))
 
     # Assert
+    assert len(graphs) == 1
+
+    # Compare Graphs
+    assert tests.conftest.compare_graphs(
+        graph1=graphs[0],
+        graph2=expected,
+    )
+
+    # Check that there are no `None`s in the Graph
+    # This check is important. As some fields are optional they can be `None`
+    # at runtime. Unfortunately, `None` is valid in many contexts in Python,
+    # including string formatting. This means that type-checking is unable to
+    # determine whether a statement is valid in our specific context. As such,
+    # we check here to see if any `None`s have snuck their way into the RDF.
+    assert "None" not in graphs[0].serialize(format="ttl")
+
+
+def test_mapping_columns_reordered() -> None:
+    """Tests the mapping still the same for the template with CSV columns reordered"""
+    data = REORDERED_COLUMN_DATA.read_bytes()
+    expected = EXPECTED.read_text()
+
+    # Get Mapper
+    mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+
+    # Map
+    graphs = list(mapper().apply_mapping(data))
+
+    # Assert graph length
     assert len(graphs) == 1
 
     # Compare Graphs
