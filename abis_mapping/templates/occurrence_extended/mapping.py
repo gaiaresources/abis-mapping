@@ -1,12 +1,12 @@
 """Provides ABIS Mapper for `occurrence_extended.csv` Template"""
 
-
 # Standard
 import datetime
 
 # Third-Party
 import frictionless
 import rdflib
+import goodtables
 
 # Local
 from abis_mapping import base
@@ -16,7 +16,6 @@ from abis_mapping import vocabs
 
 # Typing
 from typing import Iterator, Optional
-
 
 # Default Dataset Metadata
 DATASET_DEFAULT_NAME = "Example Occurrence Extended Dataset"
@@ -33,7 +32,8 @@ CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations",
+                                             utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_KINGDOM = utils.rdf.uri("concept/kingdom", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_TAXON_RANK = utils.rdf.uri("concept/taxonRank", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_INDIVIDUAL_COUNT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1")
@@ -42,22 +42,33 @@ CONCEPT_HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-
 CONCEPT_BASIS_OF_RECORD = utils.rdf.uri("concept/basisOfRecord", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri("concept/establishmentMeans", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri("concept/establishmentMeans",
+                                            utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_LIFE_STAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3")
 CONCEPT_SEX = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36")
-CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri("concept/reproductiveCondition", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
-CONCEPT_ACCEPTED_NAME_USAGE = utils.rdf.uri("concept/acceptedNameUsage", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
-CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri("concept/reproductiveCondition",
+                                               utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_ACCEPTED_NAME_USAGE = utils.rdf.uri("concept/acceptedNameUsage",
+                                            utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method",
+                                          utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_CONSERVATION_STATUS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6")  # noqa: E501
-CONCEPT_CONSERVATION_JURISDICTION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
+CONCEPT_CONSERVATION_STATUS = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6")  # noqa: E501
+CONCEPT_CONSERVATION_JURISDICTION = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
 
 # Roles
-ROLE_ORIGINATOR = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator")  # noqa: E501
-ROLE_RIGHTS_HOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/rightsHolder")  # noqa: E501
-ROLE_RESOURCE_PROVIDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider")  # noqa: E501
-ROLE_CUSTODIAN = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian")  # noqa: E501
-ROLE_STAKEHOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder")  # noqa: E501
+ROLE_ORIGINATOR = rdflib.URIRef(
+    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator")  # noqa: E501
+ROLE_RIGHTS_HOLDER = rdflib.URIRef(
+    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/rightsHolder")  # noqa: E501
+ROLE_RESOURCE_PROVIDER = rdflib.URIRef(
+    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider")  # noqa: E501
+ROLE_CUSTODIAN = rdflib.URIRef(
+    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian")  # noqa: E501
+ROLE_STAKEHOLDER = rdflib.URIRef(
+    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder")  # noqa: E501
 
 
 class OccurrenceExtendedMapper(base.mapper.ABISMapper):
@@ -68,9 +79,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
     instructions_file = "instructions.pdf"
 
     def apply_validation(
-        self,
-        data: base.types.ReadableType,
-    ) -> frictionless.Report:
+            self,
+            data: base.types.ReadableType,
+    ) -> dict:
         """Applies Frictionless Validation for the `occurrence_extended.csv` Template
 
         Args:
@@ -80,35 +91,40 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             frictionless.Report: Validation report for the specified data.
         """
         # Construct Resource (Table with Schema)
-        resource = frictionless.Resource(
-            source=data,
-            format="csv",  # TODO -> Hardcoded to csv for now
-            schema=self.schema(),
-            onerror="ignore",  # Ignore errors, they will be handled in the report
-        )
+        # resource = frictionless.Resource(
+        #     source=data,
+        #     format="csv",  # TODO -> Hardcoded to csv for now
+        #     schema=self.schema(),
+        #     onerror="ignore",  # Ignore errors, they will be handled in the report
+        # )
 
         # Validate
-        report: frictionless.Report = resource.validate(
-            checks=[
-                # Extra Custom Checks
-                plugins.tabular.IsTabular(),
-                plugins.empty.NotEmpty(),
-                plugins.mutual_inclusion.MutuallyInclusive(
-                    field_names=["threatStatus", "conservationJurisdiction"],
-                )
-            ],
-            limit_memory=base.FRICTIONLESS_LIMIT_MEMORY
+        # report: frictionless.Report = resource.validate(
+        #     checks=[
+        #         # Extra Custom Checks
+        #         plugins.tabular.IsTabular(),
+        #         plugins.empty.NotEmpty(),
+        #         plugins.mutual_inclusion.MutuallyInclusive(
+        #             field_names=["threatStatus", "conservationJurisdiction"],
+        #         )
+        #     ],
+        #     limit_memory=base.FRICTIONLESS_LIMIT_MEMORY
+        # )
+        report: dict = goodtables.validate(
+            data,
+            format="csv",
+            schema=self.schema(),
+            order_fields=False,
         )
-
         # Return Validation Report
         return report
 
     def apply_mapping(
-        self,
-        data: base.types.ReadableType,
-        chunk_size: Optional[int] = None,
-        dataset_iri: Optional[rdflib.URIRef] = None,
-        base_iri: Optional[rdflib.Namespace] = None,
+            self,
+            data: base.types.ReadableType,
+            chunk_size: Optional[int] = None,
+            dataset_iri: Optional[rdflib.URIRef] = None,
+            base_iri: Optional[rdflib.Namespace] = None,
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping for the `occurrence_extended.csv` Template
 
@@ -179,12 +195,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         return graph
 
     def apply_mapping_row(
-        self,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        terminal_foi: rdflib.URIRef,
-        graph: rdflib.Graph,
-        base_iri: Optional[rdflib.Namespace] = None,
+            self,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            terminal_foi: rdflib.URIRef,
+            graph: rdflib.Graph,
+            base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
         """Applies Mapping for a Row in the `occurrence_extended.csv` Template
 
@@ -240,15 +256,18 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         life_stage_value = utils.rdf.uri(f"value/lifeStage/{row.row_number}", base_iri)
         sex_observation = utils.rdf.uri(f"observation/sex/{row.row_number}", base_iri)
         sex_value = utils.rdf.uri(f"value/sex/{row.row_number}", base_iri)
-        reproductive_condition_observation = utils.rdf.uri(f"observation/reproductiveCondition/{row.row_number}", base_iri)  # noqa: E501
+        reproductive_condition_observation = utils.rdf.uri(f"observation/reproductiveCondition/{row.row_number}",
+                                                           base_iri)  # noqa: E501
         reproductive_condition_value = utils.rdf.uri(f"value/reproductiveCondition/{row.row_number}", base_iri)
-        accepted_name_usage_observation = utils.rdf.uri(f"observation/acceptedNameUsage/{row.row_number}", base_iri)  # noqa: E501
+        accepted_name_usage_observation = utils.rdf.uri(f"observation/acceptedNameUsage/{row.row_number}",
+                                                        base_iri)  # noqa: E501
         accepted_name_usage_value = utils.rdf.uri(f"value/acceptedNameUsage/{row.row_number}", base_iri)
         sampling_sequencing = utils.rdf.uri(f"sampling/sequencing/{row.row_number}", base_iri)
         sample_sequence = utils.rdf.uri(f"sample/sequence/{row.row_number}", base_iri)
         threat_status_observation = utils.rdf.uri(f"observation/threatStatus/{row.row_number}", base_iri)
         threat_status_value = utils.rdf.uri(f"value/threatStatus/{row.row_number}", base_iri)
-        conservation_jurisdiction_attribute = utils.rdf.uri(f"attribute/conservationJurisdiction/{row.row_number}", base_iri)  # noqa: E501
+        conservation_jurisdiction_attribute = utils.rdf.uri(f"attribute/conservationJurisdiction/{row.row_number}",
+                                                            base_iri)  # noqa: E501
         conservation_jurisdiction_value = utils.rdf.uri(f"value/conservationJurisdiction/{row.row_number}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
 
@@ -720,9 +739,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         return graph
 
     def add_default_dataset(
-        self,
-        uri: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Default Example Dataset to the Graph
 
@@ -736,10 +755,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.DCTERMS.issued, utils.rdf.toTimestamp(datetime.date.today())))
 
     def add_terminal_feature_of_interest(
-        self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds the Terminal Feature of Interest to the Graph
 
@@ -760,10 +779,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((geometry, utils.namespaces.GEO.sfWithin, CONCEPT_AUSTRALIA))
 
     def add_provider_identified(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Identified By Provider to the Graph
 
@@ -781,10 +800,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["identifiedBy"])))
 
     def add_provider_recorded(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Recorded By Provider to the Graph
 
@@ -802,19 +821,19 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["recordedBy"])))
 
     def add_observation_scientific_name(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        provider: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        sample_specimen: rdflib.URIRef,
-        scientific_name: rdflib.URIRef,
-        qualifier: rdflib.URIRef,
-        remarks: rdflib.URIRef,
-        kingdom: rdflib.URIRef,
-        taxon_rank: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            provider: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            sample_specimen: rdflib.URIRef,
+            scientific_name: rdflib.URIRef,
+            qualifier: rdflib.URIRef,
+            remarks: rdflib.URIRef,
+            kingdom: rdflib.URIRef,
+            taxon_rank: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Observation Scientific Name to the Graph
 
@@ -902,15 +921,15 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.TERN.hasAttribute, taxon_rank))
 
     def add_observation_verbatim_id(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        provider: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        sample_specimen: rdflib.URIRef,
-        verbatim_id: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            provider: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            sample_specimen: rdflib.URIRef,
+            verbatim_id: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Observation Verbatim ID to the Graph
 
@@ -978,17 +997,17 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_sampling_field(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        provider: rdflib.URIRef,
-        feature_of_interest: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        generalizations: rdflib.URIRef,
-        habitat: rdflib.URIRef,
-        basis: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            provider: rdflib.URIRef,
+            feature_of_interest: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            generalizations: rdflib.URIRef,
+            habitat: rdflib.URIRef,
+            basis: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Field to the Graph
 
@@ -1080,12 +1099,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
 
     def add_id_qualifier_attribute(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        id_qualifier_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            id_qualifier_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Identification Qualifier Attribute to the Graph
 
@@ -1109,11 +1128,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasValue, id_qualifier_value))
 
     def add_id_qualifier_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Identification Qualifier Value to the Graph
 
@@ -1141,12 +1160,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_id_remarks_attribute(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        id_remarks_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            id_remarks_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Identification Remarks Attribute to the Graph
 
@@ -1170,10 +1189,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasValue, id_remarks_value))
 
     def add_id_remarks_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Identification Remarks Value to the Graph
 
@@ -1192,11 +1211,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["identificationRemarks"])))
 
     def add_text_scientific_name(
-        self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            dataset: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Text Scientific Name to the Graph
 
@@ -1216,15 +1235,15 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SCIENTIFIC_NAME))
 
     def add_sampling_specimen(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        sample_specimen: rdflib.URIRef,
-        generalizations: rdflib.URIRef,
-        basis: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            sample_specimen: rdflib.URIRef,
+            generalizations: rdflib.URIRef,
+            basis: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Specimen to the Graph
 
@@ -1303,10 +1322,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
 
     def add_text_verbatim_id(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Text Verbatim ID to the Graph
 
@@ -1325,16 +1344,16 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["verbatimIdentification"])))
 
     def add_sample_field(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        feature_of_interest: rdflib.URIRef,
-        sampling_field: rdflib.URIRef,
-        recorded_by: rdflib.URIRef,
-        owner_institution_code: rdflib.URIRef,
-        institution_code: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            feature_of_interest: rdflib.URIRef,
+            sampling_field: rdflib.URIRef,
+            recorded_by: rdflib.URIRef,
+            owner_institution_code: rdflib.URIRef,
+            institution_code: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Field to the Graph
 
@@ -1432,10 +1451,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         # with this row then we associate the orphaned `ownerInstitutionCode`
         # with this Field Sample
         if (
-            row["ownerInstitutionCode"]
-            and not row["catalogNumber"]
-            and not row["occurrenceID"]
-            and not has_specimen(row)
+                row["ownerInstitutionCode"]
+                and not row["catalogNumber"]
+                and not row["occurrenceID"]
+                and not has_specimen(row)
         ):
             # Add ownerInstitutionCode Association
             graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
@@ -1449,8 +1468,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Handle Orphan collectionCode (See: BDRC-89)
         if (
-            row["collectionCode"]
-            and not has_specimen(row)
+                row["collectionCode"]
+                and not has_specimen(row)
         ):
             # Add to Graph
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
@@ -1482,15 +1501,15 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
                 graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
 
     def add_sample_specimen(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        sampling_specimen: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        preparations: rdflib.URIRef,
-        owner_institution_code: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            sampling_specimen: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            preparations: rdflib.URIRef,
+            owner_institution_code: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Specimen to the Graph
 
@@ -1560,9 +1579,9 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         # `occurrenceID` have been omitted then we associate the orphaned
         # `ownerInstitutionCode` with this Specimen Sample
         if (
-            row["ownerInstitutionCode"]
-            and not row["catalogNumber"]
-            and not row["occurrenceID"]
+                row["ownerInstitutionCode"]
+                and not row["catalogNumber"]
+                and not row["occurrenceID"]
         ):
             # Add ownerInstitutionCode Association
             graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
@@ -1576,8 +1595,8 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
 
         # Handle Orphan collectionCode (See: BDRC-89)
         if (
-            row["collectionCode"]
-            and (not row["ownerInstitutionCode"] or not row["catalogNumber"])
+                row["collectionCode"]
+                and (not row["ownerInstitutionCode"] or not row["catalogNumber"])
         ):
             # Add to Graph
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
@@ -1588,12 +1607,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.TERN.hasAttribute, preparations))
 
     def add_data_generalizations_attribute(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        data_generalizations_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            data_generalizations_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Data Generalizations Attribute to the Graph
 
@@ -1617,10 +1636,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasValue, data_generalizations_value))
 
     def add_data_generalizations_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Data Generalizations Value to the Graph
 
@@ -1639,12 +1658,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["dataGeneralizations"])))
 
     def add_kingdom_attribute(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        kingdom_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            kingdom_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Kingdom Attribute to the Graph
 
@@ -1664,11 +1683,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasValue, kingdom_value))
 
     def add_kingdom_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Kingdom Value to the Graph
 
@@ -1692,12 +1711,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_taxon_rank_attribute(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        taxon_rank_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            taxon_rank_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Taxon Rank Attribute to the Graph
 
@@ -1721,11 +1740,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasValue, taxon_rank_value))
 
     def add_taxon_rank_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Taxon Rank Value to the Graph
 
@@ -1753,13 +1772,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_individual_count_observation(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        individual_count_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            individual_count_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Individual Count Observation to the Graph
 
@@ -1815,10 +1834,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_individual_count_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Individual Count Value to the Graph
 
@@ -1838,13 +1857,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["individualCount"])))
 
     def add_organism_remarks_observation(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        organism_remarks_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            organism_remarks_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Organism Remarks Observation to the Graph
 
@@ -1900,10 +1919,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_organism_remarks_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Organism Remarks Value to the Graph
 
@@ -1923,12 +1942,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["organismRemarks"])))
 
     def add_habitat_attribute(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        habitat_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            habitat_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Habitat Attribute to the Graph
 
@@ -1952,10 +1971,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasValue, habitat_value))
 
     def add_habitat_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Habitat Value to the Graph
 
@@ -1975,12 +1994,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["habitat"])))
 
     def add_basis_attribute(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        basis_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            basis_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Basis of Record Attribute to the Graph
 
@@ -2004,11 +2023,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasValue, basis_value))
 
     def add_basis_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Basis of Record Value to the Graph
 
@@ -2036,10 +2055,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_owner_institution_provider(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Owner Institution Provider to the Graph
 
@@ -2058,10 +2077,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["ownerInstitutionCode"])))
 
     def add_institution_provider(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Institution Provider to the Graph
 
@@ -2080,13 +2099,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["institutionCode"])))
 
     def add_occurrence_status_observation(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        occurrence_status_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            occurrence_status_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Occurrence Status Observation to the Graph
 
@@ -2134,11 +2153,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_occurrence_status_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Occurrence Status Value to the Graph
 
@@ -2166,12 +2185,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_preparations_attribute(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        preparations_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            preparations_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Preparations Attribute to the Graph
 
@@ -2195,11 +2214,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasValue, preparations_value))
 
     def add_preparations_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Preparations Value to the Graph
 
@@ -2227,13 +2246,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_establishment_means_observation(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        establishment_means_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            establishment_means_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Establishment Means Observation to the Graph
 
@@ -2289,11 +2308,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_establishment_means_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Establishment Means Value to the Graph
 
@@ -2321,14 +2340,14 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_life_stage_observation(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        sample_specimen: rdflib.URIRef,
-        life_stage_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            sample_specimen: rdflib.URIRef,
+            life_stage_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Life Stage Observation to the Graph
 
@@ -2391,11 +2410,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_life_stage_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Life Stage Value to the Graph
 
@@ -2423,14 +2442,14 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_sex_observation(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        sample_specimen: rdflib.URIRef,
-        sex_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            sample_specimen: rdflib.URIRef,
+            sex_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Sex Observation to the Graph
 
@@ -2492,11 +2511,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_sex_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Sex Value to the Graph
 
@@ -2524,14 +2543,14 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_reproductive_condition_observation(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        sample_specimen: rdflib.URIRef,
-        reproductive_condition_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            sample_field: rdflib.URIRef,
+            sample_specimen: rdflib.URIRef,
+            reproductive_condition_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Reproductive Condition Observation to the Graph
 
@@ -2594,11 +2613,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_reproductive_condition_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Reproductive Condition Value to the Graph
 
@@ -2626,13 +2645,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_accepted_name_usage_observation(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        scientific_name: rdflib.URIRef,
-        accepted_name_usage_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            scientific_name: rdflib.URIRef,
+            accepted_name_usage_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Accepted Name Usage Observation to the Graph
 
@@ -2679,11 +2698,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
     def add_accepted_name_usage_value(
-        self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            dataset: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Accepted Name Usage Value to the Graph
 
@@ -2707,13 +2726,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_ACCEPTED_NAME_USAGE))
 
     def add_sampling_sequencing(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        feature_of_interest: rdflib.URIRef,
-        sample_sequence: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            feature_of_interest: rdflib.URIRef,
+            sample_sequence: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Sequencing to the Graph
 
@@ -2783,13 +2802,13 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((spatial_qualifier, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
 
     def add_sample_sequence(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        feature_of_interest: rdflib.URIRef,
-        sampling_sequencing: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            feature_of_interest: rdflib.URIRef,
+            sampling_sequencing: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Sequence to the Graph
 
@@ -2822,10 +2841,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(identifier)))
 
     def add_provider_determined_by(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Determined By Provider to the Graph
 
@@ -2843,16 +2862,16 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["threatStatusDeterminedBy"])))
 
     def add_threat_status_observation(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        accepted_name_usage: rdflib.URIRef,
-        scientific_name: rdflib.URIRef,
-        threat_status_value: rdflib.URIRef,
-        jurisdiction_attribute: rdflib.URIRef,
-        determined_by: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            accepted_name_usage: rdflib.URIRef,
+            scientific_name: rdflib.URIRef,
+            threat_status_value: rdflib.URIRef,
+            jurisdiction_attribute: rdflib.URIRef,
+            determined_by: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Threat Status Observation to the Graph
 
@@ -2885,10 +2904,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDate` (fallback)
         event_date = row["eventDate"]
         date_determined = (
-            row["threatStatusDateDetermined"]
-            or row["dateIdentified"]
-            or row["preparedDate"]
-            or row["eventDate"]
+                row["threatStatusDateDetermined"]
+                or row["dateIdentified"]
+                or row["preparedDate"]
+                or row["eventDate"]
         )
 
         # Retrieve Vocab or Create on the Fly
@@ -2939,11 +2958,11 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_threat_status_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Threat Status Value to the Graph
 
@@ -2974,12 +2993,12 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, vocab))
 
     def add_conservation_jurisdiction_attribute(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        conservation_jurisdiction_value: rdflib.URIRef,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            dataset: rdflib.URIRef,
+            conservation_jurisdiction_value: rdflib.URIRef,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Conservation Jurisdiction Attribute to the Graph
 
@@ -3003,10 +3022,10 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasValue, conservation_jurisdiction_value))
 
     def add_conservation_jurisdiction_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
+            self,
+            uri: rdflib.URIRef,
+            row: frictionless.Row,
+            graph: rdflib.Graph,
     ) -> None:
         """Adds Conservation Jurisdiction Value to the Graph
 
@@ -3055,9 +3074,9 @@ def has_specimen(row: frictionless.Row) -> bool:
         specimen = True
 
     elif (
-        not row["basisOfRecord"]  # Blank
-        or vocabs.basis_of_record.HUMAN_OBSERVATION.match(row["basisOfRecord"])  # HumanObservation
-        or vocabs.basis_of_record.OCCURRENCE.match(row["basisOfRecord"])  # Occurrence
+            not row["basisOfRecord"]  # Blank
+            or vocabs.basis_of_record.HUMAN_OBSERVATION.match(row["basisOfRecord"])  # HumanObservation
+            or vocabs.basis_of_record.OCCURRENCE.match(row["basisOfRecord"])  # Occurrence
     ):
         # Otherwise, if none of `preparations`, `catalogNumber` or
         # `associatedSequences` were provided, and the `basisOfRecord` is
