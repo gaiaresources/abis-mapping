@@ -13,7 +13,7 @@ import tests.conftest
 TEMPLATE_ID = "occurrence_extended.csv"
 DATA = pathlib.Path("abis_mapping/templates/occurrence_extended/examples/margaret_river_flora/margaret_river_flora.csv")
 EXPECTED = pathlib.Path("abis_mapping/templates/occurrence_extended/examples/margaret_river_flora/margaret_river_flora.ttl")  # noqa: E501
-
+DATA_EXTRA_COLUMNS = pathlib.Path("tests/templates/data/margaret_river_flora_extra_columns.csv")
 
 def test_validation() -> None:
     """Tests the validation for the template"""
@@ -29,6 +29,18 @@ def test_validation() -> None:
     assert report.valid
 
 
+def test_validation_extra_columns() -> None:
+    """Tests the validation for the template with extra columns not in the schema"""
+    # Load Data
+    data = DATA_EXTRA_COLUMNS.read_bytes()
+
+    # Get Mapper
+    mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+
+    # Validate
+    report = mapper().apply_validation(data)
+    assert report.valid
+
 def test_mapping() -> None:
     """Tests the mapping for the template"""
     # Load Data and Expected Output
@@ -38,6 +50,35 @@ def test_mapping() -> None:
     # Get Mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)
     assert mapper
+
+    # Map
+    graphs = list(mapper().apply_mapping(data))
+
+    # Assert
+    assert len(graphs) == 1
+
+    # Compare Graphs
+    assert tests.conftest.compare_graphs(
+        graph1=graphs[0],
+        graph2=expected,
+    )
+
+    # Check that there are no `None`s in the Graph
+    # This check is important. As some fields are optional they can be `None`
+    # at runtime. Unfortunately, `None` is valid in many contexts in Python,
+    # including string formatting. This means that type-checking is unable to
+    # determine whether a statement is valid in our specific context. As such,
+    # we check here to see if any `None`s have snuck their way into the RDF.
+    assert "None" not in graphs[0].serialize(format="ttl")
+
+def test_mapping_extra_columns() -> None:
+    """Tests the mapping for the extra column template"""
+    # Load data and expected result
+    data = DATA_EXTRA_COLUMNS.read_bytes()
+    expected = EXPECTED.read_text()
+
+    # Get Mapper
+    mapper = abis_mapping.get_mapper(TEMPLATE_ID)
 
     # Map
     graphs = list(mapper().apply_mapping(data))
