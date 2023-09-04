@@ -6,8 +6,6 @@ import pathlib
 # Local
 import abis_mapping
 import tests.conftest
-import frictionless
-import goodtables
 
 # Constants
 TEMPLATE_ID = "occurrence_extended.csv"
@@ -28,7 +26,7 @@ def test_validation() -> None:
 
     # Validate
     report = mapper().apply_validation(data)
-    assert report['valid']
+    assert report.valid
 
 
 def test_validation_columns_reordered() -> None:
