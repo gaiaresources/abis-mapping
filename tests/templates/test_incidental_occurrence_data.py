@@ -1,4 +1,4 @@
-"""Provides Unit Tests for the `occurrence_extended.csv` Template"""
+"""Provides Unit Tests for the `incidental_occurrence_data.csv` Template"""
 
 
 # Standard
@@ -10,9 +10,13 @@ import tests.conftest
 
 
 # Constants
-TEMPLATE_ID = "occurrence_extended.csv"
-DATA = pathlib.Path("abis_mapping/templates/occurrence_extended/examples/margaret_river_flora/margaret_river_flora.csv")
-EXPECTED = pathlib.Path("abis_mapping/templates/occurrence_extended/examples/margaret_river_flora/margaret_river_flora.ttl")  # noqa: E501
+TEMPLATE_ID = "incidental_occurrence_data.csv"
+DATA = pathlib.Path(
+    "abis_mapping/templates/incidental_occurrence_data/examples/margaret_river_flora/margaret_river_flora.csv"
+)
+EXPECTED = pathlib.Path(
+    "abis_mapping/templates/incidental_occurrence_data/examples/margaret_river_flora/margaret_river_flora.ttl"
+)  # noqa: E501
 
 
 def test_validation() -> None:

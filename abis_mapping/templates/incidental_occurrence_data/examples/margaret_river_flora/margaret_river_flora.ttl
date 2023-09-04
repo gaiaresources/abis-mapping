@@ -13,7 +13,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://createme.org/observation/acceptedNameUsage/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "acceptedNameUsage-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/scientificName/15> ;
     sosa:hasResult <http://createme.org/value/acceptedNameUsage/15> ;
@@ -28,7 +28,7 @@
     tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
 
 <http://createme.org/observation/acceptedNameUsage/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "acceptedNameUsage-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/scientificName/16> ;
     sosa:hasResult <http://createme.org/value/acceptedNameUsage/16> ;
@@ -43,7 +43,7 @@
     tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
 
 <http://createme.org/observation/establishmentMeans/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "establishmentMeans-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/establishmentMeans/15> ;
@@ -53,15 +53,15 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/establishmentMeans/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "establishmentMeans-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/establishmentMeans/16> ;
@@ -71,15 +71,15 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/individualCount/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "individualCount-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/individualCount/15> ;
@@ -97,7 +97,7 @@
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/individualCount/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "individualCount-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/individualCount/16> ;
@@ -115,7 +115,7 @@
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/lifeStage/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "lifeStage-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/value/lifeStage/15> ;
@@ -133,7 +133,7 @@
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/lifeStage/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "lifeStage-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/value/lifeStage/16> ;
@@ -151,7 +151,7 @@
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/occurrenceStatus/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "occurrenceStatus-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/occurrenceStatus/15> ;
@@ -166,7 +166,7 @@
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/occurrenceStatus/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "occurrenceStatus-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/occurrenceStatus/16> ;
@@ -181,7 +181,7 @@
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/organismRemarks/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "organismRemarks-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/organismRemarks/15> ;
@@ -199,7 +199,7 @@
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/organismRemarks/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "organismRemarks-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/organismRemarks/16> ;
@@ -217,7 +217,7 @@
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/reproductiveCondition/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "reproductiveCondition-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/value/reproductiveCondition/15> ;
@@ -227,15 +227,15 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/reproductiveCondition/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "reproductiveCondition-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/value/reproductiveCondition/16> ;
@@ -253,7 +253,7 @@
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/scientificName/1> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
@@ -267,7 +267,7 @@
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/scientificName/10> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/10> ;
@@ -281,7 +281,7 @@
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://createme.org/observation/scientificName/11> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/11> ;
@@ -297,7 +297,7 @@
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://createme.org/observation/scientificName/12> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/12> ;
     sosa:hasResult <http://createme.org/scientificName/12> ;
@@ -313,7 +313,7 @@
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/scientificName/13> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/13> ;
@@ -330,7 +330,7 @@
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/observation/scientificName/14> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/14> ;
@@ -349,7 +349,7 @@
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/observation/scientificName/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
@@ -366,7 +366,7 @@
     tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
 
 <http://createme.org/observation/scientificName/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
@@ -383,7 +383,7 @@
     tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
 
 <http://createme.org/observation/scientificName/2> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/2> ;
@@ -397,7 +397,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/3> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/3> ;
@@ -411,7 +411,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/4> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/4> ;
@@ -425,7 +425,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/5> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/5> ;
@@ -439,7 +439,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/6> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/6> ;
@@ -453,7 +453,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/7> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/7> ;
@@ -467,7 +467,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/8> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/8> ;
@@ -481,7 +481,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/scientificName/9> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/9> ;
@@ -495,7 +495,7 @@
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://createme.org/observation/sex/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "sex-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/value/sex/15> ;
@@ -505,15 +505,15 @@
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/sex/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "sex-observation" ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/value/sex/16> ;
@@ -523,15 +523,15 @@
             time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/observation/threatStatus/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "threatStatus-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/WA-BIO> ;
     prov:wasInfluencedBy <http://createme.org/attribute/conservationJurisdiction/15> ;
@@ -545,7 +545,7 @@
     tern:resultDateTime "2022-09-12"^^xsd:date .
 
 <http://createme.org/observation/threatStatus/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "threatStatus-observation" ;
     prov:wasInfluencedBy <http://createme.org/attribute/conservationJurisdiction/16> ;
     sosa:hasFeatureOfInterest <http://createme.org/value/acceptedNameUsage/16> ;
@@ -561,7 +561,7 @@
     tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
 
 <http://createme.org/observation/verbatimID/1> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
@@ -574,7 +574,7 @@
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/10> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/10> ;
@@ -587,7 +587,7 @@
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/11> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/11> ;
@@ -600,7 +600,7 @@
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/14> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/14> ;
@@ -616,7 +616,7 @@
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/15> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
@@ -629,7 +629,7 @@
     tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
 
 <http://createme.org/observation/verbatimID/16> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
@@ -642,7 +642,7 @@
     tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
 
 <http://createme.org/observation/verbatimID/2> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/2> ;
@@ -655,7 +655,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/3> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/3> ;
@@ -668,7 +668,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/4> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/4> ;
@@ -681,7 +681,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/5> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/5> ;
@@ -694,7 +694,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/6> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/6> ;
@@ -707,7 +707,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/7> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/7> ;
@@ -720,7 +720,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/8> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/8> ;
@@ -733,7 +733,7 @@
     tern:resultDateTime "2019-09-21"^^xsd:date .
 
 <http://createme.org/observation/verbatimID/9> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/9> ;
@@ -746,360 +746,360 @@
     tern:resultDateTime "2019-09-23"^^xsd:date .
 
 <http://createme.org/attribute/basisOfRecord/13> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/basisOfRecord> ;
     tern:hasSimpleValue "PreservedSpecimen" ;
     tern:hasValue <http://createme.org/value/basisOfRecord/13> .
 
 <http://createme.org/attribute/basisOfRecord/14> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/basisOfRecord> ;
     tern:hasSimpleValue "HumanObservation" ;
     tern:hasValue <http://createme.org/value/basisOfRecord/14> .
 
 <http://createme.org/attribute/basisOfRecord/15> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/basisOfRecord> ;
     tern:hasSimpleValue "PreservedSpecimen" ;
     tern:hasValue <http://createme.org/value/basisOfRecord/15> .
 
 <http://createme.org/attribute/basisOfRecord/16> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/basisOfRecord> ;
     tern:hasSimpleValue "new basis of record" ;
     tern:hasValue <http://createme.org/value/basisOfRecord/16> .
 
 <http://createme.org/attribute/conservationJurisdiction/15> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7> ;
     tern:hasSimpleValue "WA" ;
     tern:hasValue <http://createme.org/value/conservationJurisdiction/15> .
 
 <http://createme.org/attribute/conservationJurisdiction/16> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7> ;
     tern:hasSimpleValue "WA" ;
     tern:hasValue <http://createme.org/value/conservationJurisdiction/16> .
 
 <http://createme.org/attribute/dataGeneralizations/14> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/data-generalizations> ;
     tern:hasSimpleValue "Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasValue <http://createme.org/value/dataGeneralizations/14> .
 
 <http://createme.org/attribute/habitat/15> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99> ;
     tern:hasSimpleValue "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
     tern:hasValue <http://createme.org/value/habitat/15> .
 
 <http://createme.org/attribute/habitat/16> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99> ;
     tern:hasSimpleValue "new habitat" ;
     tern:hasValue <http://createme.org/value/habitat/16> .
 
 <http://createme.org/attribute/identificationQualifier/11> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7> ;
     tern:hasSimpleValue "?" ;
     tern:hasValue <http://createme.org/value/identificationQualifier/11> .
 
 <http://createme.org/attribute/identificationQualifier/14> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7> ;
     tern:hasSimpleValue "?" ;
     tern:hasValue <http://createme.org/value/identificationQualifier/14> .
 
 <http://createme.org/attribute/identificationQualifier/15> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7> ;
     tern:hasSimpleValue "species incerta" ;
     tern:hasValue <http://createme.org/value/identificationQualifier/15> .
 
 <http://createme.org/attribute/identificationQualifier/16> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7> ;
     tern:hasSimpleValue "new identification qualifier" ;
     tern:hasValue <http://createme.org/value/identificationQualifier/16> .
 
 <http://createme.org/attribute/identificationRemarks/11> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140> ;
     tern:hasSimpleValue "One unopened flower when recorded and one leaf only. ID not confirmed" ;
     tern:hasValue <http://createme.org/value/identificationRemarks/11> .
 
 <http://createme.org/attribute/identificationRemarks/14> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140> ;
     tern:hasSimpleValue "Could not confirm the ID due to damaged flower" ;
     tern:hasValue <http://createme.org/value/identificationRemarks/14> .
 
 <http://createme.org/attribute/identificationRemarks/15> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140> ;
     tern:hasSimpleValue "no flowers present" ;
     tern:hasValue <http://createme.org/value/identificationRemarks/15> .
 
 <http://createme.org/attribute/identificationRemarks/16> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140> ;
     tern:hasSimpleValue "new remarks" ;
     tern:hasValue <http://createme.org/value/identificationRemarks/16> .
 
 <http://createme.org/attribute/kingdom/1> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/1> .
 
 <http://createme.org/attribute/kingdom/10> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/10> .
 
 <http://createme.org/attribute/kingdom/11> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/11> .
 
 <http://createme.org/attribute/kingdom/12> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/12> .
 
 <http://createme.org/attribute/kingdom/13> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/13> .
 
 <http://createme.org/attribute/kingdom/14> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/14> .
 
 <http://createme.org/attribute/kingdom/15> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/15> .
 
 <http://createme.org/attribute/kingdom/16> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "new kingdom" ;
     tern:hasValue <http://createme.org/value/kingdom/16> .
 
 <http://createme.org/attribute/kingdom/2> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/2> .
 
 <http://createme.org/attribute/kingdom/3> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/3> .
 
 <http://createme.org/attribute/kingdom/4> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/4> .
 
 <http://createme.org/attribute/kingdom/5> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/5> .
 
 <http://createme.org/attribute/kingdom/6> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/6> .
 
 <http://createme.org/attribute/kingdom/7> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/7> .
 
 <http://createme.org/attribute/kingdom/8> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/8> .
 
 <http://createme.org/attribute/kingdom/9> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/kingdom> ;
     tern:hasSimpleValue "Plantae" ;
     tern:hasValue <http://createme.org/value/kingdom/9> .
 
 <http://createme.org/attribute/preparations/15> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/preparations> ;
     tern:hasSimpleValue "Wet (in ethanol or some other preservative)" ;
     tern:hasValue <http://createme.org/value/preparations/15> .
 
 <http://createme.org/attribute/preparations/16> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/preparations> ;
     tern:hasSimpleValue "new preparations" ;
     tern:hasValue <http://createme.org/value/preparations/16> .
 
 <http://createme.org/attribute/taxonRank/15> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/taxonRank> ;
     tern:hasSimpleValue "species" ;
     tern:hasValue <http://createme.org/value/taxonRank/15> .
 
 <http://createme.org/attribute/taxonRank/16> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/taxonRank> ;
     tern:hasSimpleValue "new taxon rank" ;
     tern:hasValue <http://createme.org/value/taxonRank/16> .
 
 <http://createme.org/bdr-cv/attribute/basisOfRecord/new-basis-of-record> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/basisOfRecord> ;
     skos:definition "A type of basisOfRecord." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new basis of record" .
 
 <http://createme.org/bdr-cv/attribute/identificationQualifier/new-identification-qualifier> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new identification qualifier" .
 
 <http://createme.org/bdr-cv/attribute/kingdom/new-kingdom> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/kingdom> ;
     skos:definition "A type of kingdom." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new kingdom" .
 
 <http://createme.org/bdr-cv/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/preparations> ;
     skos:definition "A type of preparations." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "Wet (in ethanol or some other preservative)" .
 
 <http://createme.org/bdr-cv/attribute/preparations/new-preparations> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/preparations> ;
     skos:definition "A type of preparations." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new preparations" .
 
 <http://createme.org/bdr-cv/attribute/taxonRank/new-taxon-rank> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/taxonRank> ;
     skos:definition "A type of taxonRank." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new taxon rank" .
 
 <http://createme.org/bdr-cv/featureType/occurrence/kingdom/new-kingdom> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:definition "The existence of the organism sampled at a particular place at a particular time." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d> ;
     skos:prefLabel "new kingdom" .
 
 <http://createme.org/bdr-cv/featureType/specimen/kingdom/new-kingdom> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:definition "An organism specimen." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d> ;
     skos:prefLabel "new kingdom" .
 
 <http://createme.org/bdr-cv/methods/samplingProtocol/new-sampling-protocol> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/samplingProtocol> ;
     skos:definition "A type of samplingProtocol." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "new sampling protocol" .
 
 <http://createme.org/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/sequencingMethod> ;
     skos:definition "A type of sequencingMethod." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "Sanger dideoxy sequencing" .
 
 <http://createme.org/bdr-cv/methods/sequencingMethod/new-sequencing-method> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/sequencingMethod> ;
     skos:definition "A type of sequencingMethod." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "new sequencing method" .
 
 <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https//www-dpaw-wa-gov-au/plants-and-animals/threatened-species-and-communities/threatened-animals-Last-updated-13-June-2022> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/threatStatusCheckProtocol> ;
     skos:definition "A type of threatStatusCheckProtocol." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "Check against Threatened and Priority Fauna List WA available from https://www.dpaw.wa.gov.au/plants-and-animals/threatened-species-and-communities/threatened-animals. Last updated 13 June 2022" .
 
 <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/threatStatusCheckProtocol> ;
     skos:definition "A type of threatStatusCheckProtocol." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "a random selection" .
 
 <http://createme.org/bdr-cv/parameter/establishmentMeans/new-establishment-means> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/establishmentMeans> ;
     skos:definition "A type of establishmentMeans." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new establishment means" .
 
 <http://createme.org/bdr-cv/parameter/lifeStage/new-life-stage> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/lifeStage> ;
     skos:definition "A type of lifeStage." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new life stage" .
 
 <http://createme.org/bdr-cv/parameter/occurrenceStatus/new-occurrence-status> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/occurrenceStatus> ;
     skos:definition "A type of occurrenceStatus." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new occurrence status" .
 
 <http://createme.org/bdr-cv/parameter/reproductiveCondition/No-breeding-evident> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/reproductiveCondition> ;
     skos:definition "A type of reproductiveCondition." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "No breeding evident" .
 
 <http://createme.org/bdr-cv/parameter/reproductiveCondition/new-reproductiveCondition> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/reproductiveCondition> ;
     skos:definition "A type of reproductiveCondition." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new reproductiveCondition" .
 
 <http://createme.org/bdr-cv/parameter/sex/new-sex> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/sex> ;
     skos:definition "A type of sex." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new sex" .
 
 <http://createme.org/bdr-cv/parameter/threatStatus/WA/new-threat-status> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/threatStatus> ;
     skos:definition "A type of threatStatus." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
@@ -1112,7 +1112,7 @@
         tern:Sample ;
     dcterms:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
         "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "sequence-sample" ;
     sosa:isResultOf <http://createme.org/sampling/sequencing/15> ;
     sosa:isSampleOf <http://createme.org/sample/specimen/15> ;
@@ -1122,14 +1122,14 @@
         tern:Sample ;
     dcterms:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
         "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "sequence-sample" ;
     sosa:isResultOf <http://createme.org/sampling/sequencing/16> ;
     sosa:isSampleOf <http://createme.org/sample/specimen/16> ;
     tern:featureType <http://example.com/concept/sequence> .
 
 <http://createme.org/sampling/field/1> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1141,7 +1141,7 @@
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/field/10> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1153,7 +1153,7 @@
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/field/11> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1165,7 +1165,7 @@
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/field/12> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1175,7 +1175,7 @@
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/field/13> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1187,7 +1187,7 @@
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/field/14> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 2e+01 ;
@@ -1202,7 +1202,7 @@
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/field/2> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1214,7 +1214,7 @@
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/3> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1226,7 +1226,7 @@
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/4> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1238,7 +1238,7 @@
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/5> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1250,7 +1250,7 @@
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/6> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1262,7 +1262,7 @@
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/7> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1274,7 +1274,7 @@
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/8> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1286,7 +1286,7 @@
     tern:resultDateTime "2020-09-21"^^xsd:date .
 
 <http://createme.org/sampling/field/9> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
@@ -1298,7 +1298,7 @@
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/sequencing/15> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
@@ -1307,15 +1307,15 @@
     sosa:hasResult <http://createme.org/sample/sequence/15> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2019-09-24"^^xsd:date .
 
 <http://createme.org/sampling/sequencing/16> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
@@ -1324,15 +1324,15 @@
     sosa:hasResult <http://createme.org/sample/sequence/16> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
     tern:resultDateTime "2019-09-25"^^xsd:date .
 
 <http://createme.org/sampling/specimen/13> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
@@ -1341,15 +1341,15 @@
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/13> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value tern:resultDateTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
     tern:resultDateTime "2020-09-23"^^xsd:date .
 
 <http://createme.org/sampling/specimen/15> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
@@ -1365,7 +1365,7 @@
     tern:resultDateTime "2019-09-26"^^xsd:date .
 
 <http://createme.org/sampling/specimen/16> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
@@ -1384,7 +1384,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Calothamnus lateralis var. crassus" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1392,7 +1392,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1400,7 +1400,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1408,7 +1408,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1416,7 +1416,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1424,7 +1424,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1432,7 +1432,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Boronia anceps" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1440,7 +1440,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Boronia anceps" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1448,7 +1448,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Boronia anceps" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1456,7 +1456,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Banksia sessilis var. cordata" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1464,7 +1464,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Banksia sessilis var. cordata" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1472,7 +1472,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Banksia sessilis var. cordata" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1480,7 +1480,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Banksia sessilis var. cordata" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1488,7 +1488,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1817,44 +1817,41 @@
     rdf:value "Caladenia excelsa" .
 
 <http://createme.org/attribute/dataGeneralizations/15> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/data-generalizations> ;
     tern:hasSimpleValue "Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasValue <http://createme.org/value/dataGeneralizations/15> .
 
 <http://createme.org/attribute/dataGeneralizations/16> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/data-generalizations> ;
     tern:hasSimpleValue "Coordinates generalised" ;
     tern:hasValue <http://createme.org/value/dataGeneralizations/16> .
 
 <http://createme.org/bdr-cv/attribute/identificationQualifier/> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "?" .
 
 <http://createme.org/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "Visually identified in the field (sighting)" .
 
 <http://createme.org/bdr-cv/methods/identificationMethod/new-identification-method> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "new identification method" .
 
-<http://createme.org/provider/BHP> a prov:Agent ;
-    foaf:name "BHP" .
-
 <http://createme.org/sample/field/12> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/12> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -1862,7 +1859,7 @@
 
 <http://createme.org/sample/specimen/13> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     dwc:collectionCode "CC123" ;
     rdfs:comment "specimen-sample" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
@@ -1875,7 +1872,7 @@
 
 <http://createme.org/sampling/field/15> a tern:Sampling ;
     dcterms:identifier "8022FSJMJ079c5cf" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
@@ -1891,7 +1888,7 @@
 
 <http://createme.org/sampling/field/16> a tern:Sampling ;
     dcterms:identifier "ABC123" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
@@ -1909,7 +1906,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1917,7 +1914,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Caladenia excelsa" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
@@ -1925,7 +1922,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "acceptedNameUsage-value" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
     tern:featureType <http://example.com/concept/acceptedNameUsage> .
 
@@ -1933,13 +1930,13 @@
         tern:Text,
         tern:Value ;
     rdfs:label "acceptedNameUsage-value" ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
     tern:featureType <http://example.com/concept/acceptedNameUsage> .
 
 <http://createme.org/sample/field/1> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/1> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -1947,7 +1944,7 @@
 
 <http://createme.org/sample/field/10> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/10> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -1955,7 +1952,7 @@
 
 <http://createme.org/sample/field/11> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/11> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -1963,7 +1960,7 @@
 
 <http://createme.org/sample/field/13> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/13> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -1971,7 +1968,7 @@
 
 <http://createme.org/sample/field/14> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     dwc:collectionCode "CC456" ;
     rdfs:comment "field-sample" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
@@ -1984,7 +1981,7 @@
 
 <http://createme.org/sample/field/2> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/2> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -1992,7 +1989,7 @@
 
 <http://createme.org/sample/field/3> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/3> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -2000,7 +1997,7 @@
 
 <http://createme.org/sample/field/4> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/4> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -2008,7 +2005,7 @@
 
 <http://createme.org/sample/field/5> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/5> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -2016,7 +2013,7 @@
 
 <http://createme.org/sample/field/6> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/6> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -2024,7 +2021,7 @@
 
 <http://createme.org/sample/field/7> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/7> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -2032,7 +2029,7 @@
 
 <http://createme.org/sample/field/8> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/8> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -2040,18 +2037,18 @@
 
 <http://createme.org/sample/field/9> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
     sosa:isResultOf <http://createme.org/sampling/field/9> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
-<http://createme.org/provider/WAM> a prov:Agent ;
-    foaf:name "WAM" .
+<http://createme.org/provider/BHP> a prov:Agent ;
+    foaf:name "BHP" .
 
 <http://createme.org/sample/specimen/15> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     dwc:catalogNumber "32237" ;
     rdfs:comment "specimen-sample" ;
     sosa:isResultOf <http://createme.org/sampling/specimen/15> ;
@@ -2061,7 +2058,7 @@
 
 <http://createme.org/sample/specimen/16> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     dwc:catalogNumber "32238" ;
     rdfs:comment "specimen-sample" ;
     sosa:isResultOf <http://createme.org/sampling/specimen/16> ;
@@ -2071,7 +2068,7 @@
 
 <http://createme.org/sample/field/15> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     dwc:occurrenceID "MR-456" ;
     dwc:otherCatalogNumbers "BHP2012-7521",
         "M12378" ;
@@ -2087,7 +2084,7 @@
 
 <http://createme.org/sample/field/16> a tern:FeatureOfInterest,
         tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     dwc:occurrenceID "MR-457" ;
     dwc:otherCatalogNumbers "BHP2012-7522",
         "M12379" ;
@@ -2101,8 +2098,11 @@
     sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://createme.org/bdr-cv/featureType/occurrence/kingdom/new-kingdom> .
 
+<http://createme.org/provider/WAM> a prov:Agent ;
+    foaf:name "WAM" .
+
 <http://createme.org/location/Australia> a tern:FeatureOfInterest ;
-    void:inDataset <http://createme.org/dataset/Example-Occurrence-Extended-Dataset> ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:sfWithin <https://sws.geonames.org/2077456/> ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
@@ -2110,22 +2110,13 @@
 <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
     foaf:name "Stream Environment and Water Pty Ltd" .
 
-<http://createme.org/dataset/Example-Occurrence-Extended-Dataset> a tern:RDFDataset ;
-    dcterms:description "Example Occurrence Extended Dataset by Gaia Resources" ;
-    dcterms:issued "2022-09-28"^^xsd:date ;
-    dcterms:title "Example Occurrence Extended Dataset" .
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> a tern:RDFDataset ;
+    dcterms:description "Example Incidental Occurrence Dataset by Gaia Resources" ;
+    dcterms:issued "2023-09-04"^^xsd:date ;
+    dcterms:title "Example Incidental Occurrence Dataset" .
 
 [] a rdf:Statement ;
-    rdf:object "MR-456" ;
-    rdf:predicate dwc:occurrenceID ;
-    rdf:subject <http://createme.org/sample/field/15> ;
-    skos:prefLabel "occurrenceID source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
-
-[] a rdf:Statement ;
-    rdf:object "M12378" ;
+    rdf:object "BHP2012-7521" ;
     rdf:predicate dwc:otherCatalogNumbers ;
     rdf:subject <http://createme.org/sample/field/15> ;
     skos:prefLabel "otherCatalogNumbers stakeholder" ;
@@ -2134,13 +2125,13 @@
             prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
 
 [] a rdf:Statement ;
-    rdf:object "M12379" ;
-    rdf:predicate dwc:otherCatalogNumbers ;
+    rdf:object "MR-457" ;
+    rdf:predicate dwc:occurrenceID ;
     rdf:subject <http://createme.org/sample/field/16> ;
-    skos:prefLabel "otherCatalogNumbers stakeholder" ;
+    skos:prefLabel "occurrenceID source" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
             prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
     rdf:object "PE:12:8832" ;
@@ -2152,20 +2143,13 @@
             prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
 
 [] a rdf:Statement ;
-    rdf:object "BHP2012-7522" ;
-    rdf:predicate dwc:otherCatalogNumbers ;
-    rdf:subject <http://createme.org/sample/field/16> ;
-    skos:prefLabel "otherCatalogNumbers stakeholder" ;
+    rdf:object "MR-456" ;
+    rdf:predicate dwc:occurrenceID ;
+    rdf:subject <http://createme.org/sample/field/15> ;
+    skos:prefLabel "occurrenceID source" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
             prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
-
-[] a rdf:Statement ;
-    rdf:object "8022FSJMJ079c5cf" ;
-    rdf:predicate dcterms:identifier ;
-    rdf:subject <http://createme.org/sampling/field/15> ;
-    skos:prefLabel "recordID source" ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI .
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
     rdf:object "PE:12:8833" ;
@@ -2187,23 +2171,39 @@
             prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "8022FSJMJ079c5cf" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/15> ;
+    skos:prefLabel "recordID source" .
+
+[] a rdf:Statement ;
+    rdf:object "M12379" ;
+    rdf:predicate dwc:otherCatalogNumbers ;
+    rdf:subject <http://createme.org/sample/field/16> ;
+    skos:prefLabel "otherCatalogNumbers stakeholder" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+
+[] a rdf:Statement ;
+    rdf:object "BHP2012-7522" ;
+    rdf:predicate dwc:otherCatalogNumbers ;
+    rdf:subject <http://createme.org/sample/field/16> ;
+    skos:prefLabel "otherCatalogNumbers stakeholder" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+
+[] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     rdf:object "ABC123" ;
     rdf:predicate dcterms:identifier ;
     rdf:subject <http://createme.org/sampling/field/16> ;
-    skos:prefLabel "recordID source" ;
-    dcterms:source "http://createme.org/dataset/Example-Occurrence-Extended-Dataset"^^xsd:anyURI .
+    skos:prefLabel "recordID source" .
 
 [] a rdf:Statement ;
-    rdf:object "MR-457" ;
-    rdf:predicate dwc:occurrenceID ;
-    rdf:subject <http://createme.org/sample/field/16> ;
-    skos:prefLabel "occurrenceID source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
-
-[] a rdf:Statement ;
-    rdf:object "BHP2012-7521" ;
+    rdf:object "M12378" ;
     rdf:predicate dwc:otherCatalogNumbers ;
     rdf:subject <http://createme.org/sample/field/15> ;
     skos:prefLabel "otherCatalogNumbers stakeholder" ;
