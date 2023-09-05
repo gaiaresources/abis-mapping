@@ -9,9 +9,9 @@ from abis_mapping import base
 
 
 # Constants
-TEMPLATE_ID_REAL = ["occurrence_data.csv", "occurrence_extended.csv"]
+TEMPLATE_ID_REAL = ["occurrence_extended.csv"]
 TEMPLATE_ID_FAKE = "fake"
-NUMBER_OF_TEMPLATES = 2
+NUMBER_OF_TEMPLATES = len(TEMPLATE_ID_REAL)
 
 
 def test_base_get_mapper() -> None:
