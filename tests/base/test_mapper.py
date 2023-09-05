@@ -64,6 +64,13 @@ def test_base_get_metadata() -> None:
         metadata = real_mapper.metadata()
         assert isinstance(metadata, dict)
 
+def test_metadata_id_match() -> None:
+    """Tests the metadata id matches the mapper id"""
+    for template_id in TEMPLATE_ID_REAL:
+        real_mapper = base.mapper.get_mapper(template_id)
+        assert real_mapper is not None
+        metadata = real_mapper.metadata()
+        assert metadata.get("id") == real_mapper.template_id
 
 def test_base_get_schema() -> None:
     """Tests the functionality of the base mapper"""
