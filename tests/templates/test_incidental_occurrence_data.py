@@ -1,13 +1,11 @@
 """Provides Unit Tests for the `incidental_occurrence_data.csv` Template"""
 
-
 # Standard
 import pathlib
 
 # Local
 import abis_mapping
 import tests.conftest
-
 
 # Constants
 TEMPLATE_ID = "incidental_occurrence_data.csv"
@@ -62,3 +60,15 @@ def test_mapping() -> None:
     # determine whether a statement is valid in our specific context. As such,
     # we check here to see if any `None`s have snuck their way into the RDF.
     assert "None" not in graphs[0].serialize(format="ttl")
+
+
+def test_metadata_sampling_type() -> None:
+    """Tests the metadata sampling type set correctly"""
+    # Get Mapper
+    mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+
+    # Get metadata
+    metadata = mapper().metadata()
+
+    # Confirm field set correctly
+    assert metadata.get("sampling_type") == "incidental"
