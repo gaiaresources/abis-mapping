@@ -1,12 +1,10 @@
 """Provides Unit Tests for the `abis_mapping.base` module"""
 
-
 # Standard
 import pathlib
 
 # Local
 from abis_mapping import base
-
 
 # Constants
 TEMPLATE_ID_REAL = ["incidental_occurrence_data.csv", "survey_occurrence_data.csv"]
@@ -64,6 +62,7 @@ def test_base_get_metadata() -> None:
         metadata = real_mapper.metadata()
         assert isinstance(metadata, dict)
 
+
 def test_metadata_id_match() -> None:
     """Tests the metadata id matches the mapper id"""
     for template_id in TEMPLATE_ID_REAL:
@@ -71,6 +70,7 @@ def test_metadata_id_match() -> None:
         assert real_mapper is not None
         metadata = real_mapper.metadata()
         assert metadata.get("id") == real_mapper.template_id
+
 
 def test_base_get_schema() -> None:
     """Tests the functionality of the base mapper"""
