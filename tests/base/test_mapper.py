@@ -9,7 +9,7 @@ from abis_mapping import base
 
 
 # Constants
-TEMPLATE_ID_REAL = ["occurrence_extended.csv"]
+TEMPLATE_ID_REAL = ["incidental_occurrence_data.csv"]
 TEMPLATE_ID_FAKE = "fake"
 NUMBER_OF_TEMPLATES = len(TEMPLATE_ID_REAL)
 

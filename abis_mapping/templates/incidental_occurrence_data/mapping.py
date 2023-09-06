@@ -1,4 +1,4 @@
-"""Provides ABIS Mapper for `occurrence_extended.csv` Template"""
+"""Provides ABIS Mapper for `incidental_occurrence_data.csv` Template"""
 
 
 # Standard
@@ -19,8 +19,8 @@ from typing import Iterator, Optional
 
 
 # Default Dataset Metadata
-DATASET_DEFAULT_NAME = "Example Occurrence Extended Dataset"
-DATASET_DEFAULT_DESCRIPTION = "Example Occurrence Extended Dataset by Gaia Resources"
+DATASET_DEFAULT_NAME = "Example Incidental Occurrence Dataset"
+DATASET_DEFAULT_DESCRIPTION = "Example Incidental Occurrence Dataset by Gaia Resources"
 
 # Constants and Shortcuts
 # These constants are specific to this template, and as such are defined here
@@ -60,18 +60,18 @@ ROLE_CUSTODIAN = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/Citatio
 ROLE_STAKEHOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder")  # noqa: E501
 
 
-class OccurrenceExtendedMapper(base.mapper.ABISMapper):
-    """ABIS Mapper for `occurrence_extended.csv`"""
+class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
+    """ABIS Mapper for `incidental_occurrence_data.csv`"""
 
     # Template ID and Instructions File
-    template_id = "occurrence_extended.csv"
+    template_id = "incidental_occurrence_data.csv"
     instructions_file = "instructions.pdf"
 
     def apply_validation(
         self,
         data: base.types.ReadableType,
     ) -> frictionless.Report:
-        """Applies Frictionless Validation for the `occurrence_extended.csv` Template
+        """Applies Frictionless Validation for the `incidental_occurrence_data.csv` Template
 
         Args:
             data (base.types.ReadableType): Raw data to be validated.
@@ -110,7 +110,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
     ) -> Iterator[rdflib.Graph]:
-        """Applies Mapping for the `occurrence_extended.csv` Template
+        """Applies Mapping for the `incidental_occurrence_data.csv` Template
 
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
@@ -186,7 +186,7 @@ class OccurrenceExtendedMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
-        """Applies Mapping for a Row in the `occurrence_extended.csv` Template
+        """Applies Mapping for a Row in the `incidental_occurrence_data.csv` Template
 
         Args:
             row (frictionless.Row): Row to be processed in the dataset.
@@ -3076,4 +3076,4 @@ def has_specimen(row: frictionless.Row) -> bool:
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(OccurrenceExtendedMapper)
+base.mapper.ABISMapper.register_mapper(IncidentalOccurrenceMapper)
