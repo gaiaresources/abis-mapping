@@ -3,6 +3,9 @@
 # Standard
 import pathlib
 
+# Third-party
+import frictionless
+
 # Local
 import abis_mapping
 import tests.conftest
@@ -63,7 +66,7 @@ def test_mapping() -> None:
 
 
 def test_metadata_sampling_type() -> None:
-    """Tests the metadata sampling type set correctly"""
+    """Tests the metadata sampling type set correctly."""
     # Get Mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)
 
@@ -72,3 +75,18 @@ def test_metadata_sampling_type() -> None:
 
     # Confirm field set correctly
     assert metadata.get("sampling_type") == "incidental"
+
+
+def test_schema_is_valid() -> None:
+    """Tests that the schema.json is a valid frictionless schema."""
+    # Get Mapper
+    mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+
+    # Get schema dictionary
+    descriptor = mapper().schema()
+
+    # Generate report
+    report = frictionless.validate_schema(descriptor)
+
+    # Assert valid
+    assert report.valid

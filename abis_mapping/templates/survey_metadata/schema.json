@@ -1,0 +1,70 @@
+{
+  "fields": [
+    {
+      "name": "projectID",
+      "title": "Project ID",
+      "description": "The identifier for the project that this survey belongs to. Important if more than one survey belongs to the project.",
+      "example": "IBSA-2021-0118",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "projectTitleOrName",
+      "title": "Project Title/Name",
+      "description": "Project title",
+      "example": "Reconnaissance and Targeted survey conducted for Shire of Augusta Margaret River, for the Reconstruction of Cowaramup Bay Road project.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "purpose",
+      "title": "Purpose",
+      "description": "Brief summary of the project which led to the establishment of the dataset. A 1–2 sentence description of the aims and objectives of the survey/study/project/data collection. Is the project described part of a larger research activity?",
+      "example": "Native vegetation clearing permit",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "surveyMethodURL",
+      "title": "Survey Method URL",
+      "description": "A DOI or link to the reference about the survey method, if available.",
+      "example": "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf",
+      "type": "list",
+      "format": "uri",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "temporalCoverageStartDate",
+      "title": "Temporal Coverage: Start Date",
+      "description": "The date data collection commenced.",
+      "example": "21/09/2020",
+      "type": "date",
+      "format": "any",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "temporalCoverageEndDate",
+      "title": "Temporal Coverage: End Date",
+      "description": "The date data collection was completed.",
+      "example": "23/09/2020",
+      "type": "date",
+      "format": "any",
+      "constraints": {
+        "required": false
+      }
+    }
+  ]
+}
