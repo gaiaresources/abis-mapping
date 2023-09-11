@@ -52,12 +52,14 @@ def parse_timestamp(raw: str) -> types.DateOrDatetime:
 
 def is_chronologically_ordered(dts: list[types.DateOrDatetime]) -> bool:
     """Tests the chronological ordering of a given list of dates or datetimes.
-    If two dates are compared with the same value then they are translated to have
-    occurred at the beginning or end of the day depending on which operand of the comparison
-    the date falls on in a given iteration i.e. if the same date is found then it is deemed in order.
+
+    If two dates are compared with the same value then they are translated to
+    have occurred at the beginning or end of the day depending on which operand
+    of the comparison the date falls on in a given iteration i.e. if the same date
+    is found then it is deemed in order.
 
     Args:
-        dts list[types.DateOrDatetime]: Dates or Datetimes to be checked
+        dts list[types.DateOrDatetime]: Dates or datetimes to be checked
 
     Returns:
         True if all dates or datetimes in the given list are monotonically increasing else False

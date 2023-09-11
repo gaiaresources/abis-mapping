@@ -1,4 +1,4 @@
-"""Provides extra frictionless date and time validation checks fo the package"""
+"""Provides extra frictionless date and time validation checks for the package"""
 
 
 # Third-party
@@ -12,7 +12,7 @@ from typing import Iterator, Any
 
 
 class ChronologicalOrder(frictionless.Check):
-    """Checks whether the dates and/or times are in chronological order for each row, based on the order of the
+    """Checks whether the dates or datetimes are in chronological order for each row, based on the order of the
     fields given."""
 
     # Check attributes
