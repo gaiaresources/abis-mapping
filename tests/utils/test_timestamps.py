@@ -76,14 +76,23 @@ def test_is_chronologically_ordered() -> None:
     ordered_datetimes = [
         datetime.datetime(2022, 9, 11, 15, 15, 15),
         datetime.datetime(2023, 9, 11, 15, 15, 15),
-        datetime.datetime(2023, 10, 11, 15, 15, 15),
+        datetime.date(2023, 10, 11),
+        datetime.date(2023, 10, 11),
+        datetime.datetime(2023, 10, 12, 0, 0, 1),
     ]
-    unordered_datetimes = [
-        datetime.datetime(2022, 9, 11, 15, 15, 15),
+
+    unordered_datetimes_dates = [
+        datetime.date(2022, 9, 11),
         datetime.datetime(2023, 10, 11, 15, 15, 15),
         datetime.datetime(2023, 9, 11, 15, 15, 15),
     ]
 
+    unordered_datetimes_times = [
+        datetime.datetime(2023, 9, 11, 15, 15, 15),
+        datetime.datetime(2023, 9, 11, 15, 15, 14),
+    ]
+
     # Check chronologically increasing
     assert utils.timestamps.is_chronologically_ordered(ordered_datetimes)
-    assert not utils.timestamps.is_chronologically_ordered(unordered_datetimes)
+    assert not utils.timestamps.is_chronologically_ordered(unordered_datetimes_dates)
+    assert not utils.timestamps.is_chronologically_ordered(unordered_datetimes_times)

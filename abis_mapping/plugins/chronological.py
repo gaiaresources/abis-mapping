@@ -4,11 +4,8 @@
 # Third-party
 import frictionless
 
-# Standard
-import datetime
-
 # Local
-from abis_mapping.utils import timestamps
+from abis_mapping.utils import timestamps, types
 
 # Typing
 from typing import Iterator, Any
@@ -45,7 +42,7 @@ class ChronologicalOrder(frictionless.Check):
             frictionless.Error: When the chronological order is violated.
         """
         # Get dates
-        dts: list[datetime.datetime] = []
+        dts: list[types.DateOrDatetime] = []
 
         # Populate dates list
         for name in self.__field_names:

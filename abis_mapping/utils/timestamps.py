@@ -50,23 +50,33 @@ def parse_timestamp(raw: str) -> types.DateOrDatetime:
     raise ValueError(f"Could not parse '{raw}' as date or datetime with timezone")
 
 
-def is_chronologically_ordered(dts: list[datetime.datetime]) -> bool:
-    """Tests the chronological ordering of a given list of datetimes
+def is_chronologically_ordered(dts: list[types.DateOrDatetime]) -> bool:
+    """Tests the chronological ordering of a given list of dates or datetimes.
+    If two dates are compared with the same value then they are translated to have
+    occurred at the beginning or end of the day depending on which operand of the comparison
+    the date falls on in a given iteration i.e. if the same date is found then it is deemed in order.
 
     Args:
-        dts list[datetime.datetime]: Datetimes to be checked
+        dts list[types.DateOrDatetime]: Dates or Datetimes to be checked
 
     Returns:
-        True if all datetimes in the given list are monotonically increasing else False
+        True if all dates or datetimes in the given list are monotonically increasing else False
         It returns True for empty or single value list.
     """
     # Test for 0 - 1 length list
     if len(dts) < 2:
-        return True  # If there are 0 or 1 datetimes, they are considered chronological
+        return True  # If there are 0 or 1 dates or datetimes, they are considered chronological
 
     # Iterate through the values and determine if each greater than the previous
     for i in range(len(dts) - 1):
-        if dts[i] > dts[i + 1]:
+        elem1 = dts[i]
+        elem2 = dts[i + 1]
+        # Perform a conversion to datetime if a date is found
+        if type(elem1) is datetime.date:
+            elem1 = datetime.datetime.combine(elem1, datetime.datetime.min.time())
+        if type(elem2) is datetime.date:
+            elem2 = datetime.datetime.combine(elem2, datetime.datetime.max.time())
+        if elem1 > elem2:
             return False
 
     return True
