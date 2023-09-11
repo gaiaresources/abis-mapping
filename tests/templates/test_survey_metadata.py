@@ -9,7 +9,7 @@ import abis_mapping
 
 TEMPLATE_ID = "survey_metadata.csv"
 DATA = pathlib.Path(
-    "abis_mapping/templates/incidental_occurrence_data/examples/margaret_river_flora/margaret_river_flora.csv"
+    "abis_mapping/templates/survey_metadata/examples/minimal.csv"
 )
 
 def test_validation() -> None:
@@ -39,6 +39,8 @@ def test_validation_empty_template() -> None:
     # Validate
     report = mapper().apply_validation(data)
     assert not report.valid
+    error_codes = [code for codes in report.flatten(['code']) for code in codes]
+    assert "table-dimensions-error" in error_codes
 
 
 def test_metadata_sampling_type() -> None:

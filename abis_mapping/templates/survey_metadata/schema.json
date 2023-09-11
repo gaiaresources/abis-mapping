@@ -49,7 +49,7 @@
       "title": "Temporal Coverage: Start Date",
       "description": "The date data collection commenced.",
       "example": "21/09/2020",
-      "type": "date",
+      "type": "timestamp",
       "format": "any",
       "constraints": {
         "required": false
@@ -60,7 +60,7 @@
       "title": "Temporal Coverage: End Date",
       "description": "The date data collection was completed.",
       "example": "23/09/2020",
-      "type": "date",
+      "type": "timestamp",
       "format": "any",
       "constraints": {
         "required": false
