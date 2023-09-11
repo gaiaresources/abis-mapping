@@ -7,7 +7,7 @@ import pathlib
 from abis_mapping import base
 
 # Constants
-TEMPLATE_ID_REAL = ["incidental_occurrence_data.csv", "survey_occurrence_data.csv"]
+TEMPLATE_ID_REAL = ["incidental_occurrence_data.csv", "survey_occurrence_data.csv", "survey_metadata.csv"]
 TEMPLATE_ID_FAKE = "fake"
 NUMBER_OF_TEMPLATES = len(TEMPLATE_ID_REAL)
 
