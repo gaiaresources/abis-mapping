@@ -25,7 +25,7 @@ class ChronologicalOrder(frictionless.Check):
             *,
             field_names: list[str]
     ) -> None:
-        """Instantiate the ChorologicalOrder checker"""
+        """Instantiate the ChronologicalOrder checker"""
         # Initialise super class
         super().__init__(descriptor)
 
