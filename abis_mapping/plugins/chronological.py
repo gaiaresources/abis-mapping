@@ -8,7 +8,7 @@ import frictionless
 import datetime
 
 # Local
-from abis_mapping.utils import chronological
+from abis_mapping.utils import timestamps
 
 # Typing
 from typing import Iterator, Any
@@ -54,7 +54,7 @@ class ChronologicalOrder(frictionless.Check):
                 dts.append(val)
 
         # Validate chronological order of the list
-        chrono_valid = chronological.is_chronologically_ordered(dts)
+        chrono_valid = timestamps.is_chronologically_ordered(dts)
 
         # Check validity
         if not chrono_valid:
