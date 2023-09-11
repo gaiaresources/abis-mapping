@@ -87,4 +87,3 @@ def test_is_chronologically_ordered() -> None:
     # Check chronologically increasing
     assert utils.timestamps.is_chronologically_ordered(ordered_datetimes)
     assert not utils.timestamps.is_chronologically_ordered(unordered_datetimes)
-
