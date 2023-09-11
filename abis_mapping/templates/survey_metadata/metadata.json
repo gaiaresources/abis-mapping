@@ -1,7 +1,7 @@
 {
   "id": "survey_metadata.csv",
   "label": "Systematic Survey Metadata Template",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "TBC",
   "biodiversity_type": "TBC",
   "spatial_type": "TBC",
