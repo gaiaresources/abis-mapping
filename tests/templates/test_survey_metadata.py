@@ -12,6 +12,7 @@ DATA = pathlib.Path(
     "abis_mapping/templates/survey_metadata/examples/minimal.csv"
 )
 
+
 def test_validation() -> None:
     """Tests the validation for the template."""
     # Load Data
