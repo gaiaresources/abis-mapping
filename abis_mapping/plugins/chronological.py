@@ -41,7 +41,7 @@ class ChronologicalOrder(frictionless.Check):
         Yields:
             frictionless.Error: When the chronological order is violated.
         """
-        # Get dates
+        # Get dates or datetimes
         dts: list[types.DateOrDatetime] = []
 
         # Populate dates list
