@@ -65,7 +65,7 @@ def test_schema_is_valid() -> None:
     descriptor = mapper().schema()
 
     # Generate report
-    report = frictionless.validate_schema(descriptor)
+    report = frictionless.Schema(descriptor).validate()
 
     # Assert valid
     assert report.valid
