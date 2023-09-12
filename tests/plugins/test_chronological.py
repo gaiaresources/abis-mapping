@@ -56,7 +56,7 @@ from abis_mapping import plugins
         {"name": "D", "start": "2022-09-11", "middle": "2023-05-11", "end": "2023-09-11"},
 
         # Invalid - start 1 year after end
-        {"name": "E", "start": "2023-09-11", "middle":"2023-05-11", "end": "2022-09-11"},
+        {"name": "E", "start": "2023-09-11", "middle": "2023-05-11", "end": "2022-09-11"},
     ], ["start", "middle", "end"], 1),
     ([
         # Missing
@@ -101,4 +101,3 @@ def test_checks_valid_chronological_order(source, field_names, n_errors) -> None
 
     # Assert no. of errors is expected
     assert report.stats["errors"] == n_errors
-
