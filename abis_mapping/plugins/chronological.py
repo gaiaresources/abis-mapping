@@ -42,13 +42,7 @@ class ChronologicalOrder(frictionless.Check):
             frictionless.Error: When the chronological order is violated.
         """
         # Get dates or datetimes
-        dts: list[types.DateOrDatetime] = []
-
-        # Populate dates list
-        for name in self.__field_names:
-            val = row[name]
-            if val is not None:
-                dts.append(val)
+        dts: list[types.DateOrDatetime] = [row[name] for name in self.__field_names if row[name] is not None]
 
         # Validate chronological order of the list
         chrono_valid = timestamps.is_chronologically_ordered(dts)
@@ -57,5 +51,5 @@ class ChronologicalOrder(frictionless.Check):
         if not chrono_valid:
             yield frictionless.errors.RowConstraintError.from_row(
                 row=row,
-                note="the provided dates are not in correct chronological order"
+                note=f"the following dates are not in chronological order: {self.__field_names}; with values: {dts}"
             )
