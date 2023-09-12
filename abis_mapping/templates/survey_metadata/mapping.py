@@ -37,6 +37,12 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 # Extra Custom Checks
                 plugins.tabular.IsTabular(),
                 plugins.empty.NotEmpty(),
+                plugins.chronological.ChronologicalOrder(
+                    field_names=[
+                        "temporalCoverageStartDate",
+                        "temporalCoverageEndDate",
+                    ]
+                ),
             ],
             limit_memory=base.FRICTIONLESS_LIMIT_MEMORY,
         )
