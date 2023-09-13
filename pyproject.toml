@@ -5,7 +5,7 @@ description = "Provides templates and mappings to translate tabular data to ABIS
 authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 rdflib = "^6.1.1"
 python-slugify = "^6.1.1"
 frictionless = {extras = ["excel"], version = "^4.26.1"}
