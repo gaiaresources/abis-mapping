@@ -8,6 +8,9 @@ import pytest
 # Local
 from abis_mapping import plugins
 
+# Typing
+from typing import Optional
+
 
 @pytest.mark.parametrize("source, field_names, n_errors", [
     ([
@@ -83,7 +86,11 @@ from abis_mapping import plugins
          {"name": "E", "start": "2022-09-11", "middle": "2023-05-11", "end": "2023-05-11"},
      ], ["start", "middle", "end"], 0),
 ])
-def test_checks_valid_chronological_order(source, field_names, n_errors) -> None:
+def test_checks_valid_chronological_order(
+        source: list[dict[str, Optional[str]]],
+        field_names: list[str],
+        n_errors: int
+) -> None:
     """Test the ChronologicalOrder checker"""
     # Construct fake resource
     resource = frictionless.Resource(

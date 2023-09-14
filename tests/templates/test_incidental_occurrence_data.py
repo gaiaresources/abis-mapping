@@ -69,6 +69,7 @@ def test_metadata_sampling_type() -> None:
     """Tests the metadata sampling type set correctly."""
     # Get Mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+    assert mapper
 
     # Get metadata
     metadata = mapper().metadata()
@@ -81,6 +82,7 @@ def test_schema_is_valid() -> None:
     """Tests that the schema.json is a valid frictionless schema."""
     # Get Mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+    assert mapper
 
     # Get schema dictionary
     descriptor = mapper().schema()
