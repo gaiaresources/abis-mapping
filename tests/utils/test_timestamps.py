@@ -73,7 +73,7 @@ def test_is_chronologically_ordered() -> None:
     """Tests the is_chronologically_ordered() function."""
 
     # Define scenario lists
-    ordered_datetimes = [
+    ordered_datetimes: list[utils.types.DateOrDatetime] = [
         datetime.datetime(2022, 9, 11, 15, 15, 15),
         datetime.datetime(2023, 9, 11, 15, 15, 15),
         datetime.date(2023, 10, 11),
@@ -81,13 +81,13 @@ def test_is_chronologically_ordered() -> None:
         datetime.datetime(2023, 10, 12, 0, 0, 1),
     ]
 
-    unordered_datetimes_dates = [
+    unordered_datetimes_dates: list[utils.types.DateOrDatetime] = [
         datetime.date(2022, 9, 11),
         datetime.datetime(2023, 10, 11, 15, 15, 15),
         datetime.datetime(2023, 9, 11, 15, 15, 15),
     ]
 
-    unordered_datetimes_times = [
+    unordered_datetimes_times: list[utils.types.DateOrDatetime] = [
         datetime.datetime(2023, 9, 11, 15, 15, 15),
         datetime.datetime(2023, 9, 11, 15, 15, 14),
     ]
