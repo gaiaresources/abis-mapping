@@ -36,6 +36,7 @@ def test_validation_empty_template() -> None:
 
     # Get mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+    assert mapper
 
     # Validate
     report = mapper().apply_validation(data)
@@ -48,6 +49,7 @@ def test_metadata_sampling_type() -> None:
     """Tests the metadata sampling type set correctly."""
     # Get Mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+    assert mapper
 
     # Get metadata
     metadata = mapper().metadata()
@@ -60,6 +62,7 @@ def test_schema_is_valid() -> None:
     """Tests that the schema.json is a valid frictionless schema."""
     # Get Mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+    assert mapper
 
     # Get schema dictionary
     descriptor = mapper().schema()
@@ -80,6 +83,7 @@ def test_temporal_coverage_date_ordering() -> None:
 
     # Get mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+    assert mapper
 
     # Validate
     report = mapper().apply_validation(data)
