@@ -21,7 +21,7 @@ def test_rdf_create_graph() -> None:
 
     # Check namespaces correctly assigned
     namespaces = list(graph.namespaces())
-    required_namespaces = [(name, rdflib.term.URIRef(uri)) for (name, uri) in utils.rdf.REQUIRED_NAMESPACES]
+    required_namespaces = [(name, rdflib.term.URIRef(str(uri))) for (name, uri) in utils.rdf.REQUIRED_NAMESPACES]
     for ns in required_namespaces:
         assert ns in namespaces
 
