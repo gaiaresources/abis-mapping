@@ -17,6 +17,23 @@ from . import types
 from typing import Optional
 
 
+# The required set of namespaces for the create_graph utility function
+REQUIRED_NAMESPACES = [
+    ("rdf", rdflib.RDF),
+    ("rdfs", rdflib.RDFS),
+    ("void", rdflib.VOID),
+    ("sosa", rdflib.SOSA),
+    ("dcterms", rdflib.DCTERMS),
+    ("prov", rdflib.PROV),
+    ("time", rdflib.TIME),
+    ("xsd", rdflib.XSD),
+    ("schema", rdflib.SDO),
+    ("geo", namespaces.GEO),
+    ("tern", namespaces.TERN),
+    ("dwc", namespaces.DWC),
+]
+
+
 def create_graph() -> rdflib.Graph:
     """Utility function that creates a base rdflib.Graph with the required
     namespaces bound with their expected prefix.
@@ -28,18 +45,7 @@ def create_graph() -> rdflib.Graph:
     graph = rdflib.Graph()
 
     # Bind Namespaces
-    graph.bind("rdf", rdflib.RDF)
-    graph.bind("rdfs", rdflib.RDFS)
-    graph.bind("void", rdflib.VOID)
-    graph.bind("sosa", rdflib.SOSA)
-    graph.bind("dcterms", rdflib.DCTERMS)
-    graph.bind("prov", rdflib.PROV)
-    graph.bind("time", rdflib.TIME)
-    graph.bind("xsd", rdflib.XSD)
-    graph.bind("schema", rdflib.SDO)
-    graph.bind("geo", namespaces.GEO)
-    graph.bind("tern", namespaces.TERN)
-    graph.bind("dwc", namespaces.DWC)
+    [graph.bind(*ns) for ns in REQUIRED_NAMESPACES]
 
     # Return
     return graph
