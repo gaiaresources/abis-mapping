@@ -1,10 +1,27 @@
-from typing import Optional, Iterator
+"""Provides ABIS mapper for `survey_metadata.csv` template"""
 
+# Local
+from abis_mapping import base
+from abis_mapping import plugins
+from abis_mapping import utils
+
+# Standard
+import datetime
+
+# Third-party
 import frictionless
 import rdflib
 
-from abis_mapping import base
-from abis_mapping import plugins
+# Typing
+from typing import Optional, Iterator
+
+
+# Default Dataset Metadata
+DATASET_DEFAULT_NAME = "Example Systematic Survey Metadata Dataset"
+DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Metadata Dataset by Gaia Resources"
+
+# Constants / shortcuts
+a = rdflib.RDF.type
 
 
 class SurveyMetadataMapper(base.mapper.ABISMapper):
@@ -57,7 +74,255 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             dataset_iri: Optional[rdflib.URIRef] = None,
             base_iri: Optional[rdflib.Namespace] = None
     ) -> Iterator[rdflib.Graph]:
-        pass
+        """Applies mapping for the `survey_metadata.csv` template.
+
+        Args:
+            data (base.types.ReadableType): Valid raw data to be mapped.
+            chunk_size (Optional[int]): Optional number of csv rows to be mapped in each iteration.
+            dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
+            base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
+
+        Yields:
+            rdflib.Graph: ABIS conformant RDF sub-graph from raw data chunk.
+        """
+        # Construct resource (table with schema)
+        resource = frictionless.Resource(
+            source=data,
+            format="csv",   # TODO -> Hardcoded to csv for now
+            schema=self.schema(),
+            onerror="raise",    # Raise errors, it should already be valid here
+        )
+
+        # Initialise Graph
+        graph = utils.rdf.create_graph()
+
+        # Check if Dataset IRI Supplied
+        if not dataset_iri:
+            # Create Dataset IRI
+            dataset_iri = utils.rdf.uri(f"dataset/{DATASET_DEFAULT_NAME}", base_iri)
+
+            # Add the default dataset
+            self.add_default_dataset(
+                uri=dataset_iri,
+                graph=graph,
+            )
+
+        # Ascertain no. of rows before processing
+        resource.infer(stats=True)
+        rows = resource.stats["rows"]
+
+        # Loop through rows
+        for row in resource:
+            # Map row
+            self.apply_mapping_row(
+                row=row,
+                dataset=dataset_iri,
+                graph=graph,
+                base_iri=base_iri,
+            )
+
+            # Check whether to yield a chunk
+            if utils.chunking.should_chunk(row, rows, chunk_size):
+                # Yield chunk
+                yield graph
+
+                # Initialise new graph
+                graph = utils.rdf.create_graph()
+
+        return graph
+
+
+    def add_default_dataset(
+        self,
+        uri: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Default Example Dataset to the Graph
+
+        Args:
+            uri (rdflib.URIRef): IRI of the dataset.
+            graph (rdflib.Graph): Graph to add to.
+        """
+        # Add Default Dataset to Graph
+        graph.add((uri, a, utils.namespaces.TERN.RDFDataset))
+        graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(DATASET_DEFAULT_NAME)))
+        graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DEFAULT_DESCRIPTION)))
+        graph.add((uri, rdflib.DCTERMS.issued, utils.rdf.toTimestamp(datetime.date.today())))
+
+    def apply_mapping_row(
+        self,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+        base_iri: Optional[rdflib.Namespace] = None,
+    ) -> None:
+        """Applies mapping for a row in the `survey_metadata.csv` template.
+
+        Args:
+            row (frictionless.Row): Row to be processed in the dataset.
+            dataset (rdflib.URIRef): Dataset IRI this row is a part of.
+            graph (rdflib.URIRef): Graph to map row into.
+            base_iri (Optional[rdflib.Namespace): Optional base IRI
+                to use for mapping.
+        """
+
+        # Create BDR project IRI
+        bdr_project = utils.rdf.uri(f"project/SSD-Survey-Project/{row.row_number}", base_iri)
+
+        # Create BDR survey IRI
+        bdr_survey = utils.rdf.uri(f"survey/SSD-Survey/{row.row_number}", base_iri)
+
+
+        # Add BDR project
+        self.add_bdr_project(
+            uri=bdr_project,
+            survey=bdr_survey,
+            dataset=dataset,
+            graph=graph,
+            row=row,
+        )
+
+        # Add BDR survey
+        self.add_bdr_survey(
+            uri=bdr_survey,
+            dataset=dataset,
+            row=row,
+            graph=graph,
+        )
+
+    def add_bdr_project(
+        self,
+        uri: rdflib.URIRef,
+        survey: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+        row: frictionless.Row,
+    ) -> None:
+        """Adds the BDR project to the graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            survey (rdflib.URIRef): BDR survey uri.
+            dataset (rdflib.URIRef): Dataset uri.
+            graph (rdflib.Graph): Graph to add to.
+            row (frictionless.Row): Row to be processed in dataset.
+        """
+        # Extract relevant values from row
+        project_id = row["projectID"]
+        project_name = row["projectTitleOrName"]
+        purpose = row["purpose"]
+
+        graph.add((uri, a, utils.namespaces.BDRA.Project))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        if project_id:
+            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(project_id)))
+        graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(project_name)))
+        if purpose:
+            graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(purpose)))
+        graph.add((uri, utils.namespaces.BDRA.hasSurvey, survey))
+
+    def add_bdr_survey(
+        self,
+        uri: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+        base_iri: Optional[rdflib.Namespace] = None,
+    ):
+        """Adds the BDR survey to the graph.
+
+        Args:
+            uri (rdflib.URIRef): URI of the survey.
+            dataset (rdflib.URIRef): URI of the dataset.
+            row (frictionless.Row): Row containing raw data from input CSV.
+            graph (rdflib.Graph): The graph to be modified.
+            base_iri (Optional[rdflib.Namespace]): Optional base mapping IRI.
+        """
+        # Extract relevant values from row
+        survey_method_urls = row["surveyMethodURL"]
+
+        # Add type and dataset
+        graph.add((uri, a, utils.namespaces.BDRA.Survey))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+
+        # Attach temporal coverage if present
+        self.add_temporal_coverage(
+            uri=uri,
+            row=row,
+            graph=graph,
+        )
+
+        # Attach survey methodologies
+        if survey_method_urls:
+            for idx, survey_method_url in enumerate(survey_method_urls, start=1):
+                # Create tern attribute survey method IRI
+                survey_method_base_iri = utils.rdf.uri(
+                    internal_id=f"attribute/survey-method-url/{idx}",
+                    namespace=base_iri,
+                )
+
+                # Attach methodology iri to survey node
+                graph.add((uri, utils.namespaces.TERN.hasAttribute, survey_method_base_iri))
+
+                # Define and attach methodology definition nodes
+                self.add_survey_methodology(
+                    uri=survey_method_base_iri,
+                    method_url=survey_method_url,
+                    dataset=dataset,
+                    graph=graph,
+                )
+
+    def add_temporal_coverage(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ):
+        """Adds the temporal coverage fields to the graph.
+
+        Args:
+            uri (rdflib.URIRef): Base URI the temporal information will be attached
+            row (frictionless.Row): Data row provided in the data csv
+            graph (rdflib.Graph): Graph to be modified
+        """
+        # Determine if any dates are present in the row
+        start_date = row["temporalCoverageStartDate"]
+        end_date = row["temporalCoverageEndDate"]
+        if not start_date and not end_date:
+            return
+
+        # Create temporal coverage node
+        temporal_coverage = rdflib.BNode()
+        graph.add((temporal_coverage, a, rdflib.TIME.TemporalEntity))
+        if start_date:
+            graph.add((temporal_coverage, rdflib.TIME.hasBeginning, utils.rdf.toTimestamp(start_date)))
+        if end_date:
+            graph.add((temporal_coverage, rdflib.TIME.hasEnd, utils.rdf.toTimestamp(end_date)))
+
+        # Attach to survey node
+        graph.add((uri, rdflib.TIME.hasTime, temporal_coverage))
+
+    def add_survey_methodology(
+        self,
+        uri: rdflib.URIRef,
+        method_url: str,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ):
+        """Adds the survey methodology URIs to the graph.
+
+        Args:
+            uri (rdflib.URIRef): Base methodology URI the methodology will be attached.
+            method_url (str): URL value of the methodology.
+            dataset (rdflib.URIRef): URI of the dataset.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Populate type and dataset
+        graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+
+        # Add simple literal containing the method URL
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(method_url)))
 
 
 base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)
