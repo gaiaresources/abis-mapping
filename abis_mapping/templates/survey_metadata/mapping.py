@@ -131,7 +131,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         return graph
 
-
     def add_default_dataset(
         self,
         uri: rdflib.URIRef,
@@ -171,7 +170,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Create BDR survey IRI
         bdr_survey = utils.rdf.uri(f"survey/SSD-Survey/{row.row_number}", base_iri)
-
 
         # Add BDR project
         self.add_bdr_project(
@@ -228,7 +226,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         graph: rdflib.Graph,
         base_iri: Optional[rdflib.Namespace] = None,
-    ):
+    ) -> None:
         """Adds the BDR survey to the graph.
 
         Args:
@@ -277,7 +275,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
-    ):
+    ) -> None:
         """Adds the temporal coverage fields to the graph.
 
         Args:
@@ -308,7 +306,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         method_url: str,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-    ):
+    ) -> None:
         """Adds the survey methodology URIs to the graph.
 
         Args:

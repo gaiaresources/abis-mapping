@@ -16,6 +16,7 @@ EXPECTED = pathlib.Path(
     "abis_mapping/templates/survey_metadata/examples/minimal.ttl"
 )
 
+
 def test_validation() -> None:
     """Tests the validation for the template."""
     # Load Data
@@ -46,6 +47,7 @@ def test_validation_empty_template() -> None:
     assert not report.valid
     error_codes = [code for codes in report.flatten(['code']) for code in codes]
     assert "table-dimensions-error" in error_codes
+
 
 def test_mapping() -> None:
     """Tests mapping for the template."""
