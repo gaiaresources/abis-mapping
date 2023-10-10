@@ -256,7 +256,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.BDRA.Survey))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
 
-
     def add_temporal_coverage(
         self,
         uri: rdflib.URIRef,
