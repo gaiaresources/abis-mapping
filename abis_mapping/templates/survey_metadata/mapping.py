@@ -184,8 +184,23 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         self.add_bdr_survey(
             uri=bdr_survey,
             dataset=dataset,
+            graph=graph,
+        )
+
+        # Attach temporal coverage if present
+        self.add_temporal_coverage(
+            uri=bdr_survey,
             row=row,
             graph=graph,
+        )
+
+        # Add survey method urls
+        self.add_survey_methodologies(
+            uri=bdr_survey,
+            dataset=dataset,
+            row=row,
+            graph=graph,
+            base_iri=base_iri,
         )
 
     def add_bdr_project(
@@ -210,65 +225,37 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         project_name = row["projectTitleOrName"]
         purpose = row["purpose"]
 
+        # Add type and attach to dataset
         graph.add((uri, a, utils.namespaces.BDRA.Project))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
+
+        # Add (required) project name, id (not required) and purpose (not required).
+        graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(project_name)))
         if project_id:
             graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(project_id)))
-        graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(project_name)))
         if purpose:
             graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(purpose)))
+
+        # Attach survey
         graph.add((uri, utils.namespaces.BDRA.hasSurvey, survey))
 
     def add_bdr_survey(
         self,
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
-        row: frictionless.Row,
         graph: rdflib.Graph,
-        base_iri: Optional[rdflib.Namespace] = None,
     ) -> None:
         """Adds the BDR survey to the graph.
 
         Args:
             uri (rdflib.URIRef): URI of the survey.
             dataset (rdflib.URIRef): URI of the dataset.
-            row (frictionless.Row): Row containing raw data from input CSV.
             graph (rdflib.Graph): The graph to be modified.
-            base_iri (Optional[rdflib.Namespace]): Optional base mapping IRI.
         """
-        # Extract relevant values from row
-        survey_method_urls = row["surveyMethodURL"]
-
         # Add type and dataset
         graph.add((uri, a, utils.namespaces.BDRA.Survey))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
 
-        # Attach temporal coverage if present
-        self.add_temporal_coverage(
-            uri=uri,
-            row=row,
-            graph=graph,
-        )
-
-        # Attach survey methodologies
-        if survey_method_urls:
-            for idx, survey_method_url in enumerate(survey_method_urls, start=1):
-                # Create tern attribute survey method IRI
-                survey_method_base_iri = utils.rdf.uri(
-                    internal_id=f"attribute/survey-method-url/{idx}",
-                    namespace=base_iri,
-                )
-
-                # Attach methodology iri to survey node
-                graph.add((uri, utils.namespaces.TERN.hasAttribute, survey_method_base_iri))
-
-                # Define and attach methodology definition nodes
-                self.add_survey_methodology(
-                    uri=survey_method_base_iri,
-                    method_url=survey_method_url,
-                    dataset=dataset,
-                    graph=graph,
-                )
 
     def add_temporal_coverage(
         self,
@@ -300,27 +287,48 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Attach to survey node
         graph.add((uri, rdflib.TIME.hasTime, temporal_coverage))
 
-    def add_survey_methodology(
+    def add_survey_methodologies(
         self,
         uri: rdflib.URIRef,
-        method_url: str,
         dataset: rdflib.URIRef,
+        row: frictionless.Row,
         graph: rdflib.Graph,
+        base_iri: Optional[rdflib.Namespace] = None,
     ) -> None:
         """Adds the survey methodology URIs to the graph.
 
         Args:
-            uri (rdflib.URIRef): Base methodology URI the methodology will be attached.
-            method_url (str): URL value of the methodology.
+            uri (rdflib.URIRef): Base URI the methodologies will be attached.
             dataset (rdflib.URIRef): URI of the dataset.
+            row (frictionless.Row): Row containing CSV data row contents.
             graph (rdflib.Graph): Graph to be modified.
+            base_iri (Optional[rdflib.Namespace]): Optional base mapping IRI.
         """
-        # Populate type and dataset
-        graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        # Extract relevant values from row
+        survey_method_urls = row["surveyMethodURL"]
 
-        # Add simple literal containing the method URL
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(method_url)))
+        # Attach survey methodologies
+        if survey_method_urls:
+            for idx, survey_method_url in enumerate(survey_method_urls, start=1):
+                # Create tern attribute survey method IRI
+                survey_method_base_iri = utils.rdf.uri(
+                    internal_id=f"attribute/survey-method-url/{idx}",
+                    namespace=base_iri,
+                )
+
+                # Attach methodology iri to survey node
+                graph.add((uri, utils.namespaces.TERN.hasAttribute, survey_method_base_iri))
+
+                # Populate type and dataset
+                graph.add((survey_method_base_iri, a, utils.namespaces.TERN.Attribute))
+                graph.add((survey_method_base_iri, rdflib.VOID.inDataset, dataset))
+
+                # Add simple literal containing the method URL
+                graph.add((
+                    survey_method_base_iri,
+                    utils.namespaces.TERN.hasSimpleValue,
+                    rdflib.Literal(survey_method_url)
+                ))
 
 
 base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)
