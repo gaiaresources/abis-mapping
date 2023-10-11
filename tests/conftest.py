@@ -53,7 +53,7 @@ def compare_graphs(
                     graph.set((s, p, rdflib.Literal("test-value")))
 
     # Compare Graphs
-    return rdflib.compare.isomorphic(  # type: ignore[no-any-return]
+    return rdflib.compare.isomorphic(
         graph1=graph1,
         graph2=graph2,
     )

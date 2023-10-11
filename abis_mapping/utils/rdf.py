@@ -31,6 +31,7 @@ REQUIRED_NAMESPACES = [
     ("geo", namespaces.GEO),
     ("tern", namespaces.TERN),
     ("dwc", namespaces.DWC),
+    ("bdr", namespaces.BDR),
 ]
 
 
@@ -45,7 +46,8 @@ def create_graph() -> rdflib.Graph:
     graph = rdflib.Graph()
 
     # Bind Namespaces
-    [graph.bind(*ns) for ns in REQUIRED_NAMESPACES]
+    for ns in REQUIRED_NAMESPACES:
+        graph.bind(*ns)
 
     # Return
     return graph
@@ -84,7 +86,7 @@ def uri(
     internal_id = "/".join(slugify.slugify(part, lowercase=False) for part in internal_id.split("/"))
 
     # Create URIRef and Return
-    return namespace[internal_id]  # type: ignore[no-any-return]
+    return namespace[internal_id]
 
 
 def inXSDSmart(timestamp: types.DateOrDatetime) -> rdflib.URIRef:

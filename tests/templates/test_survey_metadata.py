@@ -6,10 +6,14 @@ import pathlib
 
 # Local
 import abis_mapping
+import tests.conftest
 
 TEMPLATE_ID = "survey_metadata.csv"
 DATA = pathlib.Path(
     "abis_mapping/templates/survey_metadata/examples/minimal.csv"
+)
+EXPECTED = pathlib.Path(
+    "abis_mapping/templates/survey_metadata/examples/minimal.ttl"
 )
 
 
@@ -43,6 +47,29 @@ def test_validation_empty_template() -> None:
     assert not report.valid
     error_codes = [code for codes in report.flatten(['code']) for code in codes]
     assert "table-dimensions-error" in error_codes
+
+
+def test_mapping() -> None:
+    """Tests mapping for the template."""
+    # Load data
+    data = DATA.read_bytes()
+    expected = EXPECTED.read_text()
+
+    # Get mapper
+    mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+    assert mapper
+
+    # Map
+    graphs = list(mapper().apply_mapping(data))
+
+    # Assert
+    assert len(graphs) == 1
+
+    # Compare graphs
+    assert tests.conftest.compare_graphs(
+        graph1=graphs[0],
+        graph2=expected,
+    )
 
 
 def test_metadata_sampling_type() -> None:
