@@ -171,7 +171,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add BDR survey
         self.add_bdr_survey(
             uri=bdr_survey,
-            dataset=dataset,
             graph=graph,
         )
 
@@ -185,7 +184,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add survey method urls
         self.add_survey_methodologies(
             uri=bdr_survey,
-            dataset=dataset,
             row=row,
             graph=graph,
             base_iri=base_iri,
@@ -230,19 +228,16 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
     def add_bdr_survey(
         self,
         uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds the BDR survey to the graph.
 
         Args:
             uri (rdflib.URIRef): URI of the survey.
-            dataset (rdflib.URIRef): URI of the dataset.
             graph (rdflib.Graph): The graph to be modified.
         """
         # Add type and dataset
         graph.add((uri, a, utils.namespaces.BDR.Survey))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
 
     def add_temporal_coverage(
         self,
@@ -277,7 +272,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
     def add_survey_methodologies(
         self,
         uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
         base_iri: Optional[rdflib.Namespace] = None,
@@ -286,7 +280,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         Args:
             uri (rdflib.URIRef): Base URI the methodologies will be attached.
-            dataset (rdflib.URIRef): URI of the dataset.
             row (frictionless.Row): Row containing CSV data row contents.
             graph (rdflib.Graph): Graph to be modified.
             base_iri (Optional[rdflib.Namespace]): Optional base mapping IRI.
@@ -306,9 +299,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 # Attach methodology iri to survey node
                 graph.add((uri, utils.namespaces.TERN.hasAttribute, survey_method_base_iri))
 
-                # Populate type and dataset
+                # Populate type
                 graph.add((survey_method_base_iri, a, utils.namespaces.TERN.Attribute))
-                graph.add((survey_method_base_iri, rdflib.VOID.inDataset, dataset))
 
                 # Add simple literal containing the method URL
                 graph.add((

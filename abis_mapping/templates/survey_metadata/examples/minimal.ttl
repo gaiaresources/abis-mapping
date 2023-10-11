@@ -13,11 +13,9 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> .
 
 <http://createme.org/attribute/survey-method-url/1> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     tern:hasSimpleValue "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf" .
 
 <http://createme.org/survey/SSD-Survey/1> a bdr:Survey ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning "2020-09-21"^^xsd:date ;
             time:hasEnd "2020-09-23"^^xsd:date ] ;
