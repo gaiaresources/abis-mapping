@@ -72,7 +72,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             data: base.types.ReadableType,
             dataset_iri: Optional[rdflib.URIRef] = None,
             base_iri: Optional[rdflib.Namespace] = None,
-            **kwargs: dict[str, Any],
+            **kwargs: Any,
     ) -> Iterator[rdflib.Graph]:
         """Applies mapping for the `survey_metadata.csv` template.
 
@@ -80,7 +80,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             data (base.types.ReadableType): Valid raw data to be mapped.
             dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
-            **kwargs (dict[str, Any]): Additional keyword arguments.
+            **kwargs (Any): Additional keyword arguments.
 
         Yields:
             rdflib.Graph: ABIS conformant RDF sub-graph from raw data chunk.

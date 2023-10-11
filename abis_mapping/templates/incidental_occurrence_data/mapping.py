@@ -108,7 +108,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         data: base.types.ReadableType,
         dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
-        **kwargs: dict[str, Any],
+        **kwargs: Any,
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping for the `incidental_occurrence_data.csv` Template
 
