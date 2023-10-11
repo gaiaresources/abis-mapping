@@ -15,7 +15,7 @@ from abis_mapping import plugins
 from abis_mapping import vocabs
 
 # Typing
-from typing import Iterator, Optional
+from typing import Iterator, Optional, Any
 
 
 # Default Dataset Metadata
@@ -106,9 +106,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
     def apply_mapping(
         self,
         data: base.types.ReadableType,
-        chunk_size: Optional[int] = None,
         dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
+        **kwargs: dict[str, Any],
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping for the `incidental_occurrence_data.csv` Template
 
@@ -117,9 +117,18 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
 
+        Keyword Args:
+            chunk_size (Optional[int]): How many rows of the original data to
+                ingest before yielding a graph. `None` will ingest all rows.
+
         Yields:
             rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
         """
+        # Extract keyword arguments
+        chunk_size = kwargs.get("chunk_size")
+        if not isinstance(chunk_size, int):
+            chunk_size = None
+
         # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
             source=data,

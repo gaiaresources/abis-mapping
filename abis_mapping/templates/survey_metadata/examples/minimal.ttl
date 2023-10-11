@@ -1,12 +1,12 @@
-@prefix bdra: <http://example.com/bdra-schema/> .
+@prefix bdr: <http://example.com/bdr-schema/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://createme.org/project/SSD-Survey-Project/1> a bdra:Project ;
-    bdra:hasSurvey <http://createme.org/survey/SSD-Survey/1> ;
+<http://createme.org/project/SSD-Survey-Project/1> a bdr:Project ;
+    bdr:hasSurvey <http://createme.org/survey/SSD-Survey/1> ;
     dcterms:description "Native vegetation clearing permit" ;
     dcterms:identifier "IBSA-2021-0118" ;
     dcterms:title "Reconnaissance and Targeted survey conducted for Shire of Augusta Margaret River, for the Reconstruction of Cowaramup Bay Road project." ;
@@ -16,7 +16,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     tern:hasSimpleValue "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf" .
 
-<http://createme.org/survey/SSD-Survey/1> a bdra:Survey ;
+<http://createme.org/survey/SSD-Survey/1> a bdr:Survey ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning "2020-09-21"^^xsd:date ;

@@ -47,17 +47,17 @@ class ABISMapper(abc.ABC):
     def apply_mapping(
         self,
         data: types.ReadableType,
-        chunk_size: Optional[int] = None,
         dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
+        **kwargs: dict[str, Any],
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping from Raw Data to ABIS conformant RDF.
 
         Args:
             data (ReadableType): Readable raw data.
-            chunk_size (Optional[int]): Optional number of rows to chunk into.
             dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
+            **kwargs (dict[str, Any]): Additional keyword arguments.
 
         Yields:
             rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.

@@ -31,7 +31,7 @@ REQUIRED_NAMESPACES = [
     ("geo", namespaces.GEO),
     ("tern", namespaces.TERN),
     ("dwc", namespaces.DWC),
-    ("bdra", namespaces.BDRA),
+    ("bdr", namespaces.BDR),
 ]
 
 

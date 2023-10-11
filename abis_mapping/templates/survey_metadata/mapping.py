@@ -13,7 +13,7 @@ import frictionless
 import rdflib
 
 # Typing
-from typing import Optional, Iterator
+from typing import Optional, Iterator, Any
 
 
 # Default Dataset Metadata
@@ -70,17 +70,17 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
     def apply_mapping(
             self,
             data: base.types.ReadableType,
-            chunk_size: Optional[int] = None,
             dataset_iri: Optional[rdflib.URIRef] = None,
-            base_iri: Optional[rdflib.Namespace] = None
+            base_iri: Optional[rdflib.Namespace] = None,
+            **kwargs: dict[str, Any],
     ) -> Iterator[rdflib.Graph]:
         """Applies mapping for the `survey_metadata.csv` template.
 
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
-            chunk_size (Optional[int]): Optional number of csv rows to be mapped in each iteration.
             dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
             base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
+            **kwargs (dict[str, Any]): Additional keyword arguments.
 
         Yields:
             rdflib.Graph: ABIS conformant RDF sub-graph from raw data chunk.
@@ -107,10 +107,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
 
-        # Ascertain no. of rows before processing
-        resource.infer(stats=True)
-        rows = resource.stats["rows"]
-
         # Loop through rows
         for row in resource:
             # Map row
@@ -121,15 +117,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 base_iri=base_iri,
             )
 
-            # Check whether to yield a chunk
-            if utils.chunking.should_chunk(row, rows, chunk_size):
-                # Yield chunk
-                yield graph
-
-                # Initialise new graph
-                graph = utils.rdf.create_graph()
-
-        return graph
+        yield graph
 
     def add_default_dataset(
         self,
@@ -226,7 +214,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         purpose = row["purpose"]
 
         # Add type and attach to dataset
-        graph.add((uri, a, utils.namespaces.BDRA.Project))
+        graph.add((uri, a, utils.namespaces.BDR.Project))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
 
         # Add (required) project name, id (not required) and purpose (not required).
@@ -237,7 +225,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(purpose)))
 
         # Attach survey
-        graph.add((uri, utils.namespaces.BDRA.hasSurvey, survey))
+        graph.add((uri, utils.namespaces.BDR.hasSurvey, survey))
 
     def add_bdr_survey(
         self,
@@ -253,7 +241,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): The graph to be modified.
         """
         # Add type and dataset
-        graph.add((uri, a, utils.namespaces.BDRA.Survey))
+        graph.add((uri, a, utils.namespaces.BDR.Survey))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
 
     def add_temporal_coverage(
