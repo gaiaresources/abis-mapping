@@ -12,58 +12,19 @@ from abis_mapping import plugins
 from typing import Any, Optional
 
 
-@pytest.mark.parametrize(
-    argnames=[
-        "type",
-        "valid",
-        "delimiter",
-    ],
-    argvalues=[
-        # Valid
-        ("list", True, "|"),
-        ("list[|]", True, "|"),
-        ("list[ ]", True, " "),
-        ("list[anything]", True, "anything"),
+def test_list_type_registered() -> None:
+    """Tests the list field type is registered and delimiter property works."""
+    # Create schema with list field
+    schema = frictionless.Schema.from_descriptor({
+        'fields': [{'name': 'someList', 'type': 'list', 'delimiter': ' '}]
+    })
 
-        # Invalid
-        ("anything", False, None),
-        ("list[]", False, None),
-        ("list[", False, None),
-        ("list]", False, None),
-        ("list[ ", False, None),
-        ("list ]", False, None),
-        ("list[|", False, None),
-        ("list|]", False, None),
-    ]
-)
-def test_list_plugin(
-    type: str,
-    valid: bool,
-    delimiter: Optional[str],
-) -> None:
-    """Tests the List Plugin.
+    # Extract list field
+    field = schema.get_field('someList')
 
-    Args:
-        type (str): Type of the field to test.
-        valid (bool): Whether it is expected to be valid and succeed.
-        delimiter (Optional[str]): Possible expected delimiter.
-    """
-    # Instantiate the Plugin
-    plugin = plugins.list.ListPlugin()
-
-    # Create Field
-    field = frictionless.Field(type=type)
-    result = plugin.create_type(field)
-
-    # Check Results
-    if valid:
-        # Valid
-        assert isinstance(result, plugins.list.ListType)
-        assert result.delimiter == delimiter
-
-    else:
-        # Invalid
-        assert result is None
+    # Will only reach this assertion if schema created (won't create if list not registered)
+    assert not field.builtin
+    assert field.__getattribute__("delimiter") == ' '
 
 
 @pytest.mark.parametrize(
@@ -110,12 +71,15 @@ def test_list_type_read(
         value (Any): Value to read and test.
         expected (Optional[list[str]]): Expected outcome of reading the value.
     """
-    # Instantiate the Type
-    type = plugins.list.ListType(field=frictionless.Field(format=format))
-    type.delimiter = delimiter
+    # Instantiate the field
+    field = plugins.list.ListField(
+        name="testField",
+        format=format,
+        delimiter=delimiter,
+    )
 
     # Read Cell
-    result = type.read_cell(value)
+    result = field.read_cell(value)[0]
 
     # Check Result
     assert result == expected
@@ -154,12 +118,17 @@ def test_list_type_write(
         value (list[str]): Value to write and test.
         expected (str): Expected outcome of writing the value.
     """
-    # Instantiate the Type
-    type = plugins.list.ListType(field=frictionless.Field(format=format))
-    type.delimiter = delimiter
+    # Instantiate the Field
+    field = plugins.list.ListField(
+        name="testField",
+        format=format,
+        delimiter=delimiter,
+    )
 
     # Write Cell
-    result = type.write_cell(value)
+    result = field.write_cell(value)[0]
 
     # Check Result
     assert result == expected
+
+
