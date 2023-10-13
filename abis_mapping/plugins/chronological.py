@@ -10,7 +10,7 @@ import attrs
 from abis_mapping.utils import timestamps, types
 
 # Typing
-from typing import Iterator, Any
+from typing import Iterator
 
 
 @attrs.define(kw_only=True, repr=False)

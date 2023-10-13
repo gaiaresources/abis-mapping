@@ -7,7 +7,8 @@ import frictionless.errors
 import attrs
 
 # Typing
-from typing import Any, Iterator
+from typing import Iterator
+
 
 @attrs.define(kw_only=True, repr=False)
 class MutuallyInclusive(frictionless.Check):

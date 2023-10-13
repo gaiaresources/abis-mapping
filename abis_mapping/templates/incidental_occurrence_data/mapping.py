@@ -6,6 +6,7 @@ import datetime
 
 # Third-Party
 import frictionless
+import frictionless.resources
 import rdflib
 
 # Local
@@ -79,25 +80,28 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
-        # Construct Resource (Table with Schema)
-        resource = frictionless.Resource(
-            source=data,
+        # Construct Schema
+        schema = frictionless.Schema.from_descriptor(self.schema())
+
+        # Construct TableResource
+        resource = frictionless.resources.TableResource(
+            data=data,
             format="csv",  # TODO -> Hardcoded to csv for now
-            schema=self.schema(),
-            onerror="ignore",  # Ignore errors, they will be handled in the report
+            schema=schema
         )
 
         # Validate
         report: frictionless.Report = resource.validate(
-            checks=[
-                # Extra Custom Checks
-                plugins.tabular.IsTabular(),
-                plugins.empty.NotEmpty(),
-                plugins.mutual_inclusion.MutuallyInclusive(
-                    field_names=["threatStatus", "conservationJurisdiction"],
-                )
-            ],
-            limit_memory=base.FRICTIONLESS_LIMIT_MEMORY
+            checklist=frictionless.Checklist(
+                checks=[
+                    # Extra Custom Checks
+                    plugins.tabular.IsTabular(),
+                    plugins.empty.NotEmpty(),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=["threatStatus", "conservationJurisdiction"],
+                    )
+                ],
+            ),
         )
 
         # Return Validation Report
@@ -129,17 +133,19 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not isinstance(chunk_size, int):
             chunk_size = None
 
-        # Construct Resource (Table with Schema)
-        resource = frictionless.Resource(
-            source=data,
+        # Construct Schema
+        schema = frictionless.Schema.from_descriptor(self.schema())
+
+        # Construct TableResource
+        resource = frictionless.resources.TableResource(
+            data=data,
             format="csv",  # TODO -> Hardcoded to csv for now
-            schema=self.schema(),
-            onerror="raise",  # Raise errors, it should already be valid here
+            schema=schema,
         )
 
         # Infer Statistics and Count Number of Rows
         resource.infer(stats=True)
-        rows = resource.stats["rows"]
+        n_rows = resource.rows if resource.rows is not None else 0
 
         # Initialise Graph
         graph = utils.rdf.create_graph()
@@ -165,27 +171,32 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Loop through Rows
-        for row in resource:
-            # Map Row
-            self.apply_mapping_row(
-                row=row,
-                dataset=dataset_iri,
-                terminal_foi=terminal_foi,
-                graph=graph,
-                base_iri=base_iri,
-            )
+        # Open the TableResource to allow row streaming
+        with resource.open() as r:
+            # Loop through Rows
+            for row in r.row_stream:
+                # Map Row
+                self.apply_mapping_row(
+                    row=row,
+                    dataset=dataset_iri,
+                    terminal_foi=terminal_foi,
+                    graph=graph,
+                    base_iri=base_iri,
+                )
 
-            # Check Whether to Yield a Chunk
-            if utils.chunking.should_chunk(row, rows, chunk_size):
-                # Yield Chunk
-                yield graph
+                # Check Whether to Yield a Chunk
+                # The row_number needs to be reduced by one as the numbering of rows
+                # in a TableResource includes the header, but the count of the number
+                # of rows excludes the header row.
+                if utils.chunking.should_chunk(row.row_number-1, n_rows, chunk_size):
+                    # Yield Chunk
+                    yield graph
 
-                # Initialise New Graph
-                graph = utils.rdf.create_graph()
+                    # Initialise New Graph
+                    graph = utils.rdf.create_graph()
 
-        # Return
-        return graph
+            # Return
+            return graph
 
     def apply_mapping_row(
         self,
@@ -208,57 +219,60 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         Returns:
             rdflib.Graph: Graph with row mapped into it.
         """
+        # Set the row number to relate to the data itself, excluding header
+        row_num = row.row_number - 1
+
         # Create URIs
         provider_owner_institution = utils.rdf.uri(f"provider/{row['ownerInstitutionCode']}", base_iri)
         provider_institution = utils.rdf.uri(f"provider/{row['institutionCode']}", base_iri)
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
         provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
-        sample_field = utils.rdf.uri(f"sample/field/{row.row_number}", base_iri)
-        sampling_field = utils.rdf.uri(f"sampling/field/{row.row_number}", base_iri)
-        sample_specimen = utils.rdf.uri(f"sample/specimen/{row.row_number}", base_iri)
-        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row.row_number}", base_iri)
-        text_scientific_name = utils.rdf.uri(f"scientificName/{row.row_number}", base_iri)
-        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row.row_number}", base_iri)
-        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row.row_number}", base_iri)
-        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row.row_number}", base_iri)
-        id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{row.row_number}", base_iri)
-        id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row.row_number}", base_iri)
-        id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row.row_number}", base_iri)
-        id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row.row_number}", base_iri)
-        data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/{row.row_number}", base_iri)
-        data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{row.row_number}", base_iri)
-        kingdom_attribute = utils.rdf.uri(f"attribute/kingdom/{row.row_number}", base_iri)
-        kingdom_value = utils.rdf.uri(f"value/kingdom/{row.row_number}", base_iri)
-        taxon_rank_attribute = utils.rdf.uri(f"attribute/taxonRank/{row.row_number}", base_iri)
-        taxon_rank_value = utils.rdf.uri(f"value/taxonRank/{row.row_number}", base_iri)
-        individual_count_observation = utils.rdf.uri(f"observation/individualCount/{row.row_number}", base_iri)
-        individual_count_value = utils.rdf.uri(f"value/individualCount/{row.row_number}", base_iri)
-        organism_remarks_observation = utils.rdf.uri(f"observation/organismRemarks/{row.row_number}", base_iri)
-        organism_remarks_value = utils.rdf.uri(f"value/organismRemarks/{row.row_number}", base_iri)
-        habitat_attribute = utils.rdf.uri(f"attribute/habitat/{row.row_number}", base_iri)
-        habitat_value = utils.rdf.uri(f"value/habitat/{row.row_number}", base_iri)
-        basis_attribute = utils.rdf.uri(f"attribute/basisOfRecord/{row.row_number}", base_iri)
-        basis_value = utils.rdf.uri(f"value/basisOfRecord/{row.row_number}", base_iri)
-        occurrence_status_observation = utils.rdf.uri(f"observation/occurrenceStatus/{row.row_number}", base_iri)
-        occurrence_status_value = utils.rdf.uri(f"value/occurrenceStatus/{row.row_number}", base_iri)
-        preparations_attribute = utils.rdf.uri(f"attribute/preparations/{row.row_number}", base_iri)
-        preparations_value = utils.rdf.uri(f"value/preparations/{row.row_number}", base_iri)
-        establishment_means_observation = utils.rdf.uri(f"observation/establishmentMeans/{row.row_number}", base_iri)
-        establishment_means_value = utils.rdf.uri(f"value/establishmentMeans/{row.row_number}", base_iri)
-        life_stage_observation = utils.rdf.uri(f"observation/lifeStage/{row.row_number}", base_iri)
-        life_stage_value = utils.rdf.uri(f"value/lifeStage/{row.row_number}", base_iri)
-        sex_observation = utils.rdf.uri(f"observation/sex/{row.row_number}", base_iri)
-        sex_value = utils.rdf.uri(f"value/sex/{row.row_number}", base_iri)
-        reproductive_condition_observation = utils.rdf.uri(f"observation/reproductiveCondition/{row.row_number}", base_iri)  # noqa: E501
-        reproductive_condition_value = utils.rdf.uri(f"value/reproductiveCondition/{row.row_number}", base_iri)
-        accepted_name_usage_observation = utils.rdf.uri(f"observation/acceptedNameUsage/{row.row_number}", base_iri)  # noqa: E501
-        accepted_name_usage_value = utils.rdf.uri(f"value/acceptedNameUsage/{row.row_number}", base_iri)
-        sampling_sequencing = utils.rdf.uri(f"sampling/sequencing/{row.row_number}", base_iri)
-        sample_sequence = utils.rdf.uri(f"sample/sequence/{row.row_number}", base_iri)
-        threat_status_observation = utils.rdf.uri(f"observation/threatStatus/{row.row_number}", base_iri)
-        threat_status_value = utils.rdf.uri(f"value/threatStatus/{row.row_number}", base_iri)
-        conservation_jurisdiction_attribute = utils.rdf.uri(f"attribute/conservationJurisdiction/{row.row_number}", base_iri)  # noqa: E501
-        conservation_jurisdiction_value = utils.rdf.uri(f"value/conservationJurisdiction/{row.row_number}", base_iri)
+        sample_field = utils.rdf.uri(f"sample/field/{row_num}", base_iri)
+        sampling_field = utils.rdf.uri(f"sampling/field/{row_num}", base_iri)
+        sample_specimen = utils.rdf.uri(f"sample/specimen/{row_num}", base_iri)
+        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_num}", base_iri)
+        text_scientific_name = utils.rdf.uri(f"scientificName/{row_num}", base_iri)
+        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row_num}", base_iri)
+        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row_num}", base_iri)
+        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row_num}", base_iri)
+        id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{row_num}", base_iri)
+        id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row_num}", base_iri)
+        id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_num}", base_iri)
+        id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_num}", base_iri)
+        data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/{row_num}", base_iri)
+        data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{row_num}", base_iri)
+        kingdom_attribute = utils.rdf.uri(f"attribute/kingdom/{row_num}", base_iri)
+        kingdom_value = utils.rdf.uri(f"value/kingdom/{row_num}", base_iri)
+        taxon_rank_attribute = utils.rdf.uri(f"attribute/taxonRank/{row_num}", base_iri)
+        taxon_rank_value = utils.rdf.uri(f"value/taxonRank/{row_num}", base_iri)
+        individual_count_observation = utils.rdf.uri(f"observation/individualCount/{row_num}", base_iri)
+        individual_count_value = utils.rdf.uri(f"value/individualCount/{row_num}", base_iri)
+        organism_remarks_observation = utils.rdf.uri(f"observation/organismRemarks/{row_num}", base_iri)
+        organism_remarks_value = utils.rdf.uri(f"value/organismRemarks/{row_num}", base_iri)
+        habitat_attribute = utils.rdf.uri(f"attribute/habitat/{row_num}", base_iri)
+        habitat_value = utils.rdf.uri(f"value/habitat/{row_num}", base_iri)
+        basis_attribute = utils.rdf.uri(f"attribute/basisOfRecord/{row_num}", base_iri)
+        basis_value = utils.rdf.uri(f"value/basisOfRecord/{row_num}", base_iri)
+        occurrence_status_observation = utils.rdf.uri(f"observation/occurrenceStatus/{row_num}", base_iri)
+        occurrence_status_value = utils.rdf.uri(f"value/occurrenceStatus/{row_num}", base_iri)
+        preparations_attribute = utils.rdf.uri(f"attribute/preparations/{row_num}", base_iri)
+        preparations_value = utils.rdf.uri(f"value/preparations/{row_num}", base_iri)
+        establishment_means_observation = utils.rdf.uri(f"observation/establishmentMeans/{row_num}", base_iri)
+        establishment_means_value = utils.rdf.uri(f"value/establishmentMeans/{row_num}", base_iri)
+        life_stage_observation = utils.rdf.uri(f"observation/lifeStage/{row_num}", base_iri)
+        life_stage_value = utils.rdf.uri(f"value/lifeStage/{row_num}", base_iri)
+        sex_observation = utils.rdf.uri(f"observation/sex/{row_num}", base_iri)
+        sex_value = utils.rdf.uri(f"value/sex/{row_num}", base_iri)
+        reproductive_condition_observation = utils.rdf.uri(f"observation/reproductiveCondition/{row_num}", base_iri)  # noqa: E501
+        reproductive_condition_value = utils.rdf.uri(f"value/reproductiveCondition/{row_num}", base_iri)
+        accepted_name_usage_observation = utils.rdf.uri(f"observation/acceptedNameUsage/{row_num}", base_iri)  # noqa: E501
+        accepted_name_usage_value = utils.rdf.uri(f"value/acceptedNameUsage/{row_num}", base_iri)
+        sampling_sequencing = utils.rdf.uri(f"sampling/sequencing/{row_num}", base_iri)
+        sample_sequence = utils.rdf.uri(f"sample/sequence/{row_num}", base_iri)
+        threat_status_observation = utils.rdf.uri(f"observation/threatStatus/{row_num}", base_iri)
+        threat_status_value = utils.rdf.uri(f"value/threatStatus/{row_num}", base_iri)
+        conservation_jurisdiction_attribute = utils.rdf.uri(f"attribute/conservationJurisdiction/{row_num}", base_iri)  # noqa: E501
+        conservation_jurisdiction_value = utils.rdf.uri(f"value/conservationJurisdiction/{row_num}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
 
         # Add Provider Identified By

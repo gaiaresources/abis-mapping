@@ -25,6 +25,7 @@ class TimestampPlugin(frictionless.Plugin):
     def select_field_class(self, type: Optional[str] = None) -> Optional[Type[frictionless.Field]]:
         if type == self.code:
             return TimestampField
+        return None
 
 
 class TimestampField(frictionless.Field):

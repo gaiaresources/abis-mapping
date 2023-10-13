@@ -1,9 +1,6 @@
 """Provides custom frictionless list plugin for the package"""
 
 
-# Standard
-import re
-
 # Third-Party
 import frictionless
 import frictionless.fields
@@ -23,6 +20,7 @@ class ListPlugin(frictionless.Plugin):
         """Select field class for this plugin."""
         if type == self.code:
             return ListField
+        return None
 
 
 @attrs.define(kw_only=True, repr=False)
@@ -61,7 +59,7 @@ class ListField(frictionless.Field):
                     return None
 
                 # Create StringField instance
-                string_field = frictionless.fields.StringField(
+                string_field = frictionless.fields.StringField( # type: ignore[call-arg]
                     name="delegatedParser",
                     format=self.format
                 )
@@ -94,7 +92,7 @@ class ListField(frictionless.Field):
                 str: Converted cell
             """
             # Create StringField object
-            string_field = frictionless.fields.StringField(
+            string_field = frictionless.fields.StringField(  # type: ignore[call-arg]
                 name="delegatedSerializer",
                 format=self.format,
             )

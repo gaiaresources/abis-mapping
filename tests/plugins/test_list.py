@@ -24,6 +24,7 @@ def test_list_type_registered() -> None:
 
     # Will only reach this assertion if schema created (won't create if list not registered)
     assert not field.builtin
+    # Assert delimiter set as per descriptor
     assert field.__getattribute__("delimiter") == ' '
 
 
