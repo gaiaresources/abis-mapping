@@ -136,7 +136,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Construct Schema
         schema = frictionless.Schema.from_descriptor(self.schema())
 
-        # Construct Resource (Table with Schema)
+        # Construct TableResource
         resource = frictionless.resources.TableResource(
             data=data,
             format="csv",  # TODO -> Hardcoded to csv for now
