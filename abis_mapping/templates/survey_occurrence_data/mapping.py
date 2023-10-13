@@ -3,9 +3,11 @@
 
 # Standard
 import datetime
+import io
 
 # Third-Party
 import frictionless
+import frictionless.resources
 import rdflib
 
 # Local
@@ -129,17 +131,19 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if not isinstance(chunk_size, int):
             chunk_size = None
 
+        # Construct Schema
+        schema = frictionless.Schema.from_descriptor(self.schema())
+
         # Construct Resource (Table with Schema)
-        resource = frictionless.Resource(
-            source=data,
+        resource = frictionless.resources.TableResource(
+            data=data,
             format="csv",  # TODO -> Hardcoded to csv for now
-            schema=self.schema(),
-            onerror="raise",  # Raise errors, it should already be valid here
+            schema=schema,
         )
 
         # Infer Statistics and Count Number of Rows
         resource.infer(stats=True)
-        rows = resource.stats["rows"]
+        rows = resource.rows
 
         # Initialise Graph
         graph = utils.rdf.create_graph()
@@ -166,7 +170,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Loop through Rows
-        for row in resource:
+        for row in resource.read_rows():
             # Map Row
             self.apply_mapping_row(
                 row=row,

@@ -17,9 +17,11 @@ def test_checks_is_tabular() -> None:
 
     # Validate
     report: frictionless.Report = resource.validate(
-        checks=[
-            plugins.tabular.IsTabular(),
-        ]
+        checklist=frictionless.Checklist(
+            checks=[
+                plugins.tabular.IsTabular(),
+            ]
+        )
     )
 
     # Check

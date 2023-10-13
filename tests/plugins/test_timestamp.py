@@ -17,31 +17,45 @@ def test_timestamp_plugin() -> None:
     plugin = plugins.timestamp.TimestampPlugin()
 
     # Incorrect Type
-    field = frictionless.Field(type="any")
-    result = plugin.create_type(field)
+    result = plugin.select_field_class("notAType")
     assert result is None
 
     # Correct Type
-    field = frictionless.Field(type="timestamp")
-    result = plugin.create_type(field)
-    assert isinstance(result, plugins.timestamp.TimestampType)
+    result = plugin.select_field_class("timestamp")
+    assert result is plugins.timestamp.TimestampField
+
+
+def test_timestamp_registered() -> None:
+    """Tests the timestamp field type is registered."""
+    # Create schema with timestamp field
+    schema = frictionless.Schema.from_descriptor({
+        'fields': [{'name': 'someTimestamp', 'type': 'timestamp'}]
+    })
+
+    # Extract timestamp field
+    field = schema.get_field('someTimestamp')
+
+    # Will only reach this assertion if schema created (i.e. timestamp type registered)
+    assert not field.builtin
 
 
 def test_timestamp_type() -> None:
     """Tests the Timestamp Type"""
-    # Instantiate the Type
-    type = plugins.timestamp.TimestampType(field=frictionless.Field())
+    # Instantiate the field
+    field = plugins.timestamp.TimestampField(
+        name="testField",
+    )
 
     # Read Invalid Cells
-    assert type.read_cell(123) is None
-    assert type.read_cell("hello world") is None
-    assert type.read_cell("2022-04-26T22:00:00") is None  # No Timezone
+    assert field.read_cell(123)[0] is None
+    assert field.read_cell("hello world")[0] is None
+    assert field.read_cell("2022-04-26T22:00:00")[0] is None  # No Timezone
 
     # Read Valid Cells
-    assert type.read_cell("26/04/2022")  # Date
-    assert type.read_cell("2022-04-26")  # Date
-    assert type.read_cell("2022-04-26T22:00:00Z")  # Date Time with Timezone
-    assert type.read_cell("2022-04-26T22:00:00+08:00")  # Date Time with Timezone
+    assert field.read_cell("26/04/2022")[0]  # Date
+    assert field.read_cell("2022-04-26")[0]  # Date
+    assert field.read_cell("2022-04-26T22:00:00Z")[0]  # Date Time with Timezone
+    assert field.read_cell("2022-04-26T22:00:00+08:00")[0]  # Date Time with Timezone
 
     # Write Cell
-    assert type.write_cell(datetime.datetime.now())
+    assert field.write_cell(datetime.datetime.now())[0]

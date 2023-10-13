@@ -57,10 +57,9 @@ def test_chunking_should_chunk(
     # Test `should_chunk()`
     assert utils.chunking.should_chunk(
         row=frictionless.Row(
-            cells={},  # We don't need any cells for this unit test
+            cells=[],  # We don't need any cells for this unit test
             field_info={},  # We don't need any field info for this unit test
             row_number=row_number,  # Set the row number as specified
-            row_position=row_number,  # Set the row position as specified
         ),
         rows=rows,
         chunk_size=chunk_size,

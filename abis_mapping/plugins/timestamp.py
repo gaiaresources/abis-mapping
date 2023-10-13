@@ -12,7 +12,7 @@ from abis_mapping.utils import types
 from abis_mapping.utils import timestamps
 
 # Typing
-from typing import Any, Optional
+from typing import Any, Optional, Type
 
 
 class TimestampPlugin(frictionless.Plugin):
@@ -22,76 +22,74 @@ class TimestampPlugin(frictionless.Plugin):
     code = "timestamp"
     status = "stable"
 
-    def create_type(self, field: frictionless.Field) -> Optional[frictionless.Type]:
-        """Create type from this plugin
-
-        Args:
-            field (frictionless.Field): Corresponding field.
-
-        Returns:
-            Optional[frictionless.Type]: Possible type from this plugin.
-        """
-        # Check for our type
-        if field.type == TimestampType.code:
-            # Return
-            return TimestampType(field)
-
-        # Not our type
-        return None
+    def select_field_class(self, type: Optional[str] = None) -> Optional[Type[frictionless.Field]]:
+        if type == self.code:
+            return TimestampField
 
 
-class TimestampType(frictionless.Type):
-    """Custom Timestamp Type Implementation."""
+class TimestampField(frictionless.Field):
+    """Custom timestamp type implementation."""
 
-    # Class Attributes
-    code = "timestamp"
+    # Class attributes
+    type = "timestamp"
     builtin = False
-    constraints = [
+    supported_constraints = [
         "required",
         "minimum",
         "maximum",
-        "enum",
+        "enum"
     ]
 
-    def read_cell(self, cell: Any) -> Optional[types.DateOrDatetime]:
-        """Convert cell (read direction)
+    def create_value_reader(self) -> frictionless.schema.types.IValueReader:
+        """Creates value reader callable."""
 
-        Args:
-            cell (Any): Cell to convert
+        def value_reader(cell: Any) -> Optional[types.DateOrDatetime]:
+            """Convert cell (read direction).
 
-        Returns:
-            Optional[types.DateOrDatetime]: Converted cell, or none if invalid.
-        """
-        # Check that cell is not already a "date" or "datetime"
-        if not isinstance(cell, (datetime.date, datetime.datetime)):
-            # Check that cell is a string
-            if not isinstance(cell, str):
-                # Invalid
-                return None
+            Args:
+                cell (Any): Cell to convert
 
-            # Catch Parsing Errors
-            try:
-                # Parse
-                cell = timestamps.parse_timestamp(cell)
+            Returns:
+                Optional[types.DateOrDatetime]: Converted cell, or none if invalid.
+            """
+            # Check that cell is not already a "date" or "datetime"
+            if not isinstance(cell, (datetime.date, datetime.datetime)):
+                # Check that cell is a string
+                if not isinstance(cell, str):
+                    # Invalid
+                    return None
 
-            except ValueError:
-                # Invalid
-                return None
+                # Catch Parsing Errors
+                try:
+                    # Parse
+                    cell = timestamps.parse_timestamp(cell)
 
-        # Return Validated Cell
-        return cell  # type: ignore[no-any-return]
+                except ValueError:
+                    # Invalid
+                    return None
 
-    def write_cell(self, cell: types.DateOrDatetime) -> str:
-        """Convert cell (write direction)
+            # Return Validated Cell
+            return cell  # type: ignore[no-any-return]
 
-        Args:
-            cell (types.DateOrDatetime): Cell to convert
+        # Return value_reader callable
+        return value_reader
 
-        Returns:
-            str: Converted cell
-        """
-        # Serialize to ISO-8601 Format
-        return cell.isoformat()
+    def create_value_writer(self) -> frictionless.schema.types.IValueWriter:
+        """Creates value writer callable."""
+        def value_writer(cell: types.DateOrDatetime) -> str:
+            """Convert cell (write direction)
+
+            Args:
+                cell (types.DateOrDatetime): Cell to convert
+
+            Returns:
+                str: Converted cell
+            """
+            # Serialize to ISO-8601 Format
+            return cell.isoformat()
+
+        # Return value writer callable
+        return value_writer
 
 
 # Register Timestamp Plugin

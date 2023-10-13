@@ -99,11 +99,13 @@ def test_checks_valid_chronological_order(
 
     # Validate
     report = resource.validate(
-        checks=[
-            plugins.chronological.ChronologicalOrder(
-                field_names=field_names
-            ),
-        ]
+        checklist=frictionless.Checklist(
+            checks=[
+                plugins.chronological.ChronologicalOrder(
+                    field_names=field_names
+                ),
+            ]
+        )
     )
 
     # Assert no. of errors is expected

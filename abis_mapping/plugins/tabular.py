@@ -3,6 +3,7 @@
 
 # Third-Party
 import frictionless
+import frictionless.errors
 
 # Typing
 from typing import Iterator
@@ -12,7 +13,7 @@ class IsTabular(frictionless.Check):
     """Checks whether the resource is at least tabular data in nature."""
 
     # Check Attributes
-    code = "is-tabular"
+    type = "is-tabular"
     Errors = [frictionless.errors.SourceError]
 
     def validate_start(self) -> Iterator[frictionless.Error]:

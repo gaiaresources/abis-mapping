@@ -19,10 +19,8 @@ class ListPlugin(frictionless.Plugin):
     # Class Attributes
     code = "list"
 
-    def select_field_class(
-        self,
-        type: Optional[str] = None
-    ) -> Optional[Type[frictionless.Field]]:
+    def select_field_class(self, type: Optional[str] = None) -> Optional[Type[frictionless.Field]]:
+        """Select field class for this plugin."""
         if type == self.code:
             return ListField
 
@@ -85,7 +83,7 @@ class ListField(frictionless.Field):
         return value_reader
 
     def create_value_writer(self) -> frictionless.schema.types.IValueWriter:
-        # Create writer
+        """Creates value writer callable."""
         def value_writer(cell: list[str]) -> str:
             """Convert cell (write direction).
 

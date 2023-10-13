@@ -3,6 +3,8 @@
 
 # Third-Party
 import frictionless
+import frictionless.errors
+import attrs
 
 # Local
 from abis_mapping.utils import coords
@@ -11,27 +13,17 @@ from abis_mapping.utils import coords
 from typing import Any, Iterator
 
 
+@attrs.define(kw_only=True, repr=False)
 class ValidCoordinates(frictionless.Check):
     """Checks whether the latitude and longitude of the row are valid."""
 
     # Check Attributes
-    code = "valid-coordinates"
+    type = "valid-coordinates"
     Errors = [frictionless.errors.RowConstraintError]
 
-    def __init__(
-        self,
-        descriptor: Any = None,
-        *,
-        latitude_name: str,
-        longitude_name: str,
-    ) -> None:
-        """Instantiate the ValidCoordinates Checker"""
-        # Initialise Super Class
-        super().__init__(descriptor)
-
-        # Instance Attributes
-        self.__latitude_name = latitude_name
-        self.__longitude_name = longitude_name
+    # Attributes specific to this check
+    latitude_name: str
+    longitude_name: str
 
     def validate_row(self, row: frictionless.Row) -> Iterator[frictionless.Error]:
         """Called to validate the given row (on every row).
@@ -43,8 +35,8 @@ class ValidCoordinates(frictionless.Check):
             frictionless.Error: For when the coordinates are deemed invalid.
         """
         # Get Latitude and Longitude
-        latitude = row[self.__latitude_name]
-        longitude = row[self.__longitude_name]
+        latitude = row[self.latitude_name]
+        longitude = row[self.longitude_name]
 
         # Check Existence
         if latitude is None or longitude is None:

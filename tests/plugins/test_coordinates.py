@@ -28,12 +28,14 @@ def test_checks_valid_coordinates() -> None:
 
     # Validate
     report: frictionless.Report = resource.validate(
-        checks=[
-            plugins.coordinates.ValidCoordinates(
-                latitude_name="lat",
-                longitude_name="lon",
-            ),
-        ]
+        checklist=frictionless.Checklist(
+            checks=[
+                plugins.coordinates.ValidCoordinates(
+                    latitude_name="lat",
+                    longitude_name="lon",
+                ),
+            ]
+        )
     )
 
     # Check
