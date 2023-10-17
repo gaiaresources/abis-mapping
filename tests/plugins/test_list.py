@@ -131,5 +131,3 @@ def test_list_type_write(
 
     # Check Result
     assert result == expected
-
-

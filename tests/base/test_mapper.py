@@ -5,7 +5,6 @@ import pathlib
 
 import pytest
 
-import abis_mapping
 # Local
 from abis_mapping import base
 

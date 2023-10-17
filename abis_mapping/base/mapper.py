@@ -10,14 +10,13 @@ import pathlib
 
 # Third-Party
 import frictionless
-import frictionless.resources
 import rdflib
 
 # Local
 from . import types
 
 # Typing
-from typing import Any, Iterator, Optional, final, Iterable
+from typing import Any, Iterator, Optional, final
 
 
 class ABISMapper(abc.ABC):
