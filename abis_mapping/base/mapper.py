@@ -30,25 +30,8 @@ class ABISMapper(abc.ABC):
     template_id: str = NotImplemented  # Must be implemented
     instructions_file: str = NotImplemented  # Must be implemented
 
-    def __init__(
-        self,
-        skip_errors: Iterable[str] = (
-            "extra-label",
-            "extra-cell",
-        )
-    ):
-        """Constructor of the ABISMapper base class.
-
-        Args:
-            skip_errors (Iterable[str]): An iterable object of
-                strings that correspond with error types as part
-                of Frictionless validations, which will be ignored.
-                Default allows for extra data columns for a supplied
-                data file.
-        """
-        # Set internal value of skip errors to match input to frictionless Checklist
-        self.__skip_errors = list(skip_errors)
-
+    # List of frictionless errors to be skipped by default
+    skip_errors: list[str] = ["extra-label", "extra-cell"]
 
     @abc.abstractmethod
     def apply_validation(

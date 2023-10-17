@@ -3,6 +3,9 @@
 # Standard
 import pathlib
 
+import pytest
+
+import abis_mapping
 # Local
 from abis_mapping import base
 
@@ -91,3 +94,32 @@ def test_base_get_instructions() -> None:
         instructions = real_mapper.instructions()
         assert isinstance(instructions, pathlib.Path)
         assert instructions.is_file()
+
+
+@pytest.mark.parametrize(
+    "template_id,file_path",
+    [
+        ("incidental_occurrence_data.csv",
+         ("abis_mapping/templates/incidental_occurrence_data/examples/"
+          "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
+        ("survey_occurrence_data.csv",
+         ("abis_mapping/templates/survey_occurrence_data/examples/"
+          "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
+        ("survey_metadata.csv",
+         "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"),
+    ]
+)
+def test_apply_validation_extra_columns(template_id: str, file_path: str) -> None:
+    """Tests that extra columns pass validation"""
+    # Get mapper
+    mapper = base.mapper.get_mapper(template_id)
+    assert mapper is not None
+
+    # Ingest extra column data
+    data = pathlib.Path(file_path).read_bytes()
+
+    # Perform validation
+    report = mapper().apply_validation(data)
+
+    # Assert
+    assert report.valid
