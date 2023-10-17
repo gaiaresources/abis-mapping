@@ -101,6 +101,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                         field_names=["threatStatus", "conservationJurisdiction"],
                     )
                 ],
+                skip_errors=self.__skip_errors,
             ),
         )
 

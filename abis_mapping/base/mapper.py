@@ -10,13 +10,14 @@ import pathlib
 
 # Third-Party
 import frictionless
+import frictionless.resources
 import rdflib
 
 # Local
 from . import types
 
 # Typing
-from typing import Any, Iterator, Optional, final
+from typing import Any, Iterator, Optional, final, Iterable
 
 
 class ABISMapper(abc.ABC):
@@ -28,6 +29,26 @@ class ABISMapper(abc.ABC):
     # ABIS Mapper Template ID and Instructions File
     template_id: str = NotImplemented  # Must be implemented
     instructions_file: str = NotImplemented  # Must be implemented
+
+    def __init__(
+        self,
+        skip_errors: Iterable[str] = (
+            "extra-label",
+            "extra-cell",
+        )
+    ):
+        """Constructor of the ABISMapper base class.
+
+        Args:
+            skip_errors (Iterable[str]): An iterable object of
+                strings that correspond with error types as part
+                of Frictionless validations, which will be ignored.
+                Default allows for extra data columns for a supplied
+                data file.
+        """
+        # Set internal value of skip errors to match input to frictionless Checklist
+        self.__skip_errors = list(skip_errors)
+
 
     @abc.abstractmethod
     def apply_validation(
