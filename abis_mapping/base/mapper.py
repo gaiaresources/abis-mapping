@@ -10,6 +10,7 @@ import pathlib
 
 # Third-Party
 import frictionless
+import frictionless.resources
 import rdflib
 
 # Local
@@ -65,6 +66,66 @@ class ABISMapper(abc.ABC):
         Yields:
             rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
         """
+
+    def add_extra_fields_json(
+        self,
+        uri: rdflib.URIRef,
+        graph: rdflib.Graph,
+        schema: frictionless.Schema,
+        row: frictionless.Row,
+    ) -> None:
+        """Adds extra fields data as json to Graph.
+
+        Args:
+            uri (rdflib.URIRef): URI node to attach to i.e. the subject.
+            graph (rdflib.Graph): Graph to be modified.
+            schema (frictionless.Schema): Schema that contains fields of extra rows.
+            row (frictionless.Row): Row of data resulting from CSV
+        """
+
+
+    @final
+    @classmethod
+    @functools.lru_cache
+    def extra_columns_schema(
+        cls,
+        input: types.ReadableType | frictionless.Row,
+    ) -> frictionless.Schema:
+        """Creates and caches a schema with all extra fields found in data.
+
+        Args:
+            input (types.ReadableType): Readable raw csv data, expected to contain
+                more columns than included in the template's schema.
+
+        Returns:
+            frictionless.Schema: A schema object, the fields of which are only
+                the extra fields not a part of a template's official schema.
+        """
+        # Construct official schema
+        existing_schema = frictionless.Schema.from_descriptor(cls.schema())
+
+        actual_fieldnames = set()
+        extra_fields = list()
+        if isinstance(input, frictionless.Row):
+            actual_fieldnames = set(input.field_names)
+        else:
+            # Construct resource from data and infer
+            resource = frictionless.Resource(data=input, format="csv")
+            resource.infer()
+
+            # Extract derived schema
+            actual_schema = resource.schema
+            actual_fieldnames = set(actual_schema.field_names)
+
+        # Find set of extra fieldnames
+        existing_fieldnames = set(existing_schema.field_names)
+        extra_fieldnames = actual_fieldnames - existing_fieldnames
+
+        # Construct list of extra Fields
+        extra_fields = [actual_schema.get_field(fieldname) for fieldname in extra_fieldnames]
+
+        # Create difference schema and return
+        return frictionless.Schema(fields=extra_fields)
 
     @final
     @classmethod
