@@ -29,6 +29,9 @@ class ABISMapper(abc.ABC):
     template_id: str = NotImplemented  # Must be implemented
     instructions_file: str = NotImplemented  # Must be implemented
 
+    # List of frictionless errors to be skipped by default
+    skip_errors: list[str] = ["extra-label", "extra-cell"]
+
     @abc.abstractmethod
     def apply_validation(
         self,

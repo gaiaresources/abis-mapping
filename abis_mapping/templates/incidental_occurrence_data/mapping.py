@@ -100,6 +100,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                         field_names=["threatStatus", "conservationJurisdiction"],
                     )
                 ],
+                skip_errors=self.skip_errors
             ),
         )
 

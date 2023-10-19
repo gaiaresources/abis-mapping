@@ -64,6 +64,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                         ]
                     ),
                 ],
+                skip_errors=self.skip_errors
             ),
         )
 
