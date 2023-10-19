@@ -28,7 +28,7 @@ def test_timestamp_plugin() -> None:
 def test_timestamp_registered() -> None:
     """Tests the timestamp field type is registered."""
     # Create schema with timestamp field
-    schema = frictionless.Schema.from_descriptor({
+    schema: frictionless.Schema = frictionless.Schema.from_descriptor({
         'fields': [{'name': 'someTimestamp', 'type': 'timestamp'}]
     })
 

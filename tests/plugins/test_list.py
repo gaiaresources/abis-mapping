@@ -15,7 +15,7 @@ from typing import Any, Optional
 def test_list_type_registered() -> None:
     """Tests the list field type is registered and delimiter property works."""
     # Create schema with list field
-    schema = frictionless.Schema.from_descriptor({
+    schema: frictionless.Schema = frictionless.Schema.from_descriptor({
         'fields': [{'name': 'someList', 'type': 'list', 'delimiter': ' '}]
     })
 
@@ -131,5 +131,3 @@ def test_list_type_write(
 
     # Check Result
     assert result == expected
-
-
