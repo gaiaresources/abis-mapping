@@ -10,7 +10,6 @@ import datetime
 
 # Third-party
 import frictionless
-import frictionless.resources
 import rdflib
 
 # Typing
@@ -44,7 +43,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Construct Schema
         schema = frictionless.Schema.from_descriptor(self.schema())
 
-        # Construct TableResource
+        # Construct Resource
         resource = frictionless.Resource(
             data=data,
             format="csv",  # TODO -> Hardcoded to csv for now
@@ -93,8 +92,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Construct Schema
         schema = frictionless.Schema.from_descriptor(self.schema())
 
-        # Construct TableResource
-        resource = frictionless.resources.TableResource(
+        # Construct Resource
+        resource = frictionless.Resource(
             data=data,
             format="csv",   # TODO -> Hardcoded to csv for now
             schema=schema,
@@ -114,7 +113,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
 
-        # Open the TableResource to allow row streaming
+        # Open the Resource to allow row streaming
         with resource.open() as r:
             # Loop through rows
             for row in r.row_stream:

@@ -6,7 +6,6 @@ import datetime
 
 # Third-Party
 import frictionless
-import frictionless.resources
 import rdflib
 
 # Local
@@ -84,7 +83,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         schema = frictionless.Schema.from_descriptor(self.schema())
 
         # Construct Resource (Table with Schema)
-        resource = frictionless.resources.TableResource(
+        resource = frictionless.Resource(
             data=data,
             format="csv",  # TODO -> Hardcoded to csv for now
             schema=schema,
@@ -137,8 +136,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Construct Schema
         schema = frictionless.Schema.from_descriptor(self.schema())
 
-        # Construct TableResource
-        resource = frictionless.resources.TableResource(
+        # Construct Resource
+        resource = frictionless.Resource(
             data=data,
             format="csv",  # TODO -> Hardcoded to csv for now
             schema=schema,
@@ -172,7 +171,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Open the TableResource to allow row streaming
+        # Open the Resource to allow row streaming
         with resource.open() as r:
             # Loop through Rows
             for row in r.row_stream:
@@ -187,7 +186,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
                 # Check Whether to Yield a Chunk
                 # The row_number needs to be reduced by one as the numbering of rows
-                # in a TableResource includes the header, but the count of the number
+                # in a Resource includes the header, but the count of the number
                 # of rows excludes the header row.
                 if utils.chunking.should_chunk(row.row_number-1, n_rows, chunk_size):
                     # Yield Chunk
