@@ -40,28 +40,31 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
-        # Construct Resource (Table with Schema)
+        # Construct Schema
+        schema = frictionless.Schema.from_descriptor(self.schema())
+
+        # Construct Resource
         resource = frictionless.Resource(
-            source=data,
+            data=data,
             format="csv",  # TODO -> Hardcoded to csv for now
-            schema=self.schema(),
-            onerror="ignore",   # Ignore errors, they will be handled in the report
+            schema=schema,
         )
 
         # Validate
         report: frictionless.Report = resource.validate(
-            checks=[
-                # Extra Custom Checks
-                plugins.tabular.IsTabular(),
-                plugins.empty.NotEmpty(),
-                plugins.chronological.ChronologicalOrder(
-                    field_names=[
-                        "temporalCoverageStartDate",
-                        "temporalCoverageEndDate",
-                    ]
-                ),
-            ],
-            limit_memory=base.FRICTIONLESS_LIMIT_MEMORY,
+            checklist=frictionless.Checklist(
+                checks=[
+                    # Extra Custom Checks
+                    plugins.tabular.IsTabular(),
+                    plugins.empty.NotEmpty(),
+                    plugins.chronological.ChronologicalOrder(
+                        field_names=[
+                            "temporalCoverageStartDate",
+                            "temporalCoverageEndDate",
+                        ]
+                    ),
+                ],
+            ),
         )
 
         # Return validation report
@@ -85,12 +88,14 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         Yields:
             rdflib.Graph: ABIS conformant RDF sub-graph from raw data chunk.
         """
-        # Construct resource (table with schema)
+        # Construct Schema
+        schema = frictionless.Schema.from_descriptor(self.schema())
+
+        # Construct Resource
         resource = frictionless.Resource(
-            source=data,
+            data=data,
             format="csv",   # TODO -> Hardcoded to csv for now
-            schema=self.schema(),
-            onerror="raise",    # Raise errors, it should already be valid here
+            schema=schema,
         )
 
         # Initialise Graph
@@ -107,17 +112,19 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
 
-        # Loop through rows
-        for row in resource:
-            # Map row
-            self.apply_mapping_row(
-                row=row,
-                dataset=dataset_iri,
-                graph=graph,
-                base_iri=base_iri,
-            )
+        # Open the Resource to allow row streaming
+        with resource.open() as r:
+            # Loop through rows
+            for row in r.row_stream:
+                # Map row
+                self.apply_mapping_row(
+                    row=row,
+                    dataset=dataset_iri,
+                    graph=graph,
+                    base_iri=base_iri,
+                )
 
-        yield graph
+            yield graph
 
     def add_default_dataset(
         self,
@@ -152,12 +159,14 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             base_iri (Optional[rdflib.Namespace): Optional base IRI
                 to use for mapping.
         """
+        # Set the row number to start from the data, excluding header
+        row_num = row.row_number - 1
 
         # Create BDR project IRI
-        bdr_project = utils.rdf.uri(f"project/SSD-Survey-Project/{row.row_number}", base_iri)
+        bdr_project = utils.rdf.uri(f"project/SSD-Survey-Project/{row_num}", base_iri)
 
         # Create BDR survey IRI
-        bdr_survey = utils.rdf.uri(f"survey/SSD-Survey/{row.row_number}", base_iri)
+        bdr_survey = utils.rdf.uri(f"survey/SSD-Survey/{row_num}", base_iri)
 
         # Add BDR project
         self.add_bdr_project(

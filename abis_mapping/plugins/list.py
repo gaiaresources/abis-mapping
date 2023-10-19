@@ -1,18 +1,13 @@
 """Provides custom frictionless list plugin for the package"""
 
 
-# Standard
-import re
-
 # Third-Party
 import frictionless
+import frictionless.fields
+import attrs
 
 # Typing
-from typing import Any, Optional
-
-
-# Code and Delimiter Detection Regex
-REGEX_CODE_DELIMITER = re.compile(r"^list(?:\[(.+)\])?$")
+from typing import Any, Optional, Type
 
 
 class ListPlugin(frictionless.Plugin):
@@ -20,99 +15,102 @@ class ListPlugin(frictionless.Plugin):
 
     # Class Attributes
     code = "list"
-    status = "stable"
 
-    def create_type(self, field: frictionless.Field) -> Optional[frictionless.Type]:
-        """Create type from this plugin
-
-        Args:
-            field (frictionless.Field): Corresponding field.
-
-        Returns:
-            Optional[frictionless.Type]: Possible type from this plugin.
-        """
-        # Perform Regex
-        matches = REGEX_CODE_DELIMITER.match(field.type)
-
-        # Check for Match
-        if matches:
-            # Extract Delimiter
-            delimiter = matches.group(1)
-
-            # Create List Type
-            field_type = ListType(field)
-
-            # Set Delimiter
-            field_type.delimiter = delimiter or ListType.delimiter  # Handle Default
-
-            # Return
-            return field_type
-
-        # Not our type
+    def select_field_class(self, type: Optional[str] = None) -> Optional[Type[frictionless.Field]]:
+        """Select field class for this plugin."""
+        if type == self.code:
+            return ListField
         return None
 
 
-class ListType(frictionless.Type):
-    """Custom List Type Implementation."""
+@attrs.define(kw_only=True, repr=False)
+class ListField(frictionless.Field):
+    """Custom list type implementation."""
 
-    # Class Attributes
-    code = "list"
+    # Class attributes
+    type = "list"
     builtin = False
-    constraints = [
+    supported_constraints = [
         "required",
         "minLength",
         "maxLength",
-        # "pattern",  # TODO -> Check whether this works
-        # "enum",  # TODO -> Check whether this works
     ]
 
-    # Serialization and Deserialization Delimiter
-    delimiter = "|"  # Default Delimiter is Pipe
+    # Separator or delimiter, default is pipe
+    delimiter: str = "|"
 
-    def read_cell(self, cell: Any) -> Optional[list[str]]:
-        """Convert cell (read direction)
+    def create_value_reader(self) -> frictionless.schema.types.IValueReader:
+        """Creates value reader callable."""
 
-        Args:
-            cell (Any): Cell to convert
+        def value_reader(cell: Any) -> Optional[list[str]]:
+            """Convert cell (read direction).
 
-        Returns:
-            Optional[list[str]]: Converted cell, or none if invalid.
-        """
-        # Check that cell is not already a "list"
-        if not isinstance(cell, list):
-            # Check that cell is a string
-            if not isinstance(cell, str):
-                # Invalid
-                return None
+            Args:
+                cell (Any): Cell to convert
 
-            # Split, Strip, Filter and Delegate Cell Parsing to the String Type
-            cell = [
-                frictionless.types.StringType.read_cell(self, c.strip())
-                for c in cell.split(self.delimiter) if c
-            ]
+            Returns:
+                Optional[list[str]]: Converted cell, or none if invalid.
+            """
+            # Check that cell is not already a "list"
+            if not isinstance(cell, list):
+                # Check that cell is a string
+                if not isinstance(cell, str):
+                    # Invalid
+                    return None
 
-            # Check for Cell Parsing Failures
-            if not all(cell):
-                # Invalid
-                return None
+                # Create StringField instance
+                string_field = frictionless.fields.StringField(  # type: ignore[call-arg]
+                    name="delegatedParser",
+                    format=self.format
+                )
+                # Split, Strip, Filter and Delegate Cell Parsing to the String Type
+                cell = [
+                    string_field.read_cell(c.strip())[0]
+                    for c in cell.split(self.delimiter) if c
+                ]
 
-        # Return Validated Cell
-        return cell  # type: ignore[no-any-return]
+                # Check for Cell Parsing Failures
+                if not all(cell):
+                    # Invalid
+                    return None
 
-    def write_cell(self, cell: list[str]) -> str:
-        """Convert cell (write direction)
+            # Return Validated Cell
+            return cell  # type: ignore[no-any-return]
 
-        Args:
-            cell (list): Cell to convert
+        # Return value reader callable
+        return value_reader
 
-        Returns:
-            str: Converted cell
-        """
-        # Join and Delegate Cell Serialization to the String Type
-        return self.delimiter.join(
-            frictionless.types.StringType.write_cell(self, c)
-            for c in cell
-        )
+    def create_value_writer(self) -> frictionless.schema.types.IValueWriter:
+        """Creates value writer callable."""
+        def value_writer(cell: list[str]) -> str:
+            """Convert cell (write direction).
+
+            Args:
+                cell (list): Cell to convert
+
+            Returns:
+                str: Converted cell
+            """
+            # Create StringField object
+            string_field = frictionless.fields.StringField(  # type: ignore[call-arg]
+                name="delegatedSerializer",
+                format=self.format,
+            )
+
+            # Join and Delegate Cell Serialization to the String Type
+            return self.delimiter.join(
+                string_field.write_cell(c)[0]
+                for c in cell
+            )
+
+        # Return writer callable
+        return value_writer
+
+    metadata_profile_patch = {
+        "properties": {
+            "delimiter": {"type": "string"},
+        }
+    }
 
 
 # Register List Plugin

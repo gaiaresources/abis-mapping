@@ -45,8 +45,8 @@ def test_validation_empty_template() -> None:
     # Validate
     report = mapper().apply_validation(data)
     assert not report.valid
-    error_codes = [code for codes in report.flatten(['code']) for code in codes]
-    assert "table-dimensions-error" in error_codes
+    error_codes = [code for codes in report.flatten(['type']) for code in codes]
+    assert "table-dimensions" in error_codes
 
 
 def test_mapping() -> None:
@@ -95,7 +95,7 @@ def test_schema_is_valid() -> None:
     descriptor = mapper().schema()
 
     # Generate report
-    report = frictionless.Schema(descriptor).validate()
+    report = frictionless.Schema.validate_descriptor(descriptor)
 
     # Assert valid
     assert report.valid
@@ -115,5 +115,5 @@ def test_temporal_coverage_date_ordering() -> None:
     # Validate
     report = mapper().apply_validation(data)
     assert not report.valid
-    error_codes = [code for codes in report.flatten(['code']) for code in codes]
+    error_codes = [code for codes in report.flatten(['type']) for code in codes]
     assert "row-constraint" in error_codes

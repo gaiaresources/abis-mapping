@@ -8,7 +8,7 @@ authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
 python = "^3.9"
 rdflib = "^7.0.0"
 python-slugify = "^6.1.1"
-frictionless = {extras = ["excel"], version = "^4.26.1"}
+frictionless = {extras = ["excel"], version = "^5.16.0"}
 python-dateutil = "^2.8.2"
 
 [tool.poetry.dev-dependencies]

@@ -28,11 +28,13 @@ def test_checks_mutually_inclusive() -> None:
 
     # Validate
     report: frictionless.Report = resource.validate(
-        checks=[
-            plugins.mutual_inclusion.MutuallyInclusive(
-                field_names=["a", "b"],
-            ),
-        ]
+        checklist=frictionless.Checklist(
+            checks=[
+                plugins.mutual_inclusion.MutuallyInclusive(
+                    field_names=["a", "b"],
+                ),
+            ]
+        )
     )
 
     # Check

@@ -17,9 +17,11 @@ def test_checks_not_empty() -> None:
 
     # Validate
     report: frictionless.Report = resource.validate(
-        checks=[
-            plugins.empty.NotEmpty(),
-        ]
+        checklist=frictionless.Checklist(
+            checks=[
+                plugins.empty.NotEmpty(),
+            ]
+        )
     )
 
     # Check
