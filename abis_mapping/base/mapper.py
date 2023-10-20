@@ -10,7 +10,6 @@ import pathlib
 
 # Third-Party
 import frictionless
-import frictionless.resources
 import rdflib
 
 # Local
