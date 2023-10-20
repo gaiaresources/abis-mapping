@@ -67,31 +67,34 @@ class ABISMapper(abc.ABC):
             rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
         """
 
-    def add_extra_fields_json(
-        self,
-        uri: rdflib.URIRef,
-        graph: rdflib.Graph,
-        schema: frictionless.Schema,
-        row: frictionless.Row,
-    ) -> None:
-        """Adds extra fields data as json to Graph.
+    @final
+    @classmethod
+    def extract_extra_fields(
+        cls,
+        row: frictionless.Row
+    ) -> dict[str, Any]:
+        """Extracts extra values from a row not in template schema.
 
         Args:
-            uri (rdflib.URIRef): URI node to attach to i.e. the subject.
-            graph (rdflib.Graph): Graph to be modified.
-            schema (frictionless.Schema): Schema that contains fields of extra rows.
-            row (frictionless.Row): Row of data resulting from CSV
+            row (frictionless.Row): Row of data including extra rows.
+
+        Returns:
+            dict[str, Any]: Dictionary containing extra values, if any.
         """
+        # Get schema consisting of extra fields
+        extra_schema = cls.extra_fields_schema(row)
+
+        # Create dictionary consisting row data from extra fields only
+        return {field: row[field] for field in extra_schema.field_names if row[field] is not None}
 
 
     @final
     @classmethod
-    @functools.lru_cache
-    def extra_columns_schema(
+    def extra_fields_schema(
         cls,
-        data: types.ReadableType | frictionless.Row,
+        data: types.ReadableType | frictionless.Row
     ) -> frictionless.Schema:
-        """Creates and caches a schema with all extra fields found in data.
+        """Creates a schema with all extra fields found in data.
 
         Args:
             data (types.ReadableType | frictionless.Row): Readable raw csv
@@ -115,7 +118,10 @@ class ABISMapper(abc.ABC):
 
         else:
             # Construct resource from data and infer
-            resource = frictionless.Resource(data=data, format="csv")
+            resource = frictionless.Resource(
+                data=data,
+                format="csv",
+            )
             resource.infer()
 
             # Extract derived schema

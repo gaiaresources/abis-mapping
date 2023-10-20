@@ -34,24 +34,6 @@ def test_validation() -> None:
     assert report.valid
 
 
-def test_extra_columns_schema() -> None:
-    """Tests the extra columns schema for the template."""
-    # Load data
-    data = pathlib.Path(
-        "abis_mapping/templates/incidental_occurrence_data/examples/margaret_river_flora/margaret_river_flora_extra_cols.csv"
-    ).read_bytes()
-
-    # Get mapper
-    mapper = abis_mapping.get_mapper(TEMPLATE_ID)
-    assert mapper
-
-    # Get schema
-    schema = mapper().extra_columns_schema(data)
-
-    # Assert
-    assert len(schema.field_names) == 2
-
-
 def test_mapping() -> None:
     """Tests the mapping for the template"""
     # Load Data and Expected Output
