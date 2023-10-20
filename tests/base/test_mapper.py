@@ -2,7 +2,6 @@
 
 # Standard
 import pathlib
-import json
 
 # Third-party
 import frictionless
@@ -157,6 +156,7 @@ def test_apply_validation_extra_columns_middle(template_id: str, file_path: str)
     error_codes = [code for codes in report.flatten(['type']) for code in codes]
     assert "incorrect-label" in error_codes
 
+
 @pytest.mark.parametrize(
     "template_id,file_path",
     [
@@ -174,6 +174,7 @@ def test_extra_fields_schema_raw_data(template_id: str, file_path: str) -> None:
     """Tests extra fields schema gets extracted from raw data."""
     # Get mapper
     mapper = base.mapper.get_mapper(template_id)
+    assert mapper is not None
 
     # Ingest extra column data
     data = pathlib.Path(file_path).read_bytes()
@@ -204,10 +205,12 @@ def test_extra_fields_schema_row_data(template_id: str, file_path: str) -> None:
     """Tests extra fields schema gets extracted from row data."""
     # Get mapper
     mapper = base.mapper.get_mapper(template_id)
+    assert mapper is not None
 
     # Create resource from raw data
     resource = frictionless.Resource(source=file_path)
 
+    # Open resource for row streaming
     with resource.open() as r:
         for row in r.row_stream:
             # Extract extra columns schema
@@ -223,16 +226,19 @@ def test_extract_extra_fields() -> None:
     """Tests extraction of extra fields from a row."""
     # Get mapper
     mapper = base.mapper.get_mapper("survey_metadata.csv")
+    assert mapper is not None
 
     # Create resource from raw data
     file_path = "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"
     resource = frictionless.Resource(source=file_path)
 
+    # Expected result
     expected = {
         "extraInformation1": "some additional info",
         "extraInformation2": "some more info",
     }
 
+    # Open resource for row streaming
     with resource.open() as r:
         # Only one row in the file
         row = next(r.row_stream)

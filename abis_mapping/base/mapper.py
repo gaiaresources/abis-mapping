@@ -86,7 +86,6 @@ class ABISMapper(abc.ABC):
         # Create dictionary consisting row data from extra fields only
         return {field: row[field] for field in extra_schema.field_names if row[field] is not None}
 
-
     @final
     @classmethod
     def extra_fields_schema(
@@ -105,7 +104,7 @@ class ABISMapper(abc.ABC):
                 the extra fields not a part of a template's official schema.
         """
         # Construct official schema
-        existing_schema = frictionless.Schema.from_descriptor(cls.schema())
+        existing_schema: frictionless.Schema = frictionless.Schema.from_descriptor(cls.schema())
 
         # Handle for different data types
         if isinstance(data, frictionless.Row):
