@@ -90,13 +90,12 @@ class ABISMapper(abc.ABC):
     @classmethod
     def extra_fields_schema(
         cls,
-        data: types.ReadableType | frictionless.Row
+        row: frictionless.Row
     ) -> frictionless.Schema:
         """Creates a schema with all extra fields found in data.
 
         Args:
-            data (types.ReadableType | frictionless.Row): Readable raw csv
-                data or frictionless row, expected to contain more columns
+            row (frictionless.Row): Row expected to contain more columns
                 than included in the template's schema.
 
         Returns:
@@ -106,25 +105,11 @@ class ABISMapper(abc.ABC):
         # Construct official schema
         existing_schema: frictionless.Schema = frictionless.Schema.from_descriptor(cls.schema())
 
-        # Handle for different data types
-        if isinstance(data, frictionless.Row):
-            # Get set of fieldnames of row
-            actual_fieldnames = set(data.field_names)
+        # Get set of fieldnames of row
+        actual_fieldnames = set(row.field_names)
 
-            # Create schema from row fields
-            actual_schema = frictionless.Schema(fields=data.fields)
-
-        else:
-            # Construct resource from data and infer
-            resource = frictionless.Resource(
-                data=data,
-                format="csv",
-            )
-            resource.infer()
-
-            # Extract derived schema
-            actual_schema = resource.schema
-            actual_fieldnames = set(actual_schema.field_names)
+        # Create schema from row fields
+        actual_schema = frictionless.Schema(fields=row.fields)
 
         # Find set of extra fieldnames
         existing_fieldnames = set(existing_schema.field_names)

@@ -170,37 +170,6 @@ def test_apply_validation_extra_columns_middle(template_id: str, file_path: str)
          "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"),
     ]
 )
-def test_extra_fields_schema_raw_data(template_id: str, file_path: str) -> None:
-    """Tests extra fields schema gets extracted from raw data."""
-    # Get mapper
-    mapper = base.mapper.get_mapper(template_id)
-    assert mapper is not None
-
-    # Ingest extra column data
-    data = pathlib.Path(file_path).read_bytes()
-
-    # Extract extra columns schema
-    schema = mapper().extra_fields_schema(data=data)
-
-    # Assert
-    assert set(schema.field_names) == {"extraInformation1", "extraInformation2"}
-    for field in schema.fields:
-        assert field.type == "string"
-
-
-@pytest.mark.parametrize(
-    "template_id,file_path",
-    [
-        ("incidental_occurrence_data.csv",
-         ("abis_mapping/templates/incidental_occurrence_data/examples/"
-          "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
-        ("survey_occurrence_data.csv",
-         ("abis_mapping/templates/survey_occurrence_data/examples/"
-          "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
-        ("survey_metadata.csv",
-         "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"),
-    ]
-)
 def test_extra_fields_schema_row_data(template_id: str, file_path: str) -> None:
     """Tests extra fields schema gets extracted from row data."""
     # Get mapper
