@@ -80,8 +80,11 @@ class ABISMapper(abc.ABC):
             row (frictionless.Row): Row containing all data including extras.
             graph (rdflib.Graph): Graph to be modified.
         """
+        # Extract fields and create json node
         json_str = json.dumps(cls.extract_extra_fields(row))
         json_node = rdflib.Literal(json_str, datatype=rdflib.RDF.JSON)
+
+        # Add to graph
         graph.add((subject_uri, rdflib.RDFS.comment, json_node))
 
     @final
