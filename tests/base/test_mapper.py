@@ -2,13 +2,16 @@
 
 # Standard
 import pathlib
+import json
 
 # Third-party
 import frictionless
 import pytest
+import rdflib
 
 # Local
 from abis_mapping import base
+from abis_mapping import utils
 
 # Constants
 TEMPLATE_ID_REAL = ["incidental_occurrence_data.csv", "survey_occurrence_data.csv", "survey_metadata.csv"]
@@ -212,3 +215,45 @@ def test_extract_extra_fields() -> None:
         # Only one row in the file
         row = next(r.row_stream)
         assert mapper().extract_extra_fields(row) == expected
+
+
+def test_add_extra_fields_json() -> None:
+    """Tests addition of extra fields json string to graph."""
+    # Create graph and base URI
+    graph = rdflib.Graph()
+    base_uri = utils.namespaces.EXAMPLE.someBaseUri
+
+    # Expected json as dictionary
+    expected_json = {
+        "extraInformation2": "some more info",
+        "extraInformation1": "some additional info"
+    }
+
+    # Create resource from raw data
+    file_path = "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"
+    resource = frictionless.Resource(source=file_path)
+
+    # Open resource for row streaming
+    with resource.open() as r:
+        # Only one row in the file
+        row = next(r.row_stream)
+
+    # Get mapper
+    mapper = base.mapper.get_mapper("survey_metadata.csv")
+    assert mapper is not None
+
+    # Attach extra fields json to graph
+    mapper.add_extra_fields_json(
+        subject_uri=base_uri,
+        row=row,
+        graph=graph,
+    )
+
+    # Assert
+    assert len(graph) == 1
+    for triple in graph:
+        assert triple[0] == base_uri
+        assert triple[1] == rdflib.RDFS.comment
+        assert isinstance(triple[2], rdflib.Literal)
+        assert json.loads(str(triple[2])) == expected_json
+        assert triple[2].datatype == rdflib.RDF.JSON

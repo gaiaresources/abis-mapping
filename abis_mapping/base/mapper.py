@@ -66,6 +66,24 @@ class ABISMapper(abc.ABC):
             rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
         """
 
+    @classmethod
+    def add_extra_fields_json(
+        cls,
+        subject_uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds additional fields data to graph as JSON.
+
+        Args:
+            subject_uri (rdflib.URIRef): Node for the JSON data to be attached.
+            row (frictionless.Row): Row containing all data including extras.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        json_str = json.dumps(cls.extract_extra_fields(row))
+        json_node = rdflib.Literal(json_str, datatype=rdflib.RDF.JSON)
+        graph.add((subject_uri, rdflib.RDFS.comment, json_node))
+
     @final
     @classmethod
     def extract_extra_fields(
