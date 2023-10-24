@@ -68,6 +68,61 @@ class ABISMapper(abc.ABC):
 
     @final
     @classmethod
+    def extract_extra_fields(
+        cls,
+        row: frictionless.Row
+    ) -> dict[str, Any]:
+        """Extracts extra values from a row not in template schema.
+
+        Args:
+            row (frictionless.Row): Row of data including extra rows.
+
+        Returns:
+            dict[str, Any]: Dictionary containing extra values, if any.
+        """
+        # Get schema consisting of extra fields
+        extra_schema = cls.extra_fields_schema(row)
+
+        # Create dictionary consisting row data from extra fields only
+        return {field: row[field] for field in extra_schema.field_names if row[field] is not None}
+
+    @final
+    @classmethod
+    def extra_fields_schema(
+        cls,
+        row: frictionless.Row
+    ) -> frictionless.Schema:
+        """Creates a schema with all extra fields found in data.
+
+        Args:
+            row (frictionless.Row): Row expected to contain more columns
+                than included in the template's schema.
+
+        Returns:
+            frictionless.Schema: A schema object, the fields of which are only
+                the extra fields not a part of a template's official schema.
+        """
+        # Construct official schema
+        existing_schema: frictionless.Schema = frictionless.Schema.from_descriptor(cls.schema())
+
+        # Get set of fieldnames of row
+        actual_fieldnames = set(row.field_names)
+
+        # Create schema from row fields
+        actual_schema = frictionless.Schema(fields=row.fields)
+
+        # Find set of extra fieldnames
+        existing_fieldnames = set(existing_schema.field_names)
+        extra_fieldnames = actual_fieldnames - existing_fieldnames
+
+        # Construct list of extra Fields
+        extra_fields = [actual_schema.get_field(fieldname) for fieldname in extra_fieldnames]
+
+        # Create difference schema and return
+        return frictionless.Schema(fields=extra_fields)
+
+    @final
+    @classmethod
     @functools.lru_cache
     def template(cls) -> pathlib.Path:
         """Retrieves and Caches the Template Filepath
