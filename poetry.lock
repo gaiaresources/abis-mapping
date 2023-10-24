@@ -1147,6 +1147,17 @@ files = [
 ]
 
 [[package]]
+name = "types-python-slugify"
+version = "8.0.0.3"
+description = "Typing stubs for python-slugify"
+optional = false
+python-versions = "*"
+files = [
+    {file = "types-python-slugify-8.0.0.3.tar.gz", hash = "sha256:868e6610ab9a01c01b2ccc1b982363e694d6bbb4fcf32e0d82688c89dceb4e2c"},
+    {file = "types_python_slugify-8.0.0.3-py3-none-any.whl", hash = "sha256:2353c161c79ab6cce955b50720c6cd03586ec297558122236d130e4a19f21209"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.8.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -1232,4 +1243,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "747dc94f5160766eea5a9d1c4f104fe0cc63f4f07d085730724e2932f2fd7f8e"
+content-hash = "ede0f8f8750fafdb8db396c213ef792baa36a31f335631db037b69a46509ae46"
