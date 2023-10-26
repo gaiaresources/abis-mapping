@@ -189,7 +189,7 @@ def test_extra_fields_schema_row_data(template_id: str, file_path: str) -> None:
     existing_schema = frictionless.Schema.from_descriptor(mapper().schema())
 
     # Open resource for row streaming
-    with (resource.open() as r):
+    with resource.open() as r:
         for row in r.row_stream:
             # Extract extra columns schema
             diff_schema = mapper.extra_fields_schema(row)
