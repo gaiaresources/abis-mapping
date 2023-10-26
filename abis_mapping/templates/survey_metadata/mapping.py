@@ -90,7 +90,10 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             rdflib.Graph: ABIS conformant RDF sub-graph from raw data chunk.
         """
         # Construct Schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.extra_fields_schema(
+            data=data,
+            full_schema=True,
+        )
 
         # Construct Resource
         resource = frictionless.Resource(
@@ -197,6 +200,13 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             row=row,
             graph=graph,
             base_iri=base_iri,
+        )
+
+        # Add extra columns JSON
+        self.add_extra_fields_json(
+            subject_uri=bdr_survey,
+            row=row,
+            graph=graph,
         )
 
     def add_bdr_project(

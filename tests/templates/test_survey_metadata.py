@@ -1,5 +1,6 @@
 # Third-party
 import frictionless
+import pytest
 
 # Standard
 import pathlib
@@ -49,11 +50,20 @@ def test_validation_empty_template() -> None:
     assert "table-dimensions" in error_codes
 
 
-def test_mapping() -> None:
+@pytest.mark.parametrize(
+    "data_path,expected_path",
+    [
+        ("abis_mapping/templates/survey_metadata/examples/minimal.csv",
+         "abis_mapping/templates/survey_metadata/examples/minimal.ttl"),
+        ("abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv",
+         "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.ttl"),
+    ]
+)
+def test_mapping(data_path: str, expected_path: str) -> None:
     """Tests mapping for the template."""
     # Load data
-    data = DATA.read_bytes()
-    expected = EXPECTED.read_text()
+    data = pathlib.Path(data_path).read_bytes()
+    expected = pathlib.Path(expected_path).read_text()
 
     # Get mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)
@@ -70,6 +80,14 @@ def test_mapping() -> None:
         graph1=graphs[0],
         graph2=expected,
     )
+
+    # Check that there are no `None`s in the Graph
+    # This check is important. As some fields are optional they can be `None`
+    # at runtime. Unfortunately, `None` is valid in many contexts in Python,
+    # including string formatting. This means that type-checking is unable to
+    # determine whether a statement is valid in our specific context. As such,
+    # we check here to see if any `None`s have snuck their way into the RDF.
+    assert "None" not in graphs[0].serialize(format="ttl")
 
 
 def test_metadata_sampling_type() -> None:

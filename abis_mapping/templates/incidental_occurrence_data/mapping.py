@@ -134,7 +134,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             chunk_size = None
 
         # Construct Schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.extra_fields_schema(
+            data=data,
+            full_schema=True,
+        )
 
         # Construct Resource
         resource = frictionless.Resource(
@@ -735,6 +738,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add Conservation Jurisdiction Value
         self.add_conservation_jurisdiction_value(
             uri=conservation_jurisdiction_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add extra fields JSON
+        self.add_extra_fields_json(
+            subject_uri=sampling_field,
             row=row,
             graph=graph,
         )
