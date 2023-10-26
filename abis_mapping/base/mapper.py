@@ -171,7 +171,9 @@ class ABISMapper(abc.ABC):
 
         if full_schema:
             # Append the extra fields onto the official schema and return
-            [existing_schema.add_field(field) for field in extra_fields]
+            for field in extra_fields:
+                existing_schema.add_field(field)
+
             return existing_schema
 
         # Create difference schema and return
