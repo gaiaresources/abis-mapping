@@ -6,6 +6,7 @@ import pathlib
 
 # Third-party
 import frictionless
+import pytest
 
 # Local
 import abis_mapping
@@ -36,11 +37,22 @@ def test_validation() -> None:
     assert report.valid
 
 
-def test_mapping() -> None:
+@pytest.mark.parametrize(
+    "data_path,expected_path",
+    [
+        ("abis_mapping/templates/survey_occurrence_data/examples/margaret_river_flora/margaret_river_flora.csv",
+         "abis_mapping/templates/survey_occurrence_data/examples/margaret_river_flora/margaret_river_flora.ttl"),
+        (("abis_mapping/templates/survey_occurrence_data/examples"
+          "/margaret_river_flora/margaret_river_flora_extra_cols.csv"),
+         ("abis_mapping/templates/survey_occurrence_data/examples"
+          "/margaret_river_flora/margaret_river_flora_extra_cols.ttl")),
+    ]
+)
+def test_mapping(data_path: str, expected_path: str) -> None:
     """Tests the mapping for the template"""
     # Load Data and Expected Output
-    data = DATA.read_bytes()
-    expected = EXPECTED.read_text()
+    data = pathlib.Path(data_path).read_bytes()
+    expected = pathlib.Path(expected_path).read_text()
 
     # Get Mapper
     mapper = abis_mapping.get_mapper(TEMPLATE_ID)

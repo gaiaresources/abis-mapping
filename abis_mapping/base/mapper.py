@@ -73,15 +73,20 @@ class ABISMapper(abc.ABC):
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds additional fields data to graph as JSON.
+        """Adds additional fields data to graph as JSON if values exist.
 
         Args:
             subject_uri (rdflib.URIRef): Node for the JSON data to be attached.
             row (frictionless.Row): Row containing all data including extras.
             graph (rdflib.Graph): Graph to be modified.
         """
-        # Extract fields and create json node
-        json_str = json.dumps(cls.extract_extra_fields(row))
+        # Extract fields and determine if any values
+        extra_fields = cls.extract_extra_fields(row)
+        if extra_fields == {}:
+            return
+
+        # Create JSON string literal
+        json_str = json.dumps(extra_fields)
         json_node = rdflib.Literal(json_str, datatype=rdflib.RDF.JSON)
 
         # Add to graph
@@ -111,33 +116,65 @@ class ABISMapper(abc.ABC):
     @classmethod
     def extra_fields_schema(
         cls,
-        row: frictionless.Row
+        data: frictionless.Row | types.ReadableType,
+        full_schema: bool = False
     ) -> frictionless.Schema:
         """Creates a schema with all extra fields found in data.
 
+        The fields of data are expected to be the same or a superset of the template's
+        official schema. It is expected that validation has occurred prior to calling.
+
         Args:
-            row (frictionless.Row): Row expected to contain more columns
-                than included in the template's schema.
+            data (frictionless.Row | types.ReadableType): Row or data expected to
+                contain more columns than included in the template's schema.
+            full_schema (bool): Flag to indicate whether full schema for row or data
+                should be returned or just the difference.
 
         Returns:
             frictionless.Schema: A schema object, the fields of which are only
-                the extra fields not a part of a template's official schema.
+                the extra fields not a part of a template's official schema if full_schema = False
+                else the schema will be the concatenation of the official schema fields and the
+                extra fields.
         """
         # Construct official schema
         existing_schema: frictionless.Schema = frictionless.Schema.from_descriptor(cls.schema())
 
-        # Get set of fieldnames of row
-        actual_fieldnames = set(row.field_names)
+        if isinstance(data, frictionless.Row):
+            # Get list of fieldnames of row
+            actual_fieldnames = data.field_names
 
-        # Create schema from row fields
-        actual_schema = frictionless.Schema(fields=row.fields)
+            # Create schema from row fields
+            actual_schema = frictionless.Schema(fields=data.fields)
+        else:
+            # Create resource and infer
+            resource = frictionless.Resource(
+                data=data,
+                format="csv",
+            )
+            resource.infer()
 
-        # Find set of extra fieldnames
-        existing_fieldnames = set(existing_schema.field_names)
-        extra_fieldnames = actual_fieldnames - existing_fieldnames
+            # Get actual schema
+            actual_schema = resource.schema
+
+            # Get list of actual fieldnames
+            actual_fieldnames = resource.schema.field_names
+
+        # Find list of extra fieldnames
+        existing_fieldnames = existing_schema.field_names
+        if len(actual_fieldnames) > len(existing_fieldnames):
+            extra_fieldnames = actual_fieldnames[len(existing_fieldnames):]
+        else:
+            extra_fieldnames = []
 
         # Construct list of extra Fields
         extra_fields = [actual_schema.get_field(fieldname) for fieldname in extra_fieldnames]
+
+        if full_schema:
+            # Append the extra fields onto the official schema and return
+            for field in extra_fields:
+                existing_schema.add_field(field)
+
+            return existing_schema
 
         # Create difference schema and return
         return frictionless.Schema(fields=extra_fields)

@@ -1,5 +1,7 @@
 """Provides Fixtures and Helpers for the Unit Tests"""
 
+# Standard
+import json
 
 # Third-Party
 import rdflib
@@ -40,17 +42,25 @@ def compare_graphs(
     assert isinstance(graph1, rdflib.Graph)
     assert isinstance(graph2, rdflib.Graph)
 
-    # Replace Timestamps
-    # In many cases, dates and datetimes are generately systematically as a
-    # timestamp for "now". When unit testing, we don't care if "now" has
-    # changed when comparing graphs. As such, we want to replace all literals
-    # with a datatype `xsd:date`, `xsd:dateTime` or `xsd:dateTimeStamp` with a
-    # pre-generate value.
     for graph in (graph1, graph2):
         for (s, p, o) in graph.triples((None, None, None)):
             if isinstance(o, rdflib.Literal):
+                # Replace Timestamps
+                # In many cases, dates and datetimes are generately systematically as a
+                # timestamp for "now". When unit testing, we don't care if "now" has
+                # changed when comparing graphs. As such, we want to replace all literals
+                # with a datatype `xsd:date`, `xsd:dateTime` or `xsd:dateTimeStamp` with a
+                # pre-generate value.
                 if o.datatype in (rdflib.XSD.date, rdflib.XSD.dateTime, rdflib.XSD.dateTimeStamp):
                     graph.set((s, p, rdflib.Literal("test-value")))
+                # Reformat JSON strings
+                # Since the ordering of json keys could be in different ordering depending on
+                # serializer, need to deserialize json then reserialize to ensure the same format
+                # string literal for each.
+                if o.datatype == rdflib.RDF.JSON:
+                    o_dict = json.loads(str(o))
+                    sorted_string = json.dumps(o_dict, sort_keys=True)
+                    graph.set((s, p, rdflib.Literal(sorted_string, datatype=rdflib.RDF.JSON)))
 
     # Compare Graphs
     return rdflib.compare.isomorphic(
