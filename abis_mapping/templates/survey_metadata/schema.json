@@ -34,12 +34,34 @@
       }
     },
     {
-      "name": "surveyMethodURL",
-      "title": "Survey Method URL",
-      "description": "A DOI or link to the reference about the survey method, if available.",
-      "example": "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf",
+      "name": "temporalCoverageStartDate",
+      "title": "Temporal Coverage: Start Date",
+      "description": "The date data collection commenced.",
+      "example": "21/09/2020",
+      "type": "timestamp",
+      "format": "any",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "temporalCoverageEndDate",
+      "title": "Temporal Coverage: End Date",
+      "description": "The date data collection was completed.",
+      "example": "23/09/2020",
+      "type": "timestamp",
+      "format": "any",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "taxonomicCoverage",
+      "title": "Taxonomic Coverage",
+      "description": "The range of biological taxa covered by the survey.",
+      "example": "Coleoptera | Insecta",
       "type": "list",
-      "format": "uri",
+      "format": "default",
       "constraints": {
         "required": false
       }
@@ -67,23 +89,23 @@
       }
     },
     {
-      "name": "temporalCoverageStartDate",
-      "title": "Temporal Coverage: Start Date",
-      "description": "The date data collection commenced.",
-      "example": "21/09/2020",
-      "type": "timestamp",
-      "format": "any",
+      "name": "surveyMethodURL",
+      "title": "Survey Method URL",
+      "description": "A DOI or link to the reference about the survey method, if available.",
+      "example": "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf",
+      "type": "list",
+      "format": "uri",
       "constraints": {
         "required": false
       }
     },
     {
-      "name": "temporalCoverageEndDate",
-      "title": "Temporal Coverage: End Date",
-      "description": "The date data collection was completed.",
-      "example": "23/09/2020",
-      "type": "timestamp",
-      "format": "any",
+      "name": "keywords",
+      "title": "Keywords",
+      "description": "Terms, phrases or descriptors that highlight the key attributes of the study.",
+      "example": "ground beetle | habitat | morphology | traits | farmland | woodland | remnant vegetation | split-plot study",
+      "type": "list",
+      "format": "default",
       "constraints": {
         "required": false
       }

@@ -36,7 +36,7 @@ def test_validation_empty_template() -> None:
     """Tests validation fails for empty template."""
     # Load data
     data = pathlib.Path(
-        "abis_mapping/templates/survey_metadata/examples/empty.csv"
+        "abis_mapping/templates/survey_metadata/survey_metadata.csv"
     ).read_bytes()
 
     # Get mapper
