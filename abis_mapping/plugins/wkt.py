@@ -83,9 +83,16 @@ class WKTField(frictionless.Field):
 
             Returns:
                 str: Converted cell.
+
+            Raises:
+                TypeError: if the returned value from the shapely
+                    method to_wkt is not string.
             """
             # Serialize to default format for pyproj
-            return shapely.to_wkt(cell)
+            wkt_str = shapely.to_wkt(cell)
+            if isinstance(wkt_str, str):
+                return wkt_str
+            raise TypeError(f"expected str; got {type(wkt_str)}")
 
         # Return value writer callable
         return value_writer
