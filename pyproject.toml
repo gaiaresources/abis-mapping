@@ -10,6 +10,7 @@ rdflib = "^7.0.0"
 python-slugify = "^8.0.1"
 frictionless = {extras = ["excel"], version = "^5.16.0"}
 python-dateutil = "^2.8.2"
+shapely = "^2.0.2"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^0.942"

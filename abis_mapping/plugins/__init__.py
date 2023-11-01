@@ -8,3 +8,4 @@ from . import list
 from . import mutual_inclusion
 from . import tabular
 from . import timestamp
+from . import wkt
