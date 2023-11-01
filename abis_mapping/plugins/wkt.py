@@ -79,7 +79,7 @@ class WKTField(frictionless.Field):
             """Convert cell (write direction).
 
             Args:
-                cell (pyproj.CRS): Cell to convert.
+                cell (shapely.Geometry): Cell to convert.
 
             Returns:
                 str: Converted cell.
@@ -89,7 +89,12 @@ class WKTField(frictionless.Field):
                     method to_wkt is not string.
             """
             # Serialize to default format for pyproj
-            wkt_str = shapely.to_wkt(cell)
+            wkt_str = shapely.to_wkt(
+                geometry=cell,
+                rounding_precision=8,
+            )
+
+            # Type checking due to no types provided by the shapely package
             if isinstance(wkt_str, str):
                 return wkt_str
             raise TypeError(f"expected str; got {type(wkt_str)}")

@@ -61,3 +61,7 @@ def test_wkt_type() -> None:
     # Write cell
     assert field.write_cell(shapely.Point(1, 2))[0]
     assert field.write_cell(shapely.LineString(((1, 1), (0, 0))))[0]
+
+    # Rounding
+    assert field.write_cell(field.read_cell("POINT (0.12345678 0.12345678)")[0])[0] == "POINT (0.12345678 0.12345678)"
+    assert field.write_cell(field.read_cell("POINT (0.123456789 0.123456789)")[0])[0] == "POINT (0.12345679 0.12345679)"
