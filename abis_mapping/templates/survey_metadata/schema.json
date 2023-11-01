@@ -58,7 +58,7 @@
     {
       "name": "taxonomicCoverage",
       "title": "Taxonomic Coverage",
-      "description": "The range of biological taxa covered by the survey.",
+      "description": "The range of biological taxa covered by the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |",
       "example": "Coleoptera | Insecta",
       "type": "list",
       "format": "default",
@@ -102,7 +102,7 @@
     {
       "name": "keywords",
       "title": "Keywords",
-      "description": "Terms, phrases or descriptors that highlight the key attributes of the study.",
+      "description": "Terms, phrases or descriptors that highlight the key attributes of the study. Multiple terms are allowed, separated by a vertical bar aka pipe |",
       "example": "ground beetle | habitat | morphology | traits | farmland | woodland | remnant vegetation | split-plot study",
       "type": "list",
       "format": "default",
