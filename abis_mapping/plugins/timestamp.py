@@ -23,6 +23,16 @@ class TimestampPlugin(frictionless.Plugin):
     status = "stable"
 
     def select_field_class(self, type: Optional[str] = None) -> Optional[Type[frictionless.Field]]:
+        """Return the custom field class for the plugin.
+
+        Args:
+            type (str): Denotes the type passed in from the frictionless
+                framework for a field.
+
+        Returns:
+            Optional[Type[frictionless.Field]]: Reference to TimestampField if type
+                matches code else None.
+        """
         if type == self.code:
             return TimestampField
         return None
