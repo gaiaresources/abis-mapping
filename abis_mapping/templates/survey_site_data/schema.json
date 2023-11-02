@@ -1,0 +1,107 @@
+{
+  "fields": [
+    {
+      "name": "siteCode",
+      "title": "Site Code",
+      "description": "A unique identifier or code assigned to a specific location or site where the survey is conducted.",
+      "example": "BS-001",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "siteBounds",
+      "title": "Site Bounds",
+      "description": "A data field that uses the Well-Known Text (WKT) format to describe the spatial boundaries or geometry of a specific survey site.",
+      "example": "POLYGON((-122.398 37.789, -122.395 37.789, -122.395 37.791, -122.398 37.791, -122.398 37.789))",
+      "type": "wkt",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "siteLatitude",
+      "title": "Site Latitude",
+      "description": "The geographical latitude coordinate of a particular survey site.",
+      "example": "-33.80",
+      "type": "number",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "minimum": -90.0,
+        "maximum": 0
+      }
+    },
+    {
+      "name": "siteLongitude",
+      "title": "Site Longitude",
+      "description": "The geographical longitude coordinate of a particular survey site.",
+      "example": "115.21",
+      "type": "number",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "minimum": 0,
+        "maximum": 180.0
+      }
+    },
+    {
+      "name": "datum",
+      "title": "Datum",
+      "description": "The reference geodetic datum used to define the Earth's shape and its coordinate system for recording the geographical coordinates of the survey site.",
+      "example": "WGS84",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "AGD84",
+          "EPSG:4203",
+          "GDA2020",
+          "EPSG:7844",
+          "GDA94",
+          "EPSG:4283",
+          "WGS84",
+          "EPSG:4326"
+        ]
+      }
+    },
+    {
+      "name": "startDate",
+      "title": "Site Start Date/Time",
+      "description": "The specific date and time at which a survey or data collection activity at a particular site begins.",
+      "example": "21/09/2020",
+      "type": "timestamp",
+      "format": "any",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "endDate",
+      "title": "Site End Date/Time",
+      "description": "The specific date and time at which a survey or data collection activity at a particular site concludes.",
+      "example": "23/09/2020",
+      "type": "timestamp",
+      "format": "any",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "methodology",
+      "title": "Methodology",
+      "description": "A detailed description of the methods and procedures used to conduct the survey at a specific site.",
+      "example": "...",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    }
+  ]
+}
+
