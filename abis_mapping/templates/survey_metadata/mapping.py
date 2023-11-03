@@ -63,6 +63,12 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                             "temporalCoverageEndDate",
                         ]
                     ),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=[
+                            "spatialCoverageWKT",
+                            "spatialCoverageGeodeticDatum",
+                        ]
+                    ),
                 ],
                 skip_errors=self.skip_errors
             ),

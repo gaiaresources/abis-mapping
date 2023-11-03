@@ -57,6 +57,7 @@ def test_wkt_type() -> None:
     assert field.read_cell("MULTILINESTRING ((1 1, 2 2, 3 3), (4 4, 5 5))")[0]
     assert field.read_cell("MULTIPOLYGON (((0 0, 0 1, 1 1, 1 0, 0 0)), ((2 2, 2 3, 3 3, 3 2, 2 2)))")[0]
     assert field.read_cell("GEOMETRYCOLLECTION (POINT (2 3), LINESTRING (1 1, 2 2))")[0]
+    assert field.read_cell("POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))")[0]
 
     # Write cell
     assert field.write_cell(shapely.Point(1, 2))[0]

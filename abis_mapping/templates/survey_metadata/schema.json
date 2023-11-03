@@ -67,6 +67,38 @@
       }
     },
     {
+      "name": "spatialCoverageWKT",
+      "title": "Spatial Coverage (WKT)",
+      "description": "Well Known Text (WKT) expression of the geographic coordinates that describe the survey's spatial extent.",
+      "example": "POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))",
+      "type": "wkt",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "spatialCoverageGeodeticDatum",
+      "title": "Spatial Coverage (Geodetic Datum)",
+      "description": "The geodetic datum upon which the geographic coordinates in the Spatial coverage (WKT) are based.",
+      "example": "GDA2020",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "AGD84",
+          "EPSG:4203",
+          "GDA2020",
+          "EPSG:7844",
+          "GDA94",
+          "EPSG:4283",
+          "WGS84",
+          "EPSG:4326"
+        ]
+      }
+    },
+    {
       "name": "surveyMethodBibliographicReferences",
       "title": "Survey Method Bibliographic References",
       "description": "Bibliographic references of survey methods used.",
