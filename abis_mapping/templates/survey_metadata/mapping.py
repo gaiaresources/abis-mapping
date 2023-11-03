@@ -173,7 +173,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         bdr_survey = utils.rdf.uri(f"survey/SSD-Survey/{row_num}", base_iri)
 
         # Create survey method procedure IRI
-        survey_method_procedure = utils.rdf.uri(f"procedure/surveyMethod/{row_num}", base_iri)
+        survey_method_procedure = utils.rdf.uri(f"survey/procedure/surveyMethod/{row_num}", base_iri)
 
         # Add BDR project
         self.add_bdr_project(
