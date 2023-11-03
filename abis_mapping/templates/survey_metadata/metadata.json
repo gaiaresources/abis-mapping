@@ -1,9 +1,9 @@
 {
   "id": "survey_metadata.csv",
   "label": "Systematic Survey Metadata Template",
-  "version": "0.3.0",
-  "description": "A template for Systematic Survey metadata",
-  "biodiversity_type": "Biological Systematic Survey metadata",
+  "version": "0.3.1",
+  "description": "A template for systematic survey metadata",
+  "biodiversity_type": "Biological Systematic Survey Metadata",
   "spatial_type": "N/A",
   "file_type": "CSV",
   "sampling_type": "systematic survey",
