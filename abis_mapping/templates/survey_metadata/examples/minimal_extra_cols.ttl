@@ -15,7 +15,19 @@
     dcterms:description "Native vegetation clearing permit" ;
     dcterms:identifier "IBSA-2021-0118" ;
     dcterms:title "Reconnaissance and Targeted survey conducted for Shire of Augusta Margaret River, for the Reconstruction of Cowaramup Bay Road project." ;
+    schema:keywords "farmland",
+         "ground beetle",
+         "habitat",
+         "morphology",
+         "remnant vegetation",
+         "split-plot study",
+         "traits",
+         "woodland" ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> .
+
+<http://createme.org/survey/taxonomicCoverage/1> a schema:Taxon ;
+    schema:value "Coleoptera",
+        "Insecta" .
 
 <http://createme.org/survey/procedure/surveyMethod/1> a sosa:Procedure ;
     rdfs:isDefinedBy "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf"^^xsd:anyURI ;
@@ -27,6 +39,7 @@
             time:hasBeginning "2020-09-21"^^xsd:date ;
             time:hasEnd "2020-09-23"^^xsd:date ] ;
     rdfs:comment '{"extraInformation1": "some additional info", "extraInformation2": "some more info"}'^^rdf:JSON ;
+    schema:rangeIncludes <http://createme.org/survey/taxonomicCoverage/1> ;
     sosa:usedProcedure <http://createme.org/survey/procedure/surveyMethod/1> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> a tern:RDFDataset ;

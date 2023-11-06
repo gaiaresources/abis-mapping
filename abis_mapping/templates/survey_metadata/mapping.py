@@ -166,7 +166,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to be processed in the dataset.
             dataset (rdflib.URIRef): Dataset IRI this row is a part of.
             graph (rdflib.URIRef): Graph to map row into.
-            base_iri (Optional[rdflib.Namespace): Optional base IRI
+            base_iri (Optional[rdflib.Namespace]): Optional base IRI
                 to use for mapping.
         """
         # Set the row number to start from the data, excluding header
@@ -180,6 +180,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Create survey method procedure IRI
         survey_method_procedure = utils.rdf.uri(f"survey/procedure/surveyMethod/{row_num}", base_iri)
+
+        # Create taxonomic coverage IRI
+        taxonomic_coverage = utils.rdf.uri(f"survey/taxonomicCoverage/{row_num}", base_iri)
 
         # Add BDR project
         self.add_bdr_project(
@@ -207,6 +210,14 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add survey method urls
         self.add_survey_methodologies(
             uri=survey_method_procedure,
+            row=row,
+            graph=graph,
+        )
+
+        # Add taxonomic coverage values
+        self.add_taxonomic_coverage(
+            uri=bdr_survey,
+            taxonomic_coverage=taxonomic_coverage,
             row=row,
             graph=graph,
         )
@@ -239,6 +250,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         project_id = row["projectID"]
         project_name = row["projectTitleOrName"]
         purpose = row["purpose"]
+        keywords = row["keywords"]
 
         # Add type and attach to dataset
         graph.add((uri, a, utils.namespaces.BDR.Project))
@@ -253,6 +265,11 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Attach survey
         graph.add((uri, utils.namespaces.BDR.hasSurvey, survey))
+
+        # Add keywords
+        if keywords:
+            for keyword in keywords:
+                graph.add((uri, rdflib.SDO.keywords, rdflib.Literal(keyword)))
 
     def add_bdr_survey(
         self,
@@ -355,6 +372,38 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                     rdflib.SDO.citation,
                     rdflib.Literal(survey_method_ref),
                 ))
+
+    def add_taxonomic_coverage(
+        self,
+        uri: rdflib.URIRef,
+        taxonomic_coverage: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds taxonomic coverage values to graph.
+
+        Args:
+            uri (rdflib.URIRef): URI for the values to be attached.
+            taxonomic_coverage (rdflib.URIRef): URI for the taxanomic coverage node
+            row (frictionless.Row): Row containing data to be used.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Extract relevant values from row
+        coverage_values = row["taxonomicCoverage"]
+
+        # If no values then don't add anything to graph
+        if not coverage_values:
+            return
+
+        # Attach main node to IRI
+        graph.add((uri, rdflib.SDO.rangeIncludes, taxonomic_coverage))
+
+        # Add type
+        graph.add((taxonomic_coverage, a, rdflib.SDO.Taxon))
+
+        # Iterate through values and add to graph
+        for value in coverage_values:
+            graph.add((taxonomic_coverage, rdflib.SDO.value, rdflib.Literal(value)))
 
 
 base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)
