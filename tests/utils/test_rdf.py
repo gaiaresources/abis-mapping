@@ -104,6 +104,7 @@ def test_rdf_to_wkt_point_literal() -> None:
         datatype=utils.namespaces.GEO.wktLiteral,
     )
 
+
 def test_rdf_to_wkt_literal() -> None:
     """Tests the to_wkt_literal() Function"""
     # Create shapely geometry
@@ -135,4 +136,3 @@ def test_rdf_to_wkt_literal() -> None:
         "POINT (115.85704811 -31.95351255)",
         datatype=utils.namespaces.GEO.wktLiteral,
     )
-
