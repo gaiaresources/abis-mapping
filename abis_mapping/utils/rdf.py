@@ -8,10 +8,12 @@ import uuid
 # Third-Party
 import rdflib
 import slugify
+import shapely
 
 # Local
 from . import namespaces
 from . import types
+from abis_mapping import settings
 
 # Typing
 from typing import Optional
@@ -147,7 +149,7 @@ def toTimestamp(timestamp: types.DateOrDatetime) -> rdflib.Literal:
     return literal
 
 
-def toWKT(
+def to_wkt_point_literal(
     latitude: float,
     longitude: float,
     datum: Optional[rdflib.URIRef] = None,
@@ -162,11 +164,33 @@ def toWKT(
     Returns:
         rdflib.Literal: Literal WKT Point.
     """
+    # Construct point from latitude and longitude
+    point = shapely.Point(longitude, latitude)
+
+    # Create and Return WKT rdf literal
+    return to_wkt_literal(point, datum)
+
+
+def to_wkt_literal(
+    geometry: shapely.Geometry,
+    datum: Optional[rdflib.URIRef] = None,
+) -> rdflib.Literal:
+    """Generates a literal WKT representation of the supplied geometry.
+
+    Args:
+        geometry (shapely.Geometry): Geometry object to construct WKT text from.
+        datum (Optional[rdflib.URIRef]): Geodetic datum that geometry is based
+            upon.
+
+    Returns:
+        rdflib.Literal: RDF WKT literal for geometry
+    """
     # Construct Datum URI to be Embedded
     datum_string = f"<{datum}> " if datum else ""
 
-    # Create and Return WKT from Latitude and Longitude
+    # Construct  and return rdf literal
+    wkt_string = shapely.to_wkt(geometry, rounding_precision=settings.DEFAULT_WKT_ROUNDING_PRECISION)
     return rdflib.Literal(
-        f"{datum_string}POINT ({longitude} {latitude})",
+        datum_string + wkt_string,
         datatype=namespaces.GEO.wktLiteral,
     )

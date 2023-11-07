@@ -1,5 +1,7 @@
 """Provides custom frictionless wkt plugin for the package."""
 
+# Local
+from abis_mapping import settings
 
 # Third-party
 import frictionless
@@ -88,10 +90,10 @@ class WKTField(frictionless.Field):
                 TypeError: if the returned value from the shapely
                     method to_wkt is not string.
             """
-            # Serialize to default format for pyproj
+            # Serialize to wkt format
             wkt_str = shapely.to_wkt(
                 geometry=cell,
-                rounding_precision=8,
+                rounding_precision=settings.DEFAULT_WKT_ROUNDING_PRECISION,
             )
 
             # Type checking due to no types provided by the shapely package
