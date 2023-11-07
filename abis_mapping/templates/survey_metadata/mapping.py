@@ -3,6 +3,7 @@
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
+from abis_mapping import vocabs
 from abis_mapping import utils
 
 # Standard
@@ -197,6 +198,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         self.add_bdr_survey(
             uri=bdr_survey,
             survey_method=survey_method_procedure,
+            row=row,
             graph=graph,
         )
 
@@ -218,6 +220,13 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         self.add_taxonomic_coverage(
             uri=bdr_survey,
             taxonomic_coverage=taxonomic_coverage,
+            row=row,
+            graph=graph,
+        )
+
+        # Add spatial coverage values
+        self.add_spatial_coverage(
+            uri=bdr_survey,
             row=row,
             graph=graph,
         )
@@ -275,6 +284,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         survey_method: rdflib.URIRef,
+        row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds the BDR survey to the graph.
@@ -283,6 +293,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI of the survey.
             survey_method (rdflib.URIRef): URI of node associated with
                 survey method data.
+            row (frictionless.Row): The data row being mapped.
             graph (rdflib.Graph): The graph to be modified.
         """
         # Add type and dataset
@@ -290,6 +301,38 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Add survey method procedure node
         graph.add((uri, rdflib.SOSA.usedProcedure, survey_method))
+
+    def add_spatial_coverage(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds the spatial coverage fields to the graph.
+
+        Args:
+            uri (rdflib.URIRef): Base URI the temporal information will be attached
+            row (frictionless.Row): Data row provided in the data csv
+            graph (rdflib.Graph): Graph to be modified
+        """
+        # Extract relevant values
+        datum = row["spatialCoverageGeodeticDatum"]
+        geometry = row["spatialCoverageWKT"]
+
+        if not (datum and geometry):
+            return
+
+        # Construct wkt literal
+        wkt = utils.rdf.to_wkt_literal(
+            geometry=geometry,
+            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(datum),
+        )
+
+        # Add spatial coverage
+        geometry_node = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, wkt))
 
     def add_temporal_coverage(
         self,
