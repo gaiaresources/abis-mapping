@@ -198,7 +198,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         self.add_bdr_survey(
             uri=bdr_survey,
             survey_method=survey_method_procedure,
-            row=row,
             graph=graph,
         )
 
@@ -284,7 +283,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         survey_method: rdflib.URIRef,
-        row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds the BDR survey to the graph.
@@ -293,7 +291,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI of the survey.
             survey_method (rdflib.URIRef): URI of node associated with
                 survey method data.
-            row (frictionless.Row): The data row being mapped.
             graph (rdflib.Graph): The graph to be modified.
         """
         # Add type and dataset
