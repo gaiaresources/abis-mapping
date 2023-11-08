@@ -1041,7 +1041,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.toWKT(
+        wkt = utils.rdf.to_wkt_point_literal(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
             datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
@@ -1279,7 +1279,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.toWKT(
+        wkt = utils.rdf.to_wkt_point_literal(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
             datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
@@ -2767,7 +2767,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.toWKT(
+        wkt = utils.rdf.to_wkt_point_literal(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
             datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
