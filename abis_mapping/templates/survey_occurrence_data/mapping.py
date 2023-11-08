@@ -98,7 +98,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                     plugins.empty.NotEmpty(),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["threatStatus", "conservationJurisdiction"],
-                    )
+                    ),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=["organismQuantity", "organismQuantityType"],
+                    ),
                 ],
                 skip_errors=self.skip_errors,
             ),

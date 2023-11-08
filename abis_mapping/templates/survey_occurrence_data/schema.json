@@ -203,6 +203,28 @@
       }
     },
     {
+      "name": "organismQuantity",
+      "title": "Organism Quantity",
+      "description": "A number or enumeration value for the quantity of organisms.",
+      "example": "12.5",
+      "type": "number",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "organismQuantityType",
+      "title": "Organism Quantity Type",
+      "description": "The type of quantification system used for the quantity organisms.",
+      "example": "% biomass",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "lifeStage",
       "title": "Life Stage",
       "description": "...",

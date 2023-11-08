@@ -1,7 +1,7 @@
 {
     "id": "survey_occurrence_data.csv",
     "label": "Systematic Survey Occurrence Data Template",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "A template to translate some Darwin Core fields",
     "biodiversity_type": "Species Occurrences",
     "spatial_type": "Point",
