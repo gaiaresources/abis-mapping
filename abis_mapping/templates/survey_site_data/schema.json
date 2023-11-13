@@ -1,10 +1,21 @@
 {
   "fields": [
     {
-      "name": "siteCode",
-      "title": "Site Code",
-      "description": "A unique identifier or code assigned to a specific location or site where the survey is conducted.",
-      "example": "BS-001",
+      "name": "siteID",
+      "title": "Site ID",
+      "description": "A unique within dataset string identifier for the site. Valid values include strings that are used specifically for this survey or URIs from BDR Sites that have been established in previous surveys.",
+      "example": "P1",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "siteType",
+      "title": "Site Type",
+      "description": "The type of site that relates to its sampling type and/or dimensions.",
+      "example": "Plot",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -12,10 +23,54 @@
       }
     },
     {
-      "name": "siteBounds",
-      "title": "Site Bounds",
-      "description": "A data field that uses the Well-Known Text (WKT) format to describe the spatial boundaries or geometry of a specific survey site.",
-      "example": "POLYGON((-122.398 37.789, -122.395 37.789, -122.395 37.791, -122.398 37.791, -122.398 37.789))",
+      "name": "siteName",
+      "title": "Site Name",
+      "description": "A name for the site that may be more descriptive than the SiteID.",
+      "example": "Plot 1",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "siteDescription",
+      "title": "Site Description",
+      "description": "The site (plot) description covers important aspects of the site (generally of the land surface). Some overlap in collected information does occur due to the modular nature of the survey processes. The description provides significant background information to gain an appreciation of the plot history, topography, position in the landscape and for understanding the likely relationship between the soils, vegetation and fauna.",
+      "example": "Fine woody debris.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "decimalLatitude",
+      "title": "Decimal Latitude",
+      "description": "The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are north of the Equator, negative values are south of it. Legal values lie between -90 and 0, inclusive for Southern hemisphere.",
+      "example": "-34.036",
+      "type": "number",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "decimalLongitude",
+      "title": "Decimal Longitude",
+      "description": "The geographic longitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are east of the Greenwich Meridian, negative values are west of it. Legal values lie between 0 and 180, inclusive for the BDR use case.",
+      "example": "146.363",
+      "type": "number",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "footprintWKT",
+      "title": "Footprint WKT",
+      "description": "A Well-Known Text (WKT) representation of the shape (footprint, geometry) that defines the Site. A Site may have both a point-radius representation and a footprint representation, and they may differ from each other.",
+      "example": "LINESTRING (146.363 -34.036, 146.363 -34.037)",
       "type": "wkt",
       "format": "default",
       "constraints": {
@@ -23,40 +78,14 @@
       }
     },
     {
-      "name": "siteLatitude",
-      "title": "Site Latitude",
-      "description": "The geographical latitude coordinate of a particular survey site.",
-      "example": "-33.80",
-      "type": "number",
-      "format": "default",
-      "constraints": {
-        "required": false,
-        "minimum": -90.0,
-        "maximum": 0
-      }
-    },
-    {
-      "name": "siteLongitude",
-      "title": "Site Longitude",
-      "description": "The geographical longitude coordinate of a particular survey site.",
-      "example": "115.21",
-      "type": "number",
-      "format": "default",
-      "constraints": {
-        "required": false,
-        "minimum": 0,
-        "maximum": 180.0
-      }
-    },
-    {
-      "name": "datum",
-      "title": "Datum",
-      "description": "The reference geodetic datum used to define the Earth's shape and its coordinate system for recording the geographical coordinates of the survey site.",
+      "name": "geodeticDatum",
+      "title": "Geodetic Datum",
+      "description": "The geodetic datum, or spatial reference system (SRS) upon which the geographic coordinates given for the Site are based.",
       "example": "WGS84",
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false,
+        "required": true,
         "enum": [
           "AGD84",
           "EPSG:4203",
@@ -70,33 +99,33 @@
       }
     },
     {
-      "name": "startDate",
-      "title": "Site Start Date/Time",
-      "description": "The specific date and time at which a survey or data collection activity at a particular site begins.",
-      "example": "21/09/2020",
-      "type": "timestamp",
-      "format": "any",
+      "name": "coordinateUncertaintyInMeters",
+      "title": "Coordinate Uncertainty in Meters",
+      "description": "The horizontal distance (in metres) from the given decimalLatitude and decimalLongitude describing the smallest circle containing the whole of the Site. Leave the value empty if the uncertainty is unknown, cannot be estimated, or is not applicable (because there are no coordinates). Zero is not a valid value for this term.",
+      "example": "50",
+      "type": "integer",
+      "format": "default",
       "constraints": {
         "required": false
       }
     },
     {
-      "name": "endDate",
-      "title": "Site End Date/Time",
-      "description": "The specific date and time at which a survey or data collection activity at a particular site concludes.",
-      "example": "23/09/2020",
+      "name": "siteVisitStart",
+      "title": "Site Visit Start",
+      "description": "The temporal start of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.",
+      "example": "2016-02-28",
       "type": "timestamp",
-      "format": "any",
+      "format": "default",
       "constraints": {
-        "required": false
+        "required": true
       }
     },
     {
-      "name": "methodology",
-      "title": "Methodology",
-      "description": "A detailed description of the methods and procedures used to conduct the survey at a specific site.",
-      "example": "...",
-      "type": "string",
+      "name": "siteVisitEnd",
+      "title": "Site Visit End",
+      "description": "The temporal end of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.",
+      "example": "2016-02-28",
+      "type": "timestamp",
       "format": "default",
       "constraints": {
         "required": false
