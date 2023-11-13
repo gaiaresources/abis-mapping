@@ -8,7 +8,8 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": true,
+        "unique": true
       }
     },
     {
@@ -52,7 +53,9 @@
       "type": "number",
       "format": "default",
       "constraints": {
-        "required": false
+        "required": false,
+        "minimum": -90,
+        "maximum": 0
       }
     },
     {
@@ -63,7 +66,9 @@
       "type": "number",
       "format": "default",
       "constraints": {
-        "required": false
+        "required": false,
+        "minimum": 0,
+        "maximum": 180
       }
     },
     {
@@ -106,7 +111,8 @@
       "type": "integer",
       "format": "default",
       "constraints": {
-        "required": false
+        "required": false,
+        "minimum": 1
       }
     },
     {
