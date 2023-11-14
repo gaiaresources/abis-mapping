@@ -45,4 +45,3 @@ class LogicalOr(frictionless.Check):
                 f"the columns {self.field_names} are constrained by logical OR, one or more value must be provided"
             )
         )
-
