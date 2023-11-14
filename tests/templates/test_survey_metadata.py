@@ -1,3 +1,6 @@
+"""Provides Unit Tests for the `survey_metadata.csv` Template"""
+
+
 # Third-party
 import frictionless
 import pytest

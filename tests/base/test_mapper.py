@@ -1,5 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.base` module"""
-
+import dataclasses
 # Standard
 import pathlib
 import json
@@ -14,90 +14,117 @@ from abis_mapping import base
 from abis_mapping import utils
 
 # Constants
-TEMPLATE_ID_REAL = ["incidental_occurrence_data.csv", "survey_occurrence_data.csv", "survey_metadata.csv"]
+TEMPLATE_ID_REAL = [
+    "incidental_occurrence_data.csv",
+    "survey_occurrence_data.csv",
+    "survey_metadata.csv",
+    "survey_site_data.csv",
+]
 TEMPLATE_ID_FAKE = "fake"
-NUMBER_OF_TEMPLATES = len(TEMPLATE_ID_REAL)
 
-
-def test_base_get_mapper() -> None:
-    """Tests that we can retrieve a mapper based on its template ID"""
+def test_base_get_mapper_fake() -> None:
+    """Tests that we can't retrieve a mapper with an invalid ID"""
     # Test Fake Template ID
     fake_mapper = base.mapper.get_mapper(TEMPLATE_ID_FAKE)
     assert fake_mapper is None
 
+
+@pytest.mark.parametrize(
+    "template_id",
+    TEMPLATE_ID_REAL,
+)
+def test_base_get_mapper(template_id: str) -> None:
+    """Tests that we can retrieve a mapper based on its template ID"""
     # Test Real Template IDs
-    for template_id in TEMPLATE_ID_REAL:
-        real_mapper = base.mapper.get_mapper(template_id)
-        assert real_mapper is not None
-        assert issubclass(real_mapper, base.mapper.ABISMapper)
+    real_mapper = base.mapper.get_mapper(template_id)
+    assert real_mapper is not None
+    assert issubclass(real_mapper, base.mapper.ABISMapper)
 
 
-def test_base_get_mappers() -> None:
+@pytest.mark.parametrize(
+    "template_id",
+    TEMPLATE_ID_REAL,
+)
+def test_base_get_mappers(template_id: str) -> None:
     """Tests that we can retrieve a dictionary of all mappers"""
     # Test All Mappers
     mappers = base.mapper.get_mappers()
-    assert len(mappers) == NUMBER_OF_TEMPLATES
+    assert len(mappers) == len(TEMPLATE_ID_REAL)
 
     # Test Fake Template ID
     fake_mapper = mappers.get(TEMPLATE_ID_FAKE)
     assert fake_mapper is None
 
     # Test Real Template ID
-    for template_id in TEMPLATE_ID_REAL:
-        real_mapper = mappers.get(template_id)
-        assert real_mapper is not None
-        assert issubclass(real_mapper, base.mapper.ABISMapper)
+    real_mapper = mappers.get(template_id)
+    assert real_mapper is not None
+    assert issubclass(real_mapper, base.mapper.ABISMapper)
 
 
-def test_base_get_template() -> None:
+@pytest.mark.parametrize(
+    "template_id",
+    TEMPLATE_ID_REAL,
+)
+def test_base_get_template(template_id: str) -> None:
     """Tests the functionality of the base mapper"""
     # Test Real Template ID
-    for template_id in TEMPLATE_ID_REAL:
-        real_mapper = base.mapper.get_mapper(template_id)
-        assert real_mapper is not None
-        template = real_mapper.template()
-        assert isinstance(template, pathlib.Path)
-        assert template.is_file()
+    real_mapper = base.mapper.get_mapper(template_id)
+    assert real_mapper is not None
+    template = real_mapper.template()
+    assert isinstance(template, pathlib.Path)
+    assert template.is_file()
 
 
-def test_base_get_metadata() -> None:
+@pytest.mark.parametrize(
+    "template_id",
+    TEMPLATE_ID_REAL,
+)
+def test_base_get_metadata(template_id: str) -> None:
     """Tests the functionality of the base mapper"""
     # Test Real Template ID
-    for template_id in TEMPLATE_ID_REAL:
-        real_mapper = base.mapper.get_mapper(template_id)
-        assert real_mapper is not None
-        metadata = real_mapper.metadata()
-        assert isinstance(metadata, dict)
+    real_mapper = base.mapper.get_mapper(template_id)
+    assert real_mapper is not None
+    metadata = real_mapper.metadata()
+    assert isinstance(metadata, dict)
 
 
-def test_metadata_id_match() -> None:
+@pytest.mark.parametrize(
+    "template_id",
+    TEMPLATE_ID_REAL,
+)
+def test_metadata_id_match(template_id: str) -> None:
     """Tests the metadata id matches the mapper id"""
-    for template_id in TEMPLATE_ID_REAL:
-        real_mapper = base.mapper.get_mapper(template_id)
-        assert real_mapper is not None
-        metadata = real_mapper.metadata()
-        assert metadata.get("id") == real_mapper.template_id
+    real_mapper = base.mapper.get_mapper(template_id)
+    assert real_mapper is not None
+    metadata = real_mapper.metadata()
+    assert metadata.get("id") == real_mapper.template_id
 
 
-def test_base_get_schema() -> None:
+@pytest.mark.parametrize(
+    "template_id",
+    TEMPLATE_ID_REAL,
+)
+def test_base_get_schema(template_id: str) -> None:
     """Tests the functionality of the base mapper"""
     # Test Real Template ID
-    for template_id in TEMPLATE_ID_REAL:
-        real_mapper = base.mapper.get_mapper(template_id)
-        assert real_mapper is not None
-        schema = real_mapper.schema()
-        assert isinstance(schema, dict)
+    real_mapper = base.mapper.get_mapper(template_id)
+    assert real_mapper is not None
+    schema = real_mapper.schema()
+    assert isinstance(schema, dict)
 
 
-def test_base_get_instructions() -> None:
+@pytest.mark.parametrize(
+    "template_id",
+    TEMPLATE_ID_REAL,
+)
+def test_base_get_instructions(template_id: str) -> None:
     """Tests the functionality of the base mapper"""
     # Test Real Template ID
-    for template_id in TEMPLATE_ID_REAL:
-        real_mapper = base.mapper.get_mapper(template_id)
-        assert real_mapper is not None
-        instructions = real_mapper.instructions()
-        assert isinstance(instructions, pathlib.Path)
-        assert instructions.is_file()
+    real_mapper = base.mapper.get_mapper(template_id)
+    assert real_mapper is not None
+    instructions = real_mapper.instructions()
+    assert isinstance(instructions, pathlib.Path)
+    assert instructions.is_file()
 
 
 @pytest.mark.parametrize(
@@ -111,6 +138,8 @@ def test_base_get_instructions() -> None:
           "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
         ("survey_metadata.csv",
          "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"),
+        ("survey_site_data.csv",
+         "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols.csv"),
     ]
 )
 def test_apply_validation_extra_columns(template_id: str, file_path: str) -> None:
@@ -140,6 +169,8 @@ def test_apply_validation_extra_columns(template_id: str, file_path: str) -> Non
           "margaret_river_flora/margaret_river_flora_extra_cols_mid.csv")),
         ("survey_metadata.csv",
          "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols_mid.csv"),
+        ("survey_site_data.csv",
+         "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols_mid.csv"),
     ]
 )
 def test_apply_validation_extra_columns_middle(template_id: str, file_path: str) -> None:
@@ -171,6 +202,8 @@ def test_apply_validation_extra_columns_middle(template_id: str, file_path: str)
           "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
         ("survey_metadata.csv",
          "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"),
+        ("survey_site_data.csv",
+         "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols.csv"),
     ]
 )
 def test_extra_fields_schema_row_data(template_id: str, file_path: str) -> None:
@@ -214,6 +247,8 @@ def test_extra_fields_schema_row_data(template_id: str, file_path: str) -> None:
           "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
         ("survey_metadata.csv",
          "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"),
+        ("survey_site_data.csv",
+         "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols.csv"),
     ]
 )
 def test_extra_fields_schema_raw_data(template_id: str, file_path: str) -> None:
