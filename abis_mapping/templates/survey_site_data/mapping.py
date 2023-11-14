@@ -20,6 +20,7 @@ DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Site Dataset by Gaia Re
 # Constants and shortcuts
 a = rdflib.RDF.type
 
+
 class SurveySiteMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `survey_site_data.csv`"""
 
