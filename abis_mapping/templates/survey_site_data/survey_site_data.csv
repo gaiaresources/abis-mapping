@@ -1,1 +1,1 @@
-siteCode,siteBounds,siteLatitude,siteLongitude,datum,startDate,endDate,methodology
+siteID,siteType,siteName,siteDescription,decimalLatitude,decimalLongitude,footprintWKT,geodeticDatum,coordinateUncertaintyInMeters,siteVisitStart,siteVisitEnd
