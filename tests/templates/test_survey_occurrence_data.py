@@ -6,6 +6,7 @@ import pathlib
 
 # Third-party
 import frictionless
+import frictionless.resources
 import pytest
 
 # Local
@@ -108,3 +109,36 @@ def test_schema_is_valid() -> None:
 
     # Assert valid
     assert report.valid
+
+def test_add_constraint() -> None:
+    """Tests ability to add constraint to a schema field."""
+    # Get data
+    data = DATA.read_bytes()
+
+    # Get mapper
+    mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+    assert mapper
+
+    # Construct schema
+    schema = frictionless.Schema.from_descriptor(mapper.schema())
+
+
+    # Construct resource
+    resource = frictionless.resources.TableResource(
+        data=data,
+        format="csv",
+        schema=schema,
+    )
+
+    schema.get_field("locality").constraints["enum"] = ["Cowaramup Bay Road", "something else"]
+    report = resource.validate()
+
+    assert report.valid
+
+    schema.get_field("locality").constraints["enum"] = ["Cowaramup Bay St"]
+    report = resource.validate()
+
+    assert not report.valid
+
+    locality_vals = resource.extract()
+
