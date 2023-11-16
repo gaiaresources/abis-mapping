@@ -12,10 +12,6 @@ import frictionless
 # Typing
 from typing import Any, Optional, Iterator
 
-# Default Dataset Metadata
-DATASET_DEFAULT_NAME = "Example Systematic Survey Site Dataset"
-DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Site Dataset by Gaia Resources"
-
 
 # Constants and shortcuts
 a = rdflib.RDF.type
@@ -27,6 +23,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
     # Template ID and Instructions File
     template_id = "survey_site_data.csv"
     instructions_file = "instructions.pdf"
+
+    # Default Dataset Metadata
+    DATASET_DEFAULT_NAME = "Example Systematic Survey Site Dataset"
+    DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Site Dataset by Gaia Resources"
 
     def apply_validation(
         self,
