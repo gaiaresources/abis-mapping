@@ -21,7 +21,10 @@ from abis_mapping import utils
 from typing import Any, Iterator, Optional, final
 
 
+# Constants
 a = rdflib.RDF.type
+
+
 class ABISMapper(abc.ABC):
     """ABIS Mapper Base Class"""
 

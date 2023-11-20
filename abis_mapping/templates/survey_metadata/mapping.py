@@ -6,9 +6,6 @@ from abis_mapping import plugins
 from abis_mapping import vocabs
 from abis_mapping import utils
 
-# Standard
-import datetime
-
 # Third-party
 import frictionless
 import rdflib
@@ -136,7 +133,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 )
 
             yield graph
-
 
     def apply_mapping_row(
         self,
@@ -292,7 +288,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         """Adds the spatial coverage fields to the graph.
 
         Args:
-            uri (rdflib.URIRef): Base URI the temporal information will be attached
+            uri (rdflib.URIRef): Base URI the spatial information will be attached
             row (frictionless.Row): Data row provided in the data csv
             graph (rdflib.Graph): Graph to be modified
         """

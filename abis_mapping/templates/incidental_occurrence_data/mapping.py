@@ -1,9 +1,6 @@
 """Provides ABIS Mapper for `incidental_occurrence_data.csv` Template"""
 
 
-# Standard
-import datetime
-
 # Third-Party
 import frictionless
 import rdflib

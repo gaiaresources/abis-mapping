@@ -1,9 +1,6 @@
 """Provides ABIS Mapper for `survey_occurrence_data.csv` Template"""
 
 
-# Standard
-import datetime
-
 # Third-Party
 import frictionless
 import rdflib
