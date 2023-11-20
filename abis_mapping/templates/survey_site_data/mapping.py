@@ -399,8 +399,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         """
         # Extract values
         site_type = row["siteType"]
-        if not site_type:
-            return
 
         # Retrieve vocab or create on the fly
         vocab = vocabs.site_type.SITE_TYPE.get(
