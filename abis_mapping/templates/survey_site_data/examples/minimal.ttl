@@ -14,6 +14,7 @@
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (146.363 -34.036, 146.363 -34.037)"^^geo:wktLiteral ],
         [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (146.363 -34.036)"^^geo:wktLiteral ] ;
+    geo:hasMetricSpatialAccuracy 5e+01 ;
     schema:description "Fine woody debris." ;
     schema:name "Plot 1" ;
     tern:featureType <http://createme.org/bdr-cv/concept/siteType/Plot> ;

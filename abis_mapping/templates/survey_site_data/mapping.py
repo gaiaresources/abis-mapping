@@ -241,6 +241,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         site_id = row["siteID"]
         site_name = row["siteName"]
         site_description = row["siteDescription"]
+        coordinate_uncertaintly = row["coordinateUncertaintyInMeters"]
 
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Site))
@@ -261,6 +262,11 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add site description if available
         if site_description:
             graph.add((uri, rdflib.SDO.description, rdflib.Literal(site_description)))
+
+        # Add coordinate uncertainty if available
+        if coordinate_uncertaintly:
+            accuracy = rdflib.Literal(coordinate_uncertaintly, datatype=rdflib.XSD.double)
+            graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
 
     def add_site_visit(
         self,
