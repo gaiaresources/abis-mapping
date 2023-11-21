@@ -7,6 +7,7 @@ import functools
 import inspect
 import json
 import pathlib
+import datetime
 
 # Third-Party
 import frictionless
@@ -14,9 +15,14 @@ import rdflib
 
 # Local
 from . import types
+from abis_mapping import utils
 
 # Typing
 from typing import Any, Iterator, Optional, final
+
+
+# Constants
+a = rdflib.RDF.type
 
 
 class ABISMapper(abc.ABC):
@@ -31,6 +37,10 @@ class ABISMapper(abc.ABC):
 
     # List of frictionless errors to be skipped by default
     skip_errors: list[str] = ["extra-label", "extra-cell"]
+
+    # Default Dataset Metadata
+    DATASET_DEFAULT_NAME = "Example Dataset"
+    DATASET_DEFAULT_DESCRIPTION = "Example Dataset by Gaia Resources"
 
     @abc.abstractmethod
     def apply_validation(
@@ -65,6 +75,23 @@ class ABISMapper(abc.ABC):
         Yields:
             rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
         """
+
+    def add_default_dataset(
+        self,
+        uri: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Default Example Dataset to the Graph
+
+        Args:
+            uri (rdflib.URIRef): IRI of the dataset.
+            graph (rdflib.Graph): Graph to add to.
+        """
+        # Add Default Dataset to Graph
+        graph.add((uri, a, utils.namespaces.TERN.RDFDataset))
+        graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(self.DATASET_DEFAULT_NAME)))
+        graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(self.DATASET_DEFAULT_DESCRIPTION)))
+        graph.add((uri, rdflib.DCTERMS.issued, utils.rdf.toTimestamp(datetime.date.today())))
 
     @classmethod
     def add_extra_fields_json(

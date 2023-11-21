@@ -1,0 +1,40 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix tern: <https://w3id.org/tern/ontologies/tern/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://createme.org/site/SSD-Site/1> a tern:Site ;
+    dcterms:identifier "P1" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (146.363 -34.036, 146.363 -34.037)"^^geo:wktLiteral ],
+        [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (146.363 -34.036)"^^geo:wktLiteral ] ;
+    geo:hasMetricSpatialAccuracy 5e+01 ;
+    schema:description "Fine woody debris." ;
+    schema:name "Plot 1" ;
+    tern:featureType <http://createme.org/bdr-cv/concept/siteType/Plot> ;
+    tern:hasSiteVisit <http://createme.org/visit/site/1> .
+
+<http://createme.org/bdr-cv/concept/siteType/Plot> a skos:Concept ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset"^^xsd:anyURI ;
+    skos:broader <http://example.com/bdr-cv/concept/siteType> ;
+    skos:definition "A type of site." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/74aa68d3-28fd-468d-8ff5-7e791d9f7159> ;
+    skos:prefLabel "Plot" .
+
+<http://createme.org/visit/site/1> a tern:SiteVisit ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+    time:hasTime [ a time:TemporalEntity ;
+            time:hasBeginning "2016-02-28"^^xsd:date ;
+            time:hasEnd "2016-02-28"^^xsd:date ] .
+
+<http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> a tern:RDFDataset ;
+    dcterms:description "Example Systematic Survey Site Dataset by Gaia Resources" ;
+    dcterms:issued "2023-11-20"^^xsd:date ;
+    dcterms:title "Example Systematic Survey Site Dataset" .
+

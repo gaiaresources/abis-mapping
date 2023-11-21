@@ -16,5 +16,6 @@ from . import reproductive_condition
 from . import sampling_protocol
 from . import sequencing_method
 from . import sex
+from . import site_type
 from . import taxon_tank
 from . import threat_status

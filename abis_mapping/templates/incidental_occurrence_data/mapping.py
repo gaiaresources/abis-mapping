@@ -1,9 +1,6 @@
 """Provides ABIS Mapper for `incidental_occurrence_data.csv` Template"""
 
 
-# Standard
-import datetime
-
 # Third-Party
 import frictionless
 import rdflib
@@ -17,10 +14,6 @@ from abis_mapping import vocabs
 # Typing
 from typing import Iterator, Optional, Any
 
-
-# Default Dataset Metadata
-DATASET_DEFAULT_NAME = "Example Incidental Occurrence Dataset"
-DATASET_DEFAULT_DESCRIPTION = "Example Incidental Occurrence Dataset by Gaia Resources"
 
 # Constants and Shortcuts
 # These constants are specific to this template, and as such are defined here
@@ -66,6 +59,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
     # Template ID and Instructions File
     template_id = "incidental_occurrence_data.csv"
     instructions_file = "instructions.pdf"
+
+    # Default Dataset Metadata
+    DATASET_DEFAULT_NAME = "Example Incidental Occurrence Dataset"
+    DATASET_DEFAULT_DESCRIPTION = "Example Incidental Occurrence Dataset by Gaia Resources"
 
     def apply_validation(
         self,
@@ -156,7 +153,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Check if Dataset IRI Supplied
         if not dataset_iri:
             # Create Dataset IRI
-            dataset_iri = utils.rdf.uri(f"dataset/{DATASET_DEFAULT_NAME}", base_iri)
+            dataset_iri = utils.rdf.uri(f"dataset/{self.DATASET_DEFAULT_NAME}", base_iri)
 
             # Add Example Default Dataset if not Supplied
             self.add_default_dataset(
@@ -751,22 +748,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Return
         return graph
-
-    def add_default_dataset(
-        self,
-        uri: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Default Example Dataset to the Graph
-
-        Args:
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Add Default Dataset to Graph
-        graph.add((uri, a, utils.namespaces.TERN.RDFDataset))
-        graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(DATASET_DEFAULT_NAME)))
-        graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(DATASET_DEFAULT_DESCRIPTION)))
-        graph.add((uri, rdflib.DCTERMS.issued, utils.rdf.toTimestamp(datetime.date.today())))
 
     def add_terminal_feature_of_interest(
         self,
