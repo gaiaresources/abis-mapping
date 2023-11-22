@@ -11,6 +11,7 @@ from . import identification_qualifier
 from . import kingdom
 from . import life_stage
 from . import occurrence_status
+from . import organism_quantity_type
 from . import preparations
 from . import reproductive_condition
 from . import sampling_protocol

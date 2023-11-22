@@ -277,6 +277,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         conservation_jurisdiction_attribute = utils.rdf.uri(f"attribute/conservationJurisdiction/{row_num}", base_iri)  # noqa: E501
         conservation_jurisdiction_value = utils.rdf.uri(f"value/conservationJurisdiction/{row_num}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
+        organism_quantity_observation = utils.rdf.uri(f"observation/organismQuantity/{row_num}", base_iri)
+        organism_quantity_value = utils.rdf.uri(f"value/organismQuantity/{row_num}", base_iri)
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -738,6 +740,24 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add Conservation Jurisdiction Value
         self.add_conservation_jurisdiction_value(
             uri=conservation_jurisdiction_value,
+            row=row,
+            graph=graph,
+        )
+
+        # Add organism quantity observation
+        self.add_organism_quantity_observation(
+            uri=organism_quantity_observation,
+            sample_field=sample_field,
+            dataset=dataset,
+            row=row,
+            graph=graph,
+        )
+
+        # Add organism quantity value
+        self.add_organism_quantity_value(
+            uri=organism_quantity_value,
+            organism_qty_observation=organism_quantity_observation,
+            dataset=dataset,
             row=row,
             graph=graph,
         )
@@ -3047,6 +3067,114 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))
         graph.add((uri, rdflib.RDF.value, vocab))
+
+    def add_organism_quantity_observation(
+        self,
+        uri: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds observation organism quantity to the graph.
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            dataset (rdflib.URIRef): Dataset which data belongs.
+            sample_field (rdflib.URIRef): URI for the sample field node.
+            row (frictionless.Row): Row to retrieve data from.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Extract values
+        event_date = row["eventDate"]
+        organism_qty = row["organismQuantity"]
+        organism_qty_type = row["organismQuantityType"]
+
+        # Check if organism quantity values were provided
+        if not organism_qty or not organism_qty_type:
+            return
+
+        # Attach node to sample field and dataset
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("organismQuantity-observation")))
+        graph.add((uri, rdflib.SOSA.observedProperty, utils.namespaces.DWC.organismQuantity))
+
+        # Add event date(time)
+        time_node = rdflib.BNode()
+        graph.add((uri, rdflib.SOSA.phenomenonTime, time_node))
+        graph.add((time_node, a, rdflib.TIME.Instant))
+        timestamp_literal = utils.rdf.toTimestamp(event_date)
+        if timestamp_literal.datatype == rdflib.XSD.date:
+            graph.add((time_node, rdflib.TIME.inXSDDate, timestamp_literal))
+        elif timestamp_literal.datatype == rdflib.XSD.dateTime:
+            graph.add((time_node, rdflib.TIME.inXSDDateTime, timestamp_literal))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, timestamp_literal))
+
+        # Add Human observation as proxy for observation method
+        human_observation = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157")
+        graph.add((uri, rdflib.SOSA.usedProcedure, human_observation))
+
+        # Add organism quantity and type values
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(f"{organism_qty} {organism_qty_type}")))
+
+        # Add mandatory fields within the TERN ontology
+        observation_method_node = rdflib.BNode()
+        graph.add((observation_method_node, a, rdflib.RDF.Statement))
+        graph.add((observation_method_node, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
+        graph.add((observation_method_node, rdflib.RDFS.comment, rdflib.Literal(
+            "Observation method unknown, 'human observation' used as proxy"
+        )))
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, observation_method_node))
+
+        date_node = rdflib.BNode()
+        graph.add((date_node, a, rdflib.RDF.Statement))
+        graph.add((date_node, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((date_node, rdflib.RDFS.comment, rdflib.Literal("Date unknown, template eventDate used as proxy")))
+        graph.add((uri, utils.namespaces.TERN.qualifiedValue, date_node))
+
+    def add_organism_quantity_value(
+        self,
+        uri: rdflib.URIRef,
+        organism_qty_observation: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds organism quantity value to graph.
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            organism_qty_observation (rdflib.URIRef): Observation URI.
+            dataset (rdflib.URIRef): Dataset this is a part of.
+            row (frictionless.Row): Row to retrieve data from.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Extract values if any
+        organism_qty = row["organismQuantity"]
+        organism_qty_type = row["organismQuantityType"]
+
+        # Check for values
+        if not (organism_qty and organism_qty_type):
+            return
+
+        # Get vocab or create on the fly
+        vocab = vocabs.organism_quantity_type.ORGANISM_QUANTITY_TYPE.get(
+            graph=graph,
+            value=organism_qty_type,
+            source=dataset,
+        )
+
+        # Add to graph
+        graph.add((organism_qty_observation, rdflib.SOSA.hasResult, uri))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, a, utils.namespaces.TERN.Float))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("organism-count")))
+        graph.add((uri, utils.namespaces.TERN.unit, vocab))
+        graph.add((uri, rdflib.RDF.value, rdflib.Literal(organism_qty, datatype=rdflib.XSD.float)))
 
 
 # Helper Functions
