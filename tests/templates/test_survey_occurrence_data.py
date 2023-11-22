@@ -46,6 +46,8 @@ def test_validation() -> None:
           "/margaret_river_flora/margaret_river_flora_extra_cols.csv"),
          ("abis_mapping/templates/survey_occurrence_data/examples"
           "/margaret_river_flora/margaret_river_flora_extra_cols.ttl")),
+        ("abis_mapping/templates/survey_occurrence_data/examples/organism_qty.csv",
+         "abis_mapping/templates/survey_occurrence_data/examples/organism_qty.ttl")
     ]
 )
 def test_mapping(data_path: str, expected_path: str) -> None:
