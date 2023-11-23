@@ -1116,6 +1116,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Add Basis Of Record Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
 
+        # Check for siteID
+        if site_id := row["siteID"]:
+            # Add site id comment
+            graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(site_id)))
+
     def add_id_qualifier_attribute(
         self,
         uri: rdflib.URIRef,
