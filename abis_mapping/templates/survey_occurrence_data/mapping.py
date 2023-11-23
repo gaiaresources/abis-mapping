@@ -64,6 +64,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
     DATASET_DEFAULT_NAME = "Example Systematic Survey Occurrence Dataset"
     DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Occurrence Dataset by Gaia Resources"
 
+    def __init__(self, site_ids: Optional[list[str]] = None):
+        self.site_ids = site_ids
+
     def apply_validation(
         self,
         data: base.types.ReadableType,
@@ -86,23 +89,47 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             schema=schema,
         )
 
-        # Validate
-        report: frictionless.Report = resource.validate(
-            checklist=frictionless.Checklist(
-                checks=[
-                    # Extra Custom Checks
-                    plugins.tabular.IsTabular(),
-                    plugins.empty.NotEmpty(),
-                    plugins.mutual_inclusion.MutuallyInclusive(
-                        field_names=["threatStatus", "conservationJurisdiction"],
-                    ),
-                    plugins.mutual_inclusion.MutuallyInclusive(
-                        field_names=["organismQuantity", "organismQuantityType"],
-                    ),
-                ],
-                skip_errors=self.skip_errors,
-            ),
+        checklist = frictionless.Checklist(
+            checks=[
+                # Extra Custom Checks
+                plugins.tabular.IsTabular(),
+                plugins.empty.NotEmpty(),
+                plugins.mutual_inclusion.MutuallyInclusive(
+                    field_names=["threatStatus", "conservationJurisdiction"],
+                ),
+                plugins.mutual_inclusion.MutuallyInclusive(
+                    field_names=["organismQuantity", "organismQuantityType"],
+                ),
+            ],
+            skip_errors=self.skip_errors,
         )
+
+        if self.site_ids:
+            # Construct dummy schema and resource
+            site_schema = frictionless.Schema.from_descriptor(
+                {"fields": [{"name": "siteID", "type": "string"}]},
+            )
+            site_resource = frictionless.Resource(
+                name="survey_site_data.csv",
+                data=self.site_ids,
+                schema=site_schema,
+            )
+
+            # Construct package from the two resources
+            package = frictionless.Package(
+                resources=[resource, site_resource]
+            )
+
+            # Validate
+            report: frictionless.Report = package.validate(
+                checklist=checklist,
+            )
+
+        else:
+            # Validate
+            report: frictionless.Report = resource.validate(
+                checklist=checklist,
+            )
 
         # Return Validation Report
         return report

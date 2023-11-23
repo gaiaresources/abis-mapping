@@ -12,6 +12,7 @@ import pytest
 # Local
 import abis_mapping
 import tests.conftest
+from abis_mapping.templates import survey_occurrence_data
 
 
 # Constants
@@ -35,6 +36,23 @@ def test_validation() -> None:
 
     # Validate
     report = mapper().apply_validation(data)
+    assert report.valid
+
+
+def test_site_id_validation() -> None:
+    """Tests whether cross validation works."""
+    # Load Data
+    data = DATA.read_bytes()
+
+    # Get mapper
+    mapper = abis_mapping.get_mapper(TEMPLATE_ID)
+    assert mapper
+
+    site_ids = ["P1", "P2", "P3", "P4", "P5", "P6"]
+    mapper = mapper()
+    mapper.site_ids = site_ids
+
+    report = mapper.apply_validation(data)
     assert report.valid
 
 
