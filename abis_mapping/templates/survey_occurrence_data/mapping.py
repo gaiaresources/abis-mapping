@@ -106,13 +106,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         if self.site_ids:
             # Construct dummy schema and resource
-            site_schema = frictionless.Schema.from_descriptor(
-                {"fields": [{"name": "siteID", "type": "string"}]},
-            )
             site_resource = frictionless.Resource(
                 name="survey_site_data.csv",
-                data=self.site_ids,
-                schema=site_schema,
+                source=[{"siteID": i} for i in self.site_ids],
             )
 
             # Construct package from the two resources
