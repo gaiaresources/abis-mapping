@@ -60,7 +60,7 @@
       "title": "Taxonomic Coverage",
       "description": "The range of biological taxa covered by the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |",
       "example": "Coleoptera | Insecta",
-      "type": "list",
+      "type": "string",
       "format": "default",
       "constraints": {
         "required": false
