@@ -1,0 +1,31 @@
+"""Provides all relevant validation tests."""
+
+# Local
+from tests.templates import conftest
+import abis_mapping
+
+# Third-party
+import pytest
+
+# Local
+from tests.templates import conftest
+
+
+@pytest.mark.parametrize(
+    argnames="template_id,test_params",
+    argvalues=[(id, params) for (_, id, params) in conftest.mapping_test_args() if params.should_validate],
+    ids=[id for (id, _, params) in conftest.mapping_test_args() if params.should_validate],
+)
+def test_apply_validation(template_id: str, test_params: conftest.MappingParameters) -> None:
+    """Tests the validation for the template"""
+    # Load Data
+    data = test_params.data.read_bytes()
+
+    # Get Mapper
+    mapper = abis_mapping.get_mapper(template_id)
+    assert mapper
+
+    # Validate
+    report = mapper().apply_validation(data)
+    assert report.valid
+

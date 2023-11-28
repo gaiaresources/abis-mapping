@@ -5,6 +5,9 @@ import abis_mapping
 import abis_mapping.base
 from tests.templates import conftest
 
+# Standard
+import pathlib
+
 # Third-party
 import pytest
 import frictionless
@@ -32,18 +35,58 @@ class TestTemplateBasicSuite:
         """Tests that the supplied template id is registered."""
         assert test_params.template_id in mappers
 
-    def test_validation(self, test_params: conftest.TemplateTestParameters) -> None:
-        """Tests the validation for the template"""
-        # Load Data
-        data = test_params.mapping_cases[0].data.read_bytes()
+    def test_get_mapper(self, test_params: conftest.TemplateTestParameters) -> None:
+        """Tests that we can retrieve a mapper based on its template ID"""
+        # Test Real Template IDs
+        real_mapper = abis_mapping.base.mapper.get_mapper(test_params.template_id)
+        assert real_mapper is not None
+        assert issubclass(real_mapper, abis_mapping.base.mapper.ABISMapper)
 
-        # Get Mapper
-        mapper = abis_mapping.get_mapper(test_params.template_id)
-        assert mapper
+    def test_get_template(self, test_params: conftest.TemplateTestParameters) -> None:
+        """Tests able to retrieve template file."""
+        # Test Real Template ID
+        real_mapper = abis_mapping.base.mapper.get_mapper(test_params.template_id)
+        assert real_mapper is not None
+        template = real_mapper.template()
+        assert isinstance(template, pathlib.Path)
+        assert template.is_file()
 
-        # Validate
-        report = mapper().apply_validation(data)
-        assert report.valid
+    def test_get_metadata(self, test_params: conftest.TemplateTestParameters) -> None:
+        """Tests able to retrieve template metadata"""
+        # Test Real Template ID
+        real_mapper = abis_mapping.base.mapper.get_mapper(test_params.template_id)
+        assert real_mapper is not None
+        metadata = real_mapper.metadata()
+        assert isinstance(metadata, dict)
+
+    def test_metadata_id_match(self, test_params: conftest.TemplateTestParameters) -> None:
+        """Tests the metadata id matches the mapper id"""
+        # Retrieve mapper
+        real_mapper = abis_mapping.base.mapper.get_mapper(test_params.template_id)
+        assert real_mapper is not None
+
+        # Retrieve metadata
+        metadata = real_mapper.metadata()
+        assert metadata.get("id") == real_mapper.template_id
+
+    def test_get_schema(self, test_params: conftest.TemplateTestParameters) -> None:
+        """Tests able to retrieve template schema."""
+        # Test Real Template ID
+        real_mapper = abis_mapping.base.mapper.get_mapper(test_params.template_id)
+        assert real_mapper is not None
+
+        # Retrieve schema
+        schema = real_mapper.schema()
+        assert isinstance(schema, dict)
+
+    def test_get_instructions(self, test_params: conftest.TemplateTestParameters) -> None:
+        """Tests able to retrieve template instructions."""
+        # Test Real Template ID
+        real_mapper = abis_mapping.base.mapper.get_mapper(test_params.template_id)
+        assert real_mapper is not None
+        instructions = real_mapper.instructions()
+        assert isinstance(instructions, pathlib.Path)
+        assert instructions.is_file()
 
     def test_metadata_sampling_type(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests the metadata sampling type set correctly"""

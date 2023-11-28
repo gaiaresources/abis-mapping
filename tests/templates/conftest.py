@@ -1,14 +1,16 @@
 """Setup for all template tests."""
 
 # Standard
-import dataclasses
 import pathlib
 
+# Third-party
+import attrs
+
 # Typing
-from typing import Optional
+from typing import Optional, Iterable
 
 
-@dataclasses.dataclass
+@attrs.define(kw_only=True)
 class MappingParameters:
     """Provides data object containing required parameters for a mapping test.
 
@@ -16,14 +18,17 @@ class MappingParameters:
         data (pathlib.Path): Path of CSV input data to use.
         expected (pathlib.Path): Path of the expected turtle output.
         scenario_name (Optional[str]): Optional string to be used to easily identify
-            test scenario in output.
+            test scenario in output. Default: None
+        should_validate (bool): Indicates whether the data file provided should
+            pass validation. Default: True
     """
     data: pathlib.Path
     expected: pathlib.Path
     scenario_name: Optional[str] = None
+    should_validate: bool = True
 
 
-@dataclasses.dataclass
+@attrs.define(kw_only=True)
 class TemplateTestParameters:
     """Provides data object containing required testing parameters per template.
 
@@ -70,6 +75,7 @@ TEST_CASES: list[TemplateTestParameters] = [
             ),
             MappingParameters(
                 scenario_name="organism_qty",
+                should_validate=False,
                 data=pathlib.Path(
                     "abis_mapping/templates/survey_occurrence_data/examples/organism_qty.csv",
                 ),
@@ -163,3 +169,14 @@ TEST_CASES: list[TemplateTestParameters] = [
         metadata_sampling_type="incidental"
     ),
 ]
+
+
+def mapping_test_args() -> Iterable[tuple[str, str, MappingParameters]]:
+    """Constructs parameter sets necessary to perform mapping tests."""
+    for test_case in TEST_CASES:
+        for mapping_case in test_case.mapping_cases:
+            name = f"{test_case.template_id}"
+            name += f"-{mapping_case.scenario_name}" if mapping_case.scenario_name is not None else ""
+            d = (name, test_case.template_id, mapping_case)
+            yield d
+

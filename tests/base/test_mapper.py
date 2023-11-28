@@ -14,119 +14,12 @@ import rdflib
 from abis_mapping import base
 from abis_mapping import utils
 
-# Constants
-TEMPLATE_ID_REAL = [
-    "incidental_occurrence_data.csv",
-    "survey_occurrence_data.csv",
-    "survey_metadata.csv",
-    "survey_site_data.csv",
-]
-TEMPLATE_ID_FAKE = "fake"
-
 
 def test_base_get_mapper_fake() -> None:
     """Tests that we can't retrieve a mapper with an invalid ID"""
     # Test Fake Template ID
-    fake_mapper = base.mapper.get_mapper(TEMPLATE_ID_FAKE)
+    fake_mapper = base.mapper.get_mapper("fake")
     assert fake_mapper is None
-
-
-@pytest.mark.parametrize(
-    "template_id",
-    TEMPLATE_ID_REAL,
-)
-def test_base_get_mapper(template_id: str) -> None:
-    """Tests that we can retrieve a mapper based on its template ID"""
-    # Test Real Template IDs
-    real_mapper = base.mapper.get_mapper(template_id)
-    assert real_mapper is not None
-    assert issubclass(real_mapper, base.mapper.ABISMapper)
-
-
-@pytest.mark.parametrize(
-    "template_id",
-    TEMPLATE_ID_REAL,
-)
-def test_base_get_mappers(template_id: str) -> None:
-    """Tests that we can retrieve a dictionary of all mappers"""
-    # Test All Mappers
-    mappers = base.mapper.get_mappers()
-    assert len(mappers) == len(TEMPLATE_ID_REAL)
-
-    # Test Fake Template ID
-    fake_mapper = mappers.get(TEMPLATE_ID_FAKE)
-    assert fake_mapper is None
-
-    # Test Real Template ID
-    real_mapper = mappers.get(template_id)
-    assert real_mapper is not None
-    assert issubclass(real_mapper, base.mapper.ABISMapper)
-
-
-@pytest.mark.parametrize(
-    "template_id",
-    TEMPLATE_ID_REAL,
-)
-def test_base_get_template(template_id: str) -> None:
-    """Tests the functionality of the base mapper"""
-    # Test Real Template ID
-    real_mapper = base.mapper.get_mapper(template_id)
-    assert real_mapper is not None
-    template = real_mapper.template()
-    assert isinstance(template, pathlib.Path)
-    assert template.is_file()
-
-
-@pytest.mark.parametrize(
-    "template_id",
-    TEMPLATE_ID_REAL,
-)
-def test_base_get_metadata(template_id: str) -> None:
-    """Tests the functionality of the base mapper"""
-    # Test Real Template ID
-    real_mapper = base.mapper.get_mapper(template_id)
-    assert real_mapper is not None
-    metadata = real_mapper.metadata()
-    assert isinstance(metadata, dict)
-
-
-@pytest.mark.parametrize(
-    "template_id",
-    TEMPLATE_ID_REAL,
-)
-def test_metadata_id_match(template_id: str) -> None:
-    """Tests the metadata id matches the mapper id"""
-    real_mapper = base.mapper.get_mapper(template_id)
-    assert real_mapper is not None
-    metadata = real_mapper.metadata()
-    assert metadata.get("id") == real_mapper.template_id
-
-
-@pytest.mark.parametrize(
-    "template_id",
-    TEMPLATE_ID_REAL,
-)
-def test_base_get_schema(template_id: str) -> None:
-    """Tests the functionality of the base mapper"""
-    # Test Real Template ID
-    real_mapper = base.mapper.get_mapper(template_id)
-    assert real_mapper is not None
-    schema = real_mapper.schema()
-    assert isinstance(schema, dict)
-
-
-@pytest.mark.parametrize(
-    "template_id",
-    TEMPLATE_ID_REAL,
-)
-def test_base_get_instructions(template_id: str) -> None:
-    """Tests the functionality of the base mapper"""
-    # Test Real Template ID
-    real_mapper = base.mapper.get_mapper(template_id)
-    assert real_mapper is not None
-    instructions = real_mapper.instructions()
-    assert isinstance(instructions, pathlib.Path)
-    assert instructions.is_file()
 
 
 @pytest.mark.parametrize(

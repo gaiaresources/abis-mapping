@@ -1,9 +1,6 @@
 """Provides all relevant mapping tests."""
 
 
-# Standard
-import pathlib
-
 # Third-party
 import pytest
 
@@ -12,30 +9,17 @@ from tests.templates import conftest
 import abis_mapping
 import tests.conftest
 
-# Typing
-from typing import Iterable
-
-
-def mapping_test_args() -> Iterable[tuple[str, str, pathlib.Path, pathlib.Path]]:
-    """Constructs parameter sets necessary to perform mapping tests."""
-    for test_case in conftest.TEST_CASES:
-        for mapping_case in test_case.mapping_cases:
-            name = f"{test_case.template_id}"
-            name += f"-{mapping_case.scenario_name}" if mapping_case.scenario_name is not None else ""
-            d = (name, test_case.template_id, mapping_case.data, mapping_case.expected)
-            yield d
-
 
 @pytest.mark.parametrize(
-    argnames="template_id,data_path,expected_path",
-    argvalues=[vals[1:] for vals in mapping_test_args()],
-    ids=[vals[0] for vals in mapping_test_args()],
+    argnames="template_id,test_params",
+    argvalues=[(id, params) for (_, id, params) in conftest.mapping_test_args()],
+    ids=[id for (id, _, _) in conftest.mapping_test_args()],
 )
-def test_mapping(template_id: str, data_path: pathlib.Path, expected_path: pathlib.Path) -> None:
+def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters) -> None:
     """Tests the mapping for the template"""
     # Load Data and Expected Output
-    data = data_path.read_bytes()
-    expected = expected_path.read_text()
+    data = test_params.data.read_bytes()
+    expected = test_params.expected.read_text()
 
     # Get Mapper
     mapper = abis_mapping.get_mapper(template_id)
