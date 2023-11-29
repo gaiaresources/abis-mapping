@@ -162,9 +162,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Create survey method procedure IRI
         survey_method_procedure = utils.rdf.uri(f"survey/procedure/surveyMethod/{row_num}", base_iri)
 
-        # Create taxonomic coverage IRI
-        taxonomic_coverage = utils.rdf.uri(f"survey/taxonomicCoverage/{row_num}", base_iri)
-
         # Add BDR project
         self.add_bdr_project(
             uri=bdr_project,
@@ -178,6 +175,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         self.add_bdr_survey(
             uri=bdr_survey,
             survey_method=survey_method_procedure,
+            row=row,
             graph=graph,
         )
 
@@ -191,14 +189,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add survey method urls
         self.add_survey_methodologies(
             uri=survey_method_procedure,
-            row=row,
-            graph=graph,
-        )
-
-        # Add taxonomic coverage values
-        self.add_taxonomic_coverage(
-            uri=bdr_survey,
-            taxonomic_coverage=taxonomic_coverage,
             row=row,
             graph=graph,
         )
@@ -263,6 +253,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         survey_method: rdflib.URIRef,
+        row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds the BDR survey to the graph.
@@ -271,13 +262,21 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI of the survey.
             survey_method (rdflib.URIRef): URI of node associated with
                 survey method data.
+            row (frictionless.Row): Data row provided in the data csv
             graph (rdflib.Graph): The graph to be modified.
         """
+        # Extract values
+        taxonomic_coverage = row["taxonomicCoverage"]
+
         # Add type and dataset
         graph.add((uri, a, utils.namespaces.BDR.Survey))
 
         # Add survey method procedure node
         graph.add((uri, rdflib.SOSA.usedProcedure, survey_method))
+
+        # Add taxonomic coverage
+        if taxonomic_coverage is not None:
+            graph.add((uri, utils.namespaces.BDR.target, rdflib.Literal(taxonomic_coverage)))
 
     def add_spatial_coverage(
         self,
@@ -392,38 +391,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                     rdflib.SDO.citation,
                     rdflib.Literal(survey_method_ref),
                 ))
-
-    def add_taxonomic_coverage(
-        self,
-        uri: rdflib.URIRef,
-        taxonomic_coverage: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds taxonomic coverage values to graph.
-
-        Args:
-            uri (rdflib.URIRef): URI for the values to be attached.
-            taxonomic_coverage (rdflib.URIRef): URI for the taxanomic coverage node
-            row (frictionless.Row): Row containing data to be used.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Extract relevant values from row
-        coverage_values = row["taxonomicCoverage"]
-
-        # If no values then don't add anything to graph
-        if not coverage_values:
-            return
-
-        # Attach main node to IRI
-        graph.add((uri, rdflib.SDO.rangeIncludes, taxonomic_coverage))
-
-        # Add type
-        graph.add((taxonomic_coverage, a, rdflib.SDO.Taxon))
-
-        # Iterate through values and add to graph
-        for value in coverage_values:
-            graph.add((taxonomic_coverage, rdflib.SDO.value, rdflib.Literal(value)))
 
 
 base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)

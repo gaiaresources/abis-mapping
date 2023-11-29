@@ -26,10 +26,6 @@
          "woodland" ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> .
 
-<http://createme.org/survey/taxonomicCoverage/1> a schema:Taxon ;
-    schema:value "Coleoptera",
-        "Insecta" .
-
 <http://createme.org/survey/procedure/surveyMethod/1> a sosa:Procedure ;
     rdfs:isDefinedBy "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf"^^xsd:anyURI ;
     skos:definition "Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location." ;
@@ -42,7 +38,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/9.9.1/7844> POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))"^^geo:wktLiteral ] ;
     rdfs:comment '{"extraInformation1": "some additional info", "extraInformation2": "some more info"}'^^rdf:JSON ;
-    schema:rangeIncludes <http://createme.org/survey/taxonomicCoverage/1> ;
+    bdr:target "Coleoptera | Insecta" ;
     sosa:usedProcedure <http://createme.org/survey/procedure/surveyMethod/1> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> a tern:RDFDataset ;
