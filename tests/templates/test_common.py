@@ -16,6 +16,21 @@ import frictionless
 from typing import Type
 
 
+@pytest.fixture(scope="module")
+def case_template_ids() -> list[str]:
+    """Test fixture that returns all test case template ids."""
+    return [tc.template_id for tc in conftest.TEST_CASES]
+
+
+@pytest.mark.parametrize(
+    argnames="mapper_id",
+    argvalues=[mapper_id for mapper_id in abis_mapping.get_mappers()],
+)
+def test_registered_has_test_case(mapper_id: str, case_template_ids: list[str]) -> None:
+    """Tests all registered mapper has a corresponding test case."""
+    assert mapper_id in case_template_ids
+
+
 @pytest.mark.parametrize(
     argnames="test_params",
     argvalues=[tc for tc in conftest.TEST_CASES],

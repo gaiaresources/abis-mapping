@@ -23,9 +23,10 @@ class MappingParameters:
             pass validation. Default: True
     """
     data: pathlib.Path
-    expected: pathlib.Path
+    expected: pathlib.Path | None
     scenario_name: Optional[str] = None
     should_validate: bool = True
+    expected_error_codes: set[str] = set()
 
 
 @attrs.define(kw_only=True)
@@ -82,6 +83,16 @@ TEST_CASES: list[TemplateTestParameters] = [
                 expected=pathlib.Path(
                     "abis_mapping/templates/survey_occurrence_data/examples/organism_qty.ttl",
                 )
+            ),
+            MappingParameters(
+                scenario_name="extra_cols_mid",
+                should_validate=False,
+                expected_error_codes={"incorrect-label"},
+                data=pathlib.Path(
+                    ("abis_mapping/templates/survey_occurrence_data/examples/"
+                     "margaret_river_flora/margaret_river_flora_extra_cols_mid.csv"),
+                ),
+                expected=None,
             )
         ],
         metadata_sampling_type="systematic survey",
@@ -109,6 +120,15 @@ TEST_CASES: list[TemplateTestParameters] = [
                     "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols.ttl"
                 ),
             ),
+            MappingParameters(
+                scenario_name="extra_cols_mid",
+                should_validate=False,
+                expected_error_codes={'incorrect-label'},
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols_mid.csv",
+                ),
+                expected=None,
+            )
         ],
         metadata_sampling_type="systematic survey"
     ),
@@ -134,6 +154,24 @@ TEST_CASES: list[TemplateTestParameters] = [
                 expected=pathlib.Path(
                     "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.ttl"
                 ),
+            ),
+            MappingParameters(
+                scenario_name="extra_cols_mid",
+                expected_error_codes={"incorrect-label"},
+                should_validate=False,
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols_mid.csv",
+                ),
+                expected=None,
+            ),
+            MappingParameters(
+                scenario_name="invalid_chrono_order",
+                should_validate=False,
+                expected_error_codes={'row-constraint'},
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_metadata/examples/minimal_error_chronological_order.csv"
+                ),
+                expected=None,
             )
         ],
         metadata_sampling_type="systematic survey"
@@ -172,11 +210,15 @@ TEST_CASES: list[TemplateTestParameters] = [
 
 
 def mapping_test_args() -> Iterable[tuple[str, str, MappingParameters]]:
-    """Constructs parameter sets necessary to perform mapping tests."""
+    """Constructs parameter sets necessary to perform mapping tests.
+
+    Yields:
+        tuple[str, str, MappingParameters]: First term is the test id, the second the template id,
+            and lastly the parameters of the mapping test scenario.
+    """
     for test_case in TEST_CASES:
         for mapping_case in test_case.mapping_cases:
             name = f"{test_case.template_id}"
             name += f"-{mapping_case.scenario_name}" if mapping_case.scenario_name is not None else ""
             d = (name, test_case.template_id, mapping_case)
             yield d
-
