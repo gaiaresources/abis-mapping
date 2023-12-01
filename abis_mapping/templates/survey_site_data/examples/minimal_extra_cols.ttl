@@ -20,15 +20,8 @@
     rdfs:comment '{"extraInformation1": "some additional info", "extraInformation2": "some more info"}'^^rdf:JSON ;
     schema:description "Fine woody debris." ;
     schema:name "Plot 1" ;
-    tern:featureType <http://createme.org/bdr-cv/concept/siteType/Plot> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     tern:hasSiteVisit <http://createme.org/visit/site/1> .
-
-<http://createme.org/bdr-cv/concept/siteType/Plot> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset"^^xsd:anyURI ;
-    skos:broader <http://example.com/bdr-cv/concept/siteType> ;
-    skos:definition "A type of site." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/74aa68d3-28fd-468d-8ff5-7e791d9f7159> ;
-    skos:prefLabel "Plot" .
 
 <http://createme.org/visit/site/1> a tern:SiteVisit ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
