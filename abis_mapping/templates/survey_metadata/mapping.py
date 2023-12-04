@@ -27,8 +27,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
     DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Metadata Dataset by Gaia Resources"
 
     def apply_validation(
-            self,
-            data: base.types.ReadableType
+        self,
+        data: base.types.ReadableType
     ) -> frictionless.Report:
         """Applies Frictionless validation for the 'survey_metadata.csv' template
 
@@ -76,11 +76,11 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         return report
 
     def apply_mapping(
-            self,
-            data: base.types.ReadableType,
-            dataset_iri: Optional[rdflib.URIRef] = None,
-            base_iri: Optional[rdflib.Namespace] = None,
-            **kwargs: Any,
+        self,
+        data: base.types.ReadableType,
+        dataset_iri: Optional[rdflib.URIRef] = None,
+        base_iri: Optional[rdflib.Namespace] = None,
+        **kwargs: Any,
     ) -> Iterator[rdflib.Graph]:
         """Applies mapping for the `survey_metadata.csv` template.
 
@@ -154,26 +154,26 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         row_num = row.row_number - 1
 
         # Create BDR project IRI
-        bdr_project = utils.rdf.uri(f"project/SSD-Survey-Project/{row_num}", base_iri)
+        project = utils.rdf.uri(f"project/SSD-Survey-Project/{row_num}", base_iri)
 
         # Create BDR survey IRI
-        bdr_survey = utils.rdf.uri(f"survey/SSD-Survey/{row_num}", base_iri)
+        survey = utils.rdf.uri(f"survey/SSD-Survey/{row_num}", base_iri)
 
         # Create survey method procedure IRI
         survey_method_procedure = utils.rdf.uri(f"survey/procedure/surveyMethod/{row_num}", base_iri)
 
         # Add BDR project
-        self.add_bdr_project(
-            uri=bdr_project,
-            survey=bdr_survey,
+        self.add_project(
+            uri=project,
+            survey=survey,
             dataset=dataset,
             graph=graph,
             row=row,
         )
 
         # Add BDR survey
-        self.add_bdr_survey(
-            uri=bdr_survey,
+        self.add_survey(
+            uri=survey,
             survey_method=survey_method_procedure,
             row=row,
             graph=graph,
@@ -181,7 +181,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Attach temporal coverage if present
         self.add_temporal_coverage(
-            uri=bdr_survey,
+            uri=survey,
             row=row,
             graph=graph,
         )
@@ -195,19 +195,19 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Add spatial coverage values
         self.add_spatial_coverage(
-            uri=bdr_survey,
+            uri=survey,
             row=row,
             graph=graph,
         )
 
         # Add extra columns JSON
         self.add_extra_fields_json(
-            subject_uri=bdr_survey,
+            subject_uri=survey,
             row=row,
             graph=graph,
         )
 
-    def add_bdr_project(
+    def add_project(
         self,
         uri: rdflib.URIRef,
         survey: rdflib.URIRef,
@@ -227,8 +227,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Extract relevant values from row
         project_id = row["projectID"]
         project_name = row["projectTitleOrName"]
-        purpose = row["purpose"]
-        keywords = row["keywords"]
 
         # Add type and attach to dataset
         graph.add((uri, a, utils.namespaces.BDR.Project))
@@ -238,18 +236,11 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(project_name)))
         if project_id:
             graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(project_id)))
-        if purpose:
-            graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(purpose)))
 
         # Attach survey
-        graph.add((uri, utils.namespaces.BDR.hasSurvey, survey))
+        graph.add((uri, rdflib.SDO.hasPart, survey))
 
-        # Add keywords
-        if keywords:
-            for keyword in keywords:
-                graph.add((uri, rdflib.SDO.keywords, rdflib.Literal(keyword)))
-
-    def add_bdr_survey(
+    def add_survey(
         self,
         uri: rdflib.URIRef,
         survey_method: rdflib.URIRef,
@@ -265,18 +256,24 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Data row provided in the data csv
             graph (rdflib.Graph): The graph to be modified.
         """
-        # Extract values
-        taxonomic_coverage = row["taxonomicCoverage"]
-
         # Add type and dataset
         graph.add((uri, a, utils.namespaces.BDR.Survey))
 
         # Add survey method procedure node
-        graph.add((uri, rdflib.SOSA.usedProcedure, survey_method))
+        graph.add((uri, rdflib.PROV.hadPlan, survey_method))
 
         # Add taxonomic coverage
-        if taxonomic_coverage is not None:
+        if taxonomic_coverage := row["taxonomicCoverage"]:
             graph.add((uri, utils.namespaces.BDR.target, rdflib.Literal(taxonomic_coverage)))
+
+        # Add purpose
+        if purpose := row["purpose"]:
+            graph.add((uri, utils.namespaces.BDR.purpose, rdflib.Literal(purpose)))
+
+        # Add keywords
+        if keywords := row["keywords"]:
+            for keyword in keywords:
+                graph.add((uri, rdflib.SDO.keywords, rdflib.Literal(keyword)))
 
     def add_spatial_coverage(
         self,
@@ -363,7 +360,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             return
 
         # Add type
-        graph.add((uri, a, rdflib.SOSA.Procedure))
+        graph.add((uri, a, rdflib.PROV.Plan))
 
         # Attach survey methodologies
         if survey_method_urls:
@@ -371,7 +368,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 # Add literal containing the method URL
                 graph.add((
                     uri,
-                    rdflib.RDFS.isDefinedBy,
+                    rdflib.SDO.url,
                     rdflib.Literal(survey_method_url, datatype=rdflib.XSD.anyURI)
                 ))
 
@@ -379,7 +376,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             # Add literal containing the description
             graph.add((
                 uri,
-                rdflib.SKOS.definition,
+                rdflib.SDO.description,
                 rdflib.Literal(survey_method_description),
             ))
 
