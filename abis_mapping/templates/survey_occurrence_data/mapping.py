@@ -279,6 +279,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
         organism_quantity_observation = utils.rdf.uri(f"observation/organismQuantity/{row_num}", base_iri)
         organism_quantity_value = utils.rdf.uri(f"value/organismQuantity/{row_num}", base_iri)
+        site = dataset + f"/Site/{row['siteID']}" if row['siteID'] else None
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -304,6 +305,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             recorded_by=provider_recorded,
             owner_institution_code=provider_owner_institution,
             institution_code=provider_institution,
+            site=site,
             graph=graph,
         )
 
@@ -318,6 +320,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             generalizations=data_generalizations_attribute,
             habitat=habitat_attribute,
             basis=basis_attribute,
+            site=site,
             graph=graph,
         )
 
@@ -762,6 +765,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
+        # Add site
+        self.add_site(
+            uri=site,
+            dataset=dataset,
+            terminal_foi=terminal_foi,
+            graph=graph,
+        )
+
         # Add extra fields JSON
         self.add_extra_fields_json(
             subject_uri=sampling_field,
@@ -1025,6 +1036,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         generalizations: rdflib.URIRef,
         habitat: rdflib.URIRef,
         basis: rdflib.URIRef,
+        site: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Field to the Graph
@@ -1042,6 +1054,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 with this node
             habitat (rdflib.URIRef): Habitat associated with this node
             basis (rdflib.URIRef): Basis Of Record associated with this node
+            site (rdflib.URIRef | None): Site if one was provided else None.
             graph (rdflib.Graph): Graph to add to
         """
         # Create WKT from Latitude and Longitude
@@ -1066,10 +1079,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
         graph.add((geometry, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.toTimestamp(row["eventDate"])))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+
+        # Add site if one provided
+        if site is not None:
+            graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, site))
+        else:
+            graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
 
         # Check for recordID
         if row["recordID"]:
@@ -1115,11 +1133,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if not has_specimen(row) and row["basisOfRecord"]:
             # Add Basis Of Record Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
-
-        # Check for siteID
-        if site_id := row["siteID"]:
-            # Add site id comment
-            graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(site_id)))
 
     def add_id_qualifier_attribute(
         self,
@@ -1376,6 +1389,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         recorded_by: rdflib.URIRef,
         owner_institution_code: rdflib.URIRef,
         institution_code: rdflib.URIRef,
+        site: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Field to the Graph
@@ -1394,6 +1408,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 Agent associated with this node
             institution_code (rdflib.URIRef): Institution Code Agent associated
                 with this node
+            site (rdflib.URIRef | None): Site associated with this node if
+                provided else None.
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Vocab or Create on the Fly
@@ -1409,8 +1425,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_field))
-        graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
         graph.add((uri, utils.namespaces.TERN.featureType, vocab))
+
+        if site is not None:
+            graph.add((uri, rdflib.SOSA.isSampleOf, site))
+        else:
+            graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
 
         # Check for institutionCode
         if row["institutionCode"]:
@@ -3180,6 +3200,32 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("organism-count")))
         graph.add((uri, utils.namespaces.TERN.unit, vocab))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(organism_qty, datatype=rdflib.XSD.float)))
+
+    def add_site(
+        self,
+        uri: rdflib.URIRef | None,
+        dataset: rdflib.URIRef,
+        terminal_foi: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds site to the graph.
+
+        Args:
+            uri (rdflib.URIRef | None): URI to use if site provided else None.
+            dataset (rdflib.URIRef): The dataset which the data belongs.
+            terminal_foi (rdflib.URIRef): Terminal feature of interest.
+            graph (rdflib.URIRef): Graph to be modified.
+        """
+        # Check site uri exists
+        if uri is None:
+            return
+
+        # Add site information to graph
+        graph.add((uri, a, utils.namespaces.TERN.Site))
+        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
+        graph.add((uri, rdflib.SOSA.isSampleOf, terminal_foi))
 
 
 # Helper Functions

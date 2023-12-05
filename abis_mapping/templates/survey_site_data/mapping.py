@@ -167,7 +167,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         row_num = row.row_number - 1
 
         site_visit = utils.rdf.uri(f"visit/site/{row_num}", base_iri)
-        site = utils.rdf.uri(f"site/SSD-Site/{row_num}", base_iri)
+        site = dataset + f"/Site/{row['siteID']}"
 
         # Add site
         self.add_site(
@@ -205,14 +205,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add site type
-        self.add_site_type(
-            uri=site,
-            dataset=dataset,
-            row=row,
-            graph=graph,
-        )
-
         # Add extra fields
         self.add_extra_fields_json(
             subject_uri=site,
@@ -240,6 +232,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Extract relevant values
         site_id = row["siteID"]
         site_name = row["siteName"]
+        site_type = row["siteType"]
         site_description = row["siteDescription"]
         coordinate_uncertainty = row["coordinateUncertaintyInMeters"]
 
@@ -254,6 +247,19 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Add siteID
         graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(site_id)))
+
+        # Add site tern featuretype
+        graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
+
+        # Retrieve vocab or create on the fly
+        vocab = vocabs.site_type.SITE_TYPE.get(
+            graph=graph,
+            value=site_type,
+            source=dataset,
+        )
+
+        # Add to site type graph
+        graph.add((uri, rdflib.DCTERMS.type, vocab))
 
         # Add site name if available
         if site_name:
@@ -381,34 +387,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, wkt))
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
-
-    def add_site_type(
-        self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds site type data to the graph.
-
-        Args:
-            uri (rdflib.URIRef): URI the site type is object of.
-            dataset (rdflib.URIRef): Data set the data comes from.
-            row (frictionless.Row): Row to retrieve the data from.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Extract values
-        site_type = row["siteType"]
-
-        # Retrieve vocab or create on the fly
-        vocab = vocabs.site_type.SITE_TYPE.get(
-            graph=graph,
-            value=site_type,
-            source=dataset,
-        )
-
-        # Add to graph
-        graph.add((uri, utils.namespaces.TERN.featureType, vocab))
 
 
 # Register Mapper
