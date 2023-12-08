@@ -41,7 +41,7 @@
       "type": "timestamp",
       "format": "any",
       "constraints": {
-        "required": false
+        "required": true
       }
     },
     {
