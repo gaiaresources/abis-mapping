@@ -8,6 +8,7 @@ from abis_mapping import utils
 
 # Third-party
 import frictionless
+import frictionless.checks
 import rdflib
 
 # Typing
@@ -52,9 +53,11 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         report: frictionless.Report = resource.validate(
             checklist=frictionless.Checklist(
                 checks=[
+                    # Enforces non-empty and maximum row count.
+                    frictionless.checks.table_dimensions(max_rows=1, min_rows=1),
+
                     # Extra Custom Checks
                     plugins.tabular.IsTabular(),
-                    plugins.empty.NotEmpty(),
                     plugins.chronological.ChronologicalOrder(
                         field_names=[
                             "temporalCoverageStartDate",
