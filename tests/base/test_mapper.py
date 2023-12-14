@@ -4,6 +4,8 @@
 # Standard
 import pathlib
 import json
+import csv
+import io
 
 # Third-party
 import frictionless
@@ -105,27 +107,46 @@ def test_extra_fields_schema_raw_data(template_id: str, file_path: str) -> None:
            set(existing_schema.field_names) | expected_extra_fieldnames  # type: ignore[attr-defined]
 
 
-def test_extract_extra_fields() -> None:
-    """Tests extraction of extra fields from a row."""
-    # Get mapper
-    mapper = base.mapper.get_mapper("survey_metadata.csv")
-    assert mapper is not None
+def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
+    """Tests extraction of extra fields from a row.
 
-    # Create resource from raw data
-    file_path = "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"
-    resource = frictionless.Resource(source=file_path)
+    Args:
+        mocker (pytest_mock.MockerFixture): The mocker fixture
+    """
+    # Construct dataset
+    data = [
+        {"A": 123, "B": 321, "C": 321.6546454654654, "D": True, "E": "something"},
+        {"A": 321, "B": 123, "C": 6.54654e-15, "D": False, "E": "another thing"},
+    ]
+    # Expected results
+    overall_expected = [
+        {"C": "321.6546454654654", "D": "True", "E": "something"},
+        {"C": "6.54654e-15", "D": "False", "E": "another thing"},
+    ]
 
-    # Expected result
-    expected = {
-        "extraInformation1": "some additional info",
-        "extraInformation2": "some more info",
-    }
+    # Serialize data to csv
+    csv_string_io = io.StringIO()
+    csv_writer = csv.DictWriter(csv_string_io, lineterminator="\n", fieldnames=data[0].keys())
+    csv_writer.writeheader()
+    csv_writer.writerows(data)
+    csv_data = csv_string_io.getvalue().encode("utf-8")
+
+    # Construct base schema descriptor
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+
+    # Mock out the schema method to return the above descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+
+    # Construct schema (includes extra fields)
+    schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=True)
+
+    # Construct resource
+    resource = frictionless.Resource(data=csv_data, format="csv", schema=schema)
 
     # Open resource for row streaming
     with resource.open() as r:
-        # Only one row in the file
-        row = next(r.row_stream)
-        assert mapper().extract_extra_fields(row) == expected
+        for row, expected in zip(r.row_stream, overall_expected):
+            assert base.mapper.ABISMapper.extract_extra_fields(row) == expected
 
 
 def test_add_extra_fields_json() -> None:
