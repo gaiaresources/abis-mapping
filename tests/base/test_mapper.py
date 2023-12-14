@@ -9,6 +9,7 @@ import json
 import frictionless
 import pytest
 import rdflib
+import pytest_mock
 
 # Local
 from abis_mapping import base
@@ -65,6 +66,38 @@ def test_extra_fields_schema_row_data(template_id: str, file_path: str) -> None:
                 assert field.type == "string"
             assert set(full_schema.field_names) == \
                    set(existing_schema.field_names) | expected_extra_fieldnames  # type: ignore[attr-defined]
+
+
+def test_extra_fields_schema(mocker: pytest_mock.MockerFixture) -> None:
+    """Tests extra fields schema gets extracted from row data.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): The mocker fixture.
+    """
+    data = [
+        {"A": 123, "B": 321, "C": 321.6546454654654, "D": True, "E": "something"}
+    ]
+    # Construct base schema descriptor
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+    # Expected field names
+    expected_extra_fieldnames = {"C", "D", "E"}
+
+    # Mock out the schema method to return the above descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+
+    # Construct resource
+    resource = frictionless.Resource(source=data)
+
+    # Open resource for row streaming
+    with resource.open() as r:
+        for row in r.row_stream:
+            # Extract extra columns schema
+            diff_schema = base.mapper.ABISMapper.extra_fields_schema(row)
+
+            # Verify
+            assert set(diff_schema.field_names) == expected_extra_fieldnames
+            for field in diff_schema.fields:
+                assert field.type == "string"
 
 
 @pytest.mark.parametrize(
