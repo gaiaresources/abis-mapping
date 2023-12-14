@@ -7,9 +7,12 @@ import datetime
 # Third-Party
 import rdflib
 import shapely
+import pytest
+import frictionless.fields
 
 # Local
 from abis_mapping import utils
+from abis_mapping.utils import types
 
 
 def test_rdf_create_graph() -> None:
@@ -45,44 +48,70 @@ def test_rdf_uri() -> None:
     assert isinstance(d, rdflib.URIRef)
 
 
-def test_rdf_inXSDSmart() -> None:
-    """Tests the inXSDSmart() Function"""
-    # Test Datetime with Timezone
-    time = datetime.datetime.now().astimezone(datetime.timezone.utc)
+@pytest.mark.parametrize(
+    "time,expected",
+    [
+        # Test Datetime with Timezone
+        (datetime.datetime.now().astimezone(datetime.timezone.utc), rdflib.TIME.inXSDDateTimeStamp),
+        # Test Datetime without Timezone
+        (datetime.datetime.now(), rdflib.TIME.inXSDDateTime),
+        # Test Date
+        (datetime.date.today(), rdflib.TIME.inXSDDate),
+        # Test Yearmonth
+        (frictionless.fields.yearmonth.yearmonth(year=2022, month=12), rdflib.TIME.inXSDgYearMonth),
+        # Test Year
+        (2022, rdflib.TIME.inXSDgYear),
+    ]
+)
+def test_rdf_inXSDSmart(time: types.Timestamp, expected: rdflib.URIRef) -> None:
+    """Tests the inXSDSmart() Function
+
+    Args:
+        time (types.Timestamp): input timestamp.
+        expected (rdflib.URIRef): expected output.
+    """
+    # Call function and assert
     predicate = utils.rdf.inXSDSmart(time)
-    assert predicate == rdflib.TIME.inXSDDateTimeStamp
-
-    # Test Datetime without Timezone
-    time = datetime.datetime.now()
-    predicate = utils.rdf.inXSDSmart(time)
-    assert predicate == rdflib.TIME.inXSDDateTime
-
-    # Test Date
-    date = datetime.date.today()
-    predicate = utils.rdf.inXSDSmart(date)
-    assert predicate == rdflib.TIME.inXSDDate
+    assert predicate == expected
 
 
-def test_rdf_toTimestamp() -> None:
-    """Tests the toTimestamp() Function"""
+def test_rdf_inXSDSmart_invalid() -> None:
+    """Tests the inXSDSmart() function raises exception on invalid type arg."""
+    # Call should raise TypeError
+    with pytest.raises(TypeError):
+        utils.rdf.inXSDSmart(None)  # type: ignore[arg-type]
+
+
+@pytest.mark.parametrize(
+    "time,expected_datatype",
+    [
+        # Test Datetime with Timezone
+        (datetime.datetime.now().astimezone(datetime.timezone.utc), rdflib.XSD.dateTimeStamp),
+        # Test Datetime without Timezone
+        (datetime.datetime.now(), rdflib.XSD.dateTime),
+        # Test Date
+        (datetime.date.today(), rdflib.XSD.date),
+        # Test Year month
+        (frictionless.fields.yearmonth.yearmonth(year=2022, month=4), rdflib.XSD.gYearMonth),
+        # Test year only
+        (2022, rdflib.XSD.gYear)
+    ]
+)
+def test_rdf_to_timestamp(time: types.Timestamp, expected_datatype: rdflib.Literal) -> None:
+    """Tests the to_timestamp() Function."""
     # Test Datetime with Timezone
-    time = datetime.datetime.now().astimezone(datetime.timezone.utc)
-    literal = utils.rdf.toTimestamp(time)
-    assert literal == rdflib.Literal(time, datatype=rdflib.XSD.dateTimeStamp)
+    literal = utils.rdf.to_timestamp(time)
+    assert literal == rdflib.Literal(time, datatype=expected_datatype)
 
-    # Test Datetime without Timezone
-    time = datetime.datetime.now()
-    literal = utils.rdf.toTimestamp(time)
-    assert literal == rdflib.Literal(time, datatype=rdflib.XSD.dateTime)
 
-    # Test Date
-    date = datetime.date.today()
-    literal = utils.rdf.toTimestamp(date)
-    assert literal == rdflib.Literal(date, datatype=rdflib.XSD.date)
+def test_rdf_to_timestamp_invalid() -> None:
+    """Tests the to_timestamp() function raises exception on invalid arg type."""
+    with pytest.raises(TypeError):
+        utils.rdf.to_timestamp(None)  # type: ignore[arg-type]
 
 
 def test_rdf_to_wkt_point_literal() -> None:
-    """Tests the to_wkt_point_literal() Function"""
+    """Tests the to_wkt_point_literal() Function."""
     # Test Lat and Long
     wkt = utils.rdf.to_wkt_point_literal(
         latitude=-31.953512,

@@ -35,7 +35,7 @@ class ChronologicalOrder(frictionless.Check):
             frictionless.Error: When the chronological order is violated.
         """
         # Get dates or datetimes
-        dts: list[types.DateOrDatetime] = [row[name] for name in self.field_names if row[name] is not None]
+        dts: list[types.Timestamp] = [row[name] for name in self.field_names if row[name] is not None]
 
         # Validate chronological order of the list
         chrono_valid = timestamps.is_chronologically_ordered(dts)

@@ -91,7 +91,7 @@ class ABISMapper(abc.ABC):
         graph.add((uri, a, utils.namespaces.TERN.RDFDataset))
         graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(self.DATASET_DEFAULT_NAME)))
         graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(self.DATASET_DEFAULT_DESCRIPTION)))
-        graph.add((uri, rdflib.DCTERMS.issued, utils.rdf.toTimestamp(datetime.date.today())))
+        graph.add((uri, rdflib.DCTERMS.issued, utils.rdf.to_timestamp(datetime.date.today())))
 
     @classmethod
     def add_extra_fields_json(

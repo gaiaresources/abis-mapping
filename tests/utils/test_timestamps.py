@@ -3,15 +3,17 @@
 
 # Third-Party
 import pytest
+import frictionless.fields
 
 # Standard
 import datetime
+import contextlib
 
 # Local
 from abis_mapping import utils
 
 # Typing
-from typing import Any
+from typing import Any, Tuple
 
 
 @pytest.mark.parametrize(
@@ -73,21 +75,26 @@ def test_is_chronologically_ordered() -> None:
     """Tests the is_chronologically_ordered() function."""
 
     # Define scenario lists
-    ordered_datetimes: list[utils.types.DateOrDatetime] = [
+    ordered_datetimes: list[utils.types.Timestamp] = [
         datetime.datetime(2022, 9, 11, 15, 15, 15),
         datetime.datetime(2023, 9, 11, 15, 15, 15),
         datetime.date(2023, 10, 11),
         datetime.date(2023, 10, 11),
         datetime.datetime(2023, 10, 12, 0, 0, 1),
+        frictionless.fields.yearmonth.yearmonth(2023, 11),
+        frictionless.fields.yearmonth.yearmonth(2023, 12),
+        2024,
+        2024,
+        frictionless.fields.yearmonth.yearmonth(2024, 1),
     ]
 
-    unordered_datetimes_dates: list[utils.types.DateOrDatetime] = [
+    unordered_datetimes_dates: list[utils.types.Timestamp] = [
         datetime.date(2022, 9, 11),
         datetime.datetime(2023, 10, 11, 15, 15, 15),
         datetime.datetime(2023, 9, 11, 15, 15, 15),
     ]
 
-    unordered_datetimes_times: list[utils.types.DateOrDatetime] = [
+    unordered_datetimes_times: list[utils.types.Timestamp] = [
         datetime.datetime(2023, 9, 11, 15, 15, 15),
         datetime.datetime(2023, 9, 11, 15, 15, 14),
     ]
@@ -96,3 +103,122 @@ def test_is_chronologically_ordered() -> None:
     assert utils.timestamps.is_chronologically_ordered(ordered_datetimes)
     assert not utils.timestamps.is_chronologically_ordered(unordered_datetimes_dates)
     assert not utils.timestamps.is_chronologically_ordered(unordered_datetimes_times)
+
+
+@pytest.mark.parametrize(
+    "year,month,expected,raise_error",
+    [
+        (2022, 4, 30, contextlib.nullcontext()),
+        (2022, 12, 31, contextlib.nullcontext()),
+        (2022, 2, 28, contextlib.nullcontext()),
+        (2022, 13, 0, pytest.raises(ValueError)),
+        (-5, 12, 0, pytest.raises(ValueError)),
+    ]
+)
+def test_max_date(
+    year: int,
+    month: int,
+    expected: int,
+    raise_error: contextlib.AbstractContextManager,
+) -> None:
+    """Tests the functionality of the max_data function.
+
+    Args:
+        year (int): Year input
+        month (int): Month input
+        expected (int): Expected return
+        raise_error (contextlib.AbstractContextManager | pytest.RaisesContext | pytest.ExceptionInfo):
+            Exception to be raised or not.
+    """
+    with raise_error:
+        assert utils.timestamps.max_date(year, month) == expected
+
+
+# Constants to help setup the next test
+dt1 = datetime.datetime(1111, 1, 1, 1, 1, 1)
+dt2 = datetime.datetime(2222, 2, 2, 2, 2, 2)
+
+
+@pytest.mark.parametrize(
+    "inputs,expected",
+    [
+        # Both naive
+        ((dt1, dt2), (dt1, dt2)),
+
+        # Both timezoned same
+        ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+          dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
+         (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+          dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))))),
+
+        # Both timezoned different
+        ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+          dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=2)))),
+         (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+          dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=2))))),
+
+        # First timezoned second naive
+        ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))), dt2),
+         (dt1, dt2)),
+
+        # Second timezoned first naive
+        ((dt1, dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
+         (dt1, dt2))
+    ]
+)
+def test_set_offsets_for_comparison(
+    inputs: Tuple[datetime.datetime, datetime.datetime],
+    expected: Tuple[datetime.datetime, datetime.datetime],
+) -> None:
+    """Tests the set_offsets_for_comparison function.
+
+    Args:
+        inputs (datetime.datetime, datetime.datetime): Inputs args for the function
+        expected (datetime.datetime, datetime.datetime): Expected returned
+    """
+    assert utils.timestamps.set_offsets_for_comparison(*inputs) == expected
+
+
+# Another set of constants to help with test setup
+date1 = datetime.date(2022, 4, 4)
+max_time = datetime.time.max
+min_time = datetime.time.min
+ym1 = frictionless.fields.yearmonth.yearmonth(2022, 4)
+
+
+@pytest.mark.parametrize(
+    "timestamp,round_up,expected",
+    [
+        # datetime with timezone
+        (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+         False,
+         dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
+        # datetime naive
+        (dt1, False, dt1),
+        # date
+        (date1, False, datetime.datetime.combine(date1, min_time)),
+        # date roundup
+        (date1, True, datetime.datetime.combine(date1, max_time)),
+        # yearmonth
+        (ym1, False, datetime.datetime.combine(datetime.date(ym1.year, ym1.month, 1), min_time)),
+        # yearmonth roundup
+        (ym1, True, datetime.datetime.combine(datetime.date(ym1.year, ym1.month, 30), max_time)),
+        # year
+        (2022, False, datetime.datetime.combine(datetime.date(2022, 1, 1), min_time)),
+        # year roundup
+        (2022, True, datetime.datetime.combine(datetime.date(2022, 12, 31), max_time)),
+    ]
+)
+def test_transform_timestamp_to_datetime(
+    timestamp: utils.types.Timestamp,
+    round_up: bool,
+    expected: datetime.datetime
+) -> None:
+    """Tests the transform_timestamp_to_datetime function.
+
+    Args:
+        timestamp (utils.types.Timestamp): Input to be converted
+        round_up (bool): Whether to round up the timestamp up when converting.
+        expected (datetime.datetime): Expected output
+    """
+    assert utils.timestamps.transform_timestamp_to_datetime(timestamp, round_up) == expected
