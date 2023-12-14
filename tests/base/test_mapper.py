@@ -23,67 +23,25 @@ def test_base_get_mapper_fake() -> None:
     assert fake_mapper is None
 
 
-@pytest.mark.parametrize(
-    "template_id,file_path",
-    [
-        ("incidental_occurrence_data.csv",
-         ("abis_mapping/templates/incidental_occurrence_data/examples/"
-          "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
-        ("survey_occurrence_data.csv",
-         ("abis_mapping/templates/survey_occurrence_data/examples/"
-          "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
-        ("survey_metadata.csv",
-         "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"),
-        ("survey_site_data.csv",
-         "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols.csv"),
-    ]
-)
-def test_extra_fields_schema_row_data(template_id: str, file_path: str) -> None:
-    """Tests extra fields schema gets extracted from row data."""
-    # Expected extra field names
-    expected_extra_fieldnames = {"extraInformation1", "extraInformation2"}
-
-    # Get mapper
-    mapper = base.mapper.get_mapper(template_id)
-    assert mapper is not None
-
-    # Create resource from raw data
-    resource = frictionless.Resource(source=file_path)
-
-    # Construct official schema
-    existing_schema = frictionless.Schema.from_descriptor(mapper().schema())
-
-    # Open resource for row streaming
-    with resource.open() as r:
-        for row in r.row_stream:
-            # Extract extra columns schema
-            diff_schema = mapper.extra_fields_schema(row)
-            full_schema = mapper.extra_fields_schema(data=row, full_schema=True)
-
-            # Assert
-            assert set(diff_schema.field_names) == expected_extra_fieldnames
-            for field in diff_schema.fields:
-                assert field.type == "string"
-            assert set(full_schema.field_names) == \
-                   set(existing_schema.field_names) | expected_extra_fieldnames  # type: ignore[attr-defined]
-
-
-def test_extra_fields_schema(mocker: pytest_mock.MockerFixture) -> None:
+def test_extra_fields_schema_row_data(mocker: pytest_mock.MockerFixture) -> None:
     """Tests extra fields schema gets extracted from row data.
 
     Args:
         mocker (pytest_mock.MockerFixture): The mocker fixture.
     """
+    # Construct dataset
     data = [
         {"A": 123, "B": 321, "C": 321.6546454654654, "D": True, "E": "something"}
     ]
     # Construct base schema descriptor
     descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+
     # Expected field names
     expected_extra_fieldnames = {"C", "D", "E"}
 
     # Mock out the schema method to return the above descriptor
     mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+    existing_schema = frictionless.Schema.from_descriptor(descriptor)
 
     # Construct resource
     resource = frictionless.Resource(source=data)
@@ -94,10 +52,15 @@ def test_extra_fields_schema(mocker: pytest_mock.MockerFixture) -> None:
             # Extract extra columns schema
             diff_schema = base.mapper.ABISMapper.extra_fields_schema(row)
 
+            # Extract full schema
+            full_schema = base.mapper.ABISMapper.extra_fields_schema(row, full_schema=True)
+
             # Verify
             assert set(diff_schema.field_names) == expected_extra_fieldnames
             for field in diff_schema.fields:
                 assert field.type == "string"
+            assert set(full_schema.field_names) == \
+                   set(existing_schema.field_names) | expected_extra_fieldnames  # type: ignore[attr-defined]
 
 
 @pytest.mark.parametrize(
