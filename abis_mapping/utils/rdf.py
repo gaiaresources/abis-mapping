@@ -10,6 +10,7 @@ import rdflib
 import slugify
 import shapely
 import frictionless.fields
+
 # Local
 from . import namespaces
 from . import types
