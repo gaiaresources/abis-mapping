@@ -103,7 +103,7 @@ def test_rdf_to_timestamp(time: types.Timestamp, expected_datatype: rdflib.Liter
     literal = utils.rdf.to_timestamp(time)
 
     # Construct dummy field
-    field = frictionless.Field.from_descriptor({"name": "testField", "type": "timestamp"})
+    field: frictionless.Field = frictionless.Field.from_descriptor({"name": "testField", "type": "timestamp"})
 
     # Use field to output string and assert
     assert literal == rdflib.Literal(field.write_cell(time)[0], datatype=expected_datatype)

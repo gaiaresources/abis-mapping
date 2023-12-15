@@ -179,7 +179,7 @@ def to_timestamp(timestamp: types.Timestamp) -> rdflib.Literal:
         raise TypeError(f"expected one of {types.Timestamp}; got {type(timestamp)}.")
 
     # Construct a timestamp field
-    field = frictionless.Field.from_descriptor({"name": "tempField", "type": "timestamp"})
+    field: frictionless.Field = frictionless.Field.from_descriptor({"name": "tempField", "type": "timestamp"})
 
     # Use the cell writer method for the field to create the string
     return rdflib.Literal(field.write_cell(timestamp)[0], datatype=datatype)
