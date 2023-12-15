@@ -136,6 +136,9 @@ def inXSDSmart(timestamp: types.Timestamp) -> rdflib.URIRef:
 def to_timestamp(timestamp: types.Timestamp) -> rdflib.Literal:
     """Generates the correct rdflib.Literal for timestamp.
 
+    The string that is chosen for the timestamp value will be derived from the optional
+    supplied field, otherwise will revert to the default repr for the type.
+
     Args:
         timestamp (types.Timestamp): Timestamp to generate a
             rdflib.Literal for.
@@ -149,30 +152,37 @@ def to_timestamp(timestamp: types.Timestamp) -> rdflib.Literal:
     # Check for Datetime with Time Zone
     if isinstance(timestamp, datetime.datetime) and timestamp.tzinfo is not None:
         # xsd:dateTimeStamp
-        return rdflib.Literal(timestamp, datatype=rdflib.XSD.dateTimeStamp)
+        datatype = rdflib.XSD.dateTimeStamp
 
     # Check for Datetime without Time Zone
-    if isinstance(timestamp, datetime.datetime):
+    elif isinstance(timestamp, datetime.datetime):
         # xsd:dateTime
-        return rdflib.Literal(timestamp, datatype=rdflib.XSD.dateTime)
+        datatype = rdflib.XSD.dateTime
 
     # Check for Date
-    if isinstance(timestamp, datetime.date):
+    elif isinstance(timestamp, datetime.date):
         # xsd:date
-        return rdflib.Literal(timestamp, datatype=rdflib.XSD.date)
+        datatype = rdflib.XSD.date
 
     # Check for YearMonth
-    if isinstance(timestamp, frictionless.fields.yearmonth.yearmonth):
+    elif isinstance(timestamp, frictionless.fields.yearmonth.yearmonth):
         # xsd:gYearMonth
-        return rdflib.Literal(timestamp, datatype=rdflib.XSD.gYearMonth)
+        datatype = rdflib.XSD.gYearMonth
 
     # Check for Year
-    if isinstance(timestamp, int):
+    elif isinstance(timestamp, int):
         # xsd:gYear
-        return rdflib.Literal(timestamp, datatype=rdflib.XSD.gYear)
+        datatype = rdflib.XSD.gYear
 
-    # Shouldn't reach here if argument type annotations adhered to
-    raise TypeError(f"expected one of {types.Timestamp}; got {type(timestamp)}.")
+    else:
+        # Shouldn't reach here if argument type annotations adhered to
+        raise TypeError(f"expected one of {types.Timestamp}; got {type(timestamp)}.")
+
+    # Construct a timestamp field
+    field = frictionless.Field.from_descriptor({"name": "tempField", "type": "timestamp"})
+
+    # Use the cell writer method for the field to create the string
+    return rdflib.Literal(field.write_cell(timestamp)[0], datatype=datatype)
 
 
 def to_wkt_point_literal(

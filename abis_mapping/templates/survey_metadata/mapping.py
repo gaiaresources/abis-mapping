@@ -333,9 +333,13 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         temporal_coverage = rdflib.BNode()
         graph.add((temporal_coverage, a, rdflib.TIME.TemporalEntity))
         if start_date:
-            graph.add((temporal_coverage, rdflib.TIME.hasBeginning, utils.rdf.to_timestamp(start_date)))
+            graph.add(
+                (temporal_coverage, rdflib.TIME.hasBeginning, utils.rdf.to_timestamp(start_date))
+            )
         if end_date:
-            graph.add((temporal_coverage, rdflib.TIME.hasEnd, utils.rdf.to_timestamp(end_date)))
+            graph.add(
+                (temporal_coverage, rdflib.TIME.hasEnd, utils.rdf.to_timestamp(end_date))
+            )
 
         # Attach to survey node
         graph.add((uri, rdflib.TIME.hasTime, temporal_coverage))
