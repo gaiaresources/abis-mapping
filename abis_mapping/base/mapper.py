@@ -170,8 +170,6 @@ class ABISMapper(abc.ABC):
             # Get list of fieldnames of row
             actual_fieldnames = data.field_names
 
-            # Create schema from row fields
-            actual_schema = frictionless.Schema(fields=data.fields)
         else:
             # Create resource and infer
             resource = frictionless.Resource(
@@ -179,9 +177,6 @@ class ABISMapper(abc.ABC):
                 format="csv",
             )
             resource.infer()
-
-            # Get actual schema
-            actual_schema = resource.schema
 
             # Get list of actual fieldnames
             actual_fieldnames = resource.schema.field_names
@@ -193,8 +188,11 @@ class ABISMapper(abc.ABC):
         else:
             extra_fieldnames = []
 
-        # Construct list of extra Fields
-        extra_fields = [actual_schema.get_field(fieldname) for fieldname in extra_fieldnames]
+        # Construct list of extra Fields with type of string
+        extra_fields = [
+            frictionless.Field.from_descriptor({"name": fieldname, "type": "string"})
+            for fieldname in extra_fieldnames
+        ]
 
         if full_schema:
             # Append the extra fields onto the official schema and return
