@@ -9,7 +9,7 @@ import uuid
 import rdflib
 import slugify
 import shapely
-import frictionless.fields
+import frictionless
 
 # Local
 from . import namespaces
@@ -121,7 +121,7 @@ def inXSDSmart(timestamp: types.Timestamp) -> rdflib.URIRef:
         return rdflib.TIME.inXSDDate
 
     # Check yearmonth
-    if isinstance(timestamp, frictionless.fields.yearmonth.yearmonth):
+    if isinstance(timestamp, types.YearMonth):
         # inXSDgYearMonth
         return rdflib.TIME.inXSDgYearMonth
 
@@ -166,7 +166,7 @@ def to_timestamp(timestamp: types.Timestamp) -> rdflib.Literal:
         datatype = rdflib.XSD.date
 
     # Check for YearMonth
-    elif isinstance(timestamp, frictionless.fields.yearmonth.yearmonth):
+    elif isinstance(timestamp, types.YearMonth):
         # xsd:gYearMonth
         datatype = rdflib.XSD.gYearMonth
 

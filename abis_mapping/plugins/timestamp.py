@@ -8,7 +8,6 @@ import re
 # Third-Party
 import attrs
 import frictionless
-import frictionless.fields
 
 # Local
 from abis_mapping.utils import types
@@ -102,7 +101,7 @@ class TimestampField(frictionless.Field):
         # Return value_reader callable
         return value_reader
 
-    def _year_month_reader(self, cell: Any) -> frictionless.fields.yearmonth.yearmonth | None:
+    def _year_month_reader(self, cell: Any) -> types.YearMonth | None:
         """Attempts to convert cell into a yearmonth tuple.
 
         Formats accepted:
@@ -113,7 +112,7 @@ class TimestampField(frictionless.Field):
             cell (Any): Cell to convert.
 
         Returns:
-            frictionless.fields.yearmonth.yearmonth | None: Converted cell, or None if invalid
+            types.YearMonth | None: Converted cell, or None if invalid
 
         """
         # Check that the cell is not already a tuple or list for year month
@@ -123,7 +122,7 @@ class TimestampField(frictionless.Field):
             and timestamps.is_year(cell[0])
             and timestamps.is_month(cell[1])
         ):
-            return frictionless.fields.yearmonth.yearmonth(year=cell[0], month=cell[1])
+            return types.YearMonth(year=cell[0], month=cell[1])
         # Check that cell is a string
         if not isinstance(cell, str):
             return None
@@ -141,7 +140,7 @@ class TimestampField(frictionless.Field):
             if not timestamps.is_year(year) or not timestamps.is_month(month):
                 # Invalid
                 return None
-            return frictionless.fields.yearmonth.yearmonth(year=year, month=month)
+            return types.YearMonth(year=year, month=month)
 
         # Match for the mm/YYYY format
         if match := year_month_slash.match(cell):
@@ -152,7 +151,7 @@ class TimestampField(frictionless.Field):
             if not timestamps.is_year(year) or not timestamps.is_month(month):
                 # Invalid
                 return None
-            return frictionless.fields.yearmonth.yearmonth(year=year, month=month)
+            return types.YearMonth(year=year, month=month)
 
         return None
 
@@ -195,7 +194,7 @@ class TimestampField(frictionless.Field):
             """Convert cell (write direction)
 
             Args:
-                cell (types.DateOrDatetime | int | frictionless.fields.yearmonth.yearmonth): Cell to convert
+                cell (types.DateOrDatetime | int | types.YearMonth): Cell to convert
 
             Returns:
                 str: Converted cell
@@ -206,7 +205,7 @@ class TimestampField(frictionless.Field):
 
             # Perform serialization for Yearmonth or Year
             match cell:
-                case frictionless.fields.yearmonth.yearmonth(year=year, month=month):
+                case types.YearMonth(year=year, month=month):
                     return f"{year}-{month:02}"
                 case _:
                     return str(cell)

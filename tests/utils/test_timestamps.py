@@ -3,7 +3,6 @@
 
 # Third-Party
 import pytest
-import frictionless.fields
 
 # Standard
 import datetime
@@ -11,6 +10,7 @@ import contextlib
 
 # Local
 from abis_mapping import utils
+from abis_mapping.utils import types
 
 # Typing
 from typing import Any, Tuple
@@ -81,11 +81,11 @@ def test_is_chronologically_ordered() -> None:
         datetime.date(2023, 10, 11),
         datetime.date(2023, 10, 11),
         datetime.datetime(2023, 10, 12, 0, 0, 1),
-        frictionless.fields.yearmonth.yearmonth(2023, 11),
-        frictionless.fields.yearmonth.yearmonth(2023, 12),
+        types.YearMonth(2023, 11),
+        types.YearMonth(2023, 12),
         2024,
         2024,
-        frictionless.fields.yearmonth.yearmonth(2024, 1),
+        types.YearMonth(2024, 1),
     ]
 
     unordered_datetimes_dates: list[utils.types.Timestamp] = [
@@ -183,7 +183,7 @@ def test_set_offsets_for_comparison(
 date1 = datetime.date(2022, 4, 4)
 max_time = datetime.time.max
 min_time = datetime.time.min
-ym1 = frictionless.fields.yearmonth.yearmonth(2022, 4)
+ym1 = types.YearMonth(2022, 4)
 
 
 @pytest.mark.parametrize(

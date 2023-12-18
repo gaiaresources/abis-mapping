@@ -10,6 +10,7 @@ import frictionless.fields
 
 # Local
 from abis_mapping import plugins
+from abis_mapping.utils import types
 
 
 def test_timestamp_plugin() -> None:
@@ -97,15 +98,15 @@ def test_timestamp_type_year_month() -> None:
     assert field.read_cell("2022-04-26")[0]  # Date
     assert field.read_cell("2022-04-26T22:00:00Z")[0]  # Date Time with Timezone
     assert field.read_cell("2022-04-26T22:00:00+08:00")[0]  # Date Time with Timezone
-    assert field.read_cell("2022-04")[0] == frictionless.fields.yearmonth.yearmonth(year=2022, month=4)  # Year month
-    assert field.read_cell("04/2022")[0] == frictionless.fields.yearmonth.yearmonth(year=2022, month=4)  # Year month
-    assert field.read_cell("4/2022")[0] == frictionless.fields.yearmonth.yearmonth(year=2022, month=4)  # Year month
-    assert field.read_cell("04/0022")[0] == frictionless.fields.yearmonth.yearmonth(year=22, month=4)  # Year month
-    assert field.read_cell((2022, 4))[0] == frictionless.fields.yearmonth.yearmonth(year=2022, month=4)  # Year month
-    assert field.read_cell([2022, 4])[0] == frictionless.fields.yearmonth.yearmonth(year=2022, month=4)  # Year month
+    assert field.read_cell("2022-04")[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell("04/2022")[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell("4/2022")[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell("04/0022")[0] == types.YearMonth(year=22, month=4)  # Year month
+    assert field.read_cell((2022, 4))[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell([2022, 4])[0] == types.YearMonth(year=2022, month=4)  # Year month
 
     # Write cell
-    assert field.write_cell(frictionless.fields.yearmonth.yearmonth(year=2022, month=4))[0] == "2022-04"
+    assert field.write_cell(types.YearMonth(year=2022, month=4))[0] == "2022-04"
     assert field.write_cell(datetime.datetime.now())[0]
 
 
@@ -153,12 +154,12 @@ def test_timestamp_type_year_and_year_month() -> None:
     assert field.read_cell("2022-04-26T22:00:00Z")[0]  # Date Time with Timezone
     assert field.read_cell("2022-04-26T22:00:00+08:00")[0]  # Date Time with Timezone
     assert field.read_cell("2022")[0] == 2022  # Year only
-    assert field.read_cell("2022-04")[0] == frictionless.fields.yearmonth.yearmonth(year=2022, month=4)  # Year month
-    assert field.read_cell("04/2022")[0] == frictionless.fields.yearmonth.yearmonth(year=2022, month=4)  # Year month
+    assert field.read_cell("2022-04")[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell("04/2022")[0] == types.YearMonth(year=2022, month=4)  # Year month
 
     # Write cell
     assert field.write_cell(2022)[0] == "2022"
-    assert field.write_cell(frictionless.fields.yearmonth.yearmonth(year=2022, month=4))[0] == "2022-04"
+    assert field.write_cell(types.YearMonth(year=2022, month=4))[0] == "2022-04"
     assert field.write_cell(datetime.datetime.now())[0]
 
 

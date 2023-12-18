@@ -58,7 +58,7 @@ def test_rdf_uri() -> None:
         # Test Date
         (datetime.date.today(), rdflib.TIME.inXSDDate),
         # Test Yearmonth
-        (frictionless.fields.yearmonth.yearmonth(year=2022, month=12), rdflib.TIME.inXSDgYearMonth),
+        (types.YearMonth(year=2022, month=12), rdflib.TIME.inXSDgYearMonth),
         # Test Year
         (2022, rdflib.TIME.inXSDgYear),
     ]
@@ -92,7 +92,7 @@ def test_rdf_inXSDSmart_invalid() -> None:
         # Test Date
         (datetime.date.today(), rdflib.XSD.date),
         # Test Year month
-        (frictionless.fields.yearmonth.yearmonth(year=2022, month=4), rdflib.XSD.gYearMonth),
+        (types.YearMonth(year=2022, month=4), rdflib.XSD.gYearMonth),
         # Test year only
         (2022, rdflib.XSD.gYear)
     ]

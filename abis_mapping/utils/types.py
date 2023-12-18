@@ -3,16 +3,21 @@
 
 # Standard
 import datetime
-import frictionless.fields
 
 # Typing
-from typing import Union
+from typing import Union, NamedTuple
+
+
+# Definition of yearmonth
+class YearMonth(NamedTuple):
+    year: int
+    month: int
 
 
 # Define Union Timestamp Type (Date, DateTime, Yearmonth or Year)
 Timestamp = Union[
     datetime.date,
     datetime.datetime,
-    frictionless.fields.yearmonth.yearmonth,
+    YearMonth,
     int,
 ]

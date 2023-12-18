@@ -8,7 +8,6 @@ import calendar
 
 # Third-Party
 import dateutil.parser
-import frictionless.fields.yearmonth
 
 # Local
 from . import types
@@ -139,7 +138,7 @@ def transform_timestamp_to_datetime(timestamp: types.Timestamp, round_up: bool =
             time = datetime.datetime.max.time() if round_up else datetime.datetime.min.time()
             return datetime.datetime.combine(date=timestamp, time=time)
         # Yearmonth case
-        case frictionless.fields.yearmonth.yearmonth(year=year, month=month):
+        case types.YearMonth(year=year, month=month):
             # Create date with max day if round_up else 1 and recursively call
             day = max_date(year, month) if round_up else 1
             return transform_timestamp_to_datetime(datetime.date(year, month, day), round_up=round_up)
