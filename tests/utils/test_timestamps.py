@@ -134,91 +134,90 @@ def test_max_date(
         assert utils.timestamps.max_date(year, month) == expected
 
 
-# Constants to help setup the next test
-dt1 = datetime.datetime(1111, 1, 1, 1, 1, 1)
-dt2 = datetime.datetime(2222, 2, 2, 2, 2, 2)
+class TestSharedParams:
+    """These tests grouped up as they have shared parameters formed through class attributes."""
+    # Constants to create shared test params
+    dt1 = datetime.datetime(1111, 1, 1, 1, 1, 1)
+    dt2 = datetime.datetime(2222, 2, 2, 2, 2, 2)
+    date1 = datetime.date(2022, 4, 4)
+    max_time = datetime.time.max
+    min_time = datetime.time.min
+    ym1 = types.YearMonth(2022, 4)
 
+    @pytest.mark.parametrize(
+        "inputs,expected",
+        [
+            # Both naive
+            ((dt1, dt2), (dt1, dt2)),
 
-@pytest.mark.parametrize(
-    "inputs,expected",
-    [
-        # Both naive
-        ((dt1, dt2), (dt1, dt2)),
+            # Both timezoned same
+            ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+              dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
+             (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+              dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))))),
 
-        # Both timezoned same
-        ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
-          dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
-         (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
-          dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))))),
+            # Both timezoned different
+            ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+              dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=2)))),
+             (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+              dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=2))))),
 
-        # Both timezoned different
-        ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
-          dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=2)))),
-         (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
-          dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=2))))),
+            # First timezoned second naive
+            ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))), dt2),
+             (dt1, dt2)),
 
-        # First timezoned second naive
-        ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))), dt2),
-         (dt1, dt2)),
+            # Second timezoned first naive
+            ((dt1, dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
+             (dt1, dt2))
+        ]
+    )
+    def test_set_offsets_for_comparison(
+        self,
+        inputs: Tuple[datetime.datetime, datetime.datetime],
+        expected: Tuple[datetime.datetime, datetime.datetime],
+    ) -> None:
+        """Tests the set_offsets_for_comparison function.
 
-        # Second timezoned first naive
-        ((dt1, dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
-         (dt1, dt2))
-    ]
-)
-def test_set_offsets_for_comparison(
-    inputs: Tuple[datetime.datetime, datetime.datetime],
-    expected: Tuple[datetime.datetime, datetime.datetime],
-) -> None:
-    """Tests the set_offsets_for_comparison function.
+        Args:
+            inputs (datetime.datetime, datetime.datetime): Inputs args for the function
+            expected (datetime.datetime, datetime.datetime): Expected returned
+        """
+        assert utils.timestamps.set_offsets_for_comparison(*inputs) == expected
 
-    Args:
-        inputs (datetime.datetime, datetime.datetime): Inputs args for the function
-        expected (datetime.datetime, datetime.datetime): Expected returned
-    """
-    assert utils.timestamps.set_offsets_for_comparison(*inputs) == expected
+    @pytest.mark.parametrize(
+        "timestamp,round_up,expected",
+        [
+            # datetime with timezone
+            (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+             False,
+             dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
+            # datetime naive
+            (dt1, False, dt1),
+            # date
+            (date1, False, datetime.datetime.combine(date1, min_time)),
+            # date roundup
+            (date1, True, datetime.datetime.combine(date1, max_time)),
+            # yearmonth
+            (ym1, False, datetime.datetime.combine(datetime.date(ym1.year, ym1.month, 1), min_time)),
+            # yearmonth roundup
+            (ym1, True, datetime.datetime.combine(datetime.date(ym1.year, ym1.month, 30), max_time)),
+            # year
+            (2022, False, datetime.datetime.combine(datetime.date(2022, 1, 1), min_time)),
+            # year roundup
+            (2022, True, datetime.datetime.combine(datetime.date(2022, 12, 31), max_time)),
+        ]
+    )
+    def test_transform_timestamp_to_datetime(
+        self,
+        timestamp: utils.types.Timestamp,
+        round_up: bool,
+        expected: datetime.datetime
+    ) -> None:
+        """Tests the transform_timestamp_to_datetime function.
 
-
-# Another set of constants to help with test setup
-date1 = datetime.date(2022, 4, 4)
-max_time = datetime.time.max
-min_time = datetime.time.min
-ym1 = types.YearMonth(2022, 4)
-
-
-@pytest.mark.parametrize(
-    "timestamp,round_up,expected",
-    [
-        # datetime with timezone
-        (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
-         False,
-         dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
-        # datetime naive
-        (dt1, False, dt1),
-        # date
-        (date1, False, datetime.datetime.combine(date1, min_time)),
-        # date roundup
-        (date1, True, datetime.datetime.combine(date1, max_time)),
-        # yearmonth
-        (ym1, False, datetime.datetime.combine(datetime.date(ym1.year, ym1.month, 1), min_time)),
-        # yearmonth roundup
-        (ym1, True, datetime.datetime.combine(datetime.date(ym1.year, ym1.month, 30), max_time)),
-        # year
-        (2022, False, datetime.datetime.combine(datetime.date(2022, 1, 1), min_time)),
-        # year roundup
-        (2022, True, datetime.datetime.combine(datetime.date(2022, 12, 31), max_time)),
-    ]
-)
-def test_transform_timestamp_to_datetime(
-    timestamp: utils.types.Timestamp,
-    round_up: bool,
-    expected: datetime.datetime
-) -> None:
-    """Tests the transform_timestamp_to_datetime function.
-
-    Args:
-        timestamp (utils.types.Timestamp): Input to be converted
-        round_up (bool): Whether to round up the timestamp up when converting.
-        expected (datetime.datetime): Expected output
-    """
-    assert utils.timestamps.transform_timestamp_to_datetime(timestamp, round_up) == expected
+        Args:
+            timestamp (utils.types.Timestamp): Input to be converted
+            round_up (bool): Whether to round up the timestamp up when converting.
+            expected (datetime.datetime): Expected output
+        """
+        assert utils.timestamps.transform_timestamp_to_datetime(timestamp, round_up) == expected
