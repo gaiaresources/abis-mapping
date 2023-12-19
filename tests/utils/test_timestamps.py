@@ -198,9 +198,9 @@ class TestSharedParams:
             # date roundup
             (date1, True, datetime.datetime.combine(date1, max_time)),
             # yearmonth
-            (ym1, False, datetime.datetime.combine(datetime.date(ym1.year, ym1.month, 1), min_time)),
+            (ym1, False, datetime.datetime.combine(datetime.date(ym1._year, ym1._month, 1), min_time)),
             # yearmonth roundup
-            (ym1, True, datetime.datetime.combine(datetime.date(ym1.year, ym1.month, 30), max_time)),
+            (ym1, True, datetime.datetime.combine(datetime.date(ym1._year, ym1._month, 30), max_time)),
             # year
             (2022, False, datetime.datetime.combine(datetime.date(2022, 1, 1), min_time)),
             # year roundup

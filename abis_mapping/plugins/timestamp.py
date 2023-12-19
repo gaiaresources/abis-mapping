@@ -205,7 +205,7 @@ class TimestampField(frictionless.Field):
 
             # Perform serialization for Yearmonth or Year
             match cell:
-                case types.YearMonth(year=year, month=month):
+                case types.YearMonth(_year=year, _month=month):
                     return f"{year}-{month:02}"
                 case _:
                     return str(cell)
