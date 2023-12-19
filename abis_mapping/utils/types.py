@@ -5,11 +5,19 @@
 import datetime
 
 # Typing
-from typing import Union
+from typing import Union, NamedTuple
 
 
-# Define Union Timestamp Type (Date or DateTime)
-DateOrDatetime = Union[
+# Definition of yearmonth
+class YearMonth(NamedTuple):
+    year: int
+    month: int
+
+
+# Define Union Timestamp Type (Date, DateTime, Yearmonth or Year)
+Timestamp = Union[
     datetime.date,
     datetime.datetime,
+    YearMonth,
+    int,
 ]

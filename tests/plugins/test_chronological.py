@@ -3,6 +3,7 @@
 
 # Third-party
 import frictionless
+import frictionless.fields
 import pytest
 
 # Local
@@ -15,75 +16,78 @@ from typing import Optional
 @pytest.mark.parametrize("source, field_names, n_errors", [
     ([
         # Missing
-        {"name": "A", "start": "2022-09-11T15:15:15Z", "end": None},
-        {"name": "B", "start": None, "end": "2022-09-11T15:15:15Z"},
-        {"name": "C", "start": None, "end": None},
+        {"start": "2022-09-11T15:15:15Z", "end": None},
+        {"start": None, "end": "2022-09-11T15:15:15Z"},
 
         # Valid
-        {"name": "D", "start": "2022-09-11T15:15:15Z", "end": "2023-09-11T15:15:15Z"},
+        {"start": "2022-09-11T15:15:15Z", "end": "2023-09-11T15:15:15Z"},
+        {"start": "2022-09-11T15:15:15Z", "end": 2022},
+        {"start": "2022-09-11T15:15:15Z", "end": "9/2022"},
 
         # Invalid - start 1 year after end
-        {"name": "E", "start": "2023-09-11T15:15:15Z", "end": "2022-09-11T15:15:15Z"},
+        {"start": "2023-09-11T15:15:15Z", "end": "2022-09-11T15:15:15Z"},
     ], ["start", "end"], 1),
     ([
         # Missing
-        {"name": "A", "start": "2022-09-11", "end": None},
-        {"name": "B", "start": None, "end": "2022-09-11"},
-        {"name": "C", "start": None, "end": None},
+        {"start": "2022-09-11", "end": None},
+        {"start": None, "end": "2022-09-11"},
 
         # Valid
-        {"name": "D", "start": "2022-09-11", "end": "2023-09-11"},
+        {"start": "2022-09-11", "end": "2023-09-11"},
+        {"start": "2022", "end": "2022-04"},
+        {"start": "09/2022", "end": 2022},
 
         # Invalid - start 1 year after end
-        {"name": "E", "start": "2023-09-11", "end": "2022-09-11"},
-    ], ["start", "end"], 1),
+        {"start": "2023-09-11", "end": "2022-09-11"},
+        {"start": "09/2023", "end": "2022"},
+        {"start": "2023", "end": 2022},
+    ], ["start", "end"], 3),
     ([
         # Missing
-        {"name": "A", "start": "2022-09-11", "end": None},
-        {"name": "B", "start": None, "end": "2022-09-11"},
-        {"name": "C", "start": None, "end": None},
+        {"start": "2022-09-11", "end": None},
+        {"start": None, "end": "2022-09-11"},
 
         # Valid - same date
-        {"name": "D", "start": "2022-09-11", "end": "2022-09-11"},
+        {"start": "2022-09-11", "end": "2022-09-11"},
 
         # Valid - start 1 year before end
-        {"name": "E", "start": "2022-09-11", "end": "2023-09-11"},
+        {"start": "2022-09-11", "end": "2023-09-11"},
     ], ["start", "end"], 0),
     ([
         # Missing
-        {"name": "A", "start": "2022-09-11", "middle": "2022-10-11", "end": None},
-        {"name": "B", "start": None, "middle": None, "end": "2022-09-11"},
-        {"name": "C", "start": None, "middle": "2022-09-11", "end": None},
+        {"start": "2022-09-11", "middle": "2022-10-11", "end": None},
+        {"start": None, "middle": None, "end": "2022-09-11"},
+        {"start": None, "middle": "2022-09-11", "end": None},
 
         # Valid
-        {"name": "D", "start": "2022-09-11", "middle": "2023-05-11", "end": "2023-09-11"},
+        {"start": "2022-09-11", "middle": "2023-05-11", "end": "2023-09-11"},
 
         # Invalid - start 1 year after end
-        {"name": "E", "start": "2023-09-11", "middle": "2023-05-11", "end": "2022-09-11"},
+        {"start": "2023-09-11", "middle": "2023-05-11", "end": "2022-09-11"},
     ], ["start", "middle", "end"], 1),
     ([
         # Missing
-        {"name": "A", "start": "2022-09-11", "middle": "2022-10-11", "end": None},
-        {"name": "B", "start": None, "middle": None, "end": "2022-09-11"},
-        {"name": "C", "start": None, "middle": "2022-09-11", "end": None},
+        {"start": "2022-09-11", "middle": "2022-10-11", "end": None},
+        {"start": None, "middle": None, "end": "2022-09-11"},
+        {"start": None, "middle": "2022-09-11", "end": None},
 
         # Valid
-        {"name": "D", "start": "2022-09-11", "middle": "2023-05-11", "end": "2023-09-11"},
+        {"start": "2022-09-11", "middle": "2023-05-11", "end": "2023-09-11"},
 
         # Invalid - middle 1 year after end
-        {"name": "E", "start": "2022-09-11", "middle": "2024-05-11", "end": "2023-09-11"},
+        {"start": "2022-09-11", "middle": "2024-05-11", "end": "2023-09-11"},
     ], ["start", "middle", "end"], 1),
     ([
          # Missing
-         {"name": "A", "start": "2022-09-11", "middle": "2022-10-11", "end": None},
-         {"name": "B", "start": None, "middle": None, "end": "2022-09-11"},
-         {"name": "C", "start": None, "middle": "2022-09-11", "end": None},
+         {"start": "2022-09-11", "middle": "2022-10-11", "end": None},
+         {"start": None, "middle": None, "end": "2022-09-11"},
+         {"start": None, "middle": "2022-09-11", "end": None},
 
          # Valid
-         {"name": "D", "start": "2022-09-11", "middle": "2023-05-11", "end": "2023-09-11"},
+         {"start": "2022-09-11", "middle": "2023-05-11", "end": "2023-09-11"},
 
          # Valid - middle same date as end
-         {"name": "E", "start": "2022-09-11", "middle": "2023-05-11", "end": "2023-05-11"},
+         {"start": "2022-09-11", "middle": "2023-05-11", "end": "2023-05-11"},
      ], ["start", "middle", "end"], 0),
 ])
 def test_checks_valid_chronological_order(
@@ -92,8 +96,13 @@ def test_checks_valid_chronological_order(
         n_errors: int
 ) -> None:
     """Test the ChronologicalOrder checker"""
+    # Construct fake schema
+    schema = frictionless.Schema.from_descriptor(
+        {"fields": [{"name": n, "type": "timestamp", "allowYearMonth": True, "allowYear": True} for n in source[0]]}
+    )
     # Construct fake resource
     resource = frictionless.Resource(
+        schema=schema,
         source=source
     )
 
@@ -108,5 +117,7 @@ def test_checks_valid_chronological_order(
         )
     )
 
-    # Assert no. of errors is expected
+    # Assert no. of errors is expected and right type
+    if n_errors > 0:
+        assert set([code for codes in report.flatten(["type"]) for code in codes]) == {"row-constraint"}
     assert report.stats["errors"] == n_errors

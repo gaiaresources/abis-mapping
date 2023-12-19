@@ -156,6 +156,24 @@ TEST_CASES: list[TemplateTestParameters] = [
                 ),
             ),
             MappingParameters(
+                scenario_name="yearmonth",
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_metadata/examples/yearmonth.csv"
+                ),
+                expected=pathlib.Path(
+                    "abis_mapping/templates/survey_metadata/examples/yearmonth.ttl"
+                ),
+            ),
+            MappingParameters(
+                scenario_name="year",
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_metadata/examples/year.csv"
+                ),
+                expected=pathlib.Path(
+                    "abis_mapping/templates/survey_metadata/examples/year.ttl"
+                ),
+            ),
+            MappingParameters(
                 scenario_name="extra_cols_mid",
                 expected_error_codes={"incorrect-label"},
                 should_validate=False,

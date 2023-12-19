@@ -6,9 +6,11 @@ import datetime
 
 # Third-Party
 import frictionless
+import frictionless.fields
 
 # Local
 from abis_mapping import plugins
+from abis_mapping.utils import types
 
 
 def test_timestamp_plugin() -> None:
@@ -50,12 +52,155 @@ def test_timestamp_type() -> None:
     assert field.read_cell(123)[0] is None
     assert field.read_cell("hello world")[0] is None
     assert field.read_cell("2022-04-26T22:00:00")[0] is None  # No Timezone
+    assert field.read_cell("2022-4-26")[0] is None
+    assert field.read_cell("26/04/22")[0] is None
+    assert field.read_cell("26/04/10101")[0] is None
+    assert field.read_cell("2022")[0] is None
+    assert field.read_cell("2022-04")[0] is None
+    assert field.read_cell("04/2022")[0] is None
 
     # Read Valid Cells
+    assert field.read_cell("26/04/2022")[0]  # Date
+    assert field.read_cell("26/04/0022")[0]  # Date
+    assert field.read_cell("2022-04-26")[0]  # Date
+    assert field.read_cell("2022-04-26T22:00:00Z")[0]  # Date Time with Timezone
+    assert field.read_cell("2022-04-26T22:00:00+08:00")[0]  # Date Time with Timezone
+    assert field.read_cell("2022-04-26T22:00+08:00")[0]  # Date Time with Timezone
+    assert field.read_cell("2022-04-26T22:00+08")[0]  # Date Time with Timezone
+    assert field.read_cell("2022-04-26 22:00+08")[0]  # Date Time with Timezone
+    assert field.read_cell(datetime.datetime.now())[0]
+
+    # Write Cell
+    assert field.write_cell(datetime.datetime.now())[0]
+
+
+def test_timestamp_type_year_month() -> None:
+    """Tests the Timestamp type with year and month allowed."""
+    # Instantiate the field
+    field = plugins.timestamp.TimestampField(
+        name="testField",
+        allow_year_month=True
+    )
+
+    # Read invalid cells
+    assert field.read_cell("2022")[0] is None
+    assert field.read_cell("04/22")[0] is None
+    assert field.read_cell("2022-4")[0] is None
+    assert field.read_cell("22-04")[0] is None
+    assert field.read_cell("10101-04")[0] is None
+    assert field.read_cell("2022-13")[0] is None
+    assert field.read_cell("04/10101")[0] is None
+    assert field.read_cell("13/2022")[0] is None
+    assert field.read_cell((2022, 13))[0] is None
+
+    # Read valid cells
     assert field.read_cell("26/04/2022")[0]  # Date
     assert field.read_cell("2022-04-26")[0]  # Date
     assert field.read_cell("2022-04-26T22:00:00Z")[0]  # Date Time with Timezone
     assert field.read_cell("2022-04-26T22:00:00+08:00")[0]  # Date Time with Timezone
+    assert field.read_cell("2022-04")[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell("04/2022")[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell("4/2022")[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell("04/0022")[0] == types.YearMonth(year=22, month=4)  # Year month
+    assert field.read_cell((2022, 4))[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell([2022, 4])[0] == types.YearMonth(year=2022, month=4)  # Year month
 
-    # Write Cell
+    # Write cell
+    assert field.write_cell(types.YearMonth(year=2022, month=4))[0] == "2022-04"
     assert field.write_cell(datetime.datetime.now())[0]
+
+
+def test_timestamp_type_year() -> None:
+    """Tests the Timestamp type with year allowed."""
+    # Instantiate the field
+    field = plugins.timestamp.TimestampField(
+        name="testField",
+        allow_year=True
+    )
+
+    # Read invalid cells
+    assert field.read_cell("2022-04")[0] is None
+    assert field.read_cell("04/2022")[0] is None
+    assert field.read_cell("22")[0] is None
+    assert field.read_cell("10101")[0] is None
+    assert field.read_cell(10101)[0] is None
+
+    # Read valid cells
+    assert field.read_cell("26/04/2022")[0]  # Date
+    assert field.read_cell("2022-04-26")[0]  # Date
+    assert field.read_cell("2022-04-26T22:00:00Z")[0]  # Date Time with Timezone
+    assert field.read_cell("2022-04-26T22:00:00+08:00")[0]  # Date Time with Timezone
+    assert field.read_cell("2022")[0] == 2022
+    assert field.read_cell(2022)[0] == 2022
+    assert field.read_cell("0022")[0] == 22
+
+    # Write cell
+    assert field.write_cell(2022)[0] == "2022"
+    assert field.write_cell(datetime.datetime.now())[0]
+
+
+def test_timestamp_type_year_and_year_month() -> None:
+    """Tests the Timestamp type with both year and year month allowed."""
+    # Instantiate the field
+    field = plugins.timestamp.TimestampField(
+        name="testField",
+        allow_year=True,
+        allow_year_month=True,
+    )
+
+    # Read valid cells
+    assert field.read_cell("26/04/2022")[0]  # Date
+    assert field.read_cell("2022-04-26")[0]  # Date
+    assert field.read_cell("2022-04-26T22:00:00Z")[0]  # Date Time with Timezone
+    assert field.read_cell("2022-04-26T22:00:00+08:00")[0]  # Date Time with Timezone
+    assert field.read_cell("2022")[0] == 2022  # Year only
+    assert field.read_cell("2022-04")[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell("04/2022")[0] == types.YearMonth(year=2022, month=4)  # Year month
+
+    # Write cell
+    assert field.write_cell(2022)[0] == "2022"
+    assert field.write_cell(types.YearMonth(year=2022, month=4))[0] == "2022-04"
+    assert field.write_cell(datetime.datetime.now())[0]
+
+
+def test_year_month_params_on_schema() -> None:
+    """Tests the allow year and yearmonth schema parameters."""
+    # Construct a descriptor
+    desc = {
+        "fields": [
+            {
+                "name": "testField",
+                "type": "timestamp",
+                "allowYear": True,
+                "allowYearMonth": True,
+            }
+        ]
+    }
+
+    # Validate descriptor
+    schema_report = frictionless.Schema.validate_descriptor(desc)
+    assert schema_report.valid
+
+    # Construct schema, test data and resource
+    schema = frictionless.Schema.from_descriptor(desc)
+    valid_data = [
+        "26/04/2022",
+        "2022-04-26",
+        "2022-04-26T22:00:00Z",
+        "2022-04-26T22:00:00+08:00",
+        "2022",
+        "2022-04",
+        "04/2022",
+    ]
+    resource = frictionless.Resource(
+        schema=schema,
+        source=[{"testField": s} for s in valid_data]
+    )
+
+    # Ensure resource constructed properly
+    resource.infer(stats=True)
+    assert resource.rows == len(valid_data)
+
+    # Validate resource
+    resource_report = resource.validate()
+    assert resource_report.valid

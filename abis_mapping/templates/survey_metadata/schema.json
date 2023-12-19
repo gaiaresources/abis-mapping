@@ -39,7 +39,9 @@
       "description": "The date data collection commenced.",
       "example": "21/09/2020",
       "type": "timestamp",
-      "format": "any",
+      "format": "default",
+      "allowYear": true,
+      "allowYearMonth": true,
       "constraints": {
         "required": true
       }
@@ -50,7 +52,9 @@
       "description": "The date data collection was completed.",
       "example": "23/09/2020",
       "type": "timestamp",
-      "format": "any",
+      "format": "default",
+      "allowYear": true,
+      "allowYearMonth": true,
       "constraints": {
         "required": false
       }
