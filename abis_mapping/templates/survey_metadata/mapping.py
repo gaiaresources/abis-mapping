@@ -324,8 +324,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to be modified
         """
         # Determine if any dates are present in the row
-        start_date = row["temporalCoverageStartDate"]
-        end_date = row["temporalCoverageEndDate"]
+        start_date: utils.types.Timestamp = row["temporalCoverageStartDate"]
+        end_date: utils.types.Timestamp = row["temporalCoverageEndDate"]
         if not start_date and not end_date:
             return
 
@@ -333,9 +333,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         temporal_coverage = rdflib.BNode()
         graph.add((temporal_coverage, a, rdflib.TIME.TemporalEntity))
         if start_date:
-            graph.add((temporal_coverage, rdflib.TIME.hasBeginning, utils.rdf.to_timestamp(start_date)))
+            graph.add((temporal_coverage, rdflib.TIME.hasBeginning, start_date.to_rdf_literal()))
         if end_date:
-            graph.add((temporal_coverage, rdflib.TIME.hasEnd, utils.rdf.to_timestamp(end_date)))
+            graph.add((temporal_coverage, rdflib.TIME.hasEnd, end_date.to_rdf_literal()))
 
         # Attach to survey node
         graph.add((uri, rdflib.TIME.hasTime, temporal_coverage))
