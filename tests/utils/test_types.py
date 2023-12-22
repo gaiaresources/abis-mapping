@@ -293,4 +293,5 @@ def test_datetime_strptime_returns_timestamp() -> None:
     """Tests that the Datetime.strptime() method returns a Datetime (not datetime)."""
     dt = types.Datetime.strptime("26/04/2022", "%d/%m/%Y")
     assert isinstance(dt, types.Datetime)
+    # Verify date() returns Date
     assert isinstance(dt.date(), types.Date)

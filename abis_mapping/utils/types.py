@@ -56,7 +56,7 @@ class Timestamp(abc.ABC):
         """
         return rdflib.Literal(self, datatype=self.rdf_datatype)
 
-    def __le__(self, other: "Timestamp") -> bool:
+    def __le__(self, other: object) -> bool:
         """Performs less than or equal comparison
 
         Args:
@@ -65,6 +65,10 @@ class Timestamp(abc.ABC):
         Returns:
             bool: True if this timestamp is less than or equal other.
         """
+        # Ensure both operands inherit from Timestamp
+        if not isinstance(other, Timestamp):
+            raise NotImplementedError(f"Unable to compare {type(self)} with {type(other)}.")
+
         # Convert each operand to datetime and set offsets for comparison
         (dt1, dt2) = set_offsets_for_comparison(
             self.to_datetime(round_up=False),
