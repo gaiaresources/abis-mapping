@@ -1,5 +1,5 @@
 """Provides ABIS Mapper for `survey_site_data.csv` Template"""
-
+import decimal
 
 # Local
 from abis_mapping import base
@@ -10,6 +10,8 @@ from abis_mapping import vocabs
 # Third-party
 import rdflib
 import frictionless
+import shapely
+import shapely.geometry
 
 # Typing
 from typing import Any, Optional, Iterator
@@ -84,6 +86,56 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Return validation report
         return report
+
+    def extract_geometry_defaults(
+        self,
+        data: base.types.ReadableType,
+    ) -> dict[str, str | None]:
+        """Constructs a dictionary mapping site id to default WKT.
+
+        The resulting string WKT returned can then be used as the missing
+        geometry for other related templates i.e. the site occurrences
+
+        Args:
+            data (base.types.ReadableType): Raw data to be mapped.
+
+        Returns:
+            dict[str, str | None]: Keys are the site id; values are the
+                appropriate point WKT serialized string or None if no valid
+                found.
+
+        """
+        # Construct schema
+        schema = frictionless.Schema.from_descriptor(self.schema())
+
+        resource = frictionless.Resource(
+            data=data,
+            format="csv",
+            schema=schema,
+        )
+
+        with resource.open() as r:
+            # Create empty dictionary to hold mapping values
+            result = {}
+            for row in r.row_stream:
+                # Extract values
+                site_id: str = row["siteID"]
+                footprint_wkt: shapely.geometry.base.BaseGeometry = row["footprintWKT"]
+                longitude: decimal.Decimal = row["decimalLongitude"]
+                latitude: decimal.Decimal = row["decimalLatitude"]
+
+                # Default to using the footprint wkt
+                if footprint_wkt is not None:
+                    result[site_id] = footprint_wkt.centroid.wkt
+                    continue
+                # If not footprint then we revert to using supplied longitude & latitude
+                if longitude is not None and latitude is not None:
+                    result[site_id] = shapely.Point([longitude, latitude]).wkt
+                    continue
+                # If all these are missing return None for the site ID entry
+                result[site_id] = None
+
+            return result
 
     def apply_mapping(
         self,
