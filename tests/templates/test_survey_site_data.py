@@ -48,7 +48,6 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
         "site1": "POINT (2.5 2.5)",
         "site2": "POINT (2.5 2.5)",
         "site3": "POINT (10 20)",
-        "site4": None
     }
     # Invoke method
     actual = mapper.extract_geometry_defaults(csv_data)

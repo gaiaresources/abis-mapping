@@ -90,7 +90,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
     def extract_geometry_defaults(
         self,
         data: base.types.ReadableType,
-    ) -> dict[str, str | None]:
+    ) -> dict[str, str]:
         """Constructs a dictionary mapping site id to default WKT.
 
         The resulting string WKT returned can then be used as the missing
@@ -100,9 +100,9 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             data (base.types.ReadableType): Raw data to be mapped.
 
         Returns:
-            dict[str, str | None]: Keys are the site id; values are the
-                appropriate point WKT serialized string or None if no valid
-                found.
+            dict[str, str]: Keys are the site id; values are the
+                appropriate point WKT serialized string. If none then
+                there is no siteID key created.
 
         """
         # Construct schema
@@ -131,9 +131,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 # If not footprint then we revert to using supplied longitude & latitude
                 if longitude is not None and latitude is not None:
                     result[site_id] = shapely.Point([longitude, latitude]).wkt
-                    continue
-                # If all these are missing return None for the site ID entry
-                result[site_id] = None
 
             return result
 
