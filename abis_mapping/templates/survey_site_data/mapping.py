@@ -90,6 +90,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
     def extract_geometry_defaults(
         self,
         data: base.types.ReadableType,
+        **kwargs: Any,
     ) -> dict[str, str]:
         """Constructs a dictionary mapping site id to default WKT.
 

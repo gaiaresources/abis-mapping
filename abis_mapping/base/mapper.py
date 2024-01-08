@@ -46,11 +46,13 @@ class ABISMapper(abc.ABC):
     def apply_validation(
         self,
         data: types.ReadableType,
+        **kwargs: Any,
     ) -> frictionless.Report:
         """Applies Frictionless Validation to Raw Data to Generate Report.
 
         Args:
             data (ReadableType): Readable raw data.
+            **kwargs (Any): Additional keyword arguments.
 
         Returns:
             frictionless.Report: Validation report for the data.

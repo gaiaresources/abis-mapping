@@ -67,6 +67,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
     def apply_validation(
         self,
         data: base.types.ReadableType,
+        **kwargs: Any,
     ) -> frictionless.Report:
         """Applies Frictionless Validation for the `incidental_occurrence_data.csv` Template
 

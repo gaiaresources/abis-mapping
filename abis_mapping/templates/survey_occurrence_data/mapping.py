@@ -67,17 +67,63 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
     def apply_validation(
         self,
         data: base.types.ReadableType,
+        **kwargs: Any
     ) -> frictionless.Report:
         """Applies Frictionless Validation for the `survey_occurrence_data.csv` Template
 
         Args:
             data (base.types.ReadableType): Raw data to be validated.
 
+        Keyword Args:
+            site_id_geometry_map (dict[str, str]): Default values to use for geometry
+                for given siteID.
+
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
+        # Extract kwargs
+        site_id_geometry_map = kwargs.get("site_id_geometry_map")
+
         # Construct Schema
         schema = frictionless.Schema.from_descriptor(self.schema())
+
+        # Construct default Checklist
+        checklist = frictionless.Checklist(
+            checks=[
+                # Extra Custom Checks
+                plugins.tabular.IsTabular(),
+                plugins.empty.NotEmpty(),
+                plugins.mutual_inclusion.MutuallyInclusive(
+                    field_names=["threatStatus", "conservationJurisdiction"],
+                ),
+                plugins.mutual_inclusion.MutuallyInclusive(
+                    field_names=["organismQuantity", "organismQuantityType"],
+                ),
+            ],
+            skip_errors=self.skip_errors,
+        )
+
+        # Modify schema and checklist in the event default geometry map provided
+        if site_id_geometry_map is not None:
+            # We need to make sure that required is false from the lat long fields
+            # since this would override the default lookup checks
+            for field_name in ["decimalLatitude", "decimalLongitude"]:
+                schema.get_field(field_name).constraints["required"] = False
+
+            # Perform a default lookup check based on passed in map.
+            checklist.add_check(
+               plugins.default_lookup.DefaultLookup(
+                   key_field="siteID",
+                   value_field="decimalLatitude",
+                   default_map=site_id_geometry_map,
+               )
+            )
+            # Mutual inclusion check to close out the possibility of one missing.
+            checklist.add_check(
+                plugins.mutual_inclusion.MutuallyInclusive(
+                    field_names=["decimalLatitude", "decimalLongitude"]
+                )
+            )
 
         # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
@@ -88,20 +134,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Validate
         report: frictionless.Report = resource.validate(
-            checklist=frictionless.Checklist(
-                checks=[
-                    # Extra Custom Checks
-                    plugins.tabular.IsTabular(),
-                    plugins.empty.NotEmpty(),
-                    plugins.mutual_inclusion.MutuallyInclusive(
-                        field_names=["threatStatus", "conservationJurisdiction"],
-                    ),
-                    plugins.mutual_inclusion.MutuallyInclusive(
-                        field_names=["organismQuantity", "organismQuantityType"],
-                    ),
-                ],
-                skip_errors=self.skip_errors,
-            ),
+            checklist=checklist
         )
 
         # Return Validation Report
@@ -213,7 +246,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         Args:
             row (frictionless.Row): Row to be processed in the dataset.
-            dataset (rdflib.URIRef): Dataset uri this row is apart of.
+            dataset (rdflib.URIRef): Dataset uri this row is a part of.
             terminal_foi (rdflib.URIRef): Terminal feature of interest.
             graph (rdflib.Graph): Graph to map row into.
             base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
@@ -2783,8 +2816,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
-                node
             feature_of_interest (rdflib.URIRef): Feature of Interest associated
                 with this node
             sample_sequence (rdflib.URIRef): Sample Sequence associated with

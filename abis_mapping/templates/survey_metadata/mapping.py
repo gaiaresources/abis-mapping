@@ -29,7 +29,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
     def apply_validation(
         self,
-        data: base.types.ReadableType
+        data: base.types.ReadableType,
+        **kwargs: Any
     ) -> frictionless.Report:
         """Applies Frictionless validation for the 'survey_metadata.csv' template
 
