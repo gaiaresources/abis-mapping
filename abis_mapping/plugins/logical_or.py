@@ -1,4 +1,4 @@
-"""Provides extra frictionless mutual exclusion checks for the package"""
+"""Provides extra frictionless logical OR checks for the package"""
 
 
 # Third-Party
@@ -26,10 +26,10 @@ class LogicalOr(frictionless.Check):
         """Called to validate the given row (on every row).
 
         Args:
-            row (frictionless.Row): The row to check the mutual exclusion of.
+            row (frictionless.Row): The row to check the logical OR of.
 
         Yields:
-            frictionless.Error: For when the mutual exclusion is violated.
+            frictionless.Error: For when the logical OR condition is violated.
         """
         # Filter out field names that contain values
         filtered = [field_name for field_name in self.field_names if row[field_name] is not None]
