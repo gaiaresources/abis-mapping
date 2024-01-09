@@ -41,6 +41,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         Args:
             data (base.types.ReadableType): Raw data to be validated.
+            **kwargs (Any): Additional keyword arguments.
 
         Returns:
             frictionless.Report: Validation report for the specified data.
@@ -91,7 +92,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
     def extract_geometry_defaults(
         self,
         data: base.types.ReadableType,
-        **kwargs: Any,
     ) -> dict[str, str]:
         """Constructs a dictionary mapping site id to default WKT.
 
@@ -104,8 +104,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         Returns:
             dict[str, str]: Keys are the site id; values are the
                 appropriate point WKT serialized string. If none then
-                there is no siteID key created.
-
+                there is no siteID key created. Values include the geodetic
+                datum uri.
         """
         # Construct schema
         schema = frictionless.Schema.from_descriptor(self.schema())
@@ -125,14 +125,35 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 footprint_wkt: shapely.geometry.base.BaseGeometry = row["footprintWKT"]
                 longitude: decimal.Decimal = row["decimalLongitude"]
                 latitude: decimal.Decimal = row["decimalLatitude"]
+                datum: str = row["geodeticDatum"]
 
-                # Default to using the footprint wkt
-                if footprint_wkt is not None:
-                    result[site_id] = footprint_wkt.centroid.wkt
+                # if no valid datum for row then don't add to map.
+                if datum is None:
                     continue
+
+                # Get the corresponding uri for the given datum
+                datum_uri: rdflib.URIRef = vocabs.geodetic_datum.GEODETIC_DATUM.get(datum)
+
+                # Default to using the footprint wkt + geodetic datum
+                if footprint_wkt is not None:
+                    # Create string and add to map for site id
+                    result[site_id] = str(
+                        utils.rdf.to_wkt_literal(
+                            geometry=footprint_wkt.centroid,
+                            datum=datum_uri,
+                        )
+                    )
+                    continue
+
                 # If not footprint then we revert to using supplied longitude & latitude
                 if longitude is not None and latitude is not None:
-                    result[site_id] = shapely.Point([longitude, latitude]).wkt
+                    # Create string and add to map for site id
+                    result[site_id] = str(
+                        utils.rdf.to_wkt_literal(
+                            geometry=shapely.Point([longitude, latitude]),
+                            datum=datum_uri,
+                        )
+                    )
 
             return result
 

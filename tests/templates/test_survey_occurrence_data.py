@@ -27,9 +27,9 @@ class TestDefaultMap:
         Scenario(
             name="valid_with_default_map",
             raws=[
-                ["site1", "-38.94", "115.21", "", "", "", ""],
-                ["site1", "", "", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "", "", "", ""],
+                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["site1", "", "", "", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={
                 "site1": "something"
@@ -38,9 +38,9 @@ class TestDefaultMap:
         Scenario(
             name="invalid_missing_from_default_map",
             raws=[
-                ["site1", "-38.94", "115.21", "", "", "", ""],
-                ["site1", "", "", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "", "", "", ""],
+                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["site1", "", "", "", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={
                 "site3": "something"
@@ -50,9 +50,9 @@ class TestDefaultMap:
         Scenario(
             name="invalid_incidental_occurrence_requires_latlong",
             raws=[
-                ["site1", "-38.94", "115.21", "", "", "", ""],
-                ["", "", "", "", "", "VU", "VIC"],
-                ["site2", "-38.94", "115.21", "", "", "", ""],
+                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["", "", "", "", "", "", "VU", "VIC"],
+                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={},
             expected_error_codes={"row-constraint"}
@@ -60,18 +60,18 @@ class TestDefaultMap:
         Scenario(
             name="valid_incidental_occurrence_requires_latlong",
             raws=[
-                ["site1", "-38.94", "115.21", "", "", "", ""],
-                ["", "-38.94", "115.21", "", "", "VU", "VIC"],
-                ["site2", "-38.94", "115.21", "", "", "", ""],
+                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["", "-38.94", "115.21", "WGS84", "", "", "VU", "VIC"],
+                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={},
         ),
         Scenario(
             name="invalid_missing_long",
             raws=[
-                ["site1", "-38.94", "115.21", "", "", "", ""],
-                ["site1", "-38.94", "", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "", "", "", ""],
+                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["site1", "-38.94", "", "WGS84", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={
                 "site1": "something"
@@ -81,9 +81,9 @@ class TestDefaultMap:
         Scenario(
             name="invalid_missing_lat",
             raws=[
-                ["site1", "-38.94", "115.21", "", "", "", ""],
-                ["site1", "", "115.21", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "", "", "", ""],
+                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["site1", "", "115.21", "WGS84", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={
                 "site1": "something"
@@ -93,9 +93,9 @@ class TestDefaultMap:
         Scenario(
             name="invalid_incidental_occurrence_missing_lat",
             raws=[
-                ["site1", "-38.94", "115.21", "", "", "", ""],
-                ["", "", "115.21", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "", "", "", ""],
+                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["", "", "115.21", "WGS84", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={},
             expected_error_codes={"row-constraint"}
@@ -103,13 +103,35 @@ class TestDefaultMap:
         Scenario(
             name="invalid_incidental_occurrence_missing_long",
             raws=[
-                ["site1", "-38.94", "115.21", "", "", "", ""],
-                ["", "-38.94", "", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "", "", "", ""],
+                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["", "-38.94", "", "WGS84", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={},
             expected_error_codes={"row-constraint"}
-        )
+        ),
+        Scenario(
+            name="invalid_missing_geodetic_datum",
+            raws=[
+                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["site1", "-38.94", "115.21", "", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+            ],
+            default_map={
+                "site1": "something"
+            },
+            expected_error_codes={"row-constraint"}
+        ),
+        Scenario(
+            name="invalid_incidental_occurrence_missing_geodetic_datum",
+            raws=[
+                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["", "-38.94", "115.21", "", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+            ],
+            default_map={},
+            expected_error_codes={"row-constraint"}
+        ),
     ]
 
     @pytest.mark.parametrize(
@@ -130,6 +152,7 @@ class TestDefaultMap:
             "siteID",
             "decimalLatitude",
             "decimalLongitude",
+            "geodeticDatum",
             "organismQuantity",
             "organismQuantityType",
             "threatStatus",
