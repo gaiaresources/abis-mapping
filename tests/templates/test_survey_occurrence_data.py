@@ -65,6 +65,50 @@ class TestDefaultMap:
                 ["site2", "-38.94", "115.21", "", "", "", ""],
             ],
             default_map={},
+        ),
+        Scenario(
+            name="invalid_missing_long",
+            raws=[
+                ["site1", "-38.94", "115.21", "", "", "", ""],
+                ["site1", "-38.94", "", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "", "", "", ""],
+            ],
+            default_map={
+                "site1": "something"
+            },
+            expected_error_codes={"row-constraint"}
+        ),
+        Scenario(
+            name="invalid_missing_lat",
+            raws=[
+                ["site1", "-38.94", "115.21", "", "", "", ""],
+                ["site1", "", "115.21", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "", "", "", ""],
+            ],
+            default_map={
+                "site1": "something"
+            },
+            expected_error_codes={"row-constraint"}
+        ),
+        Scenario(
+            name="invalid_incidental_occurrence_missing_lat",
+            raws=[
+                ["site1", "-38.94", "115.21", "", "", "", ""],
+                ["", "", "115.21", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "", "", "", ""],
+            ],
+            default_map={},
+            expected_error_codes={"row-constraint"}
+        ),
+        Scenario(
+            name="invalid_incidental_occurrence_missing_long",
+            raws=[
+                ["site1", "-38.94", "115.21", "", "", "", ""],
+                ["", "-38.94", "", "", "", "", ""],
+                ["site2", "-38.94", "115.21", "", "", "", ""],
+            ],
+            default_map={},
+            expected_error_codes={"row-constraint"}
         )
     ]
 
