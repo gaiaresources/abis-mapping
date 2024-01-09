@@ -35,6 +35,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
     def apply_validation(
         self,
         data: base.types.ReadableType,
+        **kwargs: Any,
     ) -> frictionless.Report:
         """Applies Frictionless Validation for the `survey_site_data.csv` Template
 

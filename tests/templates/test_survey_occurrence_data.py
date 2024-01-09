@@ -95,6 +95,7 @@ class TestDefaultMap:
 
         # Get mapper
         mapper = base.mapper.get_mapper("survey_occurrence_data.csv")
+        assert mapper is not None
 
         # Modify schema to only fields required for test
         descriptor = {
