@@ -854,8 +854,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Get Timestamps
-        event_date = row["eventDate"]
-        date_identified = row["dateIdentified"] or row["eventDate"]
+        event_date: utils.types.Timestamp = row["eventDate"]
+        date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -880,8 +880,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(date_identified)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, date_identified.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for identifiedBy
@@ -945,8 +945,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamps
-        event_date = row["eventDate"]
-        date_identified = row["dateIdentified"] or row["eventDate"]
+        event_date: utils.types.Timestamp = row["eventDate"]
+        date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -971,8 +971,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(date_identified)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, date_identified.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for identifiedBy
@@ -1021,6 +1021,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             basis (rdflib.URIRef): Basis Of Record associated with this node
             graph (rdflib.Graph): Graph to add to
         """
+        # Extract values from row
+        event_date: utils.types.Timestamp = row["eventDate"]
+
         # Create WKT from Latitude and Longitude
         wkt = utils.rdf.to_wkt_point_literal(
             latitude=row["decimalLatitude"],
@@ -1045,7 +1048,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(row["eventDate"])))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for recordID
@@ -1267,7 +1270,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Get Timestamp
-        timestamp = row["preparedDate"] or row["eventDate"]
+        timestamp: utils.types.Timestamp = row["preparedDate"] or row["eventDate"]
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -1276,7 +1279,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(timestamp)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, timestamp.to_rdf_literal()))
         geometry = rdflib.BNode()
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
         graph.add((geometry, a, utils.namespaces.GEO.Geometry))
@@ -1792,7 +1795,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date = row["eventDate"]
+        event_date: utils.types.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -1808,9 +1811,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(event_date)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
@@ -1877,7 +1880,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date = row["eventDate"]
+        event_date: utils.types.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -1893,9 +1896,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(event_date)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
@@ -2119,7 +2122,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date = row["eventDate"]
+        event_date: utils.types.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2135,9 +2138,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(event_date)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
 
         # Add Method Qualifier
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -2266,7 +2269,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date = row["eventDate"]
+        event_date: utils.types.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2282,9 +2285,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(event_date)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
@@ -2363,7 +2366,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date = row["eventDate"]
+        event_date: utils.types.Timestamp = row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2384,9 +2387,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(event_date)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
@@ -2464,7 +2467,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date = row["eventDate"]
+        event_date: utils.types.Timestamp = row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2485,9 +2488,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(event_date)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
@@ -2566,7 +2569,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date = row["eventDate"]
+        event_date: utils.types.Timestamp = row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2587,9 +2590,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(event_date)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
@@ -2665,8 +2668,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamps
-        event_date = row["eventDate"]
-        date_identified = row["dateIdentified"] or row["eventDate"]
+        event_date: utils.types.Timestamp = row["eventDate"]
+        date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Accepted Name Usage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -2679,9 +2682,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_NAME_CHECK_METHOD))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(date_identified)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, date_identified.to_rdf_literal()))
 
         # Add Temporal Qualifier
         timestamp_used = "dateIdentified" if row["dateIdentified"] else "eventDate"  # Determine which field was used
@@ -2735,14 +2738,15 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
-                node
             feature_of_interest (rdflib.URIRef): Feature of Interest associated
                 with this node
             sample_sequence (rdflib.URIRef): Sample Sequence associated with
                 this node
             graph (rdflib.Graph): Graph to add to
         """
+        # Extract values from row
+        event_date: utils.types.Timestamp = row["eventDate"]
+
         # Check Existence
         if not row["associatedSequences"]:
             return
@@ -2771,7 +2775,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(row["eventDate"])))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for coordinateUncertaintyInMeters
@@ -2897,8 +2901,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Get Timestamps
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDate` (fallback)
-        event_date = row["eventDate"]
-        date_determined = (
+        event_date: utils.types.Timestamp = row["eventDate"]
+        date_determined: utils.types.Timestamp = (
             row["threatStatusDateDetermined"]
             or row["dateIdentified"]
             or row["preparedDate"]
@@ -2924,9 +2928,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         phenomenon_time = rdflib.BNode()
         graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
         graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, utils.rdf.inXSDSmart(event_date), utils.rdf.to_timestamp(event_date)))
+        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, utils.rdf.to_timestamp(date_determined)))
+        graph.add((uri, utils.namespaces.TERN.resultDateTime, date_determined.to_rdf_literal()))
 
         # Check for threatStatusDeterminedBy
         if row["threatStatusDeterminedBy"]:

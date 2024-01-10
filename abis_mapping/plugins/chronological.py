@@ -7,7 +7,7 @@ import frictionless.errors
 import attrs
 
 # Local
-from abis_mapping.utils import timestamps, types
+from abis_mapping.utils import types
 
 # Typing
 from typing import Iterator
@@ -15,14 +15,13 @@ from typing import Iterator
 
 @attrs.define(kw_only=True, repr=False)
 class ChronologicalOrder(frictionless.Check):
-    """Checks whether the dates or datetimes are in chronological order for each row, based on the order of the
-    fields given."""
+    """Checks whether Timestamps are in chronological order for each row, based on the order of the fields given."""
 
     # Check attributes
     type = "chronological-order"
     Errors = [frictionless.errors.RowConstraintError]
 
-    # Specific to this check
+    # Specific to this check, names of fields all of which must be timestamp type.
     field_names: list[str]
 
     def validate_row(self, row: frictionless.Row) -> Iterator[frictionless.Error]:
@@ -34,15 +33,16 @@ class ChronologicalOrder(frictionless.Check):
         Yields:
             frictionless.Error: When the chronological order is violated.
         """
-        # Get dates or datetimes
-        dts: list[types.Timestamp] = [row[name] for name in self.field_names if row[name] is not None]
+        # Get Timestamps
+        tstmps: list[types.Timestamp] = [row[name] for name in self.field_names if row[name] is not None]
 
-        # Validate chronological order of the list
-        chrono_valid = timestamps.is_chronologically_ordered(dts)
+        # Test for 0 - 1 length list
+        if len(tstmps) < 2:
+            return True  # If there are 0 or 1 values, they are considered chronological
 
         # Check validity
-        if not chrono_valid:
+        if not all(x <= y for x, y in zip(tstmps, tstmps[1:])):
             yield frictionless.errors.RowConstraintError.from_row(
                 row=row,
-                note=f"the following dates are not in chronological order: {self.field_names}; with values: {dts}"
+                note=f"the following dates are not in chronological order: {self.field_names}; with values: {tstmps}"
             )
