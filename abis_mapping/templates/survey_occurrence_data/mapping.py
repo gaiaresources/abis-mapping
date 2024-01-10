@@ -1104,10 +1104,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_id_geometry_map (dict[str, str] | None): Default geometry value to use
                 if none available for given site id.
             graph (rdflib.Graph): Graph to add to
-
-        Raises:
-            ValueError: If no latitude or longitude values and no default geometry map
-                provided.
         """
         # Extract values
         latitude = row["decimalLatitude"]
@@ -1129,7 +1125,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             )
         else:
             # Should not reach this as data is already validated included for completeness
-            raise ValueError("Geometry unable to be determined.")
+            return
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.SAMPLING_PROTOCOL.get(
@@ -1366,8 +1362,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 string for a given site id.
             graph (rdflib.Graph): Graph to add to
 
-        Raises:
-            ValueError: If no lat or long and no default geometry provided.
         """
         # Check if Row has a Specimen
         if not has_specimen(row):
@@ -1392,7 +1386,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 datatype=utils.namespaces.GEO.wktLiteral,
             )
         else:
-            raise ValueError("Geometry unable to be determined.")
+            # Should not reach here since validated data provided, however if
+            # it does come to it the corresponding node will be omitted
+            return
 
         # Get Timestamp
         timestamp = row["preparedDate"] or row["eventDate"]
@@ -2878,9 +2874,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_id_geometry_map (dict[str, str] | None): Map of default geometry
                 string values for a given site id.
             graph (rdflib.Graph): Graph to add to
-
-        Raises:
-            ValueError: If no lat or long and no default geometry map provided.
         """
         # Check Existence
         if not row["associatedSequences"]:
@@ -2905,8 +2898,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 datatype=utils.namespaces.GEO.wktLiteral,
             )
         else:
-            # Should not reach here with validated data but included for completeness
-            raise ValueError("Geometry unable to be determined.")
+            # Should not be able to reach here if validated data provided,
+            # but if it does then node will be ommitted from graph.
+            return
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sequencing_method.SEQUENCING_METHOD.get(
