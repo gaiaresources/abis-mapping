@@ -1,4 +1,4 @@
-"""Provides Unit Tests for the `abis_mapping.plugins.mutual_inclusion` module"""
+"""Provides Unit Tests for the `abis_mapping.plugins.logical_or` module"""
 
 
 # Third-Party

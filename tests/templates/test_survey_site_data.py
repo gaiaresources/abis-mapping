@@ -1,10 +1,15 @@
 """Tests for the survey_site_data template not common to other templates."""
+
+# Standard
 import csv
 import io
-from abis_mapping import base
-import pytest_mock
 
+# Local
+from abis_mapping import base
 import abis_mapping.templates.survey_site_data.mapping
+
+# Third-party
+import pytest_mock
 
 
 def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
