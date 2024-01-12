@@ -2,18 +2,15 @@
 
 
 # Standard
-import datetime
 import uuid
 
 # Third-Party
 import rdflib
 import slugify
 import shapely
-import frictionless
 
 # Local
 from . import namespaces
-from . import types
 from abis_mapping import settings
 
 # Typing
@@ -90,100 +87,6 @@ def uri(
 
     # Create URIRef and Return
     return namespace[internal_id]
-
-
-def inXSDSmart(timestamp: types.Timestamp) -> rdflib.URIRef:
-    """Generates the correct TIME.inXSD<xxx> predicate for date or datetime.
-
-    Args:
-        timestamp (types.DateOrDateTime): Timestamp to generate a
-            time:inXSD<Date/DateTime/DateTimeStamp> predicate for.
-
-    Returns:
-        rdflib.URIRef: The smartly generated predicate.
-
-    Raises:
-        TypeError: If the timestamp does not match one of the types.Timestamp types
-    """
-    # Check for Datetime with Time Zone
-    if isinstance(timestamp, datetime.datetime) and timestamp.tzinfo is not None:
-        # inXSDDateTimeStamp
-        return rdflib.TIME.inXSDDateTimeStamp
-
-    # Check for Datetime without Time Zone
-    if isinstance(timestamp, datetime.datetime):
-        # inXSDDateTime
-        return rdflib.TIME.inXSDDateTime
-
-    # Check Date
-    if isinstance(timestamp, datetime.date):
-        # inXSDDate
-        return rdflib.TIME.inXSDDate
-
-    # Check yearmonth
-    if isinstance(timestamp, types.YearMonth):
-        # inXSDgYearMonth
-        return rdflib.TIME.inXSDgYearMonth
-
-    # Check year
-    if isinstance(timestamp, int):
-        # inXSDgYear
-        return rdflib.TIME.inXSDgYear
-
-    # Shouldn't reach here if argument type annotations adhered to
-    raise TypeError(f"expected one of {types.Timestamp}; got {type(timestamp)}.")
-
-
-def to_timestamp(timestamp: types.Timestamp) -> rdflib.Literal:
-    """Generates the correct rdflib.Literal for timestamp.
-
-    The string that is chosen for the timestamp value will be derived from the optional
-    supplied field, otherwise will revert to the default repr for the type.
-
-    Args:
-        timestamp (types.Timestamp): Timestamp to generate a
-            rdflib.Literal for.
-
-    Returns:
-        rdflib.Literal: The smartly generated literal.
-
-    Raises:
-        TypeError: If the timestamp does not match one of the types.Timestamp types
-    """
-    # Check for Datetime with Time Zone
-    if isinstance(timestamp, datetime.datetime) and timestamp.tzinfo is not None:
-        # xsd:dateTimeStamp
-        datatype = rdflib.XSD.dateTimeStamp
-
-    # Check for Datetime without Time Zone
-    elif isinstance(timestamp, datetime.datetime):
-        # xsd:dateTime
-        datatype = rdflib.XSD.dateTime
-
-    # Check for Date
-    elif isinstance(timestamp, datetime.date):
-        # xsd:date
-        datatype = rdflib.XSD.date
-
-    # Check for YearMonth
-    elif isinstance(timestamp, types.YearMonth):
-        # xsd:gYearMonth
-        datatype = rdflib.XSD.gYearMonth
-
-    # Check for Year
-    elif isinstance(timestamp, int):
-        # xsd:gYear
-        datatype = rdflib.XSD.gYear
-
-    else:
-        # Shouldn't reach here if argument type annotations adhered to
-        raise TypeError(f"expected one of {types.Timestamp}; got {type(timestamp)}.")
-
-    # Construct a timestamp field
-    field: frictionless.Field = frictionless.Field.from_descriptor({"name": "tempField", "type": "timestamp"})
-
-    # Use the cell writer method for the field to create the string
-    return rdflib.Literal(field.write_cell(timestamp)[0], datatype=datatype)
 
 
 def to_wkt_point_literal(

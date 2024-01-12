@@ -68,10 +68,10 @@ def test_timestamp_type() -> None:
     assert field.read_cell("2022-04-26T22:00+08:00")[0]  # Date Time with Timezone
     assert field.read_cell("2022-04-26T22:00+08")[0]  # Date Time with Timezone
     assert field.read_cell("2022-04-26 22:00+08")[0]  # Date Time with Timezone
-    assert field.read_cell(datetime.datetime.now())[0]
+    assert field.read_cell(types.Datetime.now())[0]
 
     # Write Cell
-    assert field.write_cell(datetime.datetime.now())[0]
+    assert field.write_cell(types.Datetime.now())[0]
 
 
 def test_timestamp_type_year_month() -> None:
@@ -91,7 +91,6 @@ def test_timestamp_type_year_month() -> None:
     assert field.read_cell("2022-13")[0] is None
     assert field.read_cell("04/10101")[0] is None
     assert field.read_cell("13/2022")[0] is None
-    assert field.read_cell((2022, 13))[0] is None
 
     # Read valid cells
     assert field.read_cell("26/04/2022")[0]  # Date
@@ -102,12 +101,21 @@ def test_timestamp_type_year_month() -> None:
     assert field.read_cell("04/2022")[0] == types.YearMonth(year=2022, month=4)  # Year month
     assert field.read_cell("4/2022")[0] == types.YearMonth(year=2022, month=4)  # Year month
     assert field.read_cell("04/0022")[0] == types.YearMonth(year=22, month=4)  # Year month
-    assert field.read_cell((2022, 4))[0] == types.YearMonth(year=2022, month=4)  # Year month
-    assert field.read_cell([2022, 4])[0] == types.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell(types.YearMonth(2022, 4))[0] == types.YearMonth(year=2022, month=4)  # Year month
 
     # Write cell
     assert field.write_cell(types.YearMonth(year=2022, month=4))[0] == "2022-04"
-    assert field.write_cell(datetime.datetime.now())[0]
+    assert field.write_cell(types.Datetime.now())[0]
+
+
+def test_ym_equality() -> None:
+    """Tests the __eq__ implementation for YearMonth"""
+    assert types.YearMonth(2022, 4) == types.YearMonth(2022, 4)
+
+
+def test_year_equality() -> None:
+    """Tests the __eq__ implementation for Year"""
+    assert types.Year(2022) == types.Year(2022)
 
 
 def test_timestamp_type_year() -> None:
@@ -130,13 +138,13 @@ def test_timestamp_type_year() -> None:
     assert field.read_cell("2022-04-26")[0]  # Date
     assert field.read_cell("2022-04-26T22:00:00Z")[0]  # Date Time with Timezone
     assert field.read_cell("2022-04-26T22:00:00+08:00")[0]  # Date Time with Timezone
-    assert field.read_cell("2022")[0] == 2022
-    assert field.read_cell(2022)[0] == 2022
-    assert field.read_cell("0022")[0] == 22
+    assert field.read_cell("2022")[0] == types.Year(2022)
+    assert field.read_cell(types.Year(2022))[0] == types.Year(2022)
+    assert field.read_cell("0022")[0] == types.Year(22)
 
     # Write cell
-    assert field.write_cell(2022)[0] == "2022"
-    assert field.write_cell(datetime.datetime.now())[0]
+    assert field.write_cell(types.Year(2022))[0] == "2022"
+    assert field.write_cell(types.Datetime.now())[0]
 
 
 def test_timestamp_type_year_and_year_month() -> None:
@@ -153,7 +161,7 @@ def test_timestamp_type_year_and_year_month() -> None:
     assert field.read_cell("2022-04-26")[0]  # Date
     assert field.read_cell("2022-04-26T22:00:00Z")[0]  # Date Time with Timezone
     assert field.read_cell("2022-04-26T22:00:00+08:00")[0]  # Date Time with Timezone
-    assert field.read_cell("2022")[0] == 2022  # Year only
+    assert field.read_cell("2022")[0] == types.Year(2022)  # Year only
     assert field.read_cell("2022-04")[0] == types.YearMonth(year=2022, month=4)  # Year month
     assert field.read_cell("04/2022")[0] == types.YearMonth(year=2022, month=4)  # Year month
 

@@ -8,6 +8,7 @@ import pytest
 
 # Local
 from abis_mapping import plugins
+from abis_mapping.utils import types
 
 # Typing
 from typing import Optional
@@ -21,7 +22,7 @@ from typing import Optional
 
         # Valid
         {"start": "2022-09-11T15:15:15Z", "end": "2023-09-11T15:15:15Z"},
-        {"start": "2022-09-11T15:15:15Z", "end": 2022},
+        {"start": "2022-09-11T15:15:15Z", "end": types.Year(2022)},
         {"start": "2022-09-11T15:15:15Z", "end": "9/2022"},
 
         # Invalid - start 1 year after end
@@ -35,12 +36,12 @@ from typing import Optional
         # Valid
         {"start": "2022-09-11", "end": "2023-09-11"},
         {"start": "2022", "end": "2022-04"},
-        {"start": "09/2022", "end": 2022},
+        {"start": "09/2022", "end": types.Year(2022)},
 
         # Invalid - start 1 year after end
         {"start": "2023-09-11", "end": "2022-09-11"},
         {"start": "09/2023", "end": "2022"},
-        {"start": "2023", "end": 2022},
+        {"start": "2023", "end": types.Year(2022)},
     ], ["start", "end"], 3),
     ([
         # Missing
