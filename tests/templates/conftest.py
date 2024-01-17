@@ -39,11 +39,14 @@ class TemplateTestParameters:
         empty_template (pathlib.Path): Path of empty template.
         metadata_sampling_type (str): The expected sampling type value expected for the template
             metadata.
+        allows_extra_cols (bool): Whether the template allows for extra cols not specified in the
+            schema.
     """
     template_id: str
     mapping_cases: list[MappingParameters]
     empty_template: pathlib.Path
     metadata_sampling_type: str
+    allows_extra_cols: bool
 
 
 TEST_CASES: list[TemplateTestParameters] = [
@@ -64,17 +67,6 @@ TEST_CASES: list[TemplateTestParameters] = [
                 ),
             ),
             MappingParameters(
-                scenario_name="extra_cols",
-                data=pathlib.Path(
-                    ("abis_mapping/templates/survey_occurrence_data/examples"
-                     "/margaret_river_flora/margaret_river_flora_extra_cols.csv"),
-                ),
-                expected=pathlib.Path(
-                    ("abis_mapping/templates/survey_occurrence_data/examples"
-                     "/margaret_river_flora/margaret_river_flora_extra_cols.ttl"),
-                ),
-            ),
-            MappingParameters(
                 scenario_name="organism_qty",
                 should_validate=False,
                 data=pathlib.Path(
@@ -84,18 +76,9 @@ TEST_CASES: list[TemplateTestParameters] = [
                     "abis_mapping/templates/survey_occurrence_data/examples/organism_qty.ttl",
                 )
             ),
-            MappingParameters(
-                scenario_name="extra_cols_mid",
-                should_validate=False,
-                expected_error_codes={"incorrect-label"},
-                data=pathlib.Path(
-                    ("abis_mapping/templates/survey_occurrence_data/examples/"
-                     "margaret_river_flora/margaret_river_flora_extra_cols_mid.csv"),
-                ),
-                expected=None,
-            )
         ],
         metadata_sampling_type="systematic survey",
+        allows_extra_cols=True,
     ),
     TemplateTestParameters(
         template_id="survey_site_data.csv",
@@ -111,26 +94,9 @@ TEST_CASES: list[TemplateTestParameters] = [
                     "abis_mapping/templates/survey_site_data/examples/minimal.ttl"
                 ),
             ),
-            MappingParameters(
-                scenario_name="extra_cols",
-                data=pathlib.Path(
-                    "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols.csv"
-                ),
-                expected=pathlib.Path(
-                    "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols.ttl"
-                ),
-            ),
-            MappingParameters(
-                scenario_name="extra_cols_mid",
-                should_validate=False,
-                expected_error_codes={'incorrect-label'},
-                data=pathlib.Path(
-                    "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols_mid.csv",
-                ),
-                expected=None,
-            )
         ],
-        metadata_sampling_type="systematic survey"
+        metadata_sampling_type="systematic survey",
+        allows_extra_cols=True
     ),
     TemplateTestParameters(
         template_id="survey_metadata.csv",
@@ -144,15 +110,6 @@ TEST_CASES: list[TemplateTestParameters] = [
                 ),
                 expected=pathlib.Path(
                     "abis_mapping/templates/survey_metadata/examples/minimal.ttl"
-                ),
-            ),
-            MappingParameters(
-                scenario_name="extra_cols",
-                data=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"
-                ),
-                expected=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.ttl"
                 ),
             ),
             MappingParameters(
@@ -174,15 +131,6 @@ TEST_CASES: list[TemplateTestParameters] = [
                 ),
             ),
             MappingParameters(
-                scenario_name="extra_cols_mid",
-                expected_error_codes={"incorrect-label"},
-                should_validate=False,
-                data=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols_mid.csv",
-                ),
-                expected=None,
-            ),
-            MappingParameters(
                 scenario_name="invalid_chrono_order",
                 should_validate=False,
                 expected_error_codes={'row-constraint'},
@@ -192,7 +140,8 @@ TEST_CASES: list[TemplateTestParameters] = [
                 expected=None,
             )
         ],
-        metadata_sampling_type="systematic survey"
+        metadata_sampling_type="systematic survey",
+        allows_extra_cols=True,
     ),
     TemplateTestParameters(
         template_id="incidental_occurrence_data.csv",
@@ -210,19 +159,9 @@ TEST_CASES: list[TemplateTestParameters] = [
                      "margaret_river_flora/margaret_river_flora.ttl")
                 ),
             ),
-            MappingParameters(
-                scenario_name="extra_cols",
-                data=pathlib.Path(
-                    ("abis_mapping/templates/incidental_occurrence_data/examples"
-                     "/margaret_river_flora/margaret_river_flora_extra_cols.csv")
-                ),
-                expected=pathlib.Path(
-                    ("abis_mapping/templates/incidental_occurrence_data/examples"
-                     "/margaret_river_flora/margaret_river_flora_extra_cols.ttl")
-                ),
-            )
         ],
-        metadata_sampling_type="incidental"
+        metadata_sampling_type="incidental",
+        allows_extra_cols=True,
     ),
 ]
 

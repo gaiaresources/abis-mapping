@@ -1,2 +1,0 @@
-siteID,siteType,siteName,siteDescription,decimalLatitude,extraInformation1,extraInformation2,decimalLongitude,footprintWKT,geodeticDatum,coordinateUncertaintyInMeters,siteVisitStart,siteVisitEnd
-P1,Plot,Plot 1,Fine woody debris.,-34.036,some additional info,some more info,146.363,"LINESTRING (146.363 -34.036, 146.363 -34.037)",WGS84,50,2016-02-28,2016-02-28

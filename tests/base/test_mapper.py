@@ -2,20 +2,51 @@
 
 
 # Standard
-import pathlib
 import json
 import csv
 import io
 
 # Third-party
 import frictionless
-import pytest
 import rdflib
 import pytest_mock
 
 # Local
 from abis_mapping import base
 from abis_mapping import utils
+
+# Typing
+from typing import Any
+
+
+def data_to_csv(data: list[dict[str, Any]]) -> bytes:
+    """Converts list of dictionaries with common keys to a csv.
+
+    Args:
+        data (list[dict[str, Any]]): Dataset to be converted to csv string
+
+    Returns:
+        bytes: CSV encoded utf-8.
+
+    Raises:
+        ValueError: If any of the dictionary keys are not equal to other list entries.
+    """
+    # Ensure all keys of dictionary are equal
+    if len(data) > 1 and any([set(data[0].keys()) != set(d.keys()) for d in data[1:]]):
+        raise ValueError("Keys not the same for all data rows.")
+
+    # Create in memory stream writer
+    csv_string_io = io.StringIO()
+    csv_writer = csv.DictWriter(csv_string_io, lineterminator="\n", fieldnames=data[0].keys())
+
+    # Write header to stream
+    csv_writer.writeheader()
+
+    # Write data
+    csv_writer.writerows(data)
+
+    # Retrieve result from stream and encode utf-8
+    return csv_string_io.getvalue().encode("utf-8")
 
 
 def test_base_get_mapper_fake() -> None:
@@ -65,39 +96,40 @@ def test_extra_fields_schema_row_data(mocker: pytest_mock.MockerFixture) -> None
                    set(existing_schema.field_names) | expected_extra_fieldnames  # type: ignore[attr-defined]
 
 
-@pytest.mark.parametrize(
-    "template_id,file_path",
-    [
-        ("incidental_occurrence_data.csv",
-         ("abis_mapping/templates/incidental_occurrence_data/examples/"
-          "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
-        ("survey_occurrence_data.csv",
-         ("abis_mapping/templates/survey_occurrence_data/examples/"
-          "margaret_river_flora/margaret_river_flora_extra_cols.csv")),
-        ("survey_metadata.csv",
-         "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"),
-        ("survey_site_data.csv",
-         "abis_mapping/templates/survey_site_data/examples/minimal_extra_cols.csv"),
+def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None:
+    """Tests extra fields schema gets extracted from raw data.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): The mocker fixture.
+    """
+    # Create raw data
+    data = [
+        {"A": 123, "B": 321, "extraInformation1": "some extra information", "extraInformation2": ""},
+        {"A": 321, "B": 123, "extraInformation1": "", "extraInformation2": "some more extra information"},
     ]
-)
-def test_extra_fields_schema_raw_data(template_id: str, file_path: str) -> None:
-    """Tests extra fields schema gets extracted from row data."""
+
     # Expected extra field names
     expected_extra_fieldnames = {"extraInformation1", "extraInformation2"}
 
     # Get mapper
-    mapper = base.mapper.get_mapper(template_id)
+    mapper = base.mapper.ABISMapper
     assert mapper is not None
 
     # Get data
-    data = pathlib.Path(file_path).read_bytes()
+    csv_data = data_to_csv(data)
+
+    # Construct base schema descriptor
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+
+    # Mock out the schema method to return the above descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Construct official schema
-    existing_schema = frictionless.Schema.from_descriptor(mapper().schema())
+    existing_schema = frictionless.Schema.from_descriptor(mapper.schema())
 
     # Extract extra columns schemas
-    diff_schema = mapper.extra_fields_schema(data)
-    full_schema = mapper.extra_fields_schema(data=data, full_schema=True)
+    diff_schema = mapper.extra_fields_schema(csv_data)
+    full_schema = mapper.extra_fields_schema(data=csv_data, full_schema=True)
 
     # Assert
     assert set(diff_schema.field_names) == expected_extra_fieldnames
@@ -125,11 +157,7 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
     ]
 
     # Serialize data to csv
-    csv_string_io = io.StringIO()
-    csv_writer = csv.DictWriter(csv_string_io, lineterminator="\n", fieldnames=data[0].keys())
-    csv_writer.writeheader()
-    csv_writer.writerows(data)
-    csv_data = csv_string_io.getvalue().encode("utf-8")
+    csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
     descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
@@ -150,11 +178,29 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
             assert base.mapper.ABISMapper.extract_extra_fields(row) == expected
 
 
-def test_add_extra_fields_json() -> None:
-    """Tests addition of extra fields json string to graph."""
+def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
+    """Tests addition of extra fields json string to graph.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): The mocker fixture.
+    """
     # Create graph and base URI
     graph = rdflib.Graph()
     base_uri = utils.namespaces.EXAMPLE.someBaseUri
+
+    # Create raw data
+    data = [
+        {"A": 123, "B": 321, "extraInformation1": "some additional info", "extraInformation2": "some more info"},
+    ]
+
+    # Get data
+    csv_data = data_to_csv(data)
+
+    # Construct base schema descriptor
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+
+    # Mock out the schema method to return the above descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Expected json as dictionary
     expected_json = {
@@ -162,9 +208,11 @@ def test_add_extra_fields_json() -> None:
         "extraInformation1": "some additional info"
     }
 
-    # Create resource from raw data
-    file_path = "abis_mapping/templates/survey_metadata/examples/minimal_extra_cols.csv"
-    resource = frictionless.Resource(source=file_path)
+    # Create resource from raw data with derived schema
+    resource = frictionless.Resource(
+        data=csv_data,
+        format="csv",
+    )
 
     # Open resource for row streaming
     with resource.open() as r:
@@ -172,8 +220,7 @@ def test_add_extra_fields_json() -> None:
         row = next(r.row_stream)
 
     # Get mapper
-    mapper = base.mapper.get_mapper("survey_metadata.csv")
-    assert mapper is not None
+    mapper = base.mapper.ABISMapper
 
     # Attach extra fields json to graph
     mapper.add_extra_fields_json(
@@ -192,15 +239,31 @@ def test_add_extra_fields_json() -> None:
         assert o.datatype == rdflib.RDF.JSON
 
 
-def test_add_extra_fields_json_no_data() -> None:
+def test_add_extra_fields_json_no_data(mocker: pytest_mock.MockerFixture) -> None:
     """Tests functionality of json extra fields when none exists."""
     # Create graph and base URI
     graph = rdflib.Graph()
     base_uri = utils.namespaces.EXAMPLE.someBaseUri
 
-    # Create resource from raw data
-    file_path = "abis_mapping/templates/survey_metadata/examples/minimal.csv"
-    resource = frictionless.Resource(source=file_path)
+    # Create raw data - no extra fields
+    data = [
+        {"A": 123, "B": 321}
+    ]
+
+    # Get data
+    csv_data = data_to_csv(data)
+
+    # Construct base schema descriptor
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+
+    # Mock out the schema method to return the above descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+
+    # Create resource from raw data with derived schema
+    resource = frictionless.Resource(
+        data=csv_data,
+        format="csv",
+    )
 
     # Open resource for row streaming
     with resource.open() as r:
@@ -208,8 +271,7 @@ def test_add_extra_fields_json_no_data() -> None:
         row = next(r.row_stream)
 
     # Get mapper
-    mapper = base.mapper.get_mapper("survey_metadata.csv")
-    assert mapper is not None
+    mapper = base.mapper.ABISMapper
 
     # Attach extra fields json to graph (should have none).
     mapper.add_extra_fields_json(
@@ -220,3 +282,42 @@ def test_add_extra_fields_json_no_data() -> None:
 
     # Should have no triples
     assert len(graph) == 0
+
+
+def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
+    """Tests that extra fields in middle fails validation even with extra fields allowed.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): The mocker fixture.
+    """
+    # Create raw data - no extra fields
+    data = [
+        {"A": 123, "C": 333, "B": 321}
+    ]
+
+    # Get data
+    csv_data = data_to_csv(data)
+
+    # Construct base schema descriptor
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+
+    # Mock out the schema method to return the above descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+
+    # Create resource from raw data with derived schema
+    resource = frictionless.Resource(
+        data=csv_data,
+        format="csv",
+        schema=frictionless.Schema.from_descriptor(descriptor)
+    )
+
+    # These errors must be skipped to enable extra columns
+    skip_errors = ["extra-label", "extra-cell"]
+
+    # Perform validation
+    report = resource.validate(checklist=frictionless.Checklist(skip_errors=skip_errors))
+
+    # Assert
+    assert not report.valid
+    error_codes = [code for codes in report.flatten(['type']) for code in codes]
+    assert error_codes == ["incorrect-label"]
