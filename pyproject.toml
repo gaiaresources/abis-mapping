@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "abis-mapping"
+name = "abis-mapping-next"
 version = "3.1.0"
 description = "Provides templates and mappings to translate tabular data to ABIS rdf"
 authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
