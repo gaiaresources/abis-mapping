@@ -1,5 +1,6 @@
 """Provided unit tests common across all templates."""
 
+
 # Local
 import abis_mapping
 import abis_mapping.base
@@ -7,9 +8,11 @@ from tests.templates import conftest
 
 # Standard
 import pathlib
+import unittest.mock
 
 # Third-party
 import pytest
+import pytest_mock
 import frictionless
 
 # Typing
@@ -144,3 +147,38 @@ class TestTemplateBasicSuite:
         assert not report.valid
         error_codes = [code for codes in report.flatten(['type']) for code in codes]
         assert "table-dimensions" in error_codes
+
+    def test_allows_extra_cols(
+        self,
+        test_params: conftest.TemplateTestParameters,
+        mocker: pytest_mock.MockerFixture,
+    ) -> None:
+        """Tests to make sure that all required checks are in place to allow extra columns.
+
+        Args:
+            test_params (conftest.TemplateTestParameters): Test parameters for template
+                under test.
+            mocker (pytest_mock.MockerFixture): The mocker fixture.
+        """
+        # Patch validate
+        mocked_resource = mocker.patch("frictionless.Resource")
+        mocked_validate: unittest.mock.Mock = mocked_resource.return_value.validate
+
+        # Load data
+        data = test_params.mapping_cases[0].data.read_bytes()
+
+        # Get mapper
+        mapper = abis_mapping.get_mapper(test_params.template_id)
+        assert mapper is not None
+
+        # Validate
+        _ = mapper().apply_validation(data)
+
+        # Assert called
+        mocked_resource.assert_called()
+        mocked_validate.assert_called_once()
+
+        if test_params.allows_extra_cols:
+            # Check to ensure that appropriate arguments set during call to validate method.
+            checklist: frictionless.Checklist = mocked_validate.call_args.kwargs.get("checklist")
+            assert len(set(checklist.skip_errors).intersection({"extra-label", "extra-cell"})) == 2
