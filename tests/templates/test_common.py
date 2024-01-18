@@ -1,5 +1,5 @@
 """Provided unit tests common across all templates."""
-import pytest_mock
+
 
 # Local
 import abis_mapping
@@ -12,6 +12,7 @@ import unittest.mock
 
 # Third-party
 import pytest
+import pytest_mock
 import frictionless
 
 # Typing
