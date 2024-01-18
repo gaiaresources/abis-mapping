@@ -68,7 +68,7 @@ TEST_CASES: list[TemplateTestParameters] = [
             ),
             MappingParameters(
                 scenario_name="organism_qty",
-                should_validate=False,
+                should_validate=True,
                 data=pathlib.Path(
                     "abis_mapping/templates/survey_occurrence_data/examples/organism_qty.csv",
                 ),

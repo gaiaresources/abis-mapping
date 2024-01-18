@@ -19,11 +19,13 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
         mocker (pytest_mock.MockerFixture): The mocker fixture.
     """
     # Construct a dummy raw data set using only the fields that matter to the method.
-    rawh = ["siteID", "footprintWKT", "decimalLongitude", "decimalLatitude"]
-    raws = [["site1", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", ""],
-            ["site2", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "10.0", "20.0"],
-            ["site3", "", "10.0", "20.0"],
-            ["site4", "", "", ""]]
+    rawh = ["siteID", "footprintWKT", "decimalLongitude", "decimalLatitude", "geodeticDatum"]
+    raws = [["site1", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", "WGS84"],
+            ["site2", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "10.0", "20.0", "WGS84"],
+            ["site3", "", "10.0", "20.0", "WGS84"],
+            ["site4", "", "", "", ""],
+            ["site5", "", "10.0", "20.0", ""],
+            ["site6", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", ""]]
     # Amalgamate into a list of dicts
     all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in raws]
 
@@ -36,6 +38,7 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
         {"name": "footprintWKT", "type": "wkt"},
         {"name": "decimalLongitude", "type": "number"},
         {"name": "decimalLatitude", "type": "number"},
+        {"name": "geodeticDatum", "type": "string"},
     ]}
     mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
@@ -50,9 +53,9 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
         csv_data = output.getvalue().encode("utf-8")
 
     expected = {
-        "site1": "POINT (2.5 2.5)",
-        "site2": "POINT (2.5 2.5)",
-        "site3": "POINT (10 20)",
+        "site1": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (2.5 2.5)",
+        "site2": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (2.5 2.5)",
+        "site3": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (10 20)",
     }
     # Invoke method
     actual = mapper.extract_geometry_defaults(csv_data)

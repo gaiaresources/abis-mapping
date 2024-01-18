@@ -73,6 +73,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         Args:
             data (base.types.ReadableType): Raw data to be validated.
+            **kwargs (Any): Additional keyword arguments.
 
         Returns:
             frictionless.Report: Validation report for the specified data.

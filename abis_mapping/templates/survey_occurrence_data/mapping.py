@@ -73,6 +73,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         Args:
             data (base.types.ReadableType): Raw data to be validated.
+            **kwargs (Any): Additional keyword arguments.
 
         Keyword Args:
             site_id_geometry_map (dict[str, str]): Default values to use for geometry
@@ -107,7 +108,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if site_id_geometry_map is not None:
             # We need to make sure that required is false from the lat long fields
             # since this would override the default lookup checks
-            for field_name in ["decimalLatitude", "decimalLongitude"]:
+            for field_name in ["decimalLatitude", "decimalLongitude", "geodeticDatum"]:
                 schema.get_field(field_name).constraints["required"] = False
 
             # Perform a default lookup check based on passed in map.
@@ -121,7 +122,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Mutual inclusion check to close out the possibility of one missing.
             checklist.add_check(
                 plugins.mutual_inclusion.MutuallyInclusive(
-                    field_names=["decimalLatitude", "decimalLongitude"]
+                    field_names=["decimalLatitude", "decimalLongitude", "geodeticDatum"]
                 )
             )
 
@@ -157,6 +158,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         Keyword Args:
             chunk_size (Optional[int]): How many rows of the original data to
                 ingest before yielding a graph. `None` will ingest all rows.
+            site_id_geometry_map (dict[str, str]): Default values of geometry wkt
+                to use for a given site id.
 
         Yields:
             rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
@@ -165,6 +168,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         chunk_size = kwargs.get("chunk_size")
         if not isinstance(chunk_size, int):
             chunk_size = None
+
+        site_id_geometry_map = kwargs.get("site_id_geometry_map")
 
         # Construct Schema
         schema = self.extra_fields_schema(
@@ -218,6 +223,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                     terminal_foi=terminal_foi,
                     graph=graph,
                     base_iri=base_iri,
+                    site_id_geometry_map=site_id_geometry_map,
                 )
 
                 # Check Whether to Yield a Chunk
@@ -241,6 +247,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         terminal_foi: rdflib.URIRef,
         graph: rdflib.Graph,
         base_iri: Optional[rdflib.Namespace] = None,
+        site_id_geometry_map: dict[str, str] | None = None,
     ) -> rdflib.Graph:
         """Applies Mapping for a Row in the `survey_occurrence_data.csv` Template
 
@@ -251,6 +258,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to map row into.
             base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
                 to use for mapping.
+            site_id_geometry_map (dict[str, str] | None): Optional site id to geometry
+                default map.
 
         Returns:
             rdflib.Graph: Graph with row mapped into it.
@@ -354,6 +363,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             habitat=habitat_attribute,
             basis=basis_attribute,
             site=site,
+            site_id_geometry_map=site_id_geometry_map,
             graph=graph,
         )
 
@@ -378,6 +388,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sample_specimen=sample_specimen,
             generalizations=data_generalizations_attribute,
             basis=basis_attribute,
+            site_id_geometry_map=site_id_geometry_map,
             graph=graph,
         )
 
@@ -723,6 +734,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             feature_of_interest=sample_specimen,
             sample_sequence=sample_sequence,
+            site_id_geometry_map=site_id_geometry_map,
             graph=graph,
         )
 
@@ -1070,6 +1082,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         habitat: rdflib.URIRef,
         basis: rdflib.URIRef,
         site: rdflib.URIRef | None,
+        site_id_geometry_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Field to the Graph
@@ -1088,33 +1101,37 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             habitat (rdflib.URIRef): Habitat associated with this node
             basis (rdflib.URIRef): Basis Of Record associated with this node
             site (rdflib.URIRef | None): Site if one was provided else None.
+            site_id_geometry_map (dict[str, str] | None): Default geometry value to use
+                if none available for given site id.
             graph (rdflib.Graph): Graph to add to
         """
-        # Extract values from row
-        decimal_latitude = row["decimalLatitude"]
-        decimal_longitude = row["decimalLongitude"]
-        geodetic_datum = row["geodeticDatum"]
-        sampling_protocol = row["samplingProtocol"]
+        # Extract values
+        latitude = row["decimalLatitude"]
+        longitude = row["decimalLongitude"]
+        site_id = row["siteID"]
         event_date: utils.types.Timestamp = row["eventDate"]
-        record_id = row["recordID"]
-        recorded_by = row["recordedBy"]
-        locality = row["locality"]
-        coordinate_uncertainty_in_meters = row["coordinateUncertaintyInMeters"]
-        data_generalizations = row["dataGeneralizations"]
-        row_habitat = row["habitat"]
-        basis_of_record = row["basisOfRecord"]
 
-        # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.to_wkt_point_literal(
-            latitude=decimal_latitude,
-            longitude=decimal_longitude,
-            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(geodetic_datum),
-        )
+        if latitude is not None and longitude is not None:
+            # Create WKT from Latitude and Longitude
+            wkt = utils.rdf.to_wkt_point_literal(
+                latitude=row["decimalLatitude"],
+                longitude=row["decimalLongitude"],
+                datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
+            )
+        elif site_id_geometry_map is not None:
+            # Get WKT from default map
+            wkt = rdflib.Literal(
+                lexical_or_value=site_id_geometry_map.get(site_id),
+                datatype=utils.namespaces.GEO.wktLiteral,
+            )
+        else:
+            # Should not reach this as data is already validated included for completeness
+            return
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.SAMPLING_PROTOCOL.get(
             graph=graph,
-            value=sampling_protocol,
+            value=row["samplingProtocol"],
             source=dataset,
         )
 
@@ -1137,47 +1154,47 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
 
         # Check for recordID
-        if record_id:
+        if row["recordID"]:
             # Add Identifier
-            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(record_id)))
+            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(row["recordID"])))
 
             # Add Identifier Provenance
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
             graph.add((provenance, rdflib.RDF.subject, uri))
             graph.add((provenance, rdflib.RDF.predicate, rdflib.DCTERMS.identifier))
-            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(record_id)))
+            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["recordID"])))
             graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordID source")))
             graph.add((provenance, rdflib.DCTERMS.source, rdflib.Literal(dataset, datatype=rdflib.XSD.anyURI)))
 
         # Check for recordedBy
-        if recorded_by:
+        if row["recordedBy"]:
             # Add Associated Provider
             graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
 
         # Check for locality
-        if locality:
+        if row["locality"]:
             # Add Location Description
-            graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(locality)))
+            graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(row["locality"])))
 
         # Check for coordinateUncertaintyInMeters
-        if coordinate_uncertainty_in_meters:
+        if row["coordinateUncertaintyInMeters"]:
             # Add Spatial Accuracy
-            accuracy = rdflib.Literal(coordinate_uncertainty_in_meters, datatype=rdflib.XSD.double)
+            accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
             graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
 
         # Check for dataGeneralizations
-        if data_generalizations:
+        if row["dataGeneralizations"]:
             # Add Data Generalizations Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, generalizations))
 
         # Check for habitat
-        if row_habitat:
+        if row["habitat"]:
             # Add Habitat Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, habitat))
 
         # Check for basisOfRecord and if Row has no Specimen
-        if not has_specimen(row) and basis_of_record:
+        if not has_specimen(row) and row["basisOfRecord"]:
             # Add Basis Of Record Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
 
@@ -1326,6 +1343,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         sample_specimen: rdflib.URIRef,
         generalizations: rdflib.URIRef,
         basis: rdflib.URIRef,
+        site_id_geometry_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Specimen to the Graph
@@ -1341,18 +1359,36 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             generalizations (rdflib.URIRef): Data Generalizations associated
                 with this node
             basis (rdflib.URIRef): Basis Of Record associated with this node
+            site_id_geometry_map (dict[str, str] | None): Map with default wkt
+                string for a given site id.
             graph (rdflib.Graph): Graph to add to
         """
         # Check if Row has a Specimen
         if not has_specimen(row):
             return
 
-        # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.to_wkt_point_literal(
-            latitude=row["decimalLatitude"],
-            longitude=row["decimalLongitude"],
-            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
-        )
+        # Extract values
+        latitude = row["decimalLatitude"]
+        longitude = row["decimalLongitude"]
+        site_id = row["siteID"]
+
+        if latitude is not None and longitude is not None:
+            # Create WKT from Latitude and Longitude
+            wkt = utils.rdf.to_wkt_point_literal(
+                latitude=latitude,
+                longitude=longitude,
+                datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
+            )
+        elif site_id_geometry_map is not None:
+            # Create wkt literal from supplied default string
+            wkt = rdflib.Literal(
+                lexical_or_value=site_id_geometry_map.get(site_id),
+                datatype=utils.namespaces.GEO.wktLiteral,
+            )
+        else:
+            # Should not reach here since validated data provided, however if
+            # it does come to it the corresponding node will be omitted
+            return
 
         # Get Timestamp
         timestamp: utils.types.Timestamp = row["preparedDate"] or row["eventDate"]
@@ -2822,6 +2858,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
         sample_sequence: rdflib.URIRef,
+        site_id_geometry_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Sequencing to the Graph
@@ -2834,21 +2871,37 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 with this node
             sample_sequence (rdflib.URIRef): Sample Sequence associated with
                 this node
+            site_id_geometry_map (dict[str, str] | None): Map of default geometry
+                string values for a given site id.
             graph (rdflib.Graph): Graph to add to
         """
-        # Extract values from row
-        event_date: utils.types.Timestamp = row["eventDate"]
-
         # Check Existence
         if not row["associatedSequences"]:
             return
 
-        # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.to_wkt_point_literal(
-            latitude=row["decimalLatitude"],
-            longitude=row["decimalLongitude"],
-            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
-        )
+        # Extract values
+        latitude = row["decimalLatitude"]
+        longitude = row["decimalLongitude"]
+        site_id = row["siteID"]
+        event_date: utils.types.Timestamp = row["eventDate"]
+
+        if latitude is not None and longitude is not None:
+            # Create WKT from Latitude and Longitude
+            wkt = utils.rdf.to_wkt_point_literal(
+                latitude=latitude,
+                longitude=longitude,
+                datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
+            )
+        elif site_id_geometry_map is not None:
+            # Get wkt from default value map for given site id.
+            wkt = rdflib.Literal(
+                lexical_or_value=site_id_geometry_map.get(site_id),
+                datatype=utils.namespaces.GEO.wktLiteral,
+            )
+        else:
+            # Should not be able to reach here if validated data provided,
+            # but if it does then node will be ommitted from graph.
+            return
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sequencing_method.SEQUENCING_METHOD.get(
