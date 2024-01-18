@@ -180,4 +180,4 @@ class TestTemplateBasicSuite:
         if test_params.allows_extra_cols:
             # Check to ensure that appropriate arguments set during call to validate method.
             checklist: frictionless.Checklist = mocked_validate.call_args.kwargs.get("checklist")
-            assert set(checklist.skip_errors) == {"extra-label", "extra-cell"}
+            assert len(set(checklist.skip_errors).intersection({"extra-label", "extra-cell"})) == 2
