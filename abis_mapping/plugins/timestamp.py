@@ -49,10 +49,6 @@ class TimestampField(frictionless.Field):
         "enum"
     ]
 
-    # Flags to allow for year and yearMonth types
-    allow_year: bool = False
-    allow_year_month: bool = False
-
     def create_value_reader(self) -> frictionless.schema.types.IValueReader:
         """Creates value reader callable."""
 
@@ -63,7 +59,7 @@ class TimestampField(frictionless.Field):
                 cell (Any): Cell to convert
 
             Returns:
-                Optional[types.DateOrDatetime]: Converted cell, or none if invalid.
+                Optional[types.Timestamp]: Converted cell, or none if invalid.
             """
             # Check cell not already timestamp value
             if isinstance(cell, types.Timestamp):
@@ -77,14 +73,8 @@ class TimestampField(frictionless.Field):
             # Catch Parsing Errors
             try:
                 # Parse and return
-                result = types.parse_timestamp(cell)
-                # If Year returned and not allowed, then it's invalid
-                if isinstance(result, types.Year) and not self.allow_year:
-                    return None
-                # If YearMonth returned and not allowed, then it's invalid
-                if isinstance(result, types.YearMonth) and not self.allow_year_month:
-                    return None
-                return result
+                return types.parse_timestamp(cell)
+
             except ValueError:
                 # Invalid
                 return None
@@ -107,14 +97,6 @@ class TimestampField(frictionless.Field):
 
         # Return value writer callable
         return value_writer
-
-    # Add the extra params to the metadata profile
-    metadata_profile_patch = {
-        "properties": {
-            "allowYear": {"type": "boolean"},
-            "allowYearMonth": {"type": "boolean"}
-        }
-    }
 
 
 # Register Timestamp Plugin

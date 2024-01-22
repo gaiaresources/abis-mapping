@@ -40,8 +40,6 @@
       "example": "21/09/2020",
       "type": "timestamp",
       "format": "default",
-      "allowYear": true,
-      "allowYearMonth": true,
       "constraints": {
         "required": true
       }
@@ -53,8 +51,6 @@
       "example": "23/09/2020",
       "type": "timestamp",
       "format": "default",
-      "allowYear": true,
-      "allowYearMonth": true,
       "constraints": {
         "required": false
       }
