@@ -9,6 +9,10 @@ from abis_mapping import utils
 
 
 # Terms
+AGD66 = utils.vocabs.Term(
+        labels=("AGD66", "EPSG:4202"),
+        iri=rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4202"),
+    )
 AGD84 = utils.vocabs.Term(
     labels=("AGD84", "EPSG:4203"),
     iri=rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4203"),
@@ -25,8 +29,7 @@ WGS84 = utils.vocabs.Term(
     labels=("WGS84", "EPSG:4326"),
     iri=rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
 )
-
 # Vocabulary
 GEODETIC_DATUM = utils.vocabs.RestrictedVocabulary(
-    terms=(AGD84, GDA2020, GDA94, WGS84),
+    terms=(AGD66, AGD84, GDA2020, GDA94, WGS84),
 )
