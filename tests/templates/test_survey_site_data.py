@@ -25,7 +25,10 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
             ["site3", "", "10.0", "20.0", "WGS84"],
             ["site4", "", "", "", ""],
             ["site5", "", "10.0", "20.0", ""],
-            ["site6", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", ""]]
+            ["site6", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", ""],
+            ["site7", "", "10.0", "20.0", "AGD66"],
+            ["site8", "", "11.0", "21.0", "EPSG:4202"],
+            ]
     # Amalgamate into a list of dicts
     all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in raws]
 
@@ -56,6 +59,8 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
         "site1": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (2.5 2.5)",
         "site2": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (2.5 2.5)",
         "site3": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (10 20)",
+        "site7": "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (10 20)",
+        "site8": "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (11 21)",
     }
     # Invoke method
     actual = mapper.extract_geometry_defaults(csv_data)
