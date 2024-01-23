@@ -204,7 +204,7 @@ class TestDefaultMap:
         """Tests apply_mapping method with default geometry map."""
         # Build a dataframe from an existing csv
         df = pd.read_csv(
-            "abis_mapping/templates/survey_occurrence_data/examples/organism_qty.csv"
+            "abis_mapping/templates/current/survey_occurrence_data/examples/organism_qty.csv"
         )
 
         # Modify and preserve first entry
@@ -227,7 +227,9 @@ class TestDefaultMap:
         mapper = base.mapper.get_mapper("survey_occurrence_data.csv")
         assert mapper is not None
 
-        expected = pathlib.Path("abis_mapping/templates/survey_occurrence_data/examples/organism_qty.ttl").read_text()
+        expected = pathlib.Path(
+            "abis_mapping/templates/current/survey_occurrence_data/examples/organism_qty.ttl"
+        ).read_text()
 
         # Resulting graph doesn't match expected when no lat/long provided
         graphs = list(mapper().apply_mapping(csv_data))

@@ -53,16 +53,16 @@ TEST_CASES: list[TemplateTestParameters] = [
     TemplateTestParameters(
         template_id="survey_occurrence_data.csv",
         empty_template=pathlib.Path(
-            "abis_mapping/templates/survey_occurrence_data/survey_occurrence_data.csv"
+            "abis_mapping/templates/current/survey_occurrence_data/survey_occurrence_data.csv"
         ),
         mapping_cases=[
             MappingParameters(
                 data=pathlib.Path(
-                    ("abis_mapping/templates/survey_occurrence_data/examples"
+                    ("abis_mapping/templates/current/survey_occurrence_data/examples"
                      "/margaret_river_flora/margaret_river_flora.csv")
                 ),
                 expected=pathlib.Path(
-                    ("abis_mapping/templates/survey_occurrence_data/examples"
+                    ("abis_mapping/templates/current/survey_occurrence_data/examples"
                      "/margaret_river_flora/margaret_river_flora.ttl")
                 ),
             ),
@@ -70,10 +70,10 @@ TEST_CASES: list[TemplateTestParameters] = [
                 scenario_name="organism_qty",
                 should_validate=True,
                 data=pathlib.Path(
-                    "abis_mapping/templates/survey_occurrence_data/examples/organism_qty.csv",
+                    "abis_mapping/templates/current/survey_occurrence_data/examples/organism_qty.csv",
                 ),
                 expected=pathlib.Path(
-                    "abis_mapping/templates/survey_occurrence_data/examples/organism_qty.ttl",
+                    "abis_mapping/templates/current/survey_occurrence_data/examples/organism_qty.ttl",
                 )
             ),
         ],
@@ -83,15 +83,15 @@ TEST_CASES: list[TemplateTestParameters] = [
     TemplateTestParameters(
         template_id="survey_site_data.csv",
         empty_template=pathlib.Path(
-            "abis_mapping/templates/survey_site_data/survey_site_data.csv",
+            "abis_mapping/templates/current/survey_site_data/survey_site_data.csv",
         ),
         mapping_cases=[
             MappingParameters(
                 data=pathlib.Path(
-                    "abis_mapping/templates/survey_site_data/examples/minimal.csv"
+                    "abis_mapping/templates/current/survey_site_data/examples/minimal.csv"
                 ),
                 expected=pathlib.Path(
-                    "abis_mapping/templates/survey_site_data/examples/minimal.ttl"
+                    "abis_mapping/templates/current/survey_site_data/examples/minimal.ttl"
                 ),
             ),
         ],
@@ -101,33 +101,33 @@ TEST_CASES: list[TemplateTestParameters] = [
     TemplateTestParameters(
         template_id="survey_metadata.csv",
         empty_template=pathlib.Path(
-            "abis_mapping/templates/survey_metadata/survey_metadata.csv"
+            "abis_mapping/templates/current/survey_metadata/survey_metadata.csv"
         ),
         mapping_cases=[
             MappingParameters(
                 data=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/minimal.csv"
+                    "abis_mapping/templates/current/survey_metadata/examples/minimal.csv"
                 ),
                 expected=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/minimal.ttl"
+                    "abis_mapping/templates/current/survey_metadata/examples/minimal.ttl"
                 ),
             ),
             MappingParameters(
                 scenario_name="yearmonth",
                 data=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/yearmonth.csv"
+                    "abis_mapping/templates/current/survey_metadata/examples/yearmonth.csv"
                 ),
                 expected=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/yearmonth.ttl"
+                    "abis_mapping/templates/current/survey_metadata/examples/yearmonth.ttl"
                 ),
             ),
             MappingParameters(
                 scenario_name="year",
                 data=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/year.csv"
+                    "abis_mapping/templates/current/survey_metadata/examples/year.csv"
                 ),
                 expected=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/year.ttl"
+                    "abis_mapping/templates/current/survey_metadata/examples/year.ttl"
                 ),
             ),
             MappingParameters(
@@ -135,7 +135,7 @@ TEST_CASES: list[TemplateTestParameters] = [
                 should_validate=False,
                 expected_error_codes={'row-constraint'},
                 data=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/minimal_error_chronological_order.csv"
+                    "abis_mapping/templates/current/survey_metadata/examples/minimal_error_chronological_order.csv"
                 ),
                 expected=None,
             )
@@ -146,16 +146,16 @@ TEST_CASES: list[TemplateTestParameters] = [
     TemplateTestParameters(
         template_id="incidental_occurrence_data.csv",
         empty_template=pathlib.Path(
-            "abis_mapping/templates/incidental_occurrence_data/incidental_occurrence_data.csv"
+            "abis_mapping/templates/current/incidental_occurrence_data/incidental_occurrence_data.csv"
         ),
         mapping_cases=[
             MappingParameters(
                 data=pathlib.Path(
-                    ("abis_mapping/templates/incidental_occurrence_data/examples/"
+                    ("abis_mapping/templates/current/incidental_occurrence_data/examples/"
                      "margaret_river_flora/margaret_river_flora.csv")
                 ),
                 expected=pathlib.Path(
-                    ("abis_mapping/templates/incidental_occurrence_data/examples/"
+                    ("abis_mapping/templates/current/incidental_occurrence_data/examples/"
                      "margaret_river_flora/margaret_river_flora.ttl")
                 ),
             ),
