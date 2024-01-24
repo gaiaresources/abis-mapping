@@ -6,7 +6,7 @@ import io
 
 # Local
 from abis_mapping import base
-import abis_mapping.templates.current.survey_site_data.mapping
+import abis_mapping.templates.survey_site_data.mapping
 
 # Third-party
 import pytest_mock
@@ -33,7 +33,7 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
     all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in raws]
 
     # Get the specific mapper
-    mapper = abis_mapping.templates.current.survey_site_data.mapping.SurveySiteMapper()
+    mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
 
     # Modify schema to only include the necessary fields for test
     descriptor = {"fields": [
