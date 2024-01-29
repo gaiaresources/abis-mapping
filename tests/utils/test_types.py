@@ -58,7 +58,6 @@ def test_timestamp_parse_valid(raw: str, expected: str) -> None:
     ],
     [
         ("hello world", ),
-        ("2022-04-26T22:00:00", ),
         ("26/04/2022 22:00:00Z", ),
         ("22", ),
         ("2022-4", ),

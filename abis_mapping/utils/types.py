@@ -390,11 +390,10 @@ def parse_timestamp(raw: str) -> Timestamp:
         assert isinstance(d, Date)
         return d
 
-    # (3) Try Parse as ISO Datetime with Timezone
+    # (3) Try Parse as ISO Datetime
     with contextlib.suppress(Exception):
         assert len(raw) > 10  # Shortcut to disable some formats we don't want
         timestamp = dateutil.parser.isoparse(raw)
-        assert timestamp.tzinfo is not None
         return Datetime.fromtimestamp(timestamp.timestamp(), tz=timestamp.tzinfo)
 
     # Could not parse the string to a Timestamp type

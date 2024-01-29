@@ -51,7 +51,6 @@ def test_timestamp_type() -> None:
     # Read Invalid Cells
     assert field.read_cell(123)[0] is None
     assert field.read_cell("hello world")[0] is None
-    assert field.read_cell("2022-04-26T22:00:00")[0] is None  # No Timezone
     assert field.read_cell("2022-4-26")[0] is None
     assert field.read_cell("26/04/22")[0] is None
     assert field.read_cell("26/04/10101")[0] is None
@@ -63,6 +62,7 @@ def test_timestamp_type() -> None:
     assert field.read_cell("26/04/2022")[0]  # Date
     assert field.read_cell("26/04/0022")[0]  # Date
     assert field.read_cell("2022-04-26")[0]  # Date
+    assert field.read_cell("2022-04-26T22:00:00")[0]  # No Timezone
     assert field.read_cell("2022-04-26T22:00:00Z")[0]  # Date Time with Timezone
     assert field.read_cell("2022-04-26T22:00:00+08:00")[0]  # Date Time with Timezone
     assert field.read_cell("2022-04-26T22:00+08:00")[0]  # Date Time with Timezone
