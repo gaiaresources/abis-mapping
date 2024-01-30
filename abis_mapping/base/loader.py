@@ -4,6 +4,7 @@
 # Standard
 import importlib
 import pathlib
+import abis_mapping.templates_deprecated.incidental_occurrence_data_deprecated.mapping
 
 
 # Constants

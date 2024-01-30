@@ -7,6 +7,7 @@ import functools
 import inspect
 import json
 import pathlib
+import datetime
 
 # Third-Party
 import frictionless
@@ -31,6 +32,7 @@ class ABISMapper(abc.ABC):
     registry: dict[str, type["ABISMapper"]] = {}
 
     # ABIS Mapper Template ID and Instructions File
+    template_id: str = NotImplemented  # Must be implemented
     instructions_file: str = NotImplemented  # Must be implemented
 
     # List of frictionless errors to be skipped by default
@@ -44,13 +46,11 @@ class ABISMapper(abc.ABC):
     def apply_validation(
         self,
         data: types.ReadableType,
-        **kwargs: Any,
     ) -> frictionless.Report:
         """Applies Frictionless Validation to Raw Data to Generate Report.
 
         Args:
             data (ReadableType): Readable raw data.
-            **kwargs (Any): Additional keyword arguments.
 
         Returns:
             frictionless.Report: Validation report for the data.
@@ -91,7 +91,7 @@ class ABISMapper(abc.ABC):
         graph.add((uri, a, utils.namespaces.TERN.RDFDataset))
         graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(self.DATASET_DEFAULT_NAME)))
         graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(self.DATASET_DEFAULT_DESCRIPTION)))
-        graph.add((uri, rdflib.DCTERMS.issued, utils.types.Date.today().to_rdf_literal()))
+        graph.add((uri, rdflib.DCTERMS.issued, utils.rdf.to_timestamp(datetime.date.today())))
 
     @classmethod
     def add_extra_fields_json(
@@ -235,24 +235,6 @@ class ABISMapper(abc.ABC):
 
         # Read Metadata and Return
         return json.loads(metadata_file.read_text())  # type: ignore[no-any-return]
-
-    @property
-    def template_id(self) -> str:
-        """Getter for the default template_id.
-
-        Returns:
-            str: Template ID derived from metadata.
-        """
-        # Get metadata
-        metadata = self.metadata()
-        metadata_id = metadata["id"]
-
-        # Construct and return id
-        if metadata_id.endswith(".csv"):
-            (start, _, end) = metadata_id.rpartition(".")
-            return f"{start}-{metadata['version']}.{end}"
-
-        return f"{metadata_id}-{metadata['version']}"
 
     @final
     @classmethod
