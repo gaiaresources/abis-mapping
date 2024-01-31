@@ -880,6 +880,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
@@ -896,7 +897,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             temporal_qualifier = rdflib.BNode()
             graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
             graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Check for identificationQualifier
@@ -968,6 +969,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
@@ -984,7 +986,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             temporal_qualifier = rdflib.BNode()
             graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
             graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_sampling_field(
@@ -1046,6 +1048,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
@@ -1279,6 +1282,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, timestamp.rdf_in_xsd, timestamp.to_rdf_literal()))
         geometry = rdflib.BNode()
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
@@ -1300,7 +1304,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             temporal_qualifier = rdflib.BNode()
             graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
             graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Check for coordinateUncertaintyInMeters
@@ -1811,6 +1815,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
@@ -1818,7 +1823,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -1894,6 +1899,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
@@ -1901,7 +1907,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2134,6 +2140,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Method Qualifier
@@ -2279,6 +2286,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
@@ -2286,7 +2294,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2379,6 +2387,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
@@ -2386,7 +2395,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2478,6 +2487,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
@@ -2485,7 +2495,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2578,6 +2588,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
@@ -2585,7 +2596,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2667,6 +2678,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_NAME_CHECK_METHOD))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
 
         # Add Temporal Qualifier
@@ -2675,7 +2687,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
     def add_accepted_name_usage_value(
@@ -2760,6 +2772,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
@@ -2774,7 +2787,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Spatial Qualifier
@@ -2912,6 +2925,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_determined.rdf_in_xsd, date_determined.to_rdf_literal()))
 
         # Check for threatStatusDeterminedBy
@@ -2935,7 +2949,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             temporal_qualifier = rdflib.BNode()
             graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
             graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_threat_status_value(
