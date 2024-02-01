@@ -933,7 +933,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Get Timestamps
-        event_date: utils.types.Timestamp = row["eventDate"]
         date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Choose Feature of Interest
@@ -956,11 +955,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, scientific_name))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["scientificName"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, date_identified.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for identifiedBy
@@ -976,7 +974,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             temporal_qualifier = rdflib.BNode()
             graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
             graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Check for identificationQualifier
@@ -1023,8 +1021,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if not row["verbatimIdentification"]:
             return
 
-        # Get Timestamps
-        event_date: utils.types.Timestamp = row["eventDate"]
+        # Get Timestamp
         date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Choose Feature of Interest
@@ -1047,11 +1044,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, verbatim_id))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["verbatimIdentification"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, date_identified.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for identifiedBy
@@ -1067,7 +1063,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             temporal_qualifier = rdflib.BNode()
             graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
             graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_sampling_field(
@@ -1144,7 +1140,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((geometry, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Add site if one provided
@@ -1400,7 +1399,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, timestamp.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, timestamp.rdf_in_xsd, timestamp.to_rdf_literal()))
         geometry = rdflib.BNode()
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
         graph.add((geometry, a, utils.namespaces.GEO.Geometry))
@@ -1421,7 +1423,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             temporal_qualifier = rdflib.BNode()
             graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
             graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Check for coordinateUncertaintyInMeters
@@ -1936,19 +1938,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, individual_count_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["individualCount"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_INDIVIDUAL_COUNT))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2021,19 +2022,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, organism_remarks_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["organismRemarks"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ORGANISM_REMARKS))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2263,12 +2263,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, occurrence_status_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["occurrenceStatus"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_OCCURRENCE_STATUS))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Method Qualifier
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -2410,19 +2409,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, establishment_means_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["establishmentMeans"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ESTABLISHMENT_MEANS))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2512,19 +2510,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, life_stage_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["lifeStage"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_LIFE_STAGE))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2613,19 +2610,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, sex_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["sex"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SEX))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2715,19 +2711,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, reproductive_condition_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["reproductiveCondition"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_REPRODUCTIVE_CONDITION))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Temporal Qualifier
         temporal_comment = "Date unknown, template eventDate used as proxy"
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier
@@ -2795,8 +2790,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if not row["acceptedNameUsage"]:
             return
 
-        # Get Timestamps
-        event_date: utils.types.Timestamp = row["eventDate"]
+        # Get Timestamp
         date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Accepted Name Usage Observation
@@ -2807,12 +2801,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, accepted_name_usage_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["acceptedNameUsage"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_NAME_CHECK_METHOD))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, date_identified.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
 
         # Add Temporal Qualifier
         timestamp_used = "dateIdentified" if row["dateIdentified"] else "eventDate"  # Determine which field was used
@@ -2820,7 +2813,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
     def add_accepted_name_usage_value(
@@ -2920,7 +2913,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, event_date.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
         # Check for coordinateUncertaintyInMeters
@@ -2934,7 +2930,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         temporal_qualifier = rdflib.BNode()
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
         graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Spatial Qualifier
@@ -3044,9 +3040,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # otherwise it is the Scientific Name Text
         foi = accepted_name_usage if row["acceptedNameUsage"] else scientific_name
 
-        # Get Timestamps
+        # Get Timestamp
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDate` (fallback)
-        event_date: utils.types.Timestamp = row["eventDate"]
         date_determined: utils.types.Timestamp = (
             row["threatStatusDateDetermined"]
             or row["dateIdentified"]
@@ -3070,12 +3065,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["threatStatus"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
         graph.add((uri, rdflib.PROV.wasInfluencedBy, jurisdiction_attribute))
-        phenomenon_time = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, phenomenon_time))
-        graph.add((phenomenon_time, a, rdflib.TIME.Instant))
-        graph.add((phenomenon_time, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, date_determined.to_rdf_literal()))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, date_determined.rdf_in_xsd, date_determined.to_rdf_literal()))
 
         # Check for threatStatusDeterminedBy
         if row["threatStatusDeterminedBy"]:
@@ -3098,7 +3092,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             temporal_qualifier = rdflib.BNode()
             graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
             graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_threat_status_value(
@@ -3230,15 +3224,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, utils.namespaces.DWC.organismQuantity))
 
         # Add event date(time)
-        time_node = rdflib.BNode()
-        graph.add((uri, rdflib.SOSA.phenomenonTime, time_node))
-        graph.add((time_node, a, rdflib.TIME.Instant))
-        timestamp_literal = event_date.to_rdf_literal()
-        if timestamp_literal.datatype == rdflib.XSD.date:
-            graph.add((time_node, rdflib.TIME.inXSDDate, timestamp_literal))
-        elif timestamp_literal.datatype == rdflib.XSD.dateTime:
-            graph.add((time_node, rdflib.TIME.inXSDDateTime, timestamp_literal))
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, timestamp_literal))
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add Human observation as proxy for observation method
         human_observation = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157")
@@ -3258,7 +3247,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         date_node = rdflib.BNode()
         graph.add((date_node, a, rdflib.RDF.Statement))
-        graph.add((date_node, rdflib.RDF.value, utils.namespaces.TERN.resultDateTime))
+        graph.add((date_node, rdflib.RDF.value, rdflib.TIME.hasTime))
         graph.add((date_node, rdflib.RDFS.comment, rdflib.Literal("Date unknown, template eventDate used as proxy")))
         graph.add((uri, utils.namespaces.TERN.qualifiedValue, date_node))
 

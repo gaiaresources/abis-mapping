@@ -1,7 +1,6 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix schema: <https://schema.org/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix void: <http://rdfs.org/ns/void#> .
@@ -24,11 +23,13 @@
 <http://createme.org/visit/site/1> a tern:SiteVisit ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     time:hasTime [ a time:TemporalEntity ;
-            time:hasBeginning "2016-02-28"^^xsd:date ;
-            time:hasEnd "2016-02-28"^^xsd:date ] .
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2016-02-28"^^xsd:date ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDDate "2016-02-28"^^xsd:date ] ] .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> a tern:RDFDataset ;
     dcterms:description "Example Systematic Survey Site Dataset by Gaia Resources" ;
-    dcterms:issued "2023-11-20"^^xsd:date ;
+    dcterms:issued "2024-01-31"^^xsd:date ;
     dcterms:title "Example Systematic Survey Site Dataset" .
 

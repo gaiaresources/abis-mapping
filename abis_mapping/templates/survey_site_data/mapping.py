@@ -387,9 +387,15 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.TemporalEntity))
 
         # Add dates
-        graph.add((temporal_entity, rdflib.TIME.hasBeginning, site_visit_start.to_rdf_literal()))
+        begin = rdflib.BNode()
+        graph.add((temporal_entity, rdflib.TIME.hasBeginning, begin))
+        graph.add((begin, a, rdflib.TIME.Instant))
+        graph.add((begin, site_visit_start.rdf_in_xsd, site_visit_start.to_rdf_literal()))
         if site_visit_end:
-            graph.add((temporal_entity, rdflib.TIME.hasEnd, site_visit_end.to_rdf_literal()))
+            end = rdflib.BNode()
+            graph.add((temporal_entity, rdflib.TIME.hasEnd, end))
+            graph.add((end, a, rdflib.TIME.Instant))
+            graph.add((end, site_visit_end.rdf_in_xsd, site_visit_end.to_rdf_literal()))
 
         # Attach to node
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))

@@ -15,735 +15,687 @@
 <http://createme.org/observation/acceptedNameUsage/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "acceptedNameUsage-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     sosa:hasFeatureOfInterest <http://createme.org/scientificName/15> ;
     sosa:hasResult <http://createme.org/value/acceptedNameUsage/15> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://example.com/methods/name-check-method> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] ;
-    tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] .
 
 <http://createme.org/observation/acceptedNameUsage/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "acceptedNameUsage-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     sosa:hasFeatureOfInterest <http://createme.org/scientificName/16> ;
     sosa:hasResult <http://createme.org/value/acceptedNameUsage/16> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://example.com/methods/name-check-method> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] ;
-    tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] .
 
 <http://createme.org/observation/establishmentMeans/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "establishmentMeans-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/establishmentMeans/15> ;
     sosa:hasSimpleResult "native" ;
     sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
             rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
         [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/establishmentMeans/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "establishmentMeans-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/establishmentMeans/16> ;
     sosa:hasSimpleResult "new establishment means" ;
     sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
             rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
         [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2019-09-25"^^xsd:date .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/individualCount/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "individualCount-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/individualCount/15> ;
     sosa:hasSimpleResult 2 ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
         [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
 
 <http://createme.org/observation/individualCount/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "individualCount-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/individualCount/16> ;
     sosa:hasSimpleResult 6 ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
             rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
         [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2019-09-25"^^xsd:date .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/lifeStage/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "lifeStage-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/value/lifeStage/15> ;
     sosa:hasSimpleResult "adult" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/lifeStage/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "lifeStage-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/value/lifeStage/16> ;
     sosa:hasSimpleResult "new life stage" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
-    tern:resultDateTime "2019-09-25"^^xsd:date .
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/occurrenceStatus/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "occurrenceStatus-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/occurrenceStatus/15> ;
     sosa:hasSimpleResult "present" ;
     sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
 
 <http://createme.org/observation/occurrenceStatus/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "occurrenceStatus-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/occurrenceStatus/16> ;
     sosa:hasSimpleResult "new occurrence status" ;
     sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
-    tern:resultDateTime "2019-09-25"^^xsd:date .
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
 
 <http://createme.org/observation/organismRemarks/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "organismRemarks-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/organismRemarks/15> ;
     sosa:hasSimpleResult "Dried out leaf tips" ;
     sosa:observedProperty <http://example.com/concept/organismRemarks> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/organismRemarks/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "organismRemarks-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/organismRemarks/16> ;
     sosa:hasSimpleResult "Leaves brown" ;
     sosa:observedProperty <http://example.com/concept/organismRemarks> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
             rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
         [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2019-09-25"^^xsd:date .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/reproductiveCondition/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "reproductiveCondition-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/value/reproductiveCondition/15> ;
     sosa:hasSimpleResult "No breeding evident" ;
     sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
         [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
 
 <http://createme.org/observation/reproductiveCondition/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "reproductiveCondition-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/value/reproductiveCondition/16> ;
     sosa:hasSimpleResult "new reproductiveCondition" ;
     sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
         [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2019-09-25"^^xsd:date .
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
 
 <http://createme.org/observation/scientificName/1> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
     sosa:hasResult <http://createme.org/scientificName/1> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/1> ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/1> .
 
 <http://createme.org/observation/scientificName/10> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/10> ;
     sosa:hasResult <http://createme.org/scientificName/10> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/10> ;
-    tern:resultDateTime "2019-09-23"^^xsd:date .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/10> .
 
 <http://createme.org/observation/scientificName/11> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/11> ;
     sosa:hasResult <http://createme.org/scientificName/11> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/11>,
         <http://createme.org/attribute/identificationRemarks/11>,
-        <http://createme.org/attribute/kingdom/11> ;
-    tern:resultDateTime "2019-09-23"^^xsd:date .
+        <http://createme.org/attribute/kingdom/11> .
 
 <http://createme.org/observation/scientificName/12> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/12> ;
     sosa:hasResult <http://createme.org/scientificName/12> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:hasAttribute <http://createme.org/attribute/kingdom/12> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/scientificName/13> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/13> ;
     sosa:hasResult <http://createme.org/scientificName/13> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:hasAttribute <http://createme.org/attribute/kingdom/13> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2020-09-23"^^xsd:date .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/scientificName/14> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/14> ;
     sosa:hasResult <http://createme.org/scientificName/14> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/14>,
         <http://createme.org/attribute/identificationRemarks/14>,
         <http://createme.org/attribute/kingdom/14> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2020-09-23"^^xsd:date .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/scientificName/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/scientificName/15> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/15>,
         <http://createme.org/attribute/identificationRemarks/15>,
         <http://createme.org/attribute/kingdom/15>,
-        <http://createme.org/attribute/taxonRank/15> ;
-    tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
+        <http://createme.org/attribute/taxonRank/15> .
 
 <http://createme.org/observation/scientificName/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/scientificName/16> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/identificationMethod/new-identification-method> ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/16>,
         <http://createme.org/attribute/identificationRemarks/16>,
         <http://createme.org/attribute/kingdom/16>,
-        <http://createme.org/attribute/taxonRank/16> ;
-    tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
+        <http://createme.org/attribute/taxonRank/16> .
 
 <http://createme.org/observation/scientificName/2> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/2> ;
     sosa:hasResult <http://createme.org/scientificName/2> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/2> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/2> .
 
 <http://createme.org/observation/scientificName/3> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/3> ;
     sosa:hasResult <http://createme.org/scientificName/3> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/3> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/3> .
 
 <http://createme.org/observation/scientificName/4> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/4> ;
     sosa:hasResult <http://createme.org/scientificName/4> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/4> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/4> .
 
 <http://createme.org/observation/scientificName/5> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/5> ;
     sosa:hasResult <http://createme.org/scientificName/5> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/5> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/5> .
 
 <http://createme.org/observation/scientificName/6> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/6> ;
     sosa:hasResult <http://createme.org/scientificName/6> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/6> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/6> .
 
 <http://createme.org/observation/scientificName/7> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/7> ;
     sosa:hasResult <http://createme.org/scientificName/7> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/7> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/7> .
 
 <http://createme.org/observation/scientificName/8> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/8> ;
     sosa:hasResult <http://createme.org/scientificName/8> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/8> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/8> .
 
 <http://createme.org/observation/scientificName/9> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/9> ;
     sosa:hasResult <http://createme.org/scientificName/9> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/9> ;
-    tern:resultDateTime "2019-09-23"^^xsd:date .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/9> .
 
 <http://createme.org/observation/sex/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "sex-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/value/sex/15> ;
     sosa:hasSimpleResult "male" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
             rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
         [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/sex/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "sex-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/value/sex/16> ;
     sosa:hasSimpleResult "new sex" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
+            rdf:value time:hasTime ;
             rdfs:comment "Date unknown, template eventDate used as proxy" ],
         [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] ;
-    tern:resultDateTime "2019-09-25"^^xsd:date .
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
 
 <http://createme.org/observation/threatStatus/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "threatStatus-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2022-09-12"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/WA-BIO> ;
     prov:wasInfluencedBy <http://createme.org/attribute/conservationJurisdiction/15> ;
     sosa:hasFeatureOfInterest <http://createme.org/value/acceptedNameUsage/15> ;
     sosa:hasResult <http://createme.org/value/threatStatus/15> ;
     sosa:hasSimpleResult "VU" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https//www-dpaw-wa-gov-au/plants-and-animals/threatened-species-and-communities/threatened-animals-Last-updated-13-June-2022> ;
-    tern:resultDateTime "2022-09-12"^^xsd:date .
+    sosa:usedProcedure <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https//www-dpaw-wa-gov-au/plants-and-animals/threatened-species-and-communities/threatened-animals-Last-updated-13-June-2022> .
 
 <http://createme.org/observation/threatStatus/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "threatStatus-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasInfluencedBy <http://createme.org/attribute/conservationJurisdiction/16> ;
     sosa:hasFeatureOfInterest <http://createme.org/value/acceptedNameUsage/16> ;
     sosa:hasResult <http://createme.org/value/threatStatus/16> ;
     sosa:hasSimpleResult "new threat status" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] ;
-    tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] .
 
 <http://createme.org/observation/verbatimID/1> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
     sosa:hasResult <http://createme.org/verbatimID/1> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/10> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/10> ;
     sosa:hasResult <http://createme.org/verbatimID/10> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-23"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/11> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/11> ;
     sosa:hasResult <http://createme.org/verbatimID/11> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-23"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/14> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/14> ;
     sosa:hasResult <http://createme.org/verbatimID/14> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2020-09-23"^^xsd:date .
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/verbatimID/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/verbatimID/15> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> ;
-    tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
+    sosa:usedProcedure <http://createme.org/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> .
 
 <http://createme.org/observation/verbatimID/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/verbatimID/16> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2019-09-25"^^xsd:date ] ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/methods/identificationMethod/new-identification-method> ;
-    tern:resultDateTime "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp .
+    sosa:usedProcedure <http://createme.org/bdr-cv/methods/identificationMethod/new-identification-method> .
 
 <http://createme.org/observation/verbatimID/2> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/2> ;
     sosa:hasResult <http://createme.org/verbatimID/2> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/3> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/3> ;
     sosa:hasResult <http://createme.org/verbatimID/3> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/4> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/4> ;
     sosa:hasResult <http://createme.org/verbatimID/4> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/5> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/5> ;
     sosa:hasResult <http://createme.org/verbatimID/5> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/6> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/6> ;
     sosa:hasResult <http://createme.org/verbatimID/6> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/7> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/7> ;
     sosa:hasResult <http://createme.org/verbatimID/7> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/8> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/8> ;
     sosa:hasResult <http://createme.org/verbatimID/8> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-21"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/9> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/9> ;
     sosa:hasResult <http://createme.org/verbatimID/9> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:phenomenonTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:resultDateTime "2019-09-23"^^xsd:date .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/attribute/basisOfRecord/13> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -1133,58 +1085,63 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/1> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/10> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/10> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-23"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/11> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/11> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-23"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/12> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/12> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> .
 
 <http://createme.org/sampling/field/13> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/13> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-23"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/14> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -1192,110 +1149,119 @@
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 2e+01 ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/14> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/14>,
         <http://createme.org/attribute/dataGeneralizations/14> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-23"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/2> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/2> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-21"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/3> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/3> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-21"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/4> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/4> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-21"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/5> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/5> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-21"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/6> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/6> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-21"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/7> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/7> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-21"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/8> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/8> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-21"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/9> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/9> ;
     sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2020-09-23"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/sequencing/15> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -1303,16 +1269,17 @@
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "sequencing-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/sample/sequence/15> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
+            rdf:value time:hasTime ;
             rdfs:comment "Date unknown, template eventDate used as proxy" ],
         [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] .
 
 <http://createme.org/sampling/sequencing/16> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -1320,33 +1287,35 @@
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "sequencing-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/sample/sequence/16> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
-    tern:resultDateTime "2019-09-25"^^xsd:date .
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/sampling/specimen/13> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
     rdfs:comment "specimen-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/13> ;
     sosa:hasResult <http://createme.org/sample/specimen/13> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/13> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
         [ a rdf:Statement ;
-            rdf:value tern:resultDateTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] ;
-    tern:resultDateTime "2020-09-23"^^xsd:date .
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] .
 
 <http://createme.org/sampling/specimen/15> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -1354,6 +1323,8 @@
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "specimen-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/sample/specimen/15> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
@@ -1361,8 +1332,7 @@
         <http://createme.org/attribute/dataGeneralizations/15> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
-    tern:resultDateTime "2019-09-26"^^xsd:date .
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] .
 
 <http://createme.org/sampling/specimen/16> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -1370,6 +1340,8 @@
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "specimen-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-27"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/sample/specimen/16> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
@@ -1377,8 +1349,7 @@
         <http://createme.org/attribute/dataGeneralizations/16> ;
     tern:qualifiedValue [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] ;
-    tern:resultDateTime "2019-09-27"^^xsd:date .
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] .
 
 <http://createme.org/scientificName/1> a tern:FeatureOfInterest,
         tern:Text,
@@ -1877,14 +1848,15 @@
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/15> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/15>,
         <http://createme.org/attribute/habitat/15> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2019-09-24"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/16> a tern:Sampling ;
     dcterms:identifier "ABC123" ;
@@ -1893,14 +1865,15 @@
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-25"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/16> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/samplingProtocol/new-sampling-protocol> ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/16>,
         <http://createme.org/attribute/habitat/16> ;
-    tern:locationDescription "Cowaramup Bay Road" ;
-    tern:resultDateTime "2019-09-25"^^xsd:date .
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/scientificName/15> a tern:FeatureOfInterest,
         tern:Text,
@@ -2112,24 +2085,17 @@
 
 <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> a tern:RDFDataset ;
     dcterms:description "Example Systematic Survey Occurrence Dataset by Gaia Resources" ;
-    dcterms:issued "2023-09-05"^^xsd:date ;
+    dcterms:issued "2024-01-31"^^xsd:date ;
     dcterms:title "Example Systematic Survey Occurrence Dataset" .
 
 [] a rdf:Statement ;
-    rdf:object "MR-456" ;
-    rdf:predicate dwc:occurrenceID ;
-    rdf:subject <http://createme.org/sample/field/15> ;
-    skos:prefLabel "occurrenceID source" ;
+    rdf:object "M12379" ;
+    rdf:predicate dwc:otherCatalogNumbers ;
+    rdf:subject <http://createme.org/sample/field/16> ;
+    skos:prefLabel "otherCatalogNumbers stakeholder" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
             prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
-
-[] a rdf:Statement ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
-    rdf:object "ABC123" ;
-    rdf:predicate dcterms:identifier ;
-    rdf:subject <http://createme.org/sampling/field/16> ;
-    skos:prefLabel "recordID source" .
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
 
 [] a rdf:Statement ;
     dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
@@ -2139,22 +2105,14 @@
     skos:prefLabel "recordID source" .
 
 [] a rdf:Statement ;
-    rdf:object "PE:12:8833" ;
-    rdf:predicate dwc:recordNumber ;
-    rdf:subject <http://createme.org/sample/field/16> ;
-    skos:prefLabel "recordNumber source" ;
+    dwc:collectionCode "ARACH" ;
+    rdf:object "32238" ;
+    rdf:predicate dwc:catalogNumber ;
+    rdf:subject <http://createme.org/sample/specimen/16> ;
+    skos:prefLabel "catalogNumber source" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
-
-[] a rdf:Statement ;
-    rdf:object "PE:12:8832" ;
-    rdf:predicate dwc:recordNumber ;
-    rdf:subject <http://createme.org/sample/field/15> ;
-    skos:prefLabel "recordNumber source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
     rdf:object "BHP2012-7522" ;
@@ -2175,25 +2133,6 @@
             prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
-    dwc:collectionCode "ARACH" ;
-    rdf:object "32238" ;
-    rdf:predicate dwc:catalogNumber ;
-    rdf:subject <http://createme.org/sample/specimen/16> ;
-    skos:prefLabel "catalogNumber source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
-
-[] a rdf:Statement ;
-    rdf:object "M12379" ;
-    rdf:predicate dwc:otherCatalogNumbers ;
-    rdf:subject <http://createme.org/sample/field/16> ;
-    skos:prefLabel "otherCatalogNumbers stakeholder" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
-
-[] a rdf:Statement ;
     rdf:object "BHP2012-7521" ;
     rdf:predicate dwc:otherCatalogNumbers ;
     rdf:subject <http://createme.org/sample/field/15> ;
@@ -2201,6 +2140,24 @@
     prov:qualifiedAttribution [ a prov:Attribution ;
             prov:agent <http://createme.org/provider/BHP> ;
             prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+
+[] a rdf:Statement ;
+    rdf:object "MR-456" ;
+    rdf:predicate dwc:occurrenceID ;
+    rdf:subject <http://createme.org/sample/field/15> ;
+    skos:prefLabel "occurrenceID source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
+
+[] a rdf:Statement ;
+    rdf:object "PE:12:8833" ;
+    rdf:predicate dwc:recordNumber ;
+    rdf:subject <http://createme.org/sample/field/16> ;
+    skos:prefLabel "recordNumber source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
 
 [] a rdf:Statement ;
     dwc:collectionCode "ARACH" ;
@@ -2220,4 +2177,20 @@
     prov:qualifiedAttribution [ a prov:Attribution ;
             prov:agent <http://createme.org/provider/BHP> ;
             prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+
+[] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "ABC123" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/16> ;
+    skos:prefLabel "recordID source" .
+
+[] a rdf:Statement ;
+    rdf:object "PE:12:8832" ;
+    rdf:predicate dwc:recordNumber ;
+    rdf:subject <http://createme.org/sample/field/15> ;
+    skos:prefLabel "recordNumber source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
 
