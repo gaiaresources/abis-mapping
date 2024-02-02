@@ -21,7 +21,7 @@ class TimestampPlugin(frictionless.Plugin):
     """Custom Timestamp Plugin"""
 
     # Class Attributes
-    code = "timestamp"
+    code = "timestamp-deprecated"
     status = "stable"
 
     def select_field_class(self, type: Optional[str] = None) -> Optional[Type[frictionless.Field]]:

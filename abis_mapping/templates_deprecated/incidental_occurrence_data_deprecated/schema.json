@@ -97,7 +97,7 @@
       "title": "Event Date",
       "description": "...",
       "example": "2019-09-23T14:03+08:00",
-      "type": "timestamp",
+      "type": "timestamp-deprecated",
       "format": "default",
       "constraints": {
         "required": true
@@ -317,7 +317,7 @@
       "title": "Prepared Date",
       "description": "...",
       "example": "2019-09-25T10:02+08:00",
-      "type": "timestamp",
+      "type": "timestamp-deprecated",
       "format": "default",
       "constraints": {
         "required": false
@@ -361,7 +361,7 @@
       "title": "Date Identified",
       "description": "...",
       "example": "2019-09-23T14:03+08:00",
-      "type": "timestamp",
+      "type": "timestamp-deprecated",
       "format": "default",
       "constraints": {
         "required": false
@@ -522,7 +522,7 @@
       "title": "Threat Status Date Determined",
       "description": "...",
       "example": "30/08/2022",
-      "type": "timestamp",
+      "type": "timestamp-deprecated",
       "format": "default",
       "constraints": {
         "required": false
