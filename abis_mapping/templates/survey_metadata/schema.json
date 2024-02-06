@@ -87,6 +87,8 @@
       "constraints": {
         "required": false,
         "enum": [
+          "AGD66",
+          "EPSG:4202",
           "AGD84",
           "EPSG:4203",
           "GDA2020",
