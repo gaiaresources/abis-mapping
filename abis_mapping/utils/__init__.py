@@ -1,7 +1,6 @@
 """Exports sub-package interface"""
 
 # Local
-from . import chunking
 from . import coords
 from . import namespaces
 from . import rdf

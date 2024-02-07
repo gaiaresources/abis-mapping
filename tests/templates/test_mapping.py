@@ -45,3 +45,24 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     # determine whether a statement is valid in our specific context. As such,
     # we check here to see if any `None`s have snuck their way into the RDF.
     assert "None" not in graphs[0].serialize(format="ttl")
+
+
+@pytest.mark.parametrize(
+    argnames="template_id,test_params",
+    argvalues=[(id, params) for (_, id, params) in conftest.chunking_test_args()],
+    ids=[id for (id, _, params) in conftest.chunking_test_args()],
+)
+def test_apply_mapping_chunking(template_id: str, test_params: conftest.ChunkingParameters) -> None:
+    """Tests the chunking functionality for apply_mapping where applicable."""
+    # Load data
+    data = test_params.data.read_bytes()
+
+    # Get mapper
+    mapper = abis_mapping.get_mapper(template_id)
+    assert mapper
+
+    # Map
+    graphs = list(mapper().apply_mapping(data, chunk_size=test_params.chunk_size))
+
+    # Assert
+    assert len(graphs) == test_params.yield_count
