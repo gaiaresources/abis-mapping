@@ -62,8 +62,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                     plugins.tabular.IsTabular(),
                     plugins.chronological.ChronologicalOrder(
                         field_names=[
-                            "collectionDateStart",
-                            "collectionDateEnd",
+                            "surveyStartDate",
+                            "surveyEndDate",
                         ]
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
@@ -326,8 +326,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to be modified
         """
         # Determine if any dates are present in the row
-        start_date: utils.types.Timestamp = row["collectionDateStart"]
-        end_date: utils.types.Timestamp = row["collectionDateEnd"]
+        start_date: utils.types.Timestamp = row["surveyStartDate"]
+        end_date: utils.types.Timestamp = row["surveyEndDate"]
         if not start_date and not end_date:
             return
 
