@@ -326,8 +326,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to be modified
         """
         # Determine if any dates are present in the row
-        start_date: utils.types.Timestamp = row["surveyStartDate"]
-        end_date: utils.types.Timestamp = row["surveyEndDate"]
+        start_date: utils.types.Timestamp = row["surveyStart"]
+        end_date: utils.types.Timestamp = row["surveyEnd"]
         if not start_date and not end_date:
             return
 
