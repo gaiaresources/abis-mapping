@@ -1,9 +1,6 @@
 """Provides Unit Tests for the `abis_mapping.plugins.timestamp` module"""
 
 
-# Standard
-import datetime
-
 # Third-Party
 import frictionless
 import frictionless.fields

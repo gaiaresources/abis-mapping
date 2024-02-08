@@ -30,6 +30,20 @@ class MappingParameters:
 
 
 @attrs.define(kw_only=True)
+class ChunkingParameters:
+    """Provides data object containing required testing parameters per template for chunking.
+
+    Attributes:
+        data (pathlib.Path): Path of CSV input data.
+        chunk_size (int): Number of rows to process from a data source before emitting a graph.
+        yield_count (int): How many times the apply_mapping method will yield a graph.
+    """
+    data: pathlib.Path
+    chunk_size: int
+    yield_count: int
+
+
+@attrs.define(kw_only=True)
 class TemplateTestParameters:
     """Provides data object containing required testing parameters per template.
 
@@ -47,6 +61,7 @@ class TemplateTestParameters:
     empty_template: pathlib.Path
     metadata_sampling_type: str
     allows_extra_cols: bool
+    chunking_parameters: list[ChunkingParameters] = []
 
 
 TEST_CASES: list[TemplateTestParameters] = [
@@ -79,6 +94,16 @@ TEST_CASES: list[TemplateTestParameters] = [
         ],
         metadata_sampling_type="systematic survey",
         allows_extra_cols=True,
+        chunking_parameters=[
+            ChunkingParameters(
+                data=pathlib.Path(
+                    ("abis_mapping/templates/survey_occurrence_data/examples/"
+                     "margaret_river_flora/margaret_river_flora.csv")
+                ),
+                chunk_size=7,
+                yield_count=3,
+            ),
+        ],
     ),
     TemplateTestParameters(
         template_id="survey_site_data.csv",
@@ -162,6 +187,16 @@ TEST_CASES: list[TemplateTestParameters] = [
         ],
         metadata_sampling_type="incidental",
         allows_extra_cols=True,
+        chunking_parameters=[
+            ChunkingParameters(
+                data=pathlib.Path(
+                    ("abis_mapping/templates/incidental_occurrence_data/examples/"
+                     "margaret_river_flora/margaret_river_flora.csv")
+                ),
+                chunk_size=7,
+                yield_count=3,
+            ),
+        ],
     ),
 ]
 
@@ -178,4 +213,19 @@ def mapping_test_args() -> Iterable[tuple[str, str, MappingParameters]]:
             name = f"{test_case.template_id}"
             name += f"-{mapping_case.scenario_name}" if mapping_case.scenario_name is not None else ""
             d = (name, test_case.template_id, mapping_case)
+            yield d
+
+
+def chunking_test_args() -> Iterable[tuple[str, str, ChunkingParameters]]:
+    """Constructs parameter sets necessary to perform chunking tests.
+
+    Yields:
+        tuple[str, str, ChunkingParameters]: First term is the test id, the second the template id,
+            and lastly the parameters of the mapping test scenario.
+    """
+    for test_case in TEST_CASES:
+        for i, chunking_case in enumerate(test_case.chunking_parameters):
+            name = f"{test_case.template_id}"
+            name += f"-{i}"
+            d = (name, test_case.template_id, chunking_case)
             yield d
