@@ -35,7 +35,7 @@
     },
     {
       "name": "surveyStartDate",
-      "title": "Temporal Coverage: Start Date",
+      "title": "Survey Start Date",
       "description": "The date data collection commenced.",
       "example": "21/09/2020",
       "type": "timestamp",
@@ -46,7 +46,7 @@
     },
     {
       "name": "surveyEndDate",
-      "title": "Temporal Coverage: End Date",
+      "title": "Survey End Date",
       "description": "The date data collection was completed.",
       "example": "23/09/2020",
       "type": "timestamp",
