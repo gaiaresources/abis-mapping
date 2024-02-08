@@ -129,7 +129,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         """
         # Extract keyword arguments
         chunk_size = kwargs.get("chunk_size")
-        if not isinstance(chunk_size, int):
+        if not isinstance(chunk_size, int) or chunk_size < 1:
             chunk_size = None
 
         # Construct Schema
@@ -144,10 +144,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             format="csv",  # TODO -> Hardcoded to csv for now
             schema=schema,
         )
-
-        # Infer Statistics and Count Number of Rows
-        resource.infer(stats=True)
-        n_rows = resource.rows if resource.rows is not None else 0
 
         # Initialise Graph
         graph = utils.rdf.create_graph()
@@ -188,17 +184,16 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
                 # Check Whether to Yield a Chunk
                 # The row_number needs to be reduced by one as the numbering of rows
-                # in a Resource includes the header, but the count of the number
-                # of rows excludes the header row.
-                if utils.chunking.should_chunk(row.row_number-1, n_rows, chunk_size):
+                # in a Resource includes the header
+                if chunk_size is not None and (row.row_number-1) % chunk_size == 0:
                     # Yield Chunk
                     yield graph
 
                     # Initialise New Graph
                     graph = utils.rdf.create_graph()
 
-            # Return
-            return graph
+            # Yield
+            yield graph
 
     def apply_mapping_row(
         self,
