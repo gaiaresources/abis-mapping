@@ -62,8 +62,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                     plugins.tabular.IsTabular(),
                     plugins.chronological.ChronologicalOrder(
                         field_names=[
-                            "surveyStartDate",
-                            "surveyEndDate",
+                            "surveyStart",
+                            "surveyEnd",
                         ]
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(

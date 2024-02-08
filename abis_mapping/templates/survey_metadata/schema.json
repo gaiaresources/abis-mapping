@@ -34,8 +34,8 @@
       }
     },
     {
-      "name": "surveyStartDate",
-      "title": "Survey Start Date",
+      "name": "surveyStart",
+      "title": "Survey Start",
       "description": "The date data collection commenced.",
       "example": "21/09/2020",
       "type": "timestamp",
@@ -45,8 +45,8 @@
       }
     },
     {
-      "name": "surveyEndDate",
-      "title": "Survey End Date",
+      "name": "surveyEnd",
+      "title": "Survey End",
       "description": "The date data collection was completed.",
       "example": "23/09/2020",
       "type": "timestamp",
