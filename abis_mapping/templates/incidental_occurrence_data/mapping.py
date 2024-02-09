@@ -56,8 +56,7 @@ ROLE_STAKEHOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/Citat
 class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `incidental_occurrence_data.csv`"""
 
-    # Template ID and Instructions File
-    template_id = "incidental_occurrence_data.csv"
+    # Instructions File
     instructions_file = "instructions.pdf"
 
     # Default Dataset Metadata

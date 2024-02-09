@@ -1,5 +1,5 @@
 {
-  "id": "survey_metadata.csv",
+  "name": "survey_metadata",
   "label": "Systematic Survey Metadata Template",
   "version": "0.3.1",
   "description": "A template for systematic survey metadata",
