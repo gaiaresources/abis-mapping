@@ -52,10 +52,13 @@ class LogicalOr(frictionless.Check):
         if len(row_fk_map) > 0:
             return
 
+        # Create error note base on values provided to the check
+        note = f"the fields {self.field_names}"
+        note += f" and foreign key fields {self.foreign_keys.keys()}" if len(self.foreign_keys) > 0 else ""
+        note += " are constrained by logical OR, one or more value must be provided"
+
         # Yield Error
         yield frictionless.errors.RowConstraintError.from_row(
             row=row,
-            note=(
-                f"the columns {self.field_names} are constrained by logical OR, one or more value must be provided"
-            )
+            note=note,
         )

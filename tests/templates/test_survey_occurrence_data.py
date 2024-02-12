@@ -11,6 +11,7 @@ import io
 import csv
 import pathlib
 
+import abis_mapping.templates.survey_occurrence_data.mapping
 # Local
 from abis_mapping import base
 from abis_mapping import utils
@@ -153,7 +154,6 @@ class TestDefaultMap:
             scenario (Scenario): The parameters of the scenario under test.
             mocker (pytest_mock.MockerFixture): The mocker fixture.
         """
-
         # Construct fake data
         rawh = [
             "siteID",
@@ -256,3 +256,48 @@ class TestDefaultMap:
         # Now with the provided default map values the graph should match.
         assert conftest.compare_graphs(graphs[0], expected)
         assert "None" not in graphs[0].serialize(format="ttl")
+
+
+def test_extract_site_id_keys(mocker: pytest_mock.MockerFixture) -> None:
+    """Test the extract_site_id_keys method.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): The mocker fixture.
+    """
+    # Construct a raw data set only using fields relevant to method.
+    rawh = ["siteID"]
+    raws = [["site1"], [""], ["site2"], ["site3"], ["site3"]]
+
+    # Amalgamate into a list of dicts
+    all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in raws]
+
+    # Get the specific mapper
+    mapper = abis_mapping.templates.survey_occurrence_data.mapping.SurveyOccurrenceMapper()
+
+    # Modify schema to only include the necessary fields
+    descriptor = {"fields": [
+        {"name": "siteID", "type": "string"}
+    ]}
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+
+    # Create raw data csv string
+    with io.StringIO() as output:
+        csv_writer = csv.DictWriter(output, fieldnames=rawh)
+        csv_writer.writeheader()
+
+        for row in all_raw:
+            csv_writer.writerow(row)
+
+        csv_data = output.getvalue().encode("utf-8")
+
+    expected = {
+        "site1": True,
+        "site2": True,
+        "site3": True,
+    }
+
+    # Invoke method
+    actual = mapper.extract_site_id_keys(csv_data)
+
+    # Validate
+    assert actual == expected

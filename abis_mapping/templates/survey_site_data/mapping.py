@@ -43,9 +43,15 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             data (base.types.ReadableType): Raw data to be validated.
             **kwargs (Any): Additional keyword arguments.
 
+        Keyword Args:
+            site_id_map (dict[str, bool]): Site ids present in the occurrence template.
+
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
+        # Extract keyword arguments
+        site_id_map: dict[str, bool] = kwargs.get("site_id_map", {})
+
         # Construct schema
         schema = frictionless.Schema.from_descriptor(self.schema())
 
@@ -73,7 +79,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                         field_names=[
                             "footprintWKT",
                             "decimalLatitude",
-                        ]
+                        ],
+                        foreign_keys={
+                            "siteID": set(site_id_map.keys())
+                        },
                     ),
                     plugins.chronological.ChronologicalOrder(
                         field_names=[
@@ -110,12 +119,14 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Construct schema
         schema = frictionless.Schema.from_descriptor(self.schema())
 
+        # Construct resource
         resource = frictionless.Resource(
             data=data,
             format="csv",
             schema=schema,
         )
 
+        # Context manager for row streaming
         with resource.open() as r:
             # Create empty dictionary to hold mapping values
             result = {}
