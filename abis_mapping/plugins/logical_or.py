@@ -7,7 +7,7 @@ import frictionless.errors
 import attrs
 
 # Typing
-from typing import Iterator
+from typing import Iterator, Any
 
 
 @attrs.define(kw_only=True, repr=False)
@@ -21,6 +21,11 @@ class LogicalOr(frictionless.Check):
     # Attributes specific to this check
     # Field names to perform check on
     field_names: list[str]
+
+    # Special case check, occurs if value not provided in field_names
+    # fields then checks current row field provided as key to foreign_keys
+    # and ensures its value is provided in the corresponding set.
+    foreign_keys: dict[str, set[Any]] = dict()
 
     def validate_row(self, row: frictionless.Row) -> Iterator[frictionless.Error]:
         """Called to validate the given row (on every row).
@@ -36,6 +41,15 @@ class LogicalOr(frictionless.Check):
 
         # Check for at least one value provided
         if len(filtered) > 0:
+            return
+
+        # Perform special case check on foreign key sets
+        row_fk_map = {
+            field_name: row[field_name] for field_name, fk_set in self.foreign_keys.items() if row[field_name] in fk_set
+        }
+
+        # If there is at least one item in the dictionary then it is deemed valid.
+        if len(row_fk_map) > 0:
             return
 
         # Yield Error
