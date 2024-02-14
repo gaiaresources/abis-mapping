@@ -1,5 +1,5 @@
 {
-    "name": "incidental_occurrence_data",
+    "id": "incidental_occurrence_data.csv",
     "label": "Incidental Occurrence Data Template",
     "version": "1.0.0",
     "description": "A template to translate some Darwin Core fields",

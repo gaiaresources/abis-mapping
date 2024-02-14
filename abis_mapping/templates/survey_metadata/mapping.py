@@ -20,9 +20,7 @@ a = rdflib.RDF.type
 
 
 class SurveyMetadataMapper(base.mapper.ABISMapper):
-    """ABIS mapper for `survey_metadata"""
-
-    # Instructions filename
+    template_id = "survey_metadata.csv"
     instructions_file = "instructions.pdf"
 
     # Default Dataset Metadata

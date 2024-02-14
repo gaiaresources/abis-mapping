@@ -15,7 +15,6 @@ import pathlib
 from abis_mapping import base
 from abis_mapping import utils
 from abis_mapping import vocabs
-from abis_mapping import templates
 from tests import conftest
 
 
@@ -169,7 +168,7 @@ class TestDefaultMap:
         all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in scenario.raws]
 
         # Get mapper
-        mapper = templates.survey_occurrence_data.mapping.SurveyOccurrenceMapper
+        mapper = base.mapper.get_mapper("survey_occurrence_data.csv")
         assert mapper is not None
 
         # Modify schema to only fields required for test
@@ -227,7 +226,7 @@ class TestDefaultMap:
             csv_data = output.getvalue().encode("utf-8")
 
         # Get mapper
-        mapper = templates.survey_occurrence_data.mapping.SurveyOccurrenceMapper
+        mapper = base.mapper.get_mapper("survey_occurrence_data.csv")
         assert mapper is not None
 
         expected = pathlib.Path("abis_mapping/templates/survey_occurrence_data/examples/organism_qty.ttl").read_text()

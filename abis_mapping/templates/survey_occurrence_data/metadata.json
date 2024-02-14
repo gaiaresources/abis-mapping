@@ -1,5 +1,5 @@
 {
-    "name": "survey_occurrence_data",
+    "id": "survey_occurrence_data.csv",
     "label": "Systematic Survey Occurrence Data Template",
     "version": "2.1.0",
     "description": "A template to translate some Darwin Core fields",

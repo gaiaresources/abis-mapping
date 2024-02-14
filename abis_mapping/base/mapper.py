@@ -31,6 +31,7 @@ class ABISMapper(abc.ABC):
     registry: dict[str, type["ABISMapper"]] = {}
 
     # ABIS Mapper Template ID and Instructions File
+    template_id: str = NotImplemented  # Must be implemented
     instructions_file: str = NotImplemented  # Must be implemented
 
     # List of frictionless errors to be skipped by default
@@ -215,27 +216,15 @@ class ABISMapper(abc.ABC):
         """
         # Retrieve Template Filepath
         directory = pathlib.Path(inspect.getfile(cls)).parent
-
-        # Template File is the name and filetype as extension from metadata
-        md = cls.metadata()
-        template_file = directory / f"{md['name']}.{md['file_type'].lower()}"
+        template_file = directory / cls.template_id  # Template File is the Template ID
 
         # Return
         return template_file
 
-    @property
-    def template_id(self) -> str:
-        """Getter for the template id.
-
-        Returns:
-            str: template id from metadata
-        """
-        return self.metadata()["id"]
-
     @final
     @classmethod
     @functools.lru_cache
-    def metadata(cls) -> dict[str, str]:
+    def metadata(cls) -> dict[str, Any]:
         """Retrieves and Caches the Template Metadata for this Template
 
         Returns:
@@ -246,9 +235,7 @@ class ABISMapper(abc.ABC):
         metadata_file = directory / "metadata.json"
 
         # Read Metadata and Return
-        md: dict[str, str] = json.loads(metadata_file.read_text())
-        md["id"] = f"{md['name']}-v{md['version']}.{md['file_type'].lower()}"
-        return md
+        return json.loads(metadata_file.read_text())  # type: ignore[no-any-return]
 
     @final
     @classmethod
@@ -294,8 +281,7 @@ class ABISMapper(abc.ABC):
             mapper (type[ABISMapper]): Mapper to be registered.
         """
         # Register the mapper with its template id
-        template_id = mapper.metadata()["id"]
-        cls.registry[template_id] = mapper
+        cls.registry[mapper.template_id] = mapper
 
 
 def get_mapper(template_id: str) -> Optional[type[ABISMapper]]:

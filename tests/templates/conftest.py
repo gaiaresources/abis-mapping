@@ -66,7 +66,7 @@ class TemplateTestParameters:
 
 TEST_CASES: list[TemplateTestParameters] = [
     TemplateTestParameters(
-        template_id="survey_occurrence_data-v2.1.0.csv",
+        template_id="survey_occurrence_data.csv",
         empty_template=pathlib.Path(
             "abis_mapping/templates/survey_occurrence_data/survey_occurrence_data.csv"
         ),
@@ -106,7 +106,7 @@ TEST_CASES: list[TemplateTestParameters] = [
         ],
     ),
     TemplateTestParameters(
-        template_id="survey_site_data-v0.1.0.csv",
+        template_id="survey_site_data.csv",
         empty_template=pathlib.Path(
             "abis_mapping/templates/survey_site_data/survey_site_data.csv",
         ),
@@ -124,7 +124,7 @@ TEST_CASES: list[TemplateTestParameters] = [
         allows_extra_cols=True
     ),
     TemplateTestParameters(
-        template_id="survey_metadata-v0.3.1.csv",
+        template_id="survey_metadata.csv",
         empty_template=pathlib.Path(
             "abis_mapping/templates/survey_metadata/survey_metadata.csv"
         ),
@@ -169,7 +169,7 @@ TEST_CASES: list[TemplateTestParameters] = [
         allows_extra_cols=True,
     ),
     TemplateTestParameters(
-        template_id="incidental_occurrence_data-v1.0.0.csv",
+        template_id="incidental_occurrence_data.csv",
         empty_template=pathlib.Path(
             "abis_mapping/templates/incidental_occurrence_data/incidental_occurrence_data.csv"
         ),
