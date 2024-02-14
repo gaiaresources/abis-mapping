@@ -85,7 +85,7 @@ class TestTemplateBasicSuite:
 
         # Retrieve metadata
         metadata = real_mapper.metadata()
-        assert metadata.get("id") == real_mapper.template_id
+        assert metadata.get("id") == real_mapper().template_id
 
     def test_get_schema(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests able to retrieve template schema."""
