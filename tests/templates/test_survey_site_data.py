@@ -10,6 +10,8 @@ import abis_mapping.templates.survey_site_data.mapping
 
 # Third-party
 import pytest_mock
+import attrs
+import pytest
 
 
 def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
@@ -67,3 +69,89 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
 
     # Validate
     assert actual == expected
+
+
+class TestSiteIDForeignKeys:
+    @attrs.define(kw_only=True)
+    class Scenario:
+        """Dataclass to hold the scenario parameters."""
+        name: str
+        raws: list[list[str]]
+        site_id_map: dict[str, bool]
+        expected_error_codes: set[str] = set()
+
+    scenarios: list[Scenario] = [
+        Scenario(
+            name="valid_with_site_id_map",
+            raws=[
+                ["site1", "-38.94", "115.21", "POINT(30 10)"],
+                ["site2", "-38.94", "115.21", ""],
+                ["site3", "", "", "LINESTRING(30 10, 10 30, 40 40)"],
+                ["site4", "", "", ""],
+            ],
+            site_id_map={
+                "site4": True,
+                "siteNone": True,
+            }
+        ),
+        Scenario(
+            name="invalid_missing_geometry_and_not_in_map",
+            raws=[
+                ["site1", "", "", ""],
+            ],
+            site_id_map={
+                "site2": True
+            },
+            expected_error_codes={"row-constraint"}
+        ),
+    ]
+
+    @pytest.mark.parametrize(
+        argnames="scenario",
+        argvalues=[scenario for scenario in scenarios],
+        ids=[scenario.name for scenario in scenarios],
+    )
+    def test_apply_validation(self, scenario: Scenario, mocker: pytest_mock.MockerFixture) -> None:
+        """Tests the apply_validation method with siteID foreign key dictionary provided.
+
+        Args:
+            scenario (Scenario): The parameters of the scenario under test.
+            mocker (pytest_mock.MockerFixture): The mocker fixture.
+        """
+        # Construct fake data
+        rawh = ["siteID", "decimalLatitude", "decimalLongitude", "footprintWKT"]
+        all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in scenario.raws]
+
+        # Get mapper
+        mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
+
+        # Modify schema to only fields required for test
+        descriptor = {
+            "fields": [field for field in mapper.schema()["fields"] if field["name"] in rawh]
+        }
+        descriptor["fields"].sort(key=lambda f: rawh.index(f["name"]))
+
+        # Patch the schema for the test
+        mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+
+        # Create raw data csv string
+        with io.StringIO() as output:
+            csv_writer = csv.DictWriter(output, fieldnames=rawh)
+            csv_writer.writeheader()
+
+            for row in all_raw:
+                csv_writer.writerow(row)
+
+            csv_data = output.getvalue().encode("utf-8")
+
+        # Apply validation
+        report = mapper.apply_validation(
+            data=csv_data,
+            site_id_map=scenario.site_id_map,
+        )
+
+        # Assert
+        assert report.valid == (scenario.expected_error_codes == set())
+        if not report.valid:
+            error_codes = [code for codes in report.flatten(['type']) for code in codes]
+            assert set(error_codes) == scenario.expected_error_codes
