@@ -1,13 +1,13 @@
 
-from abis_mapping import base
 import tempfile
 import os
 import shutil
+import abis_mapping.templates.incidental_occurrence_data.mapping
 
-from typing import BinaryIO
+from typing import BinaryIO, IO
 
 def test_apply_validation() -> None:
-    fp = open(
+    fp: BinaryIO = open(
         "abis_mapping/templates/incidental_occurrence_data/examples/margaret_river_flora/margaret_river_flora.csv",
         "rb"
     )
@@ -15,8 +15,8 @@ def test_apply_validation() -> None:
     shutil.copyfileobj(fp, tf)
     fp.close()
 
-    mapper = base.mapper.get_mapper("incidental_occurrence_data.csv")
-    report = mapper().apply_validation(
+    mapper = abis_mapping.templates.incidental_occurrence_data.mapping.IncidentalOccurrenceMapper()
+    report = mapper.apply_validation(
         data=tf
     )
 
