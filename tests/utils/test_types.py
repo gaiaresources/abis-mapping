@@ -1,13 +1,13 @@
 """Provides Unit Tests for the `abis_mapping.utils.timestamps` module"""
 
 
-# Third-Party
-import pytest
-import rdflib
-
 # Standard
 import datetime
 import contextlib
+
+# Third-Party
+import pytest
+import rdflib
 
 # Local
 from abis_mapping import utils

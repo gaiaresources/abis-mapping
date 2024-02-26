@@ -1,10 +1,10 @@
-
 import tempfile
 import os
 import shutil
 import abis_mapping.templates.incidental_occurrence_data.mapping
 
-from typing import BinaryIO, IO
+from typing import BinaryIO
+
 
 def test_apply_validation() -> None:
     """Tests behaviour of apply validation with file stream input."""
@@ -17,6 +17,8 @@ def test_apply_validation() -> None:
     tf = tempfile.NamedTemporaryFile(delete=False)
     shutil.copyfileobj(fp, tf)
     fp.close()
+
+    assert isinstance(tf, tempfile._TemporaryFileWrapper)
 
     # Get mapper and produce report
     mapper = abis_mapping.templates.incidental_occurrence_data.mapping.IncidentalOccurrenceMapper()
