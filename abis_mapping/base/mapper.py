@@ -33,9 +33,6 @@ class ABISMapper(abc.ABC):
     # ABIS Mapper Template ID and Instructions File
     instructions_file: str = NotImplemented  # Must be implemented
 
-    # List of frictionless errors to be skipped by default
-    skip_errors: list[str] = ["extra-label", "extra-cell"]
-
     # Default Dataset Metadata
     DATASET_DEFAULT_NAME = "Example Dataset"
     DATASET_DEFAULT_DESCRIPTION = "Example Dataset by Gaia Resources"

@@ -52,7 +52,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         site_id_map: dict[str, bool] = kwargs.get("site_id_map", {})
 
         # Construct schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.extra_fields_schema(
+            data=data,
+            full_schema=True,
+        )
 
         # Construct resource
         resource = frictionless.Resource(
@@ -90,7 +93,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                         ]
                     )
                 ],
-                skip_errors=self.skip_errors,
             )
         )
 

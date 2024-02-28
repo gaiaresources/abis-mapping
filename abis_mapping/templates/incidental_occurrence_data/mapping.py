@@ -78,7 +78,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             frictionless.Report: Validation report for the specified data.
         """
         # Construct Schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.extra_fields_schema(
+            data=data,
+            full_schema=True,
+        )
 
         # Construct Resource
         resource = frictionless.Resource(
@@ -98,7 +101,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                         field_names=["threatStatus", "conservationJurisdiction"],
                     )
                 ],
-                skip_errors=self.skip_errors
             ),
         )
 

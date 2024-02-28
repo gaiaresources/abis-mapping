@@ -85,7 +85,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_id_geometry_map = kwargs.get("site_id_geometry_map")
 
         # Construct Schema
-        schema: frictionless.Schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.extra_fields_schema(
+            data=data,
+            full_schema=True,
+        )
 
         # Construct default Checklist
         checklist = frictionless.Checklist(
@@ -100,7 +103,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                     field_names=["organismQuantity", "organismQuantityType"],
                 ),
             ],
-            skip_errors=self.skip_errors,
         )
 
         # Modify schema and checklist in the event default geometry map provided
