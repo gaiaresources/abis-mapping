@@ -163,6 +163,12 @@ class TestTemplateBasicSuite:
         # Patch validate
         mocked_resource = mocker.patch("frictionless.Resource")
         mocked_validate: unittest.mock.Mock = mocked_resource.return_value.validate
+        mocked_extra_fields_schema = mocker.patch.object(
+            target=abis_mapping.base.mapper.ABISMapper,
+            attribute="extra_fields_schema",
+        )
+        schema = frictionless.Schema()
+        mocked_extra_fields_schema.return_value = schema
 
         # Load data
         data = test_params.mapping_cases[0].data.read_bytes()
@@ -177,8 +183,6 @@ class TestTemplateBasicSuite:
         # Assert called
         mocked_resource.assert_called()
         mocked_validate.assert_called_once()
-
-        if test_params.allows_extra_cols:
-            # Check to ensure that appropriate arguments set during call to validate method.
-            checklist: frictionless.Checklist = mocked_validate.call_args.kwargs.get("checklist")
-            assert len(set(checklist.skip_errors).intersection({"extra-label", "extra-cell"})) == 2
+        # The following asserts determine that the extra fields schema was used in creating the resource
+        mocked_extra_fields_schema.assert_called_once()
+        mocked_resource.assert_called_with(data=data, schema=schema, format='csv')
