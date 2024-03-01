@@ -59,7 +59,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Construct resource
         resource = frictionless.Resource(
-            data=data,
+            source=data,
             format="csv",
             schema=schema,
         )
@@ -122,7 +122,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Construct resource
         resource = frictionless.Resource(
-            data=data,
+            source=data,
             format="csv",
             schema=schema,
         )
@@ -198,7 +198,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Construct Resource
         resource = frictionless.Resource(
-            data=data,
+            source=data,
             format="csv",   # TODO -> Hardcoded to csv for now
             schema=schema,
         )

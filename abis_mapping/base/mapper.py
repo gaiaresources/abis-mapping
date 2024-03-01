@@ -170,7 +170,7 @@ class ABISMapper(abc.ABC):
         else:
             # Create resource and infer
             resource = frictionless.Resource(
-                data=data,
+                source=data,
                 format="csv",
             )
             resource.infer()

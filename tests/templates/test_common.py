@@ -185,4 +185,4 @@ class TestTemplateBasicSuite:
         mocked_validate.assert_called_once()
         # The following asserts determine that the extra fields schema was used in creating the resource
         mocked_extra_fields_schema.assert_called_once()
-        mocked_resource.assert_called_with(data=data, schema=schema, format='csv')
+        mocked_resource.assert_called_with(source=data, schema=schema, format='csv')
