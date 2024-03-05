@@ -129,7 +129,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Construct Resource (Table with Schema)
         resource = frictionless.Resource(
-            data=data,
+            source=data,
             format="csv",  # TODO -> Hardcoded to csv for now
             schema=schema,
         )
@@ -160,7 +160,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Construct resource
         resource = frictionless.Resource(
-            data=data,
+            source=data,
             format="csv",
             schema=schema,
         )
@@ -208,7 +208,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Construct Resource
         resource = frictionless.Resource(
-            data=data,
+            source=data,
             format="csv",  # TODO -> Hardcoded to csv for now
             schema=schema,
         )

@@ -169,7 +169,7 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
     schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=True)
 
     # Construct resource
-    resource = frictionless.Resource(data=csv_data, format="csv", schema=schema)
+    resource = frictionless.Resource(source=csv_data, format="csv", schema=schema)
 
     # Open resource for row streaming
     with resource.open() as r:
@@ -210,7 +210,7 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
 
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
-        data=csv_data,
+        source=csv_data,
         format="csv",
     )
 
@@ -261,7 +261,7 @@ def test_add_extra_fields_json_no_data(mocker: pytest_mock.MockerFixture) -> Non
 
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
-        data=csv_data,
+        source=csv_data,
         format="csv",
     )
 
@@ -306,7 +306,7 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
 
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
-        data=csv_data,
+        source=csv_data,
         format="csv",
         schema=frictionless.Schema.from_descriptor(descriptor)
     )
