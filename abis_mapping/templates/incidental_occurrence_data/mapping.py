@@ -5,6 +5,7 @@
 import frictionless
 import rdflib
 
+import abis_mapping.utils.geometry
 # Local
 from abis_mapping import base
 from abis_mapping import utils
@@ -1019,7 +1020,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         event_date: utils.types.Timestamp = row["eventDate"]
 
         # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.to_wkt_point_literal(
+        wkt = abis_mapping.utils.geometry.to_wkt_point_literal(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
             datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
@@ -1260,7 +1261,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.to_wkt_point_literal(
+        wkt = abis_mapping.utils.geometry.to_wkt_point_literal(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
             datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
@@ -2743,7 +2744,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Create WKT from Latitude and Longitude
-        wkt = utils.rdf.to_wkt_point_literal(
+        wkt = abis_mapping.utils.geometry.to_wkt_point_literal(
             latitude=row["decimalLatitude"],
             longitude=row["decimalLongitude"],
             datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),

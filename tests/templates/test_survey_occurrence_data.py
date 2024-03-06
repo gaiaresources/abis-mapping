@@ -12,6 +12,7 @@ import csv
 import pathlib
 
 import abis_mapping.templates.survey_occurrence_data.mapping
+import abis_mapping.utils.geometry
 # Local
 from abis_mapping import base
 from abis_mapping import utils
@@ -239,7 +240,7 @@ class TestDefaultMap:
 
         # Make site id geo default map using values extracted previously
         val = str(
-            utils.rdf.to_wkt_point_literal(
+            abis_mapping.utils.geometry.to_wkt_point_literal(
                 latitude=s_geo_vals["decimalLatitude"],
                 longitude=s_geo_vals["decimalLongitude"],
                 datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(s_geo_vals["geodeticDatum"])

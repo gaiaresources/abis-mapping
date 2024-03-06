@@ -5,6 +5,7 @@
 import rdflib
 import shapely
 
+import abis_mapping.utils.geometry
 # Local
 from abis_mapping import utils
 
@@ -45,7 +46,7 @@ def test_rdf_uri() -> None:
 def test_rdf_to_wkt_point_literal() -> None:
     """Tests the to_wkt_point_literal() Function."""
     # Test Lat and Long
-    wkt = utils.rdf.to_wkt_point_literal(
+    wkt = abis_mapping.utils.geometry.to_wkt_point_literal(
         latitude=-31.953512,
         longitude=115.857048,
     )
@@ -55,7 +56,7 @@ def test_rdf_to_wkt_point_literal() -> None:
     )
 
     # Test Lat and Long with Datum
-    wkt = utils.rdf.to_wkt_point_literal(
+    wkt = abis_mapping.utils.geometry.to_wkt_point_literal(
         latitude=-31.953512,
         longitude=115.857048,
         datum=rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
@@ -72,14 +73,14 @@ def test_rdf_to_wkt_literal() -> None:
     point = shapely.Point(115.857048, -31.953512)
 
     # Test only geometry
-    wkt = utils.rdf.to_wkt_literal(point)
+    wkt = abis_mapping.utils.geometry.to_wkt_literal(point)
     assert wkt == rdflib.Literal(
         "POINT (115.857048 -31.953512)",
         datatype=utils.namespaces.GEO.wktLiteral,
     )
 
     # Test with Datum
-    wkt = utils.rdf.to_wkt_literal(
+    wkt = abis_mapping.utils.geometry.to_wkt_literal(
         geometry=point,
         datum=rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/9.9.1/4283"),
     )
@@ -92,7 +93,7 @@ def test_rdf_to_wkt_literal() -> None:
     point = shapely.Point(115.8570481111111, -31.95351254545)
 
     # Test only geometry rounds correctly
-    wkt = utils.rdf.to_wkt_literal(point)
+    wkt = abis_mapping.utils.geometry.to_wkt_literal(point)
     assert wkt == rdflib.Literal(
         "POINT (115.85704811 -31.95351255)",
         datatype=utils.namespaces.GEO.wktLiteral,

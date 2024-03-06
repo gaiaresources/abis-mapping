@@ -7,15 +7,12 @@ import uuid
 # Third-Party
 import rdflib
 import slugify
-import shapely
 
 # Local
 from . import namespaces
-from abis_mapping import settings
 
 # Typing
 from typing import Optional
-
 
 # The required set of namespaces for the create_graph utility function
 REQUIRED_NAMESPACES = [
@@ -89,48 +86,3 @@ def uri(
     return namespace[internal_id]
 
 
-def to_wkt_point_literal(
-    latitude: float,
-    longitude: float,
-    datum: Optional[rdflib.URIRef] = None,
-) -> rdflib.Literal:
-    """Generates a Literal WKT Point Representation of Latitude and Longitude.
-
-    Args:
-        latitude (float): Latitude to generate WKT.
-        longitude (float): Longitude to generate WKT.
-        datum (Optional[rdflib.URIRef]): Optional geodetic datum to include.
-
-    Returns:
-        rdflib.Literal: Literal WKT Point.
-    """
-    # Construct point from latitude and longitude
-    point = shapely.Point(longitude, latitude)
-
-    # Create and Return WKT rdf literal
-    return to_wkt_literal(point, datum)
-
-
-def to_wkt_literal(
-    geometry: shapely.Geometry,
-    datum: Optional[rdflib.URIRef] = None,
-) -> rdflib.Literal:
-    """Generates a literal WKT representation of the supplied geometry.
-
-    Args:
-        geometry (shapely.Geometry): Geometry object to construct WKT text from.
-        datum (Optional[rdflib.URIRef]): Geodetic datum that geometry is based
-            upon.
-
-    Returns:
-        rdflib.Literal: RDF WKT literal for geometry
-    """
-    # Construct Datum URI to be Embedded
-    datum_string = f"<{datum}> " if datum else ""
-
-    # Construct  and return rdf literal
-    wkt_string = shapely.to_wkt(geometry, rounding_precision=settings.DEFAULT_WKT_ROUNDING_PRECISION)
-    return rdflib.Literal(
-        datum_string + wkt_string,
-        datatype=namespaces.GEO.wktLiteral,
-    )

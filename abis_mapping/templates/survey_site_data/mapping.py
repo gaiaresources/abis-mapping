@@ -1,6 +1,7 @@
 """Provides ABIS Mapper for `survey_site_data.csv` Template"""
 import decimal
 
+import abis_mapping.utils.geometry
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
@@ -150,7 +151,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 if footprint_wkt is not None:
                     # Create string and add to map for site id
                     result[site_id] = str(
-                        utils.rdf.to_wkt_literal(
+                        abis_mapping.utils.geometry.to_wkt_literal(
                             geometry=footprint_wkt.centroid,
                             datum=datum_uri,
                         )
@@ -161,7 +162,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 if longitude is not None and latitude is not None:
                     # Create string and add to map for site id
                     result[site_id] = str(
-                        utils.rdf.to_wkt_literal(
+                        abis_mapping.utils.geometry.to_wkt_literal(
                             geometry=shapely.Point([longitude, latitude]),
                             datum=datum_uri,
                         )
@@ -433,7 +434,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             return
 
         # Construct wkt literal
-        wkt = utils.rdf.to_wkt_literal(
+        wkt = abis_mapping.utils.geometry.to_wkt_literal(
             geometry=footprint_wkt,
             datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(geodetic_datum),
         )
@@ -466,7 +467,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             return
 
         # Construct wkt literal
-        wkt = utils.rdf.to_wkt_point_literal(
+        wkt = abis_mapping.utils.geometry.to_wkt_point_literal(
             latitude=decimal_latitude,
             longitude=decimal_longitude,
             datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(geodetic_datum),

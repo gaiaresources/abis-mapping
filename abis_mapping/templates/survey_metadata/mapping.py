@@ -1,5 +1,5 @@
 """Provides ABIS mapper for `survey_metadata.csv` template"""
-
+import abis_mapping.utils.geometry
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
@@ -305,7 +305,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             return
 
         # Construct wkt literal
-        wkt = utils.rdf.to_wkt_literal(
+        wkt = abis_mapping.utils.geometry.to_wkt_literal(
             geometry=geometry,
             datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(datum),
         )
