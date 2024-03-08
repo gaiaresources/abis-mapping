@@ -84,5 +84,3 @@ def uri(
 
     # Create URIRef and Return
     return namespace[internal_id]
-
-

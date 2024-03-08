@@ -1,10 +1,11 @@
 """Provides ABIS mapper for `survey_metadata.csv` template"""
-import abis_mapping.utils.geometry
+
+
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
-from abis_mapping import vocabs
 from abis_mapping import utils
+from abis_mapping import types
 
 # Third-party
 import frictionless
@@ -299,22 +300,22 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         """
         # Extract relevant values
         datum = row["spatialCoverageGeodeticDatum"]
-        geometry = row["spatialCoverageWKT"]
+        sc_geometry = row["spatialCoverageWKT"]
 
-        if not (datum and geometry):
+        if not (datum and sc_geometry):
             return
 
-        # Construct wkt literal
-        wkt = abis_mapping.utils.geometry.to_wkt_literal(
-            geometry=geometry,
-            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(datum),
+        # Construct geometry
+        geometry = types.geometry.Geometry(
+            raw=sc_geometry,
+            datum=datum,
         )
 
         # Add spatial coverage
         geometry_node = rdflib.BNode()
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, wkt))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
 
     def add_temporal_coverage(
         self,

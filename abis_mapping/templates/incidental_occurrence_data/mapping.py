@@ -5,11 +5,11 @@
 import frictionless
 import rdflib
 
-import abis_mapping.utils.geometry
 # Local
 from abis_mapping import base
 from abis_mapping import utils
 from abis_mapping import plugins
+from abis_mapping import types
 from abis_mapping import vocabs
 
 # Typing
@@ -1019,11 +1019,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Extract values from row
         event_date: utils.types.Timestamp = row["eventDate"]
 
-        # Create WKT from Latitude and Longitude
-        wkt = abis_mapping.utils.geometry.to_wkt_point_literal(
-            latitude=row["decimalLatitude"],
-            longitude=row["decimalLongitude"],
-            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
+        # Create geometry
+        geometry = types.geometry.Geometry(
+            raw=types.geometry.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+            datum=row["geodeticDatum"]
         )
 
         # Retrieve Vocab or Create on the Fly
@@ -1037,10 +1036,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
-        geometry = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
-        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
+        geometry_node = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         temporal_entity = rdflib.BNode()
@@ -1260,11 +1259,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not has_specimen(row):
             return
 
-        # Create WKT from Latitude and Longitude
-        wkt = abis_mapping.utils.geometry.to_wkt_point_literal(
-            latitude=row["decimalLatitude"],
-            longitude=row["decimalLongitude"],
-            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
+        # Create geometry
+        geometry = types.geometry.Geometry(
+            raw=types.geometry.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+            datum=row["geodeticDatum"],
         )
 
         # Get Timestamp
@@ -1281,10 +1279,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, timestamp.rdf_in_xsd, timestamp.to_rdf_literal()))
-        geometry = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
-        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
+        geometry_node = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
 
         # Add Spatial Qualifier
         spatial_comment = "Location unknown, location of field sampling used as proxy"
@@ -2743,11 +2741,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["associatedSequences"]:
             return
 
-        # Create WKT from Latitude and Longitude
-        wkt = abis_mapping.utils.geometry.to_wkt_point_literal(
-            latitude=row["decimalLatitude"],
-            longitude=row["decimalLongitude"],
-            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
+        # Create geometry
+        geometry = types.geometry.Geometry(
+            raw=types.geometry.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+            datum=row["geodeticDatum"],
         )
 
         # Retrieve Vocab or Create on the Fly
@@ -2761,10 +2758,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequencing-sampling")))
-        geometry = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
-        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
+        geometry_node = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
         temporal_entity = rdflib.BNode()
