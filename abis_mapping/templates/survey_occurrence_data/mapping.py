@@ -9,6 +9,7 @@ import rdflib
 from abis_mapping import base
 from abis_mapping import utils
 from abis_mapping import plugins
+from abis_mapping import types
 from abis_mapping import vocabs
 
 # Typing
@@ -1132,18 +1133,19 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         event_date: utils.types.Timestamp = row["eventDate"]
 
         if latitude is not None and longitude is not None:
-            # Create WKT from Latitude and Longitude
-            wkt = utils.rdf.to_wkt_point_literal(
-                latitude=row["decimalLatitude"],
-                longitude=row["decimalLongitude"],
-                datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
+            # Create geometry
+            geometry = types.geometry.Geometry(
+                raw=types.geometry.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+                datum=row["geodeticDatum"],
             )
-        elif site_id_geometry_map is not None:
-            # Get WKT from default map
-            wkt = rdflib.Literal(
-                lexical_or_value=site_id_geometry_map.get(site_id),
-                datatype=utils.namespaces.GEO.wktLiteral,
-            )
+
+        elif (
+            site_id_geometry_map is not None and
+            (default_geometry := site_id_geometry_map.get(site_id)) is not None
+        ):
+            # Create geometry from literal
+            geometry = types.geometry.Geometry.from_geosparql_wkt_literal(default_geometry)
+
         else:
             # Should not reach this as data is already validated included for completeness
             return
@@ -1159,10 +1161,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
-        geometry = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
-        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
+        geometry_node = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
@@ -1393,21 +1395,23 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Extract values
         latitude = row["decimalLatitude"]
         longitude = row["decimalLongitude"]
+        geodetic_datum = row["geodeticDatum"]
         site_id = row["siteID"]
 
         if latitude is not None and longitude is not None:
-            # Create WKT from Latitude and Longitude
-            wkt = utils.rdf.to_wkt_point_literal(
-                latitude=latitude,
-                longitude=longitude,
-                datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
+            # Create geometry
+            geometry = types.geometry.Geometry(
+                raw=types.geometry.LatLong(latitude, longitude),
+                datum=geodetic_datum,
             )
-        elif site_id_geometry_map is not None:
-            # Create wkt literal from supplied default string
-            wkt = rdflib.Literal(
-                lexical_or_value=site_id_geometry_map.get(site_id),
-                datatype=utils.namespaces.GEO.wktLiteral,
-            )
+
+        elif (
+            site_id_geometry_map is not None and
+            (default_geometry := site_id_geometry_map.get(site_id)) is not None
+        ):
+            # Create geometry from geosparql wkt literal
+            geometry = types.geometry.Geometry.from_geosparql_wkt_literal(default_geometry)
+
         else:
             # Should not reach here since validated data provided, however if
             # it does come to it the corresponding node will be omitted
@@ -1427,10 +1431,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, timestamp.rdf_in_xsd, timestamp.to_rdf_literal()))
-        geometry = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
-        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
+        geometry_node = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
 
         # Add Spatial Qualifier
         spatial_comment = "Location unknown, location of field sampling used as proxy"
@@ -2899,22 +2903,24 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Extract values
         latitude = row["decimalLatitude"]
         longitude = row["decimalLongitude"]
+        geodetic_datum = row["geodeticDatum"]
         site_id = row["siteID"]
         event_date: utils.types.Timestamp = row["eventDate"]
 
         if latitude is not None and longitude is not None:
-            # Create WKT from Latitude and Longitude
-            wkt = utils.rdf.to_wkt_point_literal(
-                latitude=latitude,
-                longitude=longitude,
-                datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(row["geodeticDatum"]),
+            # Create geometry
+            geometry = types.geometry.Geometry(
+                raw=types.geometry.LatLong(latitude, longitude),
+                datum=geodetic_datum,
             )
-        elif site_id_geometry_map is not None:
-            # Get wkt from default value map for given site id.
-            wkt = rdflib.Literal(
-                lexical_or_value=site_id_geometry_map.get(site_id),
-                datatype=utils.namespaces.GEO.wktLiteral,
-            )
+
+        elif (
+            site_id_geometry_map is not None and
+            (default_geometry := site_id_geometry_map.get(site_id)) is not None
+        ):
+            # Create geometry from wkt literal
+            geometry = types.geometry.Geometry.from_geosparql_wkt_literal(default_geometry)
+
         else:
             # Should not be able to reach here if validated data provided,
             # but if it does then node will be ommitted from graph.
@@ -2931,10 +2937,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequencing-sampling")))
-        geometry = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
-        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry, utils.namespaces.GEO.asWKT, wkt))
+        geometry_node = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
         temporal_entity = rdflib.BNode()

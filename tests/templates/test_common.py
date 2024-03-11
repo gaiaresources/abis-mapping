@@ -14,6 +14,7 @@ import unittest.mock
 import pytest
 import pytest_mock
 import frictionless
+import pyproj
 
 # Typing
 from typing import Type
@@ -105,6 +106,24 @@ class TestTemplateBasicSuite:
         instructions = real_mapper.instructions()
         assert isinstance(instructions, pathlib.Path)
         assert instructions.is_file()
+
+    def test_geodetic_datum_proj_supported(self, test_params: conftest.TemplateTestParameters) -> None:
+        """Test that all enumerated values for geodeticDatum are supported by proj."""
+        # Get mapper
+        real_mapper = abis_mapping.base.mapper.get_mapper(test_params.template_id)
+        assert real_mapper is not None
+
+        # Get descriptor
+        desc = real_mapper().schema()
+
+        # Filter out geodetic datum fields and their enumerable values
+        gd_field = [gd for gd in desc["fields"] if gd["name"] == "geodeticDatum"]
+        if len(gd_field) > 0:
+            assert len(gd_field) == 1
+            gds = {gd for gd in gd_field[0]["constraints"]["enum"]}
+            for gd in gds:
+                # Ensure geodetic datum string supported by pyproj
+                assert pyproj.CRS(gd) is not None
 
     def test_metadata_sampling_type(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests the metadata sampling type set correctly"""

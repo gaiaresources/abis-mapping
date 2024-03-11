@@ -4,6 +4,7 @@ import decimal
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
+from abis_mapping import types
 from abis_mapping import utils
 from abis_mapping import vocabs
 
@@ -143,17 +144,14 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 if datum is None:
                     continue
 
-                # Get the corresponding uri for the given datum
-                datum_uri: rdflib.URIRef = vocabs.geodetic_datum.GEODETIC_DATUM.get(datum)
-
                 # Default to using the footprint wkt + geodetic datum
                 if footprint_wkt is not None:
                     # Create string and add to map for site id
                     result[site_id] = str(
-                        utils.rdf.to_wkt_literal(
-                            geometry=footprint_wkt.centroid,
-                            datum=datum_uri,
-                        )
+                        types.geometry.Geometry(
+                            raw=footprint_wkt.centroid,
+                            datum=datum,
+                        ).to_rdf_literal()
                     )
                     continue
 
@@ -161,10 +159,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 if longitude is not None and latitude is not None:
                     # Create string and add to map for site id
                     result[site_id] = str(
-                        utils.rdf.to_wkt_literal(
-                            geometry=shapely.Point([longitude, latitude]),
-                            datum=datum_uri,
-                        )
+                        types.geometry.Geometry(
+                            raw=shapely.Point([longitude, latitude]),
+                            datum=datum,
+                        ).to_rdf_literal()
                     )
 
             return result
@@ -432,16 +430,16 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         if not footprint_wkt:
             return
 
-        # Construct wkt literal
-        wkt = utils.rdf.to_wkt_literal(
-            geometry=footprint_wkt,
-            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(geodetic_datum),
+        # Construct geometry
+        geometry = types.geometry.Geometry(
+            raw=footprint_wkt,
+            datum=geodetic_datum,
         )
 
         # Construct node
         geometry_node = rdflib.BNode()
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, wkt))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
 
     def add_point_geometry(
@@ -465,17 +463,16 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         if not decimal_latitude or not decimal_longitude:
             return
 
-        # Construct wkt literal
-        wkt = utils.rdf.to_wkt_point_literal(
-            latitude=decimal_latitude,
-            longitude=decimal_longitude,
-            datum=vocabs.geodetic_datum.GEODETIC_DATUM.get(geodetic_datum),
+        # Construct geometry
+        geometry = types.geometry.Geometry(
+            raw=types.geometry.LatLong(decimal_latitude, decimal_longitude),
+            datum=geodetic_datum,
         )
 
         # Construct node
         geometry_node = rdflib.BNode()
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, wkt))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
 
 
