@@ -10,24 +10,14 @@ import attrs
 from abis_mapping import plugins
 
 # Typing
-from typing import NamedTuple, Any, Iterator
-
-
-class Case(NamedTuple):
-    """Tuple for all the test cases."""
-    lat: float | None
-    long: float | None
-    wkt: str | None
-    datum: str | None
-    site_ids: set[str]
-    valid: bool
+from typing import Any, Iterator
 
 
 @attrs.define(kw_only=True)
 class Parameters:
     """Parameters for the test cases"""
     header: list[str]
-    cases: list[Case]
+    cases: list[tuple]
 
     def compiled(self) -> Iterator[tuple]:
         for case in self.cases:
@@ -79,7 +69,7 @@ class TestSiteGeometry:
 
     @pytest.mark.parametrize(
         "source,site_ids,valid",
-        list(params.compiled())
+        params.compiled()
     )
     def test_check_site_geometry_valid(self, source: dict[str, Any], site_ids: set[str], valid: bool) -> None:
         """Tests the site goemetry checker.

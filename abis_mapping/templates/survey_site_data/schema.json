@@ -90,7 +90,7 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true,
+        "required": false,
         "enum": [
           "AGD66",
           "EPSG:4202",

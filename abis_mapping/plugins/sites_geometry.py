@@ -46,7 +46,7 @@ class SitesGeometry(frictionless.Check):
             return
 
         # Create error note
-        note = f"invalid geometry: "
+        note = "invalid geometry: "
         if (wkt or (lat and long)) and not datum:
             note += f"invalid datum {row['geodeticDatum']} provided."
         elif lat ^ long:
@@ -55,7 +55,7 @@ class SitesGeometry(frictionless.Check):
                 f"got ({row['decimalLatitude']}, {row['decimalLongitude']})"
             )
         else:
-            note += f"incorrect combination of geometry fields provided."
+            note += "incorrect combination of geometry fields provided."
 
         # Yield error
         yield frictionless.errors.RowConstraintError.from_row(
