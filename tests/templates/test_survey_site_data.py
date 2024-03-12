@@ -4,14 +4,19 @@
 import csv
 import io
 
+# Third-party
+import attrs
+import frictionless
+import pytest
+import pytest_mock
+import rdflib
+
 # Local
 from abis_mapping import base
 import abis_mapping.templates.survey_site_data.mapping
 
-# Third-party
-import pytest_mock
-import attrs
-import pytest
+# Typing
+from typing import Any
 
 
 def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
@@ -84,10 +89,10 @@ class TestSiteIDForeignKeys:
         Scenario(
             name="valid_with_site_id_map",
             raws=[
-                ["site1", "-38.94", "115.21", "POINT(30 10)"],
-                ["site2", "-38.94", "115.21", ""],
-                ["site3", "", "", "LINESTRING(30 10, 10 30, 40 40)"],
-                ["site4", "", "", ""],
+                ["site1", "-38.94", "115.21", "POINT(30 10)", "WGS84"],
+                ["site2", "-38.94", "115.21", "", "GDA2020"],
+                ["site3", "", "", "LINESTRING(30 10, 10 30, 40 40)", "GDA94"],
+                ["site4", "", "", "", ""],
             ],
             site_id_map={
                 "site4": True,
@@ -97,7 +102,7 @@ class TestSiteIDForeignKeys:
         Scenario(
             name="invalid_missing_geometry_and_not_in_map",
             raws=[
-                ["site1", "", "", ""],
+                ["site1", "", "", "", ""],
             ],
             site_id_map={
                 "site2": True
@@ -119,7 +124,7 @@ class TestSiteIDForeignKeys:
             mocker (pytest_mock.MockerFixture): The mocker fixture.
         """
         # Construct fake data
-        rawh = ["siteID", "decimalLatitude", "decimalLongitude", "footprintWKT"]
+        rawh = ["siteID", "decimalLatitude", "decimalLongitude", "footprintWKT", "geodeticDatum"]
         all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in scenario.raws]
 
         # Get mapper
@@ -155,3 +160,93 @@ class TestSiteIDForeignKeys:
         if not report.valid:
             error_codes = [code for codes in report.flatten(['type']) for code in codes]
             assert set(error_codes) == scenario.expected_error_codes
+
+
+@pytest.mark.parametrize(
+    "row_dict",
+    [
+        {"footprintWKT": None, "geodeticDatum": None},
+        {"footprintWKT": None, "geodeticDatum": "WGS84"},
+        {"footprintWKT": "POINT (0 0)", "geodeticDatum": None},
+    ]
+)
+def test_add_footprint_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
+    """Tests that add_footprint_geometry won't add to graph without valid WKT geometry.
+
+    Args:
+        row_dict (dict[str, Any]): Raw data row to use for test case.
+    """
+    # Create graph
+    graph = rdflib.Graph()
+
+    # Create resource
+    resource = frictionless.Resource(
+        source=[row_dict]
+    )
+
+    # Extract row
+    with resource.open() as r:
+        row = next(r.row_stream)
+
+    # Create URI
+    uri = rdflib.URIRef("http://example.com/abis-mapping/test")
+
+    # Get mapper
+    mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
+
+    # Call method
+    mapper.add_footprint_geometry(
+        uri=uri,
+        row=row,
+        graph=graph,
+    )
+
+    # Validate no triples added to graph
+    assert len(graph) == 0
+
+
+@pytest.mark.parametrize(
+    "row_dict",
+    [
+        {"decimalLatitude": None, "decimalLongitude": None, "geodeticDatum": None},
+        {"decimalLatitude": None, "decimalLongitude": None, "geodeticDatum": "WGS84"},
+        {"decimalLatitude": None, "decimalLongitude": 0, "geodeticDatum": None},
+        {"decimalLatitude": None, "decimalLongitude": 0, "geodeticDatum": "WGS84"},
+        {"decimalLatitude": 0, "decimalLongitude": None, "geodeticDatum": None},
+        {"decimalLatitude": 0, "decimalLongitude": None, "geodeticDatum": "WGS84"},
+        {"decimalLatitude": 0, "decimalLongitude": 0, "geodeticDatum": None},
+    ]
+)
+def test_add_point_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
+    """Tests that add_point_geometry method doesn't add to graph for no point geometries.
+
+    Args:
+        row_dict (dict[str, Any]): Raw data row to use for test case.
+    """
+    # Create graph
+    graph = rdflib.Graph()
+
+    # Create resource
+    resource = frictionless.Resource(
+        source=[row_dict]
+    )
+
+    # Extract row
+    with resource.open() as r:
+        row = next(r.row_stream)
+
+    # Create URI
+    uri = rdflib.URIRef("http://example.com/abis-mapping/test")
+
+    # Get mapper
+    mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
+
+    # Call method
+    mapper.add_point_geometry(
+        uri=uri,
+        row=row,
+        graph=graph,
+    )
+
+    # Validate no triples added to graph
+    assert len(graph) == 0

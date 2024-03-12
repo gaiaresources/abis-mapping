@@ -72,20 +72,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     # Extra custom checks
                     plugins.tabular.IsTabular(),
                     plugins.empty.NotEmpty(),
-                    plugins.mutual_inclusion.MutuallyInclusive(
-                        field_names=[
-                            "decimalLatitude",
-                            "decimalLongitude",
-                        ]
-                    ),
-                    plugins.logical_or.LogicalOr(
-                        field_names=[
-                            "footprintWKT",
-                            "decimalLatitude",
-                        ],
-                        foreign_keys={
-                            "siteID": set(site_id_map.keys())
-                        },
+                    plugins.sites_geometry.SitesGeometry(
+                        occurrence_site_ids=set(site_id_map)
                     ),
                     plugins.chronological.ChronologicalOrder(
                         field_names=[
@@ -174,7 +162,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         base_iri: Optional[rdflib.Namespace] = None,
         **kwargs: Any,
     ) -> Iterator[rdflib.Graph]:
-        """Applies Mapping for the `survey_site_data.csv` Template
+        """Applies Mapping for the `survey_site_data.csv` Template.
 
         Args:
             data (base.types.ReadableType): Valid raw data to be mapped.
@@ -427,7 +415,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         geodetic_datum = row["geodeticDatum"]
         footprint_wkt = row["footprintWKT"]
 
-        if not footprint_wkt:
+        if footprint_wkt is None or geodetic_datum is None:
             return
 
         # Construct geometry
@@ -460,7 +448,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         decimal_longitude = row["decimalLongitude"]
         geodetic_datum = row["geodeticDatum"]
 
-        if not decimal_latitude or not decimal_longitude:
+        if decimal_latitude is None or decimal_longitude is None or geodetic_datum is None:
             return
 
         # Construct geometry
