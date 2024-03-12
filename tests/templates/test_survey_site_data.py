@@ -171,7 +171,11 @@ class TestSiteIDForeignKeys:
     ]
 )
 def test_add_footprint_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
-    """Tests that add_footprint_geometry won't add to graph without valid WKT geometry."""
+    """Tests that add_footprint_geometry won't add to graph without valid WKT geometry.
+
+    Args:
+        row_dict (dict[str, Any]): Raw data row to use for test case.
+    """
     # Create graph
     graph = rdflib.Graph()
 
@@ -214,7 +218,11 @@ def test_add_footprint_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
     ]
 )
 def test_add_point_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
-    """Tests that add_point_geometry method doesn't add to graph for no point geometries."""
+    """Tests that add_point_geometry method doesn't add to graph for no point geometries.
+
+    Args:
+        row_dict (dict[str, Any]): Raw data row to use for test case.
+    """
     # Create graph
     graph = rdflib.Graph()
 

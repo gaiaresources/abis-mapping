@@ -20,9 +20,18 @@ class Parameters:
     cases: list[tuple]
 
     def compiled(self) -> Iterator[tuple]:
+        """Compiles all the parameters for the test cases.
+
+        Yields:
+            tuple: The parameters for each test case.
+        """
+        # Iterate through each of the cases.
         for case in self.cases:
+            # Construct data row
             source = {key: val for key, val in zip(self.header, case)}
+            # Add siteID column
             source["siteID"] = "site1"
+            # Yield result
             yield source, case[-2], case[-1]
 
 
