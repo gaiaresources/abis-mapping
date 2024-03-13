@@ -853,7 +853,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Get Timestamp
-        date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -942,7 +942,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -1017,7 +1017,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Extract values from row
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Create geometry
         geometry = types.geometry.Geometry(
@@ -1279,7 +1279,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Get Timestamp
-        timestamp: utils.types.Timestamp = row["preparedDate"] or row["eventDate"]
+        timestamp: types.temporal.Timestamp = row["preparedDate"] or row["eventDate"]
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -1818,7 +1818,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -1902,7 +1902,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2143,7 +2143,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2289,7 +2289,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2385,7 +2385,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2485,7 +2485,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2586,7 +2586,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2684,7 +2684,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Accepted Name Usage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -2759,7 +2759,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Extract values from row
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Check Existence
         if not row["associatedSequences"]:
@@ -2928,7 +2928,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Get Timestamp
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDate` (fallback)
-        date_determined: utils.types.Timestamp = (
+        date_determined: types.temporal.Timestamp = (
             row["threatStatusDateDetermined"]
             or row["dateIdentified"]
             or row["preparedDate"]

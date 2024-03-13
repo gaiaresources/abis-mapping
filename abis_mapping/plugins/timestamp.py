@@ -6,7 +6,7 @@ import attrs
 import frictionless
 
 # Local
-from abis_mapping.utils import types
+from abis_mapping.types import temporal
 
 # Typing
 from typing import Any, Optional, Type
@@ -52,17 +52,17 @@ class TimestampField(frictionless.Field):
     def create_value_reader(self) -> frictionless.schema.types.IValueReader:
         """Creates value reader callable."""
 
-        def value_reader(cell: Any) -> types.Timestamp | None:
+        def value_reader(cell: Any) -> temporal.Timestamp | None:
             """Convert cell (read direction).
 
             Args:
                 cell (Any): Cell to convert
 
             Returns:
-                Optional[types.Timestamp]: Converted cell, or none if invalid.
+                Optional[temporal.Timestamp]: Converted cell, or none if invalid.
             """
             # Check cell not already timestamp value
-            if isinstance(cell, types.Timestamp):
+            if isinstance(cell, temporal.Timestamp):
                 return cell
 
             # Check that cell is a string
@@ -73,7 +73,7 @@ class TimestampField(frictionless.Field):
             # Catch Parsing Errors
             try:
                 # Parse and return
-                return types.parse_timestamp(cell)
+                return temporal.parse_timestamp(cell)
 
             except ValueError:
                 # Invalid
@@ -84,11 +84,11 @@ class TimestampField(frictionless.Field):
 
     def create_value_writer(self) -> frictionless.schema.types.IValueWriter:
         """Creates value writer callable."""
-        def value_writer(cell: types.Timestamp) -> str:
+        def value_writer(cell: temporal.Timestamp) -> str:
             """Convert cell (write direction)
 
             Args:
-                cell (types.Timestamp): Cell to convert
+                cell (temporal.Timestamp): Cell to convert
 
             Returns:
                 str: Converted cell
