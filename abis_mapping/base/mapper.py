@@ -14,6 +14,7 @@ import rdflib
 
 # Local
 from . import types
+from abis_mapping.types import geometry
 from abis_mapping import utils
 
 # Typing
@@ -89,6 +90,40 @@ class ABISMapper(abc.ABC):
         graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(self.DATASET_DEFAULT_NAME)))
         graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(self.DATASET_DEFAULT_DESCRIPTION)))
         graph.add((uri, rdflib.DCTERMS.issued, utils.types.Date.today().to_rdf_literal()))
+
+    def add_geometry_supplied_as(
+        self,
+        subj: rdflib.graph.Node,
+        pred: rdflib.graph.Node,
+        obj: rdflib.graph.Node,
+        geom: geometry.Geometry,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add geometry supplied as originally to the graph.
+
+        Args:
+            subj (rdflib.graph.Node): Subject identifying geometry use.
+            pred (rdflib.graph.Node): Predicate of where transformed
+                geometry used.
+            obj (rdflib.graph.Node): Object containing the transformed geometry.
+            geom (geometry.Geometry): Geometry object containing values.
+            graph (rdflib.Graph): Graph to be added to.
+        """
+        # Create top blank node to hold statement
+        top_node = rdflib.BNode()
+
+        # Add details of the already created geometry
+        graph.add((top_node, a, rdflib.RDF.Statement))
+        graph.add((top_node, rdflib.RDF.subject, subj))
+        graph.add((top_node, rdflib.RDF.predicate, pred))
+        graph.add((top_node, rdflib.RDF.object, obj))
+        graph.add((top_node, rdflib.RDFS.comment, rdflib.Literal("supplied as")))
+
+        # Add the supplied as geometry from raw data
+        supplied_as = rdflib.BNode()
+        graph.add((supplied_as, a, utils.namespaces.GEO.Geometry))
+        graph.add((supplied_as, utils.namespaces.GEO.asWKT, geom.to_rdf_literal()))
+        graph.add((top_node, utils.namespaces.GEO.hasGeometry, supplied_as))
 
     @classmethod
     def add_extra_fields_json(
