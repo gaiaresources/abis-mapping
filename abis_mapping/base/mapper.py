@@ -15,8 +15,8 @@ import rdflib
 # Local
 from . import types
 from abis_mapping.types import geometry
-from abis_mapping import utils
 from abis_mapping.types import temporal
+from abis_mapping import utils
 
 # Typing
 from typing import Any, Iterator, Optional, final
