@@ -427,8 +427,17 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Construct node
         geometry_node = rdflib.BNode()
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+
+        # Add original geometry supplied as statement
+        self.add_geometry_supplied_as(
+            subj=uri,
+            pred=utils.namespaces.GEO.hasGeometry,
+            obj=geometry_node,
+            geom=geometry,
+            graph=graph,
+        )
 
     def add_point_geometry(
         self,
@@ -460,8 +469,17 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Construct node
         geometry_node = rdflib.BNode()
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+
+        # Add original geometry supplied as statement
+        self.add_geometry_supplied_as(
+            subj=uri,
+            pred=utils.namespaces.GEO.hasGeometry,
+            obj=geometry_node,
+            geom=geometry,
+            graph=graph,
+        )
 
 
 # Register Mapper

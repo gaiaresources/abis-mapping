@@ -1161,16 +1161,26 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
-        geometry_node = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
-        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.hasResult, sample_field))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+
+        # Add geometry
+        geometry_node = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+        graph.add((uri, rdflib.SOSA.hasResult, sample_field))
+
+        self.add_geometry_supplied_as(
+            subj=uri,
+            pred=utils.namespaces.GEO.hasGeometry,
+            obj=geometry_node,
+            geom=geometry,
+            graph=graph,
+        )
 
         # Add site if one provided
         if site is not None:
@@ -1431,10 +1441,20 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, timestamp.rdf_in_xsd, timestamp.to_rdf_literal()))
+
+        # Add geometry
         geometry_node = rdflib.BNode()
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+
+        self.add_geometry_supplied_as(
+            subj=uri,
+            pred=utils.namespaces.GEO.hasGeometry,
+            obj=geometry_node,
+            geom=geometry,
+            graph=graph,
+        )
 
         # Add Spatial Qualifier
         spatial_comment = "Location unknown, location of field sampling used as proxy"
@@ -2937,10 +2957,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequencing-sampling")))
-        geometry_node = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
-        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
         temporal_entity = rdflib.BNode()
@@ -2948,6 +2964,20 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+
+        # Add geometry
+        geometry_node = rdflib.BNode()
+        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+
+        self.add_geometry_supplied_as(
+            subj=uri,
+            pred=utils.namespaces.GEO.hasGeometry,
+            obj=geometry_node,
+            geom=geometry,
+            graph=graph,
+        )
 
         # Check for coordinateUncertaintyInMeters
         if row["coordinateUncertaintyInMeters"]:
