@@ -15,6 +15,7 @@ import rdflib
 # Local
 from . import types
 from abis_mapping.types import geometry
+from abis_mapping.types import temporal
 from abis_mapping import utils
 
 # Typing
@@ -89,7 +90,7 @@ class ABISMapper(abc.ABC):
         graph.add((uri, a, utils.namespaces.TERN.RDFDataset))
         graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(self.DATASET_DEFAULT_NAME)))
         graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(self.DATASET_DEFAULT_DESCRIPTION)))
-        graph.add((uri, rdflib.DCTERMS.issued, utils.types.Date.today().to_rdf_literal()))
+        graph.add((uri, rdflib.DCTERMS.issued, temporal.Date.today().to_rdf_literal()))
 
     def add_geometry_supplied_as(
         self,

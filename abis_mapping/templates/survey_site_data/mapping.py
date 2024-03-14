@@ -377,8 +377,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             graph (rdflib.URIRef): Graph to be modified.
         """
         # Extract values
-        site_visit_start: utils.types.Timestamp = row["siteVisitStart"]
-        site_visit_end: utils.types.Timestamp = row["siteVisitEnd"]
+        site_visit_start: types.temporal.Timestamp = row["siteVisitStart"]
+        site_visit_end: types.temporal.Timestamp = row["siteVisitEnd"]
 
         # Create temporal entity node
         temporal_entity = rdflib.BNode()

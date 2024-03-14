@@ -7,7 +7,7 @@ import frictionless.errors
 import attrs
 
 # Local
-from abis_mapping.utils import types
+from abis_mapping.types import temporal
 
 # Typing
 from typing import Iterator
@@ -34,7 +34,7 @@ class ChronologicalOrder(frictionless.Check):
             frictionless.Error: When the chronological order is violated.
         """
         # Get Timestamps
-        tstmps: list[types.Timestamp] = [row[name] for name in self.field_names if row[name] is not None]
+        tstmps: list[temporal.Timestamp] = [row[name] for name in self.field_names if row[name] is not None]
 
         # Test for 0 - 1 length list
         if len(tstmps) < 2:

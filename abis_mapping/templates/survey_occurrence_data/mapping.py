@@ -958,7 +958,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Get Timestamps
-        date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -1047,7 +1047,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -1130,7 +1130,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         latitude = row["decimalLatitude"]
         longitude = row["decimalLongitude"]
         site_id = row["siteID"]
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         if latitude is not None and longitude is not None:
             # Create geometry
@@ -1428,7 +1428,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        timestamp: utils.types.Timestamp = row["preparedDate"] or row["eventDate"]
+        timestamp: types.temporal.Timestamp = row["preparedDate"] or row["eventDate"]
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -1973,7 +1973,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2057,7 +2057,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2298,7 +2298,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2444,7 +2444,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2540,7 +2540,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2640,7 +2640,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2741,7 +2741,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2839,7 +2839,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: utils.types.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
 
         # Accepted Name Usage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -2925,7 +2925,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         longitude = row["decimalLongitude"]
         geodetic_datum = row["geodeticDatum"]
         site_id = row["siteID"]
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
 
         if latitude is not None and longitude is not None:
             # Create geometry
@@ -3102,7 +3102,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Get Timestamp
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDate` (fallback)
-        date_determined: utils.types.Timestamp = (
+        date_determined: types.temporal.Timestamp = (
             row["threatStatusDateDetermined"]
             or row["dateIdentified"]
             or row["preparedDate"]
@@ -3266,7 +3266,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to be modified.
         """
         # Extract values
-        event_date: utils.types.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDate"]
         organism_qty = row["organismQuantity"]
         organism_qty_type = row["organismQuantityType"]
 
