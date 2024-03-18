@@ -71,6 +71,10 @@ class TestDefaultMap:
                 ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
                 ["", "-38.94", "115.21", "WGS84", "", "", "VU", "VIC"],
                 ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                # The following show that non-url safe characters get encoded during mapping.
+                ["site a", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["site/b", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["site%20c", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={},
         ),

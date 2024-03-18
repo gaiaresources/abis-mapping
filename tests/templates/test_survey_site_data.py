@@ -93,6 +93,11 @@ class TestSiteIDForeignKeys:
                 ["site2", "-38.94", "115.21", "", "GDA2020"],
                 ["site3", "", "", "LINESTRING(30 10, 10 30, 40 40)", "GDA94"],
                 ["site4", "", "", "", ""],
+                # Following shows that non-url safe siteIDs get endcoded when mapping.
+                ["site a", "-38.94", "115.21", "", "GDA2020"],
+                ["site/b", "-38.94", "115.21", "", "GDA2020"],
+                [r"site\c", "-38.94", "115.21", "", "GDA2020"],
+                ["site\nd", "-38.94", "115.21", "", "GDA2020"],
             ],
             site_id_map={
                 "site4": True,
