@@ -24,6 +24,7 @@ def test_apply_validation(template_id: str, test_params: conftest.MappingParamet
 
     # Validate
     report = mapper().apply_validation(data)
+    print(report)
     assert report.valid == test_params.should_validate
     # Validate errors if invalid expected (and supplied).
     if not report.valid:

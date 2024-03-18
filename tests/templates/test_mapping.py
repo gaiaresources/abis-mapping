@@ -32,6 +32,10 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     # Assert
     assert len(graphs) == 1
 
+    hello = graphs[0].serialize(format="text/turtle")
+    with open('year.ttl', 'w') as file:
+        file.write(hello)
+
     # Compare Graphs
     assert tests.conftest.compare_graphs(
         graph1=graphs[0],
