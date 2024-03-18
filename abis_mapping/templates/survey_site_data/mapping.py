@@ -1,5 +1,14 @@
 """Provides ABIS Mapper for `survey_site_data.csv` Template"""
+
+# Standard
 import decimal
+import urllib.parse
+
+# Third-party
+import rdflib
+import frictionless
+import shapely
+import shapely.geometry
 
 # Local
 from abis_mapping import base
@@ -7,12 +16,6 @@ from abis_mapping import plugins
 from abis_mapping import types
 from abis_mapping import utils
 from abis_mapping import vocabs
-
-# Third-party
-import rdflib
-import frictionless
-import shapely
-import shapely.geometry
 
 # Typing
 from typing import Any, Optional, Iterator
@@ -237,7 +240,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         row_num = row.row_number - 1
 
         site_visit = utils.rdf.uri(f"visit/site/{row_num}", base_iri)
-        site = dataset + f"/Site/{row['siteID']}"
+        site_id = urllib.parse.quote(row['siteID'], safe='')
+        site = dataset + f"/Site/{site_id}"
 
         # Add site
         self.add_site(

@@ -1,5 +1,7 @@
 """Provides ABIS Mapper for `survey_occurrence_data.csv` Template"""
 
+# Standard
+import urllib.parse
 
 # Third-Party
 import frictionless
@@ -346,7 +348,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
         organism_quantity_observation = utils.rdf.uri(f"observation/organismQuantity/{row_num}", base_iri)
         organism_quantity_value = utils.rdf.uri(f"value/organismQuantity/{row_num}", base_iri)
-        site = dataset + f"/Site/{row['siteID']}" if row['siteID'] else None
+        site = dataset + f"/Site/{urllib.parse.quote(row['siteID'], safe='')}" if row['siteID'] else None
 
         # Add Provider Identified By
         self.add_provider_identified(
