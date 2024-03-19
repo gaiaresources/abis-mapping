@@ -14,7 +14,7 @@ import rdflib
 
 # Local
 from . import types
-from abis_mapping.types import geometry
+from abis_mapping.types import spatial
 from abis_mapping.types import temporal
 from abis_mapping import utils
 
@@ -97,7 +97,7 @@ class ABISMapper(abc.ABC):
         subj: rdflib.graph.Node,
         pred: rdflib.graph.Node,
         obj: rdflib.graph.Node,
-        geom: geometry.Geometry,
+        geom: spatial.Geometry,
         graph: rdflib.Graph,
     ) -> None:
         """Add geometry supplied as originally to the graph.
@@ -107,7 +107,7 @@ class ABISMapper(abc.ABC):
             pred (rdflib.graph.Node): Predicate of where transformed
                 geometry used.
             obj (rdflib.graph.Node): Object containing the transformed geometry.
-            geom (geometry.Geometry): Geometry object containing values.
+            geom (spatial.Geometry): Geometry object containing values.
             graph (rdflib.Graph): Graph to be added to.
         """
         # Create top blank node to hold statement

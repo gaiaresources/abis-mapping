@@ -242,8 +242,8 @@ class TestDefaultMap:
 
         # Make site id geo default map using values extracted previously
         val = str(
-            types.geometry.Geometry(
-                raw=types.geometry.LatLong(s_geo_vals["decimalLatitude"], s_geo_vals["decimalLongitude"]),
+            types.spatial.Geometry(
+                raw=types.spatial.LatLong(s_geo_vals["decimalLatitude"], s_geo_vals["decimalLongitude"]),
                 datum=s_geo_vals["geodeticDatum"],
             ).to_rdf_literal()
         )

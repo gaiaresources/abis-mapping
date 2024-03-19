@@ -1020,8 +1020,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         event_date: types.temporal.Timestamp = row["eventDate"]
 
         # Create geometry
-        geometry = types.geometry.Geometry(
-            raw=types.geometry.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+        geometry = types.spatial.Geometry(
+            raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
             datum=row["geodeticDatum"]
         )
 
@@ -1273,8 +1273,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Create geometry
-        geometry = types.geometry.Geometry(
-            raw=types.geometry.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+        geometry = types.spatial.Geometry(
+            raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
             datum=row["geodeticDatum"],
         )
 
@@ -2766,8 +2766,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Create geometry
-        geometry = types.geometry.Geometry(
-            raw=types.geometry.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+        geometry = types.spatial.Geometry(
+            raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
             datum=row["geodeticDatum"],
         )
 

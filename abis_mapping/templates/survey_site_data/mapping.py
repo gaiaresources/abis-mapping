@@ -139,7 +139,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 if footprint_wkt is not None:
                     # Create string and add to map for site id
                     result[site_id] = str(
-                        types.geometry.Geometry(
+                        types.spatial.Geometry(
                             raw=footprint_wkt.centroid,
                             datum=datum,
                         ).to_rdf_literal()
@@ -150,7 +150,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 if longitude is not None and latitude is not None:
                     # Create string and add to map for site id
                     result[site_id] = str(
-                        types.geometry.Geometry(
+                        types.spatial.Geometry(
                             raw=shapely.Point([longitude, latitude]),
                             datum=datum,
                         ).to_rdf_literal()
@@ -423,7 +423,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             return
 
         # Construct geometry
-        geometry = types.geometry.Geometry(
+        geometry = types.spatial.Geometry(
             raw=footprint_wkt,
             datum=geodetic_datum,
         )
@@ -465,8 +465,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             return
 
         # Construct geometry
-        geometry = types.geometry.Geometry(
-            raw=types.geometry.LatLong(decimal_latitude, decimal_longitude),
+        geometry = types.spatial.Geometry(
+            raw=types.spatial.LatLong(decimal_latitude, decimal_longitude),
             datum=geodetic_datum,
         )
 

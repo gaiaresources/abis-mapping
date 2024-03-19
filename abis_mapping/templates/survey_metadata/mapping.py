@@ -306,7 +306,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             return
 
         # Construct geometry
-        geometry = types.geometry.Geometry(
+        geometry = types.spatial.Geometry(
             raw=sc_geometry,
             datum=datum,
         )
