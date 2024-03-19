@@ -126,7 +126,7 @@
       "title": "Survey Organisation",
       "description": "Name of organisation or individual for whom Survey is being conducted. Multiple terms are allowed, separated by a vertical bar aka pipe |",
       "example": "NSW Department of Planning, Industry and Environment | CSIRO",
-      "type": "string",
+      "type": "list",
       "format": "default",
       "constraints": {
         "required": false
