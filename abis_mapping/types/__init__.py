@@ -1,5 +1,5 @@
 """Exports sub-packages interface."""
 
 # Local
-from . import geometry
+from . import spatial
 from . import temporal

@@ -1136,8 +1136,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         if latitude is not None and longitude is not None:
             # Create geometry
-            geometry = types.geometry.Geometry(
-                raw=types.geometry.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+            geometry = types.spatial.Geometry(
+                raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
                 datum=row["geodeticDatum"],
             )
 
@@ -1146,7 +1146,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             (default_geometry := site_id_geometry_map.get(site_id)) is not None
         ):
             # Create geometry from literal
-            geometry = types.geometry.Geometry.from_geosparql_wkt_literal(default_geometry)
+            geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
 
         else:
             # Should not reach this as data is already validated included for completeness
@@ -1412,8 +1412,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         if latitude is not None and longitude is not None:
             # Create geometry
-            geometry = types.geometry.Geometry(
-                raw=types.geometry.LatLong(latitude, longitude),
+            geometry = types.spatial.Geometry(
+                raw=types.spatial.LatLong(latitude, longitude),
                 datum=geodetic_datum,
             )
 
@@ -1422,7 +1422,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             (default_geometry := site_id_geometry_map.get(site_id)) is not None
         ):
             # Create geometry from geosparql wkt literal
-            geometry = types.geometry.Geometry.from_geosparql_wkt_literal(default_geometry)
+            geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
 
         else:
             # Should not reach here since validated data provided, however if
@@ -2931,8 +2931,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         if latitude is not None and longitude is not None:
             # Create geometry
-            geometry = types.geometry.Geometry(
-                raw=types.geometry.LatLong(latitude, longitude),
+            geometry = types.spatial.Geometry(
+                raw=types.spatial.LatLong(latitude, longitude),
                 datum=geodetic_datum,
             )
 
@@ -2941,7 +2941,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             (default_geometry := site_id_geometry_map.get(site_id)) is not None
         ):
             # Create geometry from wkt literal
-            geometry = types.geometry.Geometry.from_geosparql_wkt_literal(default_geometry)
+            geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
 
         else:
             # Should not be able to reach here if validated data provided,

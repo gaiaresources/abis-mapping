@@ -17,7 +17,7 @@ from typing import Type
 def test_geometry_init_wkt_string_valid() -> None:
     """Tests the creation of a Geometry object from a WKT string."""
     # Create geometry
-    geometry = types.geometry.Geometry(
+    geometry = types.spatial.Geometry(
         raw="POINT(1 1)",
         datum="WGS84",
     )
@@ -32,7 +32,7 @@ def test_geometry_init_shapely_geometry() -> None:
     s_geom = shapely.Polygon(((0, 0), (0, 1), (1, 1), (1, 0), (0, 0)))
 
     # Create geometry
-    geometry = types.geometry.Geometry(
+    geometry = types.spatial.Geometry(
         raw=s_geom,
         datum="WGS84"
     )
@@ -44,10 +44,10 @@ def test_geometry_init_shapely_geometry() -> None:
 def test_geometry_init_latlong() -> None:
     """Tests the creation of a Geometry object from a LatLong."""
     # Create latlong
-    lat_long = types.geometry.LatLong(0, 0)
+    lat_long = types.spatial.LatLong(0, 0)
 
     # Create geometry
-    geometry = types.geometry.Geometry(
+    geometry = types.spatial.Geometry(
         raw=lat_long,
         datum="WGS84",
     )
@@ -59,7 +59,7 @@ def test_geometry_init_latlong() -> None:
 def test_geometry_init_type_invalid() -> None:
     """Tests that Geometry object raises TypeError on invalid types."""
     with pytest.raises(TypeError):
-        types.geometry.Geometry(
+        types.spatial.Geometry(
             raw=123,
             datum="WGS84"
         )
@@ -68,7 +68,7 @@ def test_geometry_init_type_invalid() -> None:
 def test_geometry_init_wkt_string_invalid() -> None:
     """Tests that Geometry object raises error on invalid WKT string."""
     with pytest.raises(shapely.GEOSException):
-        types.geometry.Geometry(
+        types.spatial.Geometry(
             raw="not wkt",
             datum="WGS84",
         )
@@ -77,7 +77,7 @@ def test_geometry_init_wkt_string_invalid() -> None:
 def test_geometry_init_datum_invalid() -> None:
     """Tests that Geometry raises error on invalid datum."""
     with pytest.raises(pyproj.exceptions.CRSError):
-        types.geometry.Geometry(
+        types.spatial.Geometry(
             raw="POINT(0 0)",
             datum="NOTADATUM000"
         )
@@ -93,7 +93,7 @@ def test_geometry_init_datum_invalid() -> None:
 )
 def test_geometry_original_datum_name(datum_in: str, datum_out: str) -> None:
     """Tests the original_datum_name property."""
-    geometry = types.geometry.Geometry(
+    geometry = types.spatial.Geometry(
         raw="POINT(0 0)",
         datum=datum_in,
     )
@@ -110,7 +110,7 @@ def test_geometry_original_datum_name(datum_in: str, datum_out: str) -> None:
 def test_geometry_original_datum_uri(datum: str, uri: str) -> None:
     """Tests the original_datum_uri property."""
     # Create geometry
-    geometry = types.geometry.Geometry(
+    geometry = types.spatial.Geometry(
         raw="POINT(0 0)",
         datum="WGS84",
     )
@@ -125,7 +125,7 @@ def test_geometry_original_datum_uri(datum: str, uri: str) -> None:
 def test_geometry_transformer_datum_uri() -> None:
     """Tests the transformer_datum_uri property."""
     # Create geometry
-    geometry = types.geometry.Geometry(
+    geometry = types.spatial.Geometry(
         raw="POINT(0 0)",
         datum="AGD66",
     )
@@ -154,7 +154,7 @@ def test_geometry_from_geosparql_wkt_literal_valid(
 ) -> None:
     """Tests the geometry from_geosparql_wkt_literal method."""
     # Create geometry
-    geometry = types.geometry.Geometry.from_geosparql_wkt_literal(literal_in)
+    geometry = types.spatial.Geometry.from_geosparql_wkt_literal(literal_in)
 
     # Assert
     assert geometry.original_datum_name == expected_name
@@ -173,14 +173,14 @@ def test_geometry_from_geosparql_wkt_literal_invalid(
 ) -> None:
     """Tests the geometry from_geosparql_wkt_literal method."""
     with pytest.raises(expected_error):
-        types.geometry.Geometry.from_geosparql_wkt_literal(literal_in)
+        types.spatial.Geometry.from_geosparql_wkt_literal(literal_in)
 
 
 def test_geometry_to_rdf_literal() -> None:
     """Tests the Geometry to_rdf_literal method."""
     # Create geometry
-    geometry = types.geometry.Geometry(
-        raw=types.geometry.LatLong(0, 0),
+    geometry = types.spatial.Geometry(
+        raw=types.spatial.LatLong(0, 0),
         datum="GDA2020"
     )
 
@@ -197,7 +197,7 @@ def test_geometry_to_rdf_literal() -> None:
 def test_geometry_to_tranformed_crs_rdf_literal() -> None:
     """Tests the Geometry to_transformed_crs_rdf_literal method."""
     # Create geometry
-    geometry = types.geometry.Geometry(
+    geometry = types.spatial.Geometry(
         raw="POINT (571666.4475041276 5539109.815175673)",
         datum="EPSG:26917",
     )
