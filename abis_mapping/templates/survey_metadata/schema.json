@@ -70,7 +70,7 @@
       "title": "Target Taxonomic Scope",
       "description": "The range of biological taxa covered by the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |",
       "example": "Coleoptera | Insecta",
-      "type": "string",
+      "type": "list",
       "format": "default",
       "constraints": {
         "required": false
@@ -81,7 +81,7 @@
       "title": "Target Habitat Scope",
       "description": "The habitats targeted for sampling during the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |",
       "example": "Woodland | Tundra",
-      "type": "string",
+      "type": "list",
       "format": "default",
       "constraints": {
         "required": false
@@ -137,7 +137,7 @@
       "title": "Sampling Performed By",
       "description": "Similar to eco:samplingPerformedBy. Individual/s that carried out the survey. These can be represented by identifiers. Multiple values allare allowed, separated by a vertical bar aka pipe |",
       "example": "https://orcid.org/0000-0003-1092-9705 | https://orcid.org/0009-0004-5278-4238",
-      "type": "string",
+      "type": "list",
       "format": "default",
       "constraints": {
         "required": false
