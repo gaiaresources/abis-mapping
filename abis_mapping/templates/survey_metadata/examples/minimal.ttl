@@ -18,7 +18,7 @@
 
 <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> a tern:RDFDataset ;
     dcterms:description "Example Systematic Survey Metadata Dataset by Gaia Resources" ;
-    dcterms:issued "2024-03-18"^^xsd:date ;
+    dcterms:issued "2024-03-19"^^xsd:date ;
     dcterms:title "Example Systematic Survey Metadata Dataset" .
 
 <http://createme.org/survey/procedure/surveyMethod/1> a prov:Plan ;
@@ -28,8 +28,9 @@
 
 <http://createme.org/survey/SSD-Survey/1> a bdr:Survey ;
     bdr:purpose "Native vegetation clearing permit" ;
-    bdr:target "Coleoptera | Insecta" ;
-    geo:hasGeometry _:N482b61103d7f4ab39db6e7a3ddb8091a ;
+    bdr:target "Coleoptera",
+        "Insecta" ;
+    geo:hasGeometry _:N4e925346b2704f31ac041f6be784e97b ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2020-09-21"^^xsd:date ] ;
@@ -48,11 +49,11 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))"^^geo:wktLiteral ] ;
-    rdf:object _:N482b61103d7f4ab39db6e7a3ddb8091a ;
+    rdf:object _:N4e925346b2704f31ac041f6be784e97b ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/survey/SSD-Survey/1> ;
     rdfs:comment "supplied as" .
 
-_:N482b61103d7f4ab39db6e7a3ddb8091a a geo:Geometry ;
+_:N4e925346b2704f31ac041f6be784e97b a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))"^^geo:wktLiteral .
 

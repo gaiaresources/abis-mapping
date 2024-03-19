@@ -280,7 +280,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Add taxonomic coverage
         if taxonomic_coverage := row["targetTaxonomicScope"]:
-            graph.add((uri, utils.namespaces.BDR.target, rdflib.Literal(taxonomic_coverage)))
+            for taxa in taxonomic_coverage:
+                graph.add((uri, utils.namespaces.BDR.target, rdflib.Literal(taxa)))
 
         # Add purpose
         if purpose := row["surveyPurpose"]:
