@@ -1,10 +1,10 @@
 {
   "fields": [
     {
-      "name": "projectID",
-      "title": "Project ID",
-      "description": "The identifier for the project that this survey belongs to. Important if more than one survey belongs to the project.",
-      "example": "IBSA-2021-0118",
+      "name": "surveyID",
+      "title": "Survey ID",
+      "description": "The identifier for the survey. Important if more there is more than one survey a the project.",
+      "example": "COL1",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -12,21 +12,31 @@
       }
     },
     {
-      "name": "projectTitleOrName",
-      "title": "Project Title/Name",
-      "description": "Project title",
-      "example": "Reconnaissance and Targeted survey conducted for Shire of Augusta Margaret River, for the Reconstruction of Cowaramup Bay Road project.",
+      "name": "surveyName",
+      "title": "Survey Name",
+      "description": "Brief title for the survey.",
       "type": "string",
       "format": "default",
+      "example": "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer",
       "constraints": {
         "required": true
       }
     },
     {
-      "name": "purpose",
-      "title": "Purpose",
-      "description": "Brief summary of the project which led to the establishment of the dataset. A 1–2 sentence description of the aims and objectives of the survey/study/project/data collection. Is the project described part of a larger research activity?",
-      "example": "Native vegetation clearing permit",
+      "name": "surveyPurpose",
+      "title": "Survey Purpose",
+      "description": "A description of the survey objective",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "surveyType",
+      "title": "Survey Type",
+      "description": "Description of type of survey conducted",
+      "example": "Invertebrate trapping",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -56,11 +66,22 @@
       }
     },
     {
-      "name": "taxonomicCoverage",
-      "title": "Taxonomic Coverage",
+      "name": "targetTaxonomicScope",
+      "title": "Target Taxonomic Scope",
       "description": "The range of biological taxa covered by the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |",
       "example": "Coleoptera | Insecta",
-      "type": "string",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "targetHabitatScope",
+      "title": "Target Habitat Scope",
+      "description": "The habitats targeted for sampling during the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |",
+      "example": "Woodland | Tundra",
+      "type": "list",
       "format": "default",
       "constraints": {
         "required": false
@@ -78,7 +99,7 @@
       }
     },
     {
-      "name": "spatialCoverageGeodeticDatum",
+      "name": "geodeticDatum",
       "title": "Spatial Coverage (Geodetic Datum)",
       "description": "The geodetic datum upon which the geographic coordinates in the Spatial coverage (WKT) are based.",
       "example": "GDA2020",
@@ -101,9 +122,31 @@
       }
     },
     {
-      "name": "surveyMethodBibliographicReferences",
-      "title": "Survey Method Bibliographic References",
-      "description": "Bibliographic references of survey methods used.",
+      "name": "surveyOrganisation",
+      "title": "Survey Organisation",
+      "description": "Name of organisation or individual for whom Survey is being conducted. Multiple terms are allowed, separated by a vertical bar aka pipe |",
+      "example": "NSW Department of Planning, Industry and Environment | CSIRO",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "samplingPerformedBy",
+      "title": "Sampling Performed By",
+      "description": "Similar to eco:samplingPerformedBy. Individual/s that carried out the survey. These can be represented by identifiers. Multiple values allare allowed, separated by a vertical bar aka pipe |",
+      "example": "https://orcid.org/0000-0003-1092-9705 | https://orcid.org/0009-0004-5278-4238",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "surveyMethodCitation",
+      "title": "Survey Method Citation",
+      "description": "A citation or reference to the survey methods used.",
       "example": "Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9",
       "type": "list",
       "format": "default",
@@ -129,6 +172,26 @@
       "example": "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf",
       "type": "list",
       "format": "uri",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name":"samplingEffortValue",
+      "title": "Sample Effort",
+      "description": "Similar to eco:samplingEffortValue. The total sampling effort value. A samplingEffortValue must have a corresponding samplingEffortUnit",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "samplingEffortUnit",
+      "title": "Sampling Effort Units",
+      "description": "Similar to eco:samplingEffortUnit. The units associated with samplingEffortValue.",
+      "type": "string",
+      "format": "default",
       "constraints": {
         "required": false
       }

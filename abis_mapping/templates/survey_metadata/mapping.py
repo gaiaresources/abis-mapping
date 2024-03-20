@@ -75,7 +75,13 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=[
                             "spatialCoverageWKT",
-                            "spatialCoverageGeodeticDatum",
+                            "geodeticDatum",
+                        ]
+                    ),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=[
+                            "samplingEffortValue",
+                            "samplingEffortUnit",
                         ]
                     ),
                 ],
@@ -235,8 +241,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to be processed in dataset.
         """
         # Extract relevant values from row
-        project_id = row["projectID"]
-        project_name = row["projectTitleOrName"]
+        project_id = row["surveyID"]
+        project_name = row["surveyName"]
 
         # Add type and attach to dataset
         graph.add((uri, a, utils.namespaces.BDR.Project))
@@ -273,11 +279,12 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.PROV.hadPlan, survey_method))
 
         # Add taxonomic coverage
-        if taxonomic_coverage := row["taxonomicCoverage"]:
-            graph.add((uri, utils.namespaces.BDR.target, rdflib.Literal(taxonomic_coverage)))
+        if taxonomic_coverage := row["targetTaxonomicScope"]:
+            for taxa in taxonomic_coverage:
+                graph.add((uri, utils.namespaces.BDR.target, rdflib.Literal(taxa)))
 
         # Add purpose
-        if purpose := row["purpose"]:
+        if purpose := row["surveyPurpose"]:
             graph.add((uri, utils.namespaces.BDR.purpose, rdflib.Literal(purpose)))
 
         # Add keywords
@@ -299,7 +306,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to be modified
         """
         # Extract relevant values
-        datum = row["spatialCoverageGeodeticDatum"]
+        datum = row["geodeticDatum"]
         sc_geometry = row["spatialCoverageWKT"]
 
         if not (datum and sc_geometry):
@@ -377,7 +384,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Extract relevant values from row
         survey_method_urls = row["surveyMethodURL"]
         survey_method_description = row["surveyMethodDescription"]
-        survey_method_refs = row["surveyMethodBibliographicReferences"]
+        survey_method_refs = row["surveyMethodCitation"]
 
         # If no relevant data provided then no change to graph
         if not (survey_method_urls or survey_method_description or survey_method_refs):
