@@ -283,6 +283,11 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             for taxa in taxonomic_coverage:
                 graph.add((uri, utils.namespaces.BDR.target, rdflib.Literal(taxa)))
 
+        # Add targetHabitatScope
+        if habitats := row["targetHabitatScope"]:
+            for habitat in habitats:
+                graph.add((uri, utils.namespaces.BDR.basedAt, rdflib.Literal(habitat)))
+
         # Add purpose
         if purpose := row["surveyPurpose"]:
             graph.add((uri, utils.namespaces.BDR.purpose, rdflib.Literal(purpose)))
@@ -291,6 +296,17 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         if keywords := row["keywords"]:
             for keyword in keywords:
                 graph.add((uri, rdflib.SDO.keywords, rdflib.Literal(keyword)))
+
+        # Add Orgs
+        if organisations := row["surveyOrganisation"]:
+            for organisation in organisations:
+                graph.add((uri, utils.namespaces.BDR.organization, rdflib.Literal(organisation)))
+
+        if samplers := row['samplingPerformedBy']:
+            for sampler in samplers:
+                graph.add((uri, utils.namespaces.BDR.informingParty, rdflib.Literal(sampler)))
+            pass
+        return
 
     def add_spatial_coverage(
         self,
