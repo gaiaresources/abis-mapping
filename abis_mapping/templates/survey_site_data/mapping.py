@@ -83,7 +83,13 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                             "siteVisitStart",
                             "siteVisitEnd"
                         ]
-                    )
+                    ),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=[
+                            "relatedSiteID",
+                            "relationshipToRelatedSite",
+                        ]
+                    ),
                 ],
             )
         )
@@ -347,6 +353,20 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         if coordinate_uncertainty:
             accuracy = rdflib.Literal(coordinate_uncertainty, datatype=rdflib.XSD.double)
             graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+
+        # Add habitats
+        if habitats := row['habitat']:
+            for habitat in habitats:
+                graph.add((uri, utils.namespaces.TERN.Habitat, rdflib.Literal(habitat)))
+
+        if orgs := row['visitOrganisations']:
+            for org in orgs:
+                graph.add((uri, utils.namespaces.BDR.organisation, rdflib.Literal(org)))
+
+        if observers := row['visitObservers']:
+            for observer in observers:
+                graph.add((uri, utils.namespaces.BDR.name, rdflib.Literal(observer)))
+
 
     def add_site_visit(
         self,

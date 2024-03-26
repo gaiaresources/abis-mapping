@@ -1,6 +1,16 @@
 {
   "fields": [
     {
+      "name": "surveyID",
+      "title": "Survey ID",
+      "description": "The identifier of the Survey that the Site is related to in this dataset.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "siteID",
       "title": "Site ID",
       "description": "A unique within dataset string identifier for the site. Valid values include strings that are used specifically for this survey or URIs from BDR Sites that have been established in previous surveys.",
@@ -10,6 +20,17 @@
       "constraints": {
         "required": true,
         "unique": true
+      }
+    },
+    {
+      "name": "siteIDSource",
+      "title": "Site ID Source",
+      "description": "The organisation that assigned the SiteID to this Site.",
+      "example": "TERN",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
       }
     },
     {
@@ -38,7 +59,47 @@
       "name": "siteDescription",
       "title": "Site Description",
       "description": "The site (plot) description covers important aspects of the site (generally of the land surface). Some overlap in collected information does occur due to the modular nature of the survey processes. The description provides significant background information to gain an appreciation of the plot history, topography, position in the landscape and for understanding the likely relationship between the soils, vegetation and fauna.",
-      "example": "Fine woody debris.",
+      "example": "Flat, rocky, scrub with abundant leaf litter. Wild pig tracks evident.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "habitat",
+      "title": "Habitat",
+      "description": "A collection of habitat types representing the dominant vegetation structural formation class adopted by the National Vegetation Information System (NVIS).",
+      "examples": "Some examples are 'Chenopod Shrubland', 'Closed Fernland', 'Estuary', 'Farmland', 'Fernland', 'Heathland', 'Mallee Shrubland', etc.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "Chenopod Shrubland",
+          "Closed Fernland",
+          "Estuary",
+          "Farmland",
+          "Fernland",
+          "Heathland",
+          "Mallee Shrubland"
+        ]
+      }
+    },
+    {
+      "name": "relatedSiteID",
+      "title": "Related Site ID",
+      "description": "Identifier of a related site to the specified site e.g. parent site, same site with different identifier.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "relationToRelatedSite",
+      "title": "Relationship To Related Site",
+      "description": "Relationship between the site and the related site. This field can be used to record Site identifiers for the same site from different custodians through the use of URIs.",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -118,6 +179,28 @@
       }
     },
     {
+      "name": "dataGeneralizations",
+      "title": "Data Generalizations",
+      "description": "Actions taken to make the shared data less specific or complete than in its original form.",
+      "example": "Coordinates given in decimalLatitude, decimalLongitude, easting and northing have been rounded to 0.1 DEG. The observer name has been changed to a unique User ID.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "siteVisitID",
+      "title": "Site Visit ID",
+      "description": "The unique key assigned to a Census. A Census is a time distinct assessment conducted within a survey at a designated site.",
+      "example": "CPXEI0000001",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "siteVisitStart",
       "title": "Site Visit Start",
       "description": "The temporal start of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.",
@@ -135,6 +218,37 @@
       "example": "2016-02-28",
       "type": "timestamp",
       "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "visitOrganisations",
+      "title": "Visit Organisations",
+      "description": "The names of the organisations responsible for recording the original Occurrence.",
+      "example": "NSW Dept of Planning, Industry and Environment",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "visitObservers",
+      "title": "Visit Observers",
+      "description": "A list (concatenated and separated using |) of names of people, groups, or organisations responsible for recording the original Occurrence.",
+      "example": "Oliver P. Pearson | Anita K. Pearson",
+      "type": "list",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "condition",
+      "title": "Condition",
+      "description": "The state of a patch of vegetation at the time of sampling relative to some specified standard or benchmark (where available).",
+      "example": "Burnt",
+      "type": "string",
       "constraints": {
         "required": false
       }
