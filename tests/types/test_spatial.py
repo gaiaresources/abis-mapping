@@ -193,18 +193,27 @@ def test_geometry_to_rdf_literal() -> None:
     # Assert
     assert geometry.to_rdf_literal() == expected
 
-
-def test_geometry_to_tranformed_crs_rdf_literal() -> None:
+@pytest.mark.parametrize(
+    "raw,datum,expected_str",
+    [
+        (
+            "POINT (571666.4475041276 5539109.815175673)",
+            "EPSG:26917",
+            "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-80 50)",
+        ),
+    ]
+)
+def test_geometry_to_tranformed_crs_rdf_literal(raw: str, datum: str, expected_str: str) -> None:
     """Tests the Geometry to_transformed_crs_rdf_literal method."""
     # Create geometry
     geometry = types.spatial.Geometry(
-        raw="POINT (571666.4475041276 5539109.815175673)",
-        datum="EPSG:26917",
+        raw=raw,
+        datum=datum,
     )
 
     # Expected output
     expected = rdflib.Literal(
-        lexical_or_value="<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-80 50)",
+        lexical_or_value=expected_str,
         datatype=utils.namespaces.GEO.wktLiteral,
     )
 
