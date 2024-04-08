@@ -4,6 +4,9 @@
 # Standard
 import re
 
+# Third-party
+import rdflib
+
 
 # Constants
 REGEX_STRIP = re.compile(
@@ -23,3 +26,19 @@ def sanitise(value: str) -> str:
     """
     # Strip, Capitalise and Return
     return REGEX_STRIP.sub("", value).upper()
+
+def is_uri(value: str) -> bool:
+    """Check to see if a string is a valid uri.
+
+    Args:
+        value (str): String to be tested.
+
+    Returns:
+        bool: True if valid uri else false
+    """
+    # Catch exception
+    try:
+        rdflib.URIRef(value)
+        return True
+    except:
+        return False
