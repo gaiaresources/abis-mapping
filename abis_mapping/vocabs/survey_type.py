@@ -21,4 +21,3 @@ SURVEY_TYPE = utils.vocabs.FlexibleVocabulary(
     default=None,
     terms=(WET_PITFALL_TRAPPING,),
 )
-

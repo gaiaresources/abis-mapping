@@ -15,4 +15,3 @@ SAMPLING_EFFORT_UNIT = utils.vocabs.FlexibleVocabulary(
     default=None,
     terms=(),
 )
-

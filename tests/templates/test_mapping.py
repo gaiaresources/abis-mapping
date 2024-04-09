@@ -32,6 +32,11 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     # Assert
     assert len(graphs) == 1
 
+    if not tests.conftest.compare_graphs(
+        graph1=graphs[0],
+        graph2=expected,
+    ):
+        graphs[0].serialize(f"{template_id}.ttl")
     # Compare Graphs
     assert tests.conftest.compare_graphs(
         graph1=graphs[0],

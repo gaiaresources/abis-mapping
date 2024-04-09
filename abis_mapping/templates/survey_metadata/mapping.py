@@ -2,7 +2,6 @@
 
 # Standard
 import dataclasses
-import urllib.parse
 
 # Third-party
 import frictionless
@@ -252,16 +251,15 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         survey_org_objects: list[SurveyIDDatatype] = []
         if survey_orgs := row["surveyOrganisation"]:
             for raw_org in survey_orgs:
-                org = urllib.parse.quote(raw_org)
                 survey_org_objects.append(
                     SurveyIDDatatype(
-                        name=org,
+                        name=raw_org,
                         datatype=utils.rdf.uri(
-                            internal_id=f"datatype/surveyID/{org}",
+                            internal_id=f"datatype/surveyID/{raw_org}",
                             namespace=utils.namespaces.CREATEME
                         ),
                         agent=utils.rdf.uri(
-                            internal_id=f"agent/{org}"
+                            internal_id=f"agent/{raw_org}"
                         )
                     )
                 )
@@ -306,18 +304,18 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        for obj in survey_org_objects:
+        for so_obj in survey_org_objects:
             # Add survey ID source datatype nodes
             self.add_survey_id_source_datatypes(
-                uri=obj.datatype,
-                agent=obj.agent,
+                uri=so_obj.datatype,
+                agent=so_obj.agent,
                 graph=graph,
             )
 
             # Add agent
             self.add_agent(
-                uri=obj.agent,
-                name=obj.name,
+                uri=so_obj.agent,
+                name=so_obj.name,
                 graph=graph,
             )
 
@@ -363,40 +361,40 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         )
 
         # Iterate through target habitat objects
-        for obj in target_habitat_objects:
+        for th_obj in target_habitat_objects:
             # Add target habitat scope attribute node
             self.add_target_habitat_attribute(
-                uri=obj.attribute,
+                uri=th_obj.attribute,
                 dataset=dataset,
-                target_habitat_value=obj.value,
-                raw_value=obj.raw,
+                target_habitat_value=th_obj.value,
+                raw_value=th_obj.raw,
                 graph=graph,
             )
 
             # Add target habitat scope value node
             self.add_target_habitat_value(
-                uri=obj.value,
+                uri=th_obj.value,
                 dataset=dataset,
-                raw_value=obj.raw,
+                raw_value=th_obj.raw,
                 graph=graph,
             )
 
         # Iterate through target taxonomic objects
-        for obj in target_taxonomic_objects:
+        for tt_obj in target_taxonomic_objects:
             # Add target taxonomic scope attribute node
             self.add_target_taxonomic_attribute(
-                uri=obj.attribute,
+                uri=tt_obj.attribute,
                 dataset=dataset,
-                target_taxon_value=obj.value,
-                raw_value=obj.raw,
+                target_taxon_value=tt_obj.value,
+                raw_value=tt_obj.raw,
                 graph=graph,
             )
 
             # Add target taxonomic scope value node
             self.add_target_taxonomic_value(
-                uri=obj.value,
+                uri=tt_obj.value,
                 dataset=dataset,
-                raw_value=obj.raw,
+                raw_value=tt_obj.raw,
                 graph=graph,
             )
 
@@ -659,7 +657,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         name: str,
         graph: rdflib.Graph,
-    ):
+    ) -> None:
         """Adds agent to graph.
 
         Args:
@@ -671,14 +669,14 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.PROV.Agent))
 
         # Add name
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(name)))
+        graph.add((uri, rdflib.SDO.name, utils.rdf.uri_or_string_literal(name)))
 
     def add_plan(
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
-    ):
+    ) -> None:
         """Adds plan to graph.
 
         Args:
@@ -698,7 +696,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                     utils.rdf.uri("attribute/surveyType", utils.namespaces.CREATEME)
                 )
             )
-        if row["samplingEffort"]:
+        if row["samplingEffortValue"] and row["samplingEffortUnit"]:
             graph.add(
                 (
                     uri,
@@ -706,7 +704,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                     utils.rdf.uri("attribute/samplingEffort", utils.namespaces.CREATEME)
                 )
             )
-        if row["targetableHabitatScope"]:
+        if row["targetHabitatScope"]:
             graph.add(
                 (
                     uri,
@@ -738,17 +736,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 graph.add((uri, rdflib.SDO.url, rdflib.Literal(method_url, datatype=rdflib.XSD.anyURI)))
 
         # Add sampling performed by(s)
-        if sampling_peformed_bys := row["samplingPeformedBy"]:
+        if sampling_peformed_bys := row["samplingPerformedBy"]:
             for peformed_by in sampling_peformed_bys:
-                encoded: str = peformed_by if utils.strings.is_uri(peformed_by) else urllib.parse.quote(peformed_by)
-                graph.add(
-                    (
-                        uri,
-                        rdflib.PROV.wasAssociatedWith,
-                        # TODO: Does URI in URI break convention?
-                        utils.rdf.uri(encoded, utils.namespaces.CREATEME),
-                    ),
-                )
+                graph.add((uri, rdflib.PROV.wasAssociatedWith, utils.rdf.uri_or_string_literal(peformed_by)))
 
     def add_survey_type_attribute(
         self,
