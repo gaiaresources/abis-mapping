@@ -25,7 +25,7 @@ from typing import Any, Optional, Iterator
 a = rdflib.RDF.type
 
 
-class SurveySiteMapper_v1(base.mapper.ABISMapper):
+class SurveySiteMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `survey_site_data.csv`"""
 
     # Instructions File
@@ -493,4 +493,4 @@ class SurveySiteMapper_v1(base.mapper.ABISMapper):
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(SurveySiteMapper_v1)
+base.mapper.ABISMapper.register_mapper(SurveySiteMapper)

@@ -126,15 +126,15 @@ TEST_CASES: list[TemplateTestParameters] = [
     TemplateTestParameters(
         template_id="survey_site_data-v1.0.0.csv",
         empty_template=pathlib.Path(
-            "abis_mapping/templates/survey_site_data/survey_site_data.csv",
+            "abis_mapping/templates/survey_site_data_v1/survey_site_data.csv",
         ),
         mapping_cases=[
             MappingParameters(
                 data=pathlib.Path(
-                    "abis_mapping/templates/survey_site_data/examples/minimal.csv"
+                    "abis_mapping/templates/survey_site_data_v1/examples/minimal.csv"
                 ),
                 expected=pathlib.Path(
-                    "abis_mapping/templates/survey_site_data/examples/minimal.ttl"
+                    "abis_mapping/templates/survey_site_data_v1/examples/minimal.ttl"
                 ),
             ),
         ],

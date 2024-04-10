@@ -252,8 +252,8 @@
       }
     },
     {
-      "name": "relationshipToSite",
-      "title": "Relationship To Site",
+      "name": "relationshipToRelatedSite",
+      "title": "Relationship To Related Site",
       "description": "Relationship between the site and the related site. This field can be used to record Site identifiers for the same site from different custodians through the use of URIs.",
       "example": "Same as within dataset or existing URI",
       "type": "string",
