@@ -83,7 +83,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                             "siteVisitStart",
                             "siteVisitEnd"
                         ]
-                    )
+                    ),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=["relatedSiteID", "relationshipToRelatedSite"],
+                    ),
                 ],
             )
         )

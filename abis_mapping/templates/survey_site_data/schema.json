@@ -13,6 +13,17 @@
       }
     },
     {
+      "name": "siteIDSource",
+      "title": "Site ID Source",
+      "description": "The organisation that assigned the SiteID to this Site",
+      "example": "TERN",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "siteType",
       "title": "Site Type",
       "description": "The type of site that relates to its sampling type and/or dimensions.",
@@ -39,6 +50,212 @@
       "title": "Site Description",
       "description": "The site (plot) description covers important aspects of the site (generally of the land surface). Some overlap in collected information does occur due to the modular nature of the survey processes. The description provides significant background information to gain an appreciation of the plot history, topography, position in the landscape and for understanding the likely relationship between the soils, vegetation and fauna.",
       "example": "Fine woody debris.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "landformPattern",
+      "title": "Land Form Pattern",
+      "description": "A description of landform at a broad scale (best mapped at 1:200,000) based on slope, morphological type, dimensions, mode of geomorphological activity and geomorphological agent.",
+      "example": "Alluvial fan",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "ALLUVIAL FAN",
+          "ALLUVIAL PLAIN",
+          "ANASTOMOTIC PLAIN",
+          "BADLANDS",
+          "BAR PLAIN",
+          "BEACH RIDGE PLAIN",
+          "CALDERA",
+          "CHENIER PLAIN",
+          "CORAL REEF",
+          "COVERED PLAIN",
+          "DELTA",
+          "DUNEFIELD",
+          "ESCARPMENT",
+          "FLOODPLAIN",
+          "HILLS",
+          "KARST",
+          "LACUSTRINE PLAIN",
+          "LAVA PLAIN",
+          "LONGITUDINAL DUNEFIELD",
+          "LOW HILLS",
+          "MADE LAND",
+          "MARINE PLAIN",
+          "MEANDER PLAIN",
+          "METEOR CRATER",
+          "MOUNTAINS",
+          "PARABOLIC DUNEFIELD",
+          "PEDIMENT",
+          "PEDIPLAIN",
+          "PENEPLAIN",
+          "PLAIN",
+          "PLATEAU",
+          "PLAYA PLAIN",
+          "RISE",
+          "SAND PLAIN",
+          "SHEET-FLOOD FAN",
+          "STAGNANT ALLUVIAL PLAIN",
+          "TERRACE",
+          "TERRACED LAND",
+          "TIDAL FLAT",
+          "VOLCANO"
+      ]
+      }
+    },
+    {
+      "name": "landformElement",
+      "title": "Landform Element",
+      "description": "A description of landform at a finer scale (best mapped at 1:15,000) based on slope, morphological type, dimensions, mode of geomorphological activity and geomorphological agent.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "Alcove",
+          "Back Plain",
+          "Bar",
+          "Beach",
+          "Beach ridge",
+          "Bench",
+          "Berm",
+          "Blow-out",
+          "Breakaway",
+          "Channel bench",
+          "Cirque",
+          "Cliff",
+          "Cliff-foot Slope",
+          "Cone",
+          "Crater",
+          "Cut face",
+          "Cut-over surface",
+          "Dam",
+          "Doline",
+          "Drainage Depression",
+          "Dune",
+          "Dunecrest",
+          "Duneslope",
+          "Embankment",
+          "Estuary",
+          "Fan",
+          "Fill top",
+          "Flat",
+          "Flood-out",
+          "Foot Slope",
+          "Foredune",
+          "Gully",
+          "Hill Slope",
+          "Hillcrest",
+          "Intertidal flat",
+          "Lagoon",
+          "Lake",
+          "Landslide",
+          "Levee",
+          "Lunette",
+          "Maar",
+          "Mound",
+          "Not recorded",
+          "Ox-bow",
+          "Pediment",
+          "Pit",
+          "Plain",
+          "Plateau",
+          "Playa",
+          "Prior stream",
+          "Reef flat",
+          "Residual rise",
+          "Rise Crest",
+          "Rise Slope",
+          "Rock flat",
+          "Rock platform",
+          "Scald",
+          "Scarp",
+          "Scarp-foot Slope",
+          "Scroll",
+          "Sinkhole/doline",
+          "Stream Bed",
+          "Stream Channel",
+          "Streambank",
+          "Summit Surface",
+          "Supratidal flat",
+          "Swale",
+          "Swamp",
+          "Talus",
+          "Terrace flat",
+          "Terrace plain",
+          "Tidal creek",
+          "Tidal falt",
+          "Tor (Tor field)",
+          "Trench",
+          "Tumulus",
+          "Valley Flat"
+        ]
+      }
+    },
+    {
+      "name": "elevationInMeters",
+      "title": "Elevation In Meters",
+      "description": "The estimated elevation of the location measured in metres above sea level (altitude, usually above sea level), in meters.",
+      "example": "150.68",
+      "type": "number",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "aspect",
+      "title": "Aspect",
+      "description": "The aspect of the location where the observations was made measured in degrees clockwise from true North.",
+      "type": "integer",
+      "example": "30",
+      "format": "default"
+
+    },
+    {
+      "name": "slope",
+      "title": "Slope",
+      "description": "The slope of the location where the observation was made measured in degrees from horizontal.",
+      "type": "integer",
+      "example": "15",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "habitat",
+      "title": "Habitat",
+      "description": "A collection of habitat types representing the dominant vegetation structural formation class adopted by the National Vegetation Information System (NVIS).",
+      "example": "Chenopod Shrubland|Closed Fernland",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "relatedSiteID",
+      "title": "Related SiteID",
+      "description": "Identifier of a related site to the specified site e.g. parent site, same site with different identifier.",
+      "example": "Same as within dataset or existing URI",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "relationshipToRelatedSite",
+      "title": "Relationship To Related Site",
+      "description": "Relationship between the site and the related site. This field can be used to record Site identifiers for the same site from different custodians through the use of URIs.",
+      "example": "Same as within dataset or existing URI",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -118,6 +335,47 @@
       }
     },
     {
+      "name": "dataGeneralizations",
+      "title": "Data Generalizations",
+      "description": "Actions taken to make the shared data less specific or complete than in its original form.",
+      "example": "Coordinates given in decimalLatitude, decimalLongitude, easting and northing have been rounded to 0.1 DEG. The observer name has been changed to a unique User ID.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "surveyID",
+      "title": "SurveyID",
+      "description": "The identifier of the Survey that the Site is related to in this dataset.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "siteVisitID",
+      "title": "Site Visit ID",
+      "description": "The unique key assigned to a visit. A visit is a time distinct assessment conducted within a survey at a designated site.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "visitNo",
+      "title": "Visit Number",
+      "description": "The replicate number for the visit.",
+      "type": "integer",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "siteVisitStart",
       "title": "Site Visit Start",
       "description": "The temporal start of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.",
@@ -134,6 +392,38 @@
       "description": "The temporal end of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.",
       "example": "2016-02-28",
       "type": "timestamp",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "visitOrganisations",
+      "title": "Visit Organisations",
+      "description": "The names of the organisations responsible for recording the original Occurrence.",
+      "example": "NSW Dept of Planning, Industry and Environment.",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "visitObservers",
+      "title": "Visit Observers",
+      "description": "A list (concatenated and separated using |) of names of people, groups, or organisations responsible for recording the original Occurrence.",
+      "example": "Oliver P. Pearson | Anita K. Pearson",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "Condition",
+      "description": "The state of a patch of vegetation at the time of sampling relative to some specified standard or benchmark (where available).",
+      "example": "Burnt",
+      "type": "string",
       "format": "default",
       "constraints": {
         "required": false

@@ -161,6 +161,7 @@ class TestSiteIDForeignKeys:
         )
 
         # Assert
+        print(report)
         assert report.valid == (scenario.expected_error_codes == set())
         if not report.valid:
             error_codes = [code for codes in report.flatten(['type']) for code in codes]
