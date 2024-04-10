@@ -14,9 +14,13 @@ from . import occurrence_status
 from . import organism_quantity_type
 from . import preparations
 from . import reproductive_condition
+from . import sampling_effort_unit
 from . import sampling_protocol
 from . import sequencing_method
 from . import sex
 from . import site_type
+from . import survey_type
+from . import target_habitat_scope
+from . import target_taxonomic_scope
 from . import taxon_tank
 from . import threat_status
