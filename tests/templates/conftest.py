@@ -124,6 +124,24 @@ TEST_CASES: list[TemplateTestParameters] = [
         allows_extra_cols=True
     ),
     TemplateTestParameters(
+        template_id="survey_site_data-v1.0.0.csv",
+        empty_template=pathlib.Path(
+            "abis_mapping/templates/survey_site_data/survey_site_data.csv",
+        ),
+        mapping_cases=[
+            MappingParameters(
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_site_data/examples/minimal.csv"
+                ),
+                expected=pathlib.Path(
+                    "abis_mapping/templates/survey_site_data/examples/minimal.ttl"
+                ),
+            ),
+        ],
+        metadata_sampling_type="systematic survey",
+        allows_extra_cols=True
+    ),
+    TemplateTestParameters(
         template_id="survey_metadata-v0.3.1.csv",
         empty_template=pathlib.Path(
             "abis_mapping/templates/survey_metadata/survey_metadata.csv"
