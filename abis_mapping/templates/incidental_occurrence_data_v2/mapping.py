@@ -54,8 +54,8 @@ ROLE_CUSTODIAN = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/Citatio
 ROLE_STAKEHOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder")  # noqa: E501
 
 
-class IncidentalOccurrenceMapper_v2(base.mapper.ABISMapper):
-    """ABIS Mapper for `incidental_occurrence_data.csv`"""
+class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
+    """ABIS Mapper for `incidental_occurrence_data.csv` - version 2"""
 
     # Instructions File
     instructions_file = "instructions.pdf"
@@ -3131,4 +3131,4 @@ def has_specimen(row: frictionless.Row) -> bool:
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(IncidentalOccurrenceMapper_v2)
+base.mapper.ABISMapper.register_mapper(IncidentalOccurrenceMapper)
