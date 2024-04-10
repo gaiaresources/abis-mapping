@@ -1,7 +1,7 @@
 {
   "name": "survey_site_data",
   "label": "Systematic Survey Site Data Template",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A template for systematic survey site data",
   "biodiversity_type": "Systematic Survey Site Data",
   "spatial_type": "Point, line, polygon",
