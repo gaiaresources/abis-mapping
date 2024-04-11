@@ -585,7 +585,7 @@
       }
     },
     {
-      "name": "siteID",
+      "name": "SiteID",
       "title": "Site ID",
       "description": "Corresponds to a unique site identifier, provided within accompanying survey_site_data.csv template.",
       "example": "P1",
@@ -609,7 +609,7 @@
   ],
   "foreignKeys": [
     {
-      "fields": "siteID",
+      "fields": "SiteID",
       "reference": {
         "resource": "survey_site_data.csv",
         "fields": "siteID"
