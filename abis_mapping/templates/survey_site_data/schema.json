@@ -215,8 +215,10 @@
       "description": "The aspect of the location where the observations was made measured in degrees clockwise from true North.",
       "type": "integer",
       "example": "30",
-      "format": "default"
-
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
     },
     {
       "name": "slope",
