@@ -61,7 +61,7 @@
       "title": "Land Form Pattern",
       "description": "A description of landform at a broad scale (best mapped at 1:200,000) based on slope, morphological type, dimensions, mode of geomorphological activity and geomorphological agent.",
       "example": "Alluvial fan",
-      "type": "string",
+      "type": "list",
       "format": "default",
       "constraints": {
         "required": false
