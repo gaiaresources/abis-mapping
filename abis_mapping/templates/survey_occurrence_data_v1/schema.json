@@ -1,10 +1,21 @@
 {
   "fields": [
     {
-      "name": "recordID",
-      "title": "Record ID",
-      "description": "...",
+      "name": "providerRecordID",
+      "title": "Provider Record ID",
+      "description": "Unique (within provider) identifier for the record.",
       "example": "8022FSJMJ079c5cf",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "providerRecordIDSource",
+      "title": "Provider Record ID Source",
+      "description": "Person or Organisation that generated the providerRecordID. For providers registered with the BDR, this field should contain your BDR registrationID. Populate only if the details are different from the dataset submission details.",
+      "example": "Western Australian Biodiversity Information Office",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -260,10 +271,10 @@
       }
     },
     {
-      "name": "occurrenceID",
-      "title": "Occurrence ID",
-      "description": "...",
-      "example": "MR-456",
+      "name": "ownerRecordID",
+      "title": "Owner Record ID",
+      "description": "Identifier given to the occurrence by the owner of the data. Populate this field if the data owner is different to the data provider. Unique (within data owner) identifier for the record.",
+      "example": "12345NT521mc5h",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -271,9 +282,9 @@
       }
     },
     {
-      "name": "ownerInstitutionCode",
-      "title": "Owner Institution Code",
-      "description": "...",
+      "name": "ownerRecordIDSource",
+      "title": "Owner Record ID Source",
+      "description": "Person or Organisation that generated the ownerRecordID. For organisaions registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation who owns the data.",
       "example": "WAM",
       "type": "string",
       "format": "default",
@@ -304,10 +315,10 @@
       }
     },
     {
-      "name": "institutionCode",
-      "title": "Institution Code",
-      "description": "...",
-      "example": "BHP",
+      "name": "catalogNumberSource",
+      "title": "Catalog Number Source",
+      "description": "Organisation that generated the catalogNumber. In the BDR context, this is likely to be a collecting institution where a specimen or material sample is located. For organisaions registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.",
+      "example": "Western Australian Museum",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -317,8 +328,18 @@
     {
       "name": "otherCatalogNumbers",
       "title": "Other Catalog Numbers",
-      "description": "...",
       "example": "BHP2012-7521 | M12378",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "otherCatalogNumbersSource",
+      "title": "Other Catalog Numbers Source",
+      "description": "Organisation that generated the otherCatalogNumbers. For organisaions registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.",
+      "example": "University of Western Australia",
       "type": "list",
       "format": "default",
       "constraints": {
@@ -568,6 +589,17 @@
       "title": "Site ID",
       "description": "Corresponds to a unique site identifier, provided within accompanying survey_site_data.csv template.",
       "example": "P1",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "SurveyID",
+      "title": "Survey ID",
+      "description": "The identifier of the Survey that the occurrence comes from. This field should be completed if it is ambigous as to which survey the occurrence belongs to.",
+      "example": "AR220-01",
       "type": "string",
       "format": "default",
       "constraints": {
