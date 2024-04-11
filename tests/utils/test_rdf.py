@@ -3,6 +3,7 @@
 
 # Third-Party
 import rdflib
+import pytest
 
 # Local
 from abis_mapping import utils
@@ -39,3 +40,21 @@ def test_rdf_uri() -> None:
     assert isinstance(b, rdflib.URIRef)
     assert isinstance(c, rdflib.URIRef)
     assert isinstance(d, rdflib.URIRef)
+
+
+@pytest.mark.parametrize(
+    "raw, expected",
+    [
+        ("http://hello.org", rdflib.Literal("http://hello.org", datatype=rdflib.XSD.anyURI)),
+        ("some name", rdflib.Literal("some name")),
+    ]
+)
+def test_rdf_uri_or_string_literal(raw: str, expected: rdflib.Literal) -> None:
+    """Test the uri_or_string_literal function.
+
+    Args:
+        raw (str): Raw URI or string.
+        expected (rdflib.Literal): Expected
+    """
+    # Call and assert
+    assert utils.rdf.uri_or_string_literal(raw) == expected

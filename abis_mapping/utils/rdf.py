@@ -3,6 +3,7 @@
 
 # Standard
 import uuid
+import urllib.parse
 
 # Third-Party
 import rdflib
@@ -84,3 +85,22 @@ def uri(
 
     # Create URIRef and Return
     return namespace[internal_id]
+
+
+def uri_or_string_literal(raw: str) -> rdflib.Literal:
+    """Determines if supplied string is an uri or a string literal.
+
+    Args:
+        raw (str): Raw value to be converted.
+
+    Returns:
+        rdflib.Literal: With datatype xsd:anyURI for uri else xsd:string
+    """
+    # Parse the incoming string
+    parsed_url = urllib.parse.urlparse(raw)
+
+    # A valid url will have a host and protocol
+    if parsed_url.scheme and parsed_url.netloc:
+        return rdflib.Literal(raw, datatype=rdflib.XSD.anyURI)
+
+    return rdflib.Literal(raw)

@@ -193,6 +193,7 @@ def test_geometry_to_rdf_literal() -> None:
     # Assert
     assert geometry.to_rdf_literal() == expected
 
+
 @pytest.mark.parametrize(
     "raw,datum,expected_str",
     [

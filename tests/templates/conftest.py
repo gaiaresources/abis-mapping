@@ -66,7 +66,7 @@ class TemplateTestParameters:
 
 TEST_CASES: list[TemplateTestParameters] = [
     TemplateTestParameters(
-        template_id="survey_occurrence_data-v2.1.0.csv",
+        template_id="survey_occurrence_data-v1.0.0.csv",
         empty_template=pathlib.Path(
             "abis_mapping/templates/survey_occurrence_data/survey_occurrence_data.csv"
         ),
@@ -124,7 +124,7 @@ TEST_CASES: list[TemplateTestParameters] = [
         allows_extra_cols=True
     ),
     TemplateTestParameters(
-        template_id="survey_metadata-v0.3.1.csv",
+        template_id="survey_metadata-v1.0.0.csv",
         empty_template=pathlib.Path(
             "abis_mapping/templates/survey_metadata/survey_metadata.csv"
         ),
@@ -135,24 +135,6 @@ TEST_CASES: list[TemplateTestParameters] = [
                 ),
                 expected=pathlib.Path(
                     "abis_mapping/templates/survey_metadata/examples/minimal.ttl"
-                ),
-            ),
-            MappingParameters(
-                scenario_name="yearmonth",
-                data=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/yearmonth.csv"
-                ),
-                expected=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/yearmonth.ttl"
-                ),
-            ),
-            MappingParameters(
-                scenario_name="year",
-                data=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/year.csv"
-                ),
-                expected=pathlib.Path(
-                    "abis_mapping/templates/survey_metadata/examples/year.ttl"
                 ),
             ),
             MappingParameters(
@@ -191,6 +173,36 @@ TEST_CASES: list[TemplateTestParameters] = [
             ChunkingParameters(
                 data=pathlib.Path(
                     ("abis_mapping/templates/incidental_occurrence_data/examples/"
+                     "margaret_river_flora/margaret_river_flora.csv")
+                ),
+                chunk_size=7,
+                yield_count=3,
+            ),
+        ],
+    ),
+    TemplateTestParameters(
+        template_id="incidental_occurrence_data-v2.0.0.csv",
+        empty_template=pathlib.Path(
+            "abis_mapping/templates/incidental_occurrence_data_v2/incidental_occurrence_data.csv"
+        ),
+        mapping_cases=[
+            MappingParameters(
+                data=pathlib.Path(
+                    ("abis_mapping/templates/incidental_occurrence_data_v2/examples/"
+                     "margaret_river_flora/margaret_river_flora.csv")
+                ),
+                expected=pathlib.Path(
+                    ("abis_mapping/templates/incidental_occurrence_data_v2/examples/"
+                     "margaret_river_flora/margaret_river_flora.ttl")
+                ),
+            ),
+        ],
+        metadata_sampling_type="incidental",
+        allows_extra_cols=True,
+        chunking_parameters=[
+            ChunkingParameters(
+                data=pathlib.Path(
+                    ("abis_mapping/templates/incidental_occurrence_data_v2/examples/"
                      "margaret_river_flora/margaret_river_flora.csv")
                 ),
                 chunk_size=7,
