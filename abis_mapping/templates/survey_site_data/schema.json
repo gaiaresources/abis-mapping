@@ -57,102 +57,6 @@
       }
     },
     {
-      "name": "landformPattern",
-      "title": "Land Form Pattern",
-      "description": "A description of landform at a broad scale (best mapped at 1:200,000) based on slope, morphological type, dimensions, mode of geomorphological activity and geomorphological agent.",
-      "example": "Alluvial fan",
-      "type": "string",
-      "format": "default",
-      "constraints": {
-        "required": false,
-        "enum": [
-          "ALLUVIAL FAN",
-          "ALLUVIAL PLAIN",
-          "ANASTOMOTIC PLAIN",
-          "BADLANDS",
-          "BAR PLAIN",
-          "BEACH RIDGE PLAIN",
-          "CALDERA",
-          "CHENIER PLAIN",
-          "CORAL REEF",
-          "COVERED PLAIN",
-          "DELTA",
-          "DUNEFIELD",
-          "ESCARPMENT",
-          "FLOODPLAIN",
-          "HILLS",
-          "KARST",
-          "LACUSTRINE PLAIN",
-          "LAVA PLAIN",
-          "LONGITUDINAL DUNEFIELD",
-          "LOW HILLS",
-          "MADE LAND",
-          "MARINE PLAIN",
-          "MEANDER PLAIN",
-          "METEOR CRATER",
-          "MOUNTAINS",
-          "PARABOLIC DUNEFIELD",
-          "PEDIMENT",
-          "PEDIPLAIN",
-          "PENEPLAIN",
-          "PLAIN",
-          "PLATEAU",
-          "PLAYA PLAIN",
-          "RISE",
-          "SAND PLAIN",
-          "SHEET-FLOOD FAN",
-          "STAGNANT ALLUVIAL PLAIN",
-          "TERRACE",
-          "TERRACED LAND",
-          "TIDAL FLAT",
-          "VOLCANO"
-        ]
-      }
-    },
-    {
-      "name": "landformElement",
-      "title": "Landform Element",
-      "description": "A description of landform at a finer scale (best mapped at 1:15,000) based on slope, morphological type, dimensions, mode of geomorphological activity and geomorphological agent.",
-      "type": "list",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "elevationInMeters",
-      "title": "Elevation In Meters",
-      "description": "The estimated elevation of the location measured in metres above sea level (altitude, usually above sea level), in meters.",
-      "example": "150.68",
-      "type": "number",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "aspect",
-      "title": "Aspect",
-      "description": "The aspect of the location where the observations was made measured in degrees clockwise from true North.",
-      "type": "integer",
-      "example": "30",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "slope",
-      "title": "Slope",
-      "description": "The slope of the location where the observation was made measured in degrees from horizontal.",
-      "type": "integer",
-      "example": "15",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
       "name": "habitat",
       "title": "Habitat",
       "description": "A collection of habitat types representing the dominant vegetation structural formation class adopted by the National Vegetation Information System (NVIS).",
@@ -283,16 +187,6 @@
       "title": "Site Visit ID",
       "description": "The unique key assigned to a visit. A visit is a time distinct assessment conducted within a survey at a designated site.",
       "type": "string",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "visitNo",
-      "title": "Visit Number",
-      "description": "The replicate number for the visit.",
-      "type": "integer",
       "format": "default",
       "constraints": {
         "required": false
