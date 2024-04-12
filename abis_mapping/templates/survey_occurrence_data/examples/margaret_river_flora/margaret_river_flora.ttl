@@ -51,11 +51,11 @@
     sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
 
 <http://createme.org/observation/establishmentMeans/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -85,11 +85,11 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
 
 <http://createme.org/observation/individualCount/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -102,11 +102,11 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
 
 <http://createme.org/observation/lifeStage/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -119,11 +119,11 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/lifeStage/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -181,11 +181,11 @@
     sosa:observedProperty <http://example.com/concept/organismRemarks> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/organismRemarks/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -198,11 +198,11 @@
     sosa:observedProperty <http://example.com/concept/organismRemarks> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/reproductiveCondition/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -232,11 +232,11 @@
     sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/observation/scientificName/1> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -492,11 +492,11 @@
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value sosa:usedProcedure ;
+            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
 
 <http://createme.org/observation/threatStatus/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
@@ -1570,178 +1570,9 @@
     sosa:isSampleOf <http://createme.org/sample/field/13> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
 
-<http://createme.org/sampling/field/1> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N5b67b152ff424cb98e0e1f5f33f8eb8f ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/1> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/10> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N0e4674f118d6407e9d516804f634dace ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/10> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/11> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N992c156241d6469aaf2b483104c99659 ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/11> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/12> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nfd3c426c969848c09e75956302be9b5a ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/12> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> .
-
-<http://createme.org/sampling/field/13> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N37f5a8ddbb6a44c6aec73c60458e614d ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/13> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/14> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N179c1b30d2914bf19c57a419004f9493 ;
-    geo:hasMetricSpatialAccuracy 2e+01 ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/14> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:hasAttribute <http://createme.org/attribute/basisOfRecord/14>,
-        <http://createme.org/attribute/dataGeneralizations/14> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/2> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N319dad520fe749cc9d977e414288155d ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/2> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/3> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nd28d48ceac5b4f149fcbcd74e4db6d11 ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/3> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/4> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nec365935b74849479b3a650e1b45706a ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/4> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/5> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nccb2885a7625427e8bb2642747da896b ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/5> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/6> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N76d56c9482c44e6eaff02cfeba91f49b ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/6> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/7> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N7ba3e590ebc94ace8adf3e18d81663f4 ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/7> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/8> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N059bf61386f1427687546c942ccb7193 ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-21"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/8> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/sampling/field/9> a tern:Sampling ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N096b2cfdfd394e26b584cdba7c4fc0f4 ;
-    rdfs:comment "field-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2020-09-23"^^xsd:date ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
-    sosa:hasResult <http://createme.org/sample/field/9> ;
-    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
 <http://createme.org/sampling/sequencing/15> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N1bab230c33714e98aff3dac2bd80a068 ;
+    geo:hasGeometry _:N92230a1d73224577a4003e57b179a00c ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "sequencing-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1750,15 +1581,15 @@
     sosa:hasResult <http://createme.org/sample/sequence/15> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] .
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value time:hasTime ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
 
 <http://createme.org/sampling/sequencing/16> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nd7e4308ab64f4cba9ea25c1c58138a60 ;
+    geo:hasGeometry _:N6f39d6fd6d99411590ce19c07ca5ad0c ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "sequencing-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1767,15 +1598,15 @@
     sosa:hasResult <http://createme.org/sample/sequence/16> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] .
 
 <http://createme.org/sampling/specimen/13> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N1e6dcfdf44c646cd9194eaf339df7f32 ;
+    geo:hasGeometry _:Naa033c42ed7344bf9bcd519d7b924ff5 ;
     rdfs:comment "specimen-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2020-09-23"^^xsd:date ] ;
@@ -1784,15 +1615,15 @@
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/13> ;
     tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
             rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+            rdfs:comment "Date unknown, template eventDate used as proxy" ],
+        [ a rdf:Statement ;
+            rdf:value geo:hasGeometry ;
+            rdfs:comment "Location unknown, location of field sampling used as proxy" ] .
 
 <http://createme.org/sampling/specimen/15> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:N18385f37b7644a9c88226fa009e63f87 ;
+    geo:hasGeometry _:N2f1664f4359d48c19445bff16fcade5e ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "specimen-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1808,7 +1639,7 @@
 
 <http://createme.org/sampling/specimen/16> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nbb583ae821454252befa026ddf821b79 ;
+    geo:hasGeometry _:Nd65f414c54404d08aa2b65c3e050a965 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "specimen-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1882,6 +1713,10 @@
         tern:Sample ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "field-sample" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/WAM> ;
     sosa:isResultOf <http://createme.org/sampling/field/13> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
@@ -1893,7 +1728,10 @@
     rdfs:comment "field-sample" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
             prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ],
+        [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] ;
     prov:wasAssociatedWith <http://createme.org/provider/WAM> ;
     sosa:isResultOf <http://createme.org/sampling/field/14> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
@@ -1963,10 +1801,89 @@
     sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
+<http://createme.org/sampling/field/1> a tern:Sampling ;
+    dcterms:identifier "A001" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:N679f7dd2b283470997bc5f093f9049ca ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/1> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/10> a tern:Sampling ;
+    dcterms:identifier "A010" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:N623f564b48b741dfb9b97e2422841ccf ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/10> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/11> a tern:Sampling ;
+    dcterms:identifier "A011" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:N52ad551bcf974985840a2a475a31a7af ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/11> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/12> a tern:Sampling ;
+    dcterms:identifier "A012" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:Nd080467d60194f0494bddf254261dd5a ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/12> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> .
+
+<http://createme.org/sampling/field/13> a tern:Sampling ;
+    dcterms:identifier "A013" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:N98ede456d0344ac6b0efb3fff9c9ecac ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/13> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/14> a tern:Sampling ;
+    dcterms:identifier "A014" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:Nf03b44d56c89428eb84c78a0313e812a ;
+    geo:hasMetricSpatialAccuracy 2e+01 ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/14> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:hasAttribute <http://createme.org/attribute/basisOfRecord/14>,
+        <http://createme.org/attribute/dataGeneralizations/14> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
 <http://createme.org/sampling/field/15> a tern:Sampling ;
     dcterms:identifier "8022FSJMJ079c5cf" ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nceccc5ce466f4f95a85466fdac2b3d76 ;
+    geo:hasGeometry _:Na31dce57370d4063b45e1674345cd5e2 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1982,7 +1899,7 @@
 <http://createme.org/sampling/field/16> a tern:Sampling ;
     dcterms:identifier "ABC123" ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    geo:hasGeometry _:Naa445859f0f14589979ac24c388cc3fe ;
+    geo:hasGeometry _:Nf67f49601c664ac8ba2b39fb61d8d5b5 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1995,8 +1912,109 @@
         <http://createme.org/attribute/habitat/16> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<http://createme.org/provider/BHP> a prov:Agent ;
-    foaf:name "BHP" .
+<http://createme.org/sampling/field/2> a tern:Sampling ;
+    dcterms:identifier "A002" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:Ne1b967c802ef4f1d80babd7d8953d990 ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/2> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/3> a tern:Sampling ;
+    dcterms:identifier "A003" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:Nd5275085a435498bada885bf341d6c4d ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/3> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/4> a tern:Sampling ;
+    dcterms:identifier "A004" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:N6c3e9cc92f1241c091cd42b107f63206 ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/4> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/5> a tern:Sampling ;
+    dcterms:identifier "A005" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:Nc720a39697064c1694eb2331d952afb4 ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/5> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/6> a tern:Sampling ;
+    dcterms:identifier "A006" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:N2222e58edfca4ea2a6462ce38e4facef ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/6> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/7> a tern:Sampling ;
+    dcterms:identifier "A007" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:N54dd3aebd34b467fbaadefc6fa22a73d ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/7> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/8> a tern:Sampling ;
+    dcterms:identifier "A008" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:Ne93f2314572d4fc48125a1eee8900c41 ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-21"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/8> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sampling/field/9> a tern:Sampling ;
+    dcterms:identifier "A009" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:Na1dd8e01259e4eb588c1338ac5ed9f5a ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2020-09-23"^^xsd:date ] ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
+    sosa:hasResult <http://createme.org/sample/field/9> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sample/specimen/15> a tern:FeatureOfInterest,
         tern:Sample ;
@@ -2027,9 +2045,9 @@
     dwc:recordNumber "PE:12:8832" ;
     rdfs:comment "field-sample" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/BHP> ;
+            prov:agent <http://createme.org/provider/WAM> ;
             prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] ;
-    prov:wasAssociatedWith <http://createme.org/provider/BHP> ;
+    prov:wasAssociatedWith <http://createme.org/provider/WAM> ;
     sosa:isResultOf <http://createme.org/sampling/field/15> ;
     sosa:isSampleOf <http://createme.org/location/Australia> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
@@ -2064,28 +2082,41 @@
 
 <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> a tern:RDFDataset ;
     dcterms:description "Example Systematic Survey Occurrence Dataset by Gaia Resources" ;
-    dcterms:issued "2024-03-19"^^xsd:date ;
+    dcterms:issued "2024-04-11"^^xsd:date ;
     dcterms:title "Example Systematic Survey Occurrence Dataset" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:Nd65f414c54404d08aa2b65c3e050a965 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/specimen/16> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N319dad520fe749cc9d977e414288155d ;
+    rdf:object _:Ne1b967c802ef4f1d80babd7d8953d990 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/sampling/field/2> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
-    rdf:object "MR-456" ;
-    rdf:predicate dwc:occurrenceID ;
-    rdf:subject <http://createme.org/sample/field/15> ;
-    skos:prefLabel "occurrenceID source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "ABC123" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/16> ;
+    skos:prefLabel "providerRecordID Source" .
 
 [] a rdf:Statement ;
-    rdf:object "M12379" ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A013" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/13> ;
+    skos:prefLabel "providerRecordID Source" .
+
+[] a rdf:Statement ;
+    rdf:object "BHP2012-7522" ;
     rdf:predicate dwc:otherCatalogNumbers ;
     rdf:subject <http://createme.org/sample/field/16> ;
     skos:prefLabel "otherCatalogNumbers stakeholder" ;
@@ -2096,7 +2127,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N1e6dcfdf44c646cd9194eaf339df7f32 ;
+    rdf:object _:Naa033c42ed7344bf9bcd519d7b924ff5 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/sampling/specimen/13> ;
     rdfs:comment "supplied as" .
@@ -2104,77 +2135,26 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N179c1b30d2914bf19c57a419004f9493 ;
+    rdf:object _:N623f564b48b741dfb9b97e2422841ccf ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/14> ;
+    rdf:subject <http://createme.org/sampling/field/10> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:N18385f37b7644a9c88226fa009e63f87 ;
+    rdf:object _:Na31dce57370d4063b45e1674345cd5e2 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/specimen/15> ;
+    rdf:subject <http://createme.org/sampling/field/15> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:Naa445859f0f14589979ac24c388cc3fe ;
+    rdf:object _:Nd080467d60194f0494bddf254261dd5a ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/16> ;
+    rdf:subject <http://createme.org/sampling/field/12> ;
     rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:N1bab230c33714e98aff3dac2bd80a068 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/sequencing/15> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:Nd28d48ceac5b4f149fcbcd74e4db6d11 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/3> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N37f5a8ddbb6a44c6aec73c60458e614d ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/13> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N76d56c9482c44e6eaff02cfeba91f49b ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/6> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    rdf:object "M12378" ;
-    rdf:predicate dwc:otherCatalogNumbers ;
-    rdf:subject <http://createme.org/sample/field/15> ;
-    skos:prefLabel "otherCatalogNumbers stakeholder" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/BHP> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
-
-[] a rdf:Statement ;
-    dwc:collectionCode "ARACH" ;
-    rdf:object "32238" ;
-    rdf:predicate dwc:catalogNumber ;
-    rdf:subject <http://createme.org/sample/specimen/16> ;
-    skos:prefLabel "catalogNumber source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
     rdf:object "BHP2012-7521" ;
@@ -2182,90 +2162,60 @@
     rdf:subject <http://createme.org/sample/field/15> ;
     skos:prefLabel "otherCatalogNumbers stakeholder" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/BHP> ;
+            prov:agent <http://createme.org/provider/WAM> ;
             prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:Nceccc5ce466f4f95a85466fdac2b3d76 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/15> ;
-    rdfs:comment "supplied as" .
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A008" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/8> ;
+    skos:prefLabel "providerRecordID Source" .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:Nec365935b74849479b3a650e1b45706a ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/4> ;
-    rdfs:comment "supplied as" .
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A003" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/3> ;
+    skos:prefLabel "providerRecordID Source" .
 
 [] a rdf:Statement ;
-    rdf:object "MR-457" ;
-    rdf:predicate dwc:occurrenceID ;
-    rdf:subject <http://createme.org/sample/field/16> ;
-    skos:prefLabel "occurrenceID source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/WAM> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:Nccb2885a7625427e8bb2642747da896b ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/5> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    rdf:object "PE:12:8833" ;
+    rdf:object "PE:12:8832" ;
     rdf:predicate dwc:recordNumber ;
-    rdf:subject <http://createme.org/sample/field/16> ;
+    rdf:subject <http://createme.org/sample/field/15> ;
     skos:prefLabel "recordNumber source" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
             prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
             prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:Nfd3c426c969848c09e75956302be9b5a ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/12> ;
-    rdfs:comment "supplied as" .
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A009" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/9> ;
+    skos:prefLabel "providerRecordID Source" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:N5b67b152ff424cb98e0e1f5f33f8eb8f ;
+    rdf:object _:N6f39d6fd6d99411590ce19c07ca5ad0c ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/1> ;
+    rdf:subject <http://createme.org/sampling/sequencing/16> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N992c156241d6469aaf2b483104c99659 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/11> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N0e4674f118d6407e9d516804f634dace ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/10> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N7ba3e590ebc94ace8adf3e18d81663f4 ;
-    rdf:predicate geo:hasGeometry ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A007" ;
+    rdf:predicate dcterms:identifier ;
     rdf:subject <http://createme.org/sampling/field/7> ;
-    rdfs:comment "supplied as" .
+    skos:prefLabel "providerRecordID Source" .
+
+[] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A005" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/5> ;
+    skos:prefLabel "providerRecordID Source" .
 
 [] a rdf:Statement ;
     dwc:collectionCode "ARACH" ;
@@ -2280,13 +2230,68 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N096b2cfdfd394e26b584cdba7c4fc0f4 ;
+    rdf:object _:N98ede456d0344ac6b0efb3fff9c9ecac ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/9> ;
+    rdf:subject <http://createme.org/sampling/field/13> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
-    rdf:object "BHP2012-7522" ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:N679f7dd2b283470997bc5f093f9049ca ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/1> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "8022FSJMJ079c5cf" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/15> ;
+    skos:prefLabel "providerRecordID Source" .
+
+[] a rdf:Statement ;
+    rdf:object "PE:12:8833" ;
+    rdf:predicate dwc:recordNumber ;
+    rdf:subject <http://createme.org/sample/field/16> ;
+    skos:prefLabel "recordNumber source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
+
+[] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A002" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/2> ;
+    skos:prefLabel "providerRecordID Source" .
+
+[] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A010" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/10> ;
+    skos:prefLabel "providerRecordID Source" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:N2f1664f4359d48c19445bff16fcade5e ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/specimen/15> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    rdf:object "M12378" ;
+    rdf:predicate dwc:otherCatalogNumbers ;
+    rdf:subject <http://createme.org/sample/field/15> ;
+    skos:prefLabel "otherCatalogNumbers stakeholder" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
+
+[] a rdf:Statement ;
+    rdf:object "M12379" ;
     rdf:predicate dwc:otherCatalogNumbers ;
     rdf:subject <http://createme.org/sample/field/16> ;
     skos:prefLabel "otherCatalogNumbers stakeholder" ;
@@ -2295,112 +2300,223 @@
             prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder> ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:Nbb583ae821454252befa026ddf821b79 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/specimen/16> ;
-    rdfs:comment "supplied as" .
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A012" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/12> ;
+    skos:prefLabel "providerRecordID Source" .
 
 [] a rdf:Statement ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
-    rdf:object "ABC123" ;
-    rdf:predicate dcterms:identifier ;
-    rdf:subject <http://createme.org/sampling/field/16> ;
-    skos:prefLabel "recordID source" .
-
-[] a rdf:Statement ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
-    rdf:object "8022FSJMJ079c5cf" ;
-    rdf:predicate dcterms:identifier ;
-    rdf:subject <http://createme.org/sampling/field/15> ;
-    skos:prefLabel "recordID source" .
+    rdf:object "MR-457" ;
+    rdf:predicate dwc:occurrenceID ;
+    rdf:subject <http://createme.org/sample/field/16> ;
+    skos:prefLabel "ownerRecordID Source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N059bf61386f1427687546c942ccb7193 ;
+    rdf:object _:N54dd3aebd34b467fbaadefc6fa22a73d ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/7> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:Nf67f49601c664ac8ba2b39fb61d8d5b5 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/16> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:N52ad551bcf974985840a2a475a31a7af ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/11> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A006" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/6> ;
+    skos:prefLabel "providerRecordID Source" .
+
+[] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A014" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/14> ;
+    skos:prefLabel "providerRecordID Source" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:Nf03b44d56c89428eb84c78a0313e812a ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/14> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:Nc720a39697064c1694eb2331d952afb4 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/5> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A011" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/11> ;
+    skos:prefLabel "providerRecordID Source" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:Ne93f2314572d4fc48125a1eee8900c41 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/sampling/field/8> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
-    rdf:object "PE:12:8832" ;
-    rdf:predicate dwc:recordNumber ;
-    rdf:subject <http://createme.org/sample/field/15> ;
-    skos:prefLabel "recordNumber source" ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A004" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/4> ;
+    skos:prefLabel "providerRecordID Source" .
+
+[] a rdf:Statement ;
+    dwc:collectionCode "ARACH" ;
+    rdf:object "32238" ;
+    rdf:predicate dwc:catalogNumber ;
+    rdf:subject <http://createme.org/sample/specimen/16> ;
+    skos:prefLabel "catalogNumber source" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator> ] .
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
+
+[] a rdf:Statement ;
+    rdf:object "MR-456" ;
+    rdf:predicate dwc:occurrenceID ;
+    rdf:subject <http://createme.org/sample/field/15> ;
+    skos:prefLabel "ownerRecordID Source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/provider/WAM> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian> ] .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:Nd5275085a435498bada885bf341d6c4d ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/3> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    rdf:object "A001" ;
+    rdf:predicate dcterms:identifier ;
+    rdf:subject <http://createme.org/sampling/field/1> ;
+    skos:prefLabel "providerRecordID Source" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:Nd7e4308ab64f4cba9ea25c1c58138a60 ;
+    rdf:object _:N92230a1d73224577a4003e57b179a00c ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/sequencing/16> ;
+    rdf:subject <http://createme.org/sampling/sequencing/15> ;
     rdfs:comment "supplied as" .
 
-_:N059bf61386f1427687546c942ccb7193 a geo:Geometry ;
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:Na1dd8e01259e4eb588c1338ac5ed9f5a ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/9> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:N6c3e9cc92f1241c091cd42b107f63206 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/4> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:N2222e58edfca4ea2a6462ce38e4facef ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/6> ;
+    rdfs:comment "supplied as" .
+
+_:N2222e58edfca4ea2a6462ce38e4facef a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral .
 
-_:N096b2cfdfd394e26b584cdba7c4fc0f4 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral .
-
-_:N0e4674f118d6407e9d516804f634dace a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral .
-
-_:N179c1b30d2914bf19c57a419004f9493 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral .
-
-_:N18385f37b7644a9c88226fa009e63f87 a geo:Geometry ;
+_:N2f1664f4359d48c19445bff16fcade5e a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
 
-_:N1bab230c33714e98aff3dac2bd80a068 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
-
-_:N1e6dcfdf44c646cd9194eaf339df7f32 a geo:Geometry ;
+_:N52ad551bcf974985840a2a475a31a7af a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral .
 
-_:N319dad520fe749cc9d977e414288155d a geo:Geometry ;
+_:N54dd3aebd34b467fbaadefc6fa22a73d a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral .
+
+_:N623f564b48b741dfb9b97e2422841ccf a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral .
+
+_:N679f7dd2b283470997bc5f093f9049ca a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
+
+_:N6c3e9cc92f1241c091cd42b107f63206 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral .
 
-_:N37f5a8ddbb6a44c6aec73c60458e614d a geo:Geometry ;
+_:N6f39d6fd6d99411590ce19c07ca5ad0c a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
+
+_:N92230a1d73224577a4003e57b179a00c a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
+
+_:N98ede456d0344ac6b0efb3fff9c9ecac a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral .
 
-_:N5b67b152ff424cb98e0e1f5f33f8eb8f a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
-
-_:N76d56c9482c44e6eaff02cfeba91f49b a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral .
-
-_:N7ba3e590ebc94ace8adf3e18d81663f4 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral .
-
-_:N992c156241d6469aaf2b483104c99659 a geo:Geometry ;
+_:Na1dd8e01259e4eb588c1338ac5ed9f5a a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral .
 
-_:Naa445859f0f14589979ac24c388cc3fe a geo:Geometry ;
+_:Na31dce57370d4063b45e1674345cd5e2 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
 
-_:Nbb583ae821454252befa026ddf821b79 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
+_:Naa033c42ed7344bf9bcd519d7b924ff5 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral .
 
-_:Nccb2885a7625427e8bb2642747da896b a geo:Geometry ;
+_:Nc720a39697064c1694eb2331d952afb4 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral .
 
-_:Nceccc5ce466f4f95a85466fdac2b3d76 a geo:Geometry ;
+_:Nd080467d60194f0494bddf254261dd5a a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
 
-_:Nd28d48ceac5b4f149fcbcd74e4db6d11 a geo:Geometry ;
+_:Nd5275085a435498bada885bf341d6c4d a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral .
 
-_:Nd7e4308ab64f4cba9ea25c1c58138a60 a geo:Geometry ;
+_:Nd65f414c54404d08aa2b65c3e050a965 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
 
-_:Nec365935b74849479b3a650e1b45706a a geo:Geometry ;
+_:Ne1b967c802ef4f1d80babd7d8953d990 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral .
 
-_:Nfd3c426c969848c09e75956302be9b5a a geo:Geometry ;
+_:Ne93f2314572d4fc48125a1eee8900c41 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral .
+
+_:Nf03b44d56c89428eb84c78a0313e812a a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral .
+
+_:Nf67f49601c664ac8ba2b39fb61d8d5b5 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral .
 
