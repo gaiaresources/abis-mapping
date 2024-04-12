@@ -1653,30 +1653,26 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
         # Check for otherCatalogNumbers
-        if row["otherCatalogNumbers"]:
-            # Loop through Other Catalog Numbers
-            for identifier in row["otherCatalogNumbers"]:
-                # Add to Graph
-                graph.add((uri, utils.namespaces.DWC.otherCatalogNumbers, rdflib.Literal(identifier)))
+        if other_catalog_numbers := row["otherCatalogNumbers"]:
+            # Add to Graph
+            graph.add((uri, utils.namespaces.DWC.otherCatalogNumbers, rdflib.Literal(other_catalog_numbers)))
 
         # Check for otherCatalogNumbers and institutionCode
-        if row["otherCatalogNumbers"] and row["ownerRecordIDSource"]:
-            # Loop through Other Catalog Numbers
-            for identifier in row["otherCatalogNumbers"]:
-                # Add Reification (institutionCode)
-                provenance = rdflib.BNode()
-                graph.add((provenance, a, rdflib.RDF.Statement))
-                graph.add((provenance, rdflib.RDF.subject, uri))
-                graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.otherCatalogNumbers))
-                graph.add((provenance, rdflib.RDF.object, rdflib.Literal(identifier)))
-                graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
+        if (other_catalog_numbers := row["otherCatalogNumbers"]) and row["ownerRecordIDSource"]:
+            # Add Reification (institutionCode)
+            provenance = rdflib.BNode()
+            graph.add((provenance, a, rdflib.RDF.Statement))
+            graph.add((provenance, rdflib.RDF.subject, uri))
+            graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.otherCatalogNumbers))
+            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(other_catalog_numbers)))
+            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
 
-                # Add Qualifier
-                qualifier = rdflib.BNode()
-                graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-                graph.add((qualifier, a, rdflib.PROV.Attribution))
-                graph.add((qualifier, rdflib.PROV.agent, institution_code))
-                graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
+            # Add Qualifier
+            qualifier = rdflib.BNode()
+            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
+            graph.add((qualifier, rdflib.PROV.agent, institution_code))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
 
     def add_sample_specimen(
         self,
