@@ -328,6 +328,7 @@
     {
       "name": "otherCatalogNumbers",
       "title": "Other Catalog Numbers",
+      "description": "...",
       "example": "BHP2012-7521 | M12378",
       "type": "list",
       "format": "default",
