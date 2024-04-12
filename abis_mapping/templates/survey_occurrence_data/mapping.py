@@ -295,8 +295,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row_num = row.row_number - 1
 
         # Create URIs
-        provider_owner_institution = utils.rdf.uri(f"provider/{row['ownerInstitutionCode']}", base_iri)
-        provider_institution = utils.rdf.uri(f"provider/{row['institutionCode']}", base_iri)
+        provider_owner_institution = utils.rdf.uri(f"provider/{row['ownerRecordIDSource']}", base_iri)
+        provider_institution = utils.rdf.uri(f"provider/{row['ownerRecordIDSource']}", base_iri)
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
         provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
         sample_field = utils.rdf.uri(f"sample/field/{row_num}", base_iri)
@@ -348,7 +348,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
         organism_quantity_observation = utils.rdf.uri(f"observation/organismQuantity/{row_num}", base_iri)
         organism_quantity_value = utils.rdf.uri(f"value/organismQuantity/{row_num}", base_iri)
-        site = dataset + f"/Site/{urllib.parse.quote(row['siteID'], safe='')}" if row['siteID'] else None
+        site = dataset + f"/site/{urllib.parse.quote(row['siteID'], safe='')}" if row['siteID'] else None
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -1191,17 +1191,17 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
 
         # Check for recordID
-        if row["recordID"]:
+        if row["providerRecordID"]:
             # Add Identifier
-            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(row["recordID"])))
+            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(row["providerRecordID"])))
 
             # Add Identifier Provenance
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
             graph.add((provenance, rdflib.RDF.subject, uri))
             graph.add((provenance, rdflib.RDF.predicate, rdflib.DCTERMS.identifier))
-            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["recordID"])))
-            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordID source")))
+            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["providerRecordID"])))
+            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("providerRecordID Source")))
             graph.add((provenance, rdflib.DCTERMS.source, rdflib.Literal(dataset, datatype=rdflib.XSD.anyURI)))
 
         # Check for recordedBy
@@ -1568,7 +1568,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
 
         # Check for institutionCode
-        if row["institutionCode"]:
+        if row["ownerRecordIDSource"]:
             # Add institutionCode Association
             graph.add((uri, rdflib.PROV.wasAssociatedWith, institution_code))
 
@@ -1602,19 +1602,19 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_ORIGINATOR))
 
         # Check for occurrenceID
-        if row["occurrenceID"]:
+        if row["ownerRecordID"]:
             # Add to Graph
-            graph.add((uri, utils.namespaces.DWC.occurrenceID, rdflib.Literal(row["occurrenceID"])))
+            graph.add((uri, utils.namespaces.DWC.occurrenceID, rdflib.Literal(row["ownerRecordID"])))
 
         # Check for occurrenceID and ownerInstitutionCode
-        if row["occurrenceID"] and row["ownerInstitutionCode"]:
+        if row["ownerRecordID"] and row["ownerRecordIDSource"]:
             # Add Reification (ownerInstitutionCode)
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
             graph.add((provenance, rdflib.RDF.subject, uri))
             graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.occurrenceID))
-            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["occurrenceID"])))
-            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("occurrenceID source")))
+            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["ownerRecordID"])))
+            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("ownerRecordID Source")))
 
             # Add Qualifier
             qualifier = rdflib.BNode()
@@ -1629,9 +1629,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # with this row then we associate the orphaned `ownerInstitutionCode`
         # with this Field Sample
         if (
-            row["ownerInstitutionCode"]
+            row["ownerRecordIDSource"]
             and not row["catalogNumber"]
-            and not row["occurrenceID"]
+            and not row["ownerRecordID"]
             and not has_specimen(row)
         ):
             # Add ownerInstitutionCode Association
@@ -1653,30 +1653,26 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
         # Check for otherCatalogNumbers
-        if row["otherCatalogNumbers"]:
-            # Loop through Other Catalog Numbers
-            for identifier in row["otherCatalogNumbers"]:
-                # Add to Graph
-                graph.add((uri, utils.namespaces.DWC.otherCatalogNumbers, rdflib.Literal(identifier)))
+        if other_catalog_numbers := row["otherCatalogNumbers"]:
+            # Add to Graph
+            graph.add((uri, utils.namespaces.DWC.otherCatalogNumbers, rdflib.Literal(other_catalog_numbers)))
 
         # Check for otherCatalogNumbers and institutionCode
-        if row["otherCatalogNumbers"] and row["institutionCode"]:
-            # Loop through Other Catalog Numbers
-            for identifier in row["otherCatalogNumbers"]:
-                # Add Reification (institutionCode)
-                provenance = rdflib.BNode()
-                graph.add((provenance, a, rdflib.RDF.Statement))
-                graph.add((provenance, rdflib.RDF.subject, uri))
-                graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.otherCatalogNumbers))
-                graph.add((provenance, rdflib.RDF.object, rdflib.Literal(identifier)))
-                graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
+        if (other_catalog_numbers := row["otherCatalogNumbers"]) and row["ownerRecordIDSource"]:
+            # Add Reification (institutionCode)
+            provenance = rdflib.BNode()
+            graph.add((provenance, a, rdflib.RDF.Statement))
+            graph.add((provenance, rdflib.RDF.subject, uri))
+            graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.otherCatalogNumbers))
+            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(other_catalog_numbers)))
+            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
 
-                # Add Qualifier
-                qualifier = rdflib.BNode()
-                graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-                graph.add((qualifier, a, rdflib.PROV.Attribution))
-                graph.add((qualifier, rdflib.PROV.agent, institution_code))
-                graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
+            # Add Qualifier
+            qualifier = rdflib.BNode()
+            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
+            graph.add((qualifier, a, rdflib.PROV.Attribution))
+            graph.add((qualifier, rdflib.PROV.agent, institution_code))
+            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
 
     def add_sample_specimen(
         self,
@@ -1731,7 +1727,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.DWC.catalogNumber, rdflib.Literal(row["catalogNumber"])))
 
         # Check for catalogNumber and ownerInstitutionCode
-        if row["catalogNumber"] and row["ownerInstitutionCode"]:
+        if row["catalogNumber"] and row["ownerRecordIDSource"]:
             # Add Reification (ownerInstitutionCode)
             provenance = rdflib.BNode()
             graph.add((provenance, a, rdflib.RDF.Statement))
@@ -1757,9 +1753,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # `occurrenceID` have been omitted then we associate the orphaned
         # `ownerInstitutionCode` with this Specimen Sample
         if (
-            row["ownerInstitutionCode"]
+            row["ownerRecordIDSource"]
             and not row["catalogNumber"]
-            and not row["occurrenceID"]
+            and not row["ownerRecordID"]
         ):
             # Add ownerInstitutionCode Association
             graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
@@ -1774,7 +1770,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Handle Orphan collectionCode (See: BDRC-89)
         if (
             row["collectionCode"]
-            and (not row["ownerInstitutionCode"] or not row["catalogNumber"])
+            and (not row["ownerRecordIDSource"] or not row["catalogNumber"])
         ):
             # Add to Graph
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
@@ -2245,12 +2241,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         """
         # TODO -> Retrieve this from a known list of institutions
         # Check Existence
-        if not row["ownerInstitutionCode"]:
+        if not row["ownerRecordIDSource"]:
             return
 
         # Owner Institution Provider
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["ownerInstitutionCode"])))
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["ownerRecordIDSource"])))
 
     def add_institution_provider(
         self,
@@ -2267,12 +2263,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         """
         # TODO -> Retrieve this from a known list of institutions
         # Check Existence
-        if not row["institutionCode"]:
+        if not row["ownerRecordIDSource"]:
             return
 
         # Institution Provider
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["institutionCode"])))
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["ownerRecordIDSource"])))
 
     def add_occurrence_status_observation(
         self,
