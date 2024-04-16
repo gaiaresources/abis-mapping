@@ -1,6 +1,8 @@
-# Templates
-## Incidental Occurrence v2.0.0 (April 2024)
-### [Schema v2.0.0](https://github.com/gaiaresources/abis-mapping/blob/main/abis_mapping/templates/incidental_occurrence_data_v2/schema.json) changes (by column order).
+
+# April 2024
+## Templates
+### Incidental Occurrence v2.0.0
+#### [Schema v2.0.0](https://github.com/gaiaresources/abis-mapping/blob/main/abis_mapping/templates/incidental_occurrence_data_v2/schema.json) changes (by column order).
 * `recordID` is renamed `providerRecordID` and its value is now **mandatory**
 * `providerRecordIDSource` is an added field. Its type is string. Can be blank.
 * `organismQuantity` is an added field. Its type is integer. Can be blank.
