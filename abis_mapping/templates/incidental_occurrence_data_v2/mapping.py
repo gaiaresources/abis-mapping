@@ -1,5 +1,3 @@
-"""Provides ABIS Mapper for `incidental_occurrence_data.csv` Template"""
-
 
 # Third-Party
 import frictionless
@@ -52,6 +50,7 @@ ROLE_RIGHTS_HOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/Cit
 ROLE_RESOURCE_PROVIDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider")  # noqa: E501
 ROLE_CUSTODIAN = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian")  # noqa: E501
 ROLE_STAKEHOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder")  # noqa: E501
+ROLE_OWNER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/owner")  # noqa: E501
 
 
 class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
@@ -100,9 +99,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                     plugins.empty.NotEmpty(),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["threatStatus", "conservationJurisdiction"],
-                    ),
-                    plugins.mutual_inclusion.MutuallyInclusive(
-                        field_names=["providerRecordID", "providerRecordIDSource"],
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["catalogNumber", "catalogNumberSource"],
@@ -234,10 +230,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row_num = row.row_number - 1
 
         # Create URIs
-        provider_owner_institution = utils.rdf.uri(f"provider/{row['ownerRecordIDSource']}", base_iri)
-        provider_institution = utils.rdf.uri(f"provider/{row['providerRecordIDSource']}", base_iri)
+        provider_provider_record_id_src = utils.rdf.uri(f"provider/{row['providerRecordIDSource']}", base_iri)
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
-        provider_recorded = utils.rdf.uri(f"provider/{row['recordedBy']}", base_iri)
         sample_field = utils.rdf.uri(f"sample/field/{row_num}", base_iri)
         sampling_field = utils.rdf.uri(f"sampling/field/{row_num}", base_iri)
         sample_specimen = utils.rdf.uri(f"sample/specimen/{row_num}", base_iri)
@@ -285,6 +279,46 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         conservation_jurisdiction_attribute = utils.rdf.uri(f"attribute/conservationJurisdiction/{row_num}", base_iri)  # noqa: E501
         conservation_jurisdiction_value = utils.rdf.uri(f"value/conservationJurisdiction/{row_num}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
+        provider_record_id_datatype = utils.rdf.uri(
+            internal_id=f"datatype/providerRecordID/{row['providerRecordIDSource']}",
+            namespace=base_iri,
+        )
+        provider_record_id_agent = utils.rdf.uri(f"agent/{row['providerRecordIDSource']}", base_iri)
+
+        # Conditionally create uris dependent on ownerRecordIDSource field
+        if owner_record_id_source := row["ownerRecordIDSource"]:
+            owner_record_id_datatype = utils.rdf.uri(f"datatype/ownerRecordID/{owner_record_id_source}", base_iri)
+            owner_record_id_provider = utils.rdf.uri(f"provider/{row['ownerRecordIDSource']}", base_iri)
+        else:
+            owner_record_id_datatype = None
+            owner_record_id_provider = None
+
+        # Conditionally create uri's dependent on recordedBy field.
+        if recorded_by := row['recordedBy']:
+            record_number_datatype = utils.rdf.uri(f"datatype/recordNumber/{recorded_by}", base_iri)
+            provider_recorded_by = utils.rdf.uri(f"provider/{recorded_by}", base_iri)
+        else:
+            record_number_datatype = None
+            provider_recorded_by = None
+
+        # Conditionally create uris dependent on catalogNumberSource field.
+        if catalog_number_source := row["catalogNumberSource"]:
+            catalog_number_datatype = utils.rdf.uri(f"datatype/catalogNumber/{catalog_number_source}", base_iri)
+            catalog_number_provider = utils.rdf.uri(f"provider/{catalog_number_source}", base_iri)
+        else:
+            catalog_number_datatype = None
+            catalog_number_provider = None
+
+        # Conditionally create uris dependent on otherCatalogNumbersSource field.
+        if other_catalog_numbers_source := row["otherCatalogNumbersSource"]:
+            other_catalog_numbers_datatype = utils.rdf.uri(
+                internal_id=f"datatype/otherCatalogNumbers/{other_catalog_numbers_source}",
+                namespace=base_iri,
+            )
+            other_catalog_numbers_provider = utils.rdf.uri(f"provider/{other_catalog_numbers_source}", base_iri)
+        else:
+            other_catalog_numbers_datatype = None
+            other_catalog_numbers_provider = None
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -295,7 +329,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add Provider Recorded By
         self.add_provider_recorded(
-            uri=provider_recorded,
+            uri=provider_recorded_by,
             row=row,
             graph=graph,
         )
@@ -307,9 +341,37 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             feature_of_interest=terminal_foi,
             sampling_field=sampling_field,
-            recorded_by=provider_recorded,
-            owner_institution_code=provider_owner_institution,
-            institution_code=provider_institution,
+            owner_record_id_datatype=owner_record_id_datatype,
+            other_catalog_numbers_datatype=other_catalog_numbers_datatype,
+            record_number_datatype=record_number_datatype,
+            graph=graph,
+        )
+
+        # Add record number datatype
+        self.add_record_number_datatype(
+            uri=record_number_datatype,
+            provider=provider_recorded_by,
+            graph=graph,
+        )
+
+        # Add provider provider agent
+        self.add_provider_recorded_by_agent(
+            uri=provider_recorded_by,
+            row=row,
+            graph=graph,
+        )
+
+        # Add owner record id datatype
+        self.add_owner_record_id_datatype(
+            uri=owner_record_id_datatype,
+            provider=owner_record_id_provider,
+            graph=graph,
+        )
+
+        # Add the provider owner record id
+        self.add_owner_record_id_provider(
+            uri=owner_record_id_provider,
+            row=row,
             graph=graph,
         )
 
@@ -318,12 +380,27 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=sampling_field,
             row=row,
             dataset=dataset,
-            provider=provider_recorded,
+            provider_record_id_source=provider_record_id_datatype,
+            provider=provider_recorded_by,
             feature_of_interest=terminal_foi,
             sample_field=sample_field,
             generalizations=data_generalizations_attribute,
             habitat=habitat_attribute,
             basis=basis_attribute,
+            graph=graph,
+        )
+
+        # Add provider record ID datatype
+        self.add_provider_record_id_datatype(
+            uri=provider_record_id_datatype,
+            agent=provider_record_id_agent,
+            graph=graph,
+        )
+
+        # Add provider agent
+        self.add_provider_record_id_agent(
+            uri=provider_record_id_agent,
+            row=row,
             graph=graph,
         )
 
@@ -335,7 +412,35 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             sampling_specimen=sampling_specimen,
             sample_field=sample_field,
             preparations=preparations_attribute,
-            owner_institution_code=provider_owner_institution,
+            catalog_number_datatype=catalog_number_datatype,
+            graph=graph,
+        )
+
+        # Add catalog number datatype
+        self.add_catalog_number_datatype(
+            uri=catalog_number_datatype,
+            provider=catalog_number_provider,
+            graph=graph,
+        )
+
+        # Add catalog number provider
+        self.add_catalog_number_provider(
+            uri=catalog_number_provider,
+            row=row,
+            graph=graph,
+        )
+
+        # Add other catalog numbers datatype
+        self.add_other_catalog_numbers_datatype(
+            uri=other_catalog_numbers_datatype,
+            provider=other_catalog_numbers_provider,
+            graph=graph,
+        )
+
+        # Add other catalog numbers provider
+        self.add_other_catalog_numbers_provider(
+            uri=other_catalog_numbers_provider,
+            row=row,
             graph=graph,
         )
 
@@ -546,14 +651,14 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add Owner Institution Provider
         self.add_owner_institution_provider(
-            uri=provider_owner_institution,
+            uri=owner_record_id_provider,
             row=row,
             graph=graph,
         )
 
         # Add Institution Provider
         self.add_institution_provider(
-            uri=provider_institution,
+            uri=provider_provider_record_id_src,
             row=row,
             graph=graph,
         )
@@ -807,19 +912,19 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
     def add_provider_recorded(
         self,
-        uri: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Recorded By Provider to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node.
+            uri (rdflib.URIRef | None): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
-        # Check for recordedBy
-        if not row["recordedBy"]:
+        # Check for valid subject or and data
+        if not row["recordedBy"] or uri is None:
             return
 
         # Add to Graph
@@ -998,12 +1103,86 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
             graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
+    def add_provider_recorded_by_agent(
+        self,
+        uri: rdflib.URIRef | None,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds the provider agent to the graph.
+
+        Args:
+            uri (rdflib.URIRef): Subject of the node.
+            row (frictionless.Row): Raw data.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Ensure data and URI passed in
+        if uri is None or not row['recordedBy']:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.PROV.Agent))
+
+        # Add name
+        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row['recordedBy'])))
+
+    def add_owner_record_id_datatype(
+        self,
+        uri: rdflib.URIRef | None,
+        provider: rdflib.URIRef | None,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds the owner record id datatype to the graph.
+
+        Args:
+            uri (rdflib.URIRef): Subject of the node.
+            provider (rdflib.URIRef): Provider of the datatype.
+            graph (rdflid.Graph): Graph to be modified.
+        """
+        # Check to see subject provided
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.RDFS.Datatype))
+
+        # Add label
+        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("ownerRecordID source")))
+
+        # Add attribution
+        if provider is not None:
+            graph.add((uri, rdflib.PROV.wasAttributedTo, provider))
+
+    def add_owner_record_id_provider(
+        self,
+        uri: rdflib.URIRef | None,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds the provider owner record id node.
+
+        Args:
+            uri (rdflib.URIRef): Subject of the node.
+            row (frictionless.Row): Raw data.
+            graph (rdflib.Graph): Graph to be modified.:
+        """
+        # Check that a subject uri was supplied
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.PROV.Agent))
+
+        # Add name
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["ownerRecordIDSource"])))
+
     def add_sampling_field(
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        provider: rdflib.URIRef,
+        provider_record_id_source: rdflib.URIRef,
+        provider: rdflib.URIRef | None,
         feature_of_interest: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         generalizations: rdflib.URIRef,
@@ -1017,7 +1196,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            provider (rdflib.URIRef): Provider associated with this node
+            provider_record_id_source (rdflib.URIRef): Provider record id source
+                associated with this node.
+            provider (rdflib.URIRef | None): Provider associated with this node
             feature_of_interest (rdflib.URIRef): Feature of Interest associated
                 with this node.
             sample_field (rdflib.URIRef): Sample Field associated with this
@@ -1073,22 +1254,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
-        # Check for recordID
-        if row["providerRecordID"]:
-            # Add Identifier
-            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(row["providerRecordID"])))
-
-            # Add Identifier Provenance
-            provenance = rdflib.BNode()
-            graph.add((provenance, a, rdflib.RDF.Statement))
-            graph.add((provenance, rdflib.RDF.subject, uri))
-            graph.add((provenance, rdflib.RDF.predicate, rdflib.DCTERMS.identifier))
-            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["providerRecordID"])))
-            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("providerRecordIDSource")))
-            graph.add((provenance, rdflib.DCTERMS.source, rdflib.Literal(dataset, datatype=rdflib.XSD.anyURI)))
+        # Add Identifier
+        graph.add(
+            (
+                uri,
+                rdflib.DCTERMS.identifier,
+                rdflib.Literal(row["providerRecordID"], datatype=provider_record_id_source)
+            )
+        )
 
         # Check for recordedBy
-        if row["recordedBy"]:
+        if row["recordedBy"] and provider is not None:
             # Add Associated Provider
             graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
 
@@ -1117,6 +1293,47 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not has_specimen(row) and row["basisOfRecord"]:
             # Add Basis Of Record Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
+
+    def add_provider_record_id_datatype(
+        self,
+        uri: rdflib.URIRef,
+        agent: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds the provider record id datatype to the graph.
+
+        Args:
+            uri (rdflib.URIRef): Subject of the node.
+            agent (rdflib.URIRef): Provider agent URI.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Add the type
+        graph.add((uri, a, rdflib.RDFS.Datatype))
+
+        # Add label
+        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("providerRecordID source")))
+
+        # Add attribution
+        graph.add((uri, rdflib.PROV.wasAttributedTo, agent))
+
+    def add_provider_record_id_agent(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds provider record id agent to the graph.
+
+        Args:
+            uri (rdflib.URIRef): Subject of the node.
+            row (frictionless.Row): Raw data.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Add type
+        graph.add((uri, a, rdflib.PROV.Agent))
+
+        # Add name
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["providerRecordIDSource"])))
 
     def add_id_qualifier_attribute(
         self,
@@ -1254,6 +1471,106 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["scientificName"])))
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SCIENTIFIC_NAME))
 
+    def add_catalog_number_datatype(
+        self,
+        uri: rdflib.URIRef | None,
+        provider: rdflib.URIRef | None,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds catalog number datatype to the graph.
+
+        Args:
+            uri (rdflib.URIRef | None): Subject of the node.
+            provider (rdflib.URIRef | None): Corresponding provider.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Check subject was provided
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.RDFS.Datatype))
+
+        # Add label
+        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("catalogNumber source")))
+
+        # Add attribution
+        if provider is not None:
+            graph.add((uri, rdflib.PROV.wasAttributedTo, provider))
+
+    def add_catalog_number_provider(
+        self,
+        uri: rdflib.URIRef | None,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds the catalog number provider to the graph.
+
+        Args:
+            uri (rdflib.URIRef | None): Subject of the node.
+            row (frictionlee.Row): Raw data.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Check subject was provided
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.PROV.Agent))
+
+        # Add name
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["catalogNumberSource"])))
+
+    def add_other_catalog_numbers_datatype(
+        self,
+        uri: rdflib.URIRef | None,
+        provider: rdflib.URIRef | None,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds other catalog numbers datatype to the graph.
+
+        Args:
+            uri (rdflib.URIRef | None): Subject of the node.
+            provider (rdflib.URIRef | None): Corresponding provider.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Check subject provided
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.RDFS.Datatype))
+
+        # Add label
+        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers source")))
+
+        # Add attribution
+        if provider is not None:
+            graph.add((uri, rdflib.PROV.wasAttributedTo, provider))
+
+    def add_other_catalog_numbers_provider(
+        self,
+        uri: rdflib.URIRef | None,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds other catalog numbers provider to the graph.
+
+        Args:
+            uri (rdflib.URIRef | None): Subject of the node.
+            row (frictionless.Row): Raw data.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Check that subject was provided
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.PROV.Agent))
+
+        # Add name
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["otherCatalogNumbersSource"])))
+
     def add_sampling_specimen(
         self,
         uri: rdflib.URIRef,
@@ -1383,9 +1700,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
         sampling_field: rdflib.URIRef,
-        recorded_by: rdflib.URIRef,
-        owner_institution_code: rdflib.URIRef,
-        institution_code: rdflib.URIRef,
+        owner_record_id_datatype: rdflib.URIRef | None,
+        other_catalog_numbers_datatype: rdflib.URIRef | None,
+        record_number_datatype: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Field to the Graph
@@ -1398,12 +1715,12 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 with this node.
             sampling_field (rdflib.URIRef): Sampling Field associated with this
                 node
-            recorded_by (rdflib.URIRef): Recorded By Agent associated with this
-                node
-            owner_institution_code (rdflib.URIRef): Owner Institution Code
-                Agent associated with this node
-            institution_code (rdflib.URIRef): Institution Code Agent associated
-                with this node
+            owner_record_id_datatype (rdflib.URIRef | None): Source of owner ID
+                used as datatype.
+            other_catalog_numbers_datatype (rdflib.URIRef): Datatype to use
+                with other catalog numbers literals.
+            record_number_datatype (rdflib.URIRef | None): Datatype to  use
+                with record number literal.
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve Vocab or Create on the Fly
@@ -1422,116 +1739,65 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
         graph.add((uri, utils.namespaces.TERN.featureType, vocab))
 
-        # Check for institutionCode
-        if row["ownerRecordIDSource"]:
-            # Add institutionCode Association
-            graph.add((uri, rdflib.PROV.wasAssociatedWith, institution_code))
-
-            # Add Role Qualifier
-            qualifier = rdflib.BNode()
-            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, a, rdflib.PROV.Attribution))
-            graph.add((qualifier, rdflib.PROV.agent, institution_code))
-            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
-
         # Check for recordNumber
         if row["recordNumber"]:
+            # Determine which datatype to use for literal
+            dt = record_number_datatype or rdflib.XSD.string
             # Add to Graph
-            graph.add((uri, utils.namespaces.DWC.recordNumber, rdflib.Literal(row["recordNumber"])))
+            graph.add((uri, utils.namespaces.DWC.recordNumber, rdflib.Literal(row["recordNumber"], datatype=dt)))
 
-        # Check for recordNumber and recordedBy
-        if row["recordNumber"] and row["recordedBy"]:
-            # Add Reification (recordedBy)
-            provenance = rdflib.BNode()
-            graph.add((provenance, a, rdflib.RDF.Statement))
-            graph.add((provenance, rdflib.RDF.subject, uri))
-            graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.recordNumber))
-            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["recordNumber"])))
-            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("recordNumber source")))
-
-            # Add Qualifier
-            qualifier = rdflib.BNode()
-            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, a, rdflib.PROV.Attribution))
-            graph.add((qualifier, rdflib.PROV.agent, recorded_by))
-            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_ORIGINATOR))
-
-        # Check for occurrenceID
-        if row["ownerRecordID"]:
+        # Check for ownerRecordID
+        if (owner_record_id := row["ownerRecordID"]) and owner_record_id_datatype:
             # Add to Graph
-            graph.add((uri, utils.namespaces.DWC.occurrenceID, rdflib.Literal(row["ownerRecordID"])))
-
-        # Check for occurrenceID and ownerInstitutionCode
-        if row["ownerRecordID"] and row["ownerRecordIDSource"]:
-            # Add Reification (ownerInstitutionCode)
-            provenance = rdflib.BNode()
-            graph.add((provenance, a, rdflib.RDF.Statement))
-            graph.add((provenance, rdflib.RDF.subject, uri))
-            graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.occurrenceID))
-            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["ownerRecordID"])))
-            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("ownerRecordIDSource")))
-
-            # Add Qualifier
-            qualifier = rdflib.BNode()
-            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, a, rdflib.PROV.Attribution))
-            graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
-            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
-
-        # Handle Orphan ownerInstitutionCode (See: BDRC-89)
-        # If `ownerInstitutionCode` is provided, but both `catalogNumber` and
-        # `occurrenceID` have been omitted and there is no specimen associated
-        # with this row then we associate the orphaned `ownerInstitutionCode`
-        # with this Field Sample
-        if (
-            row["ownerRecordIDSource"]
-            and not row["catalogNumber"]
-            and not row["ownerRecordID"]
-            and not has_specimen(row)
-        ):
-            # Add ownerInstitutionCode Association
-            graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
-
-            # Add Orphan ownerInstitutionCode Qualifier
-            qualifier = rdflib.BNode()
-            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, a, rdflib.PROV.Attribution))
-            graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
-            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
-
-        # Handle Orphan collectionCode (See: BDRC-89)
-        if (
-            row["collectionCode"]
-            and not has_specimen(row)
-        ):
-            # Add to Graph
-            graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
+            graph.add(
+                (
+                    uri,
+                    rdflib.DCTERMS.identifier,
+                    rdflib.Literal(owner_record_id, datatype=owner_record_id_datatype)
+                )
+            )
 
         # Check for otherCatalogNumbers
-        if row["otherCatalogNumbers"]:
-            # Loop through Other Catalog Numbers
-            for identifier in row["otherCatalogNumbers"]:
-                # Add to Graph
-                graph.add((uri, utils.namespaces.DWC.otherCatalogNumbers, rdflib.Literal(identifier)))
+        if (other_catalog_numbers := row["otherCatalogNumbers"]) and other_catalog_numbers_datatype is not None:
+            # Iterate through the catalog numbers
+            for num in other_catalog_numbers:
+                # Add catalog number literal
+                graph.add(
+                    (
+                        uri,
+                        utils.namespaces.DWC.otherCatalogNumbers,
+                        rdflib.Literal(num, datatype=other_catalog_numbers_datatype)
+                    )
+                )
 
-        # Check for otherCatalogNumbers and institutionCode
-        if row["otherCatalogNumbers"] and row["ownerRecordIDSource"]:
-            # Loop through Other Catalog Numbers
-            for identifier in row["otherCatalogNumbers"]:
-                # Add Reification (institutionCode)
-                provenance = rdflib.BNode()
-                graph.add((provenance, a, rdflib.RDF.Statement))
-                graph.add((provenance, rdflib.RDF.subject, uri))
-                graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.otherCatalogNumbers))
-                graph.add((provenance, rdflib.RDF.object, rdflib.Literal(identifier)))
-                graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers stakeholder")))
+    def add_record_number_datatype(
+        self,
+        uri: rdflib.URIRef | None,
+        provider: rdflib.URIRef | None,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds record number datatype to the graph.
 
-                # Add Qualifier
-                qualifier = rdflib.BNode()
-                graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-                graph.add((qualifier, a, rdflib.PROV.Attribution))
-                graph.add((qualifier, rdflib.PROV.agent, institution_code))
-                graph.add((qualifier, rdflib.PROV.hadRole, ROLE_STAKEHOLDER))
+        Args:
+            uri (rdflib.URIRef | None): The subject of the node
+                or None if uri wasn't created.
+            provider (rdflib.URIRef | None): The corresponding
+                provider uri.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Check subject provided
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.RDFS.Datatype))
+
+        # Add label
+        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("recordNumber source")))
+
+        # Add attribution
+        if provider is not None:
+            graph.add((uri, rdflib.PROV.wasAttributedTo, provider))
 
     def add_sample_specimen(
         self,
@@ -1541,7 +1807,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         sampling_specimen: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         preparations: rdflib.URIRef,
-        owner_institution_code: rdflib.URIRef,
+        catalog_number_datatype: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sample Specimen to the Graph
@@ -1556,8 +1822,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 node
             preparations (rdflib.URIRef): Preparations Attribute associated
                 with this node
-            owner_institution_code (rdflib.URIRef): Owner Institution Code
-                Agent associated with this node.
+            catalog_number_datatype (rdflib.URIRef): Catalog number source
+                datatype.
             graph (rdflib.Graph): Graph to add to
         """
         # Check if Row has a Specimen
@@ -1583,54 +1849,16 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Check for catalogNumber
         if row["catalogNumber"]:
             # Add to Graph
-            graph.add((uri, utils.namespaces.DWC.catalogNumber, rdflib.Literal(row["catalogNumber"])))
+            graph.add(
+                (
+                    uri,
+                    utils.namespaces.DWC.catalogNumber,
+                    rdflib.Literal(row["catalogNumber"], datatype=catalog_number_datatype)
+                )
+            )
 
-        # Check for catalogNumber and ownerInstitutionCode
-        if row["catalogNumber"] and row["ownerRecordIDSource"]:
-            # Add Reification (ownerInstitutionCode)
-            provenance = rdflib.BNode()
-            graph.add((provenance, a, rdflib.RDF.Statement))
-            graph.add((provenance, rdflib.RDF.subject, uri))
-            graph.add((provenance, rdflib.RDF.predicate, utils.namespaces.DWC.catalogNumber))
-            graph.add((provenance, rdflib.RDF.object, rdflib.Literal(row["catalogNumber"])))
-            graph.add((provenance, rdflib.SKOS.prefLabel, rdflib.Literal("catalogNumber source")))
-
-            # Add Qualifier
-            qualifier = rdflib.BNode()
-            graph.add((provenance, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, a, rdflib.PROV.Attribution))
-            graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
-            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
-
-            # Check for collectionCode
-            if row["collectionCode"]:
-                # Add to Graph
-                graph.add((provenance, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
-
-        # Handle Orphan ownerInstitutionCode (See: BDRC-89)
-        # If `ownerInstitutionCode` is provided, but both `catalogNumber` and
-        # `occurrenceID` have been omitted then we associate the orphaned
-        # `ownerInstitutionCode` with this Specimen Sample
-        if (
-            row["ownerRecordIDSource"]
-            and not row["catalogNumber"]
-            and not row["ownerRecordID"]
-        ):
-            # Add ownerInstitutionCode Association
-            graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
-
-            # Add Orphan ownerInstitutionCode Qualifier
-            qualifier = rdflib.BNode()
-            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualifier))
-            graph.add((qualifier, a, rdflib.PROV.Attribution))
-            graph.add((qualifier, rdflib.PROV.agent, owner_institution_code))
-            graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
-
-        # Handle Orphan collectionCode (See: BDRC-89)
-        if (
-            row["collectionCode"]
-            and (not row["ownerRecordIDSource"] or not row["catalogNumber"])
-        ):
+        # Check for collectionCode
+        if row["collectionCode"]:
             # Add to Graph
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
@@ -2087,20 +2315,20 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
     def add_owner_institution_provider(
         self,
-        uri: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Owner Institution Provider to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node
+            uri (rdflib.URIRef | None): URI to use for this node
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
         # TODO -> Retrieve this from a known list of institutions
         # Check Existence
-        if not row["ownerRecordIDSource"]:
+        if not row["ownerRecordIDSource"] or uri is None:
             return
 
         # Owner Institution Provider
