@@ -317,7 +317,7 @@
     {
       "name": "catalogNumberSource",
       "title": "Catalog Number Source",
-      "description": "Organisation that generated the catalogNumber. In the BDR context, this is likely to be a collecting institution where a specimen or material sample is located. For organisaions registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.",
+      "description": "Organisation that generated the catalogNumber. In the BDR context, this is likely to be a collecting institution where a specimen or material sample is located. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.",
       "example": "Western Australian Museum",
       "type": "string",
       "format": "default",
@@ -329,7 +329,7 @@
       "name": "otherCatalogNumbers",
       "title": "Other Catalog Numbers",
       "description": "...",
-      "example": "BHP2012-7521 | M12378",
+      "example": "BHP2012-7521",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -339,7 +339,7 @@
     {
       "name": "otherCatalogNumbersSource",
       "title": "Other Catalog Numbers Source",
-      "description": "Organisation that generated the otherCatalogNumbers. For organisaions registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.",
+      "description": "Organisation that generated the otherCatalogNumbers. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.",
       "example": "University of Western Australia",
       "type": "string",
       "format": "default",
