@@ -1224,7 +1224,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
     ) -> None:
         """Adds the provider agent to the graph.
         Args:
-            uri (rdflib.URIRef): Subject of the node.
+            uri (rdflib.URIRef | None): Subject of the node.
             row (frictionless.Row): Raw data.
             graph (rdflib.Graph): Graph to be modified.
         """
