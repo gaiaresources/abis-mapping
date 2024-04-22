@@ -1983,7 +1983,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 node
             preparations (rdflib.URIRef): Preparations Attribute associated
                 with this node
-            catalog_number_datatype (rdflib.URIRef): Catalog number source
+            catalog_number_datatype (rdflib.URIRef | None): Catalog number source
                 datatype.
             graph (rdflib.Graph): Graph to add to
         """
