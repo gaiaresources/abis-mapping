@@ -1868,7 +1868,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 node
             owner_record_id_datatype (rdflib.URIRef | None): Source of owner ID
                 used as datatype.
-            other_catalog_numbers_datatype (rdflib.URIRef): Datatype to use
+            other_catalog_numbers_datatype (rdflib.URIRef | None): Datatype to use
                 with other catalog numbers literals.
             record_number_datatype (rdflib.URIRef | None): Datatype to  use
                 with record number literal.
