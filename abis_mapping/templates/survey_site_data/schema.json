@@ -86,7 +86,15 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false
+        "required": false,
+        "enum": [
+          "partOf",
+          "sameAs",
+          "part of",
+          "same as",
+          "Part of",
+          "Same as"
+        ]
       }
     },
     {

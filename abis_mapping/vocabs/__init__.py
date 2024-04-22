@@ -13,6 +13,7 @@ from . import life_stage
 from . import occurrence_status
 from . import organism_quantity_type
 from . import preparations
+from . import relationship_to_related_site
 from . import reproductive_condition
 from . import sampling_effort_unit
 from . import sampling_protocol
