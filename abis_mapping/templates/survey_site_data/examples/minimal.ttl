@@ -1,12 +1,21 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://createme.org/datatype/siteID/WAM> a rdfs:Datatype ;
+    skos:prefLabel "siteID source" ;
+    prov:wasAttributedTo <http://createme.org/agent/WAM> .
+
+<http://createme.org/agent/WAM> a prov:Agent ;
+    schema:name "WAM" .
 
 <http://createme.org/visit/site/1> a tern:SiteVisit ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
@@ -14,19 +23,20 @@
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2016-02-28"^^xsd:date ] ;
             time:hasEnd [ a time:Instant ;
-                    time:inXSDDate "2016-02-28"^^xsd:date ] ] .
+                    time:inXSDDate "2016-02-28"^^xsd:date ] ] ;
+    schema:isPartOf <http://createme.org/survey/SSD-Survey/1> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> a tern:RDFDataset ;
     dcterms:description "Example Systematic Survey Site Dataset by Gaia Resources" ;
-    dcterms:issued "2024-03-13"^^xsd:date ;
+    dcterms:issued "2024-04-19"^^xsd:date ;
     dcterms:title "Example Systematic Survey Site Dataset" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> a tern:Site ;
-    dcterms:identifier "P1" ;
+    dcterms:identifier "P1"^^<http://createme.org/datatype/siteID/WAM> ;
     dcterms:type <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
-    geo:hasGeometry _:N39f915621d374113b85f39240cb0f899,
-        _:Na7c38881d531460e8da6cff44dd88ef4 ;
+    geo:hasGeometry _:N80cb167ff39346b7b93c2f6d0ae16523,
+        _:Nc7c5f771a61645eaaa59a9a285e09aa4 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     schema:description "Fine woody debris." ;
     schema:name "Plot 1" ;
@@ -35,23 +45,23 @@
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (146.363 -34.036, 146.363 -34.037)"^^geo:wktLiteral ] ;
-    rdf:object _:N39f915621d374113b85f39240cb0f899 ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (146.363 -34.036)"^^geo:wktLiteral ] ;
+    rdf:object _:Nc7c5f771a61645eaaa59a9a285e09aa4 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (146.363 -34.036)"^^geo:wktLiteral ] ;
-    rdf:object _:Na7c38881d531460e8da6cff44dd88ef4 ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (146.363 -34.036, 146.363 -34.037)"^^geo:wktLiteral ] ;
+    rdf:object _:N80cb167ff39346b7b93c2f6d0ae16523 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> ;
     rdfs:comment "supplied as" .
 
-_:N39f915621d374113b85f39240cb0f899 a geo:Geometry ;
+_:N80cb167ff39346b7b93c2f6d0ae16523 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (146.363 -34.036, 146.363 -34.037)"^^geo:wktLiteral .
 
-_:Na7c38881d531460e8da6cff44dd88ef4 a geo:Geometry ;
+_:Nc7c5f771a61645eaaa59a9a285e09aa4 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (146.363 -34.036)"^^geo:wktLiteral .
 

@@ -86,7 +86,15 @@
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false
+        "required": false,
+        "enum": [
+          "partOf",
+          "sameAs",
+          "part of",
+          "same as",
+          "Part of",
+          "Same as"
+        ]
       }
     },
     {
@@ -237,7 +245,7 @@
       }
     },
     {
-      "name": "Condition",
+      "name": "condition",
       "description": "The state of a patch of vegetation at the time of sampling relative to some specified standard or benchmark (where available).",
       "example": "Burnt",
       "type": "string",
