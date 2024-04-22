@@ -11,7 +11,6 @@
 * `ownerInstitutionCode` is renamed `ownerRecordIDSource`. Can be blank.
 * `institutionCode` is replaced by `catalogNumberSource`. Can be blank.
 * `otherCatalogNumbersSource` is an added field. Its type is string. Can be blank.
-* `otherCatalogNumbers` was previously of type list, it is now a string. Can be blank.
 
 For details on the schema, check the [Incidental Occurrence v2.0.0 instruction manual](https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/incidental_occurrence_data_v2/instructions.pdf)
 

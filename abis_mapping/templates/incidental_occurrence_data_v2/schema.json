@@ -284,7 +284,7 @@
     {
       "name": "ownerRecordIDSource",
       "title": "Owner Record ID Source",
-      "description": "Person or Organisation that generated the ownerRecordID. For organisaions registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation who owns the data.",
+      "description": "Person or Organisation that generated the ownerRecordID. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation who owns the data.",
       "example": "WAM",
       "type": "string",
       "format": "default",
@@ -329,8 +329,8 @@
       "name": "otherCatalogNumbers",
       "title": "Other Catalog Numbers",
       "description": "...",
-      "example": "BHP2012-7521",
-      "type": "string",
+      "example": "BHP2012-7521 | M12378",
+      "type": "list",
       "format": "default",
       "constraints": {
         "required": false
