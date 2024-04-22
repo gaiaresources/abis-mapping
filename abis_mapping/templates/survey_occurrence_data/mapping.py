@@ -56,6 +56,9 @@ ROLE_CUSTODIAN = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/Citatio
 ROLE_STAKEHOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder")  # noqa: E501
 ROLE_OWNER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/owner")  # noqa: E501
 
+# Temporary
+DEFAULT_SURVEY = rdflib.URIRef("http://createme.org/survey/SSD-Survey/1")  # TODO -> Cross reference
+
 
 class SurveyOccurrenceMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `survey_occurrence_data.csv`"""
@@ -1344,6 +1347,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         else:
             # Should not reach this as data is already validated included for completeness
             return
+
+        # Add survey
+        graph.add((uri, rdflib.SDO.isPartOf, DEFAULT_SURVEY))  # TODO -> Cross reference
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.SAMPLING_PROTOCOL.get(

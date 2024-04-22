@@ -284,7 +284,7 @@
     {
       "name": "ownerRecordIDSource",
       "title": "Owner Record ID Source",
-      "description": "Person or Organisation that generated the ownerRecordID. For organisaions registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation who owns the data.",
+      "description": "Person or Organisation that generated the ownerRecordID. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation who owns the data.",
       "example": "WAM",
       "type": "string",
       "format": "default",
@@ -317,7 +317,7 @@
     {
       "name": "catalogNumberSource",
       "title": "Catalog Number Source",
-      "description": "Organisation that generated the catalogNumber. In the BDR context, this is likely to be a collecting institution where a specimen or material sample is located. For organisaions registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.",
+      "description": "Organisation that generated the catalogNumber. In the BDR context, this is likely to be a collecting institution where a specimen or material sample is located. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.",
       "example": "Western Australian Museum",
       "type": "string",
       "format": "default",
@@ -330,7 +330,7 @@
       "title": "Other Catalog Numbers",
       "description": "...",
       "example": "BHP2012-7521 | M12378",
-      "type": "string",
+      "type": "list",
       "format": "default",
       "constraints": {
         "required": false
@@ -339,7 +339,7 @@
     {
       "name": "otherCatalogNumbersSource",
       "title": "Other Catalog Numbers Source",
-      "description": "Organisation that generated the otherCatalogNumbers. For organisaions registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.",
+      "description": "Organisation that generated the otherCatalogNumbers. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.",
       "example": "University of Western Australia",
       "type": "string",
       "format": "default",
@@ -599,7 +599,7 @@
     {
       "name": "surveyID",
       "title": "Survey ID",
-      "description": "The identifier of the Survey that the occurrence comes from. This field should be completed if it is ambigous as to which survey the occurrence belongs to.",
+      "description": "The identifier of the Survey that the occurrence comes from. This field should be completed if it is ambiguous as to which survey the occurrence belongs to.",
       "example": "AR220-01",
       "type": "string",
       "format": "default",
