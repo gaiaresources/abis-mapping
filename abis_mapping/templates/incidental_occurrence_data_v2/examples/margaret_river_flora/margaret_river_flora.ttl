@@ -1148,10 +1148,9 @@
     schema:name "BHP" .
 
 <http://createme.org/provider/WA-BIO> a prov:Agent ;
-    foaf:name "WA-BIO" .
+    schema:name "WA-BIO" .
 
 <http://createme.org/provider/WAM> a prov:Agent ;
-    foaf:name "Stream Environment and Water Pty Ltd" ;
     schema:name "WAM" .
 
 <http://createme.org/sample/sequence/15> a tern:FeatureOfInterest,
@@ -2180,7 +2179,6 @@
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
 
 <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
-    foaf:name "Stream Environment and Water Pty Ltd" ;
     schema:name "Stream Environment and Water Pty Ltd" .
 
 <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> a tern:RDFDataset ;

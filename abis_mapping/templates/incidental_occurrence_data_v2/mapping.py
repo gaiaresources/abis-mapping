@@ -327,13 +327,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add Provider Recorded By
-        self.add_provider_recorded(
-            uri=provider_recorded_by,
-            row=row,
-            graph=graph,
-        )
-
         # Add Sample Field
         self.add_sample_field(
             uri=sample_field,
@@ -656,8 +649,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add Institution Provider
-        self.add_institution_provider(
+        # Add provider record id provider
+        self.add_provider_record_id_provider(
             uri=provider_provider_record_id_src,
             row=row,
             graph=graph,
@@ -908,28 +901,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["identifiedBy"])))
-
-    def add_provider_recorded(
-        self,
-        uri: rdflib.URIRef | None,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Recorded By Provider to the Graph
-
-        Args:
-            uri (rdflib.URIRef | None): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Check for valid subject or and data
-        if not row["recordedBy"] or uri is None:
-            return
-
-        # Add to Graph
-        graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["recordedBy"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["identifiedBy"])))
 
     def add_observation_scientific_name(
         self,
@@ -1124,7 +1096,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.PROV.Agent))
 
         # Add name
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row['recordedBy'])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row['recordedBy'])))
 
     def add_owner_record_id_datatype(
         self,
@@ -1508,7 +1480,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         Args:
             uri (rdflib.URIRef | None): Subject of the node.
-            row (frictionlee.Row): Raw data.
+            row (frictionless.Row): Raw data.
             graph (rdflib.Graph): Graph to be modified.
         """
         # Check subject was provided
@@ -2333,15 +2305,15 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Owner Institution Provider
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["ownerRecordIDSource"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["ownerRecordIDSource"])))
 
-    def add_institution_provider(
+    def add_provider_record_id_provider(
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds Institution Provider to the Graph
+        """Adds provider record id provider to the graph.
 
         Args:
             uri (rdflib.URIRef): URI to use for this node
@@ -2349,13 +2321,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # TODO -> Retrieve this from a known list of institutions
-        # Check Existence
-        if not row["ownerRecordIDSource"]:
-            return
-
         # Institution Provider
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["ownerRecordIDSource"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["providerRecordIDSource"])))
 
     def add_occurrence_status_observation(
         self,
@@ -3125,7 +3093,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["threatStatusDeterminedBy"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["threatStatusDeterminedBy"])))
 
     def add_threat_status_observation(
         self,
