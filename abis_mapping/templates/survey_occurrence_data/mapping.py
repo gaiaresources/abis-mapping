@@ -742,8 +742,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add Institution Provider
-        self.add_institution_provider(
+        # Add provider record id provider
+        self.add_provider_record_id_provider(
             uri=provider_provider_record_id_src,
             row=row,
             graph=graph,
@@ -1021,7 +1021,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["identifiedBy"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["identifiedBy"])))
 
     def add_provider_recorded(
         self,
@@ -1042,7 +1042,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["recordedBy"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["recordedBy"])))
 
     def add_observation_scientific_name(
         self,
@@ -1236,7 +1236,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.PROV.Agent))
 
         # Add name
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row['recordedBy'])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row['recordedBy'])))
 
     def add_owner_record_id_datatype(
         self,
@@ -2494,15 +2494,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Owner Institution Provider
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["ownerRecordIDSource"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["ownerRecordIDSource"])))
 
-    def add_institution_provider(
+    def add_provider_record_id_provider(
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds Institution Provider to the Graph
+        """Adds provider record id provider to the graph.
 
         Args:
             uri (rdflib.URIRef): URI to use for this node
@@ -2510,13 +2510,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # TODO -> Retrieve this from a known list of institutions
-        # Check Existence
-        if not row["ownerRecordIDSource"]:
-            return
-
         # Institution Provider
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["ownerRecordIDSource"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["providerRecordIDSource"])))
 
     def add_occurrence_status_observation(
         self,
@@ -3305,7 +3301,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.FOAF.name, rdflib.Literal(row["threatStatusDeterminedBy"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["threatStatusDeterminedBy"])))
 
     def add_threat_status_observation(
         self,
