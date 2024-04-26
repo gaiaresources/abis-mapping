@@ -14,3 +14,15 @@
 
 For details on the schema, check the [Incidental Occurrence v2.0.0 instruction manual](https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/incidental_occurrence_data_v2/instructions.pdf)
 
+### Systematic Survey Metadata v1.0.0
+#### [Schema v1.0.0](...) changes (by column order).
+* `surveyOrganisation` is renamed `surveyOrgs`
+
+For details on the schema, check the [Systematic Survey Metadata v1.0.0 instruction manual](...)
+
+### Systematic Survey Site v1.0.0
+#### [Schema v1.0.0](...) changes (by column order).
+* `visitOrganisations` is renamed `visitOrgs`
+
+For details on the schema, check the [Systematic Survey Site Data v1.0.0 instruction manual](...)
+
