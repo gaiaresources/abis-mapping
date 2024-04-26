@@ -249,7 +249,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Create survey orgs iris
         survey_org_objects: list[SurveyIDDatatype] = []
-        if survey_orgs := row["surveyOrganisation"]:
+        if survey_orgs := row["surveyOrgs"]:
             for raw_org in survey_orgs:
                 survey_org_objects.append(
                     SurveyIDDatatype(

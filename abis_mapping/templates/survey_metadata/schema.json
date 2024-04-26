@@ -122,9 +122,9 @@
       }
     },
     {
-      "name": "surveyOrganisation",
-      "title": "Survey Organisation",
-      "description": "Name of organisation or individual for whom Survey is being conducted. Multiple terms are allowed, separated by a vertical bar aka pipe |",
+      "name": "surveyOrgs",
+      "title": "Survey Orgs",
+      "description": "Name of organisations or individuals for whom Survey is being conducted. Multiple terms are allowed, separated by a vertical bar aka pipe |",
       "example": "NSW Department of Planning, Industry and Environment | CSIRO",
       "type": "list",
       "format": "default",

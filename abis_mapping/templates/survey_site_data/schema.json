@@ -223,8 +223,8 @@
       }
     },
     {
-      "name": "visitOrganisations",
-      "title": "Visit Organisations",
+      "name": "visitOrgs",
+      "title": "Visit Orgs",
       "description": "The names of the organisations responsible for recording the original Occurrence.",
       "example": "NSW Dept of Planning, Industry and Environment.",
       "type": "list",
