@@ -300,7 +300,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Create organization agent objects
         org_agent_objects: list[Agent] = []
-        if organization_agents := row["visitOrganisations"]:
+        if organization_agents := row["visitOrgs"]:
             for organizations_agent in organization_agents:
                 org_agent_objects.append(
                     Agent(
