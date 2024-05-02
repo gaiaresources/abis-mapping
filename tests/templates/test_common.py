@@ -1,11 +1,5 @@
 """Provided unit tests common across all templates."""
 
-
-# Local
-import abis_mapping
-import abis_mapping.base
-from tests.templates import conftest
-
 # Standard
 import pathlib
 import unittest.mock
@@ -15,6 +9,12 @@ import pytest
 import pytest_mock
 import frictionless
 import pyproj
+
+# Local
+import abis_mapping
+import abis_mapping.base
+import abis_mapping.types
+from tests.templates import conftest
 
 # Typing
 from typing import Type
@@ -151,6 +151,20 @@ class TestTemplateBasicSuite:
 
         # Assert valid
         assert report.valid
+
+    def test_schema_validation(self, test_params: conftest.TemplateTestParameters) -> None:
+        """Tests that the schema method produces valid pydantic model."""
+        # Get mapper
+        mapper = abis_mapping.get_mapper(test_params.template_id)
+        assert mapper
+
+        # Get schema dictionary
+        descriptor = mapper().schema()
+
+        # Iterate through fields and ensure they validate
+        for field in descriptor["fields"]:
+            valid = abis_mapping.types.schema.Field.model_validate(field)
+            assert valid
 
     def test_validation_empty_template(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests validation fails for empty template."""
