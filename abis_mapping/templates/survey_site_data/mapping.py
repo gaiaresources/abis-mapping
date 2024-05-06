@@ -160,26 +160,29 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 if datum is None:
                     continue
 
-                # Default to using the footprint wkt + geodetic datum
-                if footprint_wkt is not None:
-                    # Create string and add to map for site id
-                    result[site_id] = str(
-                        types.spatial.Geometry(
-                            raw=footprint_wkt.centroid,
-                            datum=datum,
-                        ).to_rdf_literal()
-                    )
-                    continue
+                try:
+                    # Default to using the footprint wkt + geodetic datum
+                    if footprint_wkt is not None:
+                        # Create string and add to map for site id
+                        result[site_id] = str(
+                            types.spatial.Geometry(
+                                raw=footprint_wkt.centroid,
+                                datum=datum,
+                            ).to_rdf_literal()
+                        )
+                        continue
 
-                # If not footprint then we revert to using supplied longitude & latitude
-                if longitude is not None and latitude is not None:
-                    # Create string and add to map for site id
-                    result[site_id] = str(
-                        types.spatial.Geometry(
-                            raw=shapely.Point([longitude, latitude]),
-                            datum=datum,
-                        ).to_rdf_literal()
-                    )
+                    # If not footprint then we revert to using supplied longitude & latitude
+                    if longitude is not None and latitude is not None:
+                        # Create string and add to map for site id
+                        result[site_id] = str(
+                            types.spatial.Geometry(
+                                raw=shapely.Point([longitude, latitude]),
+                                datum=datum,
+                            ).to_rdf_literal()
+                        )
+                except types.spatial.GeometryError:
+                    continue
 
             return result
 

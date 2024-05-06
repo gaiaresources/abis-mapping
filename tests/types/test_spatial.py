@@ -3,7 +3,6 @@
 # Third-party
 import shapely
 import pytest
-import pyproj.exceptions
 import rdflib
 
 # Local
@@ -67,7 +66,7 @@ def test_geometry_init_type_invalid() -> None:
 
 def test_geometry_init_wkt_string_invalid() -> None:
     """Tests that Geometry object raises error on invalid WKT string."""
-    with pytest.raises(shapely.GEOSException):
+    with pytest.raises(types.spatial.GeometryError):
         types.spatial.Geometry(
             raw="not wkt",
             datum="WGS84",
@@ -76,7 +75,7 @@ def test_geometry_init_wkt_string_invalid() -> None:
 
 def test_geometry_init_datum_invalid() -> None:
     """Tests that Geometry raises error on invalid datum."""
-    with pytest.raises(pyproj.exceptions.CRSError):
+    with pytest.raises(types.spatial.GeometryError):
         types.spatial.Geometry(
             raw="POINT(0 0)",
             datum="NOTADATUM000"
@@ -163,8 +162,8 @@ def test_geometry_from_geosparql_wkt_literal_valid(
 @pytest.mark.parametrize(
     "literal_in, expected_error",
     [
-        ("<http://www.opengis.net/def/crs/EPSG/0/NOTADATUM> POINT(0 0)", pyproj.exceptions.CRSError),
-        ("<http://www.opengis.net/def/crs/EPSG/0/7844> NOTAGEOMETRY(0 0)", shapely.GEOSException),
+        ("<http://www.opengis.net/def/crs/EPSG/0/NOTADATUM> POINT(0 0)", types.spatial.GeometryError),
+        ("<http://www.opengis.net/def/crs/EPSG/0/7844> NOTAGEOMETRY(0 0)", types.spatial.GeometryError),
     ]
 )
 def test_geometry_from_geosparql_wkt_literal_invalid(

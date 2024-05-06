@@ -41,25 +41,40 @@ class Geometry:
 
         Raises:
             TypeError: If unsupported type for raw supplied.
+            GeometryError: If failure occurs with transforming using underlying libraries.
         """
+        # Determine type of argument supplied and process.
         if isinstance(raw, LatLong):
-            self._geometry: shapely.Geometry = shapely.Point(raw.longitude, raw.latitude)
+            # Attempt to make shapely geometry and catch errors
+            try:
+                self._geometry: shapely.Geometry = shapely.Point(raw.longitude, raw.latitude)
+            except shapely.errors.ShapelyError as exc:
+                raise GeometryError from exc
         elif isinstance(raw, str):
-            self._geometry = shapely.from_wkt(raw)
+            # Attempt to make shapely geometry and catch errors
+            try:
+                self._geometry = shapely.from_wkt(raw)
+            except shapely.errors.ShapelyError as exc:
+                raise GeometryError from exc
         elif isinstance(raw, shapely.Geometry):
             self._geometry = raw
         else:
             raise TypeError(f"unsupported raw type '{type(raw)}'")
 
-        # Will raise if geodetic datum not supported
-        self._crs = pyproj.CRS(datum)
+        # Attempt to create a converter using proj.
+        try:
+            # Will raise if geodetic datum not supported
+            self._crs = pyproj.CRS(datum)
 
-        # Create a default CRS transformer
-        self._transformer = pyproj.Transformer.from_crs(
-            crs_from=datum,
-            crs_to=settings.DEFAULT_TARGET_CRS,
-            always_xy=True,
-        )
+            # Create a default CRS transformer
+            self._transformer = pyproj.Transformer.from_crs(
+                crs_from=datum,
+                crs_to=settings.DEFAULT_TARGET_CRS,
+                always_xy=True,
+            )
+        except pyproj.ProjError as exc:
+            # Reraise as a GeometryError.
+            raise GeometryError from exc
 
     @property
     def original_datum_name(self) -> str:
@@ -158,3 +173,8 @@ class Geometry:
             lexical_or_value=datum_string + wkt_string,
             datatype=namespaces.GEO.wktLiteral,
         )
+
+
+class GeometryError(BaseException):
+    """Exception class for the geometry type."""
+    pass
