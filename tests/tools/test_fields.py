@@ -150,6 +150,7 @@ def test_determine_checklist() -> None:
     checklist = tools.fields.determine_checklist("incidental_occurrence_data-v2.0.0.csv")
 
     # Assert
+    assert checklist is not None
     assert len(checklist.checks) == 6
 
 
