@@ -91,7 +91,7 @@ def compile_fields(template_id: str, dest: IO) -> None:
         )
 
         # Write row to csv
-        csv_writer.writerow(generate_row(field).model_dump(by_alias=True))
+        csv_writer.writerow(field_table_row.model_dump(by_alias=True))
 
     # Write to destination
     print(output.getvalue(), file=dest)

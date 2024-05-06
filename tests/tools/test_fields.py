@@ -168,7 +168,7 @@ def test_mutual_inclusivity() -> None:
     )
 
     # Invoke function
-    fields = tools.fields.mutual_inclusivity(field_name="fieldA", checklist=checklist)
+    fields = tools.fields.mutual_inclusivity(field_name="fieldB", checklist=checklist)
 
     # Assert
-    assert fields == {"fieldB"}
+    assert fields == {"fieldA", "fieldC"}

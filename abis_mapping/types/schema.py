@@ -1,13 +1,8 @@
 """Describes the objects used in defining a schema."""
 
-# Standard
-import decimal
-
 # Third-party
 import pydantic
 
-# Typing
-from typing import Any
 
 class Constraints(pydantic.BaseModel):
     required: bool
