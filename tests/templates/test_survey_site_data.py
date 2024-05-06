@@ -35,6 +35,7 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
             ["site6", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", ""],
             ["site7", "", "10.0", "20.0", "AGD66"],
             ["site8", "", "11.0", "21.0", "EPSG:4202"],
+            ["site9", "", "12.0", "22.0", "GRS20"],
             ]
     # Amalgamate into a list of dicts
     all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in raws]
