@@ -10,6 +10,7 @@ from abis_mapping import utils
 
 # Vocabulary
 REPRODUCTIVE_CONDITION = utils.vocabs.FlexibleVocabulary(
+    vocab_id="REPRODUCTIVE_CONDITION",
     definition=rdflib.Literal("A type of reproductiveCondition."),
     base=utils.rdf.uri("bdr-cv/parameter/reproductiveCondition/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e"),

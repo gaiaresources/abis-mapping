@@ -32,6 +32,7 @@ TRANSECT = utils.vocabs.Term(
 
 # Vocabulary
 SITE_TYPE = utils.vocabs.FlexibleVocabulary(
+    vocab_id="SITE_TYPE",
     definition=rdflib.Literal("A type of site."),
     base=utils.rdf.uri("bdr-cv/concept/siteType/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74aa68d3-28fd-468d-8ff5-7e791d9f7159"),

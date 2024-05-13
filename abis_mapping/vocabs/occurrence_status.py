@@ -20,6 +20,7 @@ ABSENT = utils.vocabs.Term(
 
 # Vocabulary
 OCCURRENCE_STATUS = utils.vocabs.FlexibleVocabulary(
+    vocab_id="OCCURRENCE_STATUS",
     definition=rdflib.Literal("A type of occurrenceStatus."),
     base=utils.rdf.uri("bdr-cv/parameter/occurrenceStatus/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e"),

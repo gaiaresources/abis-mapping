@@ -31,9 +31,29 @@ class Vocabulary(abc.ABC):
     template_field_registry: dict[TemplateField, "Vocabulary"] = {}
     id_registry: dict[str, "Vocabulary"]
 
+    def __init__(
+        self,
+        vocab_id: str,
+    ):
+        """Vocabulary constructor.
+
+        Args:
+            vocab_id (str): ID to assign vocabulary.
+        """
+        self._vocab_id = vocab_id
+
+    @property
+    def vocab_id(self) -> str:
+        """Getter for the Vocabulary's ID.
+
+        Returns:
+            str: The Vocabulary's ID.
+        """
+        return self._vocab_id
+
     @final
     @classmethod
-    def register_vocabulary_by_template_field(
+    def register_template_field(
         cls,
         template_field: TemplateField,
         vocab: "Vocabulary",
@@ -43,22 +63,33 @@ class Vocabulary(abc.ABC):
         Args:
             template_field (TemplateField): Template and field combo vocab is to be used.
             vocab (Vocabulary): Vocabulary to register against.
+
+        Raises:
+            KeyError: The template field has already been registered against a Vocabulary.
         """
+        if template_field in cls.template_field_registry:
+            raise KeyError(f"Template field {template_field} already registered.")
+
         cls.template_field_registry[template_field] = vocab
 
     @final
     @classmethod
-    def register_vocabulary_by_id(
+    def register(
         cls,
-        vocab_id: str,
         vocab: "Vocabulary",
     ) -> None:
         """Register a Vocabulary within the centralise vocabulary id registry.
 
         Args:
-            vocab_id (str): Vocabulary ID to register against.
             vocab (Vocabulary): Corresponding Vocabulary.
+
+        Raises:
+            KeyError: The Vocabulary ID is already registered.
         """
+        if vocab.vocab_id in cls.id_registry:
+            raise KeyError(f"Vocabulary ID {vocab.vocab_id} already registered.")
+
+        cls.id_registry[vocab.vocab_id] = vocab
 
     @abc.abstractmethod
     def terms(self) -> dict[str, rdflib.URIRef]:
@@ -108,13 +139,18 @@ class RestrictedVocabulary(Vocabulary):
 
     def __init__(
         self,
+        vocab_id: str,
         terms: Iterable[Term],
     ) -> None:
         """Initialises a Restricted Vocabulary.
 
         Args:
+            vocab_id (str): ID to assign vocabulary.
             terms (Iterable[Term]): Terms for the vocabulary.
         """
+        # Call parent constructor
+        super().__init__(vocab_id)
+
         # Set Instance Variables
         self._terms = tuple(terms)
 
@@ -157,6 +193,7 @@ class FlexibleVocabulary(Vocabulary):
 
     def __init__(
         self,
+        vocab_id: str,
         definition: rdflib.Literal,
         base: rdflib.URIRef,
         scheme: rdflib.URIRef,
@@ -167,6 +204,7 @@ class FlexibleVocabulary(Vocabulary):
         """Initialises a Flexible Vocabulary.
 
         Args:
+            vocab_id (str): ID to assign vocabulary.
             definition (rdflib.Literal): Definition to use when creating a new
                 vocabulary term 'on the fly'.
             base (rdflib.URIRef): Base IRI namespace to use when creating a new
@@ -179,6 +217,9 @@ class FlexibleVocabulary(Vocabulary):
                 a value is not supplied.
             terms (Iterable[Term]): Terms for the vocabulary.
         """
+        # Call parent constructor
+        super().__init__(vocab_id)
+
         # Set Instance Variables
         self.definition = definition
         self.base = rdflib.Namespace(base)  # Cast to a Namespace

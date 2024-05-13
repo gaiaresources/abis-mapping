@@ -19,5 +19,6 @@ PART_OF = utils.vocabs.Term(
 
 # Vocabulary
 RELATIONSHIP = utils.vocabs.RestrictedVocabulary(
+    vocab_id="RELATIONSHIP",
     terms=(SAME_AS, PART_OF),
 )

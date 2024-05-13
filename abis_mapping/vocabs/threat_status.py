@@ -661,6 +661,7 @@ WA_VU = utils.vocabs.Term(
 
 # Vocabulary
 THREAT_STATUS = utils.vocabs.FlexibleVocabulary(
+    vocab_id="THREAT_STATUS",
     definition=rdflib.Literal("A type of threatStatus."),
     base=utils.rdf.uri("bdr-cv/parameter/threatStatus/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e"),

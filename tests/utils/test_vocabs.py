@@ -41,6 +41,7 @@ def test_vocabs_restricted_vocab() -> None:
     """Tests the RestrictedVocab Class"""
     # Create Vocab
     vocab = abis_mapping.utils.vocabs.RestrictedVocabulary(
+        vocab_id="TEST_RESTRICT",
         terms=(
             abis_mapping.utils.vocabs.Term(("A",), rdflib.URIRef("A")),
             abis_mapping.utils.vocabs.Term(("B",), rdflib.URIRef("B")),
@@ -62,6 +63,7 @@ def test_vocabs_flexible_vocab() -> None:
     """Tests the FlexibleVocab Class"""
     # Create Vocab
     vocab = abis_mapping.utils.vocabs.FlexibleVocabulary(
+        vocab_id="TEST_FLEX",
         definition=rdflib.Literal("definition"),
         base=rdflib.URIRef("base/"),
         scheme=rdflib.URIRef("scheme"),

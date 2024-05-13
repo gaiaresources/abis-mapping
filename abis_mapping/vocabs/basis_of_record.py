@@ -41,6 +41,7 @@ MATERIAL_SAMPLE = utils.vocabs.Term(
 
 # Vocabulary
 BASIS_OF_RECORD = utils.vocabs.FlexibleVocabulary(
+    vocab_id="BASIS_OF_RECORD",
     definition=rdflib.Literal("A type of basisOfRecord."),
     base=utils.rdf.uri("bdr-cv/attribute/basisOfRecord/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
