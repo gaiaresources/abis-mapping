@@ -9,13 +9,13 @@ import pytest
 import rdflib
 
 # Local
-from abis_mapping import utils
+import abis_mapping.utils.vocabs
 
 
 def test_vocabs_term() -> None:
     """Tests the Term Class"""
     # Create Term
-    term = utils.vocabs.Term(
+    term = abis_mapping.utils.vocabs.Term(
         labels=("A", "B", "C"),
         iri=rdflib.URIRef("D"),
     )
@@ -40,10 +40,10 @@ def test_vocabs_term() -> None:
 def test_vocabs_restricted_vocab() -> None:
     """Tests the RestrictedVocab Class"""
     # Create Vocab
-    vocab = utils.vocabs.RestrictedVocabulary(
+    vocab = abis_mapping.utils.vocabs.RestrictedVocabulary(
         terms=(
-            utils.vocabs.Term(("A", ), rdflib.URIRef("A")),
-            utils.vocabs.Term(("B", ), rdflib.URIRef("B")),
+            abis_mapping.utils.vocabs.Term(("A",), rdflib.URIRef("A")),
+            abis_mapping.utils.vocabs.Term(("B",), rdflib.URIRef("B")),
         ),
     )
 
@@ -54,22 +54,22 @@ def test_vocabs_restricted_vocab() -> None:
     assert vocab.get("B") == rdflib.URIRef("B")
 
     # Assert Invalid Values
-    with pytest.raises(utils.vocabs.VocabularyError):
+    with pytest.raises(abis_mapping.utils.vocabs.VocabularyError):
         vocab.get("C")
 
 
 def test_vocabs_flexible_vocab() -> None:
     """Tests the FlexibleVocab Class"""
     # Create Vocab
-    vocab = utils.vocabs.FlexibleVocabulary(
+    vocab = abis_mapping.utils.vocabs.FlexibleVocabulary(
         definition=rdflib.Literal("definition"),
         base=rdflib.URIRef("base/"),
         scheme=rdflib.URIRef("scheme"),
         broader=rdflib.URIRef("broader"),
         default=None,
         terms=(
-            utils.vocabs.Term(("A", ), rdflib.URIRef("A")),
-            utils.vocabs.Term(("B", ), rdflib.URIRef("B")),
+            abis_mapping.utils.vocabs.Term(("A",), rdflib.URIRef("A")),
+            abis_mapping.utils.vocabs.Term(("B",), rdflib.URIRef("B")),
         ),
     )
 
@@ -100,5 +100,5 @@ def test_vocabs_flexible_vocab() -> None:
     ).strip()
 
     # Assert Invalid Values
-    with pytest.raises(utils.vocabs.VocabularyError):
+    with pytest.raises(abis_mapping.utils.vocabs.VocabularyError):
         vocab.get(graph, None)  # No Default

@@ -1,10 +1,10 @@
 """Provides sampling effort unit vocabulary for the package."""
 
-# Local
-from abis_mapping import utils
-
 # Third-party
 import rdflib
+
+# Local
+from abis_mapping import utils
 
 
 SAMPLING_EFFORT_UNIT = utils.vocabs.FlexibleVocabulary(

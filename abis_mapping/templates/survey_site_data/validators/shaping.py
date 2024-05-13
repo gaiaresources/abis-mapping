@@ -193,7 +193,7 @@ def add_site_shape(g: rdflib.Graph, dataset_shape: rdflib.term.Node) -> rdflib.t
     dcterms_type_opts = rdflib.BNode()
     g.add((dcterms_type_prop, SH.path, rdflib.DCTERMS.type))
     site_type_vocab_values: list[rdflib.term.Node] = [
-        v for v in vocabs.site_type.SITE_TYPE.mapping.values() if v is not None
+        v for v in vocabs.site_type.SITE_TYPE.terms.values() if v is not None
     ]
     rdflib.collection.Collection(g, terms_list, site_type_vocab_values)
     g.add((terms_list_shape, SH["in"], terms_list))

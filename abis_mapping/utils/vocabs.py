@@ -1,19 +1,68 @@
 """Provides vocab handling for the package"""
 
+# Standard
+import abc
+import collections
 
 # Third-Party
 import rdflib
 
 # Local
-from . import rdf
-from . import strings
+from abis_mapping.utils import rdf
+from abis_mapping.utils import strings
 
 # Typing
-from typing import Optional, Iterable
+from typing import Optional, Iterable, NamedTuple, final
 
 
 # Constants
 a = rdflib.RDF.type
+
+
+class TemplateField(NamedTuple):
+    """Named tuple to hold combinations of template and field."""
+    template_id: str
+    field_name: str
+
+
+class Vocabulary(abc.ABC):
+    """Base Vocabulary class."""
+
+    template_field_registry: dict[TemplateField, "Vocabulary"] = {}
+    id_registry: dict[str, "Vocabulary"]
+
+    @final
+    @classmethod
+    def register_vocabulary_by_template_field(
+        cls,
+        template_field: TemplateField,
+        vocab: "Vocabulary",
+    ) -> None:
+        """Register a Vocabulary within the centralised template field registry.
+
+        Args:
+            template_field (TemplateField): Template and field combo vocab is to be used.
+            vocab (Vocabulary): Vocabulary to register against.
+        """
+        cls.template_field_registry[template_field] = vocab
+
+    @final
+    @classmethod
+    def register_vocabulary_by_id(
+        cls,
+        vocab_id: str,
+        vocab: "Vocabulary",
+    ) -> None:
+        """Register a Vocabulary within the centralise vocabulary id registry.
+
+        Args:
+            vocab_id (str): Vocabulary ID to register against.
+            vocab (Vocabulary): Corresponding Vocabulary.
+        """
+
+    @abc.abstractmethod
+    def terms(self) -> dict[str, rdflib.URIRef]:
+        """Getter for the vocabs terms"""
 
 
 class Term:
@@ -54,7 +103,7 @@ class Term:
         return strings.sanitise(value) in self.labels
 
 
-class RestrictedVocabulary:
+class RestrictedVocabulary(Vocabulary):
     """Restricted Vocabulary"""
 
     def __init__(
@@ -67,12 +116,16 @@ class RestrictedVocabulary:
             terms (Iterable[Term]): Terms for the vocabulary.
         """
         # Set Instance Variables
-        self.terms = tuple(terms)
+        self._terms = tuple(terms)
 
         # Generate Dictionary Mapping from Terms
-        self.mapping: dict[str, rdflib.URIRef] = {}
-        for term in self.terms:
-            self.mapping.update(**term.to_mapping())
+        self._mapping: dict[str, rdflib.URIRef] = {}
+        for term in self._terms:
+            self._mapping.update(**term.to_mapping())
+
+    @property
+    def terms(self) -> dict[str, rdflib.URIRef]:
+        return self._mapping
 
     def get(self, value: str) -> rdflib.URIRef:
         """Retrieves an IRI from the Vocabulary.
@@ -91,7 +144,7 @@ class RestrictedVocabulary:
         sanitised_value = strings.sanitise(value)
 
         # Retrieve if Applicable
-        if iri := self.mapping.get(sanitised_value):
+        if iri := self._mapping.get(sanitised_value):
             # Return
             return iri
 
@@ -99,7 +152,7 @@ class RestrictedVocabulary:
         raise VocabularyError(f"Invalid vocabulary value: '{value}'")
 
 
-class FlexibleVocabulary:
+class FlexibleVocabulary(Vocabulary):
     """Flexible Vocabulary"""
 
     def __init__(
@@ -132,16 +185,21 @@ class FlexibleVocabulary:
         self.scheme = scheme
         self.broader = broader
         self.default = default
-        self.terms = tuple(terms)
+        self._terms = tuple(terms)
 
         # Generate Dictionary Mapping from Terms
-        self.mapping: dict[Optional[str], Optional[rdflib.URIRef]] = {}
-        for term in self.terms:
-            self.mapping.update(**term.to_mapping())
+        self._mapping: dict[Optional[str], Optional[rdflib.URIRef]] = {}
+        for term in self._terms:
+            self._mapping.update(**term.to_mapping())
 
         # Add Default if Applicable
         if self.default:
-            self.mapping.update({None: self.default.iri})
+            self._mapping.update({None: self.default.iri})
+
+    @property
+    def terms(self) -> dict[str, rdflib.URIRef]:
+        """Getter for the vocabs terms"""
+        return self._mapping
 
     def get(
         self,
@@ -176,7 +234,7 @@ class FlexibleVocabulary:
         sanitised_value = strings.sanitise(value) if value else None
 
         # Retrieve if Applicable
-        if iri := self.mapping.get(sanitised_value):
+        if iri := self._mapping.get(sanitised_value):
             # Return
             return iri
 

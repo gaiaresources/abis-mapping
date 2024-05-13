@@ -1,10 +1,11 @@
 """Provides site type vocabulary for the package."""
 
-# Local
-from abis_mapping import utils
 
 # Third-party
 import rdflib
+
+# Local
+from abis_mapping import utils
 
 
 # Terms

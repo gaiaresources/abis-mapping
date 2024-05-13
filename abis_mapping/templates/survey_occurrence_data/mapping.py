@@ -2181,7 +2181,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.taxon_tank.TAXON_RANK.get(
+        vocab = vocabs.taxon_rank.TAXON_RANK.get(
             graph=graph,
             value=row["taxonRank"],
             source=dataset,
