@@ -51,3 +51,6 @@ CONSERVATION_JURISDICTION = utils.vocabs.RestrictedVocabulary(
     vocab_id="CONSERVATION_JURISDICTION",
     terms=(ACT, EPBC, NSW, NT, QLD, SA, TAS, VIC, WA),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(CONSERVATION_JURISDICTION)

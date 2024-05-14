@@ -502,7 +502,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             (related_site := row["relatedSiteID"])
         ):
             # Retrieve vocab
-            relationship_to_related_site_vocab = vocabs.relationship_to_related_site.RELATIONSHIP.get(
+            relationship_to_related_site_vocab = vocabs.relationship_to_related_site.RELATIONSHIP_TO_RELATED_SITE.get(
                 value=relationship_to_related_site,
             )
 

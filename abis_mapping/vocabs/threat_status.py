@@ -743,3 +743,6 @@ THREAT_STATUS = utils.vocabs.FlexibleVocabulary(
         WA_VU,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(THREAT_STATUS)

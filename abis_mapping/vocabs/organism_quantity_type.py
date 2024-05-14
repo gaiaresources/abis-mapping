@@ -91,3 +91,6 @@ ORGANISM_QUANTITY_TYPE = utils.vocabs.FlexibleVocabulary(
         BIOVOLUME_ML,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(ORGANISM_QUANTITY_TYPE)

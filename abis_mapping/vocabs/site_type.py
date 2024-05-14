@@ -46,3 +46,6 @@ SITE_TYPE = utils.vocabs.FlexibleVocabulary(
         TRANSECT,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(SITE_TYPE)

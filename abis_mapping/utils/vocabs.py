@@ -29,7 +29,7 @@ class Vocabulary(abc.ABC):
     """Base Vocabulary class."""
 
     template_field_registry: dict[TemplateField, "Vocabulary"] = {}
-    id_registry: dict[str, "Vocabulary"]
+    id_registry: dict[str, "Vocabulary"] = {}
 
     def __init__(
         self,
@@ -312,3 +312,19 @@ class FlexibleVocabulary(Vocabulary):
 
 class VocabularyError(Exception):
     """Error Raised in Vocabulary Handling"""
+
+
+def get_vocab(key: str | TemplateField) -> Vocabulary | None:
+    """Retrieves vocab object for given key.
+
+    Args:
+        key (str | TemplateField): Key to retrieve vocab for.
+
+    Returns:
+        Vocabulary: Corresponding vocabulary for given key.
+    """
+    # Check type of key supplied
+    if isinstance(key, str):
+        return Vocabulary.id_registry.get(key)
+
+    return Vocabulary.template_field_registry.get(key)

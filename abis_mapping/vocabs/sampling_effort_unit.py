@@ -16,3 +16,6 @@ SAMPLING_EFFORT_UNIT = utils.vocabs.FlexibleVocabulary(
     default=None,
     terms=(),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(SAMPLING_EFFORT_UNIT)

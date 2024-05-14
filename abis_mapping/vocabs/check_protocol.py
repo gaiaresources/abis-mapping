@@ -24,3 +24,6 @@ CHECK_PROTOCOL = utils.vocabs.FlexibleVocabulary(
     default=UNSPECIFIED,
     terms=(UNSPECIFIED, ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(CHECK_PROTOCOL)

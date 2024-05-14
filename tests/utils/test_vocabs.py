@@ -104,3 +104,8 @@ def test_vocabs_flexible_vocab() -> None:
     # Assert Invalid Values
     with pytest.raises(abis_mapping.utils.vocabs.VocabularyError):
         vocab.get(graph, None)  # No Default
+
+
+def test_vocab_register_id() -> None:
+    """Tests that vocabs get registered at import."""
+    assert len(abis_mapping.utils.vocabs.Vocabulary.id_registry) > 0

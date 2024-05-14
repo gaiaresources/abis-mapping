@@ -28,3 +28,6 @@ SAMPLING_PROTOCOL = utils.vocabs.FlexibleVocabulary(
     default=UNSPECIFIED,
     terms=(HUMAN_OBSERVATION, UNSPECIFIED),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(SAMPLING_PROTOCOL)

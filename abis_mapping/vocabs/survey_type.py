@@ -22,3 +22,6 @@ SURVEY_TYPE = utils.vocabs.FlexibleVocabulary(
     default=None,
     terms=(WET_PITFALL_TRAPPING,),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(SURVEY_TYPE)

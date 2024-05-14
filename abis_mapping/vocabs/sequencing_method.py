@@ -24,3 +24,6 @@ SEQUENCING_METHOD = utils.vocabs.FlexibleVocabulary(
     default=UNDEFINED,
     terms=(),  # No baseline vocabulary values
 )
+
+# Register
+utils.vocabs.Vocabulary.register(SEQUENCING_METHOD)

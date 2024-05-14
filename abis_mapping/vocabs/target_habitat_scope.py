@@ -713,3 +713,6 @@ TARGET_HABITAT_SCOPE = utils.vocabs.FlexibleVocabulary(
         WOODLAND,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(TARGET_HABITAT_SCOPE)

@@ -36,3 +36,6 @@ SEX = utils.vocabs.FlexibleVocabulary(
     default=None,  # No default, ommitted if not provided
     terms=(FEMALE, HERMAPHRODITE, MALE, UNDETERMINED),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(SEX)

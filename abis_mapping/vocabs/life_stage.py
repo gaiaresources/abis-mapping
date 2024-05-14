@@ -71,3 +71,6 @@ LIFE_STAGE = utils.vocabs.FlexibleVocabulary(
         ZYGOTE,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(LIFE_STAGE)

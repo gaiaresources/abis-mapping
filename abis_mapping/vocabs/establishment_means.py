@@ -44,3 +44,6 @@ ESTABLISHMENT_MEANS = utils.vocabs.FlexibleVocabulary(
     default=None,  # No default, ommitted if not provided
     terms=(INTRODUCED, INTRODUCED_ASSISTED_COLONISATION, NATIVE, NATIVE_REINTRODUCED, UNCERTAIN, VAGRANT),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(ESTABLISHMENT_MEANS)

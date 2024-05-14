@@ -77,3 +77,8 @@ KINGDOM_SPECIMEN = utils.vocabs.FlexibleVocabulary(
     default=None,  # No default, kingdom is required in the CSV
     terms=(ANIMALIA_SPECIMEN, PLANTAE_SPECIMEN, FUNGI_SPECIMEN),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(KINGDOM)
+utils.vocabs.Vocabulary.register(KINGDOM_OCCURRENCE)
+utils.vocabs.Vocabulary.register(KINGDOM_SPECIMEN)

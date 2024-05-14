@@ -101,3 +101,6 @@ IDENTIFICATION_QUALIFIER = utils.vocabs.FlexibleVocabulary(
         SUBSPECIES,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(IDENTIFICATION_QUALIFIER)

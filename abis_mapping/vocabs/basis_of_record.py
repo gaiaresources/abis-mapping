@@ -57,3 +57,6 @@ BASIS_OF_RECORD = utils.vocabs.FlexibleVocabulary(
         MATERIAL_SAMPLE,
     )
 )
+
+# Register vocabulary
+utils.vocabs.Vocabulary.register(BASIS_OF_RECORD)

@@ -28,3 +28,6 @@ OCCURRENCE_STATUS = utils.vocabs.FlexibleVocabulary(
     default=None,  # No default, ommitted if not provided
     terms=(PRESENT, ABSENT)
 )
+
+# Register
+utils.vocabs.Vocabulary.register(OCCURRENCE_STATUS)

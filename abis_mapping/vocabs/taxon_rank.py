@@ -191,3 +191,6 @@ TAXON_RANK = utils.vocabs.FlexibleVocabulary(
         VARIETY,
     )
 )
+
+# Register
+utils.vocabs.Vocabulary.register(TAXON_RANK)

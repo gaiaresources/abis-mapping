@@ -91,3 +91,6 @@ PREPARATIONS = utils.vocabs.FlexibleVocabulary(
         REFRIGERATED,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(PREPARATIONS)

@@ -18,3 +18,6 @@ REPRODUCTIVE_CONDITION = utils.vocabs.FlexibleVocabulary(
     default=None,  # No default, ommitted if not provided
     terms=(),  # No baseline vocabulary values
 )
+
+# Register
+utils.vocabs.Vocabulary.register(REPRODUCTIVE_CONDITION)

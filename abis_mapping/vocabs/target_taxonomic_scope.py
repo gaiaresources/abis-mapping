@@ -59,3 +59,6 @@ TARGET_TAXONOMIC_SCOPE = utils.vocabs.FlexibleVocabulary(
         VASCULAR_PLANT,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(TARGET_TAXONOMIC_SCOPE)
