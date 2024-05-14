@@ -25,7 +25,7 @@
     {
       "name": "locality",
       "title": "Locality",
-      "description": "...",
+      "description": "The specific description of the place.",
       "example": "Cowaramup Bay Road",
       "type": "string",
       "format": "default",
@@ -36,8 +36,8 @@
     {
       "name": "decimalLatitude",
       "title": "Decimal Latitude",
-      "description": "...",
-      "example": "-33.80",
+      "description": "The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic centre of a Location. Positive values are north of the Equator, negative values are south of it. Valid coordinate ranges for the BDR system are within and inclusive of -90 to 0.",
+      "example": "-33.812314",
       "type": "number",
       "format": "default",
       "constraints": {
@@ -49,8 +49,8 @@
     {
       "name": "decimalLongitude",
       "title": "Decimal Longitude",
-      "description": "...",
-      "example": "115.21",
+      "description": "The geographic longitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic centre of a Location. Positive values are east of the Greenwich Meridian, negative values are west of it. Valid coordinate ranges for the BDR system are within and inclusive of 0 to 180.",
+      "example": "115.231512",
       "type": "number",
       "format": "default",
       "constraints": {
@@ -62,7 +62,7 @@
     {
       "name": "geodeticDatum",
       "title": "Geodetic Datum",
-      "description": "...",
+      "description": "The acronym for the ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geographic (non-projected) coordinates given in decimalLatitude and decimalLongitude as based.",
       "example": "WGS84",
       "type": "string",
       "format": "default",
@@ -85,7 +85,7 @@
     {
       "name": "coordinateUncertaintyInMeters",
       "title": "Coordinate Uncertainty In Meters",
-      "description": "...",
+      "description": "The horizontal distance (in metres) from the given decimalLatitude and decimalLongitude describing the smallest circle containing the whole of the Location. Leave the value empty if the uncertainty is unknown, cannot be estimated, or is not applicable (because there are no coordinates). Zero is not a valid value for this term.",
       "example": "50.0",
       "type": "number",
       "format": "default",
@@ -97,7 +97,7 @@
     {
       "name": "dataGeneralizations",
       "title": "Data Generalizations",
-      "description": "...",
+      "description": "Actions taken to make the shared data less specific or complete than in its original form, due to restrictions around identifying locations of particular species. Suggests that alternative data of higher quality may be available on request.",
       "example": "Coordinates rounded to the nearest 10 km for conservation concern",
       "type": "string",
       "format": "default",
@@ -108,7 +108,7 @@
     {
       "name": "eventDate",
       "title": "Event Date",
-      "description": "...",
+      "description": "The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context.",
       "example": "2019-09-23T14:03+08:00",
       "type": "timestamp",
       "format": "default",
@@ -119,8 +119,8 @@
     {
       "name": "samplingProtocol",
       "title": "Sampling Protocol",
-      "description": "...",
-      "example": "human observation",
+      "description": "The sampling protocol is the method used to sample the locality to determine the presence (or absence) of the taxon referred to in this record at the indicated time. This may be a collecting method or a method to observe an organism without collection.\nRecommended best practice is to describe a species occurrence with no more than one sampling protocol. In the case of a summary, in which a specific protocol can not be attributed to specific species occurrences, the recommended best practice is to repeat the property for each IRI that denotes a different sampling protocol that applies to the occurrence.",
+      "example": "Human Observation",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -130,8 +130,8 @@
     {
       "name": "basisOfRecord",
       "title": "Basis Of Record",
-      "description": "...",
-      "example": "HumanObservation",
+      "description": "The specific nature of the data record.",
+      "example": "Preserved Specimen",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -141,7 +141,7 @@
     {
       "name": "recordedBy",
       "title": "Recorded By",
-      "description": "...",
+      "description": "A person, group, or organisation responsible for recording the original Occurrence.",
       "example": "Stream Environment and Water Pty Ltd",
       "type": "string",
       "format": "default",
@@ -152,7 +152,7 @@
     {
       "name": "recordNumber",
       "title": "Record Number",
-      "description": "...",
+      "description": "An identifier given to the Occurrence at the time it was recorded. Often serves as a link between field notes and an Occurrence record, such as a specimen collector's number.",
       "example": "PE:12:8832",
       "type": "string",
       "format": "default",
@@ -163,8 +163,8 @@
     {
       "name": "occurrenceStatus",
       "title": "Occurrence Status",
-      "description": "...",
-      "example": "present",
+      "description": "A statement about the presence or absence of a Taxon at a Location.",
+      "example": "Present",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -174,7 +174,7 @@
     {
       "name": "habitat",
       "title": "Habitat",
-      "description": "...",
+      "description": "A category or description of the habitat in which the event occurred.",
       "example": "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam.",
       "type": "string",
       "format": "default",
@@ -185,8 +185,8 @@
     {
       "name": "establishmentMeans",
       "title": "Establishment Means",
-      "description": "...",
-      "example": "native",
+      "description": "Statement about whether an organism or organisms have been introduced to a given place and time through the direct or indirect activity of modern humans.",
+      "example": "Native",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -196,7 +196,7 @@
     {
       "name": "organismRemarks",
       "title": "Organism Remarks",
-      "description": "...",
+      "description": "Comments or notes about the Organism instance.",
       "example": "Dried out leaf tips.",
       "type": "string",
       "format": "default",
@@ -207,7 +207,7 @@
     {
       "name": "individualCount",
       "title": "Individual Count",
-      "description": "...",
+      "description": "The number of individuals present at the time of the Occurrence. 0 = none, no value = the specific number was not recorded.",
       "example": "26",
       "type": "integer",
       "format": "default",
@@ -240,7 +240,7 @@
     {
       "name": "lifeStage",
       "title": "Life Stage",
-      "description": "...",
+      "description": "The age class or life stage of the Organism(s) at the time the Occurrence was recorded.",
       "example": "adult",
       "type": "string",
       "format": "default",
@@ -251,8 +251,8 @@
     {
       "name": "sex",
       "title": "Sex",
-      "description": "...",
-      "example": "male",
+      "description": "The sex of the biological individual(s) represented in the Occurrence.",
+      "example": "Unspecified",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -262,7 +262,7 @@
     {
       "name": "reproductiveCondition",
       "title": "Reproductive Condition",
-      "description": "...",
+      "description": "The reproductive condition of the biological individual(s) represented in the Occurrence.",
       "example": "No breeding evident",
       "type": "string",
       "format": "default",
@@ -295,7 +295,7 @@
     {
       "name": "collectionCode",
       "title": "Collection Code",
-      "description": "...",
+      "description": "The name, acronym, code, or initialism identifying the collection or data set from which the record was derived. It is associated with the catalogNumber.",
       "example": "ARACH",
       "type": "string",
       "format": "default",
@@ -306,8 +306,8 @@
     {
       "name": "catalogNumber",
       "title": "Catalog Number",
-      "description": "...",
-      "example": "1234568.1",
+      "description": "An identifier (preferably unique) for the record within the data set or collection.",
+      "example": "145732, 145732a, 2008.1334, R-4313",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -328,7 +328,7 @@
     {
       "name": "otherCatalogNumbers",
       "title": "Other Catalog Numbers",
-      "description": "...",
+      "description": "A list (concatenated and separated with a space vertical bar space ( | )) of previous or alternate fully qualified catalog numbers or other human-used identifiers for the same Occurrence, whether in the current or any other data set or collection.",
       "example": "BHP2012-7521 | M12378",
       "type": "list",
       "format": "default",
@@ -350,8 +350,8 @@
     {
       "name": "preparations",
       "title": "Preparations",
-      "description": "...",
-      "example": "Wet (in ethanol or some other preservative)",
+      "description": "A list (concatenated and separated with a space vertical bar space ( | )) of preparations and preservation methods for a specimen.",
+      "example": "alcohol",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -361,8 +361,8 @@
     {
       "name": "preparedDate",
       "title": "Prepared Date",
-      "description": "...",
-      "example": "2019-09-25T10:02+08:00",
+      "description": "The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T11:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) representing the date or date-time the specimen was prepared.",
+      "example": "2019-09-24",
       "type": "timestamp",
       "format": "default",
       "constraints": {
@@ -372,7 +372,7 @@
     {
       "name": "associatedSequences",
       "title": "Associated Sequences",
-      "description": "...",
+      "description": "A list (concatenated and separated with a space vertical bar space ( | )) of identifiers (publication, global unique identifier, URI) of genetic sequence information associated with the Occurrence.",
       "example": "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1 | https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
       "type": "list",
       "format": "default",
@@ -383,8 +383,8 @@
     {
       "name": "sequencingMethod",
       "title": "Sequencing Method",
-      "description": "...",
-      "example": "Sanger dideoxy sequencing",
+      "description": "The method used to obtain sequence data for example DNA, RNA, or protein from the sample.",
+      "example": "Sanger-dideoxy-sequencing",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -394,7 +394,7 @@
     {
       "name": "verbatimIdentification",
       "title": "Verbatim Identification",
-      "description": "...",
+      "description": "A string representing the taxonomic identification as it appeared in the original record. This term is meant to allow the capture of an unaltered original identification/determination, including identification qualifiers, hybrid formulas, uncertainties, etc. This term is meant to be used in addition to scientificName (and identificationQualifier etc.), not instead of it.",
       "example": "Caladenia ?excelsa",
       "type": "string",
       "format": "default",
@@ -405,8 +405,8 @@
     {
       "name": "dateIdentified",
       "title": "Date Identified",
-      "description": "...",
-      "example": "2019-09-23T14:03+08:00",
+      "description": "The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T11:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) on which the subject was determined as representing the Taxon.",
+      "example": "2019-09-24",
       "type": "timestamp",
       "format": "default",
       "constraints": {
@@ -416,8 +416,8 @@
     {
       "name": "identifiedBy",
       "title": "Identified By",
-      "description": "...",
-      "example": "Stream Environment and Water Pty Ltd",
+      "description": "Group of names, organisations who assigned the Taxon to the subject. For multiple names, use the pipe separator ( | ).",
+      "example": "J. Doe | WAM",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -427,8 +427,8 @@
     {
       "name": "identificationMethod",
       "title": "Identification Method",
-      "description": "...",
-      "example": "Visually identified in the field (sighting)",
+      "description": "Method used to associate the organism with the scientificName label.",
+      "example": "DNA",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -438,7 +438,7 @@
     {
       "name": "scientificName",
       "title": "Scientific Name",
-      "description": "...",
+      "description": "The full scientific name, with authorship and date information if known. When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the identificationQualifier column.\nNOTE: Phrase names such as Rhagodia sp. Hamersley (M.Trudgen 17794) are permitted in the scientificName field where those are in use.",
       "example": "Caladenia excelsa",
       "type": "string",
       "format": "default",
@@ -449,8 +449,8 @@
     {
       "name": "identificationQualifier",
       "title": "Identification Qualifier",
-      "description": "...",
-      "example": "?",
+      "description": "A brief phrase or a standard term (\"cf.\", \"aff.\") to express the determiner's doubts about the Identification.",
+      "example": "Species incerta",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -460,8 +460,8 @@
     {
       "name": "identificationRemarks",
       "title": "Identification Remarks",
-      "description": "...",
-      "example": "One unopened flower when recorded and one leaf only. ID not confirmed",
+      "description": "Comments or notes about the Identification.",
+      "example": "DNA evidence may indicate a new species. Further analysis required.",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -471,8 +471,8 @@
     {
       "name": "acceptedNameUsage",
       "title": "Accepted Name Usage",
-      "description": "...",
-      "example": "Occiperipatoides gilesii (Spencer, 1909)",
+      "description": "The full name, with authorship and date information if known, of the currently valid (zoological) or accepted (botanical) taxon.",
+      "example": "Calaendia excelsa Hopper & A.P.Br.",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -482,7 +482,7 @@
     {
       "name": "kingdom",
       "title": "Kingdom",
-      "description": "...",
+      "description": "The full scientific name of the kingdom in which the taxon is classified.",
       "example": "Plantae",
       "type": "string",
       "format": "default",
@@ -493,8 +493,8 @@
     {
       "name": "taxonRank",
       "title": "Taxon Rank",
-      "description": "...",
-      "example": "species",
+      "description": "The taxonomic rank of the most specific name in the scientificName.",
+      "example": "Species",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -504,8 +504,8 @@
     {
       "name": "threatStatus",
       "title": "Threat Status",
-      "description": "...",
-      "example": "VU",
+      "description": "The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific jurisdiction.",
+      "example": "EN",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -515,8 +515,8 @@
     {
       "name": "conservationJurisdiction",
       "title": "Conservation Jurisdiction",
-      "description": "...",
-      "example": "WA",
+      "description": "The jurisdiction under which an organism is recognised to have a specific conservation status applied.",
+      "example": "EPBC, WA",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -555,8 +555,8 @@
     {
       "name": "threatStatusCheckProtocol",
       "title": "Threat Status Check Protocol",
-      "description": "...",
-      "example": "Check against Threatened and Priority Fauna List WA available from https://www.dpaw.wa.gov.au/plants-and-animals/threatened-species-and-communities/threatened-animals. Last updated 13 June 2022",
+      "description": "The method used to determine if the organism is listed under the relevant jurisdictional threatened species list.",
+      "example": "Species name check of the Department of Climate Change, Energy, the Environment and Water’s Species Profile and Threat Database http://www.environmen t.gov.au/cgi-bin/sprat/p ublic/sprat.pl",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -566,7 +566,7 @@
     {
       "name": "threatStatusDateDetermined",
       "title": "Threat Status Date Determined",
-      "description": "...",
+      "description": "The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T11:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) on which this record of this organism was assigned to the nominated threatStatus and conservationJurisdiction",
       "example": "30/08/2022",
       "type": "timestamp",
       "format": "default",
@@ -577,7 +577,7 @@
     {
       "name": "threatStatusDeterminedBy",
       "title": "Threat Status Determined By",
-      "description": "...",
+      "description": "The person and/organisation responsible for appending the threatStatus and conservationJurisdiction to this organism’s occurrence record.",
       "example": "WA-BIO",
       "type": "string",
       "format": "default",
