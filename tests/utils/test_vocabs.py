@@ -109,3 +109,16 @@ def test_vocabs_flexible_vocab() -> None:
 def test_vocab_register_id() -> None:
     """Tests that vocabs get registered at import."""
     assert len(abis_mapping.utils.vocabs.Vocabulary.id_registry) > 0
+
+
+def test_get_vocab() -> None:
+    """Tests get_vocab function."""
+    # Retrieve vocabs
+    v1 = abis_mapping.utils.vocabs.get_vocab("SEX")
+    v2 = abis_mapping.utils.vocabs.get_vocab("NOT_A_VOCAB")
+
+    # Assert exists
+    assert isinstance(v1, abis_mapping.utils.vocabs.FlexibleVocabulary)
+
+    # Assert None
+    assert v2 is None

@@ -2,7 +2,6 @@
 
 # Standard
 import abc
-import collections
 
 # Third-Party
 import rdflib
@@ -12,23 +11,16 @@ from abis_mapping.utils import rdf
 from abis_mapping.utils import strings
 
 # Typing
-from typing import Optional, Iterable, NamedTuple, final
+from typing import Optional, Iterable, final
 
 
 # Constants
 a = rdflib.RDF.type
 
 
-class TemplateField(NamedTuple):
-    """Named tuple to hold combinations of template and field."""
-    template_id: str
-    field_name: str
-
-
 class Vocabulary(abc.ABC):
     """Base Vocabulary class."""
-
-    template_field_registry: dict[TemplateField, "Vocabulary"] = {}
+    # Dictionary to hold all vocabs for mapping by their id.
     id_registry: dict[str, "Vocabulary"] = {}
 
     def __init__(
@@ -53,27 +45,6 @@ class Vocabulary(abc.ABC):
 
     @final
     @classmethod
-    def register_template_field(
-        cls,
-        template_field: TemplateField,
-        vocab: "Vocabulary",
-    ) -> None:
-        """Register a Vocabulary within the centralised template field registry.
-
-        Args:
-            template_field (TemplateField): Template and field combo vocab is to be used.
-            vocab (Vocabulary): Vocabulary to register against.
-
-        Raises:
-            KeyError: The template field has already been registered against a Vocabulary.
-        """
-        if template_field in cls.template_field_registry:
-            raise KeyError(f"Template field {template_field} already registered.")
-
-        cls.template_field_registry[template_field] = vocab
-
-    @final
-    @classmethod
     def register(
         cls,
         vocab: "Vocabulary",
@@ -92,7 +63,7 @@ class Vocabulary(abc.ABC):
         cls.id_registry[vocab.vocab_id] = vocab
 
     @abc.abstractmethod
-    def terms(self) -> dict[str, rdflib.URIRef]:
+    def terms(self) -> dict[str | None, rdflib.URIRef | None]:
         """Getter for the vocabs terms"""
 
 
@@ -155,12 +126,13 @@ class RestrictedVocabulary(Vocabulary):
         self._terms = tuple(terms)
 
         # Generate Dictionary Mapping from Terms
-        self._mapping: dict[str, rdflib.URIRef] = {}
+        self._mapping: dict[str | None, rdflib.URIRef | None] = {}
         for term in self._terms:
             self._mapping.update(**term.to_mapping())
 
     @property
-    def terms(self) -> dict[str, rdflib.URIRef]:
+    def terms(self) -> dict[str | None, rdflib.URIRef | None]:
+        """Getter for the vocab's terms."""
         return self._mapping
 
     def get(self, value: str) -> rdflib.URIRef:
@@ -238,7 +210,7 @@ class FlexibleVocabulary(Vocabulary):
             self._mapping.update({None: self.default.iri})
 
     @property
-    def terms(self) -> dict[str, rdflib.URIRef]:
+    def terms(self) -> dict[str | None, rdflib.URIRef | None]:
         """Getter for the vocabs terms"""
         return self._mapping
 
@@ -314,17 +286,13 @@ class VocabularyError(Exception):
     """Error Raised in Vocabulary Handling"""
 
 
-def get_vocab(key: str | TemplateField) -> Vocabulary | None:
+def get_vocab(key: str) -> Vocabulary | None:
     """Retrieves vocab object for given key.
 
     Args:
-        key (str | TemplateField): Key to retrieve vocab for.
+        key (str): Key to retrieve vocab for.
 
     Returns:
-        Vocabulary: Corresponding vocabulary for given key.
+        Vocabulary | None: Corresponding vocabulary for given key or None.
     """
-    # Check type of key supplied
-    if isinstance(key, str):
-        return Vocabulary.id_registry.get(key)
-
-    return Vocabulary.template_field_registry.get(key)
+    return Vocabulary.id_registry.get(key)
