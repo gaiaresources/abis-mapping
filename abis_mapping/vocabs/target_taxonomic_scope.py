@@ -43,6 +43,7 @@ VASCULAR_PLANT = utils.vocabs.Term(
 )
 
 TARGET_TAXONOMIC_SCOPE = utils.vocabs.FlexibleVocabulary(
+    vocab_id="TARGET_TAXONOMIC_SCOPE",
     definition=rdflib.Literal("A type of targetTaxonomicScope"),
     base=utils.rdf.uri("bdr-cv/attribute/targetTaxonomicScope/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
@@ -58,3 +59,6 @@ TARGET_TAXONOMIC_SCOPE = utils.vocabs.FlexibleVocabulary(
         VASCULAR_PLANT,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(TARGET_TAXONOMIC_SCOPE)

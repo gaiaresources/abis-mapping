@@ -23,5 +23,5 @@ from . import site_type
 from . import survey_type
 from . import target_habitat_scope
 from . import target_taxonomic_scope
-from . import taxon_tank
+from . import taxon_rank
 from . import threat_status

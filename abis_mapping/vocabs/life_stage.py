@@ -52,6 +52,7 @@ ZYGOTE = utils.vocabs.Term(
 
 # Vocabulary
 LIFE_STAGE = utils.vocabs.FlexibleVocabulary(
+    vocab_id="LIFE_STAGE",
     definition=rdflib.Literal("A type of lifeStage."),
     base=utils.rdf.uri("bdr-cv/parameter/lifeStage/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e"),
@@ -70,3 +71,6 @@ LIFE_STAGE = utils.vocabs.FlexibleVocabulary(
         ZYGOTE,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(LIFE_STAGE)

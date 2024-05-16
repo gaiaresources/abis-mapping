@@ -29,7 +29,12 @@ WGS84 = utils.vocabs.Term(
     labels=("WGS84", "EPSG:4326"),
     iri=rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326"),
 )
+
 # Vocabulary
 GEODETIC_DATUM = utils.vocabs.RestrictedVocabulary(
+    vocab_id="GEODETIC_DATUM",
     terms=(AGD66, AGD84, GDA2020, GDA94, WGS84),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(GEODETIC_DATUM)

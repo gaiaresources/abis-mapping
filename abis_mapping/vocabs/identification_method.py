@@ -16,6 +16,7 @@ UNDEFINED = utils.vocabs.Term(
 
 # Vocabulary
 IDENTIFICATION_METHOD = utils.vocabs.FlexibleVocabulary(
+    vocab_id="IDENTIFICATION_METHOD",
     definition=rdflib.Literal("A type of identificationMethod."),
     base=utils.rdf.uri("bdr-cv/methods/identificationMethod/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c"),
@@ -23,3 +24,6 @@ IDENTIFICATION_METHOD = utils.vocabs.FlexibleVocabulary(
     default=UNDEFINED,
     terms=(),  # No baseline vocabulary values
 )
+
+# Register
+utils.vocabs.Vocabulary.register(IDENTIFICATION_METHOD)

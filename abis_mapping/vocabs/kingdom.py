@@ -51,6 +51,7 @@ FUNGI_SPECIMEN = utils.vocabs.Term(
 
 # Vocabularies
 KINGDOM = utils.vocabs.FlexibleVocabulary(
+    vocab_id="KINGDOM",
     definition=rdflib.Literal("A type of kingdom."),
     base=utils.rdf.uri("bdr-cv/attribute/kingdom/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
@@ -59,6 +60,7 @@ KINGDOM = utils.vocabs.FlexibleVocabulary(
     terms=(ANIMALIA, PLANTAE, FUNGI),
 )
 KINGDOM_OCCURRENCE = utils.vocabs.FlexibleVocabulary(
+    vocab_id="KINGDOM_OCCURRENCE",
     definition=rdflib.Literal("The existence of the organism sampled at a particular place at a particular time."),
     base=utils.rdf.uri("bdr-cv/featureType/occurrence/kingdom/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d"),
@@ -67,6 +69,7 @@ KINGDOM_OCCURRENCE = utils.vocabs.FlexibleVocabulary(
     terms=(ANIMALIA_OCCURRENCE, PLANTAE_OCCURRENCE, FUNGI_OCCURRENCE),
 )
 KINGDOM_SPECIMEN = utils.vocabs.FlexibleVocabulary(
+    vocab_id="KINGDOM_SPECIMEN",
     definition=rdflib.Literal("An organism specimen."),
     base=utils.rdf.uri("bdr-cv/featureType/specimen/kingdom/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d"),
@@ -74,3 +77,8 @@ KINGDOM_SPECIMEN = utils.vocabs.FlexibleVocabulary(
     default=None,  # No default, kingdom is required in the CSV
     terms=(ANIMALIA_SPECIMEN, PLANTAE_SPECIMEN, FUNGI_SPECIMEN),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(KINGDOM)
+utils.vocabs.Vocabulary.register(KINGDOM_OCCURRENCE)
+utils.vocabs.Vocabulary.register(KINGDOM_SPECIMEN)

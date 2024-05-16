@@ -36,6 +36,7 @@ VAGRANT = utils.vocabs.Term(
 
 # Vocabulary
 ESTABLISHMENT_MEANS = utils.vocabs.FlexibleVocabulary(
+    vocab_id="ESTABLISHMENT_MEANS",
     definition=rdflib.Literal("A type of establishmentMeans."),
     base=utils.rdf.uri("bdr-cv/parameter/establishmentMeans/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e"),
@@ -43,3 +44,6 @@ ESTABLISHMENT_MEANS = utils.vocabs.FlexibleVocabulary(
     default=None,  # No default, ommitted if not provided
     terms=(INTRODUCED, INTRODUCED_ASSISTED_COLONISATION, NATIVE, NATIVE_REINTRODUCED, UNCERTAIN, VAGRANT),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(ESTABLISHMENT_MEANS)

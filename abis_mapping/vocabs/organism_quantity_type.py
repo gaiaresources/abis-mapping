@@ -70,6 +70,7 @@ BIOVOLUME_ML = utils.vocabs.Term(
 
 # Vocab
 ORGANISM_QUANTITY_TYPE = utils.vocabs.FlexibleVocabulary(
+    vocab_id="ORGANISM_QUANTITY_TYPE",
     definition=rdflib.Literal("A type of organism quantity."),
     base=utils.rdf.uri("bdr-cv/concept/organismQuantityType"),
     scheme=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType"),
@@ -90,3 +91,6 @@ ORGANISM_QUANTITY_TYPE = utils.vocabs.FlexibleVocabulary(
         BIOVOLUME_ML,
     ),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(ORGANISM_QUANTITY_TYPE)

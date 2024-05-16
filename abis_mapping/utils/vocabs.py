@@ -1,19 +1,70 @@
 """Provides vocab handling for the package"""
 
+# Standard
+import abc
 
 # Third-Party
 import rdflib
 
 # Local
-from . import rdf
-from . import strings
+from abis_mapping.utils import rdf
+from abis_mapping.utils import strings
 
 # Typing
-from typing import Optional, Iterable
+from typing import Optional, Iterable, final
 
 
 # Constants
 a = rdflib.RDF.type
+
+
+class Vocabulary(abc.ABC):
+    """Base Vocabulary class."""
+    # Dictionary to hold all vocabs for mapping by their id.
+    id_registry: dict[str, "Vocabulary"] = {}
+
+    def __init__(
+        self,
+        vocab_id: str,
+    ):
+        """Vocabulary constructor.
+
+        Args:
+            vocab_id (str): ID to assign vocabulary.
+        """
+        self._vocab_id = vocab_id
+
+    @property
+    def vocab_id(self) -> str:
+        """Getter for the Vocabulary's ID.
+
+        Returns:
+            str: The Vocabulary's ID.
+        """
+        return self._vocab_id
+
+    @final
+    @classmethod
+    def register(
+        cls,
+        vocab: "Vocabulary",
+    ) -> None:
+        """Register a Vocabulary within the centralise vocabulary id registry.
+
+        Args:
+            vocab (Vocabulary): Corresponding Vocabulary.
+
+        Raises:
+            KeyError: The Vocabulary ID is already registered.
+        """
+        if vocab.vocab_id in cls.id_registry:
+            raise KeyError(f"Vocabulary ID {vocab.vocab_id} already registered.")
+
+        cls.id_registry[vocab.vocab_id] = vocab
+
+    @abc.abstractmethod
+    def terms(self) -> dict[str | None, rdflib.URIRef | None]:
+        """Getter for the vocabs terms"""
 
 
 class Term:
@@ -54,25 +105,35 @@ class Term:
         return strings.sanitise(value) in self.labels
 
 
-class RestrictedVocabulary:
+class RestrictedVocabulary(Vocabulary):
     """Restricted Vocabulary"""
 
     def __init__(
         self,
+        vocab_id: str,
         terms: Iterable[Term],
     ) -> None:
         """Initialises a Restricted Vocabulary.
 
         Args:
+            vocab_id (str): ID to assign vocabulary.
             terms (Iterable[Term]): Terms for the vocabulary.
         """
+        # Call parent constructor
+        super().__init__(vocab_id)
+
         # Set Instance Variables
-        self.terms = tuple(terms)
+        self._terms = tuple(terms)
 
         # Generate Dictionary Mapping from Terms
-        self.mapping: dict[str, rdflib.URIRef] = {}
-        for term in self.terms:
-            self.mapping.update(**term.to_mapping())
+        self._mapping: dict[str | None, rdflib.URIRef | None] = {}
+        for term in self._terms:
+            self._mapping.update(**term.to_mapping())
+
+    @property
+    def terms(self) -> dict[str | None, rdflib.URIRef | None]:
+        """Getter for the vocab's terms."""
+        return self._mapping
 
     def get(self, value: str) -> rdflib.URIRef:
         """Retrieves an IRI from the Vocabulary.
@@ -91,7 +152,7 @@ class RestrictedVocabulary:
         sanitised_value = strings.sanitise(value)
 
         # Retrieve if Applicable
-        if iri := self.mapping.get(sanitised_value):
+        if iri := self._mapping.get(sanitised_value):
             # Return
             return iri
 
@@ -99,11 +160,12 @@ class RestrictedVocabulary:
         raise VocabularyError(f"Invalid vocabulary value: '{value}'")
 
 
-class FlexibleVocabulary:
+class FlexibleVocabulary(Vocabulary):
     """Flexible Vocabulary"""
 
     def __init__(
         self,
+        vocab_id: str,
         definition: rdflib.Literal,
         base: rdflib.URIRef,
         scheme: rdflib.URIRef,
@@ -114,6 +176,7 @@ class FlexibleVocabulary:
         """Initialises a Flexible Vocabulary.
 
         Args:
+            vocab_id (str): ID to assign vocabulary.
             definition (rdflib.Literal): Definition to use when creating a new
                 vocabulary term 'on the fly'.
             base (rdflib.URIRef): Base IRI namespace to use when creating a new
@@ -126,22 +189,30 @@ class FlexibleVocabulary:
                 a value is not supplied.
             terms (Iterable[Term]): Terms for the vocabulary.
         """
+        # Call parent constructor
+        super().__init__(vocab_id)
+
         # Set Instance Variables
         self.definition = definition
         self.base = rdflib.Namespace(base)  # Cast to a Namespace
         self.scheme = scheme
         self.broader = broader
         self.default = default
-        self.terms = tuple(terms)
+        self._terms = tuple(terms)
 
         # Generate Dictionary Mapping from Terms
-        self.mapping: dict[Optional[str], Optional[rdflib.URIRef]] = {}
-        for term in self.terms:
-            self.mapping.update(**term.to_mapping())
+        self._mapping: dict[Optional[str], Optional[rdflib.URIRef]] = {}
+        for term in self._terms:
+            self._mapping.update(**term.to_mapping())
 
         # Add Default if Applicable
         if self.default:
-            self.mapping.update({None: self.default.iri})
+            self._mapping.update({None: self.default.iri})
+
+    @property
+    def terms(self) -> dict[str | None, rdflib.URIRef | None]:
+        """Getter for the vocabs terms"""
+        return self._mapping
 
     def get(
         self,
@@ -176,7 +247,7 @@ class FlexibleVocabulary:
         sanitised_value = strings.sanitise(value) if value else None
 
         # Retrieve if Applicable
-        if iri := self.mapping.get(sanitised_value):
+        if iri := self._mapping.get(sanitised_value):
             # Return
             return iri
 
@@ -213,3 +284,15 @@ class FlexibleVocabulary:
 
 class VocabularyError(Exception):
     """Error Raised in Vocabulary Handling"""
+
+
+def get_vocab(key: str) -> Vocabulary | None:
+    """Retrieves vocab object for given key.
+
+    Args:
+        key (str): Key to retrieve vocab for.
+
+    Returns:
+        Vocabulary | None: Corresponding vocabulary for given key or None.
+    """
+    return Vocabulary.id_registry.get(key)

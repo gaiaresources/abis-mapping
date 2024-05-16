@@ -1,10 +1,10 @@
 """Provides survey type vocabulary for the package."""
 
-# Local
-from abis_mapping import utils
-
 # Third-party
 import rdflib
+
+# Local
+from abis_mapping import utils
 
 
 # Terms
@@ -14,6 +14,7 @@ WET_PITFALL_TRAPPING = utils.vocabs.Term(
 )
 
 SURVEY_TYPE = utils.vocabs.FlexibleVocabulary(
+    vocab_id="SURVEY_TYPE",
     definition=rdflib.Literal("A type of surveyType"),
     base=utils.rdf.uri("bdr-cv/attribute/surveyType/"),
     scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
@@ -21,3 +22,6 @@ SURVEY_TYPE = utils.vocabs.FlexibleVocabulary(
     default=None,
     terms=(WET_PITFALL_TRAPPING,),
 )
+
+# Register
+utils.vocabs.Vocabulary.register(SURVEY_TYPE)
