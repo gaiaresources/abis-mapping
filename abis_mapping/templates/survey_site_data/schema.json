@@ -32,7 +32,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "SITE_TYPE"
+      ]
     },
     {
       "name": "siteName",
@@ -65,7 +68,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "TARGET_HABITAT_SCOPE"
+      ]
     },
     {
       "name": "relatedSiteID",
@@ -95,7 +101,10 @@
           "Part of",
           "Same as"
         ]
-      }
+      },
+      "vocabularies": [
+        "RELATIONSHIP_TO_RELATED_SITE"
+      ]
     },
     {
       "name": "decimalLatitude",
@@ -155,7 +164,10 @@
           "WGS84",
           "EPSG:4326"
         ]
-      }
+      },
+      "vocabularies": [
+        "GEODETIC_DATUM"
+      ]
     },
     {
       "name": "coordinateUncertaintyInMeters",

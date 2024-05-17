@@ -16,6 +16,7 @@ import rdflib
 from . import types
 from abis_mapping.types import spatial
 from abis_mapping.types import temporal
+from abis_mapping.types import schema
 from abis_mapping import utils
 
 # Typing
@@ -238,6 +239,42 @@ class ABISMapper(abc.ABC):
         return frictionless.Schema(fields=extra_fields)
 
     @final
+    def get_vocab(
+        self,
+        field_name: str,
+        vocab_id: str | None = None
+    ) -> utils.vocabs.Vocabulary | None:
+        """Retrieve the vocabulary for a given field.
+
+        Args:
+            field_name (str): Name of the field to retrieve the vocabulary for.
+            vocab_id (str | None): ID of registered vocabulary. If None then the first
+                one in the vocabulary list for the field will be used (default).
+
+        Returns:
+            utils.vocabs.Vocabulary | None: Vocabulary for the given field.
+        """
+        # Retrieve field
+        fields: list[dict[str, Any]] = [f for f in self.schema()["fields"] if f["name"] == field_name]
+
+        # Check field exists.
+        if len(fields) > 0:
+            return None
+
+        field = fields[0]
+        if vocab_id is None:
+            # Retrieve and return vocab
+            return utils.vocabs.get_vocab(field["vocabularies"][0])
+
+        # Check vocab_id exists
+        if vocab_id not in field["vocabularies"]:
+            return None
+
+        # Return vocab from id
+        utils.vocabs.get_vocab(vocab_id)
+
+
+    @final
     @classmethod
     @functools.lru_cache
     def template(cls) -> pathlib.Path:
@@ -286,8 +323,15 @@ class ABISMapper(abc.ABC):
     @final
     @classmethod
     @functools.lru_cache
-    def schema(cls) -> dict[str, Any]:
+    def schema(
+        cls,
+        discard_optional: bool = True,
+    ) -> dict[str, Any]:
         """Retrieves and Caches the Frictionless Schema for this Template
+
+        Args:
+            discard_optional (bool): Flag to indicate whether to discard optional
+                properties if None.
 
         Returns:
             dict[str, Any]: Frictionless Schema for this Template
@@ -296,8 +340,13 @@ class ABISMapper(abc.ABC):
         directory = pathlib.Path(inspect.getfile(cls)).parent
         schema_file = directory / "schema.json"
 
-        # Read Schema and Return
-        return json.loads(schema_file.read_text())  # type: ignore[no-any-return]
+        # Read Schema and validate
+        s_dict = json.loads(schema_file.read_text())
+        s_class = schema.Schema.model_validate(s_dict, strict=True)
+
+        # Dump pydantic class to return dict
+        return s_class.model_dump(exclude_none=discard_optional)  # type: ignore[no-any-return]
+
 
     @final
     @classmethod

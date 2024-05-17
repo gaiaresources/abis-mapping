@@ -80,7 +80,10 @@
           "WGS84",
           "EPSG:4326"
         ]
-      }
+      },
+      "vocabularies": [
+        "GEODETIC_DATUM"
+      ]
     },
     {
       "name": "coordinateUncertaintyInMeters",
@@ -125,7 +128,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "SAMPLING_PROTOCOL"
+      ]
     },
     {
       "name": "basisOfRecord",
@@ -136,7 +142,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "BASIS_OF_RECORD"
+      ]
     },
     {
       "name": "recordedBy",
@@ -169,7 +178,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "OCCURRENCE_STATUS"
+      ]
     },
     {
       "name": "habitat",
@@ -191,7 +203,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "ESTABLISHMENT_MEANS"
+      ]
     },
     {
       "name": "organismRemarks",
@@ -246,7 +261,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "LIFE_STAGE"
+      ]
     },
     {
       "name": "sex",
@@ -257,7 +275,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "SEX"
+      ]
     },
     {
       "name": "reproductiveCondition",
@@ -268,7 +289,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "REPRODUCTIVE_CONDITION"
+      ]
     },
     {
       "name": "ownerRecordID",
@@ -356,7 +380,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "PREPARATIONS"
+      ]
     },
     {
       "name": "preparedDate",
@@ -389,7 +416,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "SEQUENCING_METHOD"
+      ]
     },
     {
       "name": "verbatimIdentification",
@@ -433,7 +463,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "IDENTIFICATION_METHOD"
+      ]
     },
     {
       "name": "scientificName",
@@ -455,7 +488,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "IDENTIFICATION_QUALIFIER"
+      ]
     },
     {
       "name": "identificationRemarks",
@@ -488,7 +524,12 @@
       "format": "default",
       "constraints": {
         "required": true
-      }
+      },
+      "vocabularies": [
+        "KINGDOM",
+        "KINGDOM_OCCURRENCE",
+        "KINGDOM_SPECIMEN"
+      ]
     },
     {
       "name": "taxonRank",
@@ -499,7 +540,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "TAXON_RANK"
+      ]
     },
     {
       "name": "threatStatus",
@@ -510,7 +554,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "THREAT_STATUS"
+      ]
     },
     {
       "name": "conservationJurisdiction",
@@ -550,7 +597,10 @@
           "WESTERN AUSTRALIA",
           "Western Australia"
         ]
-      }
+      },
+      "vocabularies": [
+        "CONSERVATION_JURISDICTION"
+      ]
     },
     {
       "name": "threatStatusCheckProtocol",
@@ -561,7 +611,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "CHECK_PROTOCOL"
+      ]
     },
     {
       "name": "threatStatusDateDetermined",

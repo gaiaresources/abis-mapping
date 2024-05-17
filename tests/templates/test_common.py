@@ -161,10 +161,20 @@ class TestTemplateBasicSuite:
         # Get schema dictionary
         descriptor = mapper().schema()
 
+        # Overall schema check
+        valid = abis_mapping.types.schema.Schema.model_validate(descriptor)
+        assert valid
+        # Should have no extra fields defined but if it does then needs to
+        # be reviewed and decided to be added to model
+        assert valid.__pydantic_extra__ == {}
+
         # Iterate through fields and ensure they validate
         for field in descriptor["fields"]:
-            valid = abis_mapping.types.schema.Field.model_validate(field)
+            valid = abis_mapping.types.schema.Field.model_validate(field, strict=True)
             assert valid
+            # Should have no extra fields defined but if it does then needs to
+            # be reviewed and decided to be added to model
+            assert valid.__pydantic_extra__ == {}
 
     def test_validation_empty_template(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests validation fails for empty template."""
