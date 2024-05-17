@@ -13,7 +13,7 @@ Repository database. Not all types of data have been catered for in the availabl
 at this stage; therefore, if you are unable to find a suitable template, please contact
 bdr-support@gaiaresources.com.au to make us aware of your data needs.  
 
-### NEED TO KNOW:
+### NEED TO KNOW
 For data validation, you will need your data file to:
 * be the correct file format,
 * have matching template fields to the template downloaded (do not remove, or
@@ -42,7 +42,7 @@ character limit on individual cells in a spreadsheet. These limits may be overco
 or editing CSV files with other software.
 1
 Larger datasets may be more readily ingested using the API interface. Please contact
-bdr-support@gaiaresources.com.au to make us aware of your data needs.
+[bdr-support@gaiaresources.com.au](mailto:bdr-support@gaiaresources.com.au) to make us aware of your data needs.
 TEMPLATE FIELDS
 The template contains the field names in the top row. Table 1 will assist you in transferring
 your data to the template indicating:
