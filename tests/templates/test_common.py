@@ -181,6 +181,27 @@ class TestTemplateBasicSuite:
         error_codes = [code for codes in report.flatten(['type']) for code in codes]
         assert "table-dimensions" in error_codes
 
+    def test_blank_template(self, test_params: conftest.TemplateTestParameters) -> None:
+        """Tests blank templates are free of errors."""
+        # Load data
+        data = test_params.empty_template.read_bytes()
+
+        # Get mapper
+        mapper = abis_mapping.get_mapper(test_params.template_id)
+        assert mapper
+
+        # Perform validation
+        report = mapper().apply_validation(data)
+        error_codes = [code for codes in report.flatten(['type']) for code in codes]
+
+        # Confirm header is as expected
+        assert "extra-label" not in error_codes
+        assert "missing-label" not in error_codes
+        assert "blank-label" not in error_codes
+        assert "duplicate-label" not in error_codes
+        assert "incorrect-label" not in error_codes
+        assert "blank-header" not in error_codes
+
     def test_allows_extra_cols(
         self,
         test_params: conftest.TemplateTestParameters,
