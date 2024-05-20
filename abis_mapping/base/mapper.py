@@ -271,8 +271,7 @@ class ABISMapper(abc.ABC):
             return None
 
         # Return vocab from id
-        utils.vocabs.get_vocab(vocab_id)
-
+        return utils.vocabs.get_vocab(vocab_id)
 
     @final
     @classmethod
@@ -345,8 +344,7 @@ class ABISMapper(abc.ABC):
         s_class = schema.Schema.model_validate(s_dict, strict=True)
 
         # Dump pydantic class to return dict
-        return s_class.model_dump(exclude_none=discard_optional)  # type: ignore[no-any-return]
-
+        return s_class.model_dump(exclude_none=discard_optional)
 
     @final
     @classmethod
