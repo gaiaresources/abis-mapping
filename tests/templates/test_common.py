@@ -183,12 +183,12 @@ class TestTemplateBasicSuite:
 
     def test_blank_template(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests blank templates are free of errors."""
-        # Load data
-        data = test_params.empty_template.read_bytes()
-
         # Get mapper
         mapper = abis_mapping.get_mapper(test_params.template_id)
         assert mapper
+
+        # Load data
+        data = mapper.template().read_bytes()
 
         # Perform validation
         report = mapper().apply_validation(data)
