@@ -239,41 +239,6 @@ class ABISMapper(abc.ABC):
         return frictionless.Schema(fields=extra_fields)
 
     @final
-    def get_vocab(
-        self,
-        field_name: str,
-        vocab_id: str | None = None
-    ) -> utils.vocabs.Vocabulary | None:
-        """Retrieve the vocabulary for a given field.
-
-        Args:
-            field_name (str): Name of the field to retrieve the vocabulary for.
-            vocab_id (str | None): ID of registered vocabulary. If None then the first
-                one in the vocabulary list for the field will be used (default).
-
-        Returns:
-            utils.vocabs.Vocabulary | None: Vocabulary for the given field.
-        """
-        # Retrieve field
-        fields: list[dict[str, Any]] = [f for f in self.schema()["fields"] if f["name"] == field_name]
-
-        # Check field exists.
-        if len(fields) > 0:
-            return None
-
-        field = fields[0]
-        if vocab_id is None:
-            # Retrieve and return vocab
-            return utils.vocabs.get_vocab(field["vocabularies"][0])
-
-        # Check vocab_id exists
-        if vocab_id not in field["vocabularies"]:
-            return None
-
-        # Return vocab from id
-        return utils.vocabs.get_vocab(vocab_id)
-
-    @final
     @classmethod
     @functools.lru_cache
     def template(cls) -> pathlib.Path:
