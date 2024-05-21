@@ -41,7 +41,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "SURVEY_TYPE"
+      ]
     },
     {
       "name": "surveyStart",
@@ -74,7 +77,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "TARGET_TAXONOMIC_SCOPE"
+      ]
     },
     {
       "name": "targetHabitatScope",
@@ -85,7 +91,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "TARGET_HABITAT_SCOPE"
+      ]
     },
     {
       "name": "spatialCoverageWKT",
@@ -119,7 +128,10 @@
           "WGS84",
           "EPSG:4326"
         ]
-      }
+      },
+      "vocabularies": [
+        "GEODETIC_DATUM"
+      ]
     },
     {
       "name": "surveyOrgs",
@@ -194,7 +206,10 @@
       "format": "default",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "SAMPLING_EFFORT_UNIT"
+      ]
     },
     {
       "name": "keywords",
