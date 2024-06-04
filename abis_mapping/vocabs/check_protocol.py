@@ -12,6 +12,7 @@ from abis_mapping import utils
 UNSPECIFIED = utils.vocabs.Term(
     labels=("UNSPECIFIED", ),
     iri=utils.rdf.uri("threatStatusCheckProtocol/default", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description="Unspecified",
 )
 
 # Vocabulary
@@ -23,6 +24,7 @@ CHECK_PROTOCOL = utils.vocabs.FlexibleVocabulary(
     broader=utils.rdf.uri("bdr-cv/methods/threatStatusCheckProtocol", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
     default=UNSPECIFIED,
     terms=(UNSPECIFIED, ),
+    publish=False,
 )
 
 # Register

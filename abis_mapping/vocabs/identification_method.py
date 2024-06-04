@@ -12,6 +12,7 @@ from abis_mapping import utils
 UNDEFINED = utils.vocabs.Term(
     labels=("UNDEFINED", ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653"),
+    description="Undefined",
 )
 
 # Vocabulary
@@ -23,6 +24,7 @@ IDENTIFICATION_METHOD = utils.vocabs.FlexibleVocabulary(
     broader=utils.rdf.uri("bdr-cv/methods/identificationMethod", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     default=UNDEFINED,
     terms=(),  # No baseline vocabulary values
+    publish=False,
 )
 
 # Register

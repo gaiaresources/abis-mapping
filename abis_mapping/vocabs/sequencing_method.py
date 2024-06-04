@@ -12,6 +12,7 @@ from abis_mapping import utils
 UNDEFINED = utils.vocabs.Term(
     labels=("UNDEFINED", ),
     iri=utils.rdf.uri("sequencingMethod/undefined", utils.namespaces.EXAMPLE),   # TODO -> Need real URI
+    description="Undefined",
 )
 
 # Vocabulary
@@ -23,6 +24,7 @@ SEQUENCING_METHOD = utils.vocabs.FlexibleVocabulary(
     broader=utils.rdf.uri("bdr-cv/methods/sequencingMethod", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     default=UNDEFINED,
     terms=(),  # No baseline vocabulary values
+    publish=False,
 )
 
 # Register

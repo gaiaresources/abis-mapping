@@ -13,40 +13,49 @@ from abis_mapping import utils
 ANIMALIA = utils.vocabs.Term(
     labels=("ANIMALIA", ),
     iri=utils.rdf.uri("kingdom/animalia", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description="Kingdom Animalia",
 )
 PLANTAE = utils.vocabs.Term(
-    labels=("PLANTAE", ),
+    labels=("PLANTAE", "PLANTAE HAECKEL", ),
     iri=utils.rdf.uri("kingdom/plantae", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description="Kingdom (taxonRank: Regnum) Fungi",
 )
 FUNGI = utils.vocabs.Term(
     labels=("FUNGI", ),
     iri=utils.rdf.uri("kingdom/fungi", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description="Kingdom (taxonRank: Regnum) Fungi",
 )
 # Kingdom Occurrences
 ANIMALIA_OCCURRENCE = utils.vocabs.Term(
     labels=("ANIMALIA", ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2361dea8-598c-4b6f-a641-2b98ff199e9e"),
+    description="Kingdom Animalia occurrence",
 )
 PLANTAE_OCCURRENCE = utils.vocabs.Term(
-    labels=("PLANTAE", ),
+    labels=("PLANTAE", "PLANTAE HAECKEL", ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611"),
+    description="Kingdom (taxonRank: Regnum) Plantae occurrence",
 )
 FUNGI_OCCURRENCE = utils.vocabs.Term(
     labels=("FUNGI", ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),
+    description="Kingdom (taxonRank: Regnum) Fungi occurrence",
 )
 # Kingdom Specimens
 ANIMALIA_SPECIMEN = utils.vocabs.Term(
     labels=("ANIMALIA", ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/cd5cbdbb-07d9-4a5b-9b11-5ab9d6015be6"),
+    description="Kingdom Animalia specimen",
 )
 PLANTAE_SPECIMEN = utils.vocabs.Term(
-    labels=("PLANTAE", ),
+    labels=("PLANTAE", "PLANTAE HAECKEL", ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb"),
+    description="Kingdom (taxonRank: Regnum) Plantae specimen",
 )
 FUNGI_SPECIMEN = utils.vocabs.Term(
     labels=("FUNGI", ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a73139-f6bf-47b7-88d4-4b2865755545"),
+    description="Kingdom (taxonRank: Regnum) Fungi specimen",
 )
 
 # Vocabularies
@@ -67,6 +76,7 @@ KINGDOM_OCCURRENCE = utils.vocabs.FlexibleVocabulary(
     broader=None,  # No broader, top level concept
     default=None,  # No default, kingdom is required in the CSV
     terms=(ANIMALIA_OCCURRENCE, PLANTAE_OCCURRENCE, FUNGI_OCCURRENCE),
+    publish=False,
 )
 KINGDOM_SPECIMEN = utils.vocabs.FlexibleVocabulary(
     vocab_id="KINGDOM_SPECIMEN",
@@ -76,6 +86,7 @@ KINGDOM_SPECIMEN = utils.vocabs.FlexibleVocabulary(
     broader=None,  # No broader, top level concept
     default=None,  # No default, kingdom is required in the CSV
     terms=(ANIMALIA_SPECIMEN, PLANTAE_SPECIMEN, FUNGI_SPECIMEN),
+    publish=False,
 )
 
 # Register

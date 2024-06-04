@@ -11,7 +11,7 @@ from abis_mapping.utils import rdf
 from abis_mapping.utils import strings
 
 # Typing
-from typing import Optional, Iterable, final
+from typing import Optional, Iterable, final, Final
 
 
 # Constants
@@ -26,22 +26,18 @@ class Vocabulary(abc.ABC):
     def __init__(
         self,
         vocab_id: str,
+        publish: bool = True,
     ):
         """Vocabulary constructor.
 
         Args:
             vocab_id (str): ID to assign vocabulary.
+            publish (bool, optional): Whether to publish vocabulary
+                in documentation. Defaults to True.
         """
-        self._vocab_id = vocab_id
-
-    @property
-    def vocab_id(self) -> str:
-        """Getter for the Vocabulary's ID.
-
-        Returns:
-            str: The Vocabulary's ID.
-        """
-        return self._vocab_id
+        # Assign object internal variables
+        self.vocab_id: Final[str] = vocab_id
+        self.publish: Final[bool] = publish
 
     @final
     @classmethod
@@ -72,16 +68,19 @@ class Term:
         self,
         labels: Iterable[str],
         iri: rdflib.URIRef,
+        description: str,
     ) -> None:
         """Instantiates a Vocabulary Term.
 
         Args:
             labels (Iterable[str]): Labels for the vocabulary term to match on.
             iri: rdflib.URIRef: IRI for the vicabulary term.
+            description (str): Description for the term.
         """
         # Set Instance Attributes
         self.labels = tuple(strings.sanitise(label) for label in labels)  # Sanitise
         self.iri = iri
+        self.description: Final[str] = description
 
     def to_mapping(self) -> dict[str, rdflib.URIRef]:
         """Converts the term to a mapping of all labels to IRI.
@@ -112,15 +111,18 @@ class RestrictedVocabulary(Vocabulary):
         self,
         vocab_id: str,
         terms: Iterable[Term],
+        publish: bool = True,
     ) -> None:
         """Initialises a Restricted Vocabulary.
 
         Args:
             vocab_id (str): ID to assign vocabulary.
             terms (Iterable[Term]): Terms for the vocabulary.
+            publish (bool, optional): Whether to publish vocabulary
+                in documentation. Defaults to True.
         """
         # Call parent constructor
-        super().__init__(vocab_id)
+        super().__init__(vocab_id, publish)
 
         # Set Instance Variables
         self._terms = tuple(terms)
@@ -172,6 +174,7 @@ class FlexibleVocabulary(Vocabulary):
         broader: Optional[rdflib.URIRef],
         default: Optional[Term],
         terms: Iterable[Term],
+        publish: bool = True,
     ) -> None:
         """Initialises a Flexible Vocabulary.
 
@@ -188,9 +191,11 @@ class FlexibleVocabulary(Vocabulary):
             default (Optional[Term]): Optional default term to fall back on if
                 a value is not supplied.
             terms (Iterable[Term]): Terms for the vocabulary.
+            publish (bool, optional): Whether to publish vocabulary
+                within documentation. Defaults to True.
         """
         # Call parent constructor
-        super().__init__(vocab_id)
+        super().__init__(vocab_id, publish)
 
         # Set Instance Variables
         self.definition = definition

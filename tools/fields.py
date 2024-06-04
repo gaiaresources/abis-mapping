@@ -214,7 +214,7 @@ def mutual_inclusivity(field_name: str, checklist: frictionless.Checklist) -> se
 if __name__ == "__main__":
     """Main entry point."""
     # Create argument parser
-    parser = argparse.ArgumentParser(description="A tool to generate a csv table from a mapper.")
+    parser = argparse.ArgumentParser(description="A tool to generate a csv table of schema fields from a mapper.")
     parser.add_argument("template_id", type=str, help="ID of the template.")
     parser.add_argument(
         "-o", "--output",
@@ -227,8 +227,12 @@ if __name__ == "__main__":
     # Parse supplied command line arguments
     args = parser.parse_args()
 
-    # Perform conversion
-    compile_fields(args.template_id, args.output_dest)
+    try:
+        # Perform conversion
+        compile_fields(args.template_id, args.output_dest)
+    finally:
+        # Close output file
+        args.output_dest.close()
 
-    # Close output file
-    args.output_dest.close()
+
+

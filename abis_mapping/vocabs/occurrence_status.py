@@ -12,10 +12,12 @@ from abis_mapping import utils
 PRESENT = utils.vocabs.Term(
     labels=("PRESENT", ),
     iri=utils.rdf.uri("occurrenceStatus/present", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description="The occurrence was present at the location and time of the observation."
 )
 ABSENT = utils.vocabs.Term(
     labels=("ABSENT", ),
     iri=utils.rdf.uri("occurrenceStatus/absent", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description="The occurrence was not present at the location and time of the observation."
 )
 
 # Vocabulary

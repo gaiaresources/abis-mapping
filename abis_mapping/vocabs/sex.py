@@ -10,20 +10,34 @@ from abis_mapping import utils
 
 # Terms
 FEMALE = utils.vocabs.Term(
-    labels=("FEMALE", ),
+    labels=("FEMALE", "F", "♀", ),
     iri=utils.rdf.uri("sex/female", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description=(
+        "Female (♀) is the sex of an organism, or a part of an organism, which "
+        "produces mobile ova (egg cells)."
+    ),
 )
 HERMAPHRODITE = utils.vocabs.Term(
-    labels=("HERMAPHRODITE", ),
+    labels=("HERMAPHRODITE", "ZWITTER", ),
     iri=utils.rdf.uri("sex/hermaphrodite", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description=(
+        "One organism having both male and female sexual characteristics and "
+        "organs; at birth an unambiguous assignment of male or female cannot be "
+        "made"
+    ),
 )
 MALE = utils.vocabs.Term(
-    labels=("MALE", ),
+    labels=("MALE", "M", "♂", ),
     iri=utils.rdf.uri("sex/male", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description=(
+        "Male (♂) refers to the sex of an organism, or part of an organism, which "
+        "produces small mobile gametes, called spermatozoa."
+    ),
 )
 UNDETERMINED = utils.vocabs.Term(
-    labels=("UNDETERMINED", ),
+    labels=("UNDETERMINED", "UNDET.", "UNKNOWN", ),
     iri=utils.rdf.uri("sex/undetermined", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description="If the sex of an organism can't be determined for some reason.",
 )
 
 # Vocabulary
