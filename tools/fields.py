@@ -54,12 +54,15 @@ def retrieve_mapper(template_id: str) -> type[base.mapper.ABISMapper]:
     return mapper
 
 
-def compile_fields(template_id: str, dest: IO) -> None:
+def compile_fields(template_id: str, dest: IO) -> str:
     """Compile fields table from the given template.
 
     Args:
         template_id (str): ID of the template.
         dest (IO): Destination file for result.
+
+    Returns:
+        str: Compiled fields table.
 
     Raises:
         ValueError: If the provided template id doesn't exist.
@@ -94,7 +97,11 @@ def compile_fields(template_id: str, dest: IO) -> None:
         csv_writer.writerow(field_table_row.model_dump(by_alias=True))
 
     # Write to destination
-    print(output.getvalue(), file=dest)
+    if dest is not None:
+        print(output.getvalue(), file=dest)
+
+    # Return
+    return output.getvalue()
 
 
 def mandatory_optional_text(required: bool, template_id: str, field_name: str) -> str:
