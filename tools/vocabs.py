@@ -10,7 +10,7 @@ import sys
 import pydantic
 
 # Local
-import tabler
+from tools import table
 from abis_mapping import types
 from abis_mapping import utils
 
@@ -26,7 +26,7 @@ class VocabTableRow(pydantic.BaseModel):
     alternate_label: str = pydantic.Field(serialization_alias="Alternate label")
 
 
-class VocabTabler(tabler.Tabler):
+class VocabTabler(table.Tabler):
     def generate_table(
         self,
         dest: IO | None = None
@@ -96,8 +96,8 @@ class VocabTabler(tabler.Tabler):
                 term=term,
             )
 
+    @staticmethod
     def generate_row(
-        self,
         field: types.schema.Field,
         term: utils.vocabs.Term,
     ) -> VocabTableRow:

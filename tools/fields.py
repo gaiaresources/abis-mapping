@@ -12,9 +12,9 @@ import pydantic
 import frictionless
 
 # Local
-import tabler
 from abis_mapping import types
 from abis_mapping import plugins
+from tools import table
 
 # Typing
 from typing import IO
@@ -34,7 +34,7 @@ class FieldTableRow(pydantic.BaseModel):
     examples: str = pydantic.Field(serialization_alias="Examples")
 
 
-class FieldTabler(tabler.Tabler):
+class FieldTabler(table.Tabler):
     def generate_table(
         self,
         dest: IO | None = None,
@@ -117,8 +117,8 @@ class FieldTabler(tabler.Tabler):
 
         return "Optional"
 
+    @staticmethod
     def generate_row(
-        self,
         field: types.schema.Field
     ) -> FieldTableRow:
         """Takes a field object and generates a corresponding csv row object.
@@ -169,8 +169,8 @@ class FieldTabler(tabler.Tabler):
             # Else
             return None
 
+    @staticmethod
     def mutual_inclusivity(
-        self,
         field_name: str,
         checklist: frictionless.Checklist
     ) -> set[str]:
