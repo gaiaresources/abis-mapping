@@ -18,6 +18,7 @@ def test_vocabs_term() -> None:
     term = abis_mapping.utils.vocabs.Term(
         labels=("A", "B", "C"),
         iri=rdflib.URIRef("D"),
+        description="E",
     )
 
     # Test Mapping
@@ -43,8 +44,16 @@ def test_vocabs_restricted_vocab() -> None:
     vocab = abis_mapping.utils.vocabs.RestrictedVocabulary(
         vocab_id="TEST_RESTRICT",
         terms=(
-            abis_mapping.utils.vocabs.Term(("A",), rdflib.URIRef("A")),
-            abis_mapping.utils.vocabs.Term(("B",), rdflib.URIRef("B")),
+            abis_mapping.utils.vocabs.Term(
+                labels=("A",),
+                iri=rdflib.URIRef("A"),
+                description="A",
+            ),
+            abis_mapping.utils.vocabs.Term(
+                labels=("B",),
+                iri=rdflib.URIRef("B"),
+                description="B",
+            ),
         ),
     )
 
@@ -70,8 +79,16 @@ def test_vocabs_flexible_vocab() -> None:
         broader=rdflib.URIRef("broader"),
         default=None,
         terms=(
-            abis_mapping.utils.vocabs.Term(("A",), rdflib.URIRef("A")),
-            abis_mapping.utils.vocabs.Term(("B",), rdflib.URIRef("B")),
+            abis_mapping.utils.vocabs.Term(
+                labels=("A",),
+                iri=rdflib.URIRef("A"),
+                description="A",
+            ),
+            abis_mapping.utils.vocabs.Term(
+                labels=("B",),
+                iri=rdflib.URIRef("B"),
+                description="B",
+            ),
         ),
     )
 

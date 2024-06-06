@@ -11,11 +11,71 @@ from abis_mapping.utils import rdf
 from abis_mapping.utils import strings
 
 # Typing
-from typing import Optional, Iterable, final
+from typing import Optional, Iterable, final, Final
 
 
 # Constants
 a = rdflib.RDF.type
+
+
+class Term:
+    def __init__(
+        self,
+        labels: Iterable[str],
+        iri: rdflib.URIRef,
+        description: str,
+    ) -> None:
+        """Instantiates a Vocabulary Term.
+
+        Args:
+            labels (Iterable[str]): Labels for the vocabulary term to match on.
+            iri: rdflib.URIRef: IRI for the vicabulary term.
+            description (str): Description for the term.
+        """
+        # Set Instance Attributes
+        self.labels: Final[tuple[str, ...]] = tuple(labels)
+        self.sanitized_labels: Final[tuple[str, ...]] = tuple(strings.sanitise(label) for label in labels)  # Sanitise
+        self.iri: Final[rdflib.URIRef] = iri
+        self.description: Final[str] = description
+
+    def to_mapping(self) -> dict[str, rdflib.URIRef]:
+        """Converts the term to a mapping of all labels to IRI.
+
+        Returns:
+            dict[str, rdflib.URIRef]: Mapping of labels to IRI.
+        """
+        # Generate and Return
+        return {key: self.iri for key in self.sanitized_labels}
+
+    def match(self, value: str) -> bool:
+        """Determines whether a specified value matches this term.
+
+        Args:
+            value (str): Value to check against this term.
+
+        Returns:
+            bool: Whether the value matches this term.
+        """
+        # Sanitise, Check and Return
+        return strings.sanitise(value) in self.sanitized_labels
+
+    @property
+    def preferred_label(self) -> str | None:
+        """Getter for the preferred label
+
+        Returns:
+            str | None: Preferred label if it exists else None.
+        """
+        return self.labels[0] if len(self.labels) > 0 else None
+
+    @property
+    def alternative_labels(self) -> Iterable[str]:
+        """Getter for alternative labels
+
+        Returns:
+            Iterable[str]: Alternative labels.
+        """
+        return (lbl for lbl in self.labels if lbl != self.preferred_label)
 
 
 class Vocabulary(abc.ABC):
@@ -26,22 +86,27 @@ class Vocabulary(abc.ABC):
     def __init__(
         self,
         vocab_id: str,
+        terms: Iterable[Term],
+        publish: bool = True,
     ):
         """Vocabulary constructor.
 
         Args:
             vocab_id (str): ID to assign vocabulary.
+            publish (bool, optional): Whether to publish vocabulary
+                in documentation. Defaults to True.
         """
-        self._vocab_id = vocab_id
+        # Assign object internal variables
+        self.vocab_id: Final[str] = vocab_id
+        self.publish: Final[bool] = publish
 
-    @property
-    def vocab_id(self) -> str:
-        """Getter for the Vocabulary's ID.
+        # Set Instance Variables
+        self.terms: Final[tuple[Term, ...]] = tuple(terms)
 
-        Returns:
-            str: The Vocabulary's ID.
-        """
-        return self._vocab_id
+        # Generate Dictionary Mapping from Terms
+        self._mapping: dict[str | None, rdflib.URIRef | None] = {}
+        for term in self.terms:
+            self._mapping.update(**term.to_mapping())
 
     @final
     @classmethod
@@ -62,78 +127,9 @@ class Vocabulary(abc.ABC):
 
         cls.id_registry[vocab.vocab_id] = vocab
 
-    @abc.abstractmethod
-    def terms(self) -> dict[str | None, rdflib.URIRef | None]:
-        """Getter for the vocabs terms"""
-
-
-class Term:
-    def __init__(
-        self,
-        labels: Iterable[str],
-        iri: rdflib.URIRef,
-    ) -> None:
-        """Instantiates a Vocabulary Term.
-
-        Args:
-            labels (Iterable[str]): Labels for the vocabulary term to match on.
-            iri: rdflib.URIRef: IRI for the vicabulary term.
-        """
-        # Set Instance Attributes
-        self.labels = tuple(strings.sanitise(label) for label in labels)  # Sanitise
-        self.iri = iri
-
-    def to_mapping(self) -> dict[str, rdflib.URIRef]:
-        """Converts the term to a mapping of all labels to IRI.
-
-        Returns:
-            dict[str, rdflib.URIRef]: Mapping of labels to IRI.
-        """
-        # Generate and Return
-        return {key: self.iri for key in self.labels}
-
-    def match(self, value: str) -> bool:
-        """Determines whether a specified value matches this term.
-
-        Args:
-            value (str): Value to check against this term.
-
-        Returns:
-            bool: Whether the value matches this term.
-        """
-        # Sanitise, Check and Return
-        return strings.sanitise(value) in self.labels
-
 
 class RestrictedVocabulary(Vocabulary):
     """Restricted Vocabulary"""
-
-    def __init__(
-        self,
-        vocab_id: str,
-        terms: Iterable[Term],
-    ) -> None:
-        """Initialises a Restricted Vocabulary.
-
-        Args:
-            vocab_id (str): ID to assign vocabulary.
-            terms (Iterable[Term]): Terms for the vocabulary.
-        """
-        # Call parent constructor
-        super().__init__(vocab_id)
-
-        # Set Instance Variables
-        self._terms = tuple(terms)
-
-        # Generate Dictionary Mapping from Terms
-        self._mapping: dict[str | None, rdflib.URIRef | None] = {}
-        for term in self._terms:
-            self._mapping.update(**term.to_mapping())
-
-    @property
-    def terms(self) -> dict[str | None, rdflib.URIRef | None]:
-        """Getter for the vocab's terms."""
-        return self._mapping
 
     def get(self, value: str) -> rdflib.URIRef:
         """Retrieves an IRI from the Vocabulary.
@@ -172,6 +168,7 @@ class FlexibleVocabulary(Vocabulary):
         broader: Optional[rdflib.URIRef],
         default: Optional[Term],
         terms: Iterable[Term],
+        publish: bool = True,
     ) -> None:
         """Initialises a Flexible Vocabulary.
 
@@ -188,9 +185,11 @@ class FlexibleVocabulary(Vocabulary):
             default (Optional[Term]): Optional default term to fall back on if
                 a value is not supplied.
             terms (Iterable[Term]): Terms for the vocabulary.
+            publish (bool, optional): Whether to publish vocabulary
+                within documentation. Defaults to True.
         """
         # Call parent constructor
-        super().__init__(vocab_id)
+        super().__init__(vocab_id, terms, publish)
 
         # Set Instance Variables
         self.definition = definition
@@ -198,21 +197,10 @@ class FlexibleVocabulary(Vocabulary):
         self.scheme = scheme
         self.broader = broader
         self.default = default
-        self._terms = tuple(terms)
 
-        # Generate Dictionary Mapping from Terms
-        self._mapping: dict[Optional[str], Optional[rdflib.URIRef]] = {}
-        for term in self._terms:
-            self._mapping.update(**term.to_mapping())
-
-        # Add Default if Applicable
+        # Add Default mapping if Applicable
         if self.default:
             self._mapping.update({None: self.default.iri})
-
-    @property
-    def terms(self) -> dict[str | None, rdflib.URIRef | None]:
-        """Getter for the vocabs terms"""
-        return self._mapping
 
     def get(
         self,

@@ -17,6 +17,7 @@ REPRODUCTIVE_CONDITION = utils.vocabs.FlexibleVocabulary(
     broader=utils.rdf.uri("bdr-cv/parameter/reproductiveCondition", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     default=None,  # No default, ommitted if not provided
     terms=(),  # No baseline vocabulary values
+    publish=False,
 )
 
 # Register

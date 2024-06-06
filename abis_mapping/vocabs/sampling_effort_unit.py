@@ -15,6 +15,7 @@ SAMPLING_EFFORT_UNIT = utils.vocabs.FlexibleVocabulary(
     broader=utils.rdf.uri("bdr-cv/concept/samplingEffortUnit", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     default=None,
     terms=(),
+    publish=False,
 )
 
 # Register

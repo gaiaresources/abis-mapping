@@ -12,10 +12,12 @@ from abis_mapping import utils
 HUMAN_OBSERVATION = utils.vocabs.Term(
     labels=("HUMAN OBSERVATION", ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157"),
+    description="An observation performed by a human.",
 )
 UNSPECIFIED = utils.vocabs.Term(
     labels=("UNSPECIFIED", ),
     iri=utils.rdf.uri("sampling-protocol/default", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description="No protocol provided.",
 )
 
 # Vocabulary

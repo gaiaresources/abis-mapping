@@ -7,11 +7,23 @@ representation conforming to the Australia Biodiversity Information Standard (AB
 * [GitHub](https://github.com/surroundaustralia/abis)
 * [Specification Document]()
 
-### Field Schema Documentation
+### Field Schema Table Generation
 To generate a csv of the underlying schema of a template `template_id`
 ```sh
 poetry shell
 python tools/fields.py <template_id> [-o] <output_file>
 ```
-where `output_file` (optional) corresponds to a location to store the resulting csv. Default output is standard out 
+where `output_file` (optional) corresponds to a location to store the resulting csv.
+Default output is standard out 
+if no `output_file` argument provided.
+
+### Controlled Vocabulary Table Generation
+To generate a csv of the underlying controlled vocabularies corresponding  to a template 
+`template_id`
+```sh
+poetry shell
+python tools/vocabs.py <template_id> [-o] <output_file>
+```
+where `output_file` (optional) corresponds to a location to store the resulting csv. 
+Default output is standard out
 if no `output_file` argument provided.

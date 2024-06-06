@@ -1,8 +1,8 @@
 """Provides unit tests for the fields module."""
 
 # Standard
-import sys
 import io
+import unittest.mock
 
 # Third-party
 import pytest
@@ -84,56 +84,39 @@ def test_generate_row(field: dict[str, Any], expected: dict[str, Any]) -> None:
     f = types.schema.Field.model_validate(field)
 
     # Invoke function
-    result = tools.fields.generate_row(f)
+    result = tools.fields.FieldTabler.generate_row(f)
 
     # Assert
     assert result.model_dump(by_alias=True) == expected
 
 
-def test_compile_fields_raises_invalid_template_id() -> None:
-    """Tests that compile_fields function raises on invalid template id."""
+def test_determine_checklist() -> None:
+    """Tests the determine_checklist method."""
+    # Create tabler
+    tabler = tools.fields.FieldTabler("incidental_occurrence_data-v2.0.0.csv")
 
-    with pytest.raises(ValueError):
-        tools.fields.compile_fields(template_id="FAKE_ID", dest=sys.stdout)
+    # Invoke function
+    checklist = tabler.determine_checklist()
+
+    # Assert
+    assert checklist is not None
+    assert len(checklist.checks) == 6
 
 
-def test_compile_fields(mocker: pytest_mock.MockerFixture) -> None:
-    """Tests compile_fields function.
+def test_generate_table(mocked_mapper: unittest.mock.MagicMock) -> None:
+    """Tests generate_table method.
 
     Args:
-        mocker (pytest_mock.MockerFixture): Mocker fixture.
+        mocked_mapper (pytest_mock.mocker.mock.MagicMock): Mocked mapper fixture.
     """
-    # Patch get_mapper
-    mocked_mapper = mocker.patch("abis_mapping.base.mapper.get_mapper")
-
-    # Patch schema
-    mocked_mapper.return_value.schema.return_value = {
-        "fields": [
-            {
-                "name": "someName",
-                "title": "Some Title",
-                "description": "Some description",
-                "example": "SOME EXAMPLE",
-                "type": "string",
-                "format": "default",
-                "constraints": {
-                    "required": True,
-                    "enum": [
-                        "SOME EXAMPLE",
-                        "Option 2",
-                        "plan C",
-                    ]
-                }
-            }
-        ]
-    }
-
     # Create an in memory io
     dest = io.StringIO()
 
+    # Create a tabler
+    tabler = tools.fields.FieldTabler("some_id")
+
     # Invoke
-    tools.fields.compile_fields(
-        template_id="some_id",
+    tabler.generate_table(
         dest=dest,
     )
 
@@ -144,18 +127,8 @@ def test_compile_fields(mocker: pytest_mock.MockerFixture) -> None:
     )
 
 
-def test_determine_checklist() -> None:
-    """Tests the determine_checklist function."""
-    # Invoke function
-    checklist = tools.fields.determine_checklist("incidental_occurrence_data-v2.0.0.csv")
-
-    # Assert
-    assert checklist is not None
-    assert len(checklist.checks) == 6
-
-
 def test_mutual_inclusivity() -> None:
-    """Tests the mutual_inclusivity function."""
+    """Tests the mutual_inclusivity method."""
     # Create checklist
     checklist = frictionless.Checklist(
         checks=[
@@ -169,7 +142,7 @@ def test_mutual_inclusivity() -> None:
     )
 
     # Invoke function
-    fields = tools.fields.mutual_inclusivity(field_name="fieldB", checklist=checklist)
+    fields = tools.fields.FieldTabler.mutual_inclusivity(field_name="fieldB", checklist=checklist)
 
     # Assert
     assert fields == {"fieldA", "fieldC"}

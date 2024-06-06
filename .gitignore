@@ -77,3 +77,6 @@ Dockerfile
 
 # PyCharm
 .idea/
+
+# Generated documents for testing
+/result.csv
