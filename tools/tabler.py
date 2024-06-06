@@ -37,7 +37,6 @@ class Tabler(abc.ABC):
             str: Table as csv.
         """
 
-
     def _retrieve_mapper(
         self,
     ) -> type[base.mapper.ABISMapper]:

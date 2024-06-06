@@ -149,7 +149,7 @@ STETIT = utils.vocabs.Term(
     ),
 )
 SUBSPECIES = utils.vocabs.Term(
-    labels=("SUB SPECIES", "SSP.", "SUBSP.", ),
+    labels=("SUBSPECIES", "SSP.", "SUBSP.", ),
     iri=utils.rdf.uri("identificationQualifier/subspecies", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
     description=(
         "The only infraspecific rank regulated by the ICZN (1999). As ON qualifier, "

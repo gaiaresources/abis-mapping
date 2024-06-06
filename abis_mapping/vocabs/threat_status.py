@@ -825,6 +825,7 @@ THREAT_STATUS = utils.vocabs.FlexibleVocabulary(
         WA_T,
         WA_VU,
     ),
+    publish=False,
 )
 
 # Register
