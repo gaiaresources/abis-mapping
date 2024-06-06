@@ -15,7 +15,7 @@ INTRODUCED = utils.vocabs.Term(
     description="Establishment of a taxon by numan agency into an area that is not part of its natural range.",
 )
 INTRODUCED_ASSISTED_COLONISATION = utils.vocabs.Term(
-    labels=("INTRODUCED ASSISTED COLONISATION", ),
+    labels=("INTRODUCED ASSISTED COLONISATION", "ASSISTED COLONISATION", ),
     iri=utils.rdf.uri("establishmentMeans/introducedAssistedColonisation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
     description=(
         "Establishment of a taxon specifically with the intention of creating a self-sustaining wild "
@@ -23,12 +23,12 @@ INTRODUCED_ASSISTED_COLONISATION = utils.vocabs.Term(
     ),
 )
 NATIVE = utils.vocabs.Term(
-    labels=("NATIVE", ),
+    labels=("NATIVE", "NATIVE (INDIGENOUS)", ),
     iri=utils.rdf.uri("establishmentMeans/native", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="A taxon occurring within its natural range.",
 )
 NATIVE_REINTRODUCED = utils.vocabs.Term(
-    labels=("NATIVE REINTRODUCED", ),
+    labels=("NATIVE REINTRODUCED", "NATIVE: REINTRODUCED", ),
     iri=utils.rdf.uri("establishmentMeans/nativeReintroduced", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "A taxon re-established by direct introduction by humans into an area that is not part of "
@@ -36,12 +36,12 @@ NATIVE_REINTRODUCED = utils.vocabs.Term(
     ),
 )
 UNCERTAIN = utils.vocabs.Term(
-    labels=("UNCERTAIN", ),
+    labels=("UNCERTAIN", "UNKNOWN", "CRYPTOGENIC", ),
     iri=utils.rdf.uri("establishmentMeans/uncertain", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="The origin of the occurrence of the taxon in an area is obscure.",
 )
 VAGRANT = utils.vocabs.Term(
-    labels=("VAGRANT", ),
+    labels=("VAGRANT", "CASUAL", ),
     iri=utils.rdf.uri("establishmentMeans/vagrant", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="The temporary occurrence of a taxon far outside its natural or migratory range.",
 )

@@ -45,6 +45,7 @@ class VocabTabler(tabler.Tabler):
         fields: list[types.schema.Field] = [
             types.schema.Field.model_validate(f) for f in dict_fields if f.get("vocabularies") is not None
         ]
+        fields = sorted(fields, key=lambda f: f.name)
 
         # Create a memory io and dictionary to csv writer
         output = io.StringIO()
@@ -89,7 +90,7 @@ class VocabTabler(tabler.Tabler):
             VocabTableRow: Vocabulary table rows.
         """
         # Itermate through terms and yield each row.
-        for term in vocab.terms:
+        for term in sorted(vocab.terms, key=lambda x: x.preferred_label):
             yield self.generate_row(
                 field=field,
                 term=term,
