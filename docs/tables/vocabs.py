@@ -10,7 +10,7 @@ import sys
 import pydantic
 
 # Local
-from tools import table
+from docs import tables
 from abis_mapping import types
 from abis_mapping import utils
 
@@ -26,18 +26,20 @@ class VocabTableRow(pydantic.BaseModel):
     alternate_label: str = pydantic.Field(serialization_alias="Alternate label")
 
 
-class VocabTabler(table.Tabler):
+class VocabTabler(tables.base.BaseTabler):
     def generate_table(
         self,
-        dest: IO | None = None
+        dest: IO | None = None,
+        as_markdown: bool = False,
     ) -> str:
         """Generates vocabulary table.
 
         Args:
             dest (IO, optional): Destination file. Defaults to None.
+            as_markdown (bool, optional): True to generate a markdown table. Defaults to False, as csv.
 
         Returns:
-            str: Table as csv.
+            str: Table either in markdown or csv.
         """
         # Get all fields that have associated vocabularies.
         dict_fields = self.mapper.schema()["fields"]
@@ -50,10 +52,13 @@ class VocabTabler(table.Tabler):
         # Create a memory io and dictionary to csv writer
         output = io.StringIO()
         header = [hdr.serialization_alias or hdr.title for hdr in VocabTableRow.model_fields.values()]
-        csv_writer = csv.DictWriter(output, fieldnames=header)
+        if as_markdown:
+            writer = tables.base.MarkdownDictWriter(output, fieldnames=header)
+        else:
+            writer = csv.DictWriter(output, fieldnames=header)
 
         # Write header
-        csv_writer.writeheader()
+        writer.writeheader()
 
         # Iterate through fields
         for field in fields:
@@ -66,7 +71,7 @@ class VocabTabler(table.Tabler):
                 # Create a row per vocab term
                 for vocab_table_row in self.generate_vocab_rows(field, vocab):
                     # Write row to csv
-                    csv_writer.writerow(vocab_table_row.model_dump(by_alias=True))
+                    writer.writerow(vocab_table_row.model_dump(by_alias=True))
 
         # Write to destination
         if dest is not None:
