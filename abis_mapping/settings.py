@@ -4,4 +4,4 @@
 DEFAULT_WKT_ROUNDING_PRECISION = 8
 
 # Default CRS to transform all input geometry to.
-DEFAULT_TARGET_CRS = 'WGS84'
+DEFAULT_TARGET_CRS = 'GDA2020'
