@@ -109,3 +109,35 @@ Where:<br/>
 &emsp; mm = two digits of minute (00 through 59) <br/>
 &emsp; ss = two digits of second (00 through 59) <br/>
 
+
+## APPENDIX-III: UTF-8
+UTF-8 encoding is considered a best practice for handling character encoding, especially in
+the context of web development, data exchange, and modern software systems. UTF-8
+(Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
+encoding all possible characters (code points) in Unicode.<br/>
+Here are some reasons why UTF-8 is recommended:**Universal Character Support:** UTF-8
+can represent almost all characters from all writing systems in use today. This includes
+characters from various languages, mathematical symbols, and other special characters.
+
+- **Backward Compatibility:** UTF-8 is backward compatible with ASCII (American
+Standard Code for Information Interchange). The first 128 characters in UTF-8 are
+identical to ASCII, making it easy to work with systems that use ASCII.
+- **Efficiency:** UTF-8 is space-efficient for Latin-script characters (common in English
+and many other languages). It uses one byte for ASCII characters and up to four
+bytes for other characters. This variable-length encoding minimises storage and
+bandwidth requirements.
+- **Web Standards:** UTF-8 is the dominant character encoding for web content. It is
+widely supported by browsers, servers, and web-related technologies.
+- **Globalisation:** As software applications become more globalised, supporting a wide
+range of languages and scripts becomes crucial. UTF-8 is well-suited for
+internationalisation and multilingual support.
+- **Compatibility with Modern Systems:** UTF-8 is the default encoding for many
+programming languages, databases, and operating systems. Choosing UTF-8 helps
+ensure compatibility across different platforms and technologies.
+
+When working with text data, it's generally a good idea to use UTF-8 encoding to avoid
+issues related to character representation and ensure that your software can handle a
+diverse set of characters and languages.
+
+For assistance, please contact: <bdr-support@gaiaresources.com.au>
+
