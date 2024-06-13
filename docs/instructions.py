@@ -89,7 +89,7 @@ def build_instructions(mapper_id: str) -> str:
     ctx = {
         "tables": {
             "fields": tables.fields.FieldTabler(mapper_id).generate_table(as_markdown=True),
-            "vocabs": tables.vocabs.VocabTabler(mapper_id).generate_table(as_markdown=True),
+            "vocabularies": tables.vocabs.VocabTabler(mapper_id).generate_table(as_markdown=True),
             "threat_status_conservation_jurisdiction": "TODO: CREATE TABLE",
         },
         "values": {
