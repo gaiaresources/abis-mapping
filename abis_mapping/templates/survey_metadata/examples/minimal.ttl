@@ -166,5 +166,4 @@
     rdfs:comment "supplied as" .
 
 _:N78044c6ac26849cd9b7f14d8331bb8aa a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))"^^geo:wktLiteral .
-
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))"^^geo:wktLiteral .

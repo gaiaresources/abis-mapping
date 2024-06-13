@@ -60,8 +60,8 @@
     rdfs:comment "supplied as" .
 
 _:N80cb167ff39346b7b93c2f6d0ae16523 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (146.363 -34.036, 146.363 -34.037)"^^geo:wktLiteral .
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (146.363 -34.036, 146.363 -34.037)"^^geo:wktLiteral .
 
 _:Nc7c5f771a61645eaaa59a9a285e09aa4 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (146.363 -34.036)"^^geo:wktLiteral .
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (146.363 -34.036)"^^geo:wktLiteral .
 

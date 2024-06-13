@@ -6,8 +6,10 @@ import pytest
 import rdflib
 
 # Local
+from abis_mapping import settings
 from abis_mapping import types
 from abis_mapping import utils
+from abis_mapping import vocabs
 
 # Typing
 from typing import Type
@@ -130,7 +132,8 @@ def test_geometry_transformer_datum_uri() -> None:
     )
 
     # Assert default datum
-    assert geometry.transformer_datum_uri == rdflib.URIRef("http://www.opengis.net/def/crs/EPSG/0/4326")
+    assert geometry.transformer_datum_uri == vocabs.geodetic_datum.GEODETIC_DATUM.get(settings.DEFAULT_TARGET_CRS)
+
 
 
 @pytest.mark.parametrize(
@@ -192,14 +195,14 @@ def test_geometry_to_rdf_literal() -> None:
     # Assert
     assert geometry.to_rdf_literal() == expected
 
-
 @pytest.mark.parametrize(
     "raw,datum,expected_str",
     [
         (
             "POINT (571666.4475041276 5539109.815175673)",
             "EPSG:26917",
-            "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-80 50)",
+            f"<{vocabs.geodetic_datum.GEODETIC_DATUM.get(settings.DEFAULT_TARGET_CRS)}> POINT (-80 50)",
+
         ),
     ]
 )
