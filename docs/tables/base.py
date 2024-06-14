@@ -28,12 +28,14 @@ class BaseTabler(abc.ABC):
     @abc.abstractmethod
     def generate_table(
         self,
-        dest: IO | None = None
+        dest: IO | None = None,
+        as_markdown: bool = False,
     ) -> str:
         """Called by tables to generate a table.
 
         Args:
             dest (IO | None): Optional destination file to write the table.
+            as_markdown (bool): If True, the table will be converted to Markdown.
 
         Returns:
             str: Table as csv.
