@@ -7,6 +7,14 @@ representation conforming to the Australia Biodiversity Information Standard (AB
 * [GitHub](https://github.com/surroundaustralia/abis)
 * [Specification Document]()
 
+### Markdown Instruction Generation
+To generate incidental occurrence data instruction document, the only template currently
+supported, then perform the following
+```sh
+poetry shell
+python docs/instructions.py incidental_occurrence_data-v2.0.0.csv [-o] <output_file>
+```
+
 ### Field Schema Table Generation
 To generate a csv of the underlying schema of a template `template_id`
 ```sh
