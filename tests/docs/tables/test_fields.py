@@ -140,9 +140,9 @@ def test_generate_table_markdown(mocked_mapper: unittest.mock.MagicMock) -> None
 
     # Assert
     assert actual == (
-        '|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\r\n'
-        '|---|---|---|---|---|\r\n'
-        '|someName|Some description|Mandatory|String|SOME EXAMPLE|\r\n'
+        '|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n'
+        '|---|---|---|---|---|\n'
+        '|someName|Some description|Mandatory|String|SOME EXAMPLE|\n'
     )
 
 

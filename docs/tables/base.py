@@ -62,6 +62,7 @@ class MarkdownDialect(csv.excel):
     """Custom dialect for markdown tables."""
     delimiter = '|'
     escapechar = '\\'
+    lineterminator = '\n'
     quoting = csv.QUOTE_NONE
 
 
@@ -131,11 +132,16 @@ class MarkdownDictWriter(csv.DictWriter):
         rowdict[self.first_field] = None
         rowdict[self.last_field] = None
 
+        # Clean cells
+        for fieldname in self.fieldnames:
+            if isinstance(rowdict[fieldname], str):
+                rowdict[fieldname] = self._clean_cell(rowdict[fieldname])
+
         # Call parent writerow and return
         return super().writerow(rowdict)
 
     def _clean_cell(self, contents: str) -> str:
-        """Cleans cell content, quoting delimiter characters.
+        """Cleans cell content
 
         Args:
             contents (str): Content to clean.
@@ -144,10 +150,7 @@ class MarkdownDictWriter(csv.DictWriter):
             str: Cleaned content.
         """
         # Perform replacement
-        return contents.replace(
-            self.dialect.delimiter,
-            f"{self.dialect.quotechar}{self.dialect.delimiter}{self.dialect.quotechar}",
-        )
+        return contents.replace('\n', "<br>")
 
     def writerows(self, rowdicts: list[dict[str, Any]]) -> None:
         """Writes rows of the markdown table.

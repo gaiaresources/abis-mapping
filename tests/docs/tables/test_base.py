@@ -32,8 +32,8 @@ class TestMarkdownDictWriter:
 
         # Assert
         assert output.getvalue() == (
-            "|Some|Header|Fields|\r\n"
-            "|---|---|---|\r\n"
+            "|Some|Header|Fields|\n"
+            "|---|---|---|\n"
         )
 
     def test_writerow(self) -> None:
@@ -52,5 +52,5 @@ class TestMarkdownDictWriter:
 
         # Assert
         assert output.getvalue() == (
-            "|Value 1|2.0|True|\r\n"
+            "|Value 1|2.0|True|\n"
         )

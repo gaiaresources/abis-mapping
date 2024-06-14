@@ -122,7 +122,7 @@
     {
       "name": "samplingProtocol",
       "title": "Sampling Protocol",
-      "description": "The sampling protocol is the method used to sample the locality to determine the presence (or absence) of the taxon referred to in this record at the indicated time. This may be a collecting method or a method to observe an organism without collection.Recommended best practice is to describe a species occurrence with no more than one sampling protocol. In the case of a summary, in which a specific protocol can not be attributed to specific species occurrences, the recommended best practice is to repeat the property for each IRI that denotes a different sampling protocol that applies to the occurrence.",
+      "description": "The sampling protocol is the method used to sample the locality to determine the presence (or absence) of the taxon referred to in this record at the indicated time. This may be a collecting method or a method to observe an organism without collection.\nRecommended best practice is to describe a species occurrence with no more than one sampling protocol. In the case of a summary, in which a specific protocol can not be attributed to specific species occurrences, the recommended best practice is to repeat the property for each IRI that denotes a different sampling protocol that applies to the occurrence.",
       "example": "human observation",
       "type": "string",
       "format": "default",
@@ -186,7 +186,7 @@
     {
       "name": "habitat",
       "title": "Habitat",
-      "description": "A category or description of the habitat in whichthe event occurred.",
+      "description": "A category or description of the habitat in which the event occurred.",
       "example": "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam.",
       "type": "string",
       "format": "default",
@@ -214,7 +214,7 @@
     {
       "name": "organismRemarks",
       "title": "Organism Remarks",
-      "description": "Comments or notes about the Organisminstance.",
+      "description": "Comments or notes about the Organism instance.",
       "example": "Dried out leaf tips.",
       "type": "string",
       "format": "default",
@@ -258,7 +258,7 @@
     {
       "name": "lifeStage",
       "title": "Life Stage",
-      "description": "The age class or life stage of the Organism(s) atthe time the Occurrence was recorded.",
+      "description": "The age class or life stage of the Organism(s) at the time the Occurrence was recorded.",
       "example": "adult",
       "type": "string",
       "format": "default",
@@ -474,7 +474,7 @@
     {
       "name": "scientificName",
       "title": "Scientific Name",
-      "description": "The full scientific name, with authorship and date information if known. When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the identificationQualifier column.NOTE: Phrase names such as Rhagodia sp. Hamersley (M.Trudgen 17794) are permitted in the scientificName field where those are in use.",
+      "description": "The full scientific name, with authorship and date information if known. When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the identificationQualifier column.\nNOTE: Phrase names such as Rhagodia sp. Hamersley (M.Trudgen 17794) are permitted in the scientificName field where those are in use.",
       "example": "Caladenia excelsa",
       "type": "string",
       "format": "default",
