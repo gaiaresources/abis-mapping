@@ -14,13 +14,10 @@ import frictionless
 # Local
 from abis_mapping import types
 from abis_mapping import plugins
-from tools import table
+from docs import tables
 
 # Typing
 from typing import IO
-
-
-HEADERS = ["Field Name", "Description", "Mandatory / Optional", "Datatype Format", "Examples"]
 
 
 class FieldTableRow(pydantic.BaseModel):
@@ -34,15 +31,17 @@ class FieldTableRow(pydantic.BaseModel):
     examples: str = pydantic.Field(serialization_alias="Examples")
 
 
-class FieldTabler(table.Tabler):
+class FieldTabler(tables.base.BaseTabler):
     def generate_table(
         self,
         dest: IO | None = None,
+        as_markdown: bool = False,
     ) -> str:
         """Compile fields table from the given template.
 
         Args:
             dest (IO): Destination file for result.
+            as_markdown (bool, optional): Whether to output the table as markdown.
 
         Returns:
             str: Compiled fields table.
@@ -54,12 +53,19 @@ class FieldTabler(table.Tabler):
         dict_fields = self.mapper.schema()["fields"]
         fields: list[types.schema.Field] = [types.schema.Field.model_validate(f) for f in dict_fields]
 
+        # Alphabetize fields
+        fields.sort(key=lambda x: x.name)
+
         # Create a memory io and dictionary to csv writer
         output = io.StringIO()
-        csv_writer = csv.DictWriter(output, fieldnames=HEADERS)
+        header = [hdr.serialization_alias or hdr.title for hdr in FieldTableRow.model_fields.values()]
+        if as_markdown:
+            writer = tables.base.MarkdownDictWriter(output, fieldnames=header)
+        else:
+            writer = csv.DictWriter(output, fieldnames=header)
 
         # Write header
-        csv_writer.writeheader()
+        writer.writeheader()
 
         # Iterate through fields and add to csv
         for field in fields:
@@ -73,7 +79,7 @@ class FieldTabler(table.Tabler):
             )
 
             # Write row to csv
-            csv_writer.writerow(field_table_row.model_dump(by_alias=True))
+            writer.writerow(field_table_row.model_dump(by_alias=True))
 
         # Write to destination
         if dest is not None:

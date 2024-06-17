@@ -80,3 +80,4 @@ Dockerfile
 
 # Generated documents for testing
 /result.csv
+/result.md

@@ -343,6 +343,21 @@ class ABISMapper(abc.ABC):
         cls.registry[template_id] = mapper
 
 
+    @final
+    @property
+    def root_dir(self) -> pathlib.Path:
+        """Returns the root directory for this Template.
+
+        Returns:
+            str: Path of the root directory for this Template
+        """
+        # Get file where caller is defined
+        file_path = inspect.getfile(self.__class__)
+
+        # Return the path
+        return pathlib.Path(file_path).parent
+
+
 def get_mapper(template_id: str) -> Optional[type[ABISMapper]]:
     """Retrieves ABIS Mapper class for the specified template ID.
 

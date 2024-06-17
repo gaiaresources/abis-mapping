@@ -186,7 +186,7 @@
     {
       "name": "habitat",
       "title": "Habitat",
-      "description": "A category or description of the habitat in which\nthe event occurred.",
+      "description": "A category or description of the habitat in which the event occurred.",
       "example": "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam.",
       "type": "string",
       "format": "default",
@@ -214,7 +214,7 @@
     {
       "name": "organismRemarks",
       "title": "Organism Remarks",
-      "description": "Comments or notes about the Organism\ninstance.",
+      "description": "Comments or notes about the Organism instance.",
       "example": "Dried out leaf tips.",
       "type": "string",
       "format": "default",
@@ -258,7 +258,7 @@
     {
       "name": "lifeStage",
       "title": "Life Stage",
-      "description": "The age class or life stage of the Organism(s) at\nthe time the Occurrence was recorded.",
+      "description": "The age class or life stage of the Organism(s) at the time the Occurrence was recorded.",
       "example": "adult",
       "type": "string",
       "format": "default",

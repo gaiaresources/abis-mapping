@@ -6,11 +6,10 @@ import unittest.mock
 
 # Third-party
 import pytest
-import pytest_mock
 import frictionless
 
 # Local
-import tools.fields
+from docs import tables
 from abis_mapping import types
 from abis_mapping import plugins
 
@@ -84,7 +83,7 @@ def test_generate_row(field: dict[str, Any], expected: dict[str, Any]) -> None:
     f = types.schema.Field.model_validate(field)
 
     # Invoke function
-    result = tools.fields.FieldTabler.generate_row(f)
+    result = tables.fields.FieldTabler.generate_row(f)
 
     # Assert
     assert result.model_dump(by_alias=True) == expected
@@ -93,7 +92,7 @@ def test_generate_row(field: dict[str, Any], expected: dict[str, Any]) -> None:
 def test_determine_checklist() -> None:
     """Tests the determine_checklist method."""
     # Create tabler
-    tabler = tools.fields.FieldTabler("incidental_occurrence_data-v2.0.0.csv")
+    tabler = tables.fields.FieldTabler("incidental_occurrence_data-v2.0.0.csv")
 
     # Invoke function
     checklist = tabler.determine_checklist()
@@ -113,7 +112,7 @@ def test_generate_table(mocked_mapper: unittest.mock.MagicMock) -> None:
     dest = io.StringIO()
 
     # Create a tabler
-    tabler = tools.fields.FieldTabler("some_id")
+    tabler = tables.fields.FieldTabler("some_id")
 
     # Invoke
     tabler.generate_table(
@@ -124,6 +123,26 @@ def test_generate_table(mocked_mapper: unittest.mock.MagicMock) -> None:
     assert dest.getvalue() == (
         'Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n'
         'someName,Some description,Mandatory,String,SOME EXAMPLE\r\n\n'
+    )
+
+
+def test_generate_table_markdown(mocked_mapper: unittest.mock.MagicMock) -> None:
+    """Tests generate_table method with markdown format.
+
+    Args:
+        mocked_mapper (unittest.mock.MagicMock): Mocked mapper fixture.
+    """
+    # Create a tabler
+    tabler = tables.fields.FieldTabler("some_id")
+
+    # Invoke
+    actual = tabler.generate_table(as_markdown=True)
+
+    # Assert
+    assert actual == (
+        '|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n'
+        '|---|---|---|---|---|\n'
+        '|someName|Some description|Mandatory|String|SOME EXAMPLE|\n'
     )
 
 
@@ -142,7 +161,7 @@ def test_mutual_inclusivity() -> None:
     )
 
     # Invoke function
-    fields = tools.fields.FieldTabler.mutual_inclusivity(field_name="fieldB", checklist=checklist)
+    fields = tables.fields.FieldTabler.mutual_inclusivity(field_name="fieldB", checklist=checklist)
 
     # Assert
     assert fields == {"fieldA", "fieldC"}
