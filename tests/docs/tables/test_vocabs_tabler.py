@@ -59,4 +59,3 @@ def test_generate_table_markdown(
         "|---|---|---|---|\n"
         "|someName|SOME LABEL|Some description.|ANOTHER LABEL|\n"
     )
-

@@ -52,17 +52,19 @@ class MapperLoader(jinja2.BaseLoader):
             raise ValueError(f"Template '{self.mapper_id}' not found.")
 
         # Create path
-        path = mapper().root_dir / "templates" / template
-
-        # Get current mtime
-        mtime = path.stat().st_mtime
+        path = mapper().root_dir() / "templates" / template
 
         # Check file exists at path
         if not path.is_file():
             raise jinja2.TemplateNotFound(str(path))
 
+        # Get current mtime
+        mtime = path.stat().st_mtime
+
+        # Read contents
         source = path.read_text()
 
+        # Return
         return source, str(path), lambda: mtime == path.stat().st_mtime
 
 
@@ -90,7 +92,7 @@ def build_instructions(mapper_id: str) -> str:
         "tables": {
             "fields": tables.fields.FieldTabler(mapper_id).generate_table(as_markdown=True),
             "vocabularies": tables.vocabs.VocabTabler(mapper_id).generate_table(as_markdown=True),
-            "threat_status_conservation_jurisdiction": "TODO: CREATE TABLE",
+            "threat_status": tables.threat_status.ThreatStatusTabler(mapper_id).generate_table(as_markdown=True),
         },
         "values": {
             "geodetic_datum_count": len(vocabs.geodetic_datum.GEODETIC_DATUM.terms),

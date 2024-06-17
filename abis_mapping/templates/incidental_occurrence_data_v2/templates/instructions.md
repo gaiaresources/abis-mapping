@@ -89,7 +89,7 @@ conservationJurisdiction in the template. State and Territory conservationJurisd
 in words are also valid. For some threatStatus terms, alternative labels are provided that are also
 valid for that conservationJurisdiction.
 
-{{tables.threat_status_conservation_jurisdiction}}
+{{tables.threat_status}}
 
 ## APPENDIX-II: Timestamp
 Following date and date-time formats are acceptable within the timestamp:

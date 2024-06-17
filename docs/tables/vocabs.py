@@ -130,7 +130,7 @@ class VocabTabler(tables.base.BaseTabler):
 if __name__ == "__main__":
     """Main entry point."""
     # Create argument parser
-    parser = argparse.ArgumentParser(description="A tool to genera a csv table of vocabularies from a mapper.")
+    parser = argparse.ArgumentParser(description="A tool to generate a csv table of vocabularies from a mapper.")
     parser.add_argument("template_id", type=str, help="ID of the template.")
     parser.add_argument(
         "-o", "--output",
