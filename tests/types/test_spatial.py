@@ -135,7 +135,6 @@ def test_geometry_transformer_datum_uri() -> None:
     assert geometry.transformer_datum_uri == vocabs.geodetic_datum.GEODETIC_DATUM.get(settings.DEFAULT_TARGET_CRS)
 
 
-
 @pytest.mark.parametrize(
     "literal_in, expected_name",
     [
@@ -194,6 +193,7 @@ def test_geometry_to_rdf_literal() -> None:
 
     # Assert
     assert geometry.to_rdf_literal() == expected
+
 
 @pytest.mark.parametrize(
     "raw,datum,expected_str",

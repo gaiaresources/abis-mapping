@@ -342,9 +342,7 @@ class ABISMapper(abc.ABC):
         template_id = mapper.metadata()["id"]
         cls.registry[template_id] = mapper
 
-
     @final
-    @property
     def root_dir(self) -> pathlib.Path:
         """Returns the root directory for this Template.
 

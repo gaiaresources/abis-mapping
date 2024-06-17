@@ -29,7 +29,7 @@ class Term:
 
         Args:
             labels (Iterable[str]): Labels for the vocabulary term to match on.
-            iri: rdflib.URIRef: IRI for the vicabulary term.
+            iri: rdflib.URIRef: IRI for the vocabulary term.
             description (str): Description for the term.
         """
         # Set Instance Attributes

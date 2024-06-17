@@ -1,8 +1,10 @@
 """Tool for generating the threat status conservation jurisdiction table."""
 
 # Standard
-import io
+import argparse
 import csv
+import io
+import sys
 
 # Third-party
 import pydantic
@@ -14,14 +16,33 @@ from abis_mapping import utils
 # Typing
 from typing import IO
 
-class ThreatStatConsJurTableRow(pydantic.BaseModel):
+
+class ThreatStatusRow(pydantic.BaseModel):
     """Threat status conservation jurisdiction table row."""
     conservation_jurisdiction: str = pydantic.Field(serialization_alias="conservationJurisdiction")
     threat_status: str = pydantic.Field(serialization_alias="threatStatus")
     threat_status_alt_labels: str = pydantic.Field(serialization_alias="threatStatus alternative labels")
 
 
-class ThreatStatConsJurTabler(tables.base.BaseTabler):
+class ThreatStatusTabler(tables.base.BaseTabler):
+
+    def __init__(
+        self,
+        template_id: str,
+    ) -> None:
+        """Constructor for ThreatStatConsJurTabler.
+
+        Args:
+            template_id (str): ID of mapper template.
+
+        Raises:
+            ValueError: If the threat status vocabulary isn't used
+                by the mapper template.
+        """
+        super().__init__(template_id)
+        fields = self.mapper.schema()['fields']
+        if len([fld for fld in fields if fld.get("vocabularies") and "THREAT_STATUS" in fld.get("vocabularies")])== 0:
+            raise ValueError(f"No THREAT_STATUS vocabularies found for template {template_id}")
 
     def generate_table(
         self,
@@ -41,7 +62,7 @@ class ThreatStatConsJurTabler(tables.base.BaseTabler):
         output = io.StringIO()
 
         # Get header list
-        header = [hdr.serialization_alias for hdr in ThreatStatConsJurTableRow.model_fields.values()]
+        header = [hdr.serialization_alias for hdr in ThreatStatusRow.model_fields.values()]
 
         # Create writer
         if as_markdown:
@@ -52,7 +73,7 @@ class ThreatStatConsJurTabler(tables.base.BaseTabler):
         writer.writeheader()
 
         # Iterate through vocab's terms
-        for term in sorted(utils.vocabs.get_vocab("threatStatus").terms, key=lambda x: x.preferred_label):
+        for term in sorted(utils.vocabs.get_vocab("THREAT_STATUS").terms, key=lambda x: x.preferred_label):
             # Generate row
             row = self.generate_row(term)
             # Write to output
@@ -68,7 +89,7 @@ class ThreatStatConsJurTabler(tables.base.BaseTabler):
     def generate_row(
         self,
         threat_stat_cons_jur_term: utils.vocabs.Term
-    ) -> ThreatStatConsJurTableRow:
+    ) -> ThreatStatusRow:
         """Generates a single row for the table.
 
         Args:
@@ -82,10 +103,10 @@ class ThreatStatConsJurTabler(tables.base.BaseTabler):
         splt_preferred = threat_stat_cons_jur_term.preferred_label.split('/')
 
         # Split threat status alt labels
-        threat_stat_alt: list[list[str]] = [lbl.split('/')[1] for lbl in threat_stat_cons_jur_term.alternative_labels]
+        threat_stat_alt: list[str] = [lbl.split('/')[1] for lbl in threat_stat_cons_jur_term.alternative_labels]
 
         # Perform mapping
-        row = ThreatStatConsJurTableRow(
+        row = ThreatStatusRow(
             conservation_jurisdiction=splt_preferred[0],
             threat_status=splt_preferred[1],
             threat_status_alt_labels=", ".join(threat_stat_alt),
@@ -93,3 +114,26 @@ class ThreatStatConsJurTabler(tables.base.BaseTabler):
 
         # Return
         return row
+
+
+if __name__ == "__main__":
+    """Main entry point."""
+    # Create argument parser
+    parser = argparse.ArgumentParser(description="A tool to generate a csv table of vocabularies from a mapper.")
+    parser.add_argument("template_id", type=str, help="ID of the template.")
+    parser.add_argument(
+        "-o", "--output",
+        dest="output_dest",
+        type=argparse.FileType("w"),
+        default=sys.stdout,
+        help="Output destination. Default is stdout."
+    )
+
+    # Parse command line arguments
+    args = parser.parse_args()
+
+    # Create tabler
+    tabler = tables.threat_status.ThreatStatusTabler(args.template_id)
+
+    # Generate table
+    tabler.generate_table(args.output_dest)
