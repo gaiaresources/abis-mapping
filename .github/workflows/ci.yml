@@ -24,5 +24,9 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force
+      - run: |
+          pipx install poetry
+          poetry install
+          poetry shell
+          python docs/instructions.py -o docs/pages/incidental_occurrence_data_v2.md incidental_occurrence_data-v2.0.0.csv
+          mkdocs gh-deploy --force
