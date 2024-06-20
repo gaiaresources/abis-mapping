@@ -976,15 +976,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Check for dateIdentified
         if not row["dateIdentified"]:
-            # Comment
+            # Add comment to temporal entity
             comment = "Date unknown, template eventDate used as proxy"
-
-            # Add Temporal Qualifier
-            temporal_qualifier = rdflib.BNode()
-            graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-            graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Check for identificationQualifier
         if row["identificationQualifier"]:
@@ -1065,15 +1059,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Check for dateIdentified
         if not row["dateIdentified"]:
-            # Comment
+            # Add comment to temporal entity
             comment = "Date unknown, template eventDate used as proxy"
-
-            # Add Temporal Qualifier
-            temporal_qualifier = rdflib.BNode()
-            graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-            graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_provider_recorded_by_agent(
         self,
@@ -1599,6 +1587,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+        spatial_comment = "Location unknown, location of field sampling used as proxy"
+        graph.add((geometry_node, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
 
         # Add 'supplied as' geometry
         self.add_geometry_supplied_as(
@@ -1609,23 +1599,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add Spatial Qualifier
-        spatial_comment = "Location unknown, location of field sampling used as proxy"
-        spatial_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, spatial_qualifier))
-        graph.add((spatial_qualifier, a, rdflib.RDF.Statement))
-        graph.add((spatial_qualifier, rdflib.RDF.value, utils.namespaces.GEO.hasGeometry))
-        graph.add((spatial_qualifier, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
-
         # Check for preparedDate
         if not row["preparedDate"]:
-            # Add Temporal Qualifier
+            # Add comment to temporal entity
             temporal_comment = "Date unknown, template eventDate used as proxy"
-            temporal_qualifier = rdflib.BNode()
-            graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-            graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Check for coordinateUncertaintyInMeters
         if row["coordinateUncertaintyInMeters"]:
@@ -2049,21 +2027,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add Temporal Qualifier
+        # Add comment to temporal entity
         temporal_comment = "Date unknown, template eventDate used as proxy"
-        temporal_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
-        # Add Method Qualifier
+        # Add Method Qualifier comment
         method_comment = "Observation method unknown, 'human observation' used as proxy"
-        method_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
-        graph.add((method_qualifier, a, rdflib.RDF.Statement))
-        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
-        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_individual_count_value(
         self,
@@ -2133,21 +2103,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add Temporal Qualifier
+        # Add comment to temporal entity
         temporal_comment = "Date unknown, template eventDate used as proxy"
-        temporal_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
-        # Add Method Qualifier
+        # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
-        method_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
-        graph.add((method_qualifier, a, rdflib.RDF.Statement))
-        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
-        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_organism_remarks_value(
         self,
@@ -2370,13 +2332,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add Method Qualifier
+        # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
-        method_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
-        graph.add((method_qualifier, a, rdflib.RDF.Statement))
-        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
-        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_occurrence_status_value(
         self,
@@ -2516,21 +2474,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add Temporal Qualifier
+        # Add comment to temporal entity
         temporal_comment = "Date unknown, template eventDate used as proxy"
-        temporal_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
-        # Add Method Qualifier
+        # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
-        method_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
-        graph.add((method_qualifier, a, rdflib.RDF.Statement))
-        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
-        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_establishment_means_value(
         self,
@@ -2617,21 +2567,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add Temporal Qualifier
+        # Add comment to temporal entity
         temporal_comment = "Date unknown, template eventDate used as proxy"
-        temporal_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
-        # Add Method Qualifier
+        # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
-        method_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
-        graph.add((method_qualifier, a, rdflib.RDF.Statement))
-        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
-        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_life_stage_value(
         self,
@@ -2717,21 +2659,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add Temporal Qualifier
+        # Add comment to temporal entity
         temporal_comment = "Date unknown, template eventDate used as proxy"
-        temporal_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
-        # Add Method Qualifier
+        # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
-        method_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
-        graph.add((method_qualifier, a, rdflib.RDF.Statement))
-        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
-        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_sex_value(
         self,
@@ -2818,21 +2752,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add Temporal Qualifier
+        # Add comment to temporal entity
         temporal_comment = "Date unknown, template eventDate used as proxy"
-        temporal_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
-        # Add Method Qualifier
+        # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
-        method_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, method_qualifier))
-        graph.add((method_qualifier, a, rdflib.RDF.Statement))
-        graph.add((method_qualifier, rdflib.RDF.value, rdflib.SOSA.usedProcedure))
-        graph.add((method_qualifier, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_reproductive_condition_value(
         self,
@@ -2908,14 +2834,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
 
-        # Add Temporal Qualifier
+        # Add comment to temporal entity
         timestamp_used = "dateIdentified" if row["dateIdentified"] else "eventDate"  # Determine which field was used
         temporal_comment = f"Date unknown, template {timestamp_used} used as proxy"
-        temporal_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
     def add_accepted_name_usage_value(
         self,
@@ -3019,21 +2941,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
             graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
 
-        # Add Temporal Qualifier
+        # Add comment to temporal entity
         temporal_comment = "Date unknown, template eventDate used as proxy"
-        temporal_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-        graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-        graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-        graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
-        # Add Spatial Qualifier
+        # Add comment to geometry
         spatial_comment = "Location unknown, location of field sampling used as proxy"
-        spatial_qualifier = rdflib.BNode()
-        graph.add((uri, utils.namespaces.TERN.qualifiedValue, spatial_qualifier))
-        graph.add((spatial_qualifier, a, rdflib.RDF.Statement))
-        graph.add((spatial_qualifier, rdflib.RDF.value, utils.namespaces.GEO.hasGeometry))
-        graph.add((spatial_qualifier, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
+        graph.add((geometry_node, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
 
     def add_sample_sequence(
         self,
@@ -3179,15 +3093,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 "eventDate"
             )
 
-            # Comment
+            # Add comment to temporal entity
             comment = f"Date unknown, template {date_used} used as proxy"
-
-            # Add Temporal Qualifier
-            temporal_qualifier = rdflib.BNode()
-            graph.add((uri, utils.namespaces.TERN.qualifiedValue, temporal_qualifier))
-            graph.add((temporal_qualifier, a, rdflib.RDF.Statement))
-            graph.add((temporal_qualifier, rdflib.RDF.value, rdflib.TIME.hasTime))
-            graph.add((temporal_qualifier, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_threat_status_value(
         self,
