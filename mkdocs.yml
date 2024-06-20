@@ -1,0 +1,5 @@
+site_name: BDR ABIS Mapping
+site_url: https://gaiaresources.github.io/abis-mappping
+theme:
+  name: material
+docs_dir: docs/pages

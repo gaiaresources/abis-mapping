@@ -81,3 +81,6 @@ Dockerfile
 # Generated documents for testing
 /result.csv
 /result.md
+/docs/pages/**/*.md
+!/docs/pages/index.md
+site/
