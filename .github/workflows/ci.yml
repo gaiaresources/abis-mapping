@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - BDRSPS-701
 permissions:
   contents: write
 jobs:
@@ -17,6 +18,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.11
+      - run: |
+          pipx install poetry==1.6.1
+          poetry install
+          poetry shell
+          python docs/instructions.py -o docs/pages/incidental_occurrence_data_v2.md incidental_occurrence_data-v2.0.0.csv
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
       - uses: actions/cache@v4
         with:
@@ -25,8 +31,4 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: |
-          pipx install poetry==1.6.1
-          poetry install
-          poetry shell
-          python docs/instructions.py -o docs/pages/incidental_occurrence_data_v2.md incidental_occurrence_data-v2.0.0.csv
           mkdocs gh-deploy --force
