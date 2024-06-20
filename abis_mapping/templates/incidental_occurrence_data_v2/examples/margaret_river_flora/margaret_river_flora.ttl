@@ -1,6 +1,5 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -37,232 +36,185 @@
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "acceptedNameUsage-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     sosa:hasFeatureOfInterest <http://createme.org/scientificName/15> ;
     sosa:hasResult <http://createme.org/value/acceptedNameUsage/15> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://example.com/methods/name-check-method> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] .
+    sosa:usedProcedure <http://example.com/methods/name-check-method> .
 
 <http://createme.org/observation/acceptedNameUsage/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "acceptedNameUsage-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     sosa:hasFeatureOfInterest <http://createme.org/scientificName/16> ;
     sosa:hasResult <http://createme.org/value/acceptedNameUsage/16> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://example.com/methods/name-check-method> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] .
+    sosa:usedProcedure <http://example.com/methods/name-check-method> .
 
 <http://createme.org/observation/establishmentMeans/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "establishmentMeans-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "establishmentMeans-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/establishmentMeans/15> ;
     sosa:hasSimpleResult "native" ;
     sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/establishmentMeans/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "establishmentMeans-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "establishmentMeans-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/establishmentMeans/16> ;
     sosa:hasSimpleResult "new establishment means" ;
     sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/individualCount/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "individualCount-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "individualCount-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/individualCount/15> ;
     sosa:hasSimpleResult 2 ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/individualCount/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "individualCount-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "individualCount-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/individualCount/16> ;
     sosa:hasSimpleResult 6 ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/lifeStage/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "lifeStage-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "lifeStage-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/value/lifeStage/15> ;
     sosa:hasSimpleResult "adult" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/lifeStage/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "lifeStage-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "lifeStage-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/value/lifeStage/16> ;
     sosa:hasSimpleResult "new life stage" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/occurrenceStatus/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "occurrenceStatus-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "occurrenceStatus-observation" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/occurrenceStatus/15> ;
     sosa:hasSimpleResult "present" ;
     sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/occurrenceStatus/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "occurrenceStatus-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "occurrenceStatus-observation" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/occurrenceStatus/16> ;
     sosa:hasSimpleResult "new occurrence status" ;
     sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/organismRemarks/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "organismRemarks-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "organismRemarks-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/15> ;
     sosa:hasResult <http://createme.org/value/organismRemarks/15> ;
     sosa:hasSimpleResult "Dried out leaf tips" ;
     sosa:observedProperty <http://example.com/concept/organismRemarks> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/organismRemarks/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "organismRemarks-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "organismRemarks-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/16> ;
     sosa:hasResult <http://createme.org/value/organismRemarks/16> ;
     sosa:hasSimpleResult "Leaves brown" ;
     sosa:observedProperty <http://example.com/concept/organismRemarks> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/reproductiveCondition/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "reproductiveCondition-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "reproductiveCondition-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/value/reproductiveCondition/15> ;
     sosa:hasSimpleResult "No breeding evident" ;
     sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/reproductiveCondition/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "reproductiveCondition-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "reproductiveCondition-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/value/reproductiveCondition/16> ;
     sosa:hasSimpleResult "new reproductiveCondition" ;
     sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/scientificName/1> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
@@ -270,15 +222,13 @@
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/1> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/1> .
 
 <http://createme.org/observation/scientificName/10> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/10> ;
@@ -286,15 +236,13 @@
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/10> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/10> .
 
 <http://createme.org/observation/scientificName/11> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/11> ;
@@ -304,30 +252,26 @@
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/11>,
         <http://createme.org/attribute/identificationRemarks/11>,
-        <http://createme.org/attribute/kingdom/11> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+        <http://createme.org/attribute/kingdom/11> .
 
 <http://createme.org/observation/scientificName/12> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/12> ;
     sosa:hasResult <http://createme.org/scientificName/12> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/12> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/12> .
 
 <http://createme.org/observation/scientificName/13> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/13> ;
@@ -335,15 +279,13 @@
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/13> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/13> .
 
 <http://createme.org/observation/scientificName/14> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/14> ;
@@ -353,10 +295,7 @@
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/14>,
         <http://createme.org/attribute/identificationRemarks/14>,
-        <http://createme.org/attribute/kingdom/14> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+        <http://createme.org/attribute/kingdom/14> .
 
 <http://createme.org/observation/scientificName/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
@@ -394,6 +333,7 @@
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/2> ;
@@ -401,15 +341,13 @@
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/2> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/2> .
 
 <http://createme.org/observation/scientificName/3> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/3> ;
@@ -417,15 +355,13 @@
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/3> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/3> .
 
 <http://createme.org/observation/scientificName/4> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/4> ;
@@ -433,15 +369,13 @@
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/4> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/4> .
 
 <http://createme.org/observation/scientificName/5> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/5> ;
@@ -449,15 +383,13 @@
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/5> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/5> .
 
 <http://createme.org/observation/scientificName/6> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/6> ;
@@ -465,15 +397,13 @@
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/6> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/6> .
 
 <http://createme.org/observation/scientificName/7> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/7> ;
@@ -481,15 +411,13 @@
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/7> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/7> .
 
 <http://createme.org/observation/scientificName/8> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/8> ;
@@ -497,15 +425,13 @@
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/8> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/8> .
 
 <http://createme.org/observation/scientificName/9> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/9> ;
@@ -513,49 +439,39 @@
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:hasAttribute <http://createme.org/attribute/kingdom/9> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/kingdom/9> .
 
 <http://createme.org/observation/sex/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "sex-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "sex-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/value/sex/15> ;
     sosa:hasSimpleResult "male" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/sex/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdfs:comment "sex-observation" ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "sex-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/value/sex/16> ;
     sosa:hasSimpleResult "new sex" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value sosa:usedProcedure ;
-            rdfs:comment "Observation method unknown, 'human observation' used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/threatStatus/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "threatStatus-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <http://createme.org/provider/WA-BIO> ;
     prov:wasInfluencedBy <http://createme.org/attribute/conservationJurisdiction/15> ;
@@ -563,85 +479,72 @@
     sosa:hasResult <http://createme.org/value/threatStatus/15> ;
     sosa:hasSimpleResult "VU" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6> ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https//www-dpaw-wa-gov-au/plants-and-animals/threatened-species-and-communities/threatened-animals-Last-updated-13-June-2022> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] .
+    sosa:usedProcedure <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https//www-dpaw-wa-gov-au/plants-and-animals/threatened-species-and-communities/threatened-animals-Last-updated-13-June-2022> .
 
 <http://createme.org/observation/threatStatus/16> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "threatStatus-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasInfluencedBy <http://createme.org/attribute/conservationJurisdiction/16> ;
     sosa:hasFeatureOfInterest <http://createme.org/value/acceptedNameUsage/16> ;
     sosa:hasResult <http://createme.org/value/threatStatus/16> ;
     sosa:hasSimpleResult "new threat status" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6> ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ] .
+    sosa:usedProcedure <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> .
 
 <http://createme.org/observation/verbatimID/1> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
     sosa:hasResult <http://createme.org/verbatimID/1> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/10> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/10> ;
     sosa:hasResult <http://createme.org/verbatimID/10> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/11> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/11> ;
     sosa:hasResult <http://createme.org/verbatimID/11> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/14> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/14> ;
     sosa:hasResult <http://createme.org/verbatimID/14> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/15> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
@@ -671,121 +574,105 @@
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/2> ;
     sosa:hasResult <http://createme.org/verbatimID/2> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/3> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/3> ;
     sosa:hasResult <http://createme.org/verbatimID/3> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/4> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/4> ;
     sosa:hasResult <http://createme.org/verbatimID/4> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/5> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/5> ;
     sosa:hasResult <http://createme.org/verbatimID/5> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/6> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/6> ;
     sosa:hasResult <http://createme.org/verbatimID/6> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/7> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/7> ;
     sosa:hasResult <http://createme.org/verbatimID/7> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/8> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/8> ;
     sosa:hasResult <http://createme.org/verbatimID/8> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/observation/verbatimID/9> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/9> ;
     sosa:hasResult <http://createme.org/verbatimID/9> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
 <http://createme.org/agent/WAM> a prov:Agent ;
     schema:name "WAM" .
@@ -1668,7 +1555,7 @@
 <http://createme.org/sampling/field/1> a tern:Sampling ;
     dcterms:identifier "1"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N2776ffb5f8de45a6801aeaa6dd6c9f96 ;
+    geo:hasGeometry _:N5d679f46c49246979d7de4c6ccba7a8d ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1681,7 +1568,7 @@
 <http://createme.org/sampling/field/10> a tern:Sampling ;
     dcterms:identifier "10"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N38b82f5200c54fbfb28f712c38cf24e4 ;
+    geo:hasGeometry _:N5b9957664bbd47ad8bd5562e9f3e6677 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1694,7 +1581,7 @@
 <http://createme.org/sampling/field/11> a tern:Sampling ;
     dcterms:identifier "11"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N5cc9c25068f84640a8290035e0645531 ;
+    geo:hasGeometry _:N8d6e03c2f3d044cba2bc053511d6ee6c ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1707,7 +1594,7 @@
 <http://createme.org/sampling/field/12> a tern:Sampling ;
     dcterms:identifier "12"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N3ea4c75b34f04a6ba13483ce9f06f109 ;
+    geo:hasGeometry _:N3eeed1227ddb48f7ac5a8ee98d7efff1 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1718,7 +1605,7 @@
 <http://createme.org/sampling/field/13> a tern:Sampling ;
     dcterms:identifier "13"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N32e601dadd88412a911f535c24041e90 ;
+    geo:hasGeometry _:Nb655eebc20ab4d3e9ec5e003902f3aeb ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1731,7 +1618,7 @@
 <http://createme.org/sampling/field/14> a tern:Sampling ;
     dcterms:identifier "14"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:Ne11fc45de45448d6b9c48e25b7d25256 ;
+    geo:hasGeometry _:N32a65b3bd9144b16ab3ec4ea913bc7aa ;
     geo:hasMetricSpatialAccuracy 2e+01 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1746,7 +1633,7 @@
 <http://createme.org/sampling/field/15> a tern:Sampling ;
     dcterms:identifier "8022FSJMJ079c5cf"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nbba910352d684ec0bcd88e31d4d6f1b1 ;
+    geo:hasGeometry _:Nfbf7c6dadd39456994c52a2d78849995 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1762,7 +1649,7 @@
 <http://createme.org/sampling/field/16> a tern:Sampling ;
     dcterms:identifier "ABC123"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N224084580c324a94a037835174bb8eaa ;
+    geo:hasGeometry _:Nb173f02826724689931f06ff7096cc49 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1778,7 +1665,7 @@
 <http://createme.org/sampling/field/2> a tern:Sampling ;
     dcterms:identifier "2"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nd45126e54d4c4a488d22a085b28040a5 ;
+    geo:hasGeometry _:Nb1c94fadba484c8ea522656c67d5b4f2 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1791,7 +1678,7 @@
 <http://createme.org/sampling/field/3> a tern:Sampling ;
     dcterms:identifier "3"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N124d83302f8d479e8456d74300847c98 ;
+    geo:hasGeometry _:Nf6a4b380f9854bea9799dd36704d644d ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1804,7 +1691,7 @@
 <http://createme.org/sampling/field/4> a tern:Sampling ;
     dcterms:identifier "4"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N5f1983a2644f49c1ad4f75b0645fe044 ;
+    geo:hasGeometry _:Ne6caa47744274b13ac3a5e749f0af811 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1817,7 +1704,7 @@
 <http://createme.org/sampling/field/5> a tern:Sampling ;
     dcterms:identifier "5"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N79af446559ea44a5b65f6749bb694210 ;
+    geo:hasGeometry _:Neae09c1b1b2140bdb9330d12a05c4718 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1830,7 +1717,7 @@
 <http://createme.org/sampling/field/6> a tern:Sampling ;
     dcterms:identifier "6"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N7e24ab1e6d2045868aa95eafae13ddc6 ;
+    geo:hasGeometry _:N4e19bb531bd74fc7b119e6f6081ab812 ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1843,7 +1730,7 @@
 <http://createme.org/sampling/field/7> a tern:Sampling ;
     dcterms:identifier "7"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nb09ac601b5e24c71b66f9779a16de2dc ;
+    geo:hasGeometry _:Na9e9e82d9b3b4b5a993cd5b027cb0d5a ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1856,7 +1743,7 @@
 <http://createme.org/sampling/field/8> a tern:Sampling ;
     dcterms:identifier "8022FSJMJ079c5cf"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N1d115d2af45c412f9222b56df022e5db ;
+    geo:hasGeometry _:N42f39f90b9624048a23a503e2996f1dc ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1869,7 +1756,7 @@
 <http://createme.org/sampling/field/9> a tern:Sampling ;
     dcterms:identifier "9"^^<http://createme.org/datatype/providerRecordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nf733085c636c474ab935ebbf32aedf54 ;
+    geo:hasGeometry _:N18854f44feda45b99c9da039212e5a9b ;
     rdfs:comment "field-sampling" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1881,77 +1768,57 @@
 
 <http://createme.org/sampling/sequencing/15> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nec303c6d363e4d429e276d66bf2414e5 ;
+    geo:hasGeometry _:N5ff5c5a8c9ce4b1985bf107fa312be03 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "sequencing-sampling" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/15> ;
     sosa:hasResult <http://createme.org/sample/sequence/15> ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] .
+    sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> .
 
 <http://createme.org/sampling/sequencing/16> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N690a6437388a4b01beae3315ed16fd0b ;
+    geo:hasGeometry _:Nac52e0261dca4ca19a1adb5bdaed333b ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "sequencing-sampling" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/16> ;
     sosa:hasResult <http://createme.org/sample/sequence/16> ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    sosa:usedProcedure <http://createme.org/bdr-cv/methods/sequencingMethod/new-sequencing-method> .
 
 <http://createme.org/sampling/specimen/13> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:Nc7159db6be0e443f9ace0c56966b2de3 ;
+    geo:hasGeometry _:N4946d9becb03402eb0b48d4c5fd0735c ;
     rdfs:comment "specimen-sampling" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/13> ;
     sosa:hasResult <http://createme.org/sample/specimen/13> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    tern:hasAttribute <http://createme.org/attribute/basisOfRecord/13> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+    tern:hasAttribute <http://createme.org/attribute/basisOfRecord/13> .
 
 <http://createme.org/sampling/specimen/14> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N63cc2e7884f741c09c8a78916ae315a4 ;
+    geo:hasGeometry _:N729a4389faf7429f96e3842958e91038 ;
     geo:hasMetricSpatialAccuracy 2e+01 ;
     rdfs:comment "specimen-sampling" ;
     time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/14> ;
     sosa:hasResult <http://createme.org/sample/specimen/14> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/14>,
-        <http://createme.org/attribute/dataGeneralizations/14> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ],
-        [ a rdf:Statement ;
-            rdf:value time:hasTime ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ] .
+        <http://createme.org/attribute/dataGeneralizations/14> .
 
 <http://createme.org/sampling/specimen/15> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N05eacab37d5040e69ef87a05d7cf1b59 ;
+    geo:hasGeometry _:Nc3f978c1c6f2493381eaff3ab8333a1b ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "specimen-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1960,14 +1827,11 @@
     sosa:hasResult <http://createme.org/sample/specimen/15> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/15>,
-        <http://createme.org/attribute/dataGeneralizations/15> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] .
+        <http://createme.org/attribute/dataGeneralizations/15> .
 
 <http://createme.org/sampling/specimen/16> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    geo:hasGeometry _:N09e7364b4a584ea089b3d1e4f99c0801 ;
+    geo:hasGeometry _:N9d16995e5dc7466b989a56ce4f07a7b2 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "specimen-sampling" ;
     time:hasTime [ a time:Instant ;
@@ -1976,10 +1840,7 @@
     sosa:hasResult <http://createme.org/sample/specimen/16> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/16>,
-        <http://createme.org/attribute/dataGeneralizations/16> ;
-    tern:qualifiedValue [ a rdf:Statement ;
-            rdf:value geo:hasGeometry ;
-            rdfs:comment "Location unknown, location of field sampling used as proxy" ] .
+        <http://createme.org/attribute/dataGeneralizations/16> .
 
 <http://createme.org/scientificName/15> a tern:FeatureOfInterest,
         tern:Text,
@@ -2183,173 +2044,45 @@
 
 <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> a tern:RDFDataset ;
     dcterms:description "Example Incidental Occurrence Dataset by Gaia Resources" ;
-    dcterms:issued "2024-04-18"^^xsd:date ;
+    dcterms:issued "2024-06-20"^^xsd:date ;
     dcterms:title "Example Incidental Occurrence Dataset" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N124d83302f8d479e8456d74300847c98 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/3> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:N3ea4c75b34f04a6ba13483ce9f06f109 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/12> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N32e601dadd88412a911f535c24041e90 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/13> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:Nf733085c636c474ab935ebbf32aedf54 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/9> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:N05eacab37d5040e69ef87a05d7cf1b59 ;
+    rdf:object _:Nc3f978c1c6f2493381eaff3ab8333a1b ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/sampling/specimen/15> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:Nb09ac601b5e24c71b66f9779a16de2dc ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/7> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N5f1983a2644f49c1ad4f75b0645fe044 ;
+    rdf:object _:Ne6caa47744274b13ac3a5e749f0af811 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/sampling/field/4> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:Nd45126e54d4c4a488d22a085b28040a5 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/2> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:N2776ffb5f8de45a6801aeaa6dd6c9f96 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/1> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N5cc9c25068f84640a8290035e0645531 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/11> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N63cc2e7884f741c09c8a78916ae315a4 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/specimen/14> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:Nbba910352d684ec0bcd88e31d4d6f1b1 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/15> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N38b82f5200c54fbfb28f712c38cf24e4 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/10> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N1d115d2af45c412f9222b56df022e5db ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/8> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:N09e7364b4a584ea089b3d1e4f99c0801 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/specimen/16> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:N224084580c324a94a037835174bb8eaa ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/16> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:N690a6437388a4b01beae3315ed16fd0b ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/sequencing/16> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N79af446559ea44a5b65f6749bb694210 ;
+    rdf:object _:Neae09c1b1b2140bdb9330d12a05c4718 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/sampling/field/5> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
-    rdf:object _:Nec303c6d363e4d429e276d66bf2414e5 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/sequencing/15> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:N7e24ab1e6d2045868aa95eafae13ddc6 ;
+    rdf:object _:N42f39f90b9624048a23a503e2996f1dc ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/sampling/field/6> ;
+    rdf:subject <http://createme.org/sampling/field/8> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:Nc7159db6be0e443f9ace0c56966b2de3 ;
+    rdf:object _:N4946d9becb03402eb0b48d4c5fd0735c ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/sampling/specimen/13> ;
     rdfs:comment "supplied as" .
@@ -2357,74 +2090,208 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
-    rdf:object _:Ne11fc45de45448d6b9c48e25b7d25256 ;
+    rdf:object _:N729a4389faf7429f96e3842958e91038 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/specimen/14> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:Nfbf7c6dadd39456994c52a2d78849995 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/15> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:N32a65b3bd9144b16ab3ec4ea913bc7aa ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/sampling/field/14> ;
     rdfs:comment "supplied as" .
 
-_:N05eacab37d5040e69ef87a05d7cf1b59 a geo:Geometry ;
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:Nf6a4b380f9854bea9799dd36704d644d ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/3> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:N4e19bb531bd74fc7b119e6f6081ab812 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/6> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:N3eeed1227ddb48f7ac5a8ee98d7efff1 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/12> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:N5ff5c5a8c9ce4b1985bf107fa312be03 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/sequencing/15> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:N5b9957664bbd47ad8bd5562e9f3e6677 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/10> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:Nb173f02826724689931f06ff7096cc49 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/16> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:Nb655eebc20ab4d3e9ec5e003902f3aeb ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/13> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:N18854f44feda45b99c9da039212e5a9b ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/9> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:Na9e9e82d9b3b4b5a993cd5b027cb0d5a ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/7> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:N9d16995e5dc7466b989a56ce4f07a7b2 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/specimen/16> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.01 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:Nb1c94fadba484c8ea522656c67d5b4f2 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/2> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:Nac52e0261dca4ca19a1adb5bdaed333b ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/sequencing/16> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:N5d679f46c49246979d7de4c6ccba7a8d ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/1> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.02 -33.86)"^^geo:wktLiteral ] ;
+    rdf:object _:N8d6e03c2f3d044cba2bc053511d6ee6c ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/11> ;
+    rdfs:comment "supplied as" .
+
+_:N18854f44feda45b99c9da039212e5a9b a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
+
+_:N32a65b3bd9144b16ab3ec4ea913bc7aa a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
+
+_:N3eeed1227ddb48f7ac5a8ee98d7efff1 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral .
 
-_:N09e7364b4a584ea089b3d1e4f99c0801 a geo:Geometry ;
+_:N42f39f90b9624048a23a503e2996f1dc a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (114.99 -33.86)"^^geo:wktLiteral .
+
+_:N4946d9becb03402eb0b48d4c5fd0735c a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
+
+_:N4e19bb531bd74fc7b119e6f6081ab812 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (114.99 -33.86)"^^geo:wktLiteral .
+
+_:N5b9957664bbd47ad8bd5562e9f3e6677 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
+
+_:N5d679f46c49246979d7de4c6ccba7a8d a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral .
 
-_:N124d83302f8d479e8456d74300847c98 a geo:Geometry ;
+_:N5ff5c5a8c9ce4b1985bf107fa312be03 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
+
+_:N729a4389faf7429f96e3842958e91038 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
+
+_:N8d6e03c2f3d044cba2bc053511d6ee6c a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
+
+_:N9d16995e5dc7466b989a56ce4f07a7b2 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
+
+_:Na9e9e82d9b3b4b5a993cd5b027cb0d5a a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (114.99 -33.86)"^^geo:wktLiteral .
+
+_:Nac52e0261dca4ca19a1adb5bdaed333b a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
+
+_:Nb173f02826724689931f06ff7096cc49 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral .
+
+_:Nb1c94fadba484c8ea522656c67d5b4f2 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.01 -33.86)"^^geo:wktLiteral .
 
-_:N1d115d2af45c412f9222b56df022e5db a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (114.99 -33.86)"^^geo:wktLiteral .
-
-_:N224084580c324a94a037835174bb8eaa a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral .
-
-_:N2776ffb5f8de45a6801aeaa6dd6c9f96 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral .
-
-_:N32e601dadd88412a911f535c24041e90 a geo:Geometry ;
+_:Nb655eebc20ab4d3e9ec5e003902f3aeb a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
 
-_:N38b82f5200c54fbfb28f712c38cf24e4 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
+_:Nc3f978c1c6f2493381eaff3ab8333a1b a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
 
-_:N3ea4c75b34f04a6ba13483ce9f06f109 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral .
-
-_:N5cc9c25068f84640a8290035e0645531 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
-
-_:N5f1983a2644f49c1ad4f75b0645fe044 a geo:Geometry ;
+_:Ne6caa47744274b13ac3a5e749f0af811 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.01 -33.86)"^^geo:wktLiteral .
 
-_:N63cc2e7884f741c09c8a78916ae315a4 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
-
-_:N690a6437388a4b01beae3315ed16fd0b a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral .
-
-_:N79af446559ea44a5b65f6749bb694210 a geo:Geometry ;
+_:Neae09c1b1b2140bdb9330d12a05c4718 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (114.99 -33.86)"^^geo:wktLiteral .
 
-_:N7e24ab1e6d2045868aa95eafae13ddc6 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (114.99 -33.86)"^^geo:wktLiteral .
-
-_:Nb09ac601b5e24c71b66f9779a16de2dc a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (114.99 -33.86)"^^geo:wktLiteral .
-
-_:Nbba910352d684ec0bcd88e31d4d6f1b1 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral .
-
-_:Nc7159db6be0e443f9ace0c56966b2de3 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
-
-_:Nd45126e54d4c4a488d22a085b28040a5 a geo:Geometry ;
+_:Nf6a4b380f9854bea9799dd36704d644d a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.01 -33.86)"^^geo:wktLiteral .
 
-_:Ne11fc45de45448d6b9c48e25b7d25256 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
-
-_:Nec303c6d363e4d429e276d66bf2414e5 a geo:Geometry ;
+_:Nfbf7c6dadd39456994c52a2d78849995 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral .
-
-_:Nf733085c636c474ab935ebbf32aedf54 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.02 -33.86)"^^geo:wktLiteral .
 
