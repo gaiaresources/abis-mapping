@@ -66,6 +66,7 @@ class MarkdownDialect(csv.excel):
     escapechar = '\\'
     lineterminator = '\n'
     quoting = csv.QUOTE_NONE
+    quotechar = None
 
 
 # Register the dialect with the csv module
@@ -78,21 +79,44 @@ class MarkdownDictWriter(csv.DictWriter):
         self,
         f: IO,
         fieldnames: list[str],
+        alignment: list[str] | None = None,
         *args: list[Any],
         **kwargs: dict[str, Any]
     ) -> None:
         """Constructor for the MarkdownDictWriter.
 
         Args:
+            f (IO): File to be written out.
+            fieldnames (list[str]): List of fieldnames.
+            alignment (list[str], optional): List of alignment options,
+                for each field. Defaults to None, in which case all fields are
+                are left-aligned. The length of the list must match the length
+                of fieldnames. Allowed alignment values are "l", "r", "c", "left",
+                "right", and "center".
             *args (list): Positional arguments to csv.DictWriter.:
             **kwargs (dict): Keyword arguments to csv.DictWriter.:
+
+        Raises:
+            ValueError: If alignment list length doesn't match fieldnames or
+                an invalid alignment option is provided.
         """
+        # Check alignment list length
+        if alignment is not None and len(alignment) != len(fieldnames):
+            raise ValueError(f"The alignment list length ({len(alignment)}) must match fieldnames ({len(fieldnames)}).")
+
+        # Check alignment values
+        if alignment is not None:
+            for i, align in enumerate(alignment):
+                if align not in ["l", "r", "c", "left", "right", "center"]:
+                    raise ValueError(f"Unknown alignment value provided '{align}' at index {i}")
+
         # Create dummy first and last fields to create leading and trailing pipes
         fieldnames.insert(0, "__start__")
         fieldnames.append("__end__")
 
-        # Assign dialect attribute
+        # Assign attribute
         self.dialect: Final[csv.Dialect] = csv.get_dialect("markdown")
+        self.alignment: Final[list[str] | None] = ["l", *alignment, "l"] if alignment is not None else None
 
         # Call parent constructor
         super().__init__(f, fieldnames, dialect="markdown", *args, **kwargs)
@@ -118,7 +142,20 @@ class MarkdownDictWriter(csv.DictWriter):
         self.writerow(header)
 
         # Create horizontal line
-        header_break = dict(zip(self.fieldnames, ["---"] * len(self.fieldnames)))
+        if self.alignment is not None:
+            divider = []
+            for align in self.alignment:
+                match align:
+                    case "l" | "left":
+                        divider.append(":---")
+                    case "r" | "right":
+                        divider.append("---:")
+                    case "c" | "center":
+                        divider.append(":---:")
+        else:
+            divider = [":---"] * len(self.fieldnames)
+
+        header_break = dict(zip(self.fieldnames, divider))
         return self.writerow(header_break)
 
     def writerow(self, rowdict: dict[str, Any]) -> Any:

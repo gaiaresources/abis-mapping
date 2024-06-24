@@ -55,7 +55,7 @@ def test_generate_table_markdown(
 
     # Assert
     assert actual == (
-        "|Template field name|Preferred label|Definition|Alternate label|\n"
-        "|---|---|---|---|\n"
-        "|someName|SOME LABEL|Some description.|ANOTHER LABEL|\n"
+        '|Template field name|Preferred label|Definition|Alternate label|\n'
+        '|:---|:---|:---|:---|\n'
+        '|<a name="someName-vocabularies"></a>someName|SOME LABEL|Some description.|ANOTHER LABEL|\n'
     )

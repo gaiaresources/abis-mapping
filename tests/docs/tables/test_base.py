@@ -33,8 +33,55 @@ class TestMarkdownDictWriter:
         # Assert
         assert output.getvalue() == (
             "|Some|Header|Fields|\n"
-            "|---|---|---|\n"
+            "|:---|:---|:---|\n"
         )
+
+    def test_writeheader_with_alignment(self) -> None:
+        """Tests writeheader method with alignment."""
+        # Create memory io to write to
+        output = io.StringIO()
+
+        # Create MarkdownDictWriter object
+        writer = tables.base.MarkdownDictWriter(
+            f=output,
+            fieldnames=["Some", "Header", "Fields"],
+            alignment=["left", "center", "right"],
+        )
+
+        # Invoke
+        writer.writeheader()
+
+        # Assert
+        assert output.getvalue() == (
+            "|Some|Header|Fields|\n"
+            "|:---|:---:|---:|\n"
+        )
+
+    def test_writeheader_invalid_alignment_length(self) -> None:
+        """Tests writeheader method with invalid alignment length."""
+        # Create memory io to write to
+        output = io.StringIO()
+
+        # Create MarkdownDictWriter object should raise
+        with pytest.raises(ValueError):
+            tables.base.MarkdownDictWriter(
+                f=output,
+                fieldnames=["Some", "Header", "Fields"],
+                alignment=["left", "center", "right", "right"],
+            )
+
+    def test_writeheader_invalid_alignment_type(self) -> None:
+        """Tests writeheader method with invalid alignment type."""
+        # Create memory io to write to
+        output = io.StringIO()
+
+        # Create MarkdownDictWriter object should raise
+        with pytest.raises(ValueError):
+            tables.base.MarkdownDictWriter(
+                f=output,
+                fieldnames=["Some", "Header", "Fields"],
+                alignment=["everywhere", "center", "right"],
+            )
 
     def test_writerow(self) -> None:
         """Tests writerow method."""
@@ -54,3 +101,22 @@ class TestMarkdownDictWriter:
         assert output.getvalue() == (
             "|Value 1|2.0|True|\n"
         )
+
+    def test_writerows(self) -> None:
+        """Tests the writerows method."""
+        # Create memory io to write to
+        output = io.StringIO()
+
+        # Create writer
+        writer = tables.base.MarkdownDictWriter(output, ["Some", "Header", "Fields"])
+
+        # Test data
+        data = [
+            {"Some": "Value 1", "Header": 2.0, "Fields": True},
+            {"Some": "Value 2", "Header": 3.0, "Fields": False},
+        ]
+
+        # Should raise
+        with pytest.raises(NotImplementedError):
+            writer.writerows(data)
+

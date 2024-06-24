@@ -120,7 +120,7 @@ class TestThreatStatusTabler:
         # Assert
         assert actual == (
             "|conservationJurisdiction|threatStatus|threatStatus alternative labels|\n"
-            "|---|---|---|\n"
+            "|:---|:---|:---|\n"
             "|SOME JURISDICTION|SOME STATUS|SSTAT|\n"
         )
 
