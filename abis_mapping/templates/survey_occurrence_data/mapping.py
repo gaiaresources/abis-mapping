@@ -3454,7 +3454,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )))
 
         # Add comment to temporal entity
-        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal("Date unknown, template eventDate used as proxy")))
+        graph.add(
+            (temporal_entity, rdflib.RDFS.comment, rdflib.Literal("Date unknown, template eventDate used as proxy"))
+        )
 
     def add_organism_quantity_value(
         self,

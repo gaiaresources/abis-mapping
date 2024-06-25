@@ -234,6 +234,7 @@ def test_mandatory_optional_text_conditional_with_multiple_fields(
     # Assert
     assert regex.match(actual) is not None
 
+
 def test_mutual_inclusivity() -> None:
     """Tests the mutual_inclusivity method."""
     # Create checklist

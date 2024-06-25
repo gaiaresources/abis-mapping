@@ -119,4 +119,3 @@ class TestMarkdownDictWriter:
         # Should raise
         with pytest.raises(NotImplementedError):
             writer.writerows(data)
-
