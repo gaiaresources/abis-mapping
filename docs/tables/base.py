@@ -114,7 +114,7 @@ class MarkdownDictWriter(csv.DictWriter):
         fieldnames.insert(0, "__start__")
         fieldnames.append("__end__")
 
-        # Assign attribute
+        # Assign attributes
         self.dialect: Final[csv.Dialect] = csv.get_dialect("markdown")
         self.alignment: Final[list[str] | None] = ["l", *alignment, "l"] if alignment is not None else None
 
