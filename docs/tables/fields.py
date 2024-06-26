@@ -53,9 +53,6 @@ class FieldTabler(tables.base.BaseTabler):
         dict_fields = self.mapper.schema()["fields"]
         fields: list[types.schema.Field] = [types.schema.Field.model_validate(f) for f in dict_fields]
 
-        # Alphabetize fields
-        fields.sort(key=lambda x: x.name)
-
         # Create a memory io and dictionary to csv writer
         output = io.StringIO()
         header = [hdr.serialization_alias or hdr.title for hdr in FieldTableRow.model_fields.values()]
