@@ -60,7 +60,7 @@ class FieldTabler(tables.base.BaseTabler):
         output = io.StringIO()
         header = [hdr.serialization_alias or hdr.title for hdr in FieldTableRow.model_fields.values()]
         if as_markdown:
-            writer = tables.base.MarkdownDictWriter(output, fieldnames=header)
+            writer = tables.base.MarkdownDictWriter(output, fieldnames=header, alignment=["l", "l", "c", "c", "l"])
         else:
             writer = csv.DictWriter(output, fieldnames=header)
 
@@ -77,6 +77,10 @@ class FieldTabler(tables.base.BaseTabler):
                 required=field.constraints.required,
                 field_name=field.name,
             )
+
+            # If markdown add link to vocabularies
+            if as_markdown and field.vocabularies:
+                field_table_row.examples += f"<br>([Vocabulary link](#{field.name}-vocabularies))"
 
             # Write row to csv
             writer.writerow(field_table_row.model_dump(by_alias=True))

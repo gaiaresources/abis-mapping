@@ -3,10 +3,12 @@
 # Standard
 import io
 import unittest.mock
+import re
 
 # Third-party
 import pytest
 import frictionless
+import pytest_mock
 
 # Local
 from docs import tables
@@ -15,6 +17,32 @@ from abis_mapping import plugins
 
 # Typing
 from typing import Any
+
+
+@pytest.fixture
+def mocked_determine_checklist(mocker: pytest_mock.MockerFixture) -> unittest.mock.MagicMock:
+    """Mocked determine_checklist method.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): Mocker fixture.
+
+    Returns:
+        unittest.mock.MagicMock: mocked method.
+    """
+    # Create a checklist to return from the mocked method.
+    checklist = frictionless.Checklist(
+        checks=[
+            plugins.mutual_inclusion.MutuallyInclusive(
+                field_names=["FieldA", "FieldB"]
+            )
+        ]
+    )
+    # Patch and return mock
+    return mocker.patch.object(
+        target=tables.fields.FieldTabler,
+        attribute="determine_checklist",
+        return_value=checklist,
+    )
 
 
 @pytest.mark.parametrize(
@@ -141,9 +169,70 @@ def test_generate_table_markdown(mocked_mapper: unittest.mock.MagicMock) -> None
     # Assert
     assert actual == (
         '|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n'
-        '|---|---|---|---|---|\n'
-        '|someName|Some description|Mandatory|String|SOME EXAMPLE|\n'
+        '|:---|:---|:---:|:---:|:---|\n'
+        '|someName|Some description|Mandatory|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
     )
+
+
+def test_mandatory_optional_text_conditional_with_single_field(
+    mocked_determine_checklist: unittest.mock.MagicMock,
+    mocked_mapper: unittest.mock.MagicMock,
+) -> None:
+    """Tests the mandatory_optional_text method with only one field mutually inclusive.
+
+    Args:
+        mocked_determine_checklist (unittest.mock.MagicMock): Mocked
+            determine_checklist method fixture.
+        mocked_mapper (unittest.mock.MagicMock): Mocked mapper fixture.
+    """
+    # Create tabler
+    tabler = tables.fields.FieldTabler("some id")
+
+    # Call method
+    actual = tabler.mandatory_optional_text(required=False, field_name="FieldA")
+
+    # Assert
+    assert actual == "Conditionally mandatory with FieldB"
+
+
+def test_mandatory_optional_text_conditional_with_multiple_fields(
+    mocked_determine_checklist: unittest.mock.MagicMock,
+    mocked_mapper: unittest.mock.MagicMock,
+) -> None:
+    """Tests the mandatory_optional_text method with only one field mutually inclusive.
+
+    Args:
+        mocked_determine_checklist (unittest.mock.MagicMock): Mocked
+            determine_checklist method fixture.
+        mocked_mapper (unittest.mock.MagicMock): Mocked mapper fixture.
+    """
+    # Modify mock return value
+    checklist = frictionless.Checklist(
+        checks=[
+            plugins.mutual_inclusion.MutuallyInclusive(
+                field_names=["FieldA", "FieldB"]
+            ),
+            plugins.mutual_inclusion.MutuallyInclusive(
+                field_names=["FieldA", "FieldC"]
+            ),
+            plugins.mutual_inclusion.MutuallyInclusive(
+                field_names=["FieldA", "FieldD"],
+            ),
+        ],
+    )
+    mocked_determine_checklist.return_value = checklist
+
+    # Create tabler
+    tabler = tables.fields.FieldTabler("some id")
+
+    # Call method
+    actual = tabler.mandatory_optional_text(required=False, field_name="FieldA")
+
+    # Regex response
+    regex = re.compile(r'^Conditionally mandatory with Field[BCD]{1}, Field[BCD]{1} and Field[BCD]{1}$')
+
+    # Assert
+    assert regex.match(actual) is not None
 
 
 def test_mutual_inclusivity() -> None:

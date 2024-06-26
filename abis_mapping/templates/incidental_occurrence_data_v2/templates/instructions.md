@@ -18,14 +18,14 @@ change the order of fields), however
 data type is not assumed and values will be encoded as strings),
 - have values in **mandatory fields** (see Table 1),
 - comply with data **value constraints** for example the geographic coordinates are
-consistent with a [geodeticDatum](...) type of the ***{{values.geodetic_datum_count}}*** available 
+consistent with a [geodeticDatum](#geodeticDatum-vocabularies) type of the ***{{values.geodetic_datum_count}}*** available 
 options, and
-- align with existing controlled [vocabularies](...) wherever possible (this is mandatory
+- align with existing controlled [vocabularies](#appendix-i-vocabulary-list) wherever possible (this is mandatory
 for geodeticDatum), but new terms may be submitted for consideration amd will not cause a 
 validation error.
 
 ### FILE FORMAT
-- The incidental occurrence data template is a [UTF-8](...) encoded csv (not Microsoft
+- The incidental occurrence data template is a [UTF-8](#appendix-iii-utf-8) encoded csv (not Microsoft
 Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
 otherwise it will not pass the csv validation step upon upload.
 <br>`[MS Excel: Save As > More options > Tools > Web options > Save this document as >
@@ -44,14 +44,15 @@ Larger datasets may be more readily ingested using the API interface. Please con
 ## TEMPLATE FIELDS
 The template contains the field names in the top row. Table 1 will assist you in transferring
 your data to the template indicating:
-- **Field name** in the template (and an external link to the [Darwin Core standard](...)
+
+- **Field name** in the template (and an external link to the [Darwin Core standard](https://dwc.tdwg.org/terms/)
 for that field where relevant);
 - **Description** of the field;
 - **Required** whether the field is **<font color="red">mandatory</font> or optional**;
 - **Format** (datatype) required for the data values for example text (string), number
   (integer, float), or date;
 - **Example** of an entry or entries for that field; and
-- **[Vocabulary links](#{{anchors.vocabulary_list}})** within this document (for example pick list values) where
+- **[Vocabulary links](#appendix-i-vocabulary-list)** within this document (for example pick list values) where
 relevant. The fields that have suggested values options for the fields in Table 1 are 
 listed in Table 2 in alphabetical order of the field name.
 
@@ -85,6 +86,7 @@ must come from one of five options in this table.</font></ins>
 
 {{tables.vocabularies}}
 
+<a name="threatStatus-vocabularies"></a>
 <ins>Table 2b: Suggested values for conditionally mandatory values for the threatStatus and
 conservationJurisdiction in the template. State and Territory conservationJurisdictions spelt out
 in words are also valid. For some threatStatus terms, alternative labels are provided that are also

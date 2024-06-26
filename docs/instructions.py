@@ -97,9 +97,6 @@ def build_instructions(mapper_id: str) -> str:
         "values": {
             "geodetic_datum_count": len(vocabs.geodetic_datum.GEODETIC_DATUM.terms),
         },
-        "anchors": {
-            "vocabulary_list": "vocabulary-list",
-        },
     }
 
     # Return render
