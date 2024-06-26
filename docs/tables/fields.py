@@ -53,14 +53,11 @@ class FieldTabler(tables.base.BaseTabler):
         dict_fields = self.mapper.schema()["fields"]
         fields: list[types.schema.Field] = [types.schema.Field.model_validate(f) for f in dict_fields]
 
-        # Alphabetize fields
-        fields.sort(key=lambda x: x.name)
-
         # Create a memory io and dictionary to csv writer
         output = io.StringIO()
         header = [hdr.serialization_alias or hdr.title for hdr in FieldTableRow.model_fields.values()]
         if as_markdown:
-            writer = tables.base.MarkdownDictWriter(output, fieldnames=header)
+            writer = tables.base.MarkdownDictWriter(output, fieldnames=header, alignment=["l", "l", "c", "c", "l"])
         else:
             writer = csv.DictWriter(output, fieldnames=header)
 
@@ -77,6 +74,10 @@ class FieldTabler(tables.base.BaseTabler):
                 required=field.constraints.required,
                 field_name=field.name,
             )
+
+            # If markdown add link to vocabularies
+            if as_markdown and field.vocabularies:
+                field_table_row.examples += f"<br>([Vocabulary link](#{field.name}-vocabularies))"
 
             # Write row to csv
             writer.writerow(field_table_row.model_dump(by_alias=True))

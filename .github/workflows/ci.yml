@@ -21,7 +21,7 @@ jobs:
         run: |
           pipx install poetry==1.6.1
           poetry install
-          poetry run python docs/instructions.py -o docs/pages/incidental_occurrence_data_v2.md incidental_occurrence_data-v2.0.0.csv
+          poetry run bash scripts/generate_instructions.sh
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
       - uses: actions/cache@v4
         with:
