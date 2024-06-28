@@ -35,11 +35,12 @@ WGS84 = utils.vocabs.Term(
     description="World Geodetic System 1984, used in GPS",
 )
 
+
 # Vocabulary
-GEODETIC_DATUM = utils.vocabs.RestrictedVocabulary(
-    vocab_id="GEODETIC_DATUM",
-    terms=(AGD66, AGD84, GDA2020, GDA94, WGS84),
-)
+class GeodeticDatum(utils.vocabs.RestrictedVocabulary):
+    vocab_id = "GEODETIC_DATUM"
+    terms = (AGD66, AGD84, GDA2020, GDA94, WGS84)
+
 
 # Register
-utils.vocabs.Vocabulary.register(GEODETIC_DATUM)
+utils.vocabs.Vocabulary.register(GeodeticDatum)

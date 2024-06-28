@@ -19,11 +19,12 @@ PART_OF = utils.vocabs.Term(
     description="When a site is a subset of another site."
 )
 
+
 # Vocabulary
-RELATIONSHIP_TO_RELATED_SITE = utils.vocabs.RestrictedVocabulary(
-    vocab_id="RELATIONSHIP_TO_RELATED_SITE",
-    terms=(SAME_AS, PART_OF),
-)
+class RelationshipToRelatedSite(utils.vocabs.RestrictedVocabulary):
+    vocab_id = "RELATIONSHIP_TO_RELATED_SITE"
+    terms = (SAME_AS, PART_OF)
+
 
 # Register
-utils.vocabs.Vocabulary.register(RELATIONSHIP_TO_RELATED_SITE)
+utils.vocabs.Vocabulary.register(RelationshipToRelatedSite)

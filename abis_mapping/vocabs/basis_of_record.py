@@ -53,14 +53,14 @@ MATERIAL_SAMPLE = utils.vocabs.Term(
 
 
 # Vocabulary
-BASIS_OF_RECORD = utils.vocabs.FlexibleVocabulary(
-    vocab_id="BASIS_OF_RECORD",
-    definition=rdflib.Literal("A type of basisOfRecord."),
-    base=utils.rdf.uri("bdr-cv/attribute/basisOfRecord/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
-    broader=utils.rdf.uri("bdr-cv/attribute/basisOfRecord", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=None,  # No default, omitted if not provided
-    terms=(
+class BasisOfRecord(utils.vocabs.FlexibleVocabulary):
+    vocab_id = "BASIS_OF_RECORD"
+    definition = rdflib.Literal("A type of basisOfRecord.")
+    base = utils.rdf.uri("bdr-cv/attribute/basisOfRecord/")
+    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
+    broader = utils.rdf.uri("bdr-cv/attribute/basisOfRecord", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+    default = None  # No default, omitted if not provided
+    terms = (
         HUMAN_OBSERVATION,
         OCCURRENCE,
         PRESERVED_SPECIMEN,
@@ -69,7 +69,7 @@ BASIS_OF_RECORD = utils.vocabs.FlexibleVocabulary(
         MACHINE_OBSERVATION,
         MATERIAL_SAMPLE,
     )
-)
+
 
 # Register vocabulary
-utils.vocabs.Vocabulary.register(BASIS_OF_RECORD)
+utils.vocabs.Vocabulary.register(BasisOfRecord)

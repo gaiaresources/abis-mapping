@@ -114,14 +114,14 @@ BIOVOLUME_ML = utils.vocabs.Term(
 
 
 # Vocab
-ORGANISM_QUANTITY_TYPE = utils.vocabs.FlexibleVocabulary(
-    vocab_id="ORGANISM_QUANTITY_TYPE",
-    definition=rdflib.Literal("A type of organism quantity."),
-    base=utils.rdf.uri("bdr-cv/concept/organismQuantityType"),
-    scheme=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType"),
-    broader=utils.rdf.uri("bdr-cv/concept/organismQuantityType", utils.namespaces.EXAMPLE),
-    default=None,  # No default, ommitted if not provided.
-    terms=(
+class OrganismQuantityType(utils.vocabs.FlexibleVocabulary):
+    vocab_id = "ORGANISM_QUANTITY_TYPE"
+    definition = rdflib.Literal("A type of organism quantity.")
+    base = utils.rdf.uri("bdr-cv/concept/organismQuantityType")
+    scheme = rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType")
+    broader = utils.rdf.uri("bdr-cv/concept/organismQuantityType", utils.namespaces.EXAMPLE)
+    default = None  # No default, ommitted if not provided.
+    terms = (
         PERCENTAGE_OF_SPECIES,
         PERCENTAGE_OF_BIOVOLUME,
         PERCENTAGE_OF_BIOMASS,
@@ -134,8 +134,8 @@ ORGANISM_QUANTITY_TYPE = utils.vocabs.FlexibleVocabulary(
         BIOMASS_KG,
         BIOVOLUME_CUBIC_MICRONS,
         BIOVOLUME_ML,
-    ),
-)
+    )
+
 
 # Register
-utils.vocabs.Vocabulary.register(ORGANISM_QUANTITY_TYPE)
+utils.vocabs.Vocabulary.register(OrganismQuantityType)

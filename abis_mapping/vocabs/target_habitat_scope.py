@@ -1044,14 +1044,15 @@ WOODLAND = utils.vocabs.Term(
     ),
 )
 
-TARGET_HABITAT_SCOPE = utils.vocabs.FlexibleVocabulary(
-    vocab_id="TARGET_HABITAT_SCOPE",
-    definition=rdflib.Literal("A type of targetHabitatScope"),
-    base=utils.rdf.uri("bdr-cv/attribute/targetHabitatScope/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924"),
-    broader=rdflib.URIRef("https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f"),
-    default=None,
-    terms=(
+
+class TargetHabitatScope(utils.vocabs.FlexibleVocabulary):
+    vocab_id = "TARGET_HABITAT_SCOPE"
+    definition = rdflib.Literal("A type of targetHabitatScope")
+    base = utils.rdf.uri("bdr-cv/attribute/targetHabitatScope/")
+    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
+    broader = rdflib.URIRef("https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f")
+    default = None
+    terms = (
         BEACH,
         BILLABONG_OR_SWAMP,
         CAVE,
@@ -1168,8 +1169,8 @@ TARGET_HABITAT_SCOPE = utils.vocabs.FlexibleVocabulary(
         URBAN,
         VINELAND,
         WOODLAND,
-    ),
-)
+    )
+
 
 # Register
-utils.vocabs.Vocabulary.register(TARGET_HABITAT_SCOPE)
+utils.vocabs.Vocabulary.register(TargetHabitatScope)

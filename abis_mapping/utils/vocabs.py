@@ -11,7 +11,7 @@ from abis_mapping.utils import rdf
 from abis_mapping.utils import strings
 
 # Typing
-from typing import Optional, Iterable, final, Final
+from typing import Optional, Iterable, final, Final, Type
 
 
 # Constants
@@ -79,40 +79,63 @@ class Term:
 
 
 class Vocabulary(abc.ABC):
-    """Base Vocabulary class."""
+    """Base Vocabulary class.
+
+    Attributes:
+        id_registry (dict[str, Vocabulary]): Dictionary to hold all vocabs for
+            mapping by their id.
+        vocab_id (str): ID to assign vocabulary.
+        terms (Iterable[Term]): Terms to add to the vocabulary.
+        publish (bool, optional): Whether to publish vocabulary
+            in documentation. Defaults to True.
+    """
     # Dictionary to hold all vocabs for mapping by their id.
-    id_registry: dict[str, "Vocabulary"] = {}
+    id_registry: dict[str, Type["Vocabulary"]] = {}
+
+    # Attributes assigned per vocabulary
+    vocab_id: str
+    terms: Iterable[Term]
+    publish: bool = True
 
     def __init__(
         self,
-        vocab_id: str,
-        terms: Iterable[Term],
-        publish: bool = True,
+        graph: rdflib.Graph,
+        source: Optional[rdflib.URIRef] = None,
     ):
         """Vocabulary constructor.
 
         Args:
-            vocab_id (str): ID to assign vocabulary.
-            publish (bool, optional): Whether to publish vocabulary
-                in documentation. Defaults to True.
+            graph (rdflib.Graph): Graph to reference
+                within vocabulary
+            source (Optional[rdflib.URIRef]): Optional source URI to attribute
+                a new vocabulary term to.
         """
-        # Assign object internal variables
-        self.vocab_id: Final[str] = vocab_id
-        self.publish: Final[bool] = publish
-
-        # Set Instance Variables
-        self.terms: Final[tuple[Term, ...]] = tuple(terms)
+        # Assign instance variables
+        self.graph = graph
+        self.source: Optional[rdflib.URIRef] = source
 
         # Generate Dictionary Mapping from Terms
         self._mapping: dict[str | None, rdflib.URIRef | None] = {}
         for term in self.terms:
             self._mapping.update(**term.to_mapping())
 
+    @abc.abstractmethod
+    def get(self, value: str | None) -> rdflib.URIRef:
+        """Retrieve na IRI from the vocabulary.
+
+        Args:
+            value (Optional[str]): Possible raw string value to search for in
+                vocabulary.
+
+        Returns:
+            rdflib.URIRef: Matching vocabulary IRI.
+        """
+
     @final
     @classmethod
     def register(
         cls,
-        vocab: "Vocabulary",
+        vocab: Type["Vocabulary"],
     ) -> None:
         """Register a Vocabulary within the centralise vocabulary id registry.
 
@@ -157,46 +180,45 @@ class RestrictedVocabulary(Vocabulary):
 
 
 class FlexibleVocabulary(Vocabulary):
-    """Flexible Vocabulary"""
+    """Flexible Vocabulary.
+
+    Attributes:
+        definition (rdflib.Literal): Definition to use when creating a new
+            vocabulary term 'on the fly'.
+        base_ns (rdflib.URIRef): Base IRI namespace to use when creating a new
+            vocabulary term 'on the fly'.
+        scheme (rdflib.URIRef): Scheme IRI to use when creating a new
+            vocabulary term 'on the fly'.
+        broader (Optional[rdflib.URIRef]): Optional broader IRI to use when
+            creating a new vocabulary term 'on the fly'.
+        default (Optional[Term]): Optional default term to fall back on if
+            a value is not supplied.
+    """
+    # Declare attributes applicable to a flexible vocab
+    definition: rdflib.Literal
+    base: rdflib.URIRef
+    scheme: rdflib.URIRef
+    broader: Optional[rdflib.URIRef]
+    default: Optional[Term]
 
     def __init__(
         self,
-        vocab_id: str,
-        definition: rdflib.Literal,
-        base: rdflib.URIRef,
-        scheme: rdflib.URIRef,
-        broader: Optional[rdflib.URIRef],
-        default: Optional[Term],
-        terms: Iterable[Term],
-        publish: bool = True,
-    ) -> None:
-        """Initialises a Flexible Vocabulary.
+        graph: rdflib.Graph,
+        source: Optional[rdflib.URIRef] = None,
+    ):
+        """Flexible Vocabulary constructor.
 
         Args:
-            vocab_id (str): ID to assign vocabulary.
-            definition (rdflib.Literal): Definition to use when creating a new
-                vocabulary term 'on the fly'.
-            base (rdflib.URIRef): Base IRI namespace to use when creating a new
-                vocabulary term 'on the fly'.
-            scheme (rdflib.URIRef): Scheme IRI to use when creating a new
-                vocabulary term 'on the fly'.
-            broader (Optional[rdflib.URIRef]): Optional broader IRI to use when
-                creating a new vocabulary term 'on the fly'.
-            default (Optional[Term]): Optional default term to fall back on if
-                a value is not supplied.
-            terms (Iterable[Term]): Terms for the vocabulary.
-            publish (bool, optional): Whether to publish vocabulary
-                within documentation. Defaults to True.
+            graph (rdflib.Graph): Graph to reference
+                within vocabulary
+            source (Optional[rdflib.URIRef]): Optional source URI to attribute
+                a new vocabulary term to.
         """
         # Call parent constructor
-        super().__init__(vocab_id, terms, publish)
+        super().__init__(graph=graph, source=source)
 
         # Set Instance Variables
-        self.definition = definition
-        self.base = rdflib.Namespace(base)  # Cast to a Namespace
-        self.scheme = scheme
-        self.broader = broader
-        self.default = default
+        self.base_ns = rdflib.Namespace(self.base)  # Cast to a Namespace
 
         # Add Default mapping if Applicable
         if self.default:
@@ -204,9 +226,7 @@ class FlexibleVocabulary(Vocabulary):
 
     def get(
         self,
-        graph: rdflib.Graph,
         value: Optional[str],
-        source: Optional[rdflib.URIRef] = None,
     ) -> rdflib.URIRef:
         """Retrieves an IRI from the Vocabulary.
 
@@ -218,11 +238,8 @@ class FlexibleVocabulary(Vocabulary):
         'on the fly'.
 
         Args:
-            graph (rdflib.Graph): Graph to create a new vocabulary term in.
             value (Optional[str]): Possible raw string value to search for in
                 vocabulary.
-            source (Optional[rdflib.URIRef]): Optional source URI to attribute
-                a new vocabulary term to.
 
         Returns:
             rdflib.URIRef: Default, matching or created vocabulary IRI.
@@ -245,26 +262,26 @@ class FlexibleVocabulary(Vocabulary):
             raise VocabularyError("Value not supplied for vocabulary with no default")
 
         # Create our Own Concept IRI
-        iri = rdf.uri(value, namespace=self.base)
+        iri = rdf.uri(value, namespace=self.base_ns)
 
         # Add to Graph
-        graph.add((iri, a, rdflib.SKOS.Concept))
-        graph.add((iri, rdflib.SKOS.definition, self.definition))
-        graph.add((iri, rdflib.SKOS.inScheme, self.scheme))
-        graph.add((iri, rdflib.SKOS.prefLabel, rdflib.Literal(value)))
+        self.graph.add((iri, a, rdflib.SKOS.Concept))
+        self.graph.add((iri, rdflib.SKOS.definition, self.definition))
+        self.graph.add((iri, rdflib.SKOS.inScheme, self.scheme))
+        self.graph.add((iri, rdflib.SKOS.prefLabel, rdflib.Literal(value)))
 
         # Check for Broader IRI
         if self.broader:
             # Add Broader
-            graph.add((iri, rdflib.SKOS.broader, self.broader))
+            self.graph.add((iri, rdflib.SKOS.broader, self.broader))
 
         # Check for Source URI
-        if source:
+        if self.source:
             # Construct Source URI Literal
-            uri = rdflib.Literal(source, datatype=rdflib.XSD.anyURI)
+            uri = rdflib.Literal(self.source, datatype=rdflib.XSD.anyURI)
 
             # Add Source
-            graph.add((iri, rdflib.DCTERMS.source, uri))
+            self.graph.add((iri, rdflib.DCTERMS.source, uri))
 
         # Return
         return iri
@@ -274,13 +291,14 @@ class VocabularyError(Exception):
     """Error Raised in Vocabulary Handling"""
 
 
-def get_vocab(key: str) -> Vocabulary | None:
+def get_vocab(key: str) -> Type[Vocabulary] | None:
     """Retrieves vocab object for given key.
 
     Args:
         key (str): Key to retrieve vocab for.
 
     Returns:
-        Vocabulary | None: Corresponding vocabulary for given key or None.
+        Type[Vocabulary] | None: Corresponding vocabulary class
+            for given key or None.
     """
     return Vocabulary.id_registry.get(key)
