@@ -600,7 +600,10 @@
           "WESTERN AUSTRALIA",
           "Western Australia"
         ]
-      }
+      },
+      "vocabularies": [
+        "CONSERVATION_JURISDICTION"
+      ]
     },
     {
       "name": "threatStatusCheckProtocol",

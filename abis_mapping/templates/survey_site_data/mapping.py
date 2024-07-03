@@ -501,29 +501,31 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             (relationship_to_related_site := row["relationshipToRelatedSite"]) and
             (related_site := row["relatedSiteID"])
         ):
-            # Retrieve vocab
-            relationship_to_related_site_vocab = vocabs.relationship_to_related_site.RELATIONSHIP_TO_RELATED_SITE.get(
-                value=relationship_to_related_site,
-            )
+            # Retrieve vocab for field
+            relationship_to_related_site_vocab = self.fields["relationshipToRelatedSite"].get_vocab()
+
+            # Retrieve term
+            relationship_to_related_site_term = relationship_to_related_site_vocab(
+                graph=graph
+            ).get(relationship_to_related_site)
 
             # Assign triple based on related site string
             if (related_site_literal := utils.rdf.uri_or_string_literal(related_site)).datatype == rdflib.XSD.string:
-                graph.add((uri, relationship_to_related_site_vocab, related_site_literal))
+                graph.add((uri, relationship_to_related_site_term, related_site_literal))
             else:
-                graph.add((uri, relationship_to_related_site_vocab, rdflib.URIRef(related_site)))
+                graph.add((uri, relationship_to_related_site_term, rdflib.URIRef(related_site)))
 
         # Add site tern featuretype
         graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
 
-        # Retrieve vocab or create on the fly
-        site_type_vocab = vocabs.site_type.SITE_TYPE.get(
-            graph=graph,
-            value=site_type,
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        site_type_vocab = self.fields["siteType"].get_vocab()
+
+        # Retrieve term or create on the fly
+        site_type_term = site_type_vocab(graph=graph, source=dataset).get(site_type)
 
         # Add to site type graph
-        graph.add((uri, rdflib.DCTERMS.type, site_type_vocab))
+        graph.add((uri, rdflib.DCTERMS.type, site_type_term))
 
         # Add site name if available
         if site_name:
@@ -643,13 +645,12 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add label
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("Site habitat")))
 
-        # Add flexible vocab
-        vocab = vocabs.target_habitat_scope.TARGET_HABITAT_SCOPE.get(
-            graph=graph,
-            value=raw,
-            source=dataset,
-        )
-        graph.add((uri, rdflib.RDF.value, vocab))
+        # Retrieve vocab for field
+        vocab = self.fields["habitat"].get_vocab()
+
+        # Add flexible vocab term
+        term = vocab(graph=graph, source=dataset).get(raw)
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_data_generalizations_attribute(
         self,

@@ -2,9 +2,10 @@
 
 
 # Standard
-import json
 import csv
 import io
+import json
+import unittest.mock
 
 # Third-party
 import frictionless
@@ -16,7 +17,9 @@ from abis_mapping import base
 from abis_mapping import utils
 
 # Typing
-from typing import Any
+from typing import Any, Optional, Iterator
+
+from abis_mapping.base import types as base_types
 
 
 def data_to_csv(data: list[dict[str, Any]]) -> bytes:
@@ -321,3 +324,73 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
     assert not report.valid
     error_codes = [code for codes in report.flatten(['type']) for code in codes]
     assert error_codes == ["incorrect-label"]
+
+
+def test_fields(
+    mocker: pytest_mock.MockerFixture,
+    mocked_vocab: unittest.mock.MagicMock,
+) -> None:
+    """Tests the fields method.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): Pytest mocker fixture
+        mocked_vocab (unittest.mock.MagicMock): Patched get_vocab and resulting mock.
+    """
+    # Patch schema method
+    descriptor = {
+        "fields": [
+            {
+                "name": "fieldA",
+                "title": "Title A",
+                "description": "Description A",
+                "example": "Example A",
+                "type": "typeA",
+                "format": "formatA",
+                "constraints": {
+                    "required": False,
+                },
+                "vocabularies": [
+                    "vocabularyA"
+                ]
+            },
+            {
+                "name": "fieldB",
+                "title": "Title B",
+                "description": "Description B",
+                "example": "Example B",
+                "type": "typeB",
+                "format": "formatB",
+                "constraints": {
+                    "required": False,
+                },
+                "vocabularies": [
+                    "vocabularyB"
+                ]
+            }
+        ]
+    }
+    mocker.patch.object(base.mapper.ABISMapper, "schema", return_value=descriptor)
+
+    # Create mapper
+    class TestMapper(base.mapper.ABISMapper):
+
+        def apply_mapping(
+            self,
+            data: base_types.ReadableType,
+            dataset_iri: Optional[rdflib.URIRef] = None,
+            base_iri: Optional[rdflib.Namespace] = None,
+            **kwargs: Any
+        ) -> Iterator[rdflib.Graph]:
+            pass
+
+        def apply_validation(
+            self,
+            data: base_types.ReadableType,
+            **kwargs: Any
+        ) -> frictionless.Report:
+            pass
+
+    mapper = TestMapper()
+
+    # Assert
+    assert list(mapper.fields.keys()) == ["fieldA", "fieldB"]

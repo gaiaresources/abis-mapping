@@ -1,3 +1,5 @@
+"""Tool for extracting vocabularies from the mappers."""
+
 # Standard
 import argparse
 import csv
@@ -13,7 +15,7 @@ from abis_mapping import types
 from abis_mapping import utils
 
 # Typing
-from typing import Iterator, IO
+from typing import Iterator, IO, Type
 
 
 class VocabTableRow(pydantic.BaseModel):
@@ -49,9 +51,14 @@ class VocabTabler(tables.base.BaseTabler):
 
         # Create a memory io and dictionary to csv writer
         output = io.StringIO()
-        header = [hdr.serialization_alias or hdr.title for hdr in VocabTableRow.model_fields.values()]
+        # Get serialization title or fall back to given title for each field.
+        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in VocabTableRow.model_fields.values())
+        # Assert all values as not None
+        header = [hdr for hdr in raw_hdr if hdr is not None]
+
         if as_markdown:
-            writer = tables.base.MarkdownDictWriter(output, fieldnames=header)
+            # MarkdownDictWriter is a child of DictWriter hence typehint
+            writer: csv.DictWriter = tables.base.MarkdownDictWriter(output, fieldnames=header)
         else:
             writer = csv.DictWriter(output, fieldnames=header)
 
@@ -81,7 +88,7 @@ class VocabTabler(tables.base.BaseTabler):
     def generate_vocab_rows(
         self,
         field: types.schema.Field,
-        vocab: utils.vocabs.Vocabulary,
+        vocab: Type[utils.vocabs.Vocabulary],
         as_markdown: bool = False,
     ) -> Iterator[VocabTableRow]:
         """Generates a set of rows based on vocabulary.
@@ -95,7 +102,7 @@ class VocabTabler(tables.base.BaseTabler):
             VocabTableRow: Vocabulary table rows.
         """
         # Sort terms and turn into a generator
-        terms = (t for t in sorted(vocab.terms, key=lambda x: x.preferred_label))
+        terms = (t for t in sorted(vocab.terms, key=lambda x: x.preferred_label))  # type: ignore[arg-type, return-value]  # noqa: E501
 
         # If markdown then the first row must contain an anchor
         if as_markdown and (term := next(terms, None)) is not None:
@@ -161,4 +168,3 @@ if __name__ == "__main__":
     finally:
         # Close output file
         args.output_dest.close()
-

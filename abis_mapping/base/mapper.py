@@ -13,11 +13,10 @@ import frictionless
 import rdflib
 
 # Local
-from . import types
-from abis_mapping.types import spatial
-from abis_mapping.types import temporal
-from abis_mapping.types import schema
+from . import types as base_types
+from abis_mapping import types
 from abis_mapping import utils
+
 
 # Typing
 from typing import Any, Iterator, Optional, final
@@ -43,7 +42,7 @@ class ABISMapper(abc.ABC):
     @abc.abstractmethod
     def apply_validation(
         self,
-        data: types.ReadableType,
+        data: base_types.ReadableType,
         **kwargs: Any,
     ) -> frictionless.Report:
         """Applies Frictionless Validation to Raw Data to Generate Report.
@@ -59,7 +58,7 @@ class ABISMapper(abc.ABC):
     @abc.abstractmethod
     def apply_mapping(
         self,
-        data: types.ReadableType,
+        data: base_types.ReadableType,
         dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
         **kwargs: Any,
@@ -91,14 +90,14 @@ class ABISMapper(abc.ABC):
         graph.add((uri, a, utils.namespaces.TERN.RDFDataset))
         graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(self.DATASET_DEFAULT_NAME)))
         graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(self.DATASET_DEFAULT_DESCRIPTION)))
-        graph.add((uri, rdflib.DCTERMS.issued, temporal.Date.today().to_rdf_literal()))
+        graph.add((uri, rdflib.DCTERMS.issued, types.temporal.Date.today().to_rdf_literal()))
 
     def add_geometry_supplied_as(
         self,
         subj: rdflib.graph.Node,
         pred: rdflib.graph.Node,
         obj: rdflib.graph.Node,
-        geom: spatial.Geometry,
+        geom: types.spatial.Geometry,
         graph: rdflib.Graph,
     ) -> None:
         """Add geometry supplied as originally to the graph.
@@ -177,7 +176,7 @@ class ABISMapper(abc.ABC):
     @classmethod
     def extra_fields_schema(
         cls,
-        data: frictionless.Row | types.ReadableType,
+        data: frictionless.Row | base_types.ReadableType,
         full_schema: bool = False
     ) -> frictionless.Schema:
         """Creates a schema with all extra fields found in data.
@@ -306,10 +305,26 @@ class ABISMapper(abc.ABC):
 
         # Read Schema and validate
         s_dict = json.loads(schema_file.read_text())
-        s_class = schema.Schema.model_validate(s_dict, strict=True)
+        s_class = types.schema.Schema.model_validate(s_dict, strict=True)
 
         # Dump pydantic class to return dict
         return s_class.model_dump(exclude_none=discard_optional)
+
+    @final
+    @classmethod
+    @property
+    def fields(cls) -> dict[str, types.schema.Field]:
+        """Indexed dictionary of all fields' metadata.
+
+        Returns:
+            dict[str, types.schema.Field]: Dictionary of all fields
+                with name as key..
+        """
+        # Get schema
+        schema = types.schema.Schema.model_validate(cls.schema())
+
+        # Return dictionary of fields
+        return {f.name: f for f in schema.fields}
 
     @final
     @classmethod

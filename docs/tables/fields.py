@@ -55,9 +55,16 @@ class FieldTabler(tables.base.BaseTabler):
 
         # Create a memory io and dictionary to csv writer
         output = io.StringIO()
-        header = [hdr.serialization_alias or hdr.title for hdr in FieldTableRow.model_fields.values()]
+        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in FieldTableRow.model_fields.values())
+        header = [hdr for hdr in raw_hdr if hdr is not None]
+
         if as_markdown:
-            writer = tables.base.MarkdownDictWriter(output, fieldnames=header, alignment=["l", "l", "c", "c", "l"])
+            # MarkdownDictWriter is a subclass of DictWriter hence the type hint.
+            writer: csv.DictWriter = tables.base.MarkdownDictWriter(
+                f=output,
+                fieldnames=header,
+                alignment=["l", "l", "c", "c", "l"],
+            )
         else:
             writer = csv.DictWriter(output, fieldnames=header)
 
@@ -169,9 +176,10 @@ class FieldTabler(tables.base.BaseTabler):
             # Get validate method mock
             mocked_validate: mock.Mock = mocked_resource.return_value.validate
 
-            # Retrieve checklist
+            # Retrieve checklist and return
             if mocked_validate.called:
-                return mocked_validate.call_args.kwargs.get("checklist")
+                checklist: frictionless.Checklist = mocked_validate.call_args.kwargs.get("checklist")
+                return checklist
 
             # Else
             return None

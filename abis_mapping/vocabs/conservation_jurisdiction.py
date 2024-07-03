@@ -55,12 +55,13 @@ WA = utils.vocabs.Term(
     description="Western Australia",
 )
 
+
 # Vocabulary
-CONSERVATION_JURISDICTION = utils.vocabs.RestrictedVocabulary(
-    vocab_id="CONSERVATION_JURISDICTION",
-    terms=(ACT, EPBC, NSW, NT, QLD, SA, TAS, VIC, WA),
-    publish=False,
-)
+class ConservationJurisdiction(utils.vocabs.RestrictedVocabulary):
+    vocab_id = "CONSERVATION_JURISDICTION"
+    terms = (ACT, EPBC, NSW, NT, QLD, SA, TAS, VIC, WA)
+    publish = False
+
 
 # Register
-utils.vocabs.Vocabulary.register(CONSERVATION_JURISDICTION)
+utils.vocabs.Vocabulary.register(ConservationJurisdiction)

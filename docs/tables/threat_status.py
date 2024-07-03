@@ -41,7 +41,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
         """
         super().__init__(template_id)
         fields = self.mapper.schema()['fields']
-        if len([fld for fld in fields if fld.get("vocabularies") and "THREAT_STATUS" in fld.get("vocabularies")])== 0:
+        if not [fld for fld in fields if fld.get("vocabularies") and "THREAT_STATUS" in fld.get("vocabularies")]:
             raise ValueError(f"No THREAT_STATUS vocabularies found for template {template_id}")
 
     def generate_table(
@@ -62,18 +62,24 @@ class ThreatStatusTabler(tables.base.BaseTabler):
         output = io.StringIO()
 
         # Get header list
-        header = [hdr.serialization_alias for hdr in ThreatStatusRow.model_fields.values()]
+        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in ThreatStatusRow.model_fields.values())
+        header = [hdr for hdr in raw_hdr if hdr is not None]
 
         # Create writer
         if as_markdown:
-            writer = tables.base.MarkdownDictWriter(output, fieldnames=header, alignment=["c", "l", "l"])
+            # MarkdownDictWriter is a subclass of DictWriter hence the type hint
+            writer: csv.DictWriter = tables.base.MarkdownDictWriter(
+                f=output,
+                fieldnames=header,
+                alignment=["c", "l", "l"],
+            )
         else:
             writer = csv.DictWriter(output, fieldnames=header)
 
         writer.writeheader()
 
         # Iterate through vocab's terms
-        for term in sorted(utils.vocabs.get_vocab("THREAT_STATUS").terms, key=lambda x: x.preferred_label):
+        for term in sorted(utils.vocabs.get_vocab("THREAT_STATUS").terms, key=lambda x: x.preferred_label):  # type: ignore[arg-type, return-value] # noqa: E501
             # Generate row
             row = self.generate_row(term)
             # Write to output
@@ -98,9 +104,17 @@ class ThreatStatusTabler(tables.base.BaseTabler):
 
         Return;
             ThreatStatConsJurTableRow: Table row.
+
+        Raises:
+            ValueError: If there is no preferred label for the supplied Term.'
         """
-        # Split out preferred label
-        splt_preferred = threat_stat_cons_jur_term.preferred_label.split('/')
+        # Check preferred label
+        if (preferred_label := threat_stat_cons_jur_term.preferred_label) is not None:
+            # Split out preferred label
+            splt_preferred = preferred_label.split('/')
+        else:
+            # Raise
+            raise ValueError(f"No preferred label for {threat_stat_cons_jur_term}")
 
         # Split threat status alt labels
         threat_stat_alt: list[str] = [lbl.split('/')[1] for lbl in threat_stat_cons_jur_term.alternative_labels]

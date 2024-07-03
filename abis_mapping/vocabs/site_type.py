@@ -39,22 +39,23 @@ TRANSECT = utils.vocabs.Term(
     description="A line along which biotic and abiotic characteristics are sampled",
 )
 
+
 # Vocabulary
-SITE_TYPE = utils.vocabs.FlexibleVocabulary(
-    vocab_id="SITE_TYPE",
-    definition=rdflib.Literal("A type of site."),
-    base=utils.rdf.uri("bdr-cv/concept/siteType/"),
-    scheme=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74aa68d3-28fd-468d-8ff5-7e791d9f7159"),
-    broader=utils.rdf.uri("bdr-cv/concept/siteType", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    default=SITE,
-    terms=(
+class SiteType(utils.vocabs.FlexibleVocabulary):
+    vocab_id = "SITE_TYPE"
+    definition = rdflib.Literal("A type of site.")
+    base = utils.rdf.uri("bdr-cv/concept/siteType/")
+    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74aa68d3-28fd-468d-8ff5-7e791d9f7159")
+    broader = utils.rdf.uri("bdr-cv/concept/siteType", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+    default = SITE
+    terms = (
         SITE,
         PARENT_SITE,
         PLOT,
         QUADRAT,
         TRANSECT,
-    ),
-)
+    )
+
 
 # Register
-utils.vocabs.Vocabulary.register(SITE_TYPE)
+utils.vocabs.Vocabulary.register(SiteType)

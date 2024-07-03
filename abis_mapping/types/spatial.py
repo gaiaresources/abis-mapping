@@ -13,7 +13,7 @@ import rdflib
 # Local
 from abis_mapping import settings
 from abis_mapping.utils import namespaces
-from abis_mapping import vocabs
+from abis_mapping import utils
 
 # Typing
 from typing import NamedTuple
@@ -88,7 +88,12 @@ class Geometry:
         Returns:
             rdflib.URIRef: Uri corresponding to original datum if known, else None.
         """
-        return vocabs.geodetic_datum.GEODETIC_DATUM.get(self.original_datum_name)
+        # Retrieve vocab class
+        if (vocab := utils.vocabs.get_vocab("GEODETIC_DATUM")) is not None:
+            # Init with dummy graph and return corresponding URI
+            return vocab(graph=rdflib.Graph()).get(self.original_datum_name)
+        else:
+            return None
 
     @property
     def _transformed_geometry(self) -> shapely.Geometry:
@@ -109,7 +114,13 @@ class Geometry:
         Returns:
             rdflib.URIRef: Uri corresponding to transformer datum if known, else None.
         """
-        return vocabs.geodetic_datum.GEODETIC_DATUM.get(settings.DEFAULT_TARGET_CRS)
+        # Retrieve vocab class
+        if (vocab := utils.vocabs.get_vocab("GEODETIC_DATUM")) is not None:
+            # Init with dummy graph and return corresponding uri
+            return vocab(graph=rdflib.Graph()).get(settings.DEFAULT_TARGET_CRS)
+
+        # If vocab doesn't exist
+        return None
 
     @classmethod
     def from_geosparql_wkt_literal(cls, literal: rdflib.Literal | str) -> "Geometry":

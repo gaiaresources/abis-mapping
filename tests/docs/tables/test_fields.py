@@ -130,11 +130,15 @@ def test_determine_checklist() -> None:
     assert len(checklist.checks) == 6
 
 
-def test_generate_table(mocked_mapper: unittest.mock.MagicMock) -> None:
+def test_generate_table(
+    mocked_mapper: unittest.mock.MagicMock,
+    mocked_vocab: unittest.mock.MagicMock,
+) -> None:
     """Tests generate_table method.
 
     Args:
-        mocked_mapper (pytest_mock.mocker.mock.MagicMock): Mocked mapper fixture.
+        mocked_mapper (unittest.mock.MagicMock): Mocked mapper fixture.
+        mocked_vocab (unittest.mock.MagicMock): Mocked vocab fixture.
     """
     # Create an in memory io
     dest = io.StringIO()
@@ -148,17 +152,23 @@ def test_generate_table(mocked_mapper: unittest.mock.MagicMock) -> None:
     )
 
     # Assert
+    mocked_vocab.assert_called()
+    mocked_mapper.assert_called()
     assert dest.getvalue() == (
         'Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n'
         'someName,Some description,Mandatory,String,SOME EXAMPLE\r\n\n'
     )
 
 
-def test_generate_table_markdown(mocked_mapper: unittest.mock.MagicMock) -> None:
+def test_generate_table_markdown(
+    mocked_mapper: unittest.mock.MagicMock,
+    mocked_vocab: unittest.mock.MagicMock,
+) -> None:
     """Tests generate_table method with markdown format.
 
     Args:
         mocked_mapper (unittest.mock.MagicMock): Mocked mapper fixture.
+        mocked_vocab (unittest.mock.MagicMock): Mocked vocab fixture.
     """
     # Create a tabler
     tabler = tables.fields.FieldTabler("some_id")
@@ -167,6 +177,8 @@ def test_generate_table_markdown(mocked_mapper: unittest.mock.MagicMock) -> None
     actual = tabler.generate_table(as_markdown=True)
 
     # Assert
+    mocked_mapper.assert_called()
+    mocked_vocab.assert_called()
     assert actual == (
         '|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n'
         '|:---|:---|:---:|:---:|:---|\n'

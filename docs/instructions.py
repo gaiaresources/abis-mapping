@@ -51,6 +51,10 @@ class MapperLoader(jinja2.BaseLoader):
         except KeyError:
             raise ValueError(f"Template '{self.mapper_id}' not found.")
 
+        # Check mapper returned
+        if mapper is None:
+            raise TypeError(f"Template '{self.mapper_id}' not defined; got NoneType")
+
         # Create path
         path = mapper().root_dir() / "templates" / template
 
@@ -95,7 +99,7 @@ def build_instructions(mapper_id: str) -> str:
             "threat_status": tables.threat_status.ThreatStatusTabler(mapper_id).generate_table(as_markdown=True),
         },
         "values": {
-            "geodetic_datum_count": len(vocabs.geodetic_datum.GEODETIC_DATUM.terms),
+            "geodetic_datum_count": len(vocabs.geodetic_datum.GeodeticDatum.terms),
         },
     }
 

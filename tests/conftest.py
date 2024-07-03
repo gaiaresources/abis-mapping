@@ -2,13 +2,45 @@
 
 # Standard
 import json
+import unittest.mock
 
 # Third-Party
+import pytest
+import pytest_mock
 import rdflib
 import rdflib.compare
 
+# Local
+from abis_mapping import utils
+
 # Typing
 from typing import Union
+
+
+@pytest.fixture
+def mocked_vocab(mocker: pytest_mock.MockerFixture) -> unittest.mock.MagicMock:
+    """Provides a mocked term fixture.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): Pytest mocker fixture.
+
+    Returns:
+        unittest.mock.MagicMock: Mocked term fixture.
+    """
+    # Patch get_vocab
+    mocked_vocab = mocker.patch("abis_mapping.utils.vocabs.get_vocab")
+
+    # Patch terms
+    mocked_vocab.return_value.terms = (
+        utils.vocabs.Term(
+            labels=("SOME LABEL", "ANOTHER LABEL", ),
+            iri=rdflib.URIRef("https://example.org/some-term"),
+            description="Some description.",
+        ),
+    )
+
+    # Return
+    return mocked_vocab
 
 
 def compare_graphs(

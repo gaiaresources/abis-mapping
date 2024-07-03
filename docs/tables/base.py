@@ -3,13 +3,12 @@
 # Standard
 import abc
 import csv
-import re
 
 # Local
 from abis_mapping import base
 
 # Typing
-from typing import IO, Final, Any
+from typing import IO, Final, Any, Mapping, Iterable
 
 
 class BaseTabler(abc.ABC):
@@ -66,7 +65,7 @@ class MarkdownDialect(csv.excel):
     escapechar = '\\'
     lineterminator = '\n'
     quoting = csv.QUOTE_NONE
-    quotechar = None
+    quotechar = None  # type: ignore[assignment]
 
 
 # Register the dialect with the csv module
@@ -115,21 +114,20 @@ class MarkdownDictWriter(csv.DictWriter):
         fieldnames.append("__end__")
 
         # Assign attributes
-        self.dialect: Final[csv.Dialect] = csv.get_dialect("markdown")
         self.alignment: Final[list[str] | None] = ["l", *alignment, "l"] if alignment is not None else None
 
         # Call parent constructor
-        super().__init__(f, fieldnames, dialect="markdown", *args, **kwargs)
+        super().__init__(f, fieldnames, dialect="markdown", *args, **kwargs)  # type: ignore[arg-type, misc]
 
     @property
-    def first_field(self) -> str:
+    def first_field(self) -> Any:
         """Returns name of first field."""
-        return self.fieldnames[0]
+        return self.fieldnames[0]  # type: ignore[index]
 
     @property
-    def last_field(self) -> str:
+    def last_field(self) -> Any:
         """Returns name of last field."""
-        return self.fieldnames[-1]
+        return self.fieldnames[-1]  # type: ignore[index]
 
     def writeheader(self) -> Any:
         """Writes the first row of the markdown table.
@@ -158,23 +156,23 @@ class MarkdownDictWriter(csv.DictWriter):
         header_break = dict(zip(self.fieldnames, divider))
         return self.writerow(header_break)
 
-    def writerow(self, rowdict: dict[str, Any]) -> Any:
+    def writerow(self, rowdict: Mapping[Any, Any]) -> Any:
         """Writes a row of the markdown table.
 
         Args:
-            rowdict (dict[str, Any]): Dictionary to convert.
+            rowdict (Mapping[Any, Any]): Dictionary to convert.
 
         Returns:
             Any: Value returned from underlying file write method.
         """
         # Add the first and last blank values to allow beginning and trailing pipes
-        rowdict[self.first_field] = None
-        rowdict[self.last_field] = None
+        rowdict[self.first_field] = None  # type: ignore[index]
+        rowdict[self.last_field] = None  # type: ignore[index]
 
         # Clean cells
         for fieldname in self.fieldnames:
             if isinstance(rowdict[fieldname], str):
-                rowdict[fieldname] = self._clean_cell(rowdict[fieldname])
+                rowdict[fieldname] = self._clean_cell(rowdict[fieldname])  # type: ignore[index]
 
         # Call parent writerow and return
         return super().writerow(rowdict)
@@ -191,7 +189,7 @@ class MarkdownDictWriter(csv.DictWriter):
         # Perform replacement
         return contents.replace('\n', "<br>")
 
-    def writerows(self, rowdicts: list[dict[str, Any]]) -> None:
+    def writerows(self, rowdicts: Iterable[Mapping[Any, Any]]) -> None:
         """Writes rows of the markdown table.
 
         Raises:
