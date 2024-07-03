@@ -15,7 +15,7 @@ from abis_mapping import types
 from abis_mapping import utils
 
 # Typing
-from typing import Iterable, IO, Type
+from typing import Iterator, IO, Type
 
 
 class VocabTableRow(pydantic.BaseModel):
@@ -73,8 +73,8 @@ class VocabTabler(tables.base.BaseTabler):
 
             # Iterate through publishable vocabs
             for vocab in publishable_vocabs:
-                # Create a row per vocab term
-                for vocab_table_row in self.generate_vocab_rows(field, vocab):
+                # Create a row per vocab term adding anchor to first row
+                for vocab_table_row in self.generate_vocab_rows(field, vocab, as_markdown):
                     # Write row to csv
                     writer.writerow(vocab_table_row.model_dump(by_alias=True))
 
@@ -89,18 +89,29 @@ class VocabTabler(tables.base.BaseTabler):
         self,
         field: types.schema.Field,
         vocab: Type[utils.vocabs.Vocabulary],
-    ) -> Iterable[VocabTableRow]:
+        as_markdown: bool = False,
+    ) -> Iterator[VocabTableRow]:
         """Generates a set of rows based on vocabulary.
 
         Args:
             field (types.schema.Field): Field the vocabulary is related to.
             vocab (utils.vocabs.Vocabulary): Vocabulary to generate.
+            as_markdown (bool): True to generate a markdown table. Defaults to False, as csv.
 
         Yields:
             VocabTableRow: Vocabulary table rows.
         """
-        # Itermate through terms and yield each row.
-        for term in sorted(vocab.terms, key=lambda x: x.preferred_label):  # type: ignore[arg-type, return-value]
+        # Sort terms and turn into a generator
+        terms = (t for t in sorted(vocab.terms, key=lambda x: x.preferred_label))  # type: ignore[arg-type, return-value]  # noqa: E501
+
+        # If markdown then the first row must contain an anchor
+        if as_markdown and (term := next(terms, None)) is not None:
+            yield self.generate_row(
+                field=field.model_copy(update={'name': f'<a name="{field.name}-vocabularies"></a>{field.name}'}),
+                term=term,
+            )
+        # Iterate through terms and yield each row.
+        for term in terms:
             yield self.generate_row(
                 field=field,
                 term=term,

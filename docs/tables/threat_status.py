@@ -68,7 +68,11 @@ class ThreatStatusTabler(tables.base.BaseTabler):
         # Create writer
         if as_markdown:
             # MarkdownDictWriter is a subclass of DictWriter hence the type hint
-            writer: csv.DictWriter = tables.base.MarkdownDictWriter(output, fieldnames=header)
+            writer: csv.DictWriter = tables.base.MarkdownDictWriter(
+                f=output,
+                fieldnames=header,
+                alignment=["c", "l", "l"],
+            )
         else:
             writer = csv.DictWriter(output, fieldnames=header)
 
