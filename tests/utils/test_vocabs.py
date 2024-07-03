@@ -41,9 +41,9 @@ def test_vocabs_term() -> None:
 def test_vocabs_restricted_vocab() -> None:
     """Tests the RestrictedVocab Class"""
     # Create Vocab
-    vocab = abis_mapping.utils.vocabs.RestrictedVocabulary(
-        vocab_id="TEST_RESTRICT",
-        terms=(
+    class Vocab(abis_mapping.utils.vocabs.RestrictedVocabulary):
+        vocab_id = "TEST_RESTRICT"
+        terms = (
             abis_mapping.utils.vocabs.Term(
                 labels=("A",),
                 iri=rdflib.URIRef("A"),
@@ -54,8 +54,8 @@ def test_vocabs_restricted_vocab() -> None:
                 iri=rdflib.URIRef("B"),
                 description="B",
             ),
-        ),
-    )
+        )
+    vocab = Vocab(graph=rdflib.Graph())
 
     # Assert Existing Values
     assert vocab.get("a") == rdflib.URIRef("A")
@@ -71,14 +71,14 @@ def test_vocabs_restricted_vocab() -> None:
 def test_vocabs_flexible_vocab() -> None:
     """Tests the FlexibleVocab Class"""
     # Create Vocab
-    vocab = abis_mapping.utils.vocabs.FlexibleVocabulary(
-        vocab_id="TEST_FLEX",
-        definition=rdflib.Literal("definition"),
-        base=rdflib.URIRef("base/"),
-        scheme=rdflib.URIRef("scheme"),
-        broader=rdflib.URIRef("broader"),
-        default=None,
-        terms=(
+    class Vocab(abis_mapping.utils.vocabs.FlexibleVocabulary):
+        vocab_id = "TEST_FLEX"
+        definition = rdflib.Literal("definition")
+        base = rdflib.URIRef("base/")
+        scheme = rdflib.URIRef("scheme")
+        broader = rdflib.URIRef("broader")
+        default = None
+        terms = (
             abis_mapping.utils.vocabs.Term(
                 labels=("A",),
                 iri=rdflib.URIRef("A"),
@@ -89,20 +89,22 @@ def test_vocabs_flexible_vocab() -> None:
                 iri=rdflib.URIRef("B"),
                 description="B",
             ),
-        ),
-    )
-
-    # Create Graph
+        )
+    # Create graph
     graph = rdflib.Graph()
 
+    # Initialize vocab
+    vocab = Vocab(graph=graph)
+
     # Assert Existing Values
-    assert vocab.get(graph, "a") == rdflib.URIRef("A")
-    assert vocab.get(graph, "A") == rdflib.URIRef("A")
-    assert vocab.get(graph, "b") == rdflib.URIRef("B")
-    assert vocab.get(graph, "B") == rdflib.URIRef("B")
+    assert vocab.get("a") == rdflib.URIRef("A")
+    assert vocab.get("A") == rdflib.URIRef("A")
+    assert vocab.get("b") == rdflib.URIRef("B")
+    assert vocab.get("B") == rdflib.URIRef("B")
 
     # Assert New Values
-    assert vocab.get(graph, "C", rdflib.URIRef("D")) == rdflib.URIRef("base/C")
+    vocab.source = rdflib.URIRef("D")
+    assert vocab.get("C") == rdflib.URIRef("base/C")
     assert graph.serialize(format="ttl").strip() == textwrap.dedent(
         """
         @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -120,7 +122,7 @@ def test_vocabs_flexible_vocab() -> None:
 
     # Assert Invalid Values
     with pytest.raises(abis_mapping.utils.vocabs.VocabularyError):
-        vocab.get(graph, None)  # No Default
+        vocab.get(None)  # No Default
 
 
 def test_vocab_register_id() -> None:
@@ -130,12 +132,16 @@ def test_vocab_register_id() -> None:
 
 def test_get_vocab() -> None:
     """Tests get_vocab function."""
-    # Retrieve vocabs
+    # Retrieve vocab
     v1 = abis_mapping.utils.vocabs.get_vocab("SEX")
-    v2 = abis_mapping.utils.vocabs.get_vocab("NOT_A_VOCAB")
 
     # Assert exists
-    assert isinstance(v1, abis_mapping.utils.vocabs.FlexibleVocabulary)
+    assert v1 is not None
+    assert issubclass(v1, abis_mapping.utils.vocabs.FlexibleVocabulary)
 
-    # Assert None
-    assert v2 is None
+
+def test_get_vocab_invalid() -> None:
+    """Tests get_vocab function with an invalid vocab."""
+    # Should raise key error
+    with pytest.raises(ValueError):
+        abis_mapping.utils.vocabs.get_vocab("NOT_A_VOCAB")

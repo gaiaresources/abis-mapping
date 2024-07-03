@@ -154,7 +154,7 @@ class Vocabulary(abc.ABC):
 class RestrictedVocabulary(Vocabulary):
     """Restricted Vocabulary"""
 
-    def get(self, value: str) -> rdflib.URIRef:
+    def get(self, value: str | None) -> rdflib.URIRef:
         """Retrieves an IRI from the Vocabulary.
 
         Args:
@@ -167,6 +167,11 @@ class RestrictedVocabulary(Vocabulary):
             VocabularyError: Raised if supplied value does not match an
                 existing vocabulary term.
         """
+        # Check for Value
+        if not value:
+            # Raise Error
+            raise VocabularyError("Value not supplied for vocabulary with no default")
+
         # Sanitise Value
         sanitised_value = strings.sanitise(value)
 
@@ -291,7 +296,7 @@ class VocabularyError(Exception):
     """Error Raised in Vocabulary Handling"""
 
 
-def get_vocab(key: str) -> Type[Vocabulary] | None:
+def get_vocab(key: str) -> Type[Vocabulary]:
     """Retrieves vocab object for given key.
 
     Args:
@@ -300,5 +305,12 @@ def get_vocab(key: str) -> Type[Vocabulary] | None:
     Returns:
         Type[Vocabulary] | None: Corresponding vocabulary class
             for given key or None.
+
+    Raises:
+        ValueError: If supplied key doesn't exist within the registry.
     """
-    return Vocabulary.id_registry.get(key)
+    try:
+        return Vocabulary.id_registry[key]
+    except KeyError:
+        # Transform to ValueError, to assist with validation libraries.
+        raise ValueError(f"Key {key} not found in registry.")

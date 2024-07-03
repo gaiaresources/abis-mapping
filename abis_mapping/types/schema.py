@@ -28,7 +28,7 @@ class Field(pydantic.BaseModel):
     type: str
     format: str | None
     constraints: Constraints
-    vocabularies: list[str]
+    vocabularies: list[str] = []
 
     # Allow extra fields to be captured mainly to catch errors in json
     model_config = pydantic.ConfigDict(extra="allow")
@@ -76,7 +76,8 @@ class Field(pydantic.BaseModel):
         if name is not None:
             return utils.vocabs.get_vocab(name)
 
-        return utils.vocabs.get_vocab(self.vocabularies.pop(0))
+        return utils.vocabs.get_vocab(self.vocabularies[0])
+
 
 class Schema(pydantic.BaseModel):
     """Model for overall schema object of a schema definition."""

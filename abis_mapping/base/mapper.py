@@ -313,7 +313,6 @@ class ABISMapper(abc.ABC):
     @final
     @classmethod
     @property
-    @functools.lru_cache
     def fields(cls) -> dict[str, types.schema.Field]:
         """Indexed dictionary of all fields' metadata.
 
@@ -326,7 +325,6 @@ class ABISMapper(abc.ABC):
 
         # Return dictionary of fields
         return {f.name: f for f in schema.fields}
-
 
     @final
     @classmethod

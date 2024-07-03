@@ -326,11 +326,15 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
     assert error_codes == ["incorrect-label"]
 
 
-def test_fields(mocker: pytest_mock.MockerFixture) -> None:
+def test_fields(
+    mocker: pytest_mock.MockerFixture,
+    mocked_vocab: unittest.mock.MagicMock,
+) -> None:
     """Tests the fields method.
 
     Args:
-        mocker (pytest_mock.MockerFixture):
+        mocker (pytest_mock.MockerFixture): Pytest mocker fixture
+        mocked_vocab (unittest.mock.MagicMock): Patched get_vocab and resulting mock.
     """
     # Patch schema method
     descriptor = {
@@ -365,7 +369,7 @@ def test_fields(mocker: pytest_mock.MockerFixture) -> None:
             }
         ]
     }
-    mocked_schema = mocker.patch.object(base.mapper.ABISMapper, "schema", return_value=descriptor)
+    mocker.patch.object(base.mapper.ABISMapper, "schema", return_value=descriptor)
 
     # Create mapper
     class TestMapper(base.mapper.ABISMapper):
@@ -390,9 +394,3 @@ def test_fields(mocker: pytest_mock.MockerFixture) -> None:
 
     # Assert
     assert list(mapper.fields.keys()) == ["fieldA", "fieldB"]
-    mocked_schema.assert_called_once()
-
-
-
-
-

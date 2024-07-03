@@ -79,6 +79,7 @@ VASCULAR_PLANT = utils.vocabs.Term(
     ),
 )
 
+
 class TargetTaxonomicScope(utils.vocabs.FlexibleVocabulary):
     vocab_id = "TARGET_TAXONOMIC_SCOPE"
     definition = rdflib.Literal("A type of targetTaxonomicScope")

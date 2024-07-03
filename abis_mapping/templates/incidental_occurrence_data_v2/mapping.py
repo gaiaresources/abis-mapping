@@ -949,12 +949,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # that this row has a specimen, otherwise it is Field Sample
         foi = sample_specimen if has_specimen(row) else sample_field
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.identification_method.IDENTIFICATION_METHOD.get(
-            graph=graph,
-            value=row["identificationMethod"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["identificationMethod"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["identificationMethod"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -968,7 +967,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, term))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
@@ -1032,12 +1031,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # that this row has a specimen, otherwise it is Field Sample
         foi = sample_specimen if has_specimen(row) else sample_field
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.identification_method.IDENTIFICATION_METHOD.get(
-            graph=graph,
-            value=row["identificationMethod"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["identificationMethod"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["identificationMethod"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -1051,7 +1049,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, term))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
@@ -1178,12 +1176,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             datum=row["geodeticDatum"]
         )
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sampling_protocol.SAMPLING_PROTOCOL.get(
-            graph=graph,
-            value=row["samplingProtocol"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["samplingProtocol"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["samplingProtocol"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -1212,7 +1209,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, term))
 
         # Add Identifier
         graph.add(
@@ -1343,18 +1340,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["identificationQualifier"]:
             return
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.identification_qualifier.IDENTIFICATION_QUALIFIER.get(
-            graph=graph,
-            value=row["identificationQualifier"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["identificationQualifier"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["identificationQualifier"])
 
         # Identification Qualifier Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("identificationQualifier")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_id_remarks_attribute(
         self,
@@ -1673,12 +1669,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 with record number literal.
             graph (rdflib.Graph): Graph to add to
         """
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.kingdom.KINGDOM_OCCURRENCE.get(
-            graph=graph,
-            value=row["kingdom"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["kingdom"].get_vocab("KINGDOM_OCCURRENCE")
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["kingdom"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
@@ -1687,7 +1682,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_field))
         graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
-        graph.add((uri, utils.namespaces.TERN.featureType, vocab))
+        graph.add((uri, utils.namespaces.TERN.featureType, term))
 
         # Check for recordNumber
         if row["recordNumber"]:
@@ -1780,12 +1775,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not has_specimen(row):
             return
 
+        # Retrieve vocab for field
+        vocab = self.fields["kingdom"].get_vocab("KINGDOM_SPECIMEN")
+
         # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.kingdom.KINGDOM_SPECIMEN.get(
-            graph=graph,
-            value=row["kingdom"],
-            source=dataset,
-        )
+        term = vocab(graph=graph, source=dataset).get(row["kingdom"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
@@ -1794,7 +1788,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
         graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
-        graph.add((uri, utils.namespaces.TERN.featureType, vocab))
+        graph.add((uri, utils.namespaces.TERN.featureType, term))
 
         # Check for catalogNumber
         if row["catalogNumber"]:
@@ -1908,18 +1902,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.kingdom.KINGDOM.get(
-            graph=graph,
-            value=row["kingdom"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["kingdom"].get_vocab("KINGDOM")
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["kingdom"])
 
         # Kingdom Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"kingdom = {row['kingdom']}")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_taxon_rank_attribute(
         self,
@@ -1968,19 +1961,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Check Existence
         if not row["taxonRank"]:
             return
+        # Retrieve vocab for field
+        vocab = self.fields["taxonRank"].get_vocab()
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.taxon_rank.TAXON_RANK.get(
-            graph=graph,
-            value=row["taxonRank"],
-            source=dataset,
-        )
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["taxonRank"])
 
         # Taxon Rank Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"taxon rank = {row['taxonRank']}")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_individual_count_observation(
         self,
@@ -2234,18 +2225,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["basisOfRecord"]:
             return
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.basis_of_record.BASIS_OF_RECORD.get(
-            graph=graph,
-            value=row["basisOfRecord"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["basisOfRecord"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["basisOfRecord"])
 
         # Basis of Record Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("basisOfRecord")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_owner_institution_provider(
         self,
@@ -2355,18 +2345,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["occurrenceStatus"]:
             return
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.occurrence_status.OCCURRENCE_STATUS.get(
-            graph=graph,
-            value=row["occurrenceStatus"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["occurrenceStatus"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["occurrenceStatus"])
 
         # Occurrence Status Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"occurrenceStatus = {row['occurrenceStatus']}")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_preparations_attribute(
         self,
@@ -2416,18 +2405,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["preparations"]:
             return
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.preparations.PREPARATIONS.get(
-            graph=graph,
-            value=row["preparations"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["preparations"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["preparations"])
 
         # Preparations Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("preparations")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_establishment_means_observation(
         self,
@@ -2501,18 +2489,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["establishmentMeans"]:
             return
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.establishment_means.ESTABLISHMENT_MEANS.get(
-            graph=graph,
-            value=row["establishmentMeans"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["establishmentMeans"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["establishmentMeans"])
 
         # Establishment Means Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("establishmentMeans-value")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_life_stage_observation(
         self,
@@ -2594,18 +2581,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["lifeStage"]:
             return
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.life_stage.LIFE_STAGE.get(
-            graph=graph,
-            value=row["lifeStage"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["lifeStage"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["lifeStage"])
 
         # Life Stage Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("lifeStage-value")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_sex_observation(
         self,
@@ -2686,18 +2672,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["sex"]:
             return
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sex.SEX.get(
-            graph=graph,
-            value=row["sex"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["sex"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["sex"])
 
         # Sex Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("sex-value")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_reproductive_condition_observation(
         self,
@@ -2779,18 +2764,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["reproductiveCondition"]:
             return
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.reproductive_condition.REPRODUCTIVE_CONDITION.get(
-            graph=graph,
-            value=row["reproductiveCondition"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["reproductiveCondition"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["reproductiveCondition"])
 
         # Reproductive Condition Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("reproductiveCondition-value")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_accepted_name_usage_observation(
         self,
@@ -2901,12 +2885,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             datum=row["geodeticDatum"],
         )
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sequencing_method.SEQUENCING_METHOD.get(
-            graph=graph,
-            value=row["sequencingMethod"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["sequencingMethod"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["sequencingMethod"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -2918,7 +2901,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, term))
 
         # Add geometry
         geometry_node = rdflib.BNode()
@@ -3057,12 +3040,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             or row["eventDate"]
         )
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.check_protocol.CHECK_PROTOCOL.get(
-            graph=graph,
-            value=row["threatStatusCheckProtocol"],
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["threatStatusCheckProtocol"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(row["threatStatusCheckProtocol"])
 
         # Threat Status Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -3073,7 +3055,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["threatStatus"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
         graph.add((uri, rdflib.PROV.wasInfluencedBy, jurisdiction_attribute))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, term))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
@@ -3119,18 +3101,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Combine conservationJurisdiction and threatStatus
         value = f"{row['conservationJurisdiction']}/{row['threatStatus']}"
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.threat_status.THREAT_STATUS.get(
-            graph=graph,
-            value=value,
-            source=dataset,
-        )
+        # Retrieve vocab for field
+        vocab = self.fields["threatStatus"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph, source=dataset).get(value)
 
         # Threat Status Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"Conservation status = {row['threatStatus']}")))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_conservation_jurisdiction_attribute(
         self,
@@ -3178,8 +3159,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["conservationJurisdiction"]:
             return
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.conservation_jurisdiction.CONSERVATION_JURISDICTION.get(row["conservationJurisdiction"])
+        # Retrieve vocab for field
+        vocab = self.fields["conservationJurisdiction"].get_vocab()
+
+        # Retrieve term or Create on the Fly
+        term = vocab(graph=graph).get(row["conservationJurisdiction"])
 
         # Construct Label
         label = f"Conservation Jurisdiction = {row['conservationJurisdiction']}"
@@ -3188,7 +3172,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))
-        graph.add((uri, rdflib.RDF.value, vocab))
+        graph.add((uri, rdflib.RDF.value, term))
 
 
 # Helper Functions

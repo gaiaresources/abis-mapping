@@ -742,6 +742,7 @@ WA_VU = utils.vocabs.Term(
     description="Western Australia, vulnerable species.",
 )
 
+
 # Vocabulary
 class ThreatStatus(utils.vocabs.FlexibleVocabulary):
     vocab_id = "THREAT_STATUS"
@@ -825,7 +826,7 @@ class ThreatStatus(utils.vocabs.FlexibleVocabulary):
         WA_T,
         WA_VU,
     )
-    publish=False
+    publish = False
 
 
 # Register

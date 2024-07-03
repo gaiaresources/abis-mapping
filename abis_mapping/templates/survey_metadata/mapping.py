@@ -13,7 +13,6 @@ from abis_mapping import base
 from abis_mapping import plugins
 from abis_mapping import types
 from abis_mapping import utils
-from abis_mapping import vocabs
 
 # Typing
 from typing import Optional, Iterator, Any
@@ -805,13 +804,12 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add label
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("surveyType")))
 
+        # Retrieve vocab for field
+        vocab = self.fields["surveyType"].get_vocab()
+
         # Add value
-        vocab = vocabs.survey_type.SURVEY_TYPE.get(
-            graph=graph,
-            value=survey_type,
-            source=dataset,
-        )
-        graph.add((uri, rdflib.RDF.value, vocab))
+        term = vocab(graph=graph, source=dataset).get(survey_type)
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_sampling_effort_attribute(
         self,
@@ -881,14 +879,13 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add label
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("samplingEffort")))
 
+        # Retrieve vocab for field
+        vocab = self.fields["samplingEffortUnit"].get_vocab()
+
         # Add value
-        unit_vocab = vocabs.sampling_effort_unit.SAMPLING_EFFORT_UNIT.get(
-            graph=graph,
-            value=effort_unit,
-            source=dataset,
-        )
+        term = vocab(graph=graph, source=dataset).get(effort_unit)
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(effort_value)))
-        graph.add((uri, utils.namespaces.TERN.unit, unit_vocab))
+        graph.add((uri, utils.namespaces.TERN.unit, term))
 
     def add_target_habitat_attribute(
         self,
@@ -942,13 +939,12 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add label
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("targetHabitatScope")))
 
+        # Retrieve vocab for field
+        vocab = self.fields["targetHabitatScope"].get_vocab()
+
         # Add value
-        vocab = vocabs.target_habitat_scope.TARGET_HABITAT_SCOPE.get(
-            graph=graph,
-            value=raw_value,
-            source=dataset,
-        )
-        graph.add((uri, rdflib.RDF.value, vocab))
+        term = vocab(graph=graph, source=dataset).get(raw_value)
+        graph.add((uri, rdflib.RDF.value, term))
 
     def add_target_taxonomic_attribute(
         self,
@@ -1003,13 +999,12 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add label
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("targetTaxonomicScope")))
 
+        # Retrieve vocab for field
+        vocab = self.fields["targetTaxonomicScope"].get_vocab()
+
         # Add value
-        vocab = vocabs.target_taxonomic_scope.TARGET_TAXONOMIC_SCOPE.get(
-            graph=graph,
-            value=raw_value,
-            source=dataset,
-        )
-        graph.add((uri, rdflib.RDF.value, vocab))
+        term = vocab(graph=graph, source=dataset).get(raw_value)
+        graph.add((uri, rdflib.RDF.value, term))
 
 
 base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)

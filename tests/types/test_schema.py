@@ -6,7 +6,6 @@ import pytest
 
 # Local
 from abis_mapping import types
-from abis_mapping import utils
 
 # Typing
 from typing import Any
@@ -105,6 +104,3 @@ class TestField:
         with pytest.raises(IndexError):
             # Invoke
             field.get_vocab()
-
-
-
