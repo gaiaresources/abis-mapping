@@ -61,6 +61,7 @@ FUNGI_SPECIMEN = utils.vocabs.Term(
 
 # Vocabularies
 class Kingdom(utils.vocabs.FlexibleVocabulary):
+    """DEPRECATED: Do not use this vocabulary for new templates."""
     vocab_id = "KINGDOM"
     definition = rdflib.Literal("A type of kingdom.")
     base = utils.rdf.uri("bdr-cv/attribute/kingdom/")

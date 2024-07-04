@@ -15,8 +15,17 @@ import tests.conftest
     argvalues=[(id, params) for (_, id, params) in conftest.mapping_test_args() if params.expected is not None],
     ids=[id for (id, _, params) in conftest.mapping_test_args() if params.expected is not None],
 )
-def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters) -> None:
-    """Tests the mapping for the template"""
+def test_apply_mapping(
+    template_id: str,
+    test_params: conftest.MappingParameters
+) -> None:
+    """Tests the mapping for the template.
+
+    Args:
+        template_id (str): The id of the template.
+        test_params (conftest.MappingParameters): Datastructure
+            holding parameters used commonly in tests.
+    """
     # Load Data and Expected Output
     data = test_params.data.read_bytes()
     assert test_params.expected is not None

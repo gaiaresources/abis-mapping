@@ -529,7 +529,6 @@
         "required": true
       },
       "vocabularies": [
-        "KINGDOM",
         "KINGDOM_OCCURRENCE",
         "KINGDOM_SPECIMEN"
       ]
