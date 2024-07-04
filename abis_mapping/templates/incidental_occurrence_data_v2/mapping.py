@@ -26,7 +26,6 @@ CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86a
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
-CONCEPT_KINGDOM = utils.rdf.uri("concept/kingdom", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_TAXON_RANK = utils.rdf.uri("concept/taxonRank", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_INDIVIDUAL_COUNT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1")
 CONCEPT_ORGANISM_REMARKS = utils.rdf.uri("concept/organismRemarks", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
@@ -246,8 +245,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_num}", base_iri)
         data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/{row_num}", base_iri)
         data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{row_num}", base_iri)
-        kingdom_attribute = utils.rdf.uri(f"attribute/kingdom/{row_num}", base_iri)
-        kingdom_value = utils.rdf.uri(f"value/kingdom/{row_num}", base_iri)
         taxon_rank_attribute = utils.rdf.uri(f"attribute/taxonRank/{row_num}", base_iri)
         taxon_rank_value = utils.rdf.uri(f"value/taxonRank/{row_num}", base_iri)
         individual_count_observation = utils.rdf.uri(f"observation/individualCount/{row_num}", base_iri)
@@ -508,7 +505,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             scientific_name=text_scientific_name,
             qualifier=id_qualifier_attribute,
             remarks=id_remarks_attribute,
-            kingdom=kingdom_attribute,
             taxon_rank=taxon_rank_attribute,
             graph=graph,
         )
@@ -538,23 +534,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         self.add_data_generalizations_value(
             uri=data_generalizations_value,
             row=row,
-            graph=graph,
-        )
-
-        # Add Kingdom Attribute
-        self.add_kingdom_attribute(
-            uri=kingdom_attribute,
-            row=row,
-            dataset=dataset,
-            kingdom_value=kingdom_value,
-            graph=graph,
-        )
-
-        # Add Kingdom Value
-        self.add_kingdom_value(
-            uri=kingdom_value,
-            row=row,
-            dataset=dataset,
             graph=graph,
         )
 
@@ -914,7 +893,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         scientific_name: rdflib.URIRef,
         qualifier: rdflib.URIRef,
         remarks: rdflib.URIRef,
-        kingdom: rdflib.URIRef,
         taxon_rank: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -935,8 +913,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 associated with this node
             remarks (rdflib.URIRef): Identification Remarks attribute
                 associated with this node
-            kingdom (rdflib.URIRef): Kingdom attribute associated with this
-                node
             taxon_rank (rdflib.URIRef): Taxon Rank attribute associated with
                 this node
             graph (rdflib.Graph): Graph to add to
@@ -986,9 +962,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Check for identificationRemarks
         if row["identificationRemarks"]:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, remarks))
-
-        # Add Kingdom
-        graph.add((uri, utils.namespaces.TERN.hasAttribute, kingdom))
 
         # Check for taxonRank
         if row["taxonRank"]:
@@ -1861,58 +1834,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["dataGeneralizations"])))
-
-    def add_kingdom_attribute(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        kingdom_value: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Kingdom Attribute to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            kingdom_value (rdflib.URIRef): Kingdom Value associated with this
-                node
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Kingdom Attribute
-        graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_KINGDOM))
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["kingdom"])))
-        graph.add((uri, utils.namespaces.TERN.hasValue, kingdom_value))
-
-    def add_kingdom_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Kingdom Value to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Retrieve vocab for field
-        vocab = self.fields["kingdom"].get_vocab("KINGDOM")
-
-        # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["kingdom"])
-
-        # Kingdom Value
-        graph.add((uri, a, utils.namespaces.TERN.IRI))
-        graph.add((uri, a, utils.namespaces.TERN.Value))
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"kingdom = {row['kingdom']}")))
-        graph.add((uri, rdflib.RDF.value, term))
 
     def add_taxon_rank_attribute(
         self,
