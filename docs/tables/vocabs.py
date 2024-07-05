@@ -15,7 +15,7 @@ from abis_mapping import types
 from abis_mapping import utils
 
 # Typing
-from typing import Iterator, IO, Type
+from typing import Iterator, IO
 
 
 class VocabTableRow(pydantic.BaseModel):
@@ -67,16 +67,10 @@ class VocabTabler(tables.base.BaseTabler):
 
         # Iterate through fields
         for field in fields:
-            # Retrieve publishable vocabs for field
-            vocabs = (utils.vocabs.get_vocab(v) for v in field.vocabularies)
-            publishable_vocabs = (v for v in vocabs if v.publish)
-
-            # Iterate through publishable vocabs
-            for vocab in publishable_vocabs:
-                # Create a row per vocab term adding anchor to first row
-                for vocab_table_row in self.generate_vocab_rows(field, vocab, as_markdown):
-                    # Write row to csv
-                    writer.writerow(vocab_table_row.model_dump(by_alias=True))
+            # Create a row per vocab term adding anchor to first row
+            for vocab_table_row in self.generate_vocab_rows(field, as_markdown):
+                # Write row to csv
+                writer.writerow(vocab_table_row.model_dump(by_alias=True))
 
         # Write to destination
         if dest is not None:
@@ -88,33 +82,42 @@ class VocabTabler(tables.base.BaseTabler):
     def generate_vocab_rows(
         self,
         field: types.schema.Field,
-        vocab: Type[utils.vocabs.Vocabulary],
         as_markdown: bool = False,
     ) -> Iterator[VocabTableRow]:
-        """Generates a set of rows based on vocabulary.
+        """Generates a set of rows based on a field's vocabulary.
 
         Args:
             field (types.schema.Field): Field the vocabulary is related to.
-            vocab (utils.vocabs.Vocabulary): Vocabulary to generate.
             as_markdown (bool): True to generate a markdown table. Defaults to False, as csv.
 
         Yields:
             VocabTableRow: Vocabulary table rows.
         """
+        # Retrieve publishable vocabs for field
+        vocabs = (utils.vocabs.get_vocab(v) for v in field.vocabularies)
+        publishable_vocabs = (v for v in vocabs if v.publish)
+
+        # Map terms based on their preferred label
+        grouped_terms = (v.terms for v in publishable_vocabs)
+        publishable_terms = (t for ts in grouped_terms for t in ts)
+        terms_map: dict[str, utils.vocabs.Term] = {
+            t.preferred_label: t for t in publishable_terms if t.preferred_label is not None
+        }
+
         # Sort terms and turn into a generator
-        terms = (t for t in sorted(vocab.terms, key=lambda x: x.preferred_label))  # type: ignore[arg-type, return-value]  # noqa: E501
+        sorted_terms: Iterator[str] = (t for t in sorted(terms_map))
 
         # If markdown then the first row must contain an anchor
-        if as_markdown and (term := next(terms, None)) is not None:
+        if as_markdown and (term_key := next(sorted_terms, None)) is not None:
             yield self.generate_row(
                 field=field.model_copy(update={'name': f'<a name="{field.name}-vocabularies"></a>{field.name}'}),
-                term=term,
+                term=terms_map[term_key],
             )
         # Iterate through terms and yield each row.
-        for term in terms:
+        for term_key in sorted_terms:
             yield self.generate_row(
                 field=field,
-                term=term,
+                term=terms_map[term_key],
             )
 
     @staticmethod

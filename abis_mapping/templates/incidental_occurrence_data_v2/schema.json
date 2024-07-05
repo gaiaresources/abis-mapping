@@ -608,7 +608,7 @@
       "name": "threatStatusCheckProtocol",
       "title": "Threat Status Check Protocol",
       "description": "The method used to determine if the organism is listed under the relevant jurisdictional threatened species list.",
-      "example": "Species name check of the Department of Climate Change, Energy, the Environment and Water’s Species Profile and Threat Database http://www.environment.g ov.au/cgi-bin/sprat/public/ sprat.pl",
+      "example": "Species name check of the Department of Climate Change, Energy, the Environment and Water’s Species Profile and Threat Database http://www.environment.gov.au/cgi-bin/sprat/public/sprat.pl",
       "type": "string",
       "format": "default",
       "constraints": {
