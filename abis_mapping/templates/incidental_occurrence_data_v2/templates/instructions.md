@@ -68,8 +68,8 @@ datatype format, and examples.</ins>
 
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
-Apart from geodeticDatum, the data validation doesnot require adherence tho the below vocabularies
-for each of the fields indicated as having vocabularies. These vocuabularies are provided as a 
+Apart from geodeticDatum, the data validation does not require adherence tho the below vocabularies
+for each of the fields indicated as having vocabularies. These vocabularies are provided as a 
 means of assistance in developing consistent language within the database. New terms can be added
 to more appropriately describe your data that goes beyond the current list. Table 2 provides some 
 suggested values from existing sources such as: [Biodiversity Information Standard (TDWG)](https://dwc.tdwg.org/),

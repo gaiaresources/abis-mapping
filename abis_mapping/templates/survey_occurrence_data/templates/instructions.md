@@ -5,7 +5,7 @@ Use this template to record occurrence data; that is the presence or absence of 
 at a particular site locality at a point in time.
 
 This Systematic Survey Occurrences template **must be used in combination** with the
-Systematic Survey Metadata template and, in some cases, the Systematice Survey Sites
+Systematic Survey Metadata template and, in some cases, the Systematic Survey Sites
 template.
 
 Templates have been provided to facilitate integration of your data into the Biodiversity
@@ -72,8 +72,8 @@ datatype format, and examples.</ins>
 
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
-Apart from geodeticDatum, the data validation doesnot require adherence tho the below vocabularies
-for each of the fields indicated as having vocabularies. These vocuabularies are provided as a
+Apart from geodeticDatum, the data validation does not require adherence tho the below vocabularies
+for each of the fields indicated as having vocabularies. These vocabularies are provided as a
 means of assistance in developing consistent language within the database. New terms can be added
 to more appropriately describe your data that goes beyond the current list. Table 2 provides some
 suggested values from existing sources such as: [Biodiversity Information Standard (TDWG)](https://dwc.tdwg.org/),
