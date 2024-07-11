@@ -229,6 +229,23 @@ class FlexibleVocabulary(Vocabulary):
         if self.default:
             self._mapping.update({None: self.default.iri})
 
+    def _add_pref_label(
+        self,
+        iri: rdflib.URIRef,
+        value: str,
+    ) -> None:
+        """Adds the prefLabel predicated triple for a new concept to the graph.
+
+        This can be overridden in subclasses to change its behavior, e.g.
+            Kingdom Occurrence and Kingdom Specimen have done this.
+
+        Args:
+            iri (rdflib.URIRef): Subject of the triple
+            value (str): Raw string value provided in supplied data.
+        """
+        # Add triple to graph.
+        self.graph.add((iri, rdflib.SKOS.prefLabel, rdflib.Literal(value)))
+
     def get(
         self,
         value: Optional[str],
@@ -273,7 +290,7 @@ class FlexibleVocabulary(Vocabulary):
         self.graph.add((iri, a, rdflib.SKOS.Concept))
         self.graph.add((iri, rdflib.SKOS.definition, self.definition))
         self.graph.add((iri, rdflib.SKOS.inScheme, self.scheme))
-        self.graph.add((iri, rdflib.SKOS.prefLabel, rdflib.Literal(value)))
+        self._add_pref_label(iri, value)
 
         # Check for Broader IRI
         if self.broader:

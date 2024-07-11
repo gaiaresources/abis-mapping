@@ -965,13 +965,13 @@
     dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:definition "The existence of the organism sampled at a particular place at a particular time." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d> ;
-    skos:prefLabel "new kingdom" .
+    skos:prefLabel "new kingdom occurrence" .
 
 <http://createme.org/bdr-cv/featureType/specimen/kingdom/new-kingdom> a skos:Concept ;
     dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:definition "An organism specimen." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d> ;
-    skos:prefLabel "new kingdom" .
+    skos:prefLabel "new kingdom specimen" .
 
 <http://createme.org/bdr-cv/methods/samplingProtocol/new-sampling-protocol> a skos:Concept ;
     dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
