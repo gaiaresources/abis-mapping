@@ -73,7 +73,9 @@ class Kingdom(utils.vocabs.FlexibleVocabulary):
 
 class KingdomOccurrence(utils.vocabs.FlexibleVocabulary):
     vocab_id = "KINGDOM_OCCURRENCE"
-    definition = rdflib.Literal("The existence of the organism sampled at a particular place at a particular time.")
+    definition = rdflib.Literal(
+        "The existence of the organism from this kingdom sampled at a particular place at a particular time."
+    )
     base = utils.rdf.uri("bdr-cv/featureType/occurrence/kingdom/")
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
     broader = None  # No broader, top level concept
@@ -97,7 +99,7 @@ class KingdomOccurrence(utils.vocabs.FlexibleVocabulary):
 
 class KingdomSpecimen(utils.vocabs.FlexibleVocabulary):
     vocab_id = "KINGDOM_SPECIMEN"
-    definition = rdflib.Literal("An organism specimen.")
+    definition = rdflib.Literal("A specimen sampled from an organism of this kingdom.")
     base = utils.rdf.uri("bdr-cv/featureType/specimen/kingdom/")
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
     broader = None  # No broader, top level concept
