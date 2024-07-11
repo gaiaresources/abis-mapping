@@ -28,6 +28,7 @@
       "description": "A description of the survey objective",
       "type": "string",
       "format": "default",
+      "example": "Summer sampling for peak insect diversity.",
       "constraints": {
         "required": false
       }
@@ -36,7 +37,7 @@
       "name": "surveyType",
       "title": "Survey Type",
       "description": "Description of type of survey conducted",
-      "example": "Invertebrate trapping",
+      "example": "Wet pitfall trapping",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -72,7 +73,7 @@
       "name": "targetTaxonomicScope",
       "title": "Target Taxonomic Scope",
       "description": "The range of biological taxa covered by the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |",
-      "example": "Coleoptera | Insecta",
+      "example": "Coleoptera | Formicidae",
       "type": "list",
       "format": "default",
       "constraints": {
@@ -86,7 +87,7 @@
       "name": "targetHabitatScope",
       "title": "Target Habitat Scope",
       "description": "The habitats targeted for sampling during the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |",
-      "example": "Woodland | Tundra",
+      "example": "Woodland",
       "type": "list",
       "format": "default",
       "constraints": {
@@ -181,7 +182,7 @@
       "name": "surveyMethodURL",
       "title": "Survey Method URL",
       "description": "A DOI or link to the reference about the survey method, if available.",
-      "example": "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf",
+      "example": "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf | https://doi.org/10.1002/9781118945568.ch11",
       "type": "list",
       "format": "uri",
       "constraints": {
@@ -192,6 +193,7 @@
       "name":"samplingEffortValue",
       "title": "Sample Effort",
       "description": "Similar to eco:samplingEffortValue. The total sampling effort value. A samplingEffortValue must have a corresponding samplingEffortUnit",
+      "example": "20 x 12",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -202,6 +204,7 @@
       "name": "samplingEffortUnit",
       "title": "Sampling Effort Units",
       "description": "Similar to eco:samplingEffortUnit. The units associated with samplingEffortValue.",
+      "example": "trapDays",
       "type": "string",
       "format": "default",
       "constraints": {

@@ -9,8 +9,7 @@ import jinja2
 
 # Local
 from abis_mapping import base
-from abis_mapping import vocabs
-from docs import tables
+from docs import contexts
 
 # Typing
 from typing import Callable
@@ -91,17 +90,8 @@ def build_instructions(mapper_id: str) -> str:
     # Retrieve markdown instructions template
     template = env.get_template("instructions.md")
 
-    # Create context
-    ctx = {
-        "tables": {
-            "fields": tables.fields.FieldTabler(mapper_id).generate_table(as_markdown=True),
-            "vocabularies": tables.vocabs.VocabTabler(mapper_id).generate_table(as_markdown=True),
-            "threat_status": tables.threat_status.ThreatStatusTabler(mapper_id).generate_table(as_markdown=True),
-        },
-        "values": {
-            "geodetic_datum_count": len(vocabs.geodetic_datum.GeodeticDatum.terms),
-        },
-    }
+    # Load context
+    ctx = contexts.base.get_context(mapper_id)
 
     # Return render
     return template.render(ctx)

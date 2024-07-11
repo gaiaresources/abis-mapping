@@ -83,7 +83,7 @@ class FieldTabler(tables.base.BaseTabler):
             )
 
             # If markdown add link to vocabularies
-            if as_markdown and field.vocabularies:
+            if as_markdown and field.publishable_vocabularies:
                 field_table_row.examples += f"<br>([Vocabulary link](#{field.name}-vocabularies))"
 
             # Write row to csv
@@ -148,7 +148,7 @@ class FieldTabler(tables.base.BaseTabler):
             field_name=field.name,
             description=field.description,
             mandatory_optional="Mandatory" if field.constraints.required else "Optional",
-            datatype_format=field.type.title(),
+            datatype_format=field.type.title() if field.type not in ["wkt"] else field.type.upper(),
             examples=field.example,
         )
 
