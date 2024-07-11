@@ -66,23 +66,30 @@ datatype format, and examples.</ins>
 
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
-Table 2 describes preferred labels for geodeticDatum.
+Apart from geodeticDatum, the data validation does not require adherence to the below vocabularies
+for each of the fields indicated as having vocabularies. These vocabularies are provided as a
+means of assistance in developing consistent language within the database. New terms can be added
+to more appropriately describe your data that goes beyond the current list. Table 2 provides some
+suggested values from existing sources such as: [Biodiversity Information Standard (TDWG)](https://dwc.tdwg.org/),
+[EPSG.io Coordinate systems worldwide](https://epsg.io/), the [Global Biodiversity Information
+System](https://rs.gbif.org/), and [Open Nomenclature in the biodiversity
+era](https://doi.org/10.1111/2041-210X.12594).
 
-Note: <font color="red">The geodeticDatum value must come from one of the Preferred labels
-or Alternate Labels in this table.</font>
-
-<ins>Table 2: Suggested values for geodeticDatum controlled vocabulary fields in the template.
+<ins>Table 2: Suggested values for the controlled vocabulary fields in the template. Each term has
+a preferred label with a definition to aid understanding of its meaning. For some terms, alternative
+labels are provided that mean the same sort of thing. Note: <font color="red">geodeticDatum value
+must come from one of five options in this table.</font></ins>
 
 {{tables.vocabularies}}
 
 ### APPENDIX-II: Well Known Text (WKT)
 For general information on how WKT coordinate reference data is formatted [here](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry).
-The lenght of a WKT string or of its components is not prescribed. However MS Excel has a 32,767 (32K) character limit
+The length of a WKT string or of its components is not prescribed. However, MS Excel has a 32,767 (32K) character limit
 on individual cells in a spreadsheet.
 
 It is possible to edit CSV files outside of Excel in order to include more than 32K characters.
 
-{{images.wkt-mulitpart-geometries}}
+![Multipart geometries (2D) WKT](assets/multipart_geometries_2d_wkt.png)
 
 ### APPENDIX-III: Timestamp
 Following date and date-time formats are acceptable within the timestamp:
@@ -134,4 +141,3 @@ issues related to character representation and ensure that your software can han
 diverse set of characters and languages.
 
 For assistance, please contact: <bdr-support@gaiaresources.com.au>
-

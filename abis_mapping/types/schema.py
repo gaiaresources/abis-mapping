@@ -78,6 +78,16 @@ class Field(pydantic.BaseModel):
 
         return utils.vocabs.get_vocab(self.vocabularies[0])
 
+    @property
+    def publishable_vocabularies(self) -> list[str]:
+        """Returns a list of only those vocabularies that are publishable.
+
+        Returns:
+            list[str]: The publishable vocabularies.
+        """
+        # Filter and return
+        return [v for v in self.vocabularies if self.get_vocab(v).publish]
+
 
 class Schema(pydantic.BaseModel):
     """Model for overall schema object of a schema definition."""
