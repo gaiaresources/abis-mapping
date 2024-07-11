@@ -80,6 +80,20 @@ class KingdomOccurrence(utils.vocabs.FlexibleVocabulary):
     default = None  # No default, kingdom is required in the CSV
     terms = (ANIMALIA_OCCURRENCE, PLANTAE_OCCURRENCE, FUNGI_OCCURRENCE)
 
+    def _add_pref_label(
+        self,
+        iri: rdflib.URIRef,
+        value: str,
+    ) -> None:
+        """Overrides the adding of the skos:prefLabel predicated triple for a new concept.
+
+        Args:
+            iri (rdflib.URIRef): The iri of the concept.
+            value (str): Raw value provided within the supplied data.
+        """
+        # Add triple to graph
+        self.graph.add((iri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{value} occurrence")))
+
 
 class KingdomSpecimen(utils.vocabs.FlexibleVocabulary):
     vocab_id = "KINGDOM_SPECIMEN"
@@ -89,6 +103,20 @@ class KingdomSpecimen(utils.vocabs.FlexibleVocabulary):
     broader = None  # No broader, top level concept
     default = None  # No default, kingdom is required in the CSV
     terms = (ANIMALIA_SPECIMEN, PLANTAE_SPECIMEN, FUNGI_SPECIMEN)
+
+    def _add_pref_label(
+        self,
+        iri: rdflib.URIRef,
+        value: str,
+    ) -> None:
+        """Overrides the adding of the skos:prefLabel predicated triple for a new concept.
+
+        Args:
+            iri (rdflib.URIRef): The iri of the concept.
+            value (str): Raw value provided within the supplied data.
+        """
+        # Add triple to graph
+        self.graph.add((iri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{value} specimen")))
 
 
 # Register
