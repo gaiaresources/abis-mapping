@@ -15,6 +15,7 @@ contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
 #### NEED TO KNOW:
 For data validation, you will need your data file to:
+
 - be the correct **file format,**
 - have **matching template fields** to the template downloaded (do not remove, or
   change the order of fields), however
@@ -29,6 +30,7 @@ For data validation, you will need your data file to:
   validation error.
 
 ### FILE FORMAT
+
 - The systematic survey occurrence data template is a [UTF-8](#appendix-iii-utf-8) encoded csv (not Microsoft
   Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
   otherwise it will not pass the csv validation step upon upload.

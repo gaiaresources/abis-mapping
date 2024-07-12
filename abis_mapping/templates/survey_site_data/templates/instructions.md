@@ -1,37 +1,37 @@
-# INCIDENTAL OCCURRENCE DATA TEMPLATE INSTRUCTIONS
+# SYSTEMATIC SURVEY SITE DATA TEMPLATE INSTRUCTIONS
 
 ## OVERVIEW
-Use this template to record occurrence data; that is the presence or absence of an organism
-at a particular site locality at a point in time.
+Use this template to record data about the Site area where species occurrences have been
+sampled during a systematic survey.
 
-Templates have been provided to facilitate integration of your data into the Biodiversity
-Data Repository database. Not all types of data have been catered for in the available
-templates at this stage; therefore, if you are unable to find a suitable template, please 
+This Systematic Survey Site template **must be used in combination** with the Systematic
+Survey Occurrence template and the Systematic Survey Metadata template.
+
+Templates have been provided to facilitate integration of your data into the Biodiversity Data
+Repository (BDR) database. Not all types of data have been catered for in the available
+templates at this stage; therefore, if you are unable to find a suitable template, please
 contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
 #### NEED TO KNOW:
 For data validation, you will need your data file to:
 
-- be the correct **file format,**
-- have **matching template fields** to the template downloaded (do not remove, or 
-change the order of fields), however
-- additional fields may be added **after the templated fields** (noting that the
-data type is not assumed and values will be encoded as strings),
-- have values in **mandatory fields** (see Table 1),
+- be the correct **file format**,
+- have **matching template fields** to the template downloaded with provision to add
+extra fields (do not remove, or change the order of fields),
+- have populated the relevant fields using the correct data type (for example dates for
+date fields),
+- additional fields may be added **after the templated fields**,
+- have values in **mandatory fields** (see Table 1), and
 - comply with data **value constraints** for example the geographic coordinates are
-consistent with a [geodeticDatum](#geodeticDatum-vocabularies) type of the ***{{values.geodetic_datum_count}}*** available 
-options, and
-- align with existing controlled [vocabularies](#appendix-i-vocabulary-list) wherever possible (this is mandatory
-for geodeticDatum), but new terms may be submitted for consideration amd will not cause a 
-validation error.
+consistent with a geodeticDatum type of the available options.
 
 ### FILE FORMAT
 
-- The incidental occurrence data template is a [UTF-8](#appendix-iii-utf-8) encoded csv (not Microsoft
-Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
-otherwise it will not pass the csv validation step upon upload.
-<br>`[MS Excel: Save As > More options > Tools > Web options > Save this document as >
-Unicode (UTF-8)]`
+- The systematic survey site data template is a [UTF-8](#appendix-iii-utf-8) encoded csv (not Microsoft
+  Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
+  otherwise it will not pass the csv validation step upon upload.
+  <br>`[MS Excel: Save As > More options > Tools > Web options > Save this document as >
+  Unicode (UTF-8)]`
 - **Do not include empty rows**.
 
 #### FILE SIZE
@@ -48,55 +48,50 @@ The template contains the field names in the top row. Table 1 will assist you in
 your data to the template indicating:
 
 - **Field name** in the template (and an external link to the [Darwin Core standard](https://dwc.tdwg.org/terms/)
-for that field where relevant);
+  for that field where relevant);
 - **Description** of the field;
 - **Required** whether the field is **<font color="red">mandatory</font> or optional**;
 - **Format** (datatype) required for the data values for example text (string), number
   (integer, float), or date;
 - **Example** of an entry or entries for that field; and
 - **[Vocabulary links](#appendix-i-vocabulary-list)** within this document (for example pick list values) where
-relevant. The fields that have suggested values options for the fields in Table 1 are 
-listed in Table 2 in alphabetical order of the field name.
+  relevant. The fields that have suggested values options for the fields in Table 1 are
+  listed in Table 2 in alphabetical order of the field name.
 
 ### ADDITIONAL FIELDS
 Data that do not match the existing template fields may be added as additional columns in
-the CSV files after the templated fields. <br>
-E.g. eventRemarks, associatedTaxa, pathway.
+the CSV files after the templated fields.
+E.g., fieldNotes, continent, country, countryCode, stateProvince, georeferencedDate,
+landformPattern, landformElement, aspect, slope, visitNo.
 
-<ins>Table 1: Incidental occurrence data template fields with descriptions, conditions,
-datatype format, and examples.</ins>
+<ins>Table 1: Systematic Survey Site data template fields with descriptions, conditions, datatype format, and examples.</ins>
 
 {{tables.fields}}
 
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
-Apart from geodeticDatum, the data validation does not require adherence to the below vocabularies
-for each of the fields indicated as having vocabularies. These vocabularies are provided as a 
-means of assistance in developing consistent language within the database. New terms can be added
-to more appropriately describe your data that goes beyond the current list. Table 2 provides some 
-suggested values from existing sources such as: [Biodiversity Information Standard (TDWG)](https://dwc.tdwg.org/),
-[EPSG.io Coordinate systems worldwide](https://epsg.io/), the [Global Biodiversity Information 
-System](https://rs.gbif.org/), and [Open Nomenclature in the biodiversity 
-era](https://doi.org/10.1111/2041-210X.12594).
+Apart from geodeticDatum and relationshipToRelatedSite, the data validation does not require adherence to the below vocabularies for each of
+the fields indicated as having vocabularies. These vocabularies are provided as a means of assistance in developing consistent language
+within the database. New terms can be added to more appropriately describe your data that goes beyond the current list.
 
-<ins>Table 2: Suggested values for the controlled vocabulary fields in the template. Each term has
-a preferred label with a definition to aid understanding of its meaning. For some terms, alternative
-labels are provided that mean the same sort of thing. Note: <font color="red">geodeticDatum value 
-must come from one of five options in this table.</font></ins>
-
-<a name="vocabulary-list"></a>
+<ins>Table 2: Suggested values for controlled vocabulary fields in the template. Each term has a preferred label with a definition to aid understanding
+of its meaning. For some terms, alternative labels are provided that mean the same sort of thing.</ins>
+<br>**Note:** <font color="red">The values for geodeticDatum and relationshipToRelatedSite must come from one of the Preferred labels or Alternate Labels in this
+table.</font>
 
 {{tables.vocabularies}}
 
-<a name="threatStatus-vocabularies"></a>
-<ins>Table 2b: Suggested values for conditionally mandatory values for the threatStatus and
-conservationJurisdiction in the template. State and Territory conservationJurisdictions spelt out
-in words are also valid. For some threatStatus terms, alternative labels are provided that are also
-valid for that conservationJurisdiction.
+### APPENDIX-II: Well Known Text (WKT)
+For general information on how WKT coordinate reference data is formatted [here](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry).
+The length of a WKT string or of its components is not prescribed. However, MS Excel has a 32,767 (32K) character limit
+on individual cells in a spreadsheet.
 
-{{tables.threat_status}}
+It is possible to edit CSV files outside of Excel in order to include more than 32K characters.
 
-## APPENDIX-II: Timestamp
+![Multipart geometries (2D) WKT](assets/multipart_geometries_2d_wkt.png)
+<br><center><small>*Source: Mwtoews - CC BY-SA 3.0 -  Wikipedia <https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry>*</small></center>
+
+### APPENDIX-III: Timestamp
 Following date and date-time formats are acceptable within the timestamp:
 
 | TYPE | FORMAT                                                                                                                              |
@@ -126,24 +121,23 @@ can represent almost all characters from all writing systems in use today. This 
 characters from various languages, mathematical symbols, and other special characters.
 
 - **Backward Compatibility:** UTF-8 is backward compatible with ASCII (American
-Standard Code for Information Interchange). The first 128 characters in UTF-8 are
-identical to ASCII, making it easy to work with systems that use ASCII.
+  Standard Code for Information Interchange). The first 128 characters in UTF-8 are
+  identical to ASCII, making it easy to work with systems that use ASCII.
 - **Efficiency:** UTF-8 is space-efficient for Latin-script characters (common in English
-and many other languages). It uses one byte for ASCII characters and up to four
-bytes for other characters. This variable-length encoding minimises storage and
-bandwidth requirements.
+  and many other languages). It uses one byte for ASCII characters and up to four
+  bytes for other characters. This variable-length encoding minimises storage and
+  bandwidth requirements.
 - **Web Standards:** UTF-8 is the dominant character encoding for web content. It is
-widely supported by browsers, servers, and web-related technologies.
+  widely supported by browsers, servers, and web-related technologies.
 - **Globalisation:** As software applications become more globalised, supporting a wide
-range of languages and scripts becomes crucial. UTF-8 is well-suited for
-internationalisation and multilingual support.
+  range of languages and scripts becomes crucial. UTF-8 is well-suited for
+  internationalisation and multilingual support.
 - **Compatibility with Modern Systems:** UTF-8 is the default encoding for many
-programming languages, databases, and operating systems. Choosing UTF-8 helps
-ensure compatibility across different platforms and technologies.
+  programming languages, databases, and operating systems. Choosing UTF-8 helps
+  ensure compatibility across different platforms and technologies.
 
 When working with text data, it's generally a good idea to use UTF-8 encoding to avoid
 issues related to character representation and ensure that your software can handle a
 diverse set of characters and languages.
 
 For assistance, please contact: <bdr-support@gaiaresources.com.au>
-

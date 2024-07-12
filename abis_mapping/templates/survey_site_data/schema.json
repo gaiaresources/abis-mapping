@@ -63,7 +63,7 @@
       "name": "habitat",
       "title": "Habitat",
       "description": "A collection of habitat types representing the dominant vegetation structural formation class adopted by the National Vegetation Information System (NVIS).",
-      "example": "Chenopod Shrubland|Closed Fernland",
+      "example": "Chenopod Shrubland | Closed Fernland",
       "type": "list",
       "format": "default",
       "constraints": {
@@ -196,6 +196,7 @@
       "name": "surveyID",
       "title": "SurveyID",
       "description": "The identifier of the Survey that the Site is related to in this dataset.",
+      "example": "AR220-01",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -206,6 +207,7 @@
       "name": "siteVisitID",
       "title": "Site Visit ID",
       "description": "The unique key assigned to a visit. A visit is a time distinct assessment conducted within a survey at a designated site.",
+      "example": "CPXEI0000001",
       "type": "string",
       "format": "default",
       "constraints": {
