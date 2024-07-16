@@ -14,6 +14,7 @@ contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
 #### NEED TO KNOW:
 For data validation, you will need your data file to:
+
 - be the correct **file format**,
 - have **matching template fields** to the template downloaded (do not remove, or
 change the order of fields),
@@ -26,6 +27,7 @@ is not assumed and values will be encoded as strings),
 consistent with a geodeticDatum type of the {{values.geodetic_datum_count}} available options.
 
 ### FILE FORMAT
+
 - The systematic survey metadata template is a [UTF-8](#appendix-iii-utf-8) encoded csv (not Microsoft
 Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as
 follows, otherwise it will not pass the in-browser csv validation step upon upload.
@@ -43,6 +45,7 @@ or editing CSV files with other software.
 The template file contains the field names in the top row that form part of the core Survey
 data model. Table 1 will assist you in transferring your data to the template with the following
 information:
+
 - **Field name** in the template (and an external link to the Darwin Core standard for that
 field where available);
 - **Description** of the field;
@@ -90,6 +93,7 @@ on individual cells in a spreadsheet.
 It is possible to edit CSV files outside of Excel in order to include more than 32K characters.
 
 ![Multipart geometries (2D) WKT](assets/multipart_geometries_2d_wkt.png)
+<br><center><small>*Source: Mwtoews - CC BY-SA 3.0 -  Wikipedia <https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry>*</small></center>
 
 ### APPENDIX-III: Timestamp
 Following date and date-time formats are acceptable within the timestamp:
