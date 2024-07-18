@@ -117,7 +117,8 @@ class ThreatStatusTabler(tables.base.BaseTabler):
             raise ValueError(f"No preferred label for {threat_stat_cons_jur_term}")
 
         # Split threat status alt labels
-        threat_stat_alt: list[str] = [lbl.split('/')[1] for lbl in threat_stat_cons_jur_term.alternative_labels]
+        threat_stat_alt: set[str] = {lbl.split('/')[1] for lbl in threat_stat_cons_jur_term.alternative_labels}
+        threat_stat_alt.difference_update({splt_preferred[1]})
 
         # Perform mapping
         row = ThreatStatusRow(
