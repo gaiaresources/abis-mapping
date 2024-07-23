@@ -2,6 +2,7 @@
 
 # Standard
 import argparse
+import importlib.metadata
 import sys
 
 # Third-partv
@@ -34,7 +35,9 @@ class MapperLoader(jinja2.BaseLoader):
 
         Args:
             environment (jinja2.Environment): Jinja environment.
-            template (str): Jinja template name.
+            template (str): Abis-mapping or base template name. If a base
+                template name is provided, the docs/templates directory will
+                be searched for that corresponding file.
 
         Returns:
             tuple[str, str | None, Callable[[], bool] | None]: The template
@@ -44,6 +47,12 @@ class MapperLoader(jinja2.BaseLoader):
             ValueError: If mapper is not found.
             jinja2.TemplateNotFound: Template not found.
         """
+        # Check to see if searching base templates
+        if (splt := template.strip().split())[0] == "BASE_TEMPLATE":
+            # Create a filesystem loader and use it to find and return
+            fs_loader = jinja2.FileSystemLoader(searchpath="docs/templates")
+            return fs_loader.get_source(environment, splt[1])
+
         # Get mapper
         try:
             mapper = base.mapper.get_mapper(self.mapper_id)
@@ -90,8 +99,12 @@ def build_instructions(mapper_id: str) -> str:
     # Retrieve markdown instructions template
     template = env.get_template("instructions.md")
 
-    # Load context
+    # Load per template context
     ctx = contexts.base.get_context(mapper_id)
+
+    # Add the project version if a dictionary has been returned
+    if ctx is not None:
+        ctx["project_version"] = importlib.metadata.version("abis-mapping")
 
     # Return render
     return template.render(ctx)

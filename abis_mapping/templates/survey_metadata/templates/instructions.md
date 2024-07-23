@@ -1,3 +1,5 @@
+{% extends "BASE_TEMPLATE base.md" %}
+{% block body %}
 # SYSTEMATIC SURVEY METADATA TEMPLATE INSTRUCTIONS
 
 ## OVERVIEW
@@ -145,3 +147,4 @@ issues related to character representation and ensure that your software can han
 diverse set of characters and languages.
 
 For assistance, please contact: <bdr-support@gaiaresources.com.au>
+{% endblock %}

@@ -1,6 +1,7 @@
 """Declares and registers the survey occurrence data instruction rendering context."""
 
 # Local
+from abis_mapping import base
 from abis_mapping import vocabs
 from docs import contexts
 from docs import tables
@@ -8,6 +9,9 @@ from docs import tables
 
 # Constants
 mapper_id = "survey_occurrence_data-v1.0.0.csv"
+
+# Retrieve mapper
+mapper = base.mapper.get_mapper(mapper_id)
 
 # Create context
 _ctx = {
@@ -19,6 +23,7 @@ _ctx = {
     "values": {
         "geodetic_datum_count": len(vocabs.geodetic_datum.GeodeticDatum.terms),
     },
+    "metadata": mapper.metadata() if mapper is not None else None,
 }
 
 # Register
