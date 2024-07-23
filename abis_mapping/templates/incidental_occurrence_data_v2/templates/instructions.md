@@ -1,3 +1,5 @@
+{% extends "BASE_TEMPLATE base.md" %}
+{% block body %}
 # INCIDENTAL OCCURRENCE DATA TEMPLATE INSTRUCTIONS
 
 ## OVERVIEW
@@ -147,3 +149,4 @@ diverse set of characters and languages.
 
 For assistance, please contact: <bdr-support@gaiaresources.com.au>
 
+{% endblock %}
