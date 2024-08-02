@@ -311,9 +311,8 @@ class ABISMapper(abc.ABC):
         return s_class.model_dump(exclude_none=discard_optional)
 
     @final
-    @classmethod
     @property
-    def fields(cls) -> dict[str, types.schema.Field]:
+    def fields(self) -> dict[str, types.schema.Field]:
         """Indexed dictionary of all fields' metadata.
 
         Returns:
@@ -321,7 +320,7 @@ class ABISMapper(abc.ABC):
                 with name as key..
         """
         # Get schema
-        schema = types.schema.Schema.model_validate(cls.schema())
+        schema = types.schema.Schema.model_validate(self.schema())
 
         # Return dictionary of fields
         return {f.name: f for f in schema.fields}

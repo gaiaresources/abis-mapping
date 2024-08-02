@@ -59,7 +59,7 @@ class ListField(frictionless.Field):
                     return None
 
                 # Create StringField instance
-                string_field = frictionless.fields.StringField(  # type: ignore[call-arg]
+                string_field = frictionless.fields.StringField(
                     name="delegatedParser",
                     format=self.format
                 )
@@ -92,7 +92,7 @@ class ListField(frictionless.Field):
                 str: Converted cell
             """
             # Create StringField object
-            string_field = frictionless.fields.StringField(  # type: ignore[call-arg]
+            string_field = frictionless.fields.StringField(
                 name="delegatedSerializer",
                 format=self.format,
             )

@@ -65,7 +65,7 @@ class MarkdownDialect(csv.excel):
     escapechar = '\\'
     lineterminator = '\n'
     quoting = csv.QUOTE_NONE
-    quotechar = None  # type: ignore[assignment]
+    quotechar = None
 
 
 # Register the dialect with the csv module

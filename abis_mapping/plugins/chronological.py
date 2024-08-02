@@ -38,7 +38,7 @@ class ChronologicalOrder(frictionless.Check):
 
         # Test for 0 - 1 length list
         if len(tstmps) < 2:
-            return True  # If there are 0 or 1 values, they are considered chronological
+            return  # If there are 0 or 1 values, they are considered chronological
 
         # Check validity
         if not all(x <= y for x, y in zip(tstmps, tstmps[1:])):

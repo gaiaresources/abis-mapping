@@ -137,7 +137,7 @@ class VocabTabler(tables.base.BaseTabler):
         # Perform mapping
         row = VocabTableRow(
             field_name=field.name,
-            preferred_label=term.preferred_label,
+            preferred_label=term.preferred_label or "",
             definition=term.description,
             alternate_label=", ".join(term.alternative_labels),
         )

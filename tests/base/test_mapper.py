@@ -96,7 +96,7 @@ def test_extra_fields_schema_row_data(mocker: pytest_mock.MockerFixture) -> None
             for field in diff_schema.fields:
                 assert field.type == "string"
             assert set(full_schema.field_names) == \
-                   set(existing_schema.field_names) | expected_extra_fieldnames  # type: ignore[attr-defined]
+                   set(existing_schema.field_names) | expected_extra_fieldnames
 
 
 def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None:
@@ -139,7 +139,7 @@ def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None
     for field in diff_schema.fields:
         assert field.type == "string"
     assert set(full_schema.field_names) == \
-           set(existing_schema.field_names) | expected_extra_fieldnames  # type: ignore[attr-defined]
+           set(existing_schema.field_names) | expected_extra_fieldnames
 
 
 def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
@@ -381,9 +381,9 @@ def test_fields(
             base_iri: Optional[rdflib.Namespace] = None,
             **kwargs: Any
         ) -> Iterator[rdflib.Graph]:
-            pass
+            yield from []
 
-        def apply_validation(
+        def apply_validation(  # type: ignore[empty-body]
             self,
             data: base_types.ReadableType,
             **kwargs: Any

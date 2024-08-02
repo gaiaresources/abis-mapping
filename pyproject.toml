@@ -14,7 +14,7 @@ shapely = "^2.0.2"
 pyproj = "^3.6.1"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^0.942"
+mypy = "^1.11.1"
 flake8 = "^4.0.1"
 flake8-bugbear = "^22.3.23"
 pytest = "^8.0.0"
