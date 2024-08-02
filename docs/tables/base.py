@@ -8,7 +8,7 @@ import csv
 from abis_mapping import base
 
 # Typing
-from typing import IO, Final, Any, Mapping, Iterable
+from typing import IO, Final, Any, Mapping, Iterable, Literal
 
 
 class BaseTabler(abc.ABC):
@@ -65,7 +65,7 @@ class MarkdownDialect(csv.excel):
     escapechar = '\\'
     lineterminator = '\n'
     quoting = csv.QUOTE_NONE
-    quotechar = None  # type: ignore[assignment]
+    quotechar = None
 
 
 # Register the dialect with the csv module
@@ -78,9 +78,12 @@ class MarkdownDictWriter(csv.DictWriter):
         self,
         f: IO,
         fieldnames: list[str],
+        restval: str = "",
+        extrasaction: Literal["raise", "ignore"] = "raise",
+        dialect: Literal["markdown"] = "markdown",
+        *,
         alignment: list[str] | None = None,
-        *args: list[Any],
-        **kwargs: dict[str, Any]
+        **kwargs: Any,
     ) -> None:
         """Constructor for the MarkdownDictWriter.
 
@@ -99,6 +102,9 @@ class MarkdownDictWriter(csv.DictWriter):
             ValueError: If alignment list length doesn't match fieldnames or
                 an invalid alignment option is provided.
         """
+        if dialect != "markdown":
+            raise ValueError("MarkdownDictWriter dialect must be 'markdown'")
+
         # Check alignment list length
         if alignment is not None and len(alignment) != len(fieldnames):
             raise ValueError(f"The alignment list length ({len(alignment)}) must match fieldnames ({len(fieldnames)}).")
@@ -117,7 +123,7 @@ class MarkdownDictWriter(csv.DictWriter):
         self.alignment: Final[list[str] | None] = ["l", *alignment, "l"] if alignment is not None else None
 
         # Call parent constructor
-        super().__init__(f, fieldnames, dialect="markdown", *args, **kwargs)  # type: ignore[arg-type, misc]
+        super().__init__(f, fieldnames, restval, extrasaction, dialect, **kwargs)
 
     @property
     def first_field(self) -> Any:
