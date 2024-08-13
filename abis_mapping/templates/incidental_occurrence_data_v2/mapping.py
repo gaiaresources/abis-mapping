@@ -926,7 +926,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         foi = sample_specimen if has_specimen(row) else sample_field
 
         # Retrieve vocab for field
-        vocab = self.fields["identificationMethod"].get_vocab()
+        vocab = self.fields()["identificationMethod"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["identificationMethod"])
@@ -1005,7 +1005,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         foi = sample_specimen if has_specimen(row) else sample_field
 
         # Retrieve vocab for field
-        vocab = self.fields["identificationMethod"].get_vocab()
+        vocab = self.fields()["identificationMethod"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["identificationMethod"])
@@ -1150,7 +1150,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Retrieve vocab for field
-        vocab = self.fields["samplingProtocol"].get_vocab()
+        vocab = self.fields()["samplingProtocol"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["samplingProtocol"])
@@ -1314,7 +1314,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields["identificationQualifier"].get_vocab()
+        vocab = self.fields()["identificationQualifier"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["identificationQualifier"])
@@ -1643,7 +1643,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Retrieve vocab for field
-        vocab = self.fields["kingdom"].get_vocab("KINGDOM_OCCURRENCE")
+        vocab = self.fields()["kingdom"].get_vocab("KINGDOM_OCCURRENCE")
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["kingdom"])
@@ -1749,7 +1749,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields["kingdom"].get_vocab("KINGDOM_SPECIMEN")
+        vocab = self.fields()["kingdom"].get_vocab("KINGDOM_SPECIMEN")
 
         # Retrieve Vocab or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["kingdom"])
@@ -1883,7 +1883,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["taxonRank"]:
             return
         # Retrieve vocab for field
-        vocab = self.fields["taxonRank"].get_vocab()
+        vocab = self.fields()["taxonRank"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["taxonRank"])
@@ -2147,7 +2147,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields["basisOfRecord"].get_vocab()
+        vocab = self.fields()["basisOfRecord"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["basisOfRecord"])
@@ -2267,7 +2267,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields["occurrenceStatus"].get_vocab()
+        vocab = self.fields()["occurrenceStatus"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["occurrenceStatus"])
@@ -2327,7 +2327,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields["preparations"].get_vocab()
+        vocab = self.fields()["preparations"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["preparations"])
@@ -2411,7 +2411,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields["establishmentMeans"].get_vocab()
+        vocab = self.fields()["establishmentMeans"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["establishmentMeans"])
@@ -2503,7 +2503,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields["lifeStage"].get_vocab()
+        vocab = self.fields()["lifeStage"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["lifeStage"])
@@ -2594,7 +2594,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields["sex"].get_vocab()
+        vocab = self.fields()["sex"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["sex"])
@@ -2686,7 +2686,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields["reproductiveCondition"].get_vocab()
+        vocab = self.fields()["reproductiveCondition"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["reproductiveCondition"])
@@ -2807,7 +2807,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Retrieve vocab for field
-        vocab = self.fields["sequencingMethod"].get_vocab()
+        vocab = self.fields()["sequencingMethod"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["sequencingMethod"])
@@ -2962,7 +2962,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Retrieve vocab for field
-        vocab = self.fields["threatStatusCheckProtocol"].get_vocab()
+        vocab = self.fields()["threatStatusCheckProtocol"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(row["threatStatusCheckProtocol"])
@@ -3023,7 +3023,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         value = f"{row['conservationJurisdiction']}/{row['threatStatus']}"
 
         # Retrieve vocab for field
-        vocab = self.fields["threatStatus"].get_vocab()
+        vocab = self.fields()["threatStatus"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset).get(value)
@@ -3081,7 +3081,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields["conservationJurisdiction"].get_vocab()
+        vocab = self.fields()["conservationJurisdiction"].get_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph).get(row["conservationJurisdiction"])

@@ -393,4 +393,4 @@ def test_fields(
     mapper = TestMapper()
 
     # Assert
-    assert list(mapper.fields.keys()) == ["fieldA", "fieldB"]
+    assert list(mapper.fields().keys()) == ["fieldA", "fieldB"]
