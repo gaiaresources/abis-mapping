@@ -312,7 +312,6 @@ class ABISMapper(abc.ABC):
 
     @final
     @classmethod
-    @property
     def fields(cls) -> dict[str, types.schema.Field]:
         """Indexed dictionary of all fields' metadata.
 

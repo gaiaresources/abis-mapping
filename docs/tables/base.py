@@ -8,7 +8,7 @@ import csv
 from abis_mapping import base
 
 # Typing
-from typing import IO, Final, Any, Mapping, Iterable
+from typing import IO, Final, Any, Mapping, Iterable, Literal
 
 
 class BaseTabler(abc.ABC):
@@ -65,7 +65,7 @@ class MarkdownDialect(csv.excel):
     escapechar = '\\'
     lineterminator = '\n'
     quoting = csv.QUOTE_NONE
-    quotechar = None  # type: ignore[assignment]
+    quotechar = None
 
 
 # Register the dialect with the csv module
@@ -78,22 +78,27 @@ class MarkdownDictWriter(csv.DictWriter):
         self,
         f: IO,
         fieldnames: list[str],
+        restval: str = "",
+        extrasaction: Literal["raise", "ignore"] = "raise",
+        *,
         alignment: list[str] | None = None,
-        *args: list[Any],
-        **kwargs: dict[str, Any]
+        **kwargs: Any,
     ) -> None:
         """Constructor for the MarkdownDictWriter.
 
         Args:
             f (IO): File to be written out.
             fieldnames (list[str]): List of fieldnames.
+            restval (str): The value to be written if the dictionary is missing a key
+                in fieldnames.
+            extrasaction: (str): The action to take if the dictionary has a key not
+                found in fieldnames.
             alignment (list[str], optional): List of alignment options,
                 for each field. Defaults to None, in which case all fields are
                 are left-aligned. The length of the list must match the length
                 of fieldnames. Allowed alignment values are "l", "r", "c", "left",
                 "right", and "center".
-            *args (list): Positional arguments to csv.DictWriter.:
-            **kwargs (dict): Keyword arguments to csv.DictWriter.:
+            **kwargs (dict): Extra kwargs for the underlying csv.writer instance.
 
         Raises:
             ValueError: If alignment list length doesn't match fieldnames or
@@ -117,7 +122,7 @@ class MarkdownDictWriter(csv.DictWriter):
         self.alignment: Final[list[str] | None] = ["l", *alignment, "l"] if alignment is not None else None
 
         # Call parent constructor
-        super().__init__(f, fieldnames, dialect="markdown", *args, **kwargs)  # type: ignore[arg-type, misc]
+        super().__init__(f, fieldnames, restval, extrasaction, dialect="markdown", **kwargs)
 
     @property
     def first_field(self) -> Any:

@@ -149,7 +149,7 @@ class FieldTabler(tables.base.BaseTabler):
             description=field.description,
             mandatory_optional="Mandatory" if field.constraints.required else "Optional",
             datatype_format=field.type.title() if field.type not in ["wkt"] else field.type.upper(),
-            examples=field.example,
+            examples=field.example or "",
         )
 
         # Return
