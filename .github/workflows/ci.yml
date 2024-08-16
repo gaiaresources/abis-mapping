@@ -7,29 +7,34 @@ on:
 permissions:
   contents: write
 jobs:
-  deploy:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout docs-site
+        uses: actions/checkout@v4
+        with:
+          ref: docs-site
       - name: Configure Git Credentials
+        uses: actions/checkout@v4
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - uses: actions/setup-python@v5
+      - name: Install Project and Generate Markdown
+        uses: actions/setup-python@v5
         with:
           python-version: 3.11
-      - name: Install Project and Generate Markdown
         run: |
           pipx install poetry==1.6.1
           poetry install
           poetry run bash scripts/generate_instructions.sh
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
-      - uses: actions/cache@v4
+      - name: Caching
+        uses: actions/cache@v4
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
           restore-keys: |
             mkdocs-material-
+        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
       - name: Build Site
         run: |
           poetry run mike deploy dev --push --branch=docs-site
