@@ -5,5 +5,5 @@ theme:
 docs_dir: docs/pages
 plugins:
   - mike:
-      canonical_version: dev
+      canonical_version: latest
       version_selector: true
