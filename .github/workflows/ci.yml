@@ -33,3 +33,4 @@ jobs:
       - name: Build Site
         run: |
           poetry run mike deploy dev --push --branch=docs-site
+          poetry run mike deploy 4.2.test --push --branch=docs-site

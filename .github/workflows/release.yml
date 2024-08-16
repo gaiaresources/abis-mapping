@@ -31,4 +31,4 @@ jobs:
             mkdocs-material-
       - name: Build Site
         run: |
-          poetry run mike deploy $GITHUB_REF_NAME --push --branch=docs-site
+          poetry run mike deploy $GITHUB_REF_NAME latest --push --branch=docs-site
