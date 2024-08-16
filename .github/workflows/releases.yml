@@ -41,3 +41,4 @@ jobs:
             poetry run mike set-default --push latest
           elif [ "${{ github.event.action }}" == "deleted" ]; then
             poetry run mike delete --push $GITHUB_REF_NAME
+          fi
