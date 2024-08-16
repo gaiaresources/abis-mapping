@@ -5,10 +5,15 @@
     "aliases": []
   },
   {
-    "version": "v4.2.1-bdrsps721rc2",
-    "title": "v4.2.1-bdrsps721rc2",
+    "version": "v4.2.1-bdrsps721rc3",
+    "title": "v4.2.1-bdrsps721rc3",
     "aliases": [
       "latest"
     ]
+  },
+  {
+    "version": "v4.2.1-bdrsps721rc2",
+    "title": "v4.2.1-bdrsps721rc2",
+    "aliases": []
   }
 ]
