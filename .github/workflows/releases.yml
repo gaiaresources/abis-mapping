@@ -3,6 +3,7 @@ on:
   release:
     types:
       - published
+      - deleted
 permissions:
   contents: write
 jobs:
@@ -35,5 +36,8 @@ jobs:
             mkdocs-material-
       - name: Build Site
         run: |
-          poetry run mike deploy --push --branch=docs-site --update-aliases $GITHUB_REF_NAME latest 
-          poetry run mike set-default --push latest
+          if [ "${{ github.event.action }}" == "published" ]; then
+            poetry run mike deploy --push --branch=docs-site --update-aliases $GITHUB_REF_NAME latest 
+            poetry run mike set-default --push latest
+          elif [ "${{ github.event.action }}" == "deleted" ]; then
+            poetry run mike delete --push $GITHUB_REF_NAME
