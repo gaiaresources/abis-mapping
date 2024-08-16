@@ -37,7 +37,8 @@ jobs:
       - name: Build Site
         run: |
           if [ "${{ github.event.action }}" == "published" ]; then
-            poetry run mike deploy --push --branch=docs-site --update-aliases $GITHUB_REF_NAME latest 
+            echo "creating site version ${{ github.ref_name }}"
+            poetry run mike deploy --push --branch=docs-site --update-aliases ${{ github.ref_name }} latest 
             poetry run mike set-default --push latest
           elif [ "${{ github.event.action }}" == "deleted" ]; then
             poetry run mike delete --push $GITHUB_REF_NAME
