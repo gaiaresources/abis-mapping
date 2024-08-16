@@ -36,3 +36,4 @@ jobs:
       - name: Build Site
         run: |
           poetry run mike deploy --push --branch=docs-site --update-aliases $GITHUB_REF_NAME latest 
+          poetry run mike set-default --push latest
