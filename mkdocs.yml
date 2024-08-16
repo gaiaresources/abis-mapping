@@ -3,3 +3,7 @@ site_url: https://gaiaresources.github.io/abis-mappping
 theme:
   name: material
 docs_dir: docs/pages
+plugins:
+  - mike:
+      canonical_version: dev
+      version_selector: true

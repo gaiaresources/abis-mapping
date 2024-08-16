@@ -1,9 +1,8 @@
-name: ci
+name: release
 on:
-  push:
-    branches:
-      - main
-      - BDRSPS-721
+  release:
+    types:
+      - published
 permissions:
   contents: write
 jobs:
@@ -32,5 +31,4 @@ jobs:
             mkdocs-material-
       - name: Build Site
         run: |
-          poetry run mike deploy dev --push
-          poetry run mike set-default dev
+          poetry run mike deploy $GITHUB_REF_NAME --push
