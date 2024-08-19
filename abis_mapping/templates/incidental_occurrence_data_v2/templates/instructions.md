@@ -98,7 +98,7 @@ valid for that conservationJurisdiction.
 
 {{tables.threat_status}}
 
-## APPENDIX-II: Timestamp
+### APPENDIX-II: Timestamp
 Following date and date-time formats are acceptable within the timestamp:
 
 | TYPE | FORMAT                                                                                                                              |
@@ -118,7 +118,7 @@ Where:<br/>
 &emsp; ss = two digits of second (00 through 59) <br/>
 
 
-## APPENDIX-III: UTF-8
+### APPENDIX-III: UTF-8
 UTF-8 encoding is considered a best practice for handling character encoding, especially in
 the context of web development, data exchange, and modern software systems. UTF-8
 (Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
