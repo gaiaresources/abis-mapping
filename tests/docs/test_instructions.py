@@ -34,6 +34,16 @@ class TestMapperLoader:
         assert rld is not None
         assert rld() is True
 
+    def test_get_source_invalid_mapper(self) -> None:
+        """Tests get_source method raises exception for invalid mapper."""
+        # Define bad mapper name and env
+        bad_mapper_id = "NOT_A_MAPPER_ID"
+        env = jinja2.Environment(loader=instructions.MapperLoader(bad_mapper_id))
+
+        # Should raise ValueError
+        with pytest.raises(ValueError):
+            instructions.MapperLoader(bad_mapper_id).get_source(env, bad_mapper_id)
+
     def test_get_source_base_template(
         self,
         mocked_mapper: unittest.mock.MagicMock,
