@@ -3,11 +3,11 @@
 # SYSTEMATIC SURVEY OCCURRENCES DATA TEMPLATE INSTRUCTIONS
 
 ## OVERVIEW
-Use this template to record occurrence data; that is the presence or absence of an organism
+This template is used to record occurrence data; that is, the presence or absence of an organism
 at a particular site locality at a point in time.
 
-This Systematic Survey Occurrences template **must be used in combination** with the
-Systematic Survey Metadata template and, in some cases, the Systematic Survey Sites
+The Systematic Survey Occurrences template **must be used in combination** with the
+Systematic Survey Metadata template, and in some cases the Systematic Survey Sites
 template.
 
 Templates have been provided to facilitate integration of your data into the Biodiversity
@@ -17,32 +17,31 @@ contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
 #### NEED TO KNOW:
 For data validation, you will need your data file to:
-
-- be the correct **file format,**
-- have **matching template fields** to the template downloaded (do not remove, or
-  change the order of fields), however
-- additional fields may be added **after the templated fields** (noting that the
-  data type is not assumed and values will be encoded as strings),
-- have values in **mandatory fields** (see Table 1),
-- comply with data **value constraints** for example the geographic coordinates are
+- be in the correct **file format,**
+- have **fields that match the template downloaded** (do not remove, or 
+  change the order of fields),
+- have extant values for **mandatory fields** (see Table 1),
+- comply with all **data value constraints**; for example the geographic coordinates are
   consistent with a [geodeticDatum](#geodeticDatum-vocabularies) type of the ***{{values.geodetic_datum_count}}*** available
   options, and
 - align with existing controlled [vocabularies](#appendix-i-vocabulary-list) wherever possible (this is mandatory
   for geodeticDatum), but new terms may be submitted for consideration amd will not cause a
   validation error.
 
-### FILE FORMAT
+Additional fields may be added **after the templated fields** (noting that the data type 
+is not assumed and values will be encoded as strings).
 
-- The systematic survey occurrence data template is a [UTF-8](#appendix-iii-utf-8) encoded csv (not Microsoft
-  Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
-  otherwise it will not pass the csv validation step upon upload.
+### FILE FORMAT
+- The systematic survey occurrence data template is a [UTF-8](#appendix-iii-utf-8) encoded csv (that is, not Microsoft
+  Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8): 
   <br>`[MS Excel: Save As > More options > Tools > Web options > Save this document as >
-  Unicode (UTF-8)]`
+  Unicode (UTF-8)]`<br>
+  otherwise it will not pass the csv validation step upon upload.
 - **Do not include empty rows**.
 
 #### FILE SIZE
 MS Excel imposes a limit of 1,048,576 rows on a spreadsheet, limiting a CSV file to the
-header row followed by 1,048,575 occurrences. Furthermore, MS Excel has a 32,767 character
+header row followed by 1,048,575 occurrences. Furthermore, MS Excel has a 32,767-character
 limit on individual cells in a spreadsheet. These limits may be overcome by using or
 editing CSV files with other software.
 
@@ -51,7 +50,7 @@ Larger datasets may be more readily ingested using the API interface. Please con
 
 ## TEMPLATE FIELDS
 The template contains the field names in the top row. Table 1 will assist you in transferring
-your data to the template indicating:
+your data to the template by providing guidance on:
 
 - **Field name** in the template (and an external link to the [Darwin Core standard](https://dwc.tdwg.org/terms/)
   for that field where relevant);
@@ -65,9 +64,9 @@ your data to the template indicating:
   listed in Table 2 in alphabetical order of the field name.
 
 ### ADDITIONAL FIELDS
-Data that do not match the existing template fields may be added as additional columns in
-the CSV files after the templated fields. <br>
-E.g. eventRemarks, associatedTaxa, pathway.
+Data that does not match the existing template fields may be added as
+additional columns in the CSV files after the templated fields. <br>
+For example: `eventRemarks`, `associatedTaxa`, `pathway`.
 
 <ins>Table 1: Systematic Survey Occurrence data template fields with descriptions, conditions,
 datatype format, and examples.</ins>
@@ -76,9 +75,9 @@ datatype format, and examples.</ins>
 
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
-Apart from geodeticDatum, the data validation does not require adherence tho the below vocabularies
-for each of the fields indicated as having vocabularies. These vocabularies are provided as a
-means of assistance in developing consistent language within the database. New terms can be added
+With the exception of `geodeticDatum`, data validation does not require fields to adhere to the vocabularies
+specified for the various vocabularied fields. These vocabularies are merely provided as a
+means of assistance in developing a consistent language within the database. New terms may be added
 to more appropriately describe your data that goes beyond the current list. Table 2 provides some
 suggested values from existing sources such as: [Biodiversity Information Standard (TDWG)](https://dwc.tdwg.org/),
 [EPSG.io Coordinate systems worldwide](https://epsg.io/), the [Global Biodiversity Information
@@ -87,18 +86,18 @@ era](https://doi.org/10.1111/2041-210X.12594).
 
 <ins>Table 2: Suggested values for the controlled vocabulary fields in the template. Each term has
 a preferred label with a definition to aid understanding of its meaning. For some terms, alternative
-labels are provided that mean the same sort of thing. Note: <font color="red">geodeticDatum value
-must come from one of five options in this table.</font></ins>
+labels with similar semantics are provided. Note: <font color="red">geodeticDatum value
+**must** come from one of five options in this table.</font></ins>
 
 <a name="vocabulary-list"></a>
 
 {{tables.vocabularies}}
 
 <a name="threatStatus-vocabularies"></a>
-<ins>Table 2b: Suggested values for conditionally mandatory values for the threatStatus and
-conservationJurisdiction in the template. State and Territory conservationJurisdictions spelt out
-in words are also valid. For some threatStatus terms, alternative labels are provided that are also
-valid for that conservationJurisdiction.
+<ins>Table 2b: Suggested values for conditionally mandatory values for the `threatStatus` and
+`conservationJurisdiction` fields in the template. State and Territory `conservationJurisdictions` 
+spelt out as words are also valid. For some `threatStatus` terms, alternative labels are provided
+that are also valid for that `conservationJurisdiction`.
 
 {{tables.threat_status}}
 
@@ -113,13 +112,13 @@ Following date and date-time formats are acceptable within the timestamp:
 | **xsd:gYearMonth** | mm/yyyy OR<br/> m/yyyy OR<br/> yyyy-mm |
 | **xsd:gYear** | yyyy |
 
-Where:<br/>
-&emsp; yyyy = four-digit year <br/>
-&emsp; mm = two-digit month (01=January, etc.) <br/>
-&emsp; dd = two-digit day of month (01 through 31) <br/>
-&emsp; hh = two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
-&emsp; mm = two digits of minute (00 through 59) <br/>
-&emsp; ss = two digits of second (00 through 59) <br/>
+Where<br/>
+&emsp; `yyyy`: four-digit year <br/>
+&emsp; `mm`: two-digit month (01=January, etc.) <br/>
+&emsp; `dd`: two-digit day of month (01 through 31) <br/>
+&emsp; `hh`: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
+&emsp; `mm`: two digits of minute (00 through 59) <br/>
+&emsp; `ss`: two digits of second (00 through 59) <br/>
 
 
 ## APPENDIX-III: UTF-8
@@ -127,10 +126,10 @@ UTF-8 encoding is considered a best practice for handling character encoding, es
 the context of web development, data exchange, and modern software systems. UTF-8
 (Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
 encoding all possible characters (code points) in Unicode.<br/>
-Here are some reasons why UTF-8 is recommended:**Universal Character Support:** UTF-8
-can represent almost all characters from all writing systems in use today. This includes
-characters from various languages, mathematical symbols, and other special characters.
-
+Here are some reasons why UTF-8 is recommended:
+- **Universal Character Support:** UTF-8 can represent almost all characters from all writing 
+  systems in use today. This includes characters from various languages, mathematical symbols, 
+  and other special characters.
 - **Backward Compatibility:** UTF-8 is backward compatible with ASCII (American
   Standard Code for Information Interchange). The first 128 characters in UTF-8 are
   identical to ASCII, making it easy to work with systems that use ASCII.
@@ -147,9 +146,8 @@ characters from various languages, mathematical symbols, and other special chara
   programming languages, databases, and operating systems. Choosing UTF-8 helps
   ensure compatibility across different platforms and technologies.
 
-When working with text data, it's generally a good idea to use UTF-8 encoding to avoid
-issues related to character representation and ensure that your software can handle a
-diverse set of characters and languages.
+When working with text data, UTF-8 encoding is recommended to avoid issues related to character
+representation and ensure that a diverse set of characters and languages is supported.
 
 For assistance, please contact: <bdr-support@gaiaresources.com.au>
 {% endblock %}
