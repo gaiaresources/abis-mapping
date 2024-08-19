@@ -74,7 +74,7 @@ datatype format, and examples.</ins>
 
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
-Apart from geodeticDatum, data validation does not require fields to adhere to the vocabularies
+With the exception of `geodeticDatum`, data validation does not require fields to adhere to the vocabularies
 specified for the various vocabularied fields. These vocabularies are merely provided as a
 means of assistance in developing a consistent language within the database. New terms may be added
 to more appropriately describe your data that goes beyond the current list. Table 2 provides some
