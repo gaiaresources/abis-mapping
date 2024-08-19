@@ -88,7 +88,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         resource = frictionless.Resource(
             source=data,
             format="csv",  # TODO -> Hardcoded to csv for now
-            schema=schema
+            schema=schema,
+            encoding="utf-8",
         )
 
         # Validate
@@ -145,6 +146,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             source=data,
             format="csv",  # TODO -> Hardcoded to csv for now
             schema=schema,
+            encoding="utf-8",
         )
 
         # Initialise Graph

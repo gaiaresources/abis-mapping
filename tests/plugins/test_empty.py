@@ -13,6 +13,7 @@ def test_checks_not_empty() -> None:
     # Construct Fake Resource
     resource = frictionless.Resource(
         source=__file__,
+        encoding="utf-8",
     )
 
     # Validate
