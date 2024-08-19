@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - BDRSPS-721
 permissions:
   contents: write
 jobs:
