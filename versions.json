@@ -3,12 +3,5 @@
     "version": "dev",
     "title": "dev",
     "aliases": []
-  },
-  {
-    "version": "v4.2.1-bdrsps721rc5",
-    "title": "v4.2.1-bdrsps721rc5",
-    "aliases": [
-      "latest"
-    ]
   }
 ]
