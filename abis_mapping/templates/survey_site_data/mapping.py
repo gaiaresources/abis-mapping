@@ -88,6 +88,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             source=data,
             format="csv",
             schema=schema,
+            encoding="utf-8",
         )
 
         # Validate
@@ -142,6 +143,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             source=data,
             format="csv",
             schema=schema,
+            encoding="utf-8",
         )
 
         # Context manager for row streaming
@@ -218,6 +220,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             source=data,
             format="csv",   # TODO -> Hardcoded to csv for now
             schema=schema,
+            encoding="utf-8",
         )
 
         # Initialise Graph

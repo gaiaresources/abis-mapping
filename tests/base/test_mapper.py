@@ -172,7 +172,12 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
     schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=True)
 
     # Construct resource
-    resource = frictionless.Resource(source=csv_data, format="csv", schema=schema)
+    resource = frictionless.Resource(
+        source=csv_data,
+        format="csv",
+        schema=schema,
+        encoding="utf-8",
+    )
 
     # Open resource for row streaming
     with resource.open() as r:
@@ -215,6 +220,7 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
     resource = frictionless.Resource(
         source=csv_data,
         format="csv",
+        encoding="utf-8",
     )
 
     # Open resource for row streaming
@@ -266,6 +272,7 @@ def test_add_extra_fields_json_no_data(mocker: pytest_mock.MockerFixture) -> Non
     resource = frictionless.Resource(
         source=csv_data,
         format="csv",
+        encoding="utf-8",
     )
 
     # Open resource for row streaming
@@ -311,7 +318,8 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
     resource = frictionless.Resource(
         source=csv_data,
         format="csv",
-        schema=frictionless.Schema.from_descriptor(descriptor)
+        schema=frictionless.Schema.from_descriptor(descriptor),
+        encoding="utf-8",
     )
 
     # These errors must be skipped to enable extra columns

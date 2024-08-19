@@ -147,6 +147,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             source=data,
             format="csv",  # TODO -> Hardcoded to csv for now
             schema=schema,
+            encoding="utf-8",
         )
 
         # Validate
@@ -178,6 +179,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             source=data,
             format="csv",
             schema=schema,
+            encoding="utf-8",
         )
 
         # Iterate over rows to extract values
@@ -226,6 +228,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             source=data,
             format="csv",  # TODO -> Hardcoded to csv for now
             schema=schema,
+            encoding="utf-8",
         )
 
         # Initialise Graph
