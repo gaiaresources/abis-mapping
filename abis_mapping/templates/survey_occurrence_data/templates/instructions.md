@@ -7,7 +7,7 @@ This template is used to record occurrence data; that is, the presence or absenc
 at a particular site locality at a point in time.
 
 The Systematic Survey Occurrences template **must be used in combination** with the
-Systematic Survey Metadata template and (in some cases), the Systematic Survey Sites
+Systematic Survey Metadata template, and in some cases the Systematic Survey Sites
 template.
 
 Templates have been provided to facilitate integration of your data into the Biodiversity
@@ -17,18 +17,19 @@ contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
 #### NEED TO KNOW:
 For data validation, you will need your data file to:
-- Be in the correct **file format,**
-- Have **fields that match the template downloaded** (do not remove, or 
+- be in the correct **file format,**
+- have **fields that match the template downloaded** (do not remove, or 
   change the order of fields),
-- Additional fields may be added **after the templated fields** (noting that the
-  data type is not assumed and values will be encoded as strings),
-- Have extant values for **mandatory fields** (see Table 1),
-- Comply with all **data value constraints**; for example the geographic coordinates are
+- have extant values for **mandatory fields** (see Table 1),
+- comply with all **data value constraints**; for example the geographic coordinates are
   consistent with a [geodeticDatum](#geodeticDatum-vocabularies) type of the ***{{values.geodetic_datum_count}}*** available
   options, and
-- Align with existing controlled [vocabularies](#appendix-i-vocabulary-list) wherever possible (this is mandatory
+- align with existing controlled [vocabularies](#appendix-i-vocabulary-list) wherever possible (this is mandatory
   for geodeticDatum), but new terms may be submitted for consideration amd will not cause a
   validation error.
+
+Additional fields may be added **after the templated fields** (noting that the data type 
+is not assumed and values will be encoded as strings).
 
 ### FILE FORMAT
 - The systematic survey occurrence data template is a [UTF-8](#appendix-iii-utf-8) encoded csv (that is, not Microsoft
@@ -65,7 +66,7 @@ your data to the template by providing guidance on:
 ### ADDITIONAL FIELDS
 Data that does not match the existing template fields may be added as
 additional columns in the CSV files after the templated fields. <br>
-e.g. eventRemarks, associatedTaxa, pathway.
+For example: `eventRemarks`, `associatedTaxa`, `pathway`.
 
 <ins>Table 1: Systematic Survey Occurrence data template fields with descriptions, conditions,
 datatype format, and examples.</ins>
@@ -85,7 +86,7 @@ era](https://doi.org/10.1111/2041-210X.12594).
 
 <ins>Table 2: Suggested values for the controlled vocabulary fields in the template. Each term has
 a preferred label with a definition to aid understanding of its meaning. For some terms, alternative
-labels (with similar semantics) are provided. Note: <font color="red">geodeticDatum value
+labels with similar semantics are provided. Note: <font color="red">geodeticDatum value
 **must** come from one of five options in this table.</font></ins>
 
 <a name="vocabulary-list"></a>
