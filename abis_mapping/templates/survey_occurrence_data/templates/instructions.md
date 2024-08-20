@@ -2,7 +2,7 @@
 {% block body %}
 # SYSTEMATIC SURVEY OCCURRENCES DATA TEMPLATE INSTRUCTIONS
 
-## OVERVIEW
+## Intended Usage
 This template is used to record occurrence data; that is, the presence or absence of an organism
 at a particular site locality at a point in time.
 
@@ -15,7 +15,7 @@ Data Repository database. Not all types of data have been catered for in the ava
 templates at this stage; therefore, if you are unable to find a suitable template, please
 contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
-#### NEED TO KNOW:
+#### Data Validation Requirements:
 For data validation, you will need your data file to:
 - be in the correct **file format,**
 - have **fields that match the template downloaded** (do not remove, or 
@@ -75,8 +75,8 @@ datatype format, and examples.</ins>
 
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
-With the exception of `geodeticDatum`, data validation does not require fields to adhere to the vocabularies
-specified for the various vocabularied fields. These vocabularies are merely provided as a
+With the exception of `geodeticDatum`, data validation does not require fields to adhere to the
+vocabularies specified for the various vocabularied fields. These vocabularies are merely provided as a
 means of assistance in developing a consistent language within the database. New terms may be added
 to more appropriately describe your data that goes beyond the current list. Table 2 provides some
 suggested values from existing sources such as: [Biodiversity Information Standard (TDWG)](https://dwc.tdwg.org/),
@@ -86,7 +86,7 @@ era](https://doi.org/10.1111/2041-210X.12594).
 
 <ins>Table 2: Suggested values for the controlled vocabulary fields in the template. Each term has
 a preferred label with a definition to aid understanding of its meaning. For some terms, alternative
-labels with similar semantics are provided. Note: <font color="red">geodeticDatum value
+labels with similar semantics are provided. Note: <font color="red">`geodeticDatum` value
 **must** come from one of five options in this table.</font></ins>
 
 <a name="vocabulary-list"></a>
