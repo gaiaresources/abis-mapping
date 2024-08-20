@@ -356,12 +356,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#appendix-ii-timestamp" class="md-nav__link">
     <span class="md-ellipsis">
       APPENDIX-II: Timestamp
@@ -369,13 +364,18 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#appendix-iii-utf-8" class="md-nav__link">
     <span class="md-ellipsis">
       APPENDIX-III: UTF-8
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -524,12 +524,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#appendix-ii-timestamp" class="md-nav__link">
     <span class="md-ellipsis">
       APPENDIX-II: Timestamp
@@ -537,13 +532,18 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#appendix-iii-utf-8" class="md-nav__link">
     <span class="md-ellipsis">
       APPENDIX-III: UTF-8
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -567,50 +567,48 @@
 </small></p>
 <h1 id="systematic-survey-occurrences-data-template-instructions">SYSTEMATIC SURVEY OCCURRENCES DATA TEMPLATE INSTRUCTIONS</h1>
 <h2 id="overview">OVERVIEW</h2>
-<p>Use this template to record occurrence data; that is the presence or absence of an organism
+<p>This template is used to record occurrence data; that is, the presence or absence of an organism
 at a particular site locality at a point in time.</p>
-<p>This Systematic Survey Occurrences template <strong>must be used in combination</strong> with the
-Systematic Survey Metadata template and, in some cases, the Systematic Survey Sites
+<p>The Systematic Survey Occurrences template <strong>must be used in combination</strong> with the
+Systematic Survey Metadata template, and in some cases the Systematic Survey Sites
 template.</p>
 <p>Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
 templates at this stage; therefore, if you are unable to find a suitable template, please
 contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
 <h4 id="need-to-know">NEED TO KNOW:</h4>
-<p>For data validation, you will need your data file to:</p>
-<ul>
-<li>be the correct <strong>file format,</strong></li>
-<li>have <strong>matching template fields</strong> to the template downloaded (do not remove, or
-  change the order of fields), however</li>
-<li>additional fields may be added <strong>after the templated fields</strong> (noting that the
-  data type is not assumed and values will be encoded as strings),</li>
-<li>have values in <strong>mandatory fields</strong> (see Table 1),</li>
-<li>comply with data <strong>value constraints</strong> for example the geographic coordinates are
+<p>For data validation, you will need your data file to:
+- be in the correct <strong>file format,</strong>
+- have <strong>fields that match the template downloaded</strong> (do not remove, or 
+  change the order of fields),
+- have extant values for <strong>mandatory fields</strong> (see Table 1),
+- comply with all <strong>data value constraints</strong>; for example the geographic coordinates are
   consistent with a <a href="#geodeticDatum-vocabularies">geodeticDatum</a> type of the <strong><em>5</em></strong> available
-  options, and</li>
-<li>align with existing controlled <a href="#appendix-i-vocabulary-list">vocabularies</a> wherever possible (this is mandatory
+  options, and
+- align with existing controlled <a href="#appendix-i-vocabulary-list">vocabularies</a> wherever possible (this is mandatory
   for geodeticDatum), but new terms may be submitted for consideration amd will not cause a
-  validation error.</li>
-</ul>
+  validation error.</p>
+<p>Additional fields may be added <strong>after the templated fields</strong> (noting that the data type 
+is not assumed and values will be encoded as strings).</p>
 <h3 id="file-format">FILE FORMAT</h3>
 <ul>
-<li>The systematic survey occurrence data template is a <a href="#appendix-iii-utf-8">UTF-8</a> encoded csv (not Microsoft
-  Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
-  otherwise it will not pass the csv validation step upon upload.
+<li>The systematic survey occurrence data template is a <a href="#appendix-iii-utf-8">UTF-8</a> encoded csv (that is, not Microsoft
+  Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8): 
   <br><code>[MS Excel: Save As &gt; More options &gt; Tools &gt; Web options &gt; Save this document as &gt;
-  Unicode (UTF-8)]</code></li>
+  Unicode (UTF-8)]</code><br>
+  otherwise it will not pass the csv validation step upon upload.</li>
 <li><strong>Do not include empty rows</strong>.</li>
 </ul>
 <h4 id="file-size">FILE SIZE</h4>
 <p>MS Excel imposes a limit of 1,048,576 rows on a spreadsheet, limiting a CSV file to the
-header row followed by 1,048,575 occurrences. Furthermore, MS Excel has a 32,767 character
+header row followed by 1,048,575 occurrences. Furthermore, MS Excel has a 32,767-character
 limit on individual cells in a spreadsheet. These limits may be overcome by using or
 editing CSV files with other software.</p>
 <p>Larger datasets may be more readily ingested using the API interface. Please contact
 <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
 <h2 id="template-fields">TEMPLATE FIELDS</h2>
 <p>The template contains the field names in the top row. Table 1 will assist you in transferring
-your data to the template indicating:</p>
+your data to the template by providing guidance on:</p>
 <ul>
 <li><strong>Field name</strong> in the template (and an external link to the <a href="https://dwc.tdwg.org/terms/">Darwin Core standard</a>
   for that field where relevant);</li>
@@ -624,9 +622,9 @@ your data to the template indicating:</p>
   listed in Table 2 in alphabetical order of the field name.</li>
 </ul>
 <h3 id="additional-fields">ADDITIONAL FIELDS</h3>
-<p>Data that do not match the existing template fields may be added as additional columns in
-the CSV files after the templated fields. <br>
-E.g. eventRemarks, associatedTaxa, pathway.</p>
+<p>Data that does not match the existing template fields may be added as
+additional columns in the CSV files after the templated fields. <br>
+For example: <code>eventRemarks</code>, <code>associatedTaxa</code>, <code>pathway</code>.</p>
 <p><ins>Table 1: Systematic Survey Occurrence data template fields with descriptions, conditions,
 datatype format, and examples.</ins></p>
 <table>
@@ -1001,9 +999,9 @@ datatype format, and examples.</ins></p>
 </table>
 <h2 id="appendices">APPENDICES</h2>
 <h3 id="appendix-i-vocabulary-list">APPENDIX-I: VOCABULARY LIST</h3>
-<p>Apart from geodeticDatum, the data validation does not require adherence tho the below vocabularies
-for each of the fields indicated as having vocabularies. These vocabularies are provided as a
-means of assistance in developing consistent language within the database. New terms can be added
+<p>With the exception of <code>geodeticDatum</code>, data validation does not require fields to adhere to the vocabularies
+specified for the various vocabularied fields. These vocabularies are merely provided as a
+means of assistance in developing a consistent language within the database. New terms may be added
 to more appropriately describe your data that goes beyond the current list. Table 2 provides some
 suggested values from existing sources such as: <a href="https://dwc.tdwg.org/">Biodiversity Information Standard (TDWG)</a>,
 <a href="https://epsg.io/">EPSG.io Coordinate systems worldwide</a>, the <a href="https://rs.gbif.org/">Global Biodiversity Information
@@ -1011,8 +1009,8 @@ System</a>, and <a href="https://doi.org/10.1111/2041-210X.12594">Open Nomenclat
 era</a>.</p>
 <p><ins>Table 2: Suggested values for the controlled vocabulary fields in the template. Each term has
 a preferred label with a definition to aid understanding of its meaning. For some terms, alternative
-labels are provided that mean the same sort of thing. Note: <font color="red">geodeticDatum value
-must come from one of five options in this table.</font></ins></p>
+labels with similar semantics are provided. Note: <font color="red">geodeticDatum value
+<strong>must</strong> come from one of five options in this table.</font></ins></p>
 <p><a name="vocabulary-list"></a></p>
 <table>
 <thead>
@@ -1711,10 +1709,10 @@ must come from one of five options in this table.</font></ins></p>
 </tbody>
 </table>
 <p><a name="threatStatus-vocabularies"></a>
-<ins>Table 2b: Suggested values for conditionally mandatory values for the threatStatus and
-conservationJurisdiction in the template. State and Territory conservationJurisdictions spelt out
-in words are also valid. For some threatStatus terms, alternative labels are provided that are also
-valid for that conservationJurisdiction.</p>
+<ins>Table 2b: Suggested values for conditionally mandatory values for the <code>threatStatus</code> and
+<code>conservationJurisdiction</code> fields in the template. State and Territory <code>conservationJurisdictions</code> 
+spelt out as words are also valid. For some <code>threatStatus</code> terms, alternative labels are provided
+that are also valid for that <code>conservationJurisdiction</code>.</p>
 <table>
 <thead>
 <tr>
@@ -1767,7 +1765,7 @@ valid for that conservationJurisdiction.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">CE</td>
-<td style="text-align: left;">CR, CRITICALLY ENDANGERED</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED, CR</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -1802,7 +1800,7 @@ valid for that conservationJurisdiction.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">XW</td>
-<td style="text-align: left;">EXTINCT IN THE WILD, EW</td>
+<td style="text-align: left;">EW, EXTINCT IN THE WILD</td>
 </tr>
 <tr>
 <td style="text-align: center;">NSW</td>
@@ -2022,7 +2020,7 @@ valid for that conservationJurisdiction.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CD</td>
-<td style="text-align: left;">SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA, CONSERVATION DEPENDENT</td>
+<td style="text-align: left;">CONSERVATION DEPENDENT, SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2047,7 +2045,7 @@ valid for that conservationJurisdiction.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">MI</td>
-<td style="text-align: left;">MIGRATORY, MIGRATORY SPECIES</td>
+<td style="text-align: left;">MIGRATORY SPECIES, MIGRATORY</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2062,7 +2060,7 @@ valid for that conservationJurisdiction.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P2</td>
-<td style="text-align: left;">PRIORITY 2 POORLY KNOWN SPECIES, PRIORITY 2 POORLY KNOWN</td>
+<td style="text-align: left;">PRIORITY 2 POORLY KNOWN, PRIORITY 2 POORLY KNOWN SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2091,7 +2089,7 @@ valid for that conservationJurisdiction.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="appendix-ii-timestamp">APPENDIX-II: Timestamp</h2>
+<h3 id="appendix-ii-timestamp">APPENDIX-II: Timestamp</h3>
 <p>Following date and date-time formats are acceptable within the timestamp:</p>
 <table>
 <thead>
@@ -2123,41 +2121,39 @@ valid for that conservationJurisdiction.</p>
 </tr>
 </tbody>
 </table>
-<p>Where:<br/>
-&emsp; yyyy = four-digit year <br/>
-&emsp; mm = two-digit month (01=January, etc.) <br/>
-&emsp; dd = two-digit day of month (01 through 31) <br/>
-&emsp; hh = two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
-&emsp; mm = two digits of minute (00 through 59) <br/>
-&emsp; ss = two digits of second (00 through 59) <br/></p>
-<h2 id="appendix-iii-utf-8">APPENDIX-III: UTF-8</h2>
+<p>Where<br/>
+&emsp; <code>yyyy</code>: four-digit year <br/>
+&emsp; <code>mm</code>: two-digit month (01=January, etc.) <br/>
+&emsp; <code>dd</code>: two-digit day of month (01 through 31) <br/>
+&emsp; <code>hh</code>: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
+&emsp; <code>mm</code>: two digits of minute (00 through 59) <br/>
+&emsp; <code>ss</code>: two digits of second (00 through 59) <br/></p>
+<h3 id="appendix-iii-utf-8">APPENDIX-III: UTF-8</h3>
 <p>UTF-8 encoding is considered a best practice for handling character encoding, especially in
 the context of web development, data exchange, and modern software systems. UTF-8
 (Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
 encoding all possible characters (code points) in Unicode.<br/>
-Here are some reasons why UTF-8 is recommended:<strong>Universal Character Support:</strong> UTF-8
-can represent almost all characters from all writing systems in use today. This includes
-characters from various languages, mathematical symbols, and other special characters.</p>
-<ul>
-<li><strong>Backward Compatibility:</strong> UTF-8 is backward compatible with ASCII (American
+Here are some reasons why UTF-8 is recommended:
+- <strong>Universal Character Support:</strong> UTF-8 can represent almost all characters from all writing 
+  systems in use today. This includes characters from various languages, mathematical symbols, 
+  and other special characters.
+- <strong>Backward Compatibility:</strong> UTF-8 is backward compatible with ASCII (American
   Standard Code for Information Interchange). The first 128 characters in UTF-8 are
-  identical to ASCII, making it easy to work with systems that use ASCII.</li>
-<li><strong>Efficiency:</strong> UTF-8 is space-efficient for Latin-script characters (common in English
+  identical to ASCII, making it easy to work with systems that use ASCII.
+- <strong>Efficiency:</strong> UTF-8 is space-efficient for Latin-script characters (common in English
   and many other languages). It uses one byte for ASCII characters and up to four
   bytes for other characters. This variable-length encoding minimises storage and
-  bandwidth requirements.</li>
-<li><strong>Web Standards:</strong> UTF-8 is the dominant character encoding for web content. It is
-  widely supported by browsers, servers, and web-related technologies.</li>
-<li><strong>Globalisation:</strong> As software applications become more globalised, supporting a wide
+  bandwidth requirements.
+- <strong>Web Standards:</strong> UTF-8 is the dominant character encoding for web content. It is
+  widely supported by browsers, servers, and web-related technologies.
+- <strong>Globalisation:</strong> As software applications become more globalised, supporting a wide
   range of languages and scripts becomes crucial. UTF-8 is well-suited for
-  internationalisation and multilingual support.</li>
-<li><strong>Compatibility with Modern Systems:</strong> UTF-8 is the default encoding for many
+  internationalisation and multilingual support.
+- <strong>Compatibility with Modern Systems:</strong> UTF-8 is the default encoding for many
   programming languages, databases, and operating systems. Choosing UTF-8 helps
-  ensure compatibility across different platforms and technologies.</li>
-</ul>
-<p>When working with text data, it's generally a good idea to use UTF-8 encoding to avoid
-issues related to character representation and ensure that your software can handle a
-diverse set of characters and languages.</p>
+  ensure compatibility across different platforms and technologies.</p>
+<p>When working with text data, UTF-8 encoding is recommended to avoid issues related to character
+representation and ensure that a diverse set of characters and languages is supported.</p>
 <p>For assistance, please contact: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a></p>
 
 
