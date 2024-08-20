@@ -29,6 +29,7 @@
       "example": "Cowaramup Bay Road",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:locality",
       "constraints": {
         "required": false
       }
@@ -40,6 +41,7 @@
       "example": "-33.812314",
       "type": "number",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:decimalLatitude",
       "constraints": {
         "required": true,
         "minimum": -90.0,
@@ -53,6 +55,7 @@
       "example": "115.231512",
       "type": "number",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:decimalLongitude",
       "constraints": {
         "required": true,
         "minimum": 0,
@@ -66,6 +69,7 @@
       "example": "WGS84",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:geodeticDatum",
       "constraints": {
         "required": true,
         "enum": [
@@ -92,6 +96,7 @@
       "example": "50.0",
       "type": "number",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:coordinateUncertaintyInMeters",
       "constraints": {
         "required": false,
         "minimum": 0.0
@@ -104,6 +109,7 @@
       "example": "Coordinates rounded to the nearest 10 km for conservation concern",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwciri:dataGeneralizations",
       "constraints": {
         "required": false
       }
@@ -115,6 +121,7 @@
       "example": "2019-09-23T14:03+08:00",
       "type": "timestamp",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:eventDate",
       "constraints": {
         "required": true
       }
@@ -126,6 +133,7 @@
       "example": "Human Observation",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwciri:samplingProtocol",
       "constraints": {
         "required": false
       },
@@ -140,6 +148,7 @@
       "example": "Preserved Specimen",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:basisOfRecord",
       "constraints": {
         "required": false
       },
@@ -154,6 +163,7 @@
       "example": "Stream Environment and Water Pty Ltd",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwciri:recordedBy",
       "constraints": {
         "required": false
       }
@@ -165,6 +175,7 @@
       "example": "PE:12:8832",
       "type": "string",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/recordNumber",
       "constraints": {
         "required": false
       }
@@ -176,6 +187,7 @@
       "example": "Present",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:occurrenceStatus",
       "constraints": {
         "required": false
       },
@@ -190,6 +202,7 @@
       "example": "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam.",
       "type": "string",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/habitat",
       "constraints": {
         "required": false
       }
@@ -201,6 +214,7 @@
       "example": "Native",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:establishmentMeans",
       "constraints": {
         "required": false
       },
@@ -215,6 +229,7 @@
       "example": "Dried out leaf tips.",
       "type": "string",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/organismRemarks",
       "constraints": {
         "required": false
       }
@@ -226,6 +241,7 @@
       "example": "26",
       "type": "integer",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:individualCount",
       "constraints": {
         "required": false
       }
@@ -237,6 +253,7 @@
       "example": "12.5",
       "type": "number",
       "format": "default",
+      "url": "https://dwc.tdwg.org/list/#dwc_organismQuantity",
       "constraints": {
         "required": false
       }
@@ -248,6 +265,7 @@
       "example": "% biomass",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/list/#dwc_organismQuantityType",
       "constraints": {
         "required": false
       },
@@ -262,6 +280,7 @@
       "example": "adult",
       "type": "string",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/lifeStage",
       "constraints": {
         "required": false
       },
@@ -276,6 +295,7 @@
       "example": "Unspecified",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwciri:sex",
       "constraints": {
         "required": false
       },
@@ -290,6 +310,7 @@
       "example": "No breeding evident",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:reproductiveCondition",
       "constraints": {
         "required": false
       },
@@ -326,6 +347,7 @@
       "example": "ARACH",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:collectionCode",
       "constraints": {
         "required": false
       }
@@ -337,6 +359,7 @@
       "example": "145732, 145732a, 2008.1334, R-4313",
       "type": "string",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/catalogNumber",
       "constraints": {
         "required": false
       }
@@ -359,6 +382,7 @@
       "example": "BHP2012-7521 | M12378",
       "type": "list",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/otherCatalogNumbers",
       "constraints": {
         "required": false
       }
@@ -381,6 +405,7 @@
       "example": "alcohol",
       "type": "string",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/preparations",
       "constraints": {
         "required": false
       },
@@ -406,6 +431,7 @@
       "example": "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1 | https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
       "type": "list",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/associatedSequences",
       "constraints": {
         "required": false
       }
@@ -431,6 +457,7 @@
       "example": "Caladenia ?excelsa",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:verbatimIdentification",
       "constraints": {
         "required": false
       }
@@ -442,6 +469,7 @@
       "example": "2019-09-24",
       "type": "timestamp",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/dateIdentified",
       "constraints": {
         "required": false
       }
@@ -453,6 +481,7 @@
       "example": "J. Doe | WAM",
       "type": "string",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/identifiedBy",
       "constraints": {
         "required": false
       }
@@ -478,6 +507,7 @@
       "example": "Caladenia excelsa",
       "type": "string",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/scientificName",
       "constraints": {
         "required": true
       }
@@ -489,6 +519,7 @@
       "example": "Species incerta",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:identificationQualifier",
       "constraints": {
         "required": false
       },
@@ -503,6 +534,7 @@
       "example": "DNA evidence may indicate a new species. Further analysis required.",
       "type": "string",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/identificationRemarks",
       "constraints": {
         "required": false
       }
@@ -514,6 +546,7 @@
       "example": "Calaendia excelsa Hopper & A.P.Br.",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:acceptedNameUsage",
       "constraints": {
         "required": false
       }
@@ -525,6 +558,7 @@
       "example": "Plantae",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:kingdom",
       "constraints": {
         "required": true
       },
@@ -540,6 +574,7 @@
       "example": "Species",
       "type": "string",
       "format": "default",
+      "url": "http://rs.tdwg.org/dwc/terms/verbatimTaxonRank",
       "constraints": {
         "required": false
       },

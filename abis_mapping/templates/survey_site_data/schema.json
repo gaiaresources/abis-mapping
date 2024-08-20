@@ -66,6 +66,7 @@
       "example": "Chenopod Shrubland | Closed Fernland",
       "type": "list",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:habitat",
       "constraints": {
         "required": false
       },
@@ -113,6 +114,7 @@
       "example": "-34.036",
       "type": "number",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:decimalLatitude",
       "constraints": {
         "required": false,
         "minimum": -90,
@@ -126,6 +128,7 @@
       "example": "146.363",
       "type": "number",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:decimalLongitude",
       "constraints": {
         "required": false,
         "minimum": 0,
@@ -139,6 +142,7 @@
       "example": "LINESTRING (146.363 -34.036, 146.363 -34.037)",
       "type": "wkt",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:footprintWKT",
       "constraints": {
         "required": false
       }
@@ -150,6 +154,7 @@
       "example": "WGS84",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:geodeticDatum",
       "constraints": {
         "required": false,
         "enum": [
@@ -176,6 +181,7 @@
       "example": "50",
       "type": "integer",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:coordinateUncertaintyInMeters",
       "constraints": {
         "required": false,
         "minimum": 1

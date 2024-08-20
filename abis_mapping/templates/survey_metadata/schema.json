@@ -115,6 +115,7 @@
       "example": "GDA2020",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:geodeticDatum",
       "constraints": {
         "required": false,
         "enum": [
