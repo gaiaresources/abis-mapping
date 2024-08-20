@@ -37,21 +37,27 @@ jobs:
         run: |
           poetry install --sync
           poetry env info
+
       - name: Generate markdown
         run: poetry run bash scripts/generate_instructions.sh
-      - name: Build/Deploy/Delete documentation
+
+      - name: Build and deploy dev documentation
+        if: ${{ github.event_name == 'push' }}
+        run: poetry run mike deploy --push --branch=${{ env.DOCS_BRANCH }} dev
+
+      - name: Build and deploy published tag documentation
+        if: ${{ github.event_name == 'release' && github.event.action == 'published' }}
         run: |
-          if [[ "${{ github.event_name }}" == "push" && "${{ github.event.ref }}" == "refs/heads/main" ]]; then
-            echo "Updating 'dev' documentation" 
-            poetry run mike deploy --push --branch=${{ env.DOCS_BRANCH }} dev 
-          elif [[ "${{ github.event_name }}" == "release" && "${{ github.event.action }}" == "published" ]]; then
-            echo "Creating documentation version ${{ github.ref_name }}"
-            poetry run mike deploy --push --branch=${{ env.DOCS_BRANCH }} --update-aliases ${{ github.ref_name }} latest 
-            poetry run mike set-default --push --branch=${{ env.DOCS_BRANCH }} latest
-          elif [[ "${{ github.event_name }}" == "release" && "${{ github.event.action }}" == "deleted" ]]; then
-            echo "Deleting documentation version ${{ github.ref_name }}"
-            poetry run mike delete --push --branch=${{ env.DOCS_BRANCH }} ${{ github.ref_name }}
-          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "Building documentation for pull request, not publishing."
-            poetry run mkdocs build
-          fi
+          echo "Creating documentation version ${{ github.ref_name }}"
+          poetry run mike deploy --push --branch=${{ env.DOCS_BRANCH }} --update-aliases ${{ github.ref_name }} latest
+          poetry run mike set-default --push --branch=${{ env.DOCS_BRANCH }} latest
+
+      - name: Remove deleted tag documentation
+        if: ${{ github.event_name == 'release' && github.event.action == 'deleted' }}
+        run: |
+          echo "Deleting documentation version ${{ github.ref_name }}"
+          poetry run mike delete --push --branch=${{ env.DOCS_BRANCH }} ${{ github.ref_name }}
+
+      - name: Build documentation for pull request
+        if: ${{ github.event_name == 'pull_request' }}
+        run: poetry run mkdocs build
