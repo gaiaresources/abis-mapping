@@ -27,7 +27,7 @@ class Field(pydantic.BaseModel):
     example: str | None = None
     type: str
     format: str | None
-    url: pydantic.URL | None = None
+    url: pydantic.AnyUrl | None = None
     constraints: Constraints
     vocabularies: list[str] = []
 

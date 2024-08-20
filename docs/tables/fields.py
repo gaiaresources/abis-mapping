@@ -86,6 +86,10 @@ class FieldTabler(tables.base.BaseTabler):
             if as_markdown and field.publishable_vocabularies:
                 field_table_row.examples += f"<br>([Vocabulary link](#{field.name}-vocabularies))"
 
+            # If markdown add link to field names
+            if as_markdown and field.url:
+                field_table_row.field_name = f"[{field_table_row.field_name}]({field.url})"
+
             # Write row to csv
             writer.writerow(field_table_row.model_dump(by_alias=True))
 
