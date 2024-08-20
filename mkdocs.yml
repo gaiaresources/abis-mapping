@@ -1,5 +1,12 @@
 site_name: BDR ABIS Mapping
-site_url: https://gaiaresources.github.io/abis-mappping
+site_url: https://gaiaresources.github.io/abis-mappping/
 theme:
   name: material
 docs_dir: docs/pages
+extra:
+  version:
+    provider: mike
+plugins:
+  - mike:
+      canonical_version: latest
+      version_selector: true

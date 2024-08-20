@@ -1,14 +1,24 @@
-name: ci
+name: CI
 on:
+  release:
+    types:
+      - published
+      - deleted
   push:
     branches:
       - main
 permissions:
   contents: write
 jobs:
-  deploy:
+  publish_documentation:
+    env:
+      DOCS_BRANCH: docs-site
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout ${{ env.DOCS_BRANCH }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.DOCS_BRANCH }}
       - uses: actions/checkout@v4
       - name: Configure Git Credentials
         run: |
@@ -17,7 +27,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.11
-      - name: Install Project and Generate Markdown
+      - name: Install project and generate markdown
         run: |
           pipx install poetry==1.6.1
           poetry install
@@ -29,6 +39,16 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - name: Build Site
+      - name: Build and deploy documentation
         run: |
-          poetry run mkdocs gh-deploy --force
+          if [ "${{ github.event_name }}" == "push" ]; then
+            echo "Updating 'dev' documentation" 
+            poetry run mike deploy --push --branch=${{ env.DOCS_BRANCH }} dev 
+          elif [ "${{ github.event.action }}" == "published" ]; then
+            echo "Creating documentation version ${{ github.ref_name }}"
+            poetry run mike deploy --push --branch=${{ env.DOCS_BRANCH }} --update-aliases ${{ github.ref_name }} latest 
+            poetry run mike set-default --push --branch=${{ env.DOCS_BRANCH }} latest
+          elif [ "${{ github.event.action }}" == "deleted" ]; then
+            echo "Deleting documentation version ${{ github.ref_name }}"
+            poetry run mike delete --push --branch=${{ env.DOCS_BRANCH }} ${{ github.ref_name }}
+          fi

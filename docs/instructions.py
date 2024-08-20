@@ -54,14 +54,11 @@ class MapperLoader(jinja2.BaseLoader):
             return fs_loader.get_source(environment, splt[1])
 
         # Get mapper
-        try:
-            mapper = base.mapper.get_mapper(self.mapper_id)
-        except KeyError:
-            raise ValueError(f"Template '{self.mapper_id}' not found.")
+        mapper = base.mapper.get_mapper(self.mapper_id)
 
         # Check mapper returned
         if mapper is None:
-            raise TypeError(f"Template '{self.mapper_id}' not defined; got NoneType")
+            raise ValueError(f"Template '{self.mapper_id}' not defined; got NoneType")
 
         # Create path
         path = mapper().root_dir() / "templates" / template
