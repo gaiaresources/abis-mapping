@@ -7,10 +7,13 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - 'main'
 permissions:
   contents: write
 jobs:
-  publish_documentation:
+  documentation:
     env:
       DOCS_BRANCH: docs-site
     runs-on: ubuntu-latest
@@ -36,16 +39,19 @@ jobs:
           poetry env info
       - name: Generate markdown
         run: poetry run bash scripts/generate_instructions.sh
-      - name: Build and deploy documentation
+      - name: "Build/Deploy/Delete documentation"
         run: |
-          if [ "${{ github.event_name }}" == "push" ]; then
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.event.ref }}" == "refs/heads/main" ]]; then
             echo "Updating 'dev' documentation" 
             poetry run mike deploy --push --branch=${{ env.DOCS_BRANCH }} dev 
-          elif [ "${{ github.event.action }}" == "published" ]; then
+          elif [[ "${{ github.event_name }}" == "release" && "${{ github.event.action }}" == "published" ]]; then
             echo "Creating documentation version ${{ github.ref_name }}"
             poetry run mike deploy --push --branch=${{ env.DOCS_BRANCH }} --update-aliases ${{ github.ref_name }} latest 
             poetry run mike set-default --push --branch=${{ env.DOCS_BRANCH }} latest
-          elif [ "${{ github.event.action }}" == "deleted" ]; then
+          elif [[ "${{ github.event_name }}" == "release" && "${{ github.event.action }}" == "deleted" ]]; then
             echo "Deleting documentation version ${{ github.ref_name }}"
             poetry run mike delete --push --branch=${{ env.DOCS_BRANCH }} ${{ github.ref_name }}
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "Building documentation for pull request, not publishing."
+            poetry run mkdocs build
           fi
