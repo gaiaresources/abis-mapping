@@ -27,8 +27,9 @@ Additional fields may be added **after the templated fields** (noting that the d
 is not assumed and values will be encoded as strings).
 
 ### FILE FORMAT
-- The systematic survey occurrence data template is a [UTF-8](#appendix-iii-utf-8) encoded csv (that is, not Microsoft
-  Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8): 
+- The systematic survey site data template is a [UTF-8](#appendix-iv-utf-8) encoded csv (not Microsoft
+  Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
+  otherwise it will not pass the csv validation step upon upload.
   <br>`[MS Excel: Save As > More options > Tools > Web options > Save this document as >
   Unicode (UTF-8)]`<br>
   otherwise it will not pass the csv validation step upon upload.
