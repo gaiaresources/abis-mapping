@@ -10,3 +10,10 @@ plugins:
   - mike:
       canonical_version: latest
       version_selector: true
+strict: true
+validation:
+  links:
+    not_found: warn
+    anchors: warn
+    absolute_links: warn
+    unrecognized_links: warn
