@@ -30,7 +30,7 @@ consistent with a geodeticDatum type of the {{values.geodetic_datum_count}} avai
 
 ### FILE FORMAT
 
-- The systematic survey metadata template is a [UTF-8](#appendix-iii-utf-8) encoded csv (not Microsoft
+- The systematic survey metadata template is a [UTF-8](#appendix-iv-utf-8) encoded csv (not Microsoft
 Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as
 follows, otherwise it will not pass the in-browser csv validation step upon upload.
 <br>`[MS Excel: Save As > More options > Tools > Web options > Save this document as >
