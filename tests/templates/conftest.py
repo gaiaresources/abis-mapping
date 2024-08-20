@@ -210,6 +210,36 @@ TEST_CASES: list[TemplateTestParameters] = [
             ),
         ],
     ),
+    TemplateTestParameters(
+        template_id="incidental_occurrence_data-v3.0.0.csv",
+        empty_template=pathlib.Path(
+            "abis_mapping/templates/incidental_occurrence_data_v3/incidental_occurrence_data.csv"
+        ),
+        mapping_cases=[
+            MappingParameters(
+                data=pathlib.Path(
+                    ("abis_mapping/templates/incidental_occurrence_data_v3/examples/"
+                     "margaret_river_flora/margaret_river_flora.csv")
+                ),
+                expected=pathlib.Path(
+                    ("abis_mapping/templates/incidental_occurrence_data_v3/examples/"
+                     "margaret_river_flora/margaret_river_flora.ttl")
+                ),
+            ),
+        ],
+        metadata_sampling_type="incidental",
+        allows_extra_cols=True,
+        chunking_parameters=[
+            ChunkingParameters(
+                data=pathlib.Path(
+                    ("abis_mapping/templates/incidental_occurrence_data_v3/examples/"
+                     "margaret_river_flora/margaret_river_flora.csv")
+                ),
+                chunk_size=7,
+                yield_count=3,
+            ),
+        ],
+    ),
 ]
 
 
