@@ -9,7 +9,7 @@ on:
       - main
   pull_request:
     branches:
-      - 'main'
+      - main
 permissions:
   contents: write
 jobs:
@@ -32,14 +32,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: "poetry"
+          cache: poetry
       - name: Install project and dependencies
         run: |
           poetry install --sync
           poetry env info
       - name: Generate markdown
         run: poetry run bash scripts/generate_instructions.sh
-      - name: "Build/Deploy/Delete documentation"
+      - name: Build/Deploy/Delete documentation
         run: |
           if [[ "${{ github.event_name }}" == "push" && "${{ github.event.ref }}" == "refs/heads/main" ]]; then
             echo "Updating 'dev' documentation" 
