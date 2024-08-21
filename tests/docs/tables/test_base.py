@@ -2,6 +2,7 @@
 
 # Standard
 import io
+import unittest.mock
 
 # Third party
 import pytest
@@ -10,11 +11,26 @@ import pytest
 from docs import tables
 
 
-def test_tabler_init_raises_invalid_template_id() -> None:
-    """Tests initialisation raises on invalid template id."""
+class TestBaseTabler:
+    """Test suite for the BaseTabler class"""
+    def test_init_raises_invalid_template_id(self) -> None:
+        """Tests initialisation raises on invalid template id."""
+        with pytest.raises(ValueError):
+            tables.fields.FieldTabler("FAKE_ID")
 
-    with pytest.raises(ValueError):
-        tables.fields.FieldTabler("FAKE_ID")
+    def test_init_raises_invalid_format(
+            self,
+            mocked_mapper: unittest.mock.MagicMock,
+    ) -> None:
+        """Tests constructor raises on invalid format.
+
+        Args:
+            mocked_mapper (unittest.mock.MagicMock): mocked mapper fixture.
+        """
+        # Shouldn't raise now using mocked mapper
+        tables.fields.FieldTabler("some_id")
+        with pytest.raises(ValueError):
+            tables.fields.FieldTabler("some_id", format="notAFormat")
 
 
 class TestMarkdownDictWriter:
