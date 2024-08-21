@@ -18,10 +18,10 @@ For data validation, you will need your data file to:
 - be the correct **file format**,
 - have **fields that match the template downloaded** (do not remove, or 
   change the order of fields),
-- have extant values for **mandatory fields** (see Table 1),
+- have extant values for **mandatory fields** (see Table 1), and
 - comply with all **data value constraints**; for example the geographic coordinates are
   consistent with a [geodeticDatum](#geodeticDatum-vocabularies) type of the ***{{values.geodetic_datum_count}}*** available
-  options, and
+  options.
 Additional fields may be added **after the templated fields** (noting that the data type 
 is not assumed and values will be encoded as strings).
 
