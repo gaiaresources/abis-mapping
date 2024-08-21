@@ -4,6 +4,7 @@
 from abis_mapping import base
 from docs import contexts
 from docs import tables
+from abis_mapping import vocabs
 
 
 # Constants
@@ -18,6 +19,9 @@ _ctx = {
     "tables": {
         "vocabularies": tables.vocabs.VocabTabler(mapper_id).generate_table(as_markdown=True),
         "fields": tables.fields.FieldTabler(mapper_id).generate_table(as_markdown=True),
+    },
+    "values": {
+        "geodetic_datum_count": len(vocabs.geodetic_datum.GeodeticDatum.terms),
     },
     "metadata": mapper.metadata() if mapper is not None else None,
 }

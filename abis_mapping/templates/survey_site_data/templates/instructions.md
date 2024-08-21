@@ -2,38 +2,37 @@
 {% block body %}
 # SYSTEMATIC SURVEY SITE DATA TEMPLATE INSTRUCTIONS
 
-## OVERVIEW
-Use this template to record data about the Site area where species occurrences have been
-sampled during a systematic survey.
+## Intended Usage
+This Systematic Survey Site Data template should be used to record data about a 
+Site area where species occurrences have been sampled during a systematic survey.
 
-This Systematic Survey Site template **must be used in combination** with the Systematic
-Survey Occurrence template and the Systematic Survey Metadata template.
+This Systematic Survey Site template **must be used in combination** with the
+`Systematic Survey Occurrence` template and the `Systematic Survey Metadata` template.
 
-Templates have been provided to facilitate integration of your data into the Biodiversity Data
+Templates have been provided to facilitate integration of data into the Biodiversity Data
 Repository (BDR) database. Not all types of data have been catered for in the available
-templates at this stage; therefore, if you are unable to find a suitable template, please
+templates at this stage - if you are unable to find a suitable template, please
 contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
-#### NEED TO KNOW:
+#### Data Validation Requirements:
 For data validation, you will need your data file to:
-
 - be the correct **file format**,
-- have **matching template fields** to the template downloaded with provision to add
-extra fields (do not remove, or change the order of fields),
-- have populated the relevant fields using the correct data type (for example dates for
-date fields),
-- additional fields may be added **after the templated fields**,
-- have values in **mandatory fields** (see Table 1), and
-- comply with data **value constraints** for example the geographic coordinates are
-consistent with a geodeticDatum type of the available options.
+- have **fields that match the template downloaded** (do not remove, or 
+  change the order of fields),
+- have extant values for **mandatory fields** (see Table 1), and
+- comply with all **data value constraints**; for example the geographic coordinates are
+  consistent with a [geodeticDatum](#geodeticDatum-vocabularies) type of the 
+  ***{{values.geodetic_datum_count}}*** available options.
+Additional fields may be added **after the templated fields** (noting that the data type 
+is not assumed and values will be encoded as strings).
 
 ### FILE FORMAT
-
 - The systematic survey site data template is a [UTF-8](#appendix-iv-utf-8) encoded csv (not Microsoft
   Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
   otherwise it will not pass the csv validation step upon upload.
   <br>`[MS Excel: Save As > More options > Tools > Web options > Save this document as >
-  Unicode (UTF-8)]`
+  Unicode (UTF-8)]`<br>
+  otherwise it will not pass the csv validation step upon upload.
 - **Do not include empty rows**.
 
 #### FILE SIZE
@@ -61,10 +60,10 @@ your data to the template indicating:
   listed in Table 2 in alphabetical order of the field name.
 
 ### ADDITIONAL FIELDS
-Data that do not match the existing template fields may be added as additional columns in
+Data that does not match the existing template fields may be added as additional columns in
 the CSV files after the templated fields.
-E.g., fieldNotes, continent, country, countryCode, stateProvince, georeferencedDate,
-landformPattern, landformElement, aspect, slope, visitNo.
+For example, `fieldNotes`, `continent`, `country`, `countryCode`, `stateProvince`, `georeferencedDate`,
+`landformPattern`, `landformElement`, `aspect`, `slope`, `visitNo`.
 
 <ins>Table 1: Systematic Survey Site data template fields with descriptions, conditions, datatype format, and examples.</ins>
 
@@ -72,21 +71,24 @@ landformPattern, landformElement, aspect, slope, visitNo.
 
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
-Apart from geodeticDatum and relationshipToRelatedSite, the data validation does not require adherence to the below vocabularies for each of
-the fields indicated as having vocabularies. These vocabularies are provided as a means of assistance in developing consistent language
-within the database. New terms can be added to more appropriately describe your data that goes beyond the current list.
+With the exception of `geodeticDatum` and `relationshipToRelatedSite`, data validation
+does not require adherence to the vocabularies for the various vocabularied fields.
+These vocabularies are merely provided as a means of assistance in developing consistent language
+within the database. New terms may be added to more appropriately describe your data that goes 
+beyond the current list.
 
 <ins>Table 2: Suggested values for controlled vocabulary fields in the template. Each term has a preferred label with a definition to aid understanding
-of its meaning. For some terms, alternative labels are provided that mean the same sort of thing.</ins>
-<br>**Note:** <font color="red">The values for geodeticDatum and relationshipToRelatedSite must come from one of the Preferred labels or Alternate Labels in this
+of its meaning. For some terms, alternative
+labels with similar semantics are provided. </ins>
+<br>**Note:** <font color="red">The values for `geodeticDatum` and `relationshipToRelatedSite` must come from one of the Preferred labels or Alternate Labels in this
 table.</font>
 
 {{tables.vocabularies}}
 
 ### APPENDIX-II: Well Known Text (WKT)
-For general information on how WKT coordinate reference data is formatted [here](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry).
-The length of a WKT string or of its components is not prescribed. However, MS Excel has a 32,767 (32K) character limit
-on individual cells in a spreadsheet.
+For general information on how WKT coordinate reference data is formatted is available [here](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry).
+The length of a WKT string or of its components is not prescribed; however, MS Excel *does* has a
+32,767 (32K) character limit on individual cells in a spreadsheet.
 
 It is possible to edit CSV files outside of Excel in order to include more than 32K characters.
 
@@ -105,12 +107,12 @@ Following date and date-time formats are acceptable within the timestamp:
 | **xsd:gYear** | yyyy |
 
 Where:<br/>
-&emsp; yyyy = four-digit year <br/>
-&emsp; mm = two-digit month (01=January, etc.) <br/>
-&emsp; dd = two-digit day of month (01 through 31) <br/>
-&emsp; hh = two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
-&emsp; mm = two digits of minute (00 through 59) <br/>
-&emsp; ss = two digits of second (00 through 59) <br/>
+&emsp; `yyyy`: four-digit year <br/>
+&emsp; `mm`: two-digit month (01=January, etc.) <br/>
+&emsp; `dd`: two-digit day of month (01 through 31) <br/>
+&emsp; `hh`: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
+&emsp; `mm`: two digits of minute (00 through 59) <br/>
+&emsp; `ss`: two digits of second (00 through 59) <br/>
 
 
 ### APPENDIX-IV: UTF-8
@@ -118,10 +120,10 @@ UTF-8 encoding is considered a best practice for handling character encoding, es
 the context of web development, data exchange, and modern software systems. UTF-8
 (Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
 encoding all possible characters (code points) in Unicode.<br/>
-Here are some reasons why UTF-8 is recommended:**Universal Character Support:** UTF-8
-can represent almost all characters from all writing systems in use today. This includes
-characters from various languages, mathematical symbols, and other special characters.
-
+Here are some reasons why UTF-8 is recommended:
+- **Universal Character Support:** UTF-8 can represent almost all characters from all writing 
+  systems in use today. This includes characters from various languages, mathematical symbols, 
+  and other special characters.
 - **Backward Compatibility:** UTF-8 is backward compatible with ASCII (American
   Standard Code for Information Interchange). The first 128 characters in UTF-8 are
   identical to ASCII, making it easy to work with systems that use ASCII.
@@ -138,9 +140,8 @@ characters from various languages, mathematical symbols, and other special chara
   programming languages, databases, and operating systems. Choosing UTF-8 helps
   ensure compatibility across different platforms and technologies.
 
-When working with text data, it's generally a good idea to use UTF-8 encoding to avoid
-issues related to character representation and ensure that your software can handle a
-diverse set of characters and languages.
+When working with text data, UTF-8 encoding is recommended to avoid issues related to character
+representation and ensure that a diverse set of characters and languages is supported.
 
 For assistance, please contact: <bdr-support@gaiaresources.com.au>
 {% endblock %}

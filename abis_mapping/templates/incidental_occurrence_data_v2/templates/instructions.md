@@ -28,7 +28,6 @@ for geodeticDatum), but new terms may be submitted for consideration amd will no
 validation error.
 
 ### FILE FORMAT
-
 - The incidental occurrence data template is a [UTF-8](#appendix-iii-utf-8) encoded csv (not Microsoft
 Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
 otherwise it will not pass the csv validation step upon upload.
