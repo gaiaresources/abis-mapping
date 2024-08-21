@@ -3,6 +3,7 @@
 # Standard
 import abc
 import csv
+import io
 
 # Local
 from abis_mapping import base
@@ -12,29 +13,66 @@ from typing import IO, Final, Any, Mapping, Iterable, Literal
 
 
 class BaseTabler(abc.ABC):
+    """Base class for tablers.
+
+    Attributes:
+        alignment (list[str] | None): Optional alignment of table columns.
+    """
+    # Class attributes
+    alignment: list[str] | None = None
+
     def __init__(
         self,
-        template_id: str
+        template_id: str,
+        format: str = "csv",
     ) -> None:
         """Constructor for BaseTabler.
 
         Args:
             template_id (str): Template ID.
+            format (str, optional): Format of output table. Defaults to "markdown".
+
+        Raises:
+            ValueError: If format is not supported.
         """
+        # Define and check for supported formats
+        supported_formats: Final[list[str]] = ["markdown", "csv"]
+        if format not in supported_formats:
+            raise ValueError(f"unsupported format '{format}', must be one of {supported_formats}")
+
+        # Assign object attributes
+        self.format = format
         self.template_id: Final[str] = template_id
         self.mapper: Final[type[base.mapper.ABISMapper]] = self._retrieve_mapper()
+
+        # Create an in-memory io
+        self.output: Final[io.StringIO] = io.StringIO()
+
+        # Create writer
+        if format == "markdown":
+            # MarkdownDictWriter is a subclass of DictWriter hence the type hint.
+            self.writer: csv.DictWriter = MarkdownDictWriter(
+                f=self.output,
+                fieldnames=self.header,
+                alignment=self.alignment,
+            )
+        else:
+            self.writer = csv.DictWriter(self.output, fieldnames=self.header)
+
+    @property
+    @abc.abstractmethod
+    def header(self) -> list[str]:
+        """Need to define a header property."""
 
     @abc.abstractmethod
     def generate_table(
         self,
         dest: IO | None = None,
-        as_markdown: bool = False,
     ) -> str:
         """Called by tables to generate a table.
 
         Args:
             dest (IO | None): Optional destination file to write the table.
-            as_markdown (bool): If True, the table will be converted to Markdown.
 
         Returns:
             str: Table as csv.

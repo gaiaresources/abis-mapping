@@ -2,8 +2,6 @@
 
 # Standard
 import argparse
-import csv
-import io
 import sys
 
 # Third-party
@@ -27,62 +25,54 @@ class VocabTableRow(pydantic.BaseModel):
 
 
 class VocabTabler(tables.base.BaseTabler):
+
+    @property
+    def header(self) -> list[str]:
+        """Getter for the header row."""
+        # Get serialization title or fall back to given title for each field.
+        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in VocabTableRow.model_fields.values())
+        # Assert all values as not None
+        return [hdr for hdr in raw_hdr if hdr is not None]
+
     def generate_table(
         self,
         dest: IO | None = None,
-        as_markdown: bool = False,
     ) -> str:
         """Generates vocabulary table.
 
         Args:
             dest (IO, optional): Destination file. Defaults to None.
-            as_markdown (bool, optional): True to generate a markdown table. Defaults to False, as csv.
 
         Returns:
             str: Table either in markdown or csv.
         """
+        # Write header
+        self.writer.writeheader()
+
         # Get all fields that have associated vocabularies.
         dict_fields = self.mapper.schema()["fields"]
-
         fields: list[types.schema.Field] = [
             types.schema.Field.model_validate(f) for f in dict_fields if f.get("vocabularies") is not None
         ]
         fields = sorted(fields, key=lambda f: f.name)
 
-        # Create a memory io and dictionary to csv writer
-        output = io.StringIO()
-        # Get serialization title or fall back to given title for each field.
-        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in VocabTableRow.model_fields.values())
-        # Assert all values as not None
-        header = [hdr for hdr in raw_hdr if hdr is not None]
-
-        if as_markdown:
-            # MarkdownDictWriter is a child of DictWriter hence typehint
-            writer: csv.DictWriter = tables.base.MarkdownDictWriter(output, fieldnames=header)
-        else:
-            writer = csv.DictWriter(output, fieldnames=header)
-
-        # Write header
-        writer.writeheader()
-
         # Iterate through fields
         for field in fields:
             # Create a row per vocab term adding anchor to first row
-            for vocab_table_row in self.generate_vocab_rows(field, as_markdown):
+            for vocab_table_row in self.generate_vocab_rows(field):
                 # Write row to csv
-                writer.writerow(vocab_table_row.model_dump(by_alias=True))
+                self.writer.writerow(vocab_table_row.model_dump(by_alias=True))
 
         # Write to destination
         if dest is not None:
-            print(output.getvalue(), file=dest)
+            print(self.output.getvalue(), file=dest)
 
         # Return
-        return output.getvalue()
+        return self.output.getvalue()
 
     def generate_vocab_rows(
         self,
         field: types.schema.Field,
-        as_markdown: bool = False,
     ) -> Iterator[VocabTableRow]:
         """Generates a set of rows based on a field's vocabulary.
 
@@ -108,7 +98,7 @@ class VocabTabler(tables.base.BaseTabler):
         sorted_terms: Iterator[str] = (t for t in sorted(terms_map))
 
         # If markdown then the first row must contain an anchor
-        if as_markdown and (term_key := next(sorted_terms, None)) is not None:
+        if self.format == "markdown" and (term_key := next(sorted_terms, None)) is not None:
             yield self.generate_row(
                 field=field.model_copy(update={'name': f'<a name="{field.name}-vocabularies"></a>{field.name}'}),
                 term=terms_map[term_key],

@@ -16,8 +16,14 @@ mapper = base.mapper.get_mapper(mapper_id)
 # Declare context
 _ctx = {
     "tables": {
-        "vocabularies": tables.vocabs.VocabTabler(mapper_id).generate_table(as_markdown=True),
-        "fields": tables.fields.FieldTabler(mapper_id).generate_table(as_markdown=True),
+        "vocabularies": tables.vocabs.VocabTabler(
+            template_id=mapper_id,
+            format="markdown",
+        ).generate_table(),
+        "fields": tables.fields.FieldTabler(
+            template_id=mapper_id,
+            format="markdown",
+        ).generate_table(),
     },
     "metadata": mapper.metadata() if mapper is not None else None,
 }

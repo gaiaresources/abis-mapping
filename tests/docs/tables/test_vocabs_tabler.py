@@ -48,10 +48,10 @@ def test_generate_table_markdown(
         mocked_vocab (unittest.mock.MagicMock): Mocked vocab fixture.
     """
     # Create a tabler
-    tabler = tables.vocabs.VocabTabler("some_id")
+    tabler = tables.vocabs.VocabTabler("some_id", format="markdown")
 
     # Invoke
-    actual = tabler.generate_table(as_markdown=True)
+    actual = tabler.generate_table()
 
     # Assert
     assert actual == (

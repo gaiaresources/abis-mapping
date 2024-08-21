@@ -1,8 +1,6 @@
 """Tool for extracting fields from the mappers."""
 
 # Standard
-import io
-import csv
 import argparse
 import sys
 from unittest import mock
@@ -32,16 +30,24 @@ class FieldTableRow(pydantic.BaseModel):
 
 
 class FieldTabler(tables.base.BaseTabler):
+    """Tabler class for creating fields tables."""
+    alignment = ["l", "l", "c", "c", "l"]
+
+    @property
+    def header(self) -> list[str]:
+        """Getter for the table header."""
+        # Get titles from model
+        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in FieldTableRow.model_fields.values())
+        return [hdr for hdr in raw_hdr if hdr is not None]
+
     def generate_table(
         self,
         dest: IO | None = None,
-        as_markdown: bool = False,
     ) -> str:
         """Compile fields table from the given template.
 
         Args:
             dest (IO): Destination file for result.
-            as_markdown (bool, optional): Whether to output the table as markdown.
 
         Returns:
             str: Compiled fields table.
@@ -49,27 +55,12 @@ class FieldTabler(tables.base.BaseTabler):
         Raises:
             ValueError: If the provided template id doesn't exist.
         """
+        # Write header
+        self.writer.writeheader()
+
         # Localize fields
         dict_fields = self.mapper.schema()["fields"]
         fields: list[types.schema.Field] = [types.schema.Field.model_validate(f) for f in dict_fields]
-
-        # Create a memory io and dictionary to csv writer
-        output = io.StringIO()
-        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in FieldTableRow.model_fields.values())
-        header = [hdr for hdr in raw_hdr if hdr is not None]
-
-        if as_markdown:
-            # MarkdownDictWriter is a subclass of DictWriter hence the type hint.
-            writer: csv.DictWriter = tables.base.MarkdownDictWriter(
-                f=output,
-                fieldnames=header,
-                alignment=["l", "l", "c", "c", "l"],
-            )
-        else:
-            writer = csv.DictWriter(output, fieldnames=header)
-
-        # Write header
-        writer.writeheader()
 
         # Iterate through fields and add to csv
         for field in fields:
@@ -83,22 +74,22 @@ class FieldTabler(tables.base.BaseTabler):
             )
 
             # If markdown add link to vocabularies
-            if as_markdown and field.publishable_vocabularies:
+            if self.format == "markdown" and field.publishable_vocabularies:
                 field_table_row.examples += f"<br>([Vocabulary link](#{field.name}-vocabularies))"
 
             # If markdown add link to field names
-            if as_markdown and field.url:
+            if self.format == "markdown" and field.url:
                 field_table_row.field_name = f"[{field_table_row.field_name}]({field.url})"
 
             # Write row to csv
-            writer.writerow(field_table_row.model_dump(by_alias=True))
+            self.writer.writerow(field_table_row.model_dump(by_alias=True))
 
         # Write to destination
         if dest is not None:
-            print(output.getvalue(), file=dest)
+            print(self.output.getvalue(), file=dest)
 
         # Return
-        return output.getvalue()
+        return self.output.getvalue()
 
     def mandatory_optional_text(
         self,
