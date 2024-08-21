@@ -284,19 +284,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#intended-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      OVERVIEW
+      Intended Usage
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="OVERVIEW">
+    <nav class="md-nav" aria-label="Intended Usage">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#need-to-know" class="md-nav__link">
+  <a href="#data-validation-requirements" class="md-nav__link">
     <span class="md-ellipsis">
-      NEED TO KNOW:
+      Data Validation Requirements:
     </span>
   </a>
   
@@ -441,19 +441,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#intended-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      OVERVIEW
+      Intended Usage
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="OVERVIEW">
+    <nav class="md-nav" aria-label="Intended Usage">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#need-to-know" class="md-nav__link">
+  <a href="#data-validation-requirements" class="md-nav__link">
     <span class="md-ellipsis">
-      NEED TO KNOW:
+      Data Validation Requirements:
     </span>
   </a>
   
@@ -582,35 +582,34 @@
 <strong>abis-mapping</strong> v4.2.1 &emsp; <strong>survey_site_data</strong> v1.0.0
 </small></p>
 <h1 id="systematic-survey-site-data-template-instructions">SYSTEMATIC SURVEY SITE DATA TEMPLATE INSTRUCTIONS</h1>
-<h2 id="overview">OVERVIEW</h2>
-<p>Use this template to record data about the Site area where species occurrences have been
-sampled during a systematic survey.</p>
-<p>This Systematic Survey Site template <strong>must be used in combination</strong> with the Systematic
-Survey Occurrence template and the Systematic Survey Metadata template.</p>
-<p>Templates have been provided to facilitate integration of your data into the Biodiversity Data
+<h2 id="intended-usage">Intended Usage</h2>
+<p>This Systematic Survey Site Data template should be used to record data about a 
+Site area where species occurrences have been sampled during a systematic survey.</p>
+<p>This Systematic Survey Site template <strong>must be used in combination</strong> with the
+<code>Systematic Survey Occurrence</code> template and the <code>Systematic Survey Metadata</code> template.</p>
+<p>Templates have been provided to facilitate integration of data into the Biodiversity Data
 Repository (BDR) database. Not all types of data have been catered for in the available
-templates at this stage; therefore, if you are unable to find a suitable template, please
+templates at this stage - if you are unable to find a suitable template, please
 contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
-<h4 id="need-to-know">NEED TO KNOW:</h4>
-<p>For data validation, you will need your data file to:</p>
-<ul>
-<li>be the correct <strong>file format</strong>,</li>
-<li>have <strong>matching template fields</strong> to the template downloaded with provision to add
-extra fields (do not remove, or change the order of fields),</li>
-<li>have populated the relevant fields using the correct data type (for example dates for
-date fields),</li>
-<li>additional fields may be added <strong>after the templated fields</strong>,</li>
-<li>have values in <strong>mandatory fields</strong> (see Table 1), and</li>
-<li>comply with data <strong>value constraints</strong> for example the geographic coordinates are
-consistent with a geodeticDatum type of the available options.</li>
-</ul>
+<h4 id="data-validation-requirements">Data Validation Requirements:</h4>
+<p>For data validation, you will need your data file to:
+- be the correct <strong>file format</strong>,
+- have <strong>fields that match the template downloaded</strong> (do not remove, or 
+  change the order of fields),
+- have extant values for <strong>mandatory fields</strong> (see Table 1), and
+- comply with all <strong>data value constraints</strong>; for example the geographic coordinates are
+  consistent with a <a href="#geodeticDatum-vocabularies">geodeticDatum</a> type of the 
+  <strong><em>5</em></strong> available options.
+Additional fields may be added <strong>after the templated fields</strong> (noting that the data type 
+is not assumed and values will be encoded as strings).</p>
 <h3 id="file-format">FILE FORMAT</h3>
 <ul>
 <li>The systematic survey site data template is a <a href="#appendix-iv-utf-8">UTF-8</a> encoded csv (not Microsoft
   Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
   otherwise it will not pass the csv validation step upon upload.
   <br><code>[MS Excel: Save As &gt; More options &gt; Tools &gt; Web options &gt; Save this document as &gt;
-  Unicode (UTF-8)]</code></li>
+  Unicode (UTF-8)]</code><br>
+  otherwise it will not pass the csv validation step upon upload.</li>
 <li><strong>Do not include empty rows</strong>.</li>
 </ul>
 <h4 id="file-size">FILE SIZE</h4>
@@ -636,10 +635,10 @@ your data to the template indicating:</p>
   listed in Table 2 in alphabetical order of the field name.</li>
 </ul>
 <h3 id="additional-fields">ADDITIONAL FIELDS</h3>
-<p>Data that do not match the existing template fields may be added as additional columns in
+<p>Data that does not match the existing template fields may be added as additional columns in
 the CSV files after the templated fields.
-E.g., fieldNotes, continent, country, countryCode, stateProvince, georeferencedDate,
-landformPattern, landformElement, aspect, slope, visitNo.</p>
+For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</code>, <code>countryCode</code>, <code>stateProvince</code>, <code>georeferencedDate</code>,
+<code>landformPattern</code>, <code>landformElement</code>, <code>aspect</code>, <code>slope</code>, <code>visitNo</code>.</p>
 <p><ins>Table 1: Systematic Survey Site data template fields with descriptions, conditions, datatype format, and examples.</ins></p>
 <table>
 <thead>
@@ -803,12 +802,15 @@ landformPattern, landformElement, aspect, slope, visitNo.</p>
 </table>
 <h2 id="appendices">APPENDICES</h2>
 <h3 id="appendix-i-vocabulary-list">APPENDIX-I: VOCABULARY LIST</h3>
-<p>Apart from geodeticDatum and relationshipToRelatedSite, the data validation does not require adherence to the below vocabularies for each of
-the fields indicated as having vocabularies. These vocabularies are provided as a means of assistance in developing consistent language
-within the database. New terms can be added to more appropriately describe your data that goes beyond the current list.</p>
+<p>With the exception of <code>geodeticDatum</code> and <code>relationshipToRelatedSite</code>, data validation
+does not require adherence to the vocabularies for the various vocabularied fields.
+These vocabularies are merely provided as a means of assistance in developing consistent language
+within the database. New terms may be added to more appropriately describe your data that goes 
+beyond the current list.</p>
 <p><ins>Table 2: Suggested values for controlled vocabulary fields in the template. Each term has a preferred label with a definition to aid understanding
-of its meaning. For some terms, alternative labels are provided that mean the same sort of thing.</ins>
-<br><strong>Note:</strong> <font color="red">The values for geodeticDatum and relationshipToRelatedSite must come from one of the Preferred labels or Alternate Labels in this
+of its meaning. For some terms, alternative
+labels with similar semantics are provided. </ins>
+<br><strong>Note:</strong> <font color="red">The values for <code>geodeticDatum</code> and <code>relationshipToRelatedSite</code> must come from one of the Preferred labels or Alternate Labels in this
 table.</font></p>
 <table>
 <thead>
@@ -1591,9 +1593,9 @@ table.</font></p>
 </tbody>
 </table>
 <h3 id="appendix-ii-well-known-text-wkt">APPENDIX-II: Well Known Text (WKT)</h3>
-<p>For general information on how WKT coordinate reference data is formatted <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">here</a>.
-The length of a WKT string or of its components is not prescribed. However, MS Excel has a 32,767 (32K) character limit
-on individual cells in a spreadsheet.</p>
+<p>For general information on how WKT coordinate reference data is formatted is available <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">here</a>.
+The length of a WKT string or of its components is not prescribed; however, MS Excel <em>does</em> has a
+32,767 (32K) character limit on individual cells in a spreadsheet.</p>
 <p>It is possible to edit CSV files outside of Excel in order to include more than 32K characters.</p>
 <p><img alt="Multipart geometries (2D) WKT" src="../assets/multipart_geometries_2d_wkt.png" />
 <br><center><small><em>Source: Mwtoews - CC BY-SA 3.0 -  Wikipedia <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry</a></em></small></center></p>
@@ -1630,40 +1632,38 @@ on individual cells in a spreadsheet.</p>
 </tbody>
 </table>
 <p>Where:<br/>
-&emsp; yyyy = four-digit year <br/>
-&emsp; mm = two-digit month (01=January, etc.) <br/>
-&emsp; dd = two-digit day of month (01 through 31) <br/>
-&emsp; hh = two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
-&emsp; mm = two digits of minute (00 through 59) <br/>
-&emsp; ss = two digits of second (00 through 59) <br/></p>
+&emsp; <code>yyyy</code>: four-digit year <br/>
+&emsp; <code>mm</code>: two-digit month (01=January, etc.) <br/>
+&emsp; <code>dd</code>: two-digit day of month (01 through 31) <br/>
+&emsp; <code>hh</code>: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
+&emsp; <code>mm</code>: two digits of minute (00 through 59) <br/>
+&emsp; <code>ss</code>: two digits of second (00 through 59) <br/></p>
 <h3 id="appendix-iv-utf-8">APPENDIX-IV: UTF-8</h3>
 <p>UTF-8 encoding is considered a best practice for handling character encoding, especially in
 the context of web development, data exchange, and modern software systems. UTF-8
 (Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
 encoding all possible characters (code points) in Unicode.<br/>
-Here are some reasons why UTF-8 is recommended:<strong>Universal Character Support:</strong> UTF-8
-can represent almost all characters from all writing systems in use today. This includes
-characters from various languages, mathematical symbols, and other special characters.</p>
-<ul>
-<li><strong>Backward Compatibility:</strong> UTF-8 is backward compatible with ASCII (American
+Here are some reasons why UTF-8 is recommended:
+- <strong>Universal Character Support:</strong> UTF-8 can represent almost all characters from all writing 
+  systems in use today. This includes characters from various languages, mathematical symbols, 
+  and other special characters.
+- <strong>Backward Compatibility:</strong> UTF-8 is backward compatible with ASCII (American
   Standard Code for Information Interchange). The first 128 characters in UTF-8 are
-  identical to ASCII, making it easy to work with systems that use ASCII.</li>
-<li><strong>Efficiency:</strong> UTF-8 is space-efficient for Latin-script characters (common in English
+  identical to ASCII, making it easy to work with systems that use ASCII.
+- <strong>Efficiency:</strong> UTF-8 is space-efficient for Latin-script characters (common in English
   and many other languages). It uses one byte for ASCII characters and up to four
   bytes for other characters. This variable-length encoding minimises storage and
-  bandwidth requirements.</li>
-<li><strong>Web Standards:</strong> UTF-8 is the dominant character encoding for web content. It is
-  widely supported by browsers, servers, and web-related technologies.</li>
-<li><strong>Globalisation:</strong> As software applications become more globalised, supporting a wide
+  bandwidth requirements.
+- <strong>Web Standards:</strong> UTF-8 is the dominant character encoding for web content. It is
+  widely supported by browsers, servers, and web-related technologies.
+- <strong>Globalisation:</strong> As software applications become more globalised, supporting a wide
   range of languages and scripts becomes crucial. UTF-8 is well-suited for
-  internationalisation and multilingual support.</li>
-<li><strong>Compatibility with Modern Systems:</strong> UTF-8 is the default encoding for many
+  internationalisation and multilingual support.
+- <strong>Compatibility with Modern Systems:</strong> UTF-8 is the default encoding for many
   programming languages, databases, and operating systems. Choosing UTF-8 helps
-  ensure compatibility across different platforms and technologies.</li>
-</ul>
-<p>When working with text data, it's generally a good idea to use UTF-8 encoding to avoid
-issues related to character representation and ensure that your software can handle a
-diverse set of characters and languages.</p>
+  ensure compatibility across different platforms and technologies.</p>
+<p>When working with text data, UTF-8 encoding is recommended to avoid issues related to character
+representation and ensure that a diverse set of characters and languages is supported.</p>
 <p>For assistance, please contact: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a></p>
 
 
