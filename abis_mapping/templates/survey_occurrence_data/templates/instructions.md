@@ -65,7 +65,7 @@ your data to the template by providing guidance on:
 
 ### ADDITIONAL FIELDS
 Data that does not match the existing template fields may be added as
-additional columns in the CSV files after the templated fields. <br>
+additional columns in the CSV files after the templated fields. 
 For example: `eventRemarks`, `associatedTaxa`, `pathway`.
 
 <ins>Table 1: Systematic Survey Occurrence data template fields with descriptions, conditions,

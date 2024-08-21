@@ -61,7 +61,7 @@ your data to the template indicating:
 
 ### ADDITIONAL FIELDS
 Data that does not match the existing template fields may be added as additional columns in
-the CSV files after the templated fields.<br>
+the CSV files after the templated fields.
 For example, `fieldNotes`, `continent`, `country`, `countryCode`, `stateProvince`, `georeferencedDate`,
 `landformPattern`, `landformElement`, `aspect`, `slope`, `visitNo`.
 

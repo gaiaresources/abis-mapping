@@ -60,7 +60,7 @@ Table 2 in alphabetical order of field name.
 
 ### ADDITIONAL FIELDS
 Data that do not match the existing template fields may be added as additional columns in
-the CSV files after the templated fields.<br>
+the CSV files after the templated fields. 
 For example, `sampleSizeUnit`, `sampleSizeValue`.
 
 <ins>Table 1: Systematic Survey Metadata template fields with descriptions, conditions,
