@@ -687,7 +687,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Fine woody debris.</td>
 </tr>
 <tr>
-<td style="text-align: left;">habitat</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:habitat">habitat</a></td>
 <td style="text-align: left;">A collection of habitat types representing the dominant vegetation structural formation class adopted by the National Vegetation Information System (NVIS).</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">List</td>
@@ -708,35 +708,35 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Same as within dataset or existing URI<br>(<a href="#relationshipToRelatedSite-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">decimalLatitude</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:decimalLatitude">decimalLatitude</a></td>
 <td style="text-align: left;">The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are north of the Equator, negative values are south of it. Legal values lie between -90 and 0, inclusive for Southern hemisphere.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">-34.036</td>
 </tr>
 <tr>
-<td style="text-align: left;">decimalLongitude</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:decimalLongitude">decimalLongitude</a></td>
 <td style="text-align: left;">The geographic longitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are east of the Greenwich Meridian, negative values are west of it. Legal values lie between 0 and 180, inclusive for the BDR use case.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">146.363</td>
 </tr>
 <tr>
-<td style="text-align: left;">footprintWKT</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:footprintWKT">footprintWKT</a></td>
 <td style="text-align: left;">A Well-Known Text (WKT) representation of the shape (footprint, geometry) that defines the Site. A Site may have both a point-radius representation and a footprint representation, and they may differ from each other.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">WKT</td>
 <td style="text-align: left;">LINESTRING (146.363 -34.036, 146.363 -34.037)</td>
 </tr>
 <tr>
-<td style="text-align: left;">geodeticDatum</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
 <td style="text-align: left;">The geodetic datum, or spatial reference system (SRS) upon which the geographic coordinates given for the Site are based.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">WGS84<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">coordinateUncertaintyInMeters</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:coordinateUncertaintyInMeters">coordinateUncertaintyInMeters</a></td>
 <td style="text-align: left;">The horizontal distance (in metres) from the given decimalLatitude and decimalLongitude describing the smallest circle containing the whole of the Site. Leave the value empty if the uncertainty is unknown, cannot be estimated, or is not applicable (because there are no coordinates). Zero is not a valid value for this term.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">Integer</td>

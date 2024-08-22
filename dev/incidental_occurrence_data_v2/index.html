@@ -652,147 +652,147 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Western Australian Biodiversity Information Office</td>
 </tr>
 <tr>
-<td style="text-align: left;">locality</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:locality">locality</a></td>
 <td style="text-align: left;">The specific description of the place.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Cowaramup Bay Road</td>
 </tr>
 <tr>
-<td style="text-align: left;">decimalLatitude</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:decimalLatitude">decimalLatitude</a></td>
 <td style="text-align: left;">The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic centre of a Location. Positive values are north of the Equator, negative values are south of it. Valid coordinate ranges for the BDR system are within and inclusive of -90 to 0.</td>
 <td style="text-align: center;">Mandatory</td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">-33.80</td>
 </tr>
 <tr>
-<td style="text-align: left;">decimalLongitude</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:decimalLongitude">decimalLongitude</a></td>
 <td style="text-align: left;">The geographic longitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic centre of a Location. Positive values are east of the Greenwich Meridian, negative values are west of it. Valid coordinate ranges for the BDR system are within and inclusive of 0 to 180.</td>
 <td style="text-align: center;">Mandatory</td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">115.21</td>
 </tr>
 <tr>
-<td style="text-align: left;">geodeticDatum</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
 <td style="text-align: left;">The acronym for the ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geographic (non-projected) coordinates given in decimalLatitude and decimalLongitude as based.</td>
 <td style="text-align: center;">Mandatory</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">WGS84<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">coordinateUncertaintyInMeters</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:coordinateUncertaintyInMeters">coordinateUncertaintyInMeters</a></td>
 <td style="text-align: left;">The horizontal distance (in metres) from the given decimalLatitude and decimalLongitude describing the smallest circle containing the whole of the Location. Leave the value empty if the uncertainty is unknown, cannot be estimated, or is not applicable (because there are no coordinates). Zero is not a valid value for this term.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">50.0</td>
 </tr>
 <tr>
-<td style="text-align: left;">dataGeneralizations</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwciri:dataGeneralizations">dataGeneralizations</a></td>
 <td style="text-align: left;">Actions taken to make the shared data less specific or complete than in its original form, due to restrictions around identifying locations of particular species. Suggests that alternative data of higher quality may be available on request.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Coordinates rounded to the nearest 10 km for conservation concern</td>
 </tr>
 <tr>
-<td style="text-align: left;">eventDate</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:eventDate">eventDate</a></td>
 <td style="text-align: left;">The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context</td>
 <td style="text-align: center;">Mandatory</td>
 <td style="text-align: center;">Timestamp</td>
 <td style="text-align: left;">2019-09-23T14:03+08:00</td>
 </tr>
 <tr>
-<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwciri:samplingProtocol">samplingProtocol</a></td>
 <td style="text-align: left;">The sampling protocol is the method used to sample the locality to determine the presence (or absence) of the taxon referred to in this record at the indicated time. This may be a collecting method or a method to observe an organism without collection.<br>Recommended best practice is to describe a species occurrence with no more than one sampling protocol. In the case of a summary, in which a specific protocol can not be attributed to specific species occurrences, the recommended best practice is to repeat the property for each IRI that denotes a different sampling protocol that applies to the occurrence.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">human observation<br>(<a href="#samplingProtocol-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">basisOfRecord</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:basisOfRecord">basisOfRecord</a></td>
 <td style="text-align: left;">The specific nature of the data record.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Human Observation<br>(<a href="#basisOfRecord-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">recordedBy</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwciri:recordedBy">recordedBy</a></td>
 <td style="text-align: left;">A person, group, or organisation responsible for recording the original Occurrence.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Stream Environment and Water Pty Ltd</td>
 </tr>
 <tr>
-<td style="text-align: left;">recordNumber</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/recordNumber">recordNumber</a></td>
 <td style="text-align: left;">An identifier given to the Occurrence at the time it was recorded. Often serves as a link between field notes and an Occurrence record, such as a specimen collector's number.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">PE:12:8832</td>
 </tr>
 <tr>
-<td style="text-align: left;">occurrenceStatus</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:occurrenceStatus">occurrenceStatus</a></td>
 <td style="text-align: left;">A statement about the presence or absence of a Taxon at a Location.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">present<br>(<a href="#occurrenceStatus-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">habitat</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/habitat">habitat</a></td>
 <td style="text-align: left;">A category or description of the habitat in which the event occurred.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam.<br>(<a href="#habitat-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">establishmentMeans</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:establishmentMeans">establishmentMeans</a></td>
 <td style="text-align: left;">Statement about whether an organism or organisms have been introduced to a given place and time through the direct or indirect activity of modern humans.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">native<br>(<a href="#establishmentMeans-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">organismRemarks</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/organismRemarks">organismRemarks</a></td>
 <td style="text-align: left;">Comments or notes about the Organism instance.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Dried out leaf tips.</td>
 </tr>
 <tr>
-<td style="text-align: left;">individualCount</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:individualCount">individualCount</a></td>
 <td style="text-align: left;">The number of individuals present at the time of the Occurrence. 0 = none, no value = the specific number was not recorded.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">Integer</td>
 <td style="text-align: left;">26</td>
 </tr>
 <tr>
-<td style="text-align: left;">organismQuantity</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/list/#dwc_organismQuantity">organismQuantity</a></td>
 <td style="text-align: left;">A number or enumeration value for the quantity of organisms.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">12.5</td>
 </tr>
 <tr>
-<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/list/#dwc_organismQuantityType">organismQuantityType</a></td>
 <td style="text-align: left;">The type of quantification system used for the quantity organisms.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">% biomass</td>
 </tr>
 <tr>
-<td style="text-align: left;">lifeStage</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/lifeStage">lifeStage</a></td>
 <td style="text-align: left;">The age class or life stage of the Organism(s) at the time the Occurrence was recorded.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">adult<br>(<a href="#lifeStage-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">sex</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwciri:sex">sex</a></td>
 <td style="text-align: left;">The sex of the biological individual(s) represented in the Occurrence.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">male<br>(<a href="#sex-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">reproductiveCondition</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:reproductiveCondition">reproductiveCondition</a></td>
 <td style="text-align: left;">The reproductive condition of the biological individual(s) represented in the Occurrence.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
@@ -813,14 +813,14 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">WAM</td>
 </tr>
 <tr>
-<td style="text-align: left;">collectionCode</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:collectionCode">collectionCode</a></td>
 <td style="text-align: left;">The name, acronym, code, or initialism identifying the collection or data set from which the record was derived. It is associated with the catalogNumber.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">ARACH</td>
 </tr>
 <tr>
-<td style="text-align: left;">catalogNumber</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/catalogNumber">catalogNumber</a></td>
 <td style="text-align: left;">An identifier (preferably unique) for the record within the data set or collection.</td>
 <td style="text-align: center;">Conditionally mandatory with catalogNumberSource</td>
 <td style="text-align: center;">String</td>
@@ -834,7 +834,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Western Australian Museum</td>
 </tr>
 <tr>
-<td style="text-align: left;">otherCatalogNumbers</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/otherCatalogNumbers">otherCatalogNumbers</a></td>
 <td style="text-align: left;">A list (concatenated and separated with a space vertical bar space ( | )) of previous or alternate fully qualified catalog numbers or other human-used identifiers for the same Occurrence, whether in the current or any other data set or collection.</td>
 <td style="text-align: center;">Conditionally mandatory with otherCatalogNumbersSource</td>
 <td style="text-align: center;">List</td>
@@ -848,7 +848,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">University of Western Australia</td>
 </tr>
 <tr>
-<td style="text-align: left;">preparations</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/preparations">preparations</a></td>
 <td style="text-align: left;">A list (concatenated and separated with a space vertical bar space ( | )) of preparations and preservation methods for a specimen.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
@@ -862,7 +862,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">2019-09-25T10:02+08:00</td>
 </tr>
 <tr>
-<td style="text-align: left;">associatedSequences</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/associatedSequences">associatedSequences</a></td>
 <td style="text-align: left;">A list (concatenated and separated with a space vertical bar space ( | )) of identifiers (publication, global unique identifier, URI) of genetic sequence information associated with the Occurrence.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">List</td>
@@ -876,21 +876,21 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Sanger dideoxy sequencing</td>
 </tr>
 <tr>
-<td style="text-align: left;">verbatimIdentification</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:verbatimIdentification">verbatimIdentification</a></td>
 <td style="text-align: left;">A string representing the taxonomic identification as it appeared in the original record. This term is meant to allow the capture of an unaltered original identification/determination, including identification qualifiers, hybrid formulas, uncertainties, etc. This term is meant to be used in addition to scientificName (and identificationQualifier etc.), not instead of it.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Caladenia ?excelsa</td>
 </tr>
 <tr>
-<td style="text-align: left;">dateIdentified</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/dateIdentified">dateIdentified</a></td>
 <td style="text-align: left;">The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T11:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) on which the subject was determined as representing the Taxon.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">Timestamp</td>
 <td style="text-align: left;">2019-09-23T14:03+08:00</td>
 </tr>
 <tr>
-<td style="text-align: left;">identifiedBy</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/identifiedBy">identifiedBy</a></td>
 <td style="text-align: left;">Group of names, organisations who assigned the Taxon to the subject. For multiple names, use the pipe separator ( | ).</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
@@ -904,42 +904,42 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Visually identified in the field (sighting)</td>
 </tr>
 <tr>
-<td style="text-align: left;">scientificName</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/scientificName">scientificName</a></td>
 <td style="text-align: left;">The full scientific name, with authorship and date information if known. When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the identificationQualifier column.<br>NOTE: Phrase names such as Rhagodia sp. Hamersley (M.Trudgen 17794) are permitted in the scientificName field where those are in use.</td>
 <td style="text-align: center;">Mandatory</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Caladenia excelsa</td>
 </tr>
 <tr>
-<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:identificationQualifier">identificationQualifier</a></td>
 <td style="text-align: left;">A brief phrase or a standard term ("cf.", "aff.") to express the determiner's doubts about the Identification.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Species incerta<br>(<a href="#identificationQualifier-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">identificationRemarks</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/identificationRemarks">identificationRemarks</a></td>
 <td style="text-align: left;">Comments or notes about the Identification.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">DNA evidence may indicate a new species. Further analysis required.</td>
 </tr>
 <tr>
-<td style="text-align: left;">acceptedNameUsage</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:acceptedNameUsage">acceptedNameUsage</a></td>
 <td style="text-align: left;">Calaendia excelsa Hopper &amp; A.P.Br.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Occiperipatoides gilesii (Spencer, 1909)</td>
 </tr>
 <tr>
-<td style="text-align: left;">kingdom</td>
+<td style="text-align: left;"><a href="https://dwc.tdwg.org/terms/#dwc:kingdom">kingdom</a></td>
 <td style="text-align: left;">The full scientific name of the kingdom in which the taxon is classified.</td>
 <td style="text-align: center;">Mandatory</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Plantae<br>(<a href="#kingdom-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;"><a href="http://rs.tdwg.org/dwc/terms/verbatimTaxonRank">taxonRank</a></td>
 <td style="text-align: left;">The taxonomic rank of the most specific name in the scientificName.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
@@ -2404,7 +2404,7 @@ valid for that conservationJurisdiction.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">V</td>
-<td style="text-align: left;">VULNERABLE, VU</td>
+<td style="text-align: left;">VU, VULNERABLE</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -2629,17 +2629,17 @@ valid for that conservationJurisdiction.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CD</td>
-<td style="text-align: left;">SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA, CONSERVATION DEPENDENT</td>
+<td style="text-align: left;">CONSERVATION DEPENDENT, SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CR</td>
-<td style="text-align: left;">CRITICALLY ENDANGERED SPECIES, CRITICALLY ENDANGERED</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED, CRITICALLY ENDANGERED SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">EN</td>
-<td style="text-align: left;">ENDANGERED SPECIES, ENDANGERED</td>
+<td style="text-align: left;">ENDANGERED, ENDANGERED SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2649,12 +2649,12 @@ valid for that conservationJurisdiction.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">EX</td>
-<td style="text-align: left;">EXTINCT SPECIES, EXTINCT</td>
+<td style="text-align: left;">EXTINCT, EXTINCT SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">MI</td>
-<td style="text-align: left;">MIGRATORY, MIGRATORY SPECIES</td>
+<td style="text-align: left;">MIGRATORY SPECIES, MIGRATORY</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2664,12 +2664,12 @@ valid for that conservationJurisdiction.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P1</td>
-<td style="text-align: left;">PRIORITY 1 POORLY KNOWN SPECIES, PRIORITY 1 POORLY KNOWN</td>
+<td style="text-align: left;">PRIORITY 1 POORLY KNOWN, PRIORITY 1 POORLY KNOWN SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P2</td>
-<td style="text-align: left;">PRIORITY 2 POORLY KNOWN, PRIORITY 2 POORLY KNOWN SPECIES</td>
+<td style="text-align: left;">PRIORITY 2 POORLY KNOWN SPECIES, PRIORITY 2 POORLY KNOWN</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
