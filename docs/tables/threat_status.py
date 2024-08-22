@@ -12,7 +12,7 @@ from docs import tables
 from abis_mapping import utils
 
 # Typing
-from typing import IO
+from typing import IO, Annotated
 
 
 class ThreatStatusRow(pydantic.BaseModel):
@@ -30,7 +30,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
     def __init__(
         self,
         template_id: str,
-        format: [str, *super().supported_formats] = "csv",
+        format: Annotated[str, *super().supported_formats] = "csv",
     ) -> None:
         """Constructor for ThreatStatConsJurTabler.
 
