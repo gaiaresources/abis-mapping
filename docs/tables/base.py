@@ -9,7 +9,7 @@ import io
 from abis_mapping import base
 
 # Typing
-from typing import IO, Final, Any, Mapping, Iterable, Literal
+from typing import IO, Final, Any, Mapping, Iterable, Literal, Annotated
 
 
 class BaseTabler(abc.ABC):
@@ -17,28 +17,31 @@ class BaseTabler(abc.ABC):
 
     Attributes:
         alignment (list[str] | None): Optional alignment of table columns.
+        supported_formats (list[str] | None): Optional list of supported formats
+            a tabler class supports.
     """
     # Class attributes
     alignment: list[str] | None = None
+    supported_formats: list[str] = ["markdown", "csv"]
 
     def __init__(
         self,
         template_id: str,
-        format: str = "csv",
+        format: Annotated[str, *supported_formats] = "csv",
     ) -> None:
         """Constructor for BaseTabler.
 
         Args:
             template_id (str): Template ID.
-            format (str, optional): Format of output table. Defaults to "markdown".
+            format (Annotated[str, *supported_formats], optional): Format of output table should be
+                one defined by cls.supported_formats. Defaults to "csv".
 
         Raises:
             ValueError: If format is not supported.
         """
         # Define and check for supported formats
-        supported_formats: Final[list[str]] = ["markdown", "csv"]
-        if format not in supported_formats:
-            raise ValueError(f"unsupported format '{format}', must be one of {supported_formats}")
+        if format not in self.supported_formats:
+            raise ValueError(f"unsupported format '{format}', must be one of {self.supported_formats}")
 
         # Assign object attributes
         self.format = format
