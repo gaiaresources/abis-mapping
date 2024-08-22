@@ -30,13 +30,14 @@ class ThreatStatusTabler(tables.base.BaseTabler):
     def __init__(
         self,
         template_id: str,
-        format: str = "csv",
+        format: [str, *super().supported_formats] = "csv",
     ) -> None:
         """Constructor for ThreatStatConsJurTabler.
 
         Args:
             template_id (str): ID of mapper template.
-            format (str): Output format of the table, default is "csv".
+            format (Annotated[str, *super().supported_formats]): Output
+                format of the table should be one of supported formats, default is "csv".
 
         Raises:
             ValueError: If the threat status vocabulary isn't used
