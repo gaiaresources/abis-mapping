@@ -4,12 +4,13 @@
 import abc
 import csv
 import io
+import typing
 
 # Local
 from abis_mapping import base
 
 # Typing
-from typing import IO, Final, Any, Mapping, Iterable, Literal, Annotated
+from typing import IO, Final, Any, Mapping, Iterable, Literal
 
 
 class BaseTabler(abc.ABC):
@@ -17,23 +18,26 @@ class BaseTabler(abc.ABC):
 
     Attributes:
         alignment (list[str] | None): Optional alignment of table columns.
-        supported_formats (list[str] | None): Optional list of supported formats
-            a tabler class supports.
+        SupportedFormats (Type[Literal[str]]): Type alias declared using typing.Literal
+            to denote formats supported.
+        supported_formats (list[str]): Computed list of formats supported as defined,
+            via the SupportedFormats alias.
     """
     # Class attributes
     alignment: list[str] | None = None
-    supported_formats: list[str] = ["markdown", "csv"]
+    SupportedFormats = Literal["markdown", "csv"]
+    supported_formats: list[str] = list(typing.get_args(SupportedFormats))
 
     def __init__(
         self,
         template_id: str,
-        format: Annotated[str, *supported_formats] = "csv",
+        format: SupportedFormats = "csv",
     ) -> None:
         """Constructor for BaseTabler.
 
         Args:
             template_id (str): Template ID.
-            format (Annotated[str, *supported_formats], optional): Format of output table should be
+            format (SupportedFormats, optional): Format of output table should be
                 one defined by cls.supported_formats. Defaults to "csv".
 
         Raises:

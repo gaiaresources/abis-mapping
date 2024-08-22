@@ -12,7 +12,7 @@ from docs import tables
 from abis_mapping import utils
 
 # Typing
-from typing import IO, Annotated
+from typing import IO, Literal
 
 
 class ThreatStatusRow(pydantic.BaseModel):
@@ -26,17 +26,18 @@ class ThreatStatusTabler(tables.base.BaseTabler):
     """Tabler implementation for the threat status table."""
     # Class attributes
     alignment = ["c", "l", "l"]
+    SupportedFormats = Literal["csv", "markdown"]
 
     def __init__(
         self,
         template_id: str,
-        format: Annotated[str, *super().supported_formats] = "csv",
+        format: SupportedFormats = "csv",
     ) -> None:
         """Constructor for ThreatStatConsJurTabler.
 
         Args:
             template_id (str): ID of mapper template.
-            format (Annotated[str, *super().supported_formats]): Output
+            format (SupportedFormats, optional): Output
                 format of the table should be one of supported formats, default is "csv".
 
         Raises:

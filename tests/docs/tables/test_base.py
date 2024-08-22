@@ -30,7 +30,15 @@ class TestBaseTabler:
         # Shouldn't raise now using mocked mapper
         tables.fields.FieldTabler("some_id")
         with pytest.raises(ValueError):
-            tables.fields.FieldTabler("some_id", format="notAFormat")
+            tables.fields.FieldTabler("some_id", format="notAFormat")  # type: ignore[arg-type]
+
+    def test_supported_formats(self) -> None:
+        """Tests supported_formats property method."""
+        # Invoke
+        result = tables.base.BaseTabler.supported_formats
+
+        # Should be list of strings
+        assert result == ["markdown", "csv"]
 
 
 class TestMarkdownDictWriter:
