@@ -156,7 +156,8 @@ def test_generate_table(
     mocked_mapper.assert_called()
     assert dest.getvalue() == (
         'Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n'
-        'someName,Some description,Mandatory,String,SOME EXAMPLE\r\n\n'
+        'someName,Some description,Mandatory,String,SOME EXAMPLE\r\n'
+        'anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n\n'
     )
 
 
@@ -171,10 +172,10 @@ def test_generate_table_markdown(
         mocked_vocab (unittest.mock.MagicMock): Mocked vocab fixture.
     """
     # Create a tabler
-    tabler = tables.fields.FieldTabler("some_id")
+    tabler = tables.fields.FieldTabler("some_id", format="markdown")
 
     # Invoke
-    actual = tabler.generate_table(as_markdown=True)
+    actual = tabler.generate_table()
 
     # Assert
     mocked_mapper.assert_called()
@@ -183,6 +184,7 @@ def test_generate_table_markdown(
         '|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n'
         '|:---|:---|:---:|:---:|:---|\n'
         '|someName|Some description|Mandatory|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
+        '|[anotherName](http://example.com/)|Another description|Mandatory|String|ANOTHER EXAMPLE|\n'
     )
 
 

@@ -112,10 +112,10 @@ class TestThreatStatusTabler:
             mocked_vocab (unittest.mock.MagicMock): The mocked vocab object.
         """
         # Create tabler
-        tabler = tables.threat_status.ThreatStatusTabler("some id")
+        tabler = tables.threat_status.ThreatStatusTabler("some id", format="markdown")
 
         # Generate table
-        actual = tabler.generate_table(as_markdown=True)
+        actual = tabler.generate_table()
 
         # Assert
         assert actual == (

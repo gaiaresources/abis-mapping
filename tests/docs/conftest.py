@@ -43,6 +43,23 @@ def mocked_mapper(mocker: pytest_mock.MockerFixture) -> unittest.mock.MagicMock:
                 "vocabularies": [
                     "SOME_VOCAB",
                 ],
+            },
+            {
+                "name": "anotherName",
+                "title": "Another Title",
+                "description": "Another description",
+                "example": "ANOTHER EXAMPLE",
+                "type": "string",
+                "format": "default",
+                "url": "http://example.com",
+                "constraints": {
+                    "required": True,
+                    "enum": [
+                        "ANOTHER EXAMPLE",
+                        "Option 22",
+                        "plan CC",
+                    ]
+                },
             }
         ]
     }

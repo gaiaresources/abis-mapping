@@ -2,8 +2,6 @@
 
 # Standard
 import argparse
-import csv
-import io
 import sys
 
 # Third-party
@@ -14,7 +12,7 @@ from docs import tables
 from abis_mapping import utils
 
 # Typing
-from typing import IO
+from typing import IO, Literal
 
 
 class ThreatStatusRow(pydantic.BaseModel):
@@ -25,72 +23,67 @@ class ThreatStatusRow(pydantic.BaseModel):
 
 
 class ThreatStatusTabler(tables.base.BaseTabler):
+    """Tabler implementation for the threat status table."""
+    # Class attributes
+    alignment = ["c", "l", "l"]
+    SupportedFormats = Literal["csv", "markdown"]
 
     def __init__(
         self,
         template_id: str,
+        format: SupportedFormats = "csv",
     ) -> None:
         """Constructor for ThreatStatConsJurTabler.
 
         Args:
             template_id (str): ID of mapper template.
+            format (SupportedFormats, optional): Output
+                format of the table should be one of supported formats, default is "csv".
 
         Raises:
             ValueError: If the threat status vocabulary isn't used
                 by the mapper template.
         """
-        super().__init__(template_id)
+        super().__init__(template_id=template_id, format=format)
         fields = self.mapper.schema()['fields']
         if not [fld for fld in fields if fld.get("vocabularies") and "THREAT_STATUS" in fld.get("vocabularies")]:
             raise ValueError(f"No THREAT_STATUS vocabularies found for template {template_id}")
 
+    @property
+    def header(self) -> list[str]:
+        """Getter for the header row."""
+        # Get header list
+        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in ThreatStatusRow.model_fields.values())
+        return [hdr for hdr in raw_hdr if hdr is not None]
+
     def generate_table(
         self,
         dest: IO | None = None,
-        as_markdown: bool = False,
     ) -> str:
         """Generates threat status conservation jurisdiction table.
 
         Args:
             dest (IO, optional): Destination file. Defaults to None.
-            as_markdown (bool, optional): True to generate a markdown table. Defaults to False, as csv.
 
         Returns:
             str: Table either in markdown or csv.
         """
-        # Create in-memory io
-        output = io.StringIO()
-
-        # Get header list
-        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in ThreatStatusRow.model_fields.values())
-        header = [hdr for hdr in raw_hdr if hdr is not None]
-
-        # Create writer
-        if as_markdown:
-            # MarkdownDictWriter is a subclass of DictWriter hence the type hint
-            writer: csv.DictWriter = tables.base.MarkdownDictWriter(
-                f=output,
-                fieldnames=header,
-                alignment=["c", "l", "l"],
-            )
-        else:
-            writer = csv.DictWriter(output, fieldnames=header)
-
-        writer.writeheader()
+        # Write header
+        self.writer.writeheader()
 
         # Iterate through vocab's terms
         for term in sorted(utils.vocabs.get_vocab("THREAT_STATUS").terms, key=lambda x: x.preferred_label):  # type: ignore[arg-type, return-value] # noqa: E501
             # Generate row
             row = self.generate_row(term)
             # Write to output
-            writer.writerow(row.model_dump(by_alias=True))
+            self.writer.writerow(row.model_dump(by_alias=True))
 
         # Write to destination
         if dest is not None:
-            print(output.getvalue(), file=dest)
+            print(self.output.getvalue(), file=dest)
 
         # Return
-        return output.getvalue()
+        return self.output.getvalue()
 
     def generate_row(
         self,
