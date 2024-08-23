@@ -1,0 +1,18 @@
+# Re-usable action to set up a python environment and install the abis-mapping project dependencies.
+runs:
+  using: composite
+  steps:
+    - name: Install Poetry
+      shell: bash
+      run: pipx install poetry==1.8.3
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+        cache: poetry
+
+    - name: Install project and dependencies
+      shell: bash
+      run: |
+        poetry install --sync
+        poetry env info

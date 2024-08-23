@@ -1,0 +1,26 @@
+name: Testing
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  flake8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-python-and-dependencies
+      - run: poetry run flake8 abis_mapping docs tests
+
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-python-and-dependencies
+      - run: poetry run mypy abis_mapping docs tests
+
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-python-and-dependencies
+      - run: poetry run pytest tests
