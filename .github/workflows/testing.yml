@@ -9,6 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-python-and-dependencies
+        with:
+          python-version: "3.11"
       - run: poetry run flake8 abis_mapping docs tests
 
   mypy:
@@ -16,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-python-and-dependencies
+        with:
+          python-version: "3.11"
       - run: poetry run mypy abis_mapping docs tests
 
   pytest:
@@ -23,4 +27,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-python-and-dependencies
+        with:
+          python-version: "3.11"
       - run: poetry run pytest tests

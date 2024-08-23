@@ -1,4 +1,7 @@
 # Re-usable action to set up a python environment and install the abis-mapping project dependencies.
+inputs:
+  python-version:
+    required: true
 runs:
   using: composite
   steps:
@@ -8,7 +11,7 @@ runs:
 
     - uses: actions/setup-python@v5
       with:
-        python-version: "3.11"
+        python-version: ${{ inputs.python-version }}
         cache: poetry
 
     - name: Install project and dependencies
