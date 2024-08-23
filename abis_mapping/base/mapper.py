@@ -279,10 +279,12 @@ class ABISMapper(abc.ABC):
         directory = pathlib.Path(inspect.getfile(cls)).parent
         metadata_file = directory / "metadata.json"
 
-        # Read Metadata and Return
-        md: dict[str, str] = json.loads(metadata_file.read_text())
-        md["id"] = f"{md['name']}-v{md['version']}.{md['file_type'].lower()}"
-        return md
+        # Read Metadata and validate
+        md_dict = json.loads(metadata_file.read_text())
+        md_class = types.metadata.TemplateMetadata.model_validate(md_dict, strict=True)
+
+        # Return
+        return md_class.model_dump()
 
     @final
     @classmethod
