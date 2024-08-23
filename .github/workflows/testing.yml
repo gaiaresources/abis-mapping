@@ -24,9 +24,12 @@ jobs:
 
   pytest:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-python-and-dependencies
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
       - run: poetry run pytest tests
