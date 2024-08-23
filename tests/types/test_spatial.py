@@ -135,7 +135,7 @@ def test_geometry_transformer_datum_uri() -> None:
 
     # Assert default datum
     assert vocab is not None
-    assert geometry.transformer_datum_uri == vocab(graph=rdflib.Graph()).get(settings.DEFAULT_TARGET_CRS)
+    assert geometry.transformer_datum_uri == vocab(graph=rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)
 
 
 @pytest.mark.parametrize(
@@ -204,8 +204,7 @@ def test_geometry_to_rdf_literal() -> None:
         (
             "POINT (571666.4475041276 5539109.815175673)",
             "EPSG:26917",
-            f"<{vocabs.geodetic_datum.GeodeticDatum(rdflib.Graph()).get(settings.DEFAULT_TARGET_CRS)}> POINT (-80 50)",
-
+            f"<{vocabs.geodetic_datum.GeodeticDatum(rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> POINT (-80 50)",  # noqa: E501
         ),
     ]
 )

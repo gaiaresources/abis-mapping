@@ -1,7 +1,22 @@
 """All non-sensitive project-wide configuration parameters"""
 
-# Default precision for rounding WKT coordinates when serializing.
-DEFAULT_WKT_ROUNDING_PRECISION = 8
+# Third-party
+import pydantic_settings
 
-# Default CRS to transform all input geometry to.
-DEFAULT_TARGET_CRS = 'GDA2020'
+
+class Settings(pydantic_settings.BaseSettings):
+    """Class for defining default project-wide settings."""
+    # Default precision for rounding WKT coordinates when serializing.
+    DEFAULT_WKT_ROUNDING_PRECISION: int = 8
+
+    # Default CRS to transform all input geometry to.
+    DEFAULT_TARGET_CRS: str = 'GDA2020'
+
+    # Base url for the instructions site
+    INSTRUCTIONS_BASE_URL: str = 'https://gaiaresources.github.io/abis-mapping/'
+
+    # The version of the documents to be selected
+    INSTRUCTIONS_VERSION: str = 'dev'
+
+    # If changing via environment variable prefix name with 'ABIS_MAPPING_'
+    model_config = pydantic_settings.SettingsConfigDict(env_prefix="ABIS_MAPPING_")

@@ -69,7 +69,7 @@ class Geometry:
             # Create a default CRS transformer
             self._transformer = pyproj.Transformer.from_crs(
                 crs_from=datum,
-                crs_to=settings.DEFAULT_TARGET_CRS,
+                crs_to=settings.Settings().DEFAULT_TARGET_CRS,
                 always_xy=True,
             )
         except pyproj.ProjError as exc:
@@ -117,7 +117,7 @@ class Geometry:
         # Retrieve vocab class
         if (vocab := utils.vocabs.get_vocab("GEODETIC_DATUM")) is not None:
             # Init with dummy graph and return corresponding uri
-            return vocab(graph=rdflib.Graph()).get(settings.DEFAULT_TARGET_CRS)
+            return vocab(graph=rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)
 
         # If vocab doesn't exist
         return None
@@ -160,7 +160,10 @@ class Geometry:
         datum_string = f"<{self.original_datum_uri}> " if self.original_datum_uri is not None else ""
 
         # Construct  and return rdf literal
-        wkt_string = shapely.to_wkt(self._geometry, rounding_precision=settings.DEFAULT_WKT_ROUNDING_PRECISION)
+        wkt_string = shapely.to_wkt(
+            geometry=self._geometry,
+            rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION
+        )
         return rdflib.Literal(
             lexical_or_value=datum_string + wkt_string,
             datatype=namespaces.GEO.wktLiteral,
@@ -178,7 +181,7 @@ class Geometry:
         # Construct and return rdf literal
         wkt_string = shapely.to_wkt(
             geometry=self._transformed_geometry,
-            rounding_precision=settings.DEFAULT_WKT_ROUNDING_PRECISION
+            rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION
         )
         return rdflib.Literal(
             lexical_or_value=datum_string + wkt_string,
