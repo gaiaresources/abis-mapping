@@ -2,6 +2,7 @@
 
 # Standard
 import decimal
+import os
 import urllib.parse
 import dataclasses
 
@@ -969,4 +970,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(SurveySiteMapper)
+if os.getenv("PYTEST_VERSION"):
+    # survey v3 is still in development, only register for unit tests.
+    base.mapper.ABISMapper.register_mapper(SurveySiteMapper)

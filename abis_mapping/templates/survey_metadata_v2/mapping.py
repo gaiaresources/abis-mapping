@@ -2,6 +2,7 @@
 
 # Standard
 import dataclasses
+import os
 
 # Third-party
 import frictionless
@@ -1009,4 +1010,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDF.value, term))
 
 
-base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)
+# Register Mapper
+if os.getenv("PYTEST_VERSION"):
+    # survey v2 is still in development, only register for unit tests.
+    base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)

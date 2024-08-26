@@ -1,6 +1,7 @@
 """Provides ABIS Mapper for `survey_occurrence_data.csv` Template v2"""
 
 # Standard
+import os
 import urllib.parse
 
 # Third-Party
@@ -3477,4 +3478,6 @@ def has_specimen(row: frictionless.Row) -> bool:
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(SurveyOccurrenceMapper)
+if os.getenv("PYTEST_VERSION"):
+    # survey v3 is still in development, only register for unit tests.
+    base.mapper.ABISMapper.register_mapper(SurveyOccurrenceMapper)
