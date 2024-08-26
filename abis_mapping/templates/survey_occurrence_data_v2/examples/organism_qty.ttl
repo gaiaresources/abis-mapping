@@ -1,0 +1,112 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix tern: <https://w3id.org/tern/ontologies/tern/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://createme.org/datatype/providerRecordID/Gaia-Resources> a rdfs:Datatype ;
+    skos:prefLabel "providerRecordID source" ;
+    prov:wasAttributedTo <http://createme.org/agent/Gaia-Resources> .
+
+<http://createme.org/observation/organismQuantity/1> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "organismQuantity-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
+    sosa:hasResult <http://createme.org/value/organismQuantity/1> ;
+    sosa:hasSimpleResult "0.05 percentageCoverage" ;
+    sosa:observedProperty dwc:organismQuantity ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
+
+<http://createme.org/observation/scientificName/1> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDate used as proxy" ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
+    sosa:hasResult <http://createme.org/scientificName/1> ;
+    sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
+
+<http://createme.org/provider/Gaia-Resources> a prov:Agent ;
+    schema:name "Gaia Resources" .
+
+<http://createme.org/agent/Gaia-Resources> a prov:Agent ;
+    schema:name "Gaia Resources" .
+
+<http://createme.org/location/Australia> a tern:FeatureOfInterest ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:sfWithin <https://sws.geonames.org/2077456/> ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
+
+<http://createme.org/scientificName/1> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    rdf:value "Calothamnus lateralis var. crassus" ;
+    tern:featureType <http://example.com/concept/scientificName> .
+
+<http://createme.org/value/organismQuantity/1> a tern:Float,
+        tern:Value ;
+    rdfs:label "organism-count" ;
+    rdf:value "0.05"^^xsd:float ;
+    tern:unit <http://rs.gbif.org/vocabulary/gbif/quantityType/percentageCoverage> .
+
+<http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset/site/P1> a tern:FeatureOfInterest,
+        tern:Site ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    sosa:isSampleOf <http://createme.org/location/Australia> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
+
+<http://createme.org/sampling/field/1> a tern:Sampling ;
+    dcterms:identifier "A0010"^^<http://createme.org/datatype/providerRecordID/Gaia-Resources> ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    geo:hasGeometry _:Nfa86b636522f47d397725a915c00c366 ;
+    rdfs:comment "field-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset/site/P1> ;
+    sosa:hasResult <http://createme.org/sample/field/1> ;
+    sosa:usedProcedure <http://example.com/sampling-protocol/default> ;
+    schema:isPartOf <http://createme.org/survey/SSD-Survey/1> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sample/field/1> a tern:FeatureOfInterest,
+        tern:Sample ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    rdfs:comment "field-sample" ;
+    sosa:isResultOf <http://createme.org/sampling/field/1> ;
+    sosa:isSampleOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset/site/P1> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
+
+<http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> a tern:RDFDataset ;
+    dcterms:description "Example Systematic Survey Occurrence Dataset by Gaia Resources" ;
+    dcterms:issued "2024-07-04"^^xsd:date ;
+    dcterms:title "Example Systematic Survey Occurrence Dataset" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (115.21 -33.8)"^^geo:wktLiteral ] ;
+    rdf:object _:Nfa86b636522f47d397725a915c00c366 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/sampling/field/1> ;
+    rdfs:comment "supplied as" .
+
+_:Nfa86b636522f47d397725a915c00c366 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (115.21 -33.8)"^^geo:wktLiteral .
+

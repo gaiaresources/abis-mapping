@@ -1,0 +1,13 @@
+{
+    "name": "survey_occurrence_data",
+    "label": "Systematic Survey Occurrence Data Template",
+    "version": "2.0.0",
+    "description": "A template to translate some Darwin Core fields",
+    "biodiversity_type": "Species Occurrences",
+    "spatial_type": "Point",
+    "file_type": "CSV",
+    "sampling_type": "systematic survey",
+    "template_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/survey_occurrence_data_v2/survey_occurrence_data.csv",
+    "schema_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/survey_occurrence_data_v2/schema.json",
+    "instructions_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/survey_occurrence_data_v2/instructions.pdf"
+}
