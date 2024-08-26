@@ -1,0 +1,13 @@
+{
+  "name": "survey_metadata",
+  "label": "Systematic Survey Metadata Template",
+  "version": "2.0.0",
+  "description": "A template for systematic survey metadata",
+  "biodiversity_type": "Systematic Survey Metadata",
+  "spatial_type": "Point, line, polygon",
+  "file_type": "CSV",
+  "sampling_type": "systematic survey",
+  "template_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/survey_metadata_v2/survey_metadata.csv",
+  "schema_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/survey_metadata_v2/schema.json",
+  "instructions_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/survey_metadata_v2/instructions.pdf"
+}

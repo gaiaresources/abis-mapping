@@ -1,0 +1,169 @@
+@prefix bdr: <http://example.com/bdr-schema/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix tern: <https://w3id.org/tern/ontologies/tern/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://createme.org/attribute/samplingEffort/1> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    tern:attribute <http://example.com/concept/samplingEffort> ;
+    tern:hasSimpleValue "20 x 12 trapDays" ;
+    tern:hasValue <http://createme.org/value/samplingEffort/1> .
+
+<http://createme.org/attribute/surveyType/1> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    tern:attribute <http://example.com/concept/surveyType> ;
+    tern:hasSimpleValue "Wet pitfall trapping" ;
+    tern:hasValue <http://createme.org/value/surveyType/1> .
+
+<http://createme.org/attribute/targetHabitatScope/1/1> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    tern:attribute <https://linked.data.gov.au/def/nrm/ae2c88be-63d5-44d3-95ac-54b14c4a4b28> ;
+    tern:hasSimpleValue "Woodland" ;
+    tern:hasValue <http://createme.org/value/targetHabitatScope/1/1> .
+
+<http://createme.org/attribute/targetTaxonomicScope/1/1> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    tern:hasSimpleValue "Coleoptera" ;
+    tern:hasValue <http://createme.org/value/targetTaxonomicScope/1/1> .
+
+<http://createme.org/attribute/targetTaxonomicScope/1/2> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    tern:hasSimpleValue "Insecta" ;
+    tern:hasValue <http://createme.org/value/targetTaxonomicScope/1/2> .
+
+<http://createme.org/datatype/surveyID/CSIRO> skos:prefLabel "surveyID source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/agent/CSIRO> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/principalInvestigator> ] .
+
+<http://createme.org/datatype/surveyID/NSW-Department-of-Planning-Industry-and-Environment> skos:prefLabel "surveyID source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <http://createme.org/agent/NSW-Department-of-Planning-Industry-and-Environment> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/principalInvestigator> ] .
+
+<http://createme.org/project/SSD-Survey-Project/1> a bdr:Project ;
+    dcterms:identifier "COL1" ;
+    dcterms:title "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    schema:hasPart <http://createme.org/survey/SSD-Survey/1> .
+
+<http://createme.org/agent/CSIRO> a prov:Agent ;
+    schema:name "CSIRO" .
+
+<http://createme.org/agent/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
+    schema:name "NSW Department of Planning, Industry and Environment" .
+
+<http://createme.org/bdr-cv/attribute/samplingEffortUnit/trapDays> a skos:Concept ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
+    skos:broader <http://example.com/bdr-cv/concept/samplingEffortUnit> ;
+    skos:definition "A type of samplingEffortUnit" ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "trapDays" .
+
+<http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
+    skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    skos:definition "A type of targetTaxonomicScope" ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "Coleoptera" .
+
+<http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Insecta> a skos:Concept ;
+    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
+    skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    skos:definition "A type of targetTaxonomicScope" ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "Insecta" .
+
+<http://createme.org/survey/SSD-survey/1/plan> a prov:Plan ;
+    prov:wasAssociatedWith "https://orcid.org/0000-0003-1092-9705"^^xsd:anyURI,
+        "https://orcid.org/0009-0004-5278-4238"^^xsd:anyURI ;
+    schema:citation "Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9\"" ;
+    schema:description "Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location." ;
+    schema:url "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf"^^xsd:anyURI,
+        "https://doi.org/10.1002/9781118945568.ch11"^^xsd:anyURI ;
+    tern:hasAttribute <http://createme.org/attribute/samplingEffort>,
+        <http://createme.org/attribute/surveyType>,
+        <http://createme.org/attribute/targetHabitatScope>,
+        <http://createme.org/attribute/targetTaxa> .
+
+<http://createme.org/survey/procedure/surveyMethod/1> a prov:Plan ;
+    schema:citation "Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9\"" ;
+    schema:description "Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location." ;
+    schema:url "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf"^^xsd:anyURI,
+        "https://doi.org/10.1002/9781118945568.ch11"^^xsd:anyURI .
+
+<http://createme.org/value/samplingEffort/1> a tern:Text,
+        tern:Value ;
+    rdfs:label "samplingEffort" ;
+    rdf:value "20 x 12" ;
+    tern:unit <http://createme.org/bdr-cv/attribute/samplingEffortUnit/trapDays> .
+
+<http://createme.org/value/surveyType/1> a tern:IRI,
+        tern:Value ;
+    rdfs:label "surveyType" ;
+    rdf:value <https://linked.data.gov.au/def/nrm/054145e7-137d-50c5-a750-d85a47e81fad> .
+
+<http://createme.org/value/targetHabitatScope/1/1> a tern:IRI,
+        tern:Value ;
+    rdfs:label "targetHabitatScope" ;
+    rdf:value <https://linked.data.gov.au/def/nrm/e2193542-9203-532b-99d3-853a4640114d> .
+
+<http://createme.org/value/targetTaxonomicScope/1/1> a tern:IRI,
+        tern:Value ;
+    rdfs:label "targetTaxonomicScope" ;
+    rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> .
+
+<http://createme.org/value/targetTaxonomicScope/1/2> a tern:IRI,
+        tern:Value ;
+    rdfs:label "targetTaxonomicScope" ;
+    rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
+
+<http://createme.org/survey/SSD-Survey/1> a bdr:Survey ;
+    bdr:purpose "Summer sampling for peak insect diversity." ;
+    bdr:target "Coleoptera",
+        "Insecta" ;
+    dcterms:identifier "COL1"^^<http://createme.org/datatype/surveyID/CSIRO>,
+        "COL1"^^<http://createme.org/datatype/surveyID/NSW-Department-of-Planning-Industry-and-Environment> ;
+    dcterms:title "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" ;
+    geo:hasGeometry _:N78044c6ac26849cd9b7f14d8331bb8aa ;
+    time:hasTime [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2015-01-21"^^xsd:date ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDDate "2015-02-03"^^xsd:date ] ] ;
+    prov:hadPlan <http://createme.org/survey/SSD-survey/1/plan>,
+        <http://createme.org/survey/procedure/surveyMethod/1> ;
+    schema:keywords "farmland",
+        "ground beetle",
+        "habitat",
+        "morphology",
+        "remnant vegetation",
+        "split-plot study",
+        "traits",
+        "woodland" .
+
+<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> a tern:RDFDataset ;
+    dcterms:description "Example Systematic Survey Metadata Dataset by Gaia Resources" ;
+    dcterms:issued "2024-04-09"^^xsd:date ;
+    dcterms:title "Example Systematic Survey Metadata Dataset" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))"^^geo:wktLiteral ] ;
+    rdf:object _:N78044c6ac26849cd9b7f14d8331bb8aa ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/survey/SSD-Survey/1> ;
+    rdfs:comment "supplied as" .
+
+_:N78044c6ac26849cd9b7f14d8331bb8aa a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))"^^geo:wktLiteral .
