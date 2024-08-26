@@ -9,7 +9,34 @@ import pytest
 import pytest_mock
 
 # Local
+from docs import contexts
 from docs import instructions
+
+
+def test_build_instructions(
+        mocker: pytest_mock.MockFixture,
+        mocked_mapper: unittest.mock.MagicMock
+) -> None:
+    """Tests the build_instructions function.
+
+    Args:
+        mocker (pytest_mock.MockFixture): Pytest mocker fixture.
+        mocked_mapper (unittest.mock.MagicMock): Mocked mapper.
+    """
+    # Patch get_context
+    ctx_mock = mocker.patch.object(contexts.base, "get_context", return_value={"some": "value"})
+
+    # Patch get_template
+    template_mock = mocker.MagicMock()
+    mocker.patch.object(jinja2.Environment, "get_template", return_value=template_mock)
+    template_mock.render = mocker.MagicMock()
+
+    # Invoke
+    instructions.build_instructions("some id")
+
+    # Assert project version set and template render called
+    template_mock.render.assert_called()
+    assert ctx_mock.return_value.get("project_version") is not None
 
 
 class TestMapperLoader:
