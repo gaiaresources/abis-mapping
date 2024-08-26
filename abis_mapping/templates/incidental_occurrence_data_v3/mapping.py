@@ -1,3 +1,4 @@
+import os
 
 # Third-Party
 import frictionless
@@ -3142,4 +3143,6 @@ def has_specimen(row: frictionless.Row) -> bool:
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(IncidentalOccurrenceMapper)
+if os.getenv("PYTEST_VERSION"):
+    # incidental v3 is still in development, only register for unit tests.
+    base.mapper.ABISMapper.register_mapper(IncidentalOccurrenceMapper)
