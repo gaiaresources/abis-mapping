@@ -120,15 +120,9 @@ def render_index(filepath: pathlib.Path) -> str:
 
     Returns:
         str: Rendered index.html
-
-    Raises:
-        ValueError: If the supplied filename contains no parent directory.
     """
-    # Parent directory name will be relative url path for redirect
-    try:
-        page_name = filepath.parent.parts[-1]
-    except IndexError:
-        raise ValueError(f"Path {filepath} contains no parent directory.")
+    # Directory name made from template markdown name which will be relative url path for redirect
+    page_name = filepath.parts[-1].rsplit('.', 1)[0] 
 
     # Create loader
     loader = jinja2.FileSystemLoader("docs/templates")
@@ -179,7 +173,7 @@ if __name__ == "__main__":
     args.output_dest.close()
 
     # Check index flag and output is a file
-    if args.index and isinstance(args.output_dest, io.FileIO):
+    if args.index and args.output_dest.name != "<stdout>":
         # Redeclaring here to help IDE
         od: io.FileIO = args.output_dest
         # Create Path object from output destination

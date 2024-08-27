@@ -25,7 +25,10 @@ def test_render_index() -> None:
 
     # Assert page_name replaced
     assert "page_name" not in actual
-    assert actual.count("some_page") > 0
+    with open("docs/templates/index.html", "r") as f:
+        template_contents = f.read()
+    pn_count = template_contents.count("page_name")
+    assert actual.count("some_markdown") == pn_count
 
 
 def test_build_instructions(
