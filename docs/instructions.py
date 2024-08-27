@@ -1,8 +1,11 @@
 """Provides instruction rendering for templates."""
 
+
 # Standard
 import argparse
 import importlib.metadata
+import io
+import pathlib
 import sys
 
 # Third-partv
@@ -58,7 +61,8 @@ class MapperLoader(jinja2.BaseLoader):
 
         # Check mapper returned
         if mapper is None:
-            raise ValueError(f"Template '{self.mapper_id}' not defined; got NoneType")
+            raise ValueError(
+                f"Template '{self.mapper_id}' not defined; got NoneType")
 
         # Create path
         path = mapper().root_dir() / "templates" / template
@@ -107,9 +111,44 @@ def build_instructions(mapper_id: str) -> str:
     return template.render(ctx)
 
 
+def render_index(filepath: pathlib.Path) -> str:
+    """Renders the index.html for the build.
+
+    Args:
+        filepath (pathlib.Path): Path to output file containing markdown to be set
+            as the homepage for redirection.
+
+    Returns:
+        str: Rendered index.html
+
+    Raises:
+        ValueError: If the supplied filename contains no parent directory.
+    """
+    # Parent directory name will be relative url path for redirect
+    try:
+        page_name = filepath.parent.parts[-1]
+    except IndexError:
+        raise ValueError(f"Path {filepath} contains no parent directory.")
+
+    # Create loader
+    loader = jinja2.FileSystemLoader("docs/templates")
+
+    # Create env
+    env = jinja2.Environment(
+        loader=loader,
+    )
+
+    # Get template
+    template = env.get_template("index.html")
+
+    # Render and return
+    return template.render(page_name=page_name)
+
+
 if __name__ == "__main__":
     """Main entry point."""
-    parser = argparse.ArgumentParser(description="Generates instruction documents.")
+    parser = argparse.ArgumentParser(
+        description="Generates instruction documents.")
     parser.add_argument("mapper_id", type=str, help="Mapper template ID.")
 
     parser.add_argument(
@@ -118,6 +157,13 @@ if __name__ == "__main__":
         type=argparse.FileType("w"),
         default=sys.stdout,
         help="Output destination. Default is stdout."
+    )
+
+    parser.add_argument(
+        "-i", "--index",
+        dest="index",
+        action="store_true",
+        help="Set current template as homepage. This will generate an additional `index.md` document."
     )
 
     # Parse command line arguments
@@ -131,3 +177,14 @@ if __name__ == "__main__":
 
     # Close file
     args.output_dest.close()
+
+    # Check index flag and output is a file
+    if args.index and isinstance(args.output_dest, io.FileIO):
+        # Redeclaring here to help IDE
+        od: io.FileIO = args.output_dest
+        # Create Path object from output destination
+        pth = pathlib.Path(od.name)
+        rendered_index = render_index(pth)
+        # Open destination index.html and write
+        with open(f"{pth.parent}/index.html", "w") as f:
+            f.write(rendered_index)
