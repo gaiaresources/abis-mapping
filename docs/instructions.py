@@ -122,7 +122,7 @@ def render_index(filepath: pathlib.Path) -> str:
         str: Rendered index.html
     """
     # Directory name made from template markdown name which will be relative url path for redirect
-    page_name = filepath.parts[-1].rsplit('.', 1)[0] 
+    page_name = filepath.parts[-1].rsplit('.', 1)[0]
 
     # Create loader
     loader = jinja2.FileSystemLoader("docs/templates")
