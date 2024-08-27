@@ -1,10 +1,10 @@
 """Provides ABIS Mapper for `survey_site_data.csv` Template v2"""
 
 # Standard
-import decimal
-import os
-import urllib.parse
 import dataclasses
+import decimal
+import importlib.metadata
+import urllib.parse
 
 # Third-party
 import rdflib
@@ -970,6 +970,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-if os.getenv("PYTEST_VERSION"):
-    # survey v3 is still in development, only register for unit tests.
+if int(importlib.metadata.version("abis-mapping").split(".", 1)[0]) >= 5:
+    # SSD v2 is still in development, keep hidden until v5 release candidates are created
     base.mapper.ABISMapper.register_mapper(SurveySiteMapper)

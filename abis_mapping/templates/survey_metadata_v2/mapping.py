@@ -2,7 +2,7 @@
 
 # Standard
 import dataclasses
-import os
+import importlib.metadata
 
 # Third-party
 import frictionless
@@ -1011,6 +1011,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-if os.getenv("PYTEST_VERSION"):
-    # survey v2 is still in development, only register for unit tests.
+if int(importlib.metadata.version("abis-mapping").split(".", 1)[0]) >= 5:
+    # SSD v2 is still in development, keep hidden until v5 release candidates are created
     base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)
