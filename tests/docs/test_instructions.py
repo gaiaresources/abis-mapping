@@ -1,6 +1,7 @@
 """Provides unit tests for the instructions module."""
 
 # Standard
+import pathlib
 import unittest.mock
 
 # Third-party
@@ -11,6 +12,23 @@ import pytest_mock
 # Local
 from docs import contexts
 from docs import instructions
+
+
+def test_render_index() -> None:
+    """Tests the render_index function."""
+    # Invoke
+    actual = instructions.render_index(pathlib.Path("some_page/some_markdown.md"))
+
+    # Assert no double braces remaining in html
+    assert "{{" not in actual
+    assert "}}" not in actual
+
+    # Assert page_name replaced
+    assert "page_name" not in actual
+    with open("docs/templates/index.html", "r") as f:
+        template_contents = f.read()
+    pn_count = template_contents.count("page_name")
+    assert actual.count("some_markdown") == pn_count
 
 
 def test_build_instructions(

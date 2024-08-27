@@ -1,7 +1,11 @@
 site_name: BDR ABIS Mapping
 site_url: https://gaiaresources.github.io/abis-mappping/
+repo_url: https://github.com/gaiaresources/abis-mapping/
+repo_name: gaiaresources/abis-mapping
 theme:
   name: material
+  icon:
+    repo: fontawesome/brands/github
 docs_dir: docs/pages
 extra:
   version:

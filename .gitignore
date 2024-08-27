@@ -83,4 +83,5 @@ Dockerfile
 /result.md
 /docs/pages/**/*.md
 !/docs/pages/index.md
+/docs/pages/index.html
 site/
