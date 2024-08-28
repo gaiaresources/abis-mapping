@@ -2,7 +2,6 @@
 
 # Standard
 import dataclasses
-import os
 
 # Third-party
 import frictionless
@@ -12,6 +11,7 @@ import rdflib
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
+from abis_mapping import settings
 from abis_mapping import types
 from abis_mapping import utils
 
@@ -1011,6 +1011,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-if os.getenv("PYTEST_VERSION"):
-    # survey v2 is still in development, only register for unit tests.
+if settings.SETTINGS.MAJOR_VERSION >= 5:
+    # SSD v2 is still in development, keep hidden until v5 release candidates are created
     base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)

@@ -85,3 +85,6 @@ Dockerfile
 !/docs/pages/index.md
 /docs/pages/index.html
 site/
+
+# YAPF
+.style.yapf

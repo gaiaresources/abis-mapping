@@ -1,4 +1,5 @@
-import os
+"""Mapper implementation for the incidental occurrence data v3 template."""
+
 
 # Third-Party
 import frictionless
@@ -8,6 +9,7 @@ import rdflib
 from abis_mapping import base
 from abis_mapping import utils
 from abis_mapping import plugins
+from abis_mapping import settings
 from abis_mapping import types
 from abis_mapping import vocabs
 
@@ -3143,6 +3145,6 @@ def has_specimen(row: frictionless.Row) -> bool:
 
 
 # Register Mapper
-if os.getenv("PYTEST_VERSION"):
-    # incidental v3 is still in development, only register for unit tests.
+if settings.SETTINGS.MAJOR_VERSION >= 5:
+    # incidental v3 is still in development, keep hidden until v5 release candidates are created
     base.mapper.ABISMapper.register_mapper(IncidentalOccurrenceMapper)
