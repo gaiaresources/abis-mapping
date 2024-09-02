@@ -7,7 +7,6 @@ import unittest.mock
 # Third-Party
 import pytest
 import pytest_mock
-import _pytest.skipping
 import rdflib
 import rdflib.compare
 
@@ -15,45 +14,7 @@ import rdflib.compare
 from abis_mapping import utils
 
 # Typing
-from typing import Union, Any, Callable
-
-
-# def pytest_addoption(parser: pytest.Parser) -> None:
-#     """Adds parser option to pytest cmd line.
-# 
-#     Adapted from https://stackoverflow.com/a/61503247
-# 
-#     Args:
-#         parser (pytest.Parser): The pytest argparser.
-#     """
-#     # Add option to parser
-#     parser.addoption(
-#         "--no-skip",
-#         action="store_true",
-#         default=False,
-#         help="disable skip marks",
-#     )
-# 
-# 
-# @pytest.hookimpl(tryfirst=True)
-# def pytest_cmdline_preparse(config: pytest.Config, args: list[Any]) -> None:
-#     """Determines if skips will be honoured by pytest.
-# 
-#     Adapted from https://stackoverflow.com/a/61503247
-# 
-#     Args:
-#         config (pytest.Config): pytest config object.
-#         args (list[Any]): List of items associated with hook.
-#     """
-#     # Check for no-skip flag
-#     if "--no-skip" not in args:
-#         return
-# 
-#     def no_skip(*args: list[Any], **kwargs: dict[str, Any]) -> None:
-#         return
-# 
-#     # Assign no_skip as skip function within pytest
-#     _pytest.skipping.skip = no_skip   # type: ignore[assignment]
+from typing import Union, Callable
 
 
 @pytest.fixture
