@@ -49,12 +49,14 @@ CONCEPT_CONSERVATION_STATUS = rdflib.URIRef("http://linked.data.gov.au/def/tern-
 CONCEPT_CONSERVATION_JURISDICTION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
 
 # Roles
-ROLE_ORIGINATOR = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator")  # noqa: E501
-ROLE_RIGHTS_HOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/rightsHolder")  # noqa: E501
-ROLE_RESOURCE_PROVIDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider")  # noqa: E501
-ROLE_CUSTODIAN = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian")  # noqa: E501
-ROLE_STAKEHOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder")  # noqa: E501
-ROLE_OWNER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/owner")  # noqa: E501
+CI_ROLECODE_ORIGINATOR = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator")  # noqa: E501
+CI_ROLECODE_RIGHTS_HOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/rightsHolder")  # noqa: E501
+CI_ROLECODE_RESOURCE_PROVIDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider")  # noqa: E501
+CI_ROLECODE_CUSTODIAN = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian")  # noqa: E501
+CI_ROLECODE_STAKEHOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder")  # noqa: E501
+CI_ROLECODE_OWNER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/owner")  # noqa: E501
+DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/resourceProvider")
+DATA_ROLE_OWNER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/owner")
 
 # Temporary
 DEFAULT_SURVEY = rdflib.URIRef("http://createme.org/survey/SSD-Survey/1")  # TODO -> Cross reference
@@ -363,14 +365,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site = dataset + f"/site/{urllib.parse.quote(row['siteID'], safe='')}" if row['siteID'] else None
 
         provider_record_id_datatype = utils.rdf.uri(
-            internal_id=f"datatype/providerRecordID/{row['providerRecordIDSource']}",
+            internal_id=f"datatype/recordID/{row['providerRecordIDSource']}",
             namespace=base_iri,
         )
         provider_record_id_agent = utils.rdf.uri(f"agent/{row['providerRecordIDSource']}", base_iri)
 
         # Conditionally create uris dependent on ownerRecordIDSource field
         if owner_record_id_source := row["ownerRecordIDSource"]:
-            owner_record_id_datatype = utils.rdf.uri(f"datatype/ownerRecordID/{owner_record_id_source}", base_iri)
+            owner_record_id_datatype = utils.rdf.uri(f"datatype/recordID/{owner_record_id_source}", base_iri)
             owner_record_id_provider = utils.rdf.uri(f"provider/{row['ownerRecordIDSource']}", base_iri)
         else:
             owner_record_id_datatype = None
@@ -395,7 +397,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Conditionally create uris dependent on otherCatalogNumbersSource field.
         if other_catalog_numbers_source := row["otherCatalogNumbersSource"]:
             other_catalog_numbers_datatype = utils.rdf.uri(
-                internal_id=f"datatype/otherCatalogNumbers/{other_catalog_numbers_source}",
+                internal_id=f"datatype/catalogNumber/{other_catalog_numbers_source}",
                 namespace=base_iri,
             )
             other_catalog_numbers_provider = utils.rdf.uri(f"provider/{other_catalog_numbers_source}", base_iri)
@@ -435,6 +437,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         self.add_record_number_datatype(
             uri=record_number_datatype,
             provider=provider_recorded_by,
+            value=recorded_by,
             graph=graph,
         )
 
@@ -446,9 +449,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add owner record id datatype
-        self.add_owner_record_id_datatype(
+        self.add_record_id_datatype(
             uri=owner_record_id_datatype,
             provider=owner_record_id_provider,
+            value=owner_record_id_source,
+            provider_role_type=DATA_ROLE_OWNER,
             graph=graph,
         )
 
@@ -477,9 +482,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add provider record ID datatype
-        self.add_provider_record_id_datatype(
+        self.add_record_id_datatype(
             uri=provider_record_id_datatype,
-            agent=provider_record_id_agent,
+            provider=provider_record_id_agent,
+            value=provider_record_id_datatype,
+            provider_role_type=DATA_ROLE_RESOURCE_PROVIDER,
             graph=graph,
         )
 
@@ -506,6 +513,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         self.add_catalog_number_datatype(
             uri=catalog_number_datatype,
             provider=catalog_number_provider,
+            value=catalog_number_source,
             graph=graph,
         )
 
@@ -517,9 +525,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add other catalog numbers datatype
-        self.add_other_catalog_numbers_datatype(
+        self.add_catalog_number_datatype(
             uri=other_catalog_numbers_datatype,
             provider=other_catalog_numbers_provider,
+            value=other_catalog_numbers_source,
             graph=graph,
         )
 
@@ -1186,6 +1195,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
     ) -> None:
         """Adds the provider agent to the graph.
+
         Args:
             uri (rdflib.URIRef | None): Subject of the node.
             row (frictionless.Row): Raw data.
@@ -1201,16 +1211,21 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add name
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(row['recordedBy'])))
 
-    def add_owner_record_id_datatype(
+    def add_record_id_datatype(
         self,
         uri: rdflib.URIRef | None,
         provider: rdflib.URIRef | None,
+        value: str | None,
+        provider_role_type: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds the owner record id datatype to the graph.
+
         Args:
             uri (rdflib.URIRef): Subject of the node.
             provider (rdflib.URIRef): Provider of the datatype.
+            value (str | None): Raw value provided for the record id source.
+            provider_role_type (rdflib.URIRef): Role type of the provider.
             graph (rdflid.Graph): Graph to be modified.
         """
         # Check to see subject provided
@@ -1221,11 +1236,16 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.RDFS.Datatype))
 
         # Add label
-        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("ownerRecordID source")))
+        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{value} recordID")))
+        graph.add((uri, rdflib.SKOS.definition, rdflib.Literal("An identifier for the record")))
 
         # Add attribution
         if provider is not None:
-            graph.add((uri, rdflib.PROV.wasAttributedTo, provider))
+            qualified_attribution = rdflib.BNode()
+            graph.add((qualified_attribution, a, rdflib.PROV.Attribution))
+            graph.add((qualified_attribution, rdflib.PROV.agent, provider))
+            graph.add((qualified_attribution, rdflib.PROV.hadRole, provider_role_type))
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualified_attribution))
 
     def add_owner_record_id_provider(
         self,
@@ -1391,27 +1411,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Add Basis Of Record Attribute
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
 
-    def add_provider_record_id_datatype(
-        self,
-        uri: rdflib.URIRef,
-        agent: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds the provider record id datatype to the graph.
-        Args:
-            uri (rdflib.URIRef): Subject of the node.
-            agent (rdflib.URIRef): Provider agent URI.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Add the type
-        graph.add((uri, a, rdflib.RDFS.Datatype))
-
-        # Add label
-        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("providerRecordID source")))
-
-        # Add attribution
-        graph.add((uri, rdflib.PROV.wasAttributedTo, agent))
-
     def add_provider_record_id_agent(
         self,
         uri: rdflib.URIRef,
@@ -1569,12 +1568,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef | None,
         provider: rdflib.URIRef | None,
+        value: str | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds catalog number datatype to the graph.
         Args:
             uri (rdflib.URIRef | None): Subject of the node.
             provider (rdflib.URIRef | None): Corresponding provider.
+            value (str | None): Catalog number source name obtained from raw data.
             graph (rdflib.Graph): Graph to be modified.
         """
         # Check subject was provided
@@ -1585,7 +1586,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.RDFS.Datatype))
 
         # Add label
-        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("catalogNumber source")))
+        if value is not None:
+            graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{value} catalogNumber")))
+
+        # Add definition
+        graph.add((uri, rdflib.SKOS.definition, rdflib.Literal("A catalog number for the sample")))
 
         # Add attribution
         if provider is not None:
@@ -1612,32 +1617,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add name
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["catalogNumberSource"])))
-
-    def add_other_catalog_numbers_datatype(
-        self,
-        uri: rdflib.URIRef | None,
-        provider: rdflib.URIRef | None,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds other catalog numbers datatype to the graph.
-        Args:
-            uri (rdflib.URIRef | None): Subject of the node.
-            provider (rdflib.URIRef | None): Corresponding provider.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Check subject provided
-        if uri is None:
-            return
-
-        # Add type
-        graph.add((uri, a, rdflib.RDFS.Datatype))
-
-        # Add label
-        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("otherCatalogNumbers source")))
-
-        # Add attribution
-        if provider is not None:
-            graph.add((uri, rdflib.PROV.wasAttributedTo, provider))
 
     def add_other_catalog_numbers_provider(
         self,
@@ -1888,6 +1867,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef | None,
         provider: rdflib.URIRef | None,
+        value: str | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds record number datatype to the graph.
@@ -1896,6 +1876,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 or None if uri wasn't created.
             provider (rdflib.URIRef | None): The corresponding
                 provider uri.
+            value (str | None): Raw value provided in row.
             graph (rdflib.Graph): Graph to be modified.
         """
         # Check subject provided
@@ -1906,7 +1887,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.RDFS.Datatype))
 
         # Add label
-        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("recordNumber source")))
+        if value is not None:
+            graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{value} recordNumber")))
+
+        # Add definition
+        graph.add((uri, rdflib.SKOS.definition, rdflib.Literal(
+            "The record number of the original observation from the original observer of the organism"
+        )))
 
         # Add attribution
         if provider is not None:

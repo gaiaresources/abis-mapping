@@ -14,7 +14,7 @@ import rdflib.compare
 from abis_mapping import utils
 
 # Typing
-from typing import Union
+from typing import Union, Callable
 
 
 @pytest.fixture
@@ -99,3 +99,9 @@ def compare_graphs(
         graph1=graph1,
         graph2=graph2,
     )
+
+
+@pytest.fixture
+def graph_comparer() -> Callable[[rdflib.Graph | str, rdflib.Graph | str], bool]:
+    """Make a fixture out of the compare_graphs function for convenience."""
+    return compare_graphs
