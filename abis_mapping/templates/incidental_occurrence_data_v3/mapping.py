@@ -1699,6 +1699,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if value is not None:
             graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{value} recordNumber")))
 
+        # Add definition
+        graph.add((
+            uri,
+            rdflib.SKOS.definition,
+            rdflib.Literal("The record number of the original observation from the original observer of the organism")
+        ))
+
         # Add attribution
         if provider is not None:
             graph.add((uri, rdflib.PROV.wasAttributedTo, provider))
