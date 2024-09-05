@@ -415,32 +415,31 @@ def test_fields(
     """
     # Patch schema method
     descriptor = {
-        "fields":
-            [
-                {
-                    "name": "fieldA",
-                    "title": "Title A",
-                    "description": "Description A",
-                    "example": "Example A",
-                    "type": "typeA",
-                    "format": "formatA",
-                    "constraints": {
-                        "required": False,
-                    },
-                    "vocabularies": ["vocabularyA"]
-                }, {
-                    "name": "fieldB",
-                    "title": "Title B",
-                    "description": "Description B",
-                    "example": "Example B",
-                    "type": "typeB",
-                    "format": "formatB",
-                    "constraints": {
-                        "required": False,
-                    },
-                    "vocabularies": ["vocabularyB"]
-                }
-            ]
+        "fields": [
+            {
+                "name": "fieldA",
+                "title": "Title A",
+                "description": "Description A",
+                "example": "Example A",
+                "type": "typeA",
+                "format": "formatA",
+                "constraints": {
+                    "required": False,
+                },
+                "vocabularies": ["vocabularyA"]
+            }, {
+                "name": "fieldB",
+                "title": "Title B",
+                "description": "Description B",
+                "example": "Example B",
+                "type": "typeB",
+                "format": "formatB",
+                "constraints": {
+                    "required": False,
+                },
+                "vocabularies": ["vocabularyB"]
+            }
+        ]
     }
     mocker.patch.object(base.mapper.ABISMapper, "schema", return_value=descriptor)
 
