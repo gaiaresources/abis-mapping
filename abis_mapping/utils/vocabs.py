@@ -330,4 +330,4 @@ def get_vocab(key: str) -> Type[Vocabulary]:
         return Vocabulary.id_registry[key]
     except KeyError:
         # Transform to ValueError, to assist with validation libraries.
-        raise ValueError(f"Key {key} not found in registry.")
+        raise ValueError(f"Key {key} not found in registry.") from None
