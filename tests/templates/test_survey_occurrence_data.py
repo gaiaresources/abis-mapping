@@ -169,7 +169,7 @@ class TestDefaultMap:
             "threatStatus",
             "conservationJurisdiction",
         ]
-        all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in scenario.raws]
+        all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in scenario.raws]
 
         # Get mapper
         mapper = templates.survey_occurrence_data.mapping.SurveyOccurrenceMapper
@@ -272,7 +272,7 @@ def test_extract_site_id_keys(mocker: pytest_mock.MockerFixture) -> None:
     raws = [["site1"], [""], ["site2"], ["site3"], ["site3"]]
 
     # Amalgamate into a list of dicts
-    all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in raws]
+    all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in raws]
 
     # Get the specific mapper
     mapper = abis_mapping.templates.survey_occurrence_data.mapping.SurveyOccurrenceMapper()

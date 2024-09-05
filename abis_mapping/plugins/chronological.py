@@ -41,7 +41,7 @@ class ChronologicalOrder(frictionless.Check):
             return  # If there are 0 or 1 values, they are considered chronological
 
         # Check validity
-        if not all(x <= y for x, y in zip(tstmps, tstmps[1:])):
+        if not all(x <= y for x, y in zip(tstmps[:-1], tstmps[1:], strict=True)):
             yield frictionless.errors.RowConstraintError.from_row(
                 row=row,
                 note=f"the following dates are not in chronological order: {self.field_names}; with values: {tstmps}"

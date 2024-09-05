@@ -27,12 +27,13 @@ class Parameters:
         """
         # Iterate through each of the cases.
         for case in self.cases:
+            *values, site_ids, valid = case
             # Construct data row
-            source = {key: val for key, val in zip(self.header, case)}
+            source = dict(zip(self.header, values, strict=True))
             # Add siteID column
             source["siteID"] = "site1"
             # Yield result
-            yield source, case[-2], case[-1]
+            yield source, site_ids, valid
 
 
 class TestSiteGeometry:
