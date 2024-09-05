@@ -1,4 +1,4 @@
-"""Provides ABIS Mapper for `survey_site_data.csv` Template v2"""
+"""Provides ABIS Mapper for `survey_site_data-v2.0.0.csv` template."""
 
 # Standard
 import dataclasses
