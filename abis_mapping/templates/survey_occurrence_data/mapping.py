@@ -129,11 +129,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
             # Perform a default lookup check based on passed in map.
             checklist.add_check(
-               plugins.default_lookup.DefaultLookup(
-                   key_field="siteID",
-                   value_field="decimalLatitude",
-                   default_map=site_id_geometry_map,
-               )
+                plugins.default_lookup.DefaultLookup(
+                    key_field="siteID",
+                    value_field="decimalLatitude",
+                    default_map=site_id_geometry_map,
+                )
             )
             # Mutual inclusion check to close out the possibility of one missing.
             checklist.add_check(
