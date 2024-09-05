@@ -38,7 +38,7 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
             ["site9", "", "12.0", "22.0", "GRS20"],
             ]
     # Amalgamate into a list of dicts
-    all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in raws]
+    all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in raws]
 
     # Get the specific mapper
     mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
@@ -131,7 +131,7 @@ class TestSiteIDForeignKeys:
         """
         # Construct fake data
         rawh = ["siteID", "decimalLatitude", "decimalLongitude", "footprintWKT", "geodeticDatum"]
-        all_raw = [{hname: val for hname, val in zip(rawh, ln)} for ln in scenario.raws]
+        all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in scenario.raws]
 
         # Get mapper
         mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
