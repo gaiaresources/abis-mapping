@@ -33,3 +33,10 @@ mike = "^2.1.3"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    # Treat all warnings as errors by default
+    'error',
+    # Add any allowed warning here, e.g. 'ignore:function foo\(\) is deprecated:DeprecationWarning:module'
+]
