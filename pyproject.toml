@@ -39,4 +39,6 @@ filterwarnings = [
     # Treat all warnings as errors by default
     'error',
     # Add any allowed warning here, e.g. 'ignore:function foo\(\) is deprecated:DeprecationWarning:module'
+    # Issue in stringcase, needs a pypi release
+    '''ignore:invalid escape sequence '\\W':SyntaxWarning:stringcase''',
 ]
