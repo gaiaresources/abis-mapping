@@ -39,9 +39,9 @@ class SitesGeometry(frictionless.Check):
 
         # Perform check
         if (
-            (lat and long and datum) or
-            (wkt and datum) or
-            site_id
+            (lat and long and datum)
+            or (wkt and datum)
+            or site_id
         ):
             return
 

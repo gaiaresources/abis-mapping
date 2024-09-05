@@ -502,8 +502,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Add related site if available
         if (
-            (relationship_to_related_site := row["relationshipToRelatedSite"]) and
-            (related_site := row["relatedSiteID"])
+            (relationship_to_related_site := row["relationshipToRelatedSite"])
+            and (related_site := row["relatedSiteID"])
         ):
             # Retrieve vocab for field
             relationship_to_related_site_vocab = self.fields()["relationshipToRelatedSite"].get_vocab()

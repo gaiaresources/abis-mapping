@@ -1300,8 +1300,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             )
 
         elif (
-            site_id_geometry_map is not None and
-            (default_geometry := site_id_geometry_map.get(site_id)) is not None
+            site_id_geometry_map is not None
+            and (default_geometry := site_id_geometry_map.get(site_id)) is not None
         ):
             # Create geometry from literal
             geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
@@ -1707,8 +1707,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             )
 
         elif (
-            site_id_geometry_map is not None and
-            (default_geometry := site_id_geometry_map.get(site_id)) is not None
+            site_id_geometry_map is not None
+            and (default_geometry := site_id_geometry_map.get(site_id)) is not None
         ):
             # Create geometry from geosparql wkt literal
             geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
@@ -3010,8 +3010,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             )
 
         elif (
-            site_id_geometry_map is not None and
-            (default_geometry := site_id_geometry_map.get(site_id)) is not None
+            site_id_geometry_map is not None
+            and (default_geometry := site_id_geometry_map.get(site_id)) is not None
         ):
             # Create geometry from wkt literal
             geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
