@@ -79,17 +79,17 @@ from typing import Optional
         {"start": "2022-09-11", "middle": "2024-05-11", "end": "2023-09-11"},
     ], ["start", "middle", "end"], 1),
     ([
-         # Missing
-         {"start": "2022-09-11", "middle": "2022-10-11", "end": None},
-         {"start": None, "middle": None, "end": "2022-09-11"},
-         {"start": None, "middle": "2022-09-11", "end": None},
+        # Missing
+        {"start": "2022-09-11", "middle": "2022-10-11", "end": None},
+        {"start": None, "middle": None, "end": "2022-09-11"},
+        {"start": None, "middle": "2022-09-11", "end": None},
 
-         # Valid
-         {"start": "2022-09-11", "middle": "2023-05-11", "end": "2023-09-11"},
+        # Valid
+        {"start": "2022-09-11", "middle": "2023-05-11", "end": "2023-09-11"},
 
-         # Valid - middle same date as end
-         {"start": "2022-09-11", "middle": "2023-05-11", "end": "2023-05-11"},
-     ], ["start", "middle", "end"], 0),
+        # Valid - middle same date as end
+        {"start": "2022-09-11", "middle": "2023-05-11", "end": "2023-05-11"},
+    ], ["start", "middle", "end"], 0),
 ])
 def test_checks_valid_chronological_order(
         source: list[dict[str, Optional[str]]],

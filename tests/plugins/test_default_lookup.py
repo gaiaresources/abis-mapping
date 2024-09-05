@@ -37,9 +37,9 @@ def test_default_lookup() -> None:
         checklist=frictionless.Checklist(
             checks=[
                 plugins.default_lookup.DefaultLookup(
-                   key_field="a",
-                   value_field="b",
-                   default_map=default_map,
+                    key_field="a",
+                    value_field="b",
+                    default_map=default_map,
                 )
             ]
         )
