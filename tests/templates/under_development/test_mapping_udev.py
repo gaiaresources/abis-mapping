@@ -15,7 +15,6 @@ from abis_mapping import base
 from abis_mapping import settings
 import abis_mapping.templates.incidental_occurrence_data_v3.mapping
 import abis_mapping.templates.survey_occurrence_data_v2.mapping
-import abis_mapping.templates.survey_site_visit_v2.mapping
 
 # Typing
 from typing import Callable, Type
