@@ -1,10 +1,10 @@
 """Provides Unit Tests for the `abis_mapping.base` module"""
 
-
 # Standard
 import csv
 import io
 import json
+import pathlib
 import unittest.mock
 
 # Third-party
@@ -20,6 +20,17 @@ from abis_mapping import utils
 from typing import Any, Optional, Iterator
 
 from abis_mapping.base import types as base_types
+
+
+class ContextualStringIO(io.StringIO):
+    """An implementation to allow examining the final value of a StringIO prior to close."""
+
+    final_buffer: str
+
+    def close(self) -> None:
+        """Sets the final_buffer prior to close."""
+        self.final_buffer = self.getvalue()
+        super().close()
 
 
 def data_to_csv(data: list[dict[str, Any]]) -> bytes:
@@ -52,6 +63,38 @@ def data_to_csv(data: list[dict[str, Any]]) -> bytes:
     return csv_string_io.getvalue().encode("utf-8")
 
 
+def test_generate_blank_template(mocker: pytest_mock.MockerFixture) -> None:
+    """Tests the generate_blank_template method.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): The mocker fixture.
+    """
+    # Create and assign mock for pathlib.Path.read_text method
+    return_value = {
+        "fields": [{
+            "name": "col1",
+        }, {
+            "name": "col2",
+        }],
+    }
+    mocked_read_text = mocker.patch.object(pathlib.Path, "read_text")
+    mocked_read_text.return_value = json.dumps(return_value)
+
+    # Create and assign mock for pathlib.Path.open method
+    mocked_open = mocker.patch.object(pathlib.Path, "open")
+    output_stream = ContextualStringIO()
+    mocked_open.return_value = output_stream
+
+    # Patch the metadata method
+    mocker.patch.object(base.mapper.ABISMapper, "metadata", return_value={"name": "some_template", "file_type": "CSV"})
+
+    # Invoke
+    base.mapper.ABISMapper.generate_blank_template()
+
+    # Confirm result
+    assert output_stream.final_buffer == "col1,col2\r\n"
+
+
 def test_base_get_mapper_fake() -> None:
     """Tests that we can't retrieve a mapper with an invalid ID"""
     # Test Fake Template ID
@@ -66,9 +109,7 @@ def test_extra_fields_schema_row_data(mocker: pytest_mock.MockerFixture) -> None
         mocker (pytest_mock.MockerFixture): The mocker fixture.
     """
     # Construct dataset
-    data = [
-        {"A": 123, "B": 321, "C": 321.6546454654654, "D": True, "E": "something"}
-    ]
+    data = [{"A": 123, "B": 321, "C": 321.6546454654654, "D": True, "E": "something"}]
     # Construct base schema descriptor
     descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
 
@@ -96,7 +137,7 @@ def test_extra_fields_schema_row_data(mocker: pytest_mock.MockerFixture) -> None
             for field in diff_schema.fields:
                 assert field.type == "string"
             assert set(full_schema.field_names) == \
-                   set(existing_schema.field_names) | expected_extra_fieldnames
+                set(existing_schema.field_names) | expected_extra_fieldnames
 
 
 def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None:
@@ -107,8 +148,18 @@ def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None
     """
     # Create raw data
     data = [
-        {"A": 123, "B": 321, "extraInformation1": "some extra information", "extraInformation2": ""},
-        {"A": 321, "B": 123, "extraInformation1": "", "extraInformation2": "some more extra information"},
+        {
+            "A": 123,
+            "B": 321,
+            "extraInformation1": "some extra information",
+            "extraInformation2": ""
+        },
+        {
+            "A": 321,
+            "B": 123,
+            "extraInformation1": "",
+            "extraInformation2": "some more extra information"
+        },
     ]
 
     # Expected extra field names
@@ -139,7 +190,7 @@ def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None
     for field in diff_schema.fields:
         assert field.type == "string"
     assert set(full_schema.field_names) == \
-           set(existing_schema.field_names) | expected_extra_fieldnames
+        set(existing_schema.field_names) | expected_extra_fieldnames
 
 
 def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
@@ -150,13 +201,33 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
     """
     # Construct dataset
     data = [
-        {"A": 123, "B": 321, "C": 321.6546454654654, "D": True, "E": "something"},
-        {"A": 321, "B": 123, "C": 6.54654e-15, "D": False, "E": "another thing"},
+        {
+            "A": 123,
+            "B": 321,
+            "C": 321.6546454654654,
+            "D": True,
+            "E": "something"
+        },
+        {
+            "A": 321,
+            "B": 123,
+            "C": 6.54654e-15,
+            "D": False,
+            "E": "another thing"
+        },
     ]
     # Expected results
     overall_expected = [
-        {"C": "321.6546454654654", "D": "True", "E": "something"},
-        {"C": "6.54654e-15", "D": "False", "E": "another thing"},
+        {
+            "C": "321.6546454654654",
+            "D": "True",
+            "E": "something"
+        },
+        {
+            "C": "6.54654e-15",
+            "D": "False",
+            "E": "another thing"
+        },
     ]
 
     # Serialize data to csv
@@ -198,7 +269,12 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
 
     # Create raw data
     data = [
-        {"A": 123, "B": 321, "extraInformation1": "some additional info", "extraInformation2": "some more info"},
+        {
+            "A": 123,
+            "B": 321,
+            "extraInformation1": "some additional info",
+            "extraInformation2": "some more info"
+        },
     ]
 
     # Get data
@@ -211,10 +287,7 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
     mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Expected json as dictionary
-    expected_json = {
-        "extraInformation2": "some more info",
-        "extraInformation1": "some additional info"
-    }
+    expected_json = {"extraInformation2": "some more info", "extraInformation1": "some additional info"}
 
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
@@ -255,9 +328,7 @@ def test_add_extra_fields_json_no_data(mocker: pytest_mock.MockerFixture) -> Non
     base_uri = utils.namespaces.EXAMPLE.someBaseUri
 
     # Create raw data - no extra fields
-    data = [
-        {"A": 123, "B": 321}
-    ]
+    data = [{"A": 123, "B": 321}]
 
     # Get data
     csv_data = data_to_csv(data)
@@ -301,9 +372,7 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
         mocker (pytest_mock.MockerFixture): The mocker fixture.
     """
     # Create raw data - no extra fields
-    data = [
-        {"A": 123, "C": 333, "B": 321}
-    ]
+    data = [{"A": 123, "C": 333, "B": 321}]
 
     # Get data
     csv_data = data_to_csv(data)
@@ -357,11 +426,8 @@ def test_fields(
                 "constraints": {
                     "required": False,
                 },
-                "vocabularies": [
-                    "vocabularyA"
-                ]
-            },
-            {
+                "vocabularies": ["vocabularyA"]
+            }, {
                 "name": "fieldB",
                 "title": "Title B",
                 "description": "Description B",
@@ -371,9 +437,7 @@ def test_fields(
                 "constraints": {
                     "required": False,
                 },
-                "vocabularies": [
-                    "vocabularyB"
-                ]
+                "vocabularies": ["vocabularyB"]
             }
         ]
     }

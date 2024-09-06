@@ -79,7 +79,8 @@ class TestMapping:
 
         # Compare, output to file if not valid
         if not (is_same := graph_comparer(graphs[0], parameters.expected)):
-            graphs[0].serialize(f"tests/templates/under_development/{parameters.mapper().template_id}-result.ttl")
+            path = pathlib.Path(__file__).parent / f"{parameters.mapper().template_id}-result.ttl"
+            graphs[0].serialize(str(path))
         assert is_same
 
         # Check that there are no `None`s in the Graph
@@ -105,12 +106,12 @@ class TestMapping:
         # Perform validation
         for data_graph in data_graphs:
             valid, _, report = pyshacl.validate(data_graph=data_graph, shacl_graph=shape_graph)
-            if not valid:
-                raise AssertionError(report)
+            # If not valid raise assertion error with report output
+            assert valid, report
 
         # Perform validation on the expected result as well
         expected_graph = rdflib.Graph().parse(data=parameters.expected)
         valid, _, report = pyshacl.validate(data_graph=expected_graph, shacl_graph=shape_graph)
 
-        if not valid:
-            raise AssertionError(report)
+        # If not valid raise assertion error with report output
+        assert valid, report
