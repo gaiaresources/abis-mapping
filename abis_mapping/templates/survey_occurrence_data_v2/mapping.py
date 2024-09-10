@@ -65,9 +65,6 @@ DEFAULT_SURVEY = rdflib.URIRef("http://createme.org/survey/SSD-Survey/1")  # TOD
 class SurveyOccurrenceMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `survey_occurrence_data.csv` v2"""
 
-    # Instructions File
-    instructions_file = "instructions.pdf"
-
     # Default Dataset Metadata
     DATASET_DEFAULT_NAME = "Example Systematic Survey Occurrence Dataset"
     DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Occurrence Dataset by Gaia Resources"
