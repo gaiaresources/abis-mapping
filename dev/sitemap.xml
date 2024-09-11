@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://gaiaresources.github.io/abis-mappping/latest/incidental_occurrence_data-v2.0.0.csv/</loc>
-         <lastmod>2024-09-06</lastmod>
+         <lastmod>2024-09-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gaiaresources.github.io/abis-mappping/latest/survey_metadata-v1.0.0.csv/</loc>
-         <lastmod>2024-09-06</lastmod>
+         <lastmod>2024-09-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gaiaresources.github.io/abis-mappping/latest/survey_occurrence_data-v1.0.0.csv/</loc>
-         <lastmod>2024-09-06</lastmod>
+         <lastmod>2024-09-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gaiaresources.github.io/abis-mappping/latest/survey_site_data-v1.0.0.csv/</loc>
-         <lastmod>2024-09-06</lastmod>
+         <lastmod>2024-09-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
