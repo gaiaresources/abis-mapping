@@ -1,6 +1,5 @@
 """Provides Mapper Base Class for the Package"""
 
-
 # Standard
 import abc
 import csv

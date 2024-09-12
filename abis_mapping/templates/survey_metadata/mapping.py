@@ -52,9 +52,6 @@ class AttributeValue:
 class SurveyMetadataMapper(base.mapper.ABISMapper):
     """ABIS mapper for `survey_metadata"""
 
-    # Instructions filename
-    instructions_file = "instructions.pdf"
-
     # Default Dataset Metadata
     DATASET_DEFAULT_NAME = "Example Systematic Survey Metadata Dataset"
     DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Metadata Dataset by Gaia Resources"

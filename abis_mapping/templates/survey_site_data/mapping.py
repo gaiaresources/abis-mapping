@@ -50,9 +50,6 @@ class Agent:
 class SurveySiteMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `survey_site_data.csv`"""
 
-    # Instructions File
-    instructions_file = "instructions.pdf"
-
     # Default Dataset Metadata
     DATASET_DEFAULT_NAME = "Example Systematic Survey Site Dataset"
     DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Site Dataset by Gaia Resources"
