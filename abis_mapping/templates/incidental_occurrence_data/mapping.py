@@ -3066,7 +3066,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))
         graph.add((uri, rdflib.RDF.value, term))
-    
+
     @classmethod
     @functools.lru_cache
     def instructions(cls) -> pathlib.Path:
