@@ -1,6 +1,12 @@
 """Provides ABIS Mapper for `incidental_occurrence_data.csv` Template"""
 
 
+# Standard
+import pathlib
+import functools
+import inspect
+
+
 # Third-Party
 import frictionless
 import rdflib
@@ -3008,7 +3014,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         conservation_jurisdiction_value: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds Conservation Jurisdiction Attribute to the Graph
+        """Add Conservation Jurisdiction Attribute to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
@@ -3035,7 +3041,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds Conservation Jurisdiction Value to the Graph
+        """Add Conservation Jurisdiction Value to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node
@@ -3060,13 +3066,28 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))
         graph.add((uri, rdflib.RDF.value, term))
+    
+    @classmethod
+    @functools.lru_cache
+    def instructions(cls) -> pathlib.Path:
+        """Retrieve and Cache the Template Instructions.
+
+        Returns:
+            pathlib.Path: Filepath for this Template's Instructions
+        """
+        # Retrieve Template Filepath
+        directory = pathlib.Path(inspect.getfile(cls)).parent
+        instructions_file = directory / cls.instructions_file
+
+        # Return
+        return instructions_file
 
 
 # Helper Functions
 # These utility helper functions are specific to this template, and as such are
 # defined here instead of in a common utilities module.
 def has_specimen(row: frictionless.Row) -> bool:
-    """Determines whether a row has a specimen associated with it or not.
+    """Determine whether a row has a specimen associated with it or not.
 
     This method is used when determining whether to add the specimen specific
     `/sampling/specimen/x` and `/sample/specimen/x` nodes to the graph.

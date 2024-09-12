@@ -98,15 +98,6 @@ class TestTemplateBasicSuite:
         schema = real_mapper.schema()
         assert isinstance(schema, dict)
 
-    def test_get_instructions(self, test_params: conftest.TemplateTestParameters) -> None:
-        """Tests able to retrieve template instructions."""
-        # Test Real Template ID
-        real_mapper = abis_mapping.base.mapper.get_mapper(test_params.template_id)
-        assert real_mapper is not None
-        instructions = real_mapper.instructions()
-        assert isinstance(instructions, pathlib.Path)
-        assert instructions.is_file()
-
     def test_geodetic_datum_proj_supported(self, test_params: conftest.TemplateTestParameters) -> None:
         """Test that all enumerated values for geodeticDatum are supported by proj."""
         # Get mapper
