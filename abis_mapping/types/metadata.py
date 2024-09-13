@@ -9,9 +9,6 @@ import pydantic
 # Local
 from abis_mapping import settings
 
-# Typing
-from typing import Literal
-
 
 class TemplateMetadata(pydantic.BaseModel):
     """Model for the template `metadata.json` file."""
@@ -25,7 +22,6 @@ class TemplateMetadata(pydantic.BaseModel):
     sampling_type: str
     template_url: str
     schema_url: str
-    status: Literal["draft", "published", "deprecated"] = "draft"
 
     @pydantic.computed_field  # type: ignore[prop-decorator]
     @property
