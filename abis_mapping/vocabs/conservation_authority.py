@@ -57,11 +57,11 @@ WA = utils.vocabs.Term(
 
 
 # Vocabulary
-class ConservationJurisdiction(utils.vocabs.RestrictedVocabulary):
-    vocab_id = "CONSERVATION_JURISDICTION"
+class ConservationAuthority(utils.vocabs.RestrictedVocabulary):
+    vocab_id = "CONSERVATION_AUTHORITY"
     terms = (ACT, EPBC, NSW, NT, QLD, SA, TAS, VIC, WA)
     publish = False
 
 
 # Register
-utils.vocabs.Vocabulary.register(ConservationJurisdiction)
+utils.vocabs.Vocabulary.register(ConservationAuthority)

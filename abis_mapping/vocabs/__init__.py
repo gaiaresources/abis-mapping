@@ -3,7 +3,7 @@
 # Local
 from . import basis_of_record
 from . import check_protocol
-from . import conservation_jurisdiction
+from . import conservation_authority
 from . import establishment_means
 from . import geodetic_datum
 from . import identification_method
