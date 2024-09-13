@@ -8,6 +8,5 @@
     "file_type": "CSV",
     "sampling_type": "incidental",
     "template_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/incidental_occurrence_data/incidental_occurrence_data.csv",
-    "schema_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/incidental_occurrence_data/schema.json",
-    "instructions_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/incidental_occurrence_data/instructions.pdf"
+    "schema_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/incidental_occurrence_data/schema.json"
 }
