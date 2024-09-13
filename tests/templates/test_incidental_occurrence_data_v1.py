@@ -7,12 +7,27 @@ import pathlib
 import abis_mapping.templates.incidental_occurrence_data.mapping
 
 
+# Alias mapper for the tests
+mapper = abis_mapping.templates.incidental_occurrence_data.mapping.IncidentalOccurrenceMapper
+
+
 def test_instructions() -> None:
-    """Tests the instructions method."""
+    """Test the instructions method."""
     # Get mapper and invoke
-    mapper = abis_mapping.templates.incidental_occurrence_data.mapping.IncidentalOccurrenceMapper
     instructions = mapper.instructions()
 
     # Should return a file path
     assert isinstance(instructions, pathlib.Path)
     assert instructions.is_file()
+
+
+def test_metadata() -> None:
+    """Test the metadata method."""
+    # Get mapper and invoke
+    metadata = mapper.metadata()
+
+    # Should return instructions path for instructions_url
+    assert metadata["instructions_url"] == (
+        "https://raw.githubusercontent.com/gaiaresources/abis-mapping/"
+        "main/abis_mapping/templates/incidental_occurrence_data/instructions.pdf"
+    )
