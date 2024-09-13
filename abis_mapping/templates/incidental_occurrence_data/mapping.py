@@ -3094,7 +3094,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         md_dict = super().metadata()
 
         # Alter instructions_url entry
-        md_dict["instructions_url"] = str(cls.instructions())
+        md_dict["instructions_url"] = (
+            "https://raw.githubusercontent.com/gaiaresources/abis-mapping/"
+            "main/abis_mapping/templates/incidental_occurrence_data/instructions.pdf"
+        )
 
         # Return
         return md_dict

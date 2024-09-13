@@ -27,4 +27,7 @@ def test_metadata() -> None:
     metadata = mapper.metadata()
 
     # Should return instructions path for instructions_url
-    assert metadata["instructions_url"] == str(mapper.instructions())
+    assert metadata["instructions_url"] == (
+        "https://raw.githubusercontent.com/gaiaresources/abis-mapping/"
+        "main/abis_mapping/templates/incidental_occurrence_data/instructions.pdf"
+    )
