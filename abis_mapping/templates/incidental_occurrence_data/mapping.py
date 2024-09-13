@@ -3082,6 +3082,23 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Return
         return instructions_file
 
+    @classmethod
+    @functools.lru_cache
+    def metadata(cls) -> dict[str, str]:
+        """Retrieves and Caches the Template Metadata for this Template
+
+        Returns:
+            dict[str, Any]: Template Metadata for this Template
+        """
+        # Invoke parent metadata method
+        md_dict = super().metadata()
+
+        # Alter instructions_url entry
+        md_dict["instructions_url"] = str(cls.instructions())
+
+        # Return
+        return md_dict
+
 
 # Helper Functions
 # These utility helper functions are specific to this template, and as such are

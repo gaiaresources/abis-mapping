@@ -282,7 +282,6 @@ class ABISMapper(abc.ABC):
         """
         return self.metadata()["id"]
 
-    @final
     @classmethod
     @functools.lru_cache
     def metadata(cls) -> dict[str, str]:
