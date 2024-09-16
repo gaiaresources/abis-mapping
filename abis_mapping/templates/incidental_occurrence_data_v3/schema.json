@@ -674,6 +674,34 @@
       "constraints": {
         "required": false
       }
+    },
+    {
+      "name": "sensitivityCategory",
+      "title": "Sensitivity Category",
+      "description": "A category that defines a type of data sensitivity or restriction.",
+      "example": "Category 2",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      },
+      "vocabularies": [
+        "SENSITIVITY_CATEGORY"
+      ]
+    },
+    {
+      "name": "sensitivityAuthority",
+      "title": "Sensitivity Authority",
+      "description": "The authority under which a data sensitivity or restriction has been applied.",
+      "example": "Department of Environment, Climate Change and Water NSW",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      },
+      "vocabularies": [
+        "SENSITIVITY_AUTHORITY"
+      ]
     }
   ]
 }

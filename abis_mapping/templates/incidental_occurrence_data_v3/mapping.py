@@ -110,7 +110,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["ownerRecordID", "ownerRecordIDSource"],
-                    )
+                    ),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=["sensitivityCategory", "sensitivityAuthority"],
+                    ),
                 ],
             ),
         )
