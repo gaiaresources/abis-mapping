@@ -700,7 +700,7 @@
         "required": false
       },
       "vocabularies": [
-        "SENSITIVITY_CATEGORY"
+        "SENSITIVITY_AUTHORITY"
       ]
     },
     {
