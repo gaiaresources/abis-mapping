@@ -280,9 +280,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         sample_sequence = utils.rdf.uri(f"sample/sequence/{row_num}", base_iri)
         threat_status_observation = utils.rdf.uri(f"observation/threatStatus/{row_num}", base_iri)
         threat_status_value = utils.rdf.uri(f"value/threatStatus/{row_num}", base_iri)
-        # TODO change to conservation authority?
-        conservation_jurisdiction_attribute = utils.rdf.uri(f"attribute/conservationJurisdiction/{row_num}", base_iri)  # noqa: E501
-        conservation_jurisdiction_value = utils.rdf.uri(f"value/conservationJurisdiction/{row_num}", base_iri)
+        conservation_authority_attribute = utils.rdf.uri(f"attribute/conservationAuthority/{row_num}", base_iri)  # noqa: E501
+        conservation_authority_value = utils.rdf.uri(f"value/conservationAuthority/{row_num}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
         provider_record_id_datatype = utils.rdf.uri(
             internal_id=f"datatype/recordID/{row['providerRecordIDSource']}",
@@ -813,7 +812,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             accepted_name_usage=accepted_name_usage_value,
             scientific_name=text_scientific_name,
             threat_status_value=threat_status_value,
-            jurisdiction_attribute=conservation_jurisdiction_attribute,
+            authority_attribute=conservation_authority_attribute,
             determined_by=provider_determined_by,
             graph=graph,
         )
@@ -826,18 +825,18 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add Conservation Jurisdiction Attribute
-        self.add_conservation_jurisdiction_attribute(
-            uri=conservation_jurisdiction_attribute,
+        # Add Conservation Authority Attribute
+        self.add_conservation_authority_attribute(
+            uri=conservation_authority_attribute,
             row=row,
             dataset=dataset,
-            conservation_jurisdiction_value=conservation_jurisdiction_value,
+            conservation_authority_value=conservation_authority_value,
             graph=graph,
         )
 
-        # Add Conservation Jurisdiction Value
-        self.add_conservation_jurisdiction_value(
-            uri=conservation_jurisdiction_value,
+        # Add Conservation Authority Value
+        self.add_conservation_authority_value(
+            uri=conservation_authority_value,
             row=row,
             graph=graph,
         )
@@ -2915,7 +2914,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         accepted_name_usage: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
         threat_status_value: rdflib.URIRef,
-        jurisdiction_attribute: rdflib.URIRef,
+        authority_attribute: rdflib.URIRef,
         determined_by: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2931,7 +2930,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 this node
             threat_status_value (rdflib.URIRef): Threat Status Value associated
                 with this node
-            jurisdiction_attribute (rdflib.URIRef): Conservation Jurisdiction
+            authority_attribute (rdflib.URIRef): Conservation Authority
                 Attribute associated with this node
             determined_by (rdflib.URIRef): Determined By Provider associated
                 with this node
@@ -2969,7 +2968,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, threat_status_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["threatStatus"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
-        graph.add((uri, rdflib.PROV.wasInfluencedBy, jurisdiction_attribute))
+        graph.add((uri, rdflib.PROV.wasInfluencedBy, authority_attribute))
         graph.add((uri, rdflib.SOSA.usedProcedure, term))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
@@ -3028,42 +3027,42 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(f"Conservation status = {row['threatStatus']}")))
         graph.add((uri, rdflib.RDF.value, term))
 
-    def add_conservation_jurisdiction_attribute(
+    def add_conservation_authority_attribute(
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        conservation_jurisdiction_value: rdflib.URIRef,
+        conservation_authority_value: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds Conservation Jurisdiction Attribute to the Graph
+        """Adds Conservation Authority Attribute to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            conservation_jurisdiction_value (rdflib.URIRef): Conservation
-                Jurisdiction Value associated with this node
+            conservation_authority_value (rdflib.URIRef): Conservation
+                Authority Value associated with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
         if not row["conservationAuthority"]:
             return
 
-        # Conservation Jurisdiction Attribute
+        # Conservation Authority Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_CONSERVATION_JURISDICTION))
         graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["conservationAuthority"])))
-        graph.add((uri, utils.namespaces.TERN.hasValue, conservation_jurisdiction_value))
+        graph.add((uri, utils.namespaces.TERN.hasValue, conservation_authority_value))
 
-    def add_conservation_jurisdiction_value(
+    def add_conservation_authority_value(
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds Conservation Jurisdiction Value to the Graph
+        """Adds Conservation Authority Value to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node
@@ -3081,9 +3080,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         term = vocab(graph=graph).get(row["conservationAuthority"])
 
         # Construct Label
-        label = f"Conservation Jurisdiction = {row['conservationAuthority']}"
+        label = f"Conservation Authority = {row['conservationAuthority']}"
 
-        # Conservation Jurisdiction Value
+        # Conservation Authority Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))

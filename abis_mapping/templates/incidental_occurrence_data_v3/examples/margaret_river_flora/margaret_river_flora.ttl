@@ -515,7 +515,7 @@
             rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <http://createme.org/provider/WA-BIO> ;
-    prov:wasInfluencedBy <http://createme.org/attribute/conservationJurisdiction/15> ;
+    prov:wasInfluencedBy <http://createme.org/attribute/conservationAuthority/15> ;
     sosa:hasFeatureOfInterest <http://createme.org/value/acceptedNameUsage/15> ;
     sosa:hasResult <http://createme.org/value/threatStatus/15> ;
     sosa:hasSimpleResult "VU" ;
@@ -528,7 +528,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
-    prov:wasInfluencedBy <http://createme.org/attribute/conservationJurisdiction/16> ;
+    prov:wasInfluencedBy <http://createme.org/attribute/conservationAuthority/16> ;
     sosa:hasFeatureOfInterest <http://createme.org/value/acceptedNameUsage/16> ;
     sosa:hasResult <http://createme.org/value/threatStatus/16> ;
     sosa:hasSimpleResult "new threat status" ;
@@ -739,17 +739,17 @@
     tern:hasSimpleValue "new basis of record" ;
     tern:hasValue <http://createme.org/value/basisOfRecord/16> .
 
-<http://createme.org/attribute/conservationJurisdiction/15> a tern:Attribute ;
+<http://createme.org/attribute/conservationAuthority/15> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7> ;
     tern:hasSimpleValue "WA" ;
-    tern:hasValue <http://createme.org/value/conservationJurisdiction/15> .
+    tern:hasValue <http://createme.org/value/conservationAuthority/15> .
 
-<http://createme.org/attribute/conservationJurisdiction/16> a tern:Attribute ;
+<http://createme.org/attribute/conservationAuthority/16> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7> ;
     tern:hasSimpleValue "WA" ;
-    tern:hasValue <http://createme.org/value/conservationJurisdiction/16> .
+    tern:hasValue <http://createme.org/value/conservationAuthority/16> .
 
 <http://createme.org/attribute/habitat/15> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
@@ -1127,14 +1127,14 @@
     rdfs:label "basisOfRecord" ;
     rdf:value <http://createme.org/bdr-cv/attribute/basisOfRecord/new-basis-of-record> .
 
-<http://createme.org/value/conservationJurisdiction/15> a tern:IRI,
+<http://createme.org/value/conservationAuthority/15> a tern:IRI,
         tern:Value ;
-    rdfs:label "Conservation Jurisdiction = WA" ;
+    rdfs:label "Conservation Authority = WA" ;
     rdf:value <https://sws.geonames.org/2058645/> .
 
-<http://createme.org/value/conservationJurisdiction/16> a tern:IRI,
+<http://createme.org/value/conservationAuthority/16> a tern:IRI,
         tern:Value ;
-    rdfs:label "Conservation Jurisdiction = WA" ;
+    rdfs:label "Conservation Authority = WA" ;
     rdf:value <https://sws.geonames.org/2058645/> .
 
 <http://createme.org/value/dataGeneralizations/14> a tern:Text,
