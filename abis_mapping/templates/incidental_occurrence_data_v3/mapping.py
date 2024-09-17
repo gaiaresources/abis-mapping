@@ -60,9 +60,6 @@ DATA_ROLE_OWNER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/owner
 class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `incidental_occurrence_data.csv` - version 3"""
 
-    # Instructions File
-    instructions_file = "instructions.pdf"
-
     # Default Dataset Metadata
     DATASET_DEFAULT_NAME = "Example Incidental Occurrence Dataset"
     DATASET_DEFAULT_DESCRIPTION = "Example Incidental Occurrence Dataset by Gaia Resources"
@@ -103,7 +100,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                     plugins.tabular.IsTabular(),
                     plugins.empty.NotEmpty(),
                     plugins.mutual_inclusion.MutuallyInclusive(
-                        field_names=["threatStatus", "conservationJurisdiction"],
+                        field_names=["threatStatus", "conservationAuthority"],
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["catalogNumber", "catalogNumberSource"],
@@ -113,7 +110,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["ownerRecordID", "ownerRecordIDSource"],
-                    )
+                    ),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=["sensitivityCategory", "sensitivityAuthority"],
+                    ),
                 ],
             ),
         )
@@ -280,6 +280,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         sample_sequence = utils.rdf.uri(f"sample/sequence/{row_num}", base_iri)
         threat_status_observation = utils.rdf.uri(f"observation/threatStatus/{row_num}", base_iri)
         threat_status_value = utils.rdf.uri(f"value/threatStatus/{row_num}", base_iri)
+        # TODO change to conservation authority?
         conservation_jurisdiction_attribute = utils.rdf.uri(f"attribute/conservationJurisdiction/{row_num}", base_iri)  # noqa: E501
         conservation_jurisdiction_value = utils.rdf.uri(f"value/conservationJurisdiction/{row_num}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
@@ -3012,8 +3013,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["threatStatus"]:
             return
 
-        # Combine conservationJurisdiction and threatStatus
-        value = f"{row['conservationJurisdiction']}/{row['threatStatus']}"
+        # Combine conservationAuthority and threatStatus
+        value = f"{row['conservationAuthority']}/{row['threatStatus']}"
 
         # Retrieve vocab for field
         vocab = self.fields()["threatStatus"].get_vocab()
@@ -3046,14 +3047,14 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if not row["conservationJurisdiction"]:
+        if not row["conservationAuthority"]:
             return
 
         # Conservation Jurisdiction Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_CONSERVATION_JURISDICTION))
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["conservationJurisdiction"])))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["conservationAuthority"])))
         graph.add((uri, utils.namespaces.TERN.hasValue, conservation_jurisdiction_value))
 
     def add_conservation_jurisdiction_value(
@@ -3070,17 +3071,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if not row["conservationJurisdiction"]:
+        if not row["conservationAuthority"]:
             return
 
         # Retrieve vocab for field
-        vocab = self.fields()["conservationJurisdiction"].get_vocab()
+        vocab = self.fields()["conservationAuthority"].get_vocab()
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph).get(row["conservationJurisdiction"])
+        term = vocab(graph=graph).get(row["conservationAuthority"])
 
         # Construct Label
-        label = f"Conservation Jurisdiction = {row['conservationJurisdiction']}"
+        label = f"Conservation Jurisdiction = {row['conservationAuthority']}"
 
         # Conservation Jurisdiction Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))

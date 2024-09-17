@@ -585,7 +585,7 @@
     {
       "name": "threatStatus",
       "title": "Threat Status",
-      "description": "The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific jurisdiction.",
+      "description": "The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.",
       "example": "VU",
       "type": "string",
       "format": "default",
@@ -597,9 +597,9 @@
       ]
     },
     {
-      "name": "conservationJurisdiction",
-      "title": "Conservation Jurisdiction",
-      "description": "The jurisdiction under which an organism is recognised to have a specific conservation status applied.",
+      "name": "conservationAuthority",
+      "title": "Conservation Authority",
+      "description": "The authority under which an organism is recognised to have a specific conservation status applied.",
       "example": "WA",
       "type": "string",
       "format": "default",
@@ -656,7 +656,7 @@
     {
       "name": "threatStatusDateDetermined",
       "title": "Threat Status Date Determined",
-      "description": "The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T11:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) on which this record of this organism was assigned to the nominated threatStatus and conservationJurisdiction",
+      "description": "The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T11:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) on which this record of this organism was assigned to the nominated threatStatus and conservationAuthority",
       "example": "30/08/2022",
       "type": "timestamp",
       "format": "default",
@@ -667,13 +667,41 @@
     {
       "name": "threatStatusDeterminedBy",
       "title": "Threat Status Determined By",
-      "description": "The person and/organisation responsible for appending the threatStatus and conservationJurisdiction to this organism’s occurrence record.",
+      "description": "The person and/organisation responsible for appending the threatStatus and conservationAuthority to this organism’s occurrence record.",
       "example": "J. Bloggs, Department of Environment",
       "type": "string",
       "format": "default",
       "constraints": {
         "required": false
       }
+    },
+    {
+      "name": "sensitivityCategory",
+      "title": "Sensitivity Category",
+      "description": "A category that defines a type of data sensitivity or restriction.",
+      "example": "Category 2",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      },
+      "vocabularies": [
+        "SENSITIVITY_CATEGORY"
+      ]
+    },
+    {
+      "name": "sensitivityAuthority",
+      "title": "Sensitivity Authority",
+      "description": "The authority under which a data sensitivity or restriction has been applied.",
+      "example": "Department of Environment, Climate Change and Water NSW",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      },
+      "vocabularies": [
+        "SENSITIVITY_AUTHORITY"
+      ]
     }
   ]
 }
