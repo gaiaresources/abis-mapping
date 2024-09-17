@@ -95,9 +95,9 @@ labels with similar semantics are provided. Note: <font color="red">`geodeticDat
 
 <a name="threatStatus-vocabularies"></a>
 <ins>Table 2b: Suggested values for conditionally mandatory values for the `threatStatus` and
-`conservationJurisdiction` fields in the template. State and Territory `conservationJurisdictions` 
+`conservationAuthority` fields in the template. State and Territory `conservationAuthority` 
 spelt out as words are also valid. For some `threatStatus` terms, alternative labels are provided
-that are also valid for that `conservationJurisdiction`.
+that are also valid for that `conservationAuthority`.
 
 {{tables.threat_status}}
 

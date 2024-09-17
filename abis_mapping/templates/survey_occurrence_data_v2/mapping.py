@@ -46,7 +46,7 @@ CONCEPT_ACCEPTED_NAME_USAGE = utils.rdf.uri("concept/acceptedNameUsage", utils.n
 CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_CONSERVATION_STATUS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6")  # noqa: E501
-CONCEPT_CONSERVATION_JURISDICTION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
+CONCEPT_CONSERVATION_AUTHORITY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
 
 # Roles
 CI_ROLECODE_ORIGINATOR = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator")  # noqa: E501
@@ -103,7 +103,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 plugins.tabular.IsTabular(),
                 plugins.empty.NotEmpty(),
                 plugins.mutual_inclusion.MutuallyInclusive(
-                    field_names=["threatStatus", "conservationJurisdiction"],
+                    field_names=["threatStatus", "conservationAuthority"],
                 ),
                 plugins.mutual_inclusion.MutuallyInclusive(
                     field_names=["organismQuantity", "organismQuantityType"],
@@ -116,7 +116,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 ),
                 plugins.mutual_inclusion.MutuallyInclusive(
                     field_names=["ownerRecordID", "ownerRecordIDSource"],
-                )
+                ),
+                plugins.mutual_inclusion.MutuallyInclusive(
+                    field_names=["sensitivityCategory", "sensitivityAuthority"],
+                ),
             ],
         )
 
@@ -354,6 +357,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         sample_sequence = utils.rdf.uri(f"sample/sequence/{row_num}", base_iri)
         threat_status_observation = utils.rdf.uri(f"observation/threatStatus/{row_num}", base_iri)
         threat_status_value = utils.rdf.uri(f"value/threatStatus/{row_num}", base_iri)
+        # TODO: Change to conservation authority??
         conservation_jurisdiction_attribute = utils.rdf.uri(f"attribute/conservationJurisdiction/{row_num}", base_iri)  # noqa: E501
         conservation_jurisdiction_value = utils.rdf.uri(f"value/conservationJurisdiction/{row_num}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
@@ -925,7 +929,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add Conservation Jurisdiction Value
-        self.add_conservation_jurisdiction_value(
+        self.add_conservation_authority_value(
             uri=conservation_jurisdiction_value,
             row=row,
             graph=graph,
@@ -3218,8 +3222,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if not row["threatStatus"]:
             return
 
-        # Combine conservationJurisdiction and threatStatus
-        value = f"{row['conservationJurisdiction']}/{row['threatStatus']}"
+        # Combine conservationAuthority and threatStatus
+        value = f"{row['conservationAuthority']}/{row['threatStatus']}"
 
         # Retrieve vocab for field
         vocab = self.fields()["threatStatus"].get_vocab()
@@ -3252,23 +3256,23 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if not row["conservationJurisdiction"]:
+        if not row["conservationAuthority"]:
             return
 
         # Conservation Jurisdiction Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_CONSERVATION_JURISDICTION))
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["conservationJurisdiction"])))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_CONSERVATION_AUTHORITY))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["conservationAuthority"])))
         graph.add((uri, utils.namespaces.TERN.hasValue, conservation_jurisdiction_value))
 
-    def add_conservation_jurisdiction_value(
+    def add_conservation_authority_value(
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds Conservation Jurisdiction Value to the Graph
+        """Adds Conservation Authority Value to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node
@@ -3276,17 +3280,17 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if not row["conservationJurisdiction"]:
+        if not row["conservationAuthority"]:
             return
 
         # Retrieve vocab for field
-        vocab = self.fields()["conservationJurisdiction"].get_vocab()
+        vocab = self.fields()["conservationAuthority"].get_vocab()
 
         # Retrieve term
-        term = vocab(graph=graph).get(row["conservationJurisdiction"])
+        term = vocab(graph=graph).get(row["conservationAuthority"])
 
         # Construct Label
-        label = f"Conservation Jurisdiction = {row['conservationJurisdiction']}"
+        label = f"Conservation Authority = {row['conservationAuthority']}"
 
         # Conservation Jurisdiction Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
