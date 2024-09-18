@@ -12,6 +12,12 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<http://createme.org/attribute/sensitivityCategory/16> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
+    tern:attribute <http://example.com/concept/sensitiveCategory> ;
+    tern:hasSimpleValue "Category 1 - The Department of Biodiversity and Conservation" ;
+    tern:hasValue <http://createme.org/value/sensitivityCategory/16> .
+
 <http://createme.org/datatype/catalogNumber/BHP> a rdfs:Datatype ;
     skos:definition "A catalog number for the sample" ;
     skos:prefLabel "BHP catalogNumber" ;
@@ -863,6 +869,14 @@
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new preparations" .
 
+<http://createme.org/bdr-cv/attribute/sensitivityCategory/Category-1> a skos:Concept ;
+    dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
+    skos:broader <http://example.com/bdr-cv/attribute/sensitivityCategory> ;
+    skos:definition "A type of sensitivityCategory." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "Category 1" ;
+    skos:scopeNote "Under the authority of The Department of Biodiversity and Conservation" .
+
 <http://createme.org/bdr-cv/attribute/taxonRank/new-taxon-rank> a skos:Concept ;
     dcterms:source "http://createme.org/dataset/Example-Incidental-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/taxonRank> ;
@@ -1264,6 +1278,11 @@
         tern:Value ;
     rdfs:label "reproductiveCondition-value" ;
     rdf:value <http://createme.org/bdr-cv/parameter/reproductiveCondition/new-reproductiveCondition> .
+
+<http://createme.org/value/sensitivityCategory/16> a tern:IRI,
+        tern:Value ;
+    rdfs:label "sensitivity category = Category 1" ;
+    rdf:value <http://createme.org/bdr-cv/attribute/sensitivityCategory/Category-1> .
 
 <http://createme.org/value/sex/15> a tern:IRI,
         tern:Value ;

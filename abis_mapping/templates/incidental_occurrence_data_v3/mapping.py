@@ -45,6 +45,7 @@ CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.nam
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_CONSERVATION_STATUS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6")  # noqa: E501
 CONCEPT_CONSERVATION_JURISDICTION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
+CONCEPT_SENSITIVITY_CATEGORY = utils.rdf.uri("concept/sensitiveCategory", utils.namespaces.EXAMPLE)  # TODO Need real URI  # noqa: E501
 
 # Roles
 CI_ROLECODE_ORIGINATOR = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator")  # noqa: E501
@@ -282,6 +283,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         threat_status_value = utils.rdf.uri(f"value/threatStatus/{row_num}", base_iri)
         conservation_authority_attribute = utils.rdf.uri(f"attribute/conservationAuthority/{row_num}", base_iri)  # noqa: E501
         conservation_authority_value = utils.rdf.uri(f"value/conservationAuthority/{row_num}", base_iri)
+        sensitivity_category_attribute = utils.rdf.uri(f"attribute/sensitivityCategory/{row_num}", base_iri)
+        sensitivity_category_value = utils.rdf.uri(f"value/sensitivityCategory/{row_num}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
         provider_record_id_datatype = utils.rdf.uri(
             internal_id=f"datatype/recordID/{row['providerRecordIDSource']}",
@@ -838,6 +841,23 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         self.add_conservation_authority_value(
             uri=conservation_authority_value,
             row=row,
+            graph=graph,
+        )
+
+        # Add Sensitivity Category Attribute
+        self.add_sensitivity_category_attribute(
+            uri=sensitivity_category_attribute,
+            row=row,
+            dataset=dataset,
+            sensitivity_category_value=sensitivity_category_value,
+            graph=graph,
+        )
+
+        # Add Sensitivity Category Value
+        self.add_sensitivity_category_value(
+            uri=sensitivity_category_value,
+            row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -3081,6 +3101,80 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Construct Label
         label = f"Conservation Authority = {row['conservationAuthority']}"
+
+        # Conservation Authority Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))
+        graph.add((uri, rdflib.RDF.value, term))
+
+    def add_sensitivity_category_attribute(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sensitivity_category_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Sensitivity Category Attribute to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sensitivity_category_value (rdflib.URIRef): Sensitivity
+                Category Value associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["sensitivityCategory"]:
+            return
+
+        simple_value = f"{row['sensitivityCategory']} - {row['sensitivityAuthority']}"
+
+        # Sensitivity Category Attribute
+        graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_SENSITIVITY_CATEGORY))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(simple_value)))
+        graph.add((uri, utils.namespaces.TERN.hasValue, sensitivity_category_value))
+
+    def add_sensitivity_category_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Sensitivity Category Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["sensitivityCategory"]:
+            return
+
+        # Retrieve vocab for field
+        vocab = self.fields()["sensitivityCategory"].get_vocab()
+        vocab_instance = vocab(graph=graph, source=dataset)
+
+        # Set the scope note to use if a new term is created on the fly.
+        scope_note = f"Under the authority of {row['sensitivityAuthority']}"
+        assert isinstance(vocab_instance, utils.vocabs.FlexibleVocabulary), \
+            "sensitiveCategory vocabulary is expected to be a FlexibleVocabulary"
+        vocab_instance.scope_note = rdflib.Literal(scope_note)
+        # This has to be done here, instead of at the Vocabulary definition,
+        # because the value is computed from another field (sensitivityAuthority).
+
+        # Retrieve term or Create on the Fly
+        term = vocab_instance.get(row['sensitivityCategory'])
+
+        # Construct Label
+        label = f"sensitivity category = {row['sensitivityCategory']}"
 
         # Conservation Authority Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))

@@ -196,6 +196,10 @@ class FlexibleVocabulary(Vocabulary):
             vocabulary term 'on the fly'.
         broader (Optional[rdflib.URIRef]): Optional broader IRI to use when
             creating a new vocabulary term 'on the fly'.
+        scope_note (Optional[rdflib.Literal]): Optional scope note to use when
+            creating a new vocabulary term 'on the fly'.
+            This can be set on the subclass as a global default, and/or set on individual
+            instances, which will override that default.
         default (Optional[Term]): Optional default term to fall back on if
             a value is not supplied.
     """
@@ -204,6 +208,7 @@ class FlexibleVocabulary(Vocabulary):
     base: rdflib.URIRef
     scheme: rdflib.URIRef
     broader: Optional[rdflib.URIRef]
+    scope_note: Optional[rdflib.Literal] = None
     default: Optional[Term]
 
     def __init__(
@@ -304,6 +309,9 @@ class FlexibleVocabulary(Vocabulary):
 
             # Add Source
             self.graph.add((iri, rdflib.DCTERMS.source, uri))
+
+        if self.scope_note is not None:
+            self.graph.add((iri, rdflib.SKOS.scopeNote, self.scope_note))
 
         # Return
         return iri
