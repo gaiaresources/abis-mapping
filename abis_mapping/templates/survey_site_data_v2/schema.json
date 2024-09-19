@@ -108,6 +108,17 @@
       ]
     },
     {
+      "name": "locality",
+      "title": "Locality",
+      "description": "The specific description of the place.",
+      "example": "Cowaramup Bay Road",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "decimalLatitude",
       "title": "Decimal Latitude",
       "description": "The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are north of the Equator, negative values are south of it. Legal values lie between -90 and 0, inclusive for Southern hemisphere.",
@@ -192,83 +203,6 @@
       "title": "Data Generalizations",
       "description": "Actions taken to make the shared data less specific or complete than in its original form.",
       "example": "Coordinates given in decimalLatitude, decimalLongitude, easting and northing have been rounded to 0.1 DEG. The observer name has been changed to a unique User ID.",
-      "type": "string",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "surveyID",
-      "title": "SurveyID",
-      "description": "The identifier of the Survey that the Site is related to in this dataset.",
-      "example": "AR220-01",
-      "type": "string",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "siteVisitID",
-      "title": "Site Visit ID",
-      "description": "The unique key assigned to a visit. A visit is a time distinct assessment conducted within a survey at a designated site.",
-      "example": "CPXEI0000001",
-      "type": "string",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "siteVisitStart",
-      "title": "Site Visit Start",
-      "description": "The temporal start of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.",
-      "example": "2016-02-28",
-      "type": "timestamp",
-      "format": "default",
-      "constraints": {
-        "required": true
-      }
-    },
-    {
-      "name": "siteVisitEnd",
-      "title": "Site Visit End",
-      "description": "The temporal end of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.",
-      "example": "2016-02-28",
-      "type": "timestamp",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "visitOrgs",
-      "title": "Visit Orgs",
-      "description": "The names of the organisations responsible for recording the original Occurrence.",
-      "example": "NSW Dept of Planning, Industry and Environment.",
-      "type": "list",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "visitObservers",
-      "title": "Visit Observers",
-      "description": "A list (concatenated and separated using |) of names of people, groups, or organisations responsible for recording the original Occurrence.",
-      "example": "Oliver P. Pearson | Anita K. Pearson",
-      "type": "list",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "condition",
-      "title": "Condition",
-      "description": "The state of a patch of vegetation at the time of sampling relative to some specified standard or benchmark (where available).",
-      "example": "Burnt",
       "type": "string",
       "format": "default",
       "constraints": {
