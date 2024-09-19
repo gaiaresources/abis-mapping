@@ -15,6 +15,7 @@ from abis_mapping import base
 from abis_mapping import settings
 import abis_mapping.templates.incidental_occurrence_data_v3.mapping
 import abis_mapping.templates.survey_occurrence_data_v2.mapping
+import abis_mapping.templates.survey_metadata_v2.mapping
 
 # Typing
 from typing import Callable, Type
@@ -25,7 +26,7 @@ class Parameters:
     mapper: Type[base.mapper.ABISMapper]
     data: bytes
     expected: str
-    shacl: bytes
+    shacl: bytes | None
 
 
 minversion = pytest.mark.skipif(
@@ -60,6 +61,16 @@ minversion = pytest.mark.skipif(
             shacl=pathlib.Path(
                 "abis_mapping/templates/survey_occurrence_data_v2/validators/validator.ttl"
             ).read_bytes(),
+        ),
+        Parameters(
+            mapper=abis_mapping.templates.survey_metadata_v2.mapping.SurveyMetadataMapper,
+            data=pathlib.Path(
+                "abis_mapping/templates/survey_metadata_v2/examples/minimal.csv"
+            ).read_bytes(),
+            expected=pathlib.Path(
+                "abis_mapping/templates/survey_metadata_v2/examples/minimal.ttl"
+            ).read_text(),
+            shacl=None,
         ),
     ]
 )
@@ -97,6 +108,9 @@ class TestMapping:
         Args:
             parameters (Parameters): Parameters for the test.
         """
+        if parameters.shacl is None:
+            return  # if no validator, skip
+
         # Create data graph
         data_graphs = (g for g in parameters.mapper().apply_mapping(parameters.data))
 

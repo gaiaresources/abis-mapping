@@ -147,17 +147,6 @@
       }
     },
     {
-      "name": "samplingPerformedBy",
-      "title": "Sampling Performed By",
-      "description": "Similar to eco:samplingPerformedBy. Individual/s that carried out the survey. These can be represented by identifiers. Multiple values allare allowed, separated by a vertical bar aka pipe |",
-      "example": "https://orcid.org/0000-0003-1092-9705 | https://orcid.org/0009-0004-5278-4238",
-      "type": "list",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
       "name": "surveyMethodCitation",
       "title": "Survey Method Citation",
       "description": "A citation or reference to the survey methods used.",
@@ -189,31 +178,6 @@
       "constraints": {
         "required": false
       }
-    },
-    {
-      "name":"samplingEffortValue",
-      "title": "Sample Effort",
-      "description": "Similar to eco:samplingEffortValue. The total sampling effort value. A samplingEffortValue must have a corresponding samplingEffortUnit",
-      "example": "20 x 12",
-      "type": "string",
-      "format": "default",
-      "constraints": {
-        "required": false
-      }
-    },
-    {
-      "name": "samplingEffortUnit",
-      "title": "Sampling Effort Units",
-      "description": "Similar to eco:samplingEffortUnit. The units associated with samplingEffortValue.",
-      "example": "trapDays",
-      "type": "string",
-      "format": "default",
-      "constraints": {
-        "required": false
-      },
-      "vocabularies": [
-        "SAMPLING_EFFORT_UNIT"
-      ]
     },
     {
       "name": "keywords",

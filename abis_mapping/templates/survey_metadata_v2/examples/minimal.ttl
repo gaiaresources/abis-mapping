@@ -11,12 +11,6 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://createme.org/attribute/samplingEffort/1> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
-    tern:attribute <http://example.com/concept/samplingEffort> ;
-    tern:hasSimpleValue "20 x 12 trapDays" ;
-    tern:hasValue <http://createme.org/value/samplingEffort/1> .
-
 <http://createme.org/attribute/surveyType/1> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     tern:attribute <http://example.com/concept/surveyType> ;
@@ -63,13 +57,6 @@
 <http://createme.org/agent/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
     schema:name "NSW Department of Planning, Industry and Environment" .
 
-<http://createme.org/bdr-cv/attribute/samplingEffortUnit/trapDays> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
-    skos:broader <http://example.com/bdr-cv/concept/samplingEffortUnit> ;
-    skos:definition "A type of samplingEffortUnit" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "trapDays" .
-
 <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
     dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
     skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
@@ -85,14 +72,11 @@
     skos:prefLabel "Insecta" .
 
 <http://createme.org/survey/SSD-survey/1/plan> a prov:Plan ;
-    prov:wasAssociatedWith "https://orcid.org/0000-0003-1092-9705"^^xsd:anyURI,
-        "https://orcid.org/0009-0004-5278-4238"^^xsd:anyURI ;
     schema:citation "Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9\"" ;
     schema:description "Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location." ;
     schema:url "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf"^^xsd:anyURI,
         "https://doi.org/10.1002/9781118945568.ch11"^^xsd:anyURI ;
-    tern:hasAttribute <http://createme.org/attribute/samplingEffort>,
-        <http://createme.org/attribute/surveyType>,
+    tern:hasAttribute <http://createme.org/attribute/surveyType>,
         <http://createme.org/attribute/targetHabitatScope>,
         <http://createme.org/attribute/targetTaxa> .
 
@@ -101,12 +85,6 @@
     schema:description "Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location." ;
     schema:url "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf"^^xsd:anyURI,
         "https://doi.org/10.1002/9781118945568.ch11"^^xsd:anyURI .
-
-<http://createme.org/value/samplingEffort/1> a tern:Text,
-        tern:Value ;
-    rdfs:label "samplingEffort" ;
-    rdf:value "20 x 12" ;
-    tern:unit <http://createme.org/bdr-cv/attribute/samplingEffortUnit/trapDays> .
 
 <http://createme.org/value/surveyType/1> a tern:IRI,
         tern:Value ;
