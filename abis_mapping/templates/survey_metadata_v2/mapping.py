@@ -26,7 +26,6 @@ PRINCIPAL_INVESTIGATOR = rdflib.URIRef(
     "code/CI_RoleCode/principalInvestigator"
 )
 CONCEPT_SURVEY_TYPE = utils.rdf.uri("concept/surveyType", utils.namespaces.EXAMPLE)
-CONCEPT_SAMPLING_EFFORT = utils.rdf.uri("concept/samplingEffort", utils.namespaces.EXAMPLE)
 CONCEPT_TARGET_HABITAT_SCOPE = rdflib.URIRef("https://linked.data.gov.au/def/nrm/ae2c88be-63d5-44d3-95ac-54b14c4a4b28")
 CONCEPT_TARGET_TAXONOMIC_SCOPE = rdflib.URIRef(
     "https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec",
@@ -104,12 +103,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                         field_names=[
                             "spatialCoverageWKT",
                             "geodeticDatum",
-                        ]
-                    ),
-                    plugins.mutual_inclusion.MutuallyInclusive(
-                        field_names=[
-                            "samplingEffortValue",
-                            "samplingEffortUnit",
                         ]
                     ),
                 ],
@@ -215,12 +208,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Create survey type value IRI
         survey_type_value = utils.rdf.uri(f"value/surveyType/{row_num}", base_iri)
-
-        # Create sampling effort attribute IRI
-        sampling_effort_attribute = utils.rdf.uri(f"attribute/samplingEffort/{row_num}", base_iri)
-
-        # Create sampling effort value IRI
-        sampling_effort_value = utils.rdf.uri(f"value/samplingEffort/{row_num}", base_iri)
 
         # Create target habitat scope attribute and value objects
         target_habitat_objects: list[AttributeValue] = []
@@ -337,23 +324,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add survey type value node
         self.add_survey_type_value(
             uri=survey_type_value,
-            dataset=dataset,
-            row=row,
-            graph=graph,
-        )
-
-        # Add sampling effort attribute node
-        self.add_sampling_effort_attribute(
-            uri=sampling_effort_attribute,
-            dataset=dataset,
-            sampling_effort_value=sampling_effort_value,
-            row=row,
-            graph=graph,
-        )
-
-        # Add sampling effort value node
-        self.add_sampling_effort_value(
-            uri=sampling_effort_value,
             dataset=dataset,
             row=row,
             graph=graph,
@@ -695,14 +665,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                     utils.rdf.uri("attribute/surveyType", utils.namespaces.CREATEME)
                 )
             )
-        if row["samplingEffortValue"] and row["samplingEffortUnit"]:
-            graph.add(
-                (
-                    uri,
-                    utils.namespaces.TERN.hasAttribute,
-                    utils.rdf.uri("attribute/samplingEffort", utils.namespaces.CREATEME)
-                )
-            )
         if row["targetHabitatScope"]:
             graph.add(
                 (
@@ -733,11 +695,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         if method_urls := row["surveyMethodURL"]:
             for method_url in method_urls:
                 graph.add((uri, rdflib.SDO.url, rdflib.Literal(method_url, datatype=rdflib.XSD.anyURI)))
-
-        # Add sampling performed by(s)
-        if sampling_peformed_bys := row["samplingPerformedBy"]:
-            for peformed_by in sampling_peformed_bys:
-                graph.add((uri, rdflib.PROV.wasAssociatedWith, utils.rdf.uri_or_string_literal(peformed_by)))
 
     def add_survey_type_attribute(
         self,
@@ -810,82 +767,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add value
         term = vocab(graph=graph, source=dataset).get(survey_type)
         graph.add((uri, rdflib.RDF.value, term))
-
-    def add_sampling_effort_attribute(
-        self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
-        sampling_effort_value: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds sampling effort attribute node.
-
-        Args:
-            uri (rdflib.URIRef): Subject of the node.
-            dataset (rdflib.URIRef): Dataset raw data belongs.
-            sampling_effort_value (rdflib.URIRef): Corresponding value.
-            row (frictionless.Row): Raw data being processed.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Extract values
-        effort_value = row["samplingEffortValue"]
-        effort_unit = row["samplingEffortUnit"]
-
-        # Check that valid data available
-        if effort_value is None or effort_unit is None:
-            return
-
-        # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Attribute))
-
-        # Add dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-
-        # Add concept
-        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_SAMPLING_EFFORT))
-
-        # Add values
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(f"{effort_value} {effort_unit}")))
-        graph.add((uri, utils.namespaces.TERN.hasValue, sampling_effort_value))
-
-    def add_sampling_effort_value(
-        self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds sampling effor value node.
-
-        Args:
-            uri (rdflib.URIRef): Subject of the node.
-            dataset (rdflib.URIRef): Dataset raw data belongs.
-            row (frictionless.Row): Raw data being processed.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Extract values
-        effort_value = row["samplingEffortValue"]
-        effort_unit = row["samplingEffortUnit"]
-
-        # Check valid data available
-        if effort_value is None or effort_unit is None:
-            return
-
-        # Add types
-        graph.add((uri, a, utils.namespaces.TERN.Text))
-        graph.add((uri, a, utils.namespaces.TERN.Value))
-
-        # Add label
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("samplingEffort")))
-
-        # Retrieve vocab for field
-        vocab = self.fields()["samplingEffortUnit"].get_vocab()
-
-        # Add value
-        term = vocab(graph=graph, source=dataset).get(effort_unit)
-        graph.add((uri, rdflib.RDF.value, rdflib.Literal(effort_value)))
-        graph.add((uri, utils.namespaces.TERN.unit, term))
 
     def add_target_habitat_attribute(
         self,
