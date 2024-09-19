@@ -14,7 +14,7 @@
     {
       "name": "providerRecordIDSource",
       "title": "Provider Record ID Source",
-      "description": "Person or Organisation that generated the providerRecordID. For providers registered with the BDR, this field should contain your BDR registrationID. Populate only if the details are different from the dataset submission details.",
+      "description": "Person or Organisation that generated the providerRecordID.",
       "example": "Western Australian Biodiversity Information Office",
       "type": "string",
       "format": "default",
