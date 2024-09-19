@@ -17,6 +17,8 @@ from . import relationship_to_related_site
 from . import reproductive_condition
 from . import sampling_effort_unit
 from . import sampling_protocol
+from . import sensitivity_authority
+from . import sensitivity_category
 from . import sequencing_method
 from . import sex
 from . import site_type
