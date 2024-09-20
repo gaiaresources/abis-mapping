@@ -190,6 +190,35 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Construct dictionary and return
             return {row["siteID"]: True for row in r.row_stream if row["siteID"] is not None}
 
+    def extract_site_visit_id_keys(
+        self,
+        data: base.types.ReadableType,
+    ) -> dict[str, bool]:
+        """Extract site visit id key values from the data.
+
+        Args:
+            data (base.types.ReadableType): Raw data to be mapped.
+
+        Returns:
+            dict[str, bool]: Keys are the site visit id values encountered
+                in the data, values are all 'True',
+        """
+        # Construct schema
+        schema = frictionless.Schema.from_descriptor(self.schema())
+
+        # Construct resource
+        resource = frictionless.Resource(
+            source=data,
+            format="csv",
+            schema=schema,
+            encoding="utf-8",
+        )
+
+        # Iterate over rows to extract values
+        with resource.open() as r:
+            # Construct dictionary and return
+            return {row["siteVisitID"]: True for row in r.row_stream if row["siteVisitID"]}
+
     def apply_mapping(
         self,
         data: base.types.ReadableType,
