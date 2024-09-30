@@ -44,7 +44,8 @@ CONCEPT_ACCEPTED_NAME_USAGE = utils.rdf.uri("concept/acceptedNameUsage", utils.n
 CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_CONSERVATION_STATUS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6")  # noqa: E501
-CONCEPT_CONSERVATION_JURISDICTION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
+# TODO: Concept uri still to be created, for now leaving as the conservation jurisdiction uri.
+CONCEPT_CONSERVATION_AUTHORITY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
 CONCEPT_SENSITIVITY_CATEGORY = utils.rdf.uri("concept/sensitiveCategory", utils.namespaces.EXAMPLE)  # TODO Need real URI  # noqa: E501
 
 # Roles
@@ -3072,7 +3073,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Conservation Authority Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_CONSERVATION_JURISDICTION))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_CONSERVATION_AUTHORITY))
         graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["conservationAuthority"])))
         graph.add((uri, utils.namespaces.TERN.hasValue, conservation_authority_value))
 

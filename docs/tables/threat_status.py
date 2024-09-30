@@ -1,4 +1,4 @@
-"""Tool for generating the threat status conservation jurisdiction table."""
+"""Tool for generating the threat status conservation authority table."""
 
 # Standard
 import argparse
@@ -16,8 +16,8 @@ from typing import IO, Literal
 
 
 class ThreatStatusRow(pydantic.BaseModel):
-    """Threat status conservation jurisdiction table row."""
-    conservation_jurisdiction: str = pydantic.Field(serialization_alias="conservationJurisdiction")
+    """Threat status conservation Authority table row."""
+    conservation_authority: str = pydantic.Field(serialization_alias="conservationAuthority")
     threat_status: str = pydantic.Field(serialization_alias="threatStatus")
     threat_status_alt_labels: str = pydantic.Field(serialization_alias="threatStatus alternative labels")
 
@@ -60,7 +60,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
         self,
         dest: IO | None = None,
     ) -> str:
-        """Generates threat status conservation jurisdiction table.
+        """Generates threat status conservation authority table.
 
         Args:
             dest (IO, optional): Destination file. Defaults to None.
@@ -93,7 +93,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
 
         Args:
             threat_stat_cons_jur_term (utils.vocabs.Term): Threat
-                status conservation jurisdiction term.
+                status conservation authority term.
 
         Return;
             ThreatStatConsJurTableRow: Table row.
@@ -115,7 +115,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
 
         # Perform mapping
         row = ThreatStatusRow(
-            conservation_jurisdiction=splt_preferred[0],
+            conservation_authority=splt_preferred[0],
             threat_status=splt_preferred[1],
             threat_status_alt_labels=", ".join(threat_stat_alt),
         )

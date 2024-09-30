@@ -1,4 +1,4 @@
-"""Provides conservation jurisdiction vocabulary for the package"""
+"""Provides conservation authority vocabulary for the package"""
 
 
 # Third-Party
