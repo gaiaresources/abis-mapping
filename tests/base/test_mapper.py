@@ -71,8 +71,7 @@ def data_to_csv(data: list[dict[str, Any]]) -> bytes:
 
     # Create in memory stream writer
     csv_string_io = io.StringIO()
-    csv_writer = csv.DictWriter(
-        csv_string_io, lineterminator="\n", fieldnames=data[0].keys())
+    csv_writer = csv.DictWriter(csv_string_io, lineterminator="\n", fieldnames=data[0].keys())
 
     # Write header to stream
     csv_writer.writeheader()
@@ -218,8 +217,7 @@ def test_extra_fields_schema_row_data(mocker: pytest_mock.MockerFixture) -> None
             diff_schema = base.mapper.ABISMapper.extra_fields_schema(row)
 
             # Extract full schema
-            full_schema = base.mapper.ABISMapper.extra_fields_schema(
-                row, full_schema=True)
+            full_schema = base.mapper.ABISMapper.extra_fields_schema(row, full_schema=True)
 
             # Verify
             assert set(diff_schema.field_names) == expected_extra_fieldnames
@@ -373,8 +371,7 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
     descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper,
-                        "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Expected json as dictionary
     expected_json = {"extraInformation2": "some more info", "extraInformation1": "some additional info"}
@@ -489,8 +486,7 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
 
     # Assert
     assert not report.valid
-    error_codes = [code for codes in report.flatten(
-        ['type']) for code in codes]
+    error_codes = [code for codes in report.flatten(['type']) for code in codes]
     assert error_codes == ["incorrect-label"]
 
 
