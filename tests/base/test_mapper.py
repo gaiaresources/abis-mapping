@@ -2,6 +2,7 @@
 
 # Standard
 import csv
+import copy
 import io
 import json
 import pathlib
@@ -33,6 +34,25 @@ class ContextualStringIO(io.StringIO):
         super().close()
 
 
+class StubMapper(base.mapper.ABISMapper):
+
+    def apply_mapping(
+        self,
+        data: base_types.ReadableType,
+        dataset_iri: Optional[rdflib.URIRef] = None,
+        base_iri: Optional[rdflib.Namespace] = None,
+        **kwargs: Any
+    ) -> Iterator[rdflib.Graph]:
+        yield from []
+
+    def apply_validation(  # type: ignore[empty-body]
+        self,
+        data: base_types.ReadableType,
+        **kwargs: Any
+    ) -> frictionless.Report:
+        pass
+
+
 def data_to_csv(data: list[dict[str, Any]]) -> bytes:
     """Converts list of dictionaries with common keys to a csv.
 
@@ -61,6 +81,73 @@ def data_to_csv(data: list[dict[str, Any]]) -> bytes:
 
     # Retrieve result from stream and encode utf-8
     return csv_string_io.getvalue().encode("utf-8")
+
+
+def test_schema(mocker: pytest_mock.MockerFixture) -> None:
+    """Tests the schema method.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): The mocker fixture.
+    """
+    # Define fake schema
+    raw_schema = {
+        "fields": [
+            {
+                "name": "providerRecordID",
+                "title": "Provider Record ID",
+                "description": "Unique (within provider) identifier for the record.",
+                "example": "8022FSJMJ079c5cf",
+                "type": "string",
+                "format": "default",
+                "constraints": {
+                    "required": True
+                }
+            },
+            {
+                "name": "providerRecordIDSource",
+                "title": "Provider Record ID Source",
+                "description": "Person or Organisation that generated the providerRecordID.",
+                "example": "Western Australian Biodiversity Information Office",
+                "type": "string",
+                "format": "default",
+                "constraints": {
+                    "required": True,
+                }
+            },
+            {
+                "name": "locality",
+                "title": "Locality",
+                "description": "The specific description of the place.",
+                "example": "Cowaramup Bay Road",
+                "type": "string",
+                "format": "default",
+                "url": "https://dwc.tdwg.org/terms/#dwc:locality",
+                "constraints": {
+                    "required": False
+                }
+            },
+        ]
+    }
+    # Patch the pathlib.Path.read_text method
+    mocker.patch.object(pathlib.Path, "read_text",
+                        return_value=json.dumps(raw_schema))
+
+    # Create mapper
+    mapper = StubMapper()
+
+    # Invoke
+    actual = mapper.schema()
+
+    # Expected
+    expected = copy.deepcopy(raw_schema)
+
+    # Add any changes from the raw_schema below
+    for f in expected["fields"]:
+        if f.get("vocabularies") is None:
+            f["vocabularies"] = []
+
+    # Assert
+    assert actual == expected
 
 
 def test_generate_blank_template(mocker: pytest_mock.MockerFixture) -> None:
@@ -444,25 +531,7 @@ def test_fields(
     mocker.patch.object(base.mapper.ABISMapper, "schema", return_value=descriptor)
 
     # Create mapper
-    class TestMapper(base.mapper.ABISMapper):
-
-        def apply_mapping(
-            self,
-            data: base_types.ReadableType,
-            dataset_iri: Optional[rdflib.URIRef] = None,
-            base_iri: Optional[rdflib.Namespace] = None,
-            **kwargs: Any
-        ) -> Iterator[rdflib.Graph]:
-            yield from []
-
-        def apply_validation(  # type: ignore[empty-body]
-            self,
-            data: base_types.ReadableType,
-            **kwargs: Any
-        ) -> frictionless.Report:
-            pass
-
-    mapper = TestMapper()
+    mapper = StubMapper()
 
     # Assert
     assert list(mapper.fields().keys()) == ["fieldA", "fieldB"]
