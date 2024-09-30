@@ -7,7 +7,6 @@ import pathlib
 import attrs
 
 # Local
-from abis_mapping import settings
 from abis_mapping import base
 
 # Typing
