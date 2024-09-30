@@ -1,6 +1,5 @@
 """Describes the models to define a schema."""
 
-
 # Third-party
 import pydantic
 
@@ -33,6 +32,18 @@ class Field(pydantic.BaseModel):
 
     # Allow extra fields to be captured mainly to catch errors in json
     model_config = pydantic.ConfigDict(extra="allow")
+
+    @pydantic.field_serializer("url")
+    def serialize_url(self, url: pydantic.AnyUrl) -> str:
+        """Custom serializer for the url field to return string on dump.
+
+        Args:
+            url (pydantic.AnyUrl): Url object to be serialized.
+
+        Returns:
+            str: String representation of url.
+        """
+        return str(url)
 
     @pydantic.field_validator("vocabularies", mode="after")
     @classmethod

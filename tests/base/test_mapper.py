@@ -2,6 +2,7 @@
 
 # Standard
 import csv
+import copy
 import io
 import json
 import pathlib
@@ -33,6 +34,25 @@ class ContextualStringIO(io.StringIO):
         super().close()
 
 
+class StubMapper(base.mapper.ABISMapper):
+
+    def apply_mapping(
+        self,
+        data: base_types.ReadableType,
+        dataset_iri: Optional[rdflib.URIRef] = None,
+        base_iri: Optional[rdflib.Namespace] = None,
+        **kwargs: Any
+    ) -> Iterator[rdflib.Graph]:
+        yield from []
+
+    def apply_validation(  # type: ignore[empty-body]
+        self,
+        data: base_types.ReadableType,
+        **kwargs: Any
+    ) -> frictionless.Report:
+        pass
+
+
 def data_to_csv(data: list[dict[str, Any]]) -> bytes:
     """Converts list of dictionaries with common keys to a csv.
 
@@ -51,7 +71,8 @@ def data_to_csv(data: list[dict[str, Any]]) -> bytes:
 
     # Create in memory stream writer
     csv_string_io = io.StringIO()
-    csv_writer = csv.DictWriter(csv_string_io, lineterminator="\n", fieldnames=data[0].keys())
+    csv_writer = csv.DictWriter(
+        csv_string_io, lineterminator="\n", fieldnames=data[0].keys())
 
     # Write header to stream
     csv_writer.writeheader()
@@ -61,6 +82,73 @@ def data_to_csv(data: list[dict[str, Any]]) -> bytes:
 
     # Retrieve result from stream and encode utf-8
     return csv_string_io.getvalue().encode("utf-8")
+
+
+def test_schema(mocker: pytest_mock.MockerFixture) -> None:
+    """Tests the schema method.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): The mocker fixture.
+    """
+    # Define fake schema
+    raw_schema = {
+        "fields": [
+            {
+                "name": "providerRecordID",
+                "title": "Provider Record ID",
+                "description": "Unique (within provider) identifier for the record.",
+                "example": "8022FSJMJ079c5cf",
+                "type": "string",
+                "format": "default",
+                "constraints": {
+                    "required": True
+                }
+            },
+            {
+                "name": "providerRecordIDSource",
+                "title": "Provider Record ID Source",
+                "description": "Person or Organisation that generated the providerRecordID.",
+                "example": "Western Australian Biodiversity Information Office",
+                "type": "string",
+                "format": "default",
+                "constraints": {
+                    "required": True,
+                }
+            },
+            {
+                "name": "locality",
+                "title": "Locality",
+                "description": "The specific description of the place.",
+                "example": "Cowaramup Bay Road",
+                "type": "string",
+                "format": "default",
+                "url": "https://dwc.tdwg.org/terms/#dwc:locality",
+                "constraints": {
+                    "required": False
+                }
+            },
+        ]
+    }
+    # Patch the pathlib.Path.read_text method
+    mocker.patch.object(pathlib.Path, "read_text",
+                        return_value=json.dumps(raw_schema))
+
+    # Create mapper
+    mapper = StubMapper()
+
+    # Invoke
+    actual = mapper.schema()
+
+    # Expected
+    expected = copy.deepcopy(raw_schema)
+
+    # Add any changes from the raw_schema below
+    for f in expected["fields"]:
+        if f.get("vocabularies") is None:
+            f["vocabularies"] = []
+
+    # Assert
+    assert actual == expected
 
 
 def test_generate_blank_template(mocker: pytest_mock.MockerFixture) -> None:
@@ -86,7 +174,8 @@ def test_generate_blank_template(mocker: pytest_mock.MockerFixture) -> None:
     mocked_open.return_value = output_stream
 
     # Patch the metadata method
-    mocker.patch.object(base.mapper.ABISMapper, "metadata", return_value={"name": "some_template", "file_type": "CSV"})
+    mocker.patch.object(base.mapper.ABISMapper, "metadata", return_value={
+                        "name": "some_template", "file_type": "CSV"})
 
     # Invoke
     base.mapper.ABISMapper.generate_blank_template()
@@ -109,15 +198,18 @@ def test_extra_fields_schema_row_data(mocker: pytest_mock.MockerFixture) -> None
         mocker (pytest_mock.MockerFixture): The mocker fixture.
     """
     # Construct dataset
-    data = [{"A": 123, "B": 321, "C": 321.6546454654654, "D": True, "E": "something"}]
+    data = [{"A": 123, "B": 321, "C": 321.6546454654654,
+             "D": True, "E": "something"}]
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
+        "name": "B", "type": "integer"}]}
 
     # Expected field names
     expected_extra_fieldnames = {"C", "D", "E"}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper,
+                        "schema").return_value = descriptor
     existing_schema = frictionless.Schema.from_descriptor(descriptor)
 
     # Construct resource
@@ -130,7 +222,8 @@ def test_extra_fields_schema_row_data(mocker: pytest_mock.MockerFixture) -> None
             diff_schema = base.mapper.ABISMapper.extra_fields_schema(row)
 
             # Extract full schema
-            full_schema = base.mapper.ABISMapper.extra_fields_schema(row, full_schema=True)
+            full_schema = base.mapper.ABISMapper.extra_fields_schema(
+                row, full_schema=True)
 
             # Verify
             assert set(diff_schema.field_names) == expected_extra_fieldnames
@@ -173,10 +266,12 @@ def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None
     csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
+        "name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper,
+                        "schema").return_value = descriptor
 
     # Construct official schema
     existing_schema = frictionless.Schema.from_descriptor(mapper.schema())
@@ -234,13 +329,16 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
     csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
+        "name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper,
+                        "schema").return_value = descriptor
 
     # Construct schema (includes extra fields)
-    schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=True)
+    schema = base.mapper.ABISMapper.extra_fields_schema(
+        csv_data, full_schema=True)
 
     # Construct resource
     resource = frictionless.Resource(
@@ -281,13 +379,16 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
     csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
+        "name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper,
+                        "schema").return_value = descriptor
 
     # Expected json as dictionary
-    expected_json = {"extraInformation2": "some more info", "extraInformation1": "some additional info"}
+    expected_json = {"extraInformation2": "some more info",
+                     "extraInformation1": "some additional info"}
 
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
@@ -334,10 +435,12 @@ def test_add_extra_fields_json_no_data(mocker: pytest_mock.MockerFixture) -> Non
     csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
+        "name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper,
+                        "schema").return_value = descriptor
 
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
@@ -378,10 +481,12 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
     csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
+        "name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper,
+                        "schema").return_value = descriptor
 
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
@@ -395,11 +500,13 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
     skip_errors = ["extra-label", "extra-cell"]
 
     # Perform validation
-    report = resource.validate(checklist=frictionless.Checklist(skip_errors=skip_errors))
+    report = resource.validate(
+        checklist=frictionless.Checklist(skip_errors=skip_errors))
 
     # Assert
     assert not report.valid
-    error_codes = [code for codes in report.flatten(['type']) for code in codes]
+    error_codes = [code for codes in report.flatten(
+        ['type']) for code in codes]
     assert error_codes == ["incorrect-label"]
 
 
@@ -441,28 +548,12 @@ def test_fields(
             }
         ]
     }
-    mocker.patch.object(base.mapper.ABISMapper, "schema", return_value=descriptor)
+    mocker.patch.object(base.mapper.ABISMapper, "schema",
+                        return_value=descriptor)
 
     # Create mapper
-    class TestMapper(base.mapper.ABISMapper):
 
-        def apply_mapping(
-            self,
-            data: base_types.ReadableType,
-            dataset_iri: Optional[rdflib.URIRef] = None,
-            base_iri: Optional[rdflib.Namespace] = None,
-            **kwargs: Any
-        ) -> Iterator[rdflib.Graph]:
-            yield from []
-
-        def apply_validation(  # type: ignore[empty-body]
-            self,
-            data: base_types.ReadableType,
-            **kwargs: Any
-        ) -> frictionless.Report:
-            pass
-
-    mapper = TestMapper()
+    mapper = StubMapper()
 
     # Assert
     assert list(mapper.fields().keys()) == ["fieldA", "fieldB"]
