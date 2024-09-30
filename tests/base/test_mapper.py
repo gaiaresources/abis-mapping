@@ -174,8 +174,7 @@ def test_generate_blank_template(mocker: pytest_mock.MockerFixture) -> None:
     mocked_open.return_value = output_stream
 
     # Patch the metadata method
-    mocker.patch.object(base.mapper.ABISMapper, "metadata", return_value={
-                        "name": "some_template", "file_type": "CSV"})
+    mocker.patch.object(base.mapper.ABISMapper, "metadata", return_value={"name": "some_template", "file_type": "CSV"})
 
     # Invoke
     base.mapper.ABISMapper.generate_blank_template()
@@ -198,18 +197,15 @@ def test_extra_fields_schema_row_data(mocker: pytest_mock.MockerFixture) -> None
         mocker (pytest_mock.MockerFixture): The mocker fixture.
     """
     # Construct dataset
-    data = [{"A": 123, "B": 321, "C": 321.6546454654654,
-             "D": True, "E": "something"}]
+    data = [{"A": 123, "B": 321, "C": 321.6546454654654, "D": True, "E": "something"}]
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
-        "name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
 
     # Expected field names
     expected_extra_fieldnames = {"C", "D", "E"}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper,
-                        "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
     existing_schema = frictionless.Schema.from_descriptor(descriptor)
 
     # Construct resource
@@ -266,12 +262,10 @@ def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None
     csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
-        "name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper,
-                        "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Construct official schema
     existing_schema = frictionless.Schema.from_descriptor(mapper.schema())
@@ -329,16 +323,13 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
     csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
-        "name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper,
-                        "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Construct schema (includes extra fields)
-    schema = base.mapper.ABISMapper.extra_fields_schema(
-        csv_data, full_schema=True)
+    schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=True)
 
     # Construct resource
     resource = frictionless.Resource(
@@ -379,16 +370,14 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
     csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
-        "name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
     mocker.patch.object(base.mapper.ABISMapper,
                         "schema").return_value = descriptor
 
     # Expected json as dictionary
-    expected_json = {"extraInformation2": "some more info",
-                     "extraInformation1": "some additional info"}
+    expected_json = {"extraInformation2": "some more info", "extraInformation1": "some additional info"}
 
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
@@ -435,12 +424,10 @@ def test_add_extra_fields_json_no_data(mocker: pytest_mock.MockerFixture) -> Non
     csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
-        "name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper,
-                        "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
@@ -481,12 +468,10 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
     csv_data = data_to_csv(data)
 
     # Construct base schema descriptor
-    descriptor = {"fields": [{"name": "A", "type": "integer"}, {
-        "name": "B", "type": "integer"}]}
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
 
     # Mock out the schema method to return the above descriptor
-    mocker.patch.object(base.mapper.ABISMapper,
-                        "schema").return_value = descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
@@ -500,8 +485,7 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
     skip_errors = ["extra-label", "extra-cell"]
 
     # Perform validation
-    report = resource.validate(
-        checklist=frictionless.Checklist(skip_errors=skip_errors))
+    report = resource.validate(checklist=frictionless.Checklist(skip_errors=skip_errors))
 
     # Assert
     assert not report.valid
@@ -548,11 +532,9 @@ def test_fields(
             }
         ]
     }
-    mocker.patch.object(base.mapper.ABISMapper, "schema",
-                        return_value=descriptor)
+    mocker.patch.object(base.mapper.ABISMapper, "schema", return_value=descriptor)
 
     # Create mapper
-
     mapper = StubMapper()
 
     # Assert
