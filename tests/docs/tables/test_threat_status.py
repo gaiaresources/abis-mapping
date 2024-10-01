@@ -65,7 +65,7 @@ class TestThreatStatusTabler:
         # Modify the mocked vocab terms
         mocked_vocab.return_value.terms = (
             utils.vocabs.Term(
-                labels=("SOME JURISDICTION/SOME STATUS", "SJUR/SSTAT", ),
+                labels=("SOME AUTHORITY/SOME STATUS", "SAUTH/SSTAT", ),
                 iri=rdflib.URIRef("https://example.org/some-term"),
                 description="Some description.",
             ),
@@ -95,8 +95,8 @@ class TestThreatStatusTabler:
 
         # Assert
         assert dest.getvalue() == (
-            "conservationJurisdiction,threatStatus,threatStatus alternative labels\r\n"
-            "SOME JURISDICTION,SOME STATUS,SSTAT\r\n"
+            "conservationAuthority,threatStatus,threatStatus alternative labels\r\n"
+            "SOME AUTHORITY,SOME STATUS,SSTAT\r\n"
             "\n"
         )
 
@@ -119,9 +119,9 @@ class TestThreatStatusTabler:
 
         # Assert
         assert actual == (
-            "|conservationJurisdiction|threatStatus|threatStatus alternative labels|\n"
+            "|conservationAuthority|threatStatus|threatStatus alternative labels|\n"
             "|:---:|:---|:---|\n"
-            "|SOME JURISDICTION|SOME STATUS|SSTAT|\n"
+            "|SOME AUTHORITY|SOME STATUS|SSTAT|\n"
         )
 
 
