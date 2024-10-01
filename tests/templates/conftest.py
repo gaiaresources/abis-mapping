@@ -236,7 +236,25 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
                     "abis_mapping/templates/survey_metadata_v2/examples/minimal_error_chronological_order.csv"
                 ),
                 expected=None,
-            )
+            ),
+            MappingParameters(
+                scenario_name="too_many_rows",
+                should_validate=False,
+                expected_error_codes={'table-dimensions'},
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_metadata_v2/examples/minimal_error_too_many_rows.csv"
+                ),
+                expected=None,
+            ),
+            MappingParameters(
+                scenario_name="mutually-inclusive-field-missing",
+                should_validate=False,
+                expected_error_codes={'row-constraint'},
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_metadata_v2/examples/minimal_error_missing_datum.csv"
+                ),
+                expected=None,
+            ),
         ],
         metadata_sampling_type="systematic survey",
         allows_extra_cols=True,
