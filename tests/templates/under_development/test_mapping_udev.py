@@ -75,6 +75,17 @@ minversion = pytest.mark.skipif(
     ]
 )
 class TestMapping:
+    def test_apply_validation(self, parameters: Parameters) -> None:
+        """Test the apply_validation method
+
+        Args:
+            parameters: Parameters for the test
+        """
+        mapper = parameters.mapper()
+        result = mapper.apply_validation(parameters.data)
+
+        assert result.valid
+
     def test_apply_mapping(self, parameters: Parameters, graph_comparer: Callable) -> None:
         """Tests apply mapping for the specific template while in development.
 
