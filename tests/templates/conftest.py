@@ -210,6 +210,15 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
                     "abis_mapping/templates/survey_site_data_v2/examples/minimal.ttl"
                 ),
             ),
+            MappingParameters(
+                scenario_name="missing_relatedSiteID_and_datum",
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_site_data_v2/examples/minimal-error-missing-fields.csv"
+                ),
+                expected=None,
+                should_validate=False,
+                expected_error_codes={"row-constraint"}
+            ),
         ],
         metadata_sampling_type="systematic survey",
         allows_extra_cols=True
