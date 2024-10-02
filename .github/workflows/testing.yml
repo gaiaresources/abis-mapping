@@ -7,6 +7,15 @@ on:
     branches:
       - main
 jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-python-and-dependencies
+        with:
+          python-version: "3.11"
+      - run: poetry run ruff format --check
+
   lint:
     runs-on: ubuntu-latest
     steps:
