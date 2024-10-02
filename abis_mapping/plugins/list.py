@@ -16,7 +16,10 @@ class ListPlugin(frictionless.Plugin):
     # Class Attributes
     code = "list"
 
-    def select_field_class(self, type: Optional[str] = None) -> Optional[Type[frictionless.Field]]:
+    def select_field_class(
+        self,
+        type: Optional[str] = None,  # noqa: A002
+    ) -> Optional[Type[frictionless.Field]]:
         """Select field class for this plugin."""
         if type == self.code:
             return ListField

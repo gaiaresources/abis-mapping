@@ -31,7 +31,7 @@ class BaseTabler(abc.ABC):
     def __init__(
         self,
         template_id: str,
-        format: SupportedFormats = "csv",
+        format: SupportedFormats = "csv",  # noqa: A002
     ) -> None:
         """Constructor for BaseTabler.
 
@@ -186,7 +186,7 @@ class MarkdownDictWriter(csv.DictWriter):
             Any: Result from final underlying file write method call.
         """
         # Create header row
-        header = dict(zip(self.fieldnames, self.fieldnames))
+        header = dict(zip(self.fieldnames, self.fieldnames, strict=True))
         self.writerow(header)
 
         # Create horizontal line
@@ -203,7 +203,7 @@ class MarkdownDictWriter(csv.DictWriter):
         else:
             divider = [":---"] * len(self.fieldnames)
 
-        header_break = dict(zip(self.fieldnames, divider))
+        header_break = dict(zip(self.fieldnames, divider, strict=True))
         return self.writerow(header_break)
 
     def writerow(self, rowdict: Mapping[Any, Any]) -> Any:

@@ -95,7 +95,11 @@ def build_instructions(mapper_id: str) -> str:
         jinja2.TemplateNotFound: Jinja template not found.
     """
     # Create jinja env
-    env = jinja2.Environment(loader=MapperLoader(mapper_id))
+    env = jinja2.Environment(
+        loader=MapperLoader(mapper_id),
+        # no need to auto-escape markdown templates.
+        autoescape=jinja2.select_autoescape(disabled_extensions=("md",)),
+    )
 
     # Retrieve markdown instructions template
     template = env.get_template("instructions.md")
@@ -130,6 +134,7 @@ def render_index(filepath: pathlib.Path) -> str:
     # Create env
     env = jinja2.Environment(
         loader=loader,
+        autoescape=jinja2.select_autoescape(enabled_extensions=("html",)),
     )
 
     # Get template

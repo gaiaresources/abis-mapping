@@ -340,7 +340,7 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
     # Open resource for row streaming
     with resource.open() as r:
         # Iterate over rows and expected outputs for validation.
-        for row, expected in zip(r.row_stream, overall_expected):
+        for row, expected in zip(r.row_stream, overall_expected, strict=True):
             assert base.mapper.ABISMapper.extract_extra_fields(row) == expected
 
 

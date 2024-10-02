@@ -12,8 +12,8 @@ import tests.conftest
 
 @pytest.mark.parametrize(
     argnames="template_id,test_params",
-    argvalues=[(id, params) for (_, id, params) in conftest.mapping_test_args() if params.expected is not None],
-    ids=[id for (id, _, params) in conftest.mapping_test_args() if params.expected is not None],
+    argvalues=[(id_, params) for (_, id_, params) in conftest.mapping_test_args() if params.expected is not None],
+    ids=[id_ for (id_, _, params) in conftest.mapping_test_args() if params.expected is not None],
 )
 def test_apply_mapping(
     template_id: str,
@@ -58,8 +58,8 @@ def test_apply_mapping(
 
 @pytest.mark.parametrize(
     argnames="template_id,test_params",
-    argvalues=[(id, params) for (_, id, params) in conftest.chunking_test_args()],
-    ids=[id for (id, _, params) in conftest.chunking_test_args()],
+    argvalues=[(id_, params) for (_, id_, params) in conftest.chunking_test_args()],
+    ids=[id_ for (id_, _, params) in conftest.chunking_test_args()],
 )
 def test_apply_mapping_chunking(template_id: str, test_params: conftest.ChunkingParameters) -> None:
     """Tests the chunking functionality for apply_mapping where applicable."""

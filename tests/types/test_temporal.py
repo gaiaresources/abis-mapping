@@ -108,7 +108,7 @@ def test_timestamp_le_comparison(tstmps: list[temporal.Timestamp], is_ordered: b
     """Tests implementation of the __le__ method for timestamp types."""
 
     # Check chronologically increasing
-    assert all((x <= y for x, y in zip(tstmps, tstmps[1:]))) == is_ordered
+    assert all(x <= y for x, y in zip(tstmps[:-1], tstmps[1:], strict=True)) == is_ordered
 
 
 @pytest.mark.parametrize(

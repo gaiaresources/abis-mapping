@@ -387,12 +387,14 @@ def parse_timestamp(raw: str) -> Timestamp:
         # This assertion is included to prove to mypy that the
         # type returned from the previous statement is of a
         # Timestamp type i.e. Date.
-        assert isinstance(d, Date)
+        if not isinstance(d, Date):
+            raise AssertionError
         return d
 
     # (3) Try Parse as ISO Datetime
     with contextlib.suppress(Exception):
-        assert len(raw) > 10  # Shortcut to disable some formats we don't want
+        if not len(raw) > 10:  # Shortcut to disable some formats we don't want
+            raise AssertionError
         timestamp = dateutil.parser.isoparse(raw)
         return Datetime.fromtimestamp(timestamp.timestamp(), tz=timestamp.tzinfo)
 

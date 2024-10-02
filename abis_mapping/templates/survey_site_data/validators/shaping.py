@@ -44,7 +44,8 @@ def main() -> None:
     print(rtext)
 
     # Raise exception if not valid.
-    assert valid
+    if not valid:
+        raise AssertionError("not valid")
 
     # Write out to file
     g.serialize("abis_mapping/templates/survey_site_data/validators/validator.ttl")

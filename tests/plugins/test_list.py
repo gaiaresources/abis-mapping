@@ -59,7 +59,7 @@ def test_list_type_registered() -> None:
     ]
 )
 def test_list_type_read(
-    format: str,
+    format: str,  # noqa: A002
     delimiter: str,
     value: Any,
     expected: Optional[list[str]],
@@ -106,7 +106,7 @@ def test_list_type_read(
     ]
 )
 def test_list_type_write(
-    format: str,
+    format: str,  # noqa: A002
     delimiter: str,
     value: list[str],
     expected: str,
