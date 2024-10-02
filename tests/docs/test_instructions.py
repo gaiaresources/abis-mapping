@@ -68,7 +68,7 @@ class TestMapperLoader:
             mocked_mapper (unittest.mock.MagicMock): Mocked mapper.
         """
         # Create jinja env
-        env = jinja2.Environment(loader=instructions.MapperLoader("some id"))
+        env = jinja2.Environment(loader=instructions.MapperLoader("some id"), autoescape=True)
 
         # Invoke
         src, pth, rld = instructions.MapperLoader("some_id").get_source(environment=env, template="blank_template.md")
@@ -83,7 +83,7 @@ class TestMapperLoader:
         """Tests get_source method raises exception for invalid mapper."""
         # Define bad mapper name and env
         bad_mapper_id = "NOT_A_MAPPER_ID"
-        env = jinja2.Environment(loader=instructions.MapperLoader(bad_mapper_id))
+        env = jinja2.Environment(loader=instructions.MapperLoader(bad_mapper_id), autoescape=True)
 
         # Should raise ValueError
         with pytest.raises(ValueError):
@@ -105,7 +105,7 @@ class TestMapperLoader:
         mocked_fs_get_source.return_value = ("some src", "some_file.md", lambda: True)
 
         # Create jinja env
-        env = jinja2.Environment(loader=instructions.MapperLoader("some id"))
+        env = jinja2.Environment(loader=instructions.MapperLoader("some id"), autoescape=True)
 
         # Invoke
         src, pth, rld = instructions.MapperLoader("some_id").get_source(
@@ -130,7 +130,7 @@ class TestMapperLoader:
             mocked_mapper (unittest.mock.MagicMock): Mocked mapper.
         """
         # Create jinja env
-        env = jinja2.Environment(loader=instructions.MapperLoader("some id"))
+        env = jinja2.Environment(loader=instructions.MapperLoader("some id"), autoescape=True)
 
         with pytest.raises(jinja2.exceptions.TemplateNotFound):
             # Invoke
