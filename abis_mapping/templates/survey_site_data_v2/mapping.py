@@ -99,12 +99,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     plugins.sites_geometry.SitesGeometry(
                         occurrence_site_ids=set(site_id_map)
                     ),
-                    plugins.chronological.ChronologicalOrder(
-                        field_names=[
-                            "siteVisitStart",
-                            "siteVisitEnd"
-                        ]
-                    ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["relatedSiteID", "relationshipToRelatedSite"],
                     ),
