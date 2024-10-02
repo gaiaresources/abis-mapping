@@ -10,8 +10,8 @@ import pytest
 
 @pytest.mark.parametrize(
     argnames="template_id,test_params",
-    argvalues=[(id, params) for (_, id, params) in conftest.mapping_test_args()],
-    ids=[id for (id, _, params) in conftest.mapping_test_args()],
+    argvalues=[(id_, params) for (_, id_, params) in conftest.mapping_test_args()],
+    ids=[id_ for (id_, _, params) in conftest.mapping_test_args()],
 )
 def test_apply_validation(template_id: str, test_params: conftest.MappingParameters) -> None:
     """Tests the validation for the template"""

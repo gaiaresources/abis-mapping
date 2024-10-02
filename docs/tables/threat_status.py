@@ -31,7 +31,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
     def __init__(
         self,
         template_id: str,
-        format: SupportedFormats = "csv",
+        format: SupportedFormats = "csv",  # noqa: A002
     ) -> None:
         """Constructor for ThreatStatConsJurTabler.
 
