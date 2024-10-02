@@ -22,6 +22,12 @@ class ThreatStatusRow(pydantic.BaseModel):
     threat_status_alt_labels: str = pydantic.Field(serialization_alias="threatStatus alternative labels")
 
 
+class ThreatStatusRowDeprecated(ThreatStatusRow):
+    """Threat status conservation jurisdiction table row."""
+    # Redefine as previously conservationAuthority was declared as conservationJurisdiction
+    conservation_authority: str = pydantic.Field(serialization_alias="conservationJurisdiction")
+
+
 class ThreatStatusTabler(tables.base.BaseTabler):
     """Tabler implementation for the threat status table."""
     # Class attributes
@@ -52,8 +58,12 @@ class ThreatStatusTabler(tables.base.BaseTabler):
     @property
     def header(self) -> list[str]:
         """Getter for the header row."""
+        # Pick and set the correct row model for the instance
+        fields = self.mapper.fields()
+        self.row_model = ThreatStatusRow if "conservationAuthority" in fields else ThreatStatusRowDeprecated
+
         # Get header list
-        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in ThreatStatusRow.model_fields.values())
+        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in self.row_model.model_fields.values())
         return [hdr for hdr in raw_hdr if hdr is not None]
 
     def generate_table(
@@ -96,7 +106,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
                 status conservation authority term.
 
         Return;
-            ThreatStatConsJurTableRow: Table row.
+            ThreatStatusRow: Table row.
 
         Raises:
             ValueError: If there is no preferred label for the supplied Term.'
@@ -114,7 +124,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
         threat_stat_alt.difference_update({splt_preferred[1]})
 
         # Perform mapping
-        row = ThreatStatusRow(
+        row = self.row_model(
             conservation_authority=splt_preferred[0],
             threat_status=splt_preferred[1],
             threat_status_alt_labels=", ".join(threat_stat_alt),

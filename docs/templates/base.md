@@ -1,5 +1,5 @@
 {% block metadata %}---
-title: {{ metadata.label }}
+title: {{ metadata.label }} - v{{ metadata.version }}
 summary: {{ metadata.description }}
 ---{% endblock %}
 {% block versions %}<small>

@@ -25,31 +25,95 @@ class TestThreatStatusTabler:
             unittest.mock.MagicMock: mocked mapper.
         """
         # Modify the mocked mapper schema
+        fields = [
+            {
+                "name": "someName",
+                "title": "Some Title",
+                "description": "Some description",
+                "example": "SOME EXAMPLE",
+                "type": "string",
+                "format": "default",
+                "constraints": {
+                    "required": True,
+                    "enum": [
+                        "SOME EXAMPLE",
+                        "Option 2",
+                        "plan C",
+                    ]
+                },
+                "vocabularies": [
+                    # Threat status required for tabler to work
+                    "THREAT_STATUS",
+                ],
+            },
+            {
+                "name": "conservationAuthority",
+                "title": "Conservation Authority",
+                "description": "The authority of the conservation.",
+                "example": "ConsAuth Inc.",
+                "type": "string",
+                "format": "default",
+                "constraints": {
+                    "required": False,
+                },
+            },
+        ]
         mocked_mapper.return_value.schema.return_value = {
-            "fields": [
-                {
-                    "name": "someName",
-                    "title": "Some Title",
-                    "description": "Some description",
-                    "example": "SOME EXAMPLE",
-                    "type": "string",
-                    "format": "default",
-                    "constraints": {
-                        "required": True,
-                        "enum": [
-                            "SOME EXAMPLE",
-                            "Option 2",
-                            "plan C",
-                        ]
-                    },
-                    "vocabularies": [
-                        # Threat status required for tabler to work
-                        "THREAT_STATUS",
-                    ],
-                }
-            ]
+            "fields": fields
         }
+        mocked_mapper.return_value.fields.return_value = {f["name"]: f for f in fields}
 
+        return mocked_mapper
+
+    @pytest.fixture
+    def mocked_deprecated_mapper(self, mocked_mapper: unittest.mock.MagicMock) -> unittest.mock.MagicMock:
+        """Modifies and returns a mocked mapper.
+
+        Args:
+            mocked_mapper (unittest.mock.MagicMock): mocked mapper.
+
+        Returns:
+            unittest.mock.MagicMock: mocked mapper.
+        """
+        fields = [
+            {
+                "name": "someName",
+                "title": "Some Title",
+                "description": "Some description",
+                "example": "SOME EXAMPLE",
+                "type": "string",
+                "format": "default",
+                "constraints": {
+                    "required": True,
+                    "enum": [
+                        "SOME EXAMPLE",
+                        "Option 2",
+                        "plan C",
+                    ]
+                },
+                "vocabularies": [
+                    # Threat status required for tabler to work
+                    "THREAT_STATUS",
+                ],
+            },
+            {
+                "name": "conservationJurisdiction",
+                "title": "Conservation Jurisdiction",
+                "description": "The jurisdiction of the conservation.",
+                "example": "ConsJur Inc.",
+                "type": "string",
+                "format": "default",
+                "constraints": {
+                    "required": False,
+                },
+            },
+        ]
+
+        # Modify the mocked mapper schema
+        mocked_mapper.return_value.schema.return_value = {
+            "fields": fields
+        }
+        mocked_mapper.return_value.fields.return_value = {f["name"]: f for f in fields}
         return mocked_mapper
 
     @pytest.fixture
@@ -120,6 +184,30 @@ class TestThreatStatusTabler:
         # Assert
         assert actual == (
             "|conservationAuthority|threatStatus|threatStatus alternative labels|\n"
+            "|:---:|:---|:---|\n"
+            "|SOME AUTHORITY|SOME STATUS|SSTAT|\n"
+        )
+
+    def test_deprecated_table_generates(
+        self,
+        mocked_deprecated_mapper: unittest.mock.MagicMock,
+        mocked_vocab: unittest.mock.MagicMock,
+    ) -> None:
+        """Tests generation of a table that has no conservationAuthority field.
+
+        Args:
+            mocked_deprecated_mapper (unittest.mock.MagicMock): The mocked deprecated mapper object.
+            mocked_vocab (unittest.mock.MagicMock): The mocked vocab object.
+        """
+        # Create tabler
+        tabler = tables.threat_status.ThreatStatusTabler("some id", format="markdown")
+
+        # Generate table
+        actual = tabler.generate_table()
+
+        # Assert
+        assert actual == (
+            "|conservationJurisdiction|threatStatus|threatStatus alternative labels|\n"
             "|:---:|:---|:---|\n"
             "|SOME AUTHORITY|SOME STATUS|SSTAT|\n"
         )
