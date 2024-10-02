@@ -3165,8 +3165,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Set the scope note to use if a new term is created on the fly.
         scope_note = f"Under the authority of {row['sensitivityAuthority']}"
-        assert isinstance(vocab_instance, utils.vocabs.FlexibleVocabulary), \
-            "sensitiveCategory vocabulary is expected to be a FlexibleVocabulary"
+        if not isinstance(vocab_instance, utils.vocabs.FlexibleVocabulary):
+            raise RuntimeError("sensitiveCategory vocabulary is expected to be a FlexibleVocabulary")
         vocab_instance.scope_note = rdflib.Literal(scope_note)
         # This has to be done here, instead of at the Vocabulary definition,
         # because the value is computed from another field (sensitivityAuthority).
