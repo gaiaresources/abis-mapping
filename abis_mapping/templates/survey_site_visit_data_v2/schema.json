@@ -19,8 +19,7 @@
 			"type": "string",
 			"format": "default",
 			"constraints": {
-				"required": true,
-				"unique": true
+				"required": true
 			}
 		},
 		{
