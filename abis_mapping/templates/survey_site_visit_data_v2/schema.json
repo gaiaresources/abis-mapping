@@ -113,7 +113,6 @@
 			}
 		},
 		{
-			"_comment": "can we do a flexible vocabulary while I do the recon to establish the concepts?",
 			"name": "protocolName",
 			"title": "Protocol Name",
 			"description": "Categorical descriptive name for the method used during the Site Visit.",
