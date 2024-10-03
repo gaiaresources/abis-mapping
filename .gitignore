@@ -89,5 +89,4 @@ site/
 !/docs/pages/archived_templates/*.md
 !/docs/pages/index.md
 /docs/pages/index.html
-!/docs/pages/archived/*.md
 
