@@ -14,6 +14,7 @@ class Constraints(pydantic.BaseModel):
     """The constraints of a schema field primarily defined by frictionless."""
 
     required: bool
+    unique: bool | None = None
     minimum: float | int | None = None
     maximum: float | int | None = None
     enum: list[str] | None = None
