@@ -542,7 +542,7 @@
     {
       "name": "acceptedNameUsage",
       "title": "Accepted Name Usage",
-      "description": "Calaendia excelsa Hopper & A.P.Br.",
+      "description": "The full name, with authorship and date information if known, of the currently valid (zoological) or accepted (botanical) taxon.",
       "example": "Occiperipatoides gilesii (Spencer, 1909)",
       "type": "string",
       "format": "default",
