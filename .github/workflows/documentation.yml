@@ -33,7 +33,7 @@ jobs:
           python-version: "3.11"
 
       - name: Generate markdown
-        run: poetry run bash scripts/generate_instructions.sh
+        run: poetry run poe generate-instructions
 
       - name: Build and deploy dev documentation
         if: ${{ github.event_name == 'push' }}

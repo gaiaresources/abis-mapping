@@ -14,6 +14,7 @@ shapely = "^2.0.2"
 pyproj = "^3.6.1"
 pydantic = "^2.4.2"
 pydantic-settings = "^2.4.0"
+poethepoet = "^0.29.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0.0"
@@ -28,6 +29,15 @@ pyshacl = "^0.25.0"
 jinja2 = "^3.1.4"
 mkdocs-material = "^9.5.27"
 mike = "^2.1.3"
+
+[tool.poe.tasks]
+lint = "ruff check"
+lint-fix = "ruff check --fix-only"
+format = "ruff format"
+format-check = "ruff format --check"
+typecheck = "mypy tests/ abis_mapping/ docs/"
+generate-instructions = "./scripts/generate_instructions.sh"
+test = "pytest tests --cov=abis_mapping --cov=docs --cov-report=term-missing"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
