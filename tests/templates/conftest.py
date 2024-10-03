@@ -215,6 +215,15 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
                 should_validate=False,
                 expected_error_codes={"row-constraint"},
             ),
+            MappingParameters(
+                scenario_name="duplicate-site-ids",
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_site_data_v2/examples/minimal-error-duplicate-site-ids.csv"
+                ),
+                expected=None,
+                should_validate=False,
+                expected_error_codes={"unique-error", "primary-key"},
+            ),
         ],
         metadata_sampling_type="systematic survey",
         allows_extra_cols=True,
