@@ -29,7 +29,7 @@ CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-c
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri(
     "concept/data-generalizations", utils.namespaces.EXAMPLE
-)  # TODO -> Need real URI  # noqa: E501
+)  # TODO -> Need real URI
 CONCEPT_TAXON_RANK = utils.rdf.uri("concept/taxonRank", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_INDIVIDUAL_COUNT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1")
 CONCEPT_ORGANISM_REMARKS = utils.rdf.uri("concept/organismRemarks", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
@@ -39,49 +39,49 @@ CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus", utils.name
 CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri(
     "concept/establishmentMeans", utils.namespaces.EXAMPLE
-)  # TODO -> Need real URI  # noqa: E501
+)  # TODO -> Need real URI
 CONCEPT_LIFE_STAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3")
 CONCEPT_SEX = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36")
 CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri(
     "concept/reproductiveCondition", utils.namespaces.EXAMPLE
-)  # TODO -> Need real URI  # noqa: E501
+)  # TODO -> Need real URI
 CONCEPT_ACCEPTED_NAME_USAGE = utils.rdf.uri(
     "concept/acceptedNameUsage", utils.namespaces.EXAMPLE
-)  # TODO -> Need real URI  # noqa: E501
+)  # TODO -> Need real URI
 CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri(
     "methods/name-check-method", utils.namespaces.EXAMPLE
-)  # TODO -> Need real URI  # noqa: E501
+)  # TODO -> Need real URI
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_CONSERVATION_STATUS = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6"
-)  # noqa: E501
+)
 # TODO: Concept uri still to be created, for now leaving as the conservation jurisdiction uri.
 CONCEPT_CONSERVATION_AUTHORITY = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7"
-)  # noqa: E501
+)
 CONCEPT_SENSITIVITY_CATEGORY = utils.rdf.uri(
     "concept/sensitiveCategory", utils.namespaces.EXAMPLE
-)  # TODO Need real URI  # noqa: E501
+)  # TODO Need real URI
 
 # Roles
 CI_ROLECODE_ORIGINATOR = rdflib.URIRef(
     "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator"
-)  # noqa: E501
+)
 CI_ROLECODE_RIGHTS_HOLDER = rdflib.URIRef(
     "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/rightsHolder"
-)  # noqa: E501
+)
 CI_ROLECODE_RESOURCE_PROVIDER = rdflib.URIRef(
     "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider"
-)  # noqa: E501
+)
 CI_ROLECODE_CUSTODIAN = rdflib.URIRef(
     "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian"
-)  # noqa: E501
+)
 CI_ROLECODE_STAKEHOLDER = rdflib.URIRef(
     "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder"
-)  # noqa: E501
+)
 CI_ROLECODE_OWNER = rdflib.URIRef(
     "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/owner"
-)  # noqa: E501
+)
 DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/resourceProvider")
 DATA_ROLE_OWNER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/owner")
 
@@ -301,15 +301,15 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         life_stage_value = utils.rdf.uri(f"value/lifeStage/{row_num}", base_iri)
         sex_observation = utils.rdf.uri(f"observation/sex/{row_num}", base_iri)
         sex_value = utils.rdf.uri(f"value/sex/{row_num}", base_iri)
-        reproductive_condition_observation = utils.rdf.uri(f"observation/reproductiveCondition/{row_num}", base_iri)  # noqa: E501
+        reproductive_condition_observation = utils.rdf.uri(f"observation/reproductiveCondition/{row_num}", base_iri)
         reproductive_condition_value = utils.rdf.uri(f"value/reproductiveCondition/{row_num}", base_iri)
-        accepted_name_usage_observation = utils.rdf.uri(f"observation/acceptedNameUsage/{row_num}", base_iri)  # noqa: E501
+        accepted_name_usage_observation = utils.rdf.uri(f"observation/acceptedNameUsage/{row_num}", base_iri)
         accepted_name_usage_value = utils.rdf.uri(f"value/acceptedNameUsage/{row_num}", base_iri)
         sampling_sequencing = utils.rdf.uri(f"sampling/sequencing/{row_num}", base_iri)
         sample_sequence = utils.rdf.uri(f"sample/sequence/{row_num}", base_iri)
         threat_status_observation = utils.rdf.uri(f"observation/threatStatus/{row_num}", base_iri)
         threat_status_value = utils.rdf.uri(f"value/threatStatus/{row_num}", base_iri)
-        conservation_authority_attribute = utils.rdf.uri(f"attribute/conservationAuthority/{row_num}", base_iri)  # noqa: E501
+        conservation_authority_attribute = utils.rdf.uri(f"attribute/conservationAuthority/{row_num}", base_iri)
         conservation_authority_value = utils.rdf.uri(f"value/conservationAuthority/{row_num}", base_iri)
         sensitivity_category_attribute = utils.rdf.uri(f"attribute/sensitivityCategory/{row_num}", base_iri)
         sensitivity_category_value = utils.rdf.uri(f"value/sensitivityCategory/{row_num}", base_iri)

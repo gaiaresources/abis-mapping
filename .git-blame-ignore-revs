@@ -4,3 +4,7 @@
 
 # 2024-10-03 Applied ruff format to all python code
 98477463d23e270c276097edde9eb41a8f944ca2
+
+# 2024-10-03 Applied ruff check --fix-only with added RUF100 check (unused suppressions)
+7b6622528ec10913c7ef169c3089a38697ca766c
+4f215c88d4e1532e74bfbce5b7c4c6a03bee7ccb
