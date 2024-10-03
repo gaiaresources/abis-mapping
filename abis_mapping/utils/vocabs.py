@@ -89,6 +89,7 @@ class Vocabulary(abc.ABC):
         publish (bool, optional): Whether to publish vocabulary
             in documentation. Defaults to True.
     """
+
     # Dictionary to hold all vocabs for mapping by their id.
     id_registry: dict[str, Type["Vocabulary"]] = {}
 
@@ -203,6 +204,7 @@ class FlexibleVocabulary(Vocabulary):
         default (Optional[Term]): Optional default term to fall back on if
             a value is not supplied.
     """
+
     # Declare attributes applicable to a flexible vocab
     definition: rdflib.Literal
     base: rdflib.URIRef

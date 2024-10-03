@@ -1,6 +1,5 @@
 """Provides extra frictionless geometry sites' data template checks for the package."""
 
-
 # Third-party
 import frictionless
 import frictionless.errors
@@ -38,11 +37,7 @@ class SitesGeometry(frictionless.Check):
         site_id = row["siteID"] in self.occurrence_site_ids
 
         # Perform check
-        if (
-            (lat and long and datum) or
-            (wkt and datum) or
-            site_id
-        ):
+        if (lat and long and datum) or (wkt and datum) or site_id:
             return
 
         # Create error note
@@ -58,7 +53,4 @@ class SitesGeometry(frictionless.Check):
             note += "incorrect combination of geometry fields provided."
 
         # Yield error
-        yield frictionless.errors.RowConstraintError.from_row(
-            row=row,
-            note=note
-        )
+        yield frictionless.errors.RowConstraintError.from_row(row=row, note=note)

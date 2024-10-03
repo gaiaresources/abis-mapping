@@ -1,6 +1,5 @@
 """Provides Base Types for the Package"""
 
-
 # Typing
 from os import PathLike
 from typing import IO, Union

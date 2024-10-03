@@ -26,7 +26,9 @@ from typing import Any, Optional, Iterator
 a = rdflib.RDF.type
 HABITAT_DESCRIPTION = rdflib.URIRef("https://linked.data.gov.au/def/nrm/aa4c96f6-9ea8-4bd3-8800-0bfddcd8a37c")
 CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)
-CONCEPT_VEGETATION_CONDITION = rdflib.URIRef("http://linked.data.gov.au/def/ausplots-cv/ff69c254-e549-45e8-a320-e28ead5092c8")  # noqa: E501
+CONCEPT_VEGETATION_CONDITION = rdflib.URIRef(
+    "http://linked.data.gov.au/def/ausplots-cv/ff69c254-e549-45e8-a320-e28ead5092c8"
+)  # noqa: E501
 DEFAULT_SURVEY = utils.rdf.uri("survey/SSD-Survey/1", utils.namespaces.CREATEME)  # TODO: Cross reference
 UNSPECIFIED_CONDITION_METHOD = utils.rdf.uri("bdr-cv/methods/conditionMethod/Unspecified", utils.namespaces.CREATEME)
 
@@ -35,6 +37,7 @@ UNSPECIFIED_CONDITION_METHOD = utils.rdf.uri("bdr-cv/methods/conditionMethod/Uns
 @dataclasses.dataclass
 class AttributeValue:
     """Contains data items to enable producing attribute and value nodes"""
+
     raw: str
     attribute: rdflib.URIRef
     value: rdflib.URIRef
@@ -43,6 +46,7 @@ class AttributeValue:
 @dataclasses.dataclass
 class Agent:
     """Contains data items to enable producing agent nodes"""
+
     raw: str
     uri: rdflib.URIRef
 
@@ -96,13 +100,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     plugins.tabular.IsTabular(),
                     plugins.empty.NotEmpty(),
                     plugins.sites_geometry.SitesGeometry(
-                        occurrence_site_ids=set(site_id_map)
+                        occurrence_site_ids=set(site_id_map),
                     ),
                     plugins.chronological.ChronologicalOrder(
-                        field_names=[
-                            "siteVisitStart",
-                            "siteVisitEnd"
-                        ]
+                        field_names=["siteVisitStart", "siteVisitEnd"],
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["relatedSiteID", "relationshipToRelatedSite"],
@@ -215,7 +216,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Construct Resource
         resource = frictionless.Resource(
             source=data,
-            format="csv",   # TODO -> Hardcoded to csv for now
+            format="csv",  # TODO -> Hardcoded to csv for now
             schema=schema,
             encoding="utf-8",
         )
@@ -268,10 +269,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         row_num = row.row_number - 1
 
         site_visit = utils.rdf.uri(f"visit/site/{row_num}", base_iri)
-        site_id = urllib.parse.quote(row['siteID'], safe='')
+        site_id = urllib.parse.quote(row["siteID"], safe="")
         site = dataset + f"/Site/{site_id}"
         condition_site_observation = utils.rdf.uri(f"observation/site/condition/{row_num}", base_iri)
-        condition_value = utils.rdf.uri(f"value/condition/{row_num}", )
+        condition_value = utils.rdf.uri(f"value/condition/{row_num}")
 
         # Conditionally create uris dependent on siteIDSource
         if site_id_src := row["siteIDSource"]:
@@ -297,7 +298,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     AttributeValue(
                         raw=habitat,
                         attribute=utils.rdf.uri(f"attribute/habitat/site/{row_num}/{i}", base_iri),
-                        value=utils.rdf.uri(f"value/habitat/site/{row_num}/{i}", base_iri)
+                        value=utils.rdf.uri(f"value/habitat/site/{row_num}/{i}", base_iri),
                     )
                 )
 
@@ -308,7 +309,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 org_agent_objects.append(
                     Agent(
                         raw=organizations_agent,
-                        uri=utils.rdf.uri(f"agent/{organizations_agent}", base_iri)
+                        uri=utils.rdf.uri(f"agent/{organizations_agent}", base_iri),
                     )
                 )
 
@@ -319,7 +320,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 observer_agent_objects.append(
                     Agent(
                         raw=observer_agent,
-                        uri=utils.rdf.uri(f"agent/{observer_agent}", base_iri)
+                        uri=utils.rdf.uri(f"agent/{observer_agent}", base_iri),
                     )
                 )
 
@@ -497,17 +498,16 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(site_id, datatype=dt)))
 
         # Add related site if available
-        if (
-            (relationship_to_related_site := row["relationshipToRelatedSite"]) and
-            (related_site := row["relatedSiteID"])
+        if (relationship_to_related_site := row["relationshipToRelatedSite"]) and (
+            related_site := row["relatedSiteID"]
         ):
             # Retrieve vocab for field
             relationship_to_related_site_vocab = self.fields()["relationshipToRelatedSite"].get_vocab()
 
             # Retrieve term
-            relationship_to_related_site_term = relationship_to_related_site_vocab(
-                graph=graph
-            ).get(relationship_to_related_site)
+            relationship_to_related_site_term = relationship_to_related_site_vocab(graph=graph).get(
+                relationship_to_related_site
+            )
 
             # Assign triple based on related site string
             if (related_site_literal := utils.rdf.uri_or_string_literal(related_site)).datatype == rdflib.XSD.string:

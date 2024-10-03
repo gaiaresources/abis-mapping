@@ -1,6 +1,5 @@
 """Provides occurrence status vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 
@@ -10,14 +9,14 @@ from abis_mapping import utils
 
 # Terms
 PRESENT = utils.vocabs.Term(
-    labels=("PRESENT", ),
+    labels=("PRESENT",),
     iri=utils.rdf.uri("occurrenceStatus/present", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="The occurrence was present at the location and time of the observation."
+    description="The occurrence was present at the location and time of the observation.",
 )
 ABSENT = utils.vocabs.Term(
-    labels=("ABSENT", ),
+    labels=("ABSENT",),
     iri=utils.rdf.uri("occurrenceStatus/absent", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="The occurrence was not present at the location and time of the observation."
+    description="The occurrence was not present at the location and time of the observation.",
 )
 
 

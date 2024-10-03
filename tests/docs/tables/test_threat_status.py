@@ -39,7 +39,7 @@ class TestThreatStatusTabler:
                         "SOME EXAMPLE",
                         "Option 2",
                         "plan C",
-                    ]
+                    ],
                 },
                 "vocabularies": [
                     # Threat status required for tabler to work
@@ -58,9 +58,7 @@ class TestThreatStatusTabler:
                 },
             },
         ]
-        mocked_mapper.return_value.schema.return_value = {
-            "fields": fields
-        }
+        mocked_mapper.return_value.schema.return_value = {"fields": fields}
         mocked_mapper.return_value.fields.return_value = {f["name"]: f for f in fields}
 
         return mocked_mapper
@@ -89,7 +87,7 @@ class TestThreatStatusTabler:
                         "SOME EXAMPLE",
                         "Option 2",
                         "plan C",
-                    ]
+                    ],
                 },
                 "vocabularies": [
                     # Threat status required for tabler to work
@@ -110,9 +108,7 @@ class TestThreatStatusTabler:
         ]
 
         # Modify the mocked mapper schema
-        mocked_mapper.return_value.schema.return_value = {
-            "fields": fields
-        }
+        mocked_mapper.return_value.schema.return_value = {"fields": fields}
         mocked_mapper.return_value.fields.return_value = {f["name"]: f for f in fields}
         return mocked_mapper
 
@@ -129,7 +125,10 @@ class TestThreatStatusTabler:
         # Modify the mocked vocab terms
         mocked_vocab.return_value.terms = (
             utils.vocabs.Term(
-                labels=("SOME AUTHORITY/SOME STATUS", "SAUTH/SSTAT", ),
+                labels=(
+                    "SOME AUTHORITY/SOME STATUS",
+                    "SAUTH/SSTAT",
+                ),
                 iri=rdflib.URIRef("https://example.org/some-term"),
                 description="Some description.",
             ),

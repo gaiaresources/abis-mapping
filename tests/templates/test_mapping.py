@@ -1,6 +1,5 @@
 """Provides all relevant mapping tests."""
 
-
 # Third-party
 import pytest
 
@@ -15,10 +14,7 @@ import tests.conftest
     argvalues=[(id_, params) for (_, id_, params) in conftest.mapping_test_args() if params.expected is not None],
     ids=[id_ for (id_, _, params) in conftest.mapping_test_args() if params.expected is not None],
 )
-def test_apply_mapping(
-    template_id: str,
-    test_params: conftest.MappingParameters
-) -> None:
+def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters) -> None:
     """Tests the mapping for the template.
 
     Args:

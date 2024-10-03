@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.utils.coords` module"""
 
-
 # Local
 from abis_mapping import utils
 

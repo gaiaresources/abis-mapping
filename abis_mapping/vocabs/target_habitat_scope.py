@@ -31,10 +31,7 @@ BILLABONG_OR_SWAMP = utils.vocabs.Term(
 CAVE = utils.vocabs.Term(
     labels=("CAVE",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/03ee0064-f289-52ae-91a8-ed0aace9a1f2"),
-    description=(
-        "The type of habitat representative of a naturally formed, subterranean open area "
-        "or chamber."
-    ),
+    description=("The type of habitat representative of a naturally formed, subterranean open area " "or chamber."),
 )
 
 CHENOPOD_SHRUBLAND = utils.vocabs.Term(
@@ -104,17 +101,14 @@ CLOSED_HUMMOCK_GRASSLAND = utils.vocabs.Term(
 CLOSED_LICHENLAND = utils.vocabs.Term(
     labels=("CLOSED LICHENLAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/936bf21a-191e-50c2-a767-695931abefeb"),
-    description=(
-        "Refers to the type of habitat characterised by lichenised tree trunks and rocks."
-    ),
+    description=("Refers to the type of habitat characterised by lichenised tree trunks and rocks."),
 )
 
 CLOSED_LIVERWORTLAND = utils.vocabs.Term(
     labels=("CLOSED LIVERWORTLAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/b190259a-9301-55bd-bf66-07d98a0d9af6"),
     description=(
-        "Refers to the type of habitat characterised by lower plant groups such as moss, "
-        "liverworts and bryophytes."
+        "Refers to the type of habitat characterised by lower plant groups such as moss, " "liverworts and bryophytes."
     ),
 )
 
@@ -125,7 +119,7 @@ CLOSED_MALLEE_FOREST = utils.vocabs.Term(
         "Refers to the NVIS dominant vegetation structural formation class, with a percent "
         "cover of about >80% members of tree mallee (e.g., some members of "
         "Eucalyptus)."
-    )
+    ),
 )
 
 CLOSED_MALLEE_SHRUBLAND = utils.vocabs.Term(
@@ -142,8 +136,7 @@ CLOSED_MOSSLAND = utils.vocabs.Term(
     labels=("CLOSED MOSSLAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/44f77309-6690-5e04-a873-7418632d1420"),
     description=(
-        "Refers to the type of habitat characterised by lower plant groups such as moss, "
-        "liverworts and bryophytes."
+        "Refers to the type of habitat characterised by lower plant groups such as moss, " "liverworts and bryophytes."
     ),
 )
 
@@ -177,10 +170,7 @@ CLOSED_SHRUBLAND = utils.vocabs.Term(
 CLOSED_SOD_GRASSLAND = utils.vocabs.Term(
     labels=("CLOSED SOD GRASSLAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/18d6c67c-5a1e-5146-a49a-a17615eb6656"),
-    description=(
-        "Refers to the type of habitat representative of a characteristic sod-like (turf) "
-        "grass."
-    ),
+    description=("Refers to the type of habitat representative of a characteristic sod-like (turf) " "grass."),
 )
 
 CLOSED_TUSSOCK_GRASSLAND = utils.vocabs.Term(
@@ -198,7 +188,7 @@ CLOSED_VINELAND = utils.vocabs.Term(
     description=(
         "Refers to the type of habitat represented by a closed vegetation dominated by "
         "stragglers and woody climbers."
-    )
+    ),
 )
 
 COASTAL_WATERS = utils.vocabs.Term(
@@ -247,7 +237,7 @@ FORBLAND = utils.vocabs.Term(
         "Refers to the NVIS dominant vegetation structural formation class, with a percent "
         "cover of about 50-80% members of Forbs or herbaceous plants other than "
         "grasses."
-    )
+    ),
 )
 
 FRESHWATER_LAKE = utils.vocabs.Term(
@@ -262,10 +252,7 @@ FRESHWATER_LAKE = utils.vocabs.Term(
 GRAZING_LAND = utils.vocabs.Term(
     labels=("GRAZING LAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/4f1acfe6-f8bc-5318-ba80-d40402109504"),
-    description=(
-        "Refers to the type of habitat representative of a land predominantly used for "
-        "grazing."
-    ),
+    description=("Refers to the type of habitat representative of a land predominantly used for " "grazing."),
 )
 
 HEATHLAND = utils.vocabs.Term(
@@ -274,7 +261,7 @@ HEATHLAND = utils.vocabs.Term(
     description=(
         "Refers to the NVIS dominant vegetation structural formation class, with a percent "
         "cover of about 50-80% members of Heath (e.g., Ericaceae, Myrtaceae)."
-    )
+    ),
 )
 
 HUMMOCK_GRASSLAND = utils.vocabs.Term(
@@ -292,25 +279,19 @@ ISOLATED_CHENOPOD_SHRUBS = utils.vocabs.Term(
     description=(
         "Refers to the NVIS dominant vegetation structural formation class, with a percent "
         "cover of about <0.25% members of Chenopodiaceae."
-    )
+    ),
 )
 
 ISOLATED_CLUMP_OF_CHENOPOD_SHRUBS = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF CHENOPOD SHRUBS",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/1928d26f-10b6-5a61-84cb-feac377781b0"),
-    description=(
-        "Refers to the type of habitat characterised by isolated clumps of chenopod "
-        "shrubs."
-    ),
+    description=("Refers to the type of habitat characterised by isolated clumps of chenopod " "shrubs."),
 )
 
 ISOLATED_CLUMP_OF_HEATH_SHRUBS = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF HEATH SHRUBS",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/e1dd0210-be1b-548e-aa4b-5567d973a9f5"),
-    description=(
-        "Refers to the type of habitat characterised by isolated clumps of heath or "
-        "heath-like shrubs."
-    ),
+    description=("Refers to the type of habitat characterised by isolated clumps of heath or " "heath-like shrubs."),
 )
 
 ISOLATED_CLUMP_OF_HUMMOCK_GRASSES = utils.vocabs.Term(
@@ -326,9 +307,8 @@ ISOLATED_CLUMP_OF_LIVERWORTS = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF LIVERWORTS",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/2aad6ae5-d64f-55b7-a394-a90394c30d29"),
     description=(
-        "Refers to the type of habitat characterised by isolated clumps of bryophytes, "
-        "moss and liverworts."
-    )
+        "Refers to the type of habitat characterised by isolated clumps of bryophytes, " "moss and liverworts."
+    ),
 )
 
 ISOLATED_CLUMP_OF_MALLEE_SHRUBS = utils.vocabs.Term(
@@ -353,66 +333,52 @@ ISOLATED_CLUMP_OF_MOSSES = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF MOSSES",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/4f1dc06e-910b-50a9-890a-d8d7ba3665b9"),
     description=(
-        "Refers to the type of habitat characterised by isolated clumps of bryophytes, "
-        "moss and liverworts."
+        "Refers to the type of habitat characterised by isolated clumps of bryophytes, " "moss and liverworts."
     ),
 )
 
 ISOLATED_CLUMP_OF_RUSHES = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF RUSHES",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/9a309ff4-8499-5bf4-92cc-8d394a53e6b9"),
-    description=(
-        "Refers to the type of habitat characterised by isolated clumps of rushes."
-    ),
+    description=("Refers to the type of habitat characterised by isolated clumps of rushes."),
 )
 
 ISOLATED_CLUMP_OF_SEDGES = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF SEDGES",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/032937cf-f227-570d-a20d-9e2e04c27be8"),
-    description=(
-        "Refers to the type of habitat characterised by isolated clumps of sedges."
-    ),
+    description=("Refers to the type of habitat characterised by isolated clumps of sedges."),
 )
 
 ISOLATED_CLUMP_OF_SHRUBS = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF SHRUBS",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/3d57e6c5-e288-56c2-89c3-1d1f8abd5847"),
-    description=(
-        "Refers to the type of habitat characterised by isolated clumps of shrubs."
-    ),
+    description=("Refers to the type of habitat characterised by isolated clumps of shrubs."),
 )
 
 ISOLATED_CLUMP_OF_SOD_GRASSES = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF SOD GRASSES",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/f2c496b6-ea23-546b-83f2-14ebb6f5ca82"),
-    description=(
-        "Refers to the type of habitat characterised by isolated clumps of sod grass."
-    ),
+    description=("Refers to the type of habitat characterised by isolated clumps of sod grass."),
 )
 
 ISOLATED_CLUMP_OF_TREES = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF TREES",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/7e8f9627-8796-5e1e-ad72-33f2a863de98"),
-    description=(
-        "Refers to the type of habitat characterised by isolated clumps of trees."
-    ),
+    description=("Refers to the type of habitat characterised by isolated clumps of trees."),
 )
 
 ISOLATED_CLUMP_OF_TUSSOCK_GRASSES = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF TUSSOCK GRASSES",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/f51c20dd-6026-5b24-9f5f-a705b8d88a95"),
     description=(
-        "Refers to the type of habitat characterised by isolated clumps of tussock grasses "
-        "(e.g., Poa spp)."
+        "Refers to the type of habitat characterised by isolated clumps of tussock grasses " "(e.g., Poa spp)."
     ),
 )
 
 ISOLATED_CLUMP_OF_VINES = utils.vocabs.Term(
     labels=("ISOLATED CLUMP OF VINES",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/f8c0c37c-3021-5f90-bb23-658966b5326d"),
-    description=(
-        "Refers to the type of habitat characterised by isolated clumps of vines."
-    ),
+    description=("Refers to the type of habitat characterised by isolated clumps of vines."),
 )
 
 ISOLATED_CLUMPS_OF_FERNS = utils.vocabs.Term(
@@ -436,9 +402,7 @@ ISOLATED_CLUMPS_OF_FORBS = utils.vocabs.Term(
 ISOLATED_CLUP_OF_LICHENS = utils.vocabs.Term(
     labels=("ISOLATED CLUP OF LICHENS",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/f5a80ba0-7b0b-51ee-bfd3-8e96199e8298"),
-    description=(
-        "Refers to the type of habitat characterised by isolated clumps of lichens."
-    ),
+    description=("Refers to the type of habitat characterised by isolated clumps of lichens."),
 )
 
 ISOLATED_FERNS = utils.vocabs.Term(
@@ -480,17 +444,13 @@ ISOLATED_HUMMOCK_GRASSES = utils.vocabs.Term(
 ISOLATED_LICHENS = utils.vocabs.Term(
     labels=("ISOLATED LICHENS",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/69a2aa31-2a87-5306-87e0-baa53745032b"),
-    description=(
-        "Refers to the type of habitat characterised by isolated or sparse lichens."
-    ),
+    description=("Refers to the type of habitat characterised by isolated or sparse lichens."),
 )
 
 ISOLATED_LIVERWORTS = utils.vocabs.Term(
     labels=("ISOLATED LIVERWORTS",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/d228dc9f-9e51-567b-8fde-f3bac5f57265"),
-    description=(
-        "Refers to the type of habitat characterised by isolated or sparse liverworts."
-    ),
+    description=("Refers to the type of habitat characterised by isolated or sparse liverworts."),
 )
 
 ISOLATED_MALLEE_SHRUBS = utils.vocabs.Term(
@@ -517,8 +477,7 @@ ISOLATED_MOSSES = utils.vocabs.Term(
     labels=("ISOLATED MOSSES",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/3f630070-deb6-596f-92ac-9906008d0f07"),
     description=(
-        "Refers to the type of habitat characterised by isolated mosses, including "
-        "bryophytes and liverworts."
+        "Refers to the type of habitat characterised by isolated mosses, including " "bryophytes and liverworts."
     ),
 )
 
@@ -552,10 +511,7 @@ ISOLATED_SHRUBS = utils.vocabs.Term(
 ISOLATED_SOD_GRASSES = utils.vocabs.Term(
     labels=("ISOLATED SOD GRASSES",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/cf2c27f3-1f44-50cc-a382-4a18c5c24985"),
-    description=(
-        "Refers to the type of habitat characterised by isolated or sparse sod or turf-like "
-        "grasses."
-    ),
+    description=("Refers to the type of habitat characterised by isolated or sparse sod or turf-like " "grasses."),
 )
 
 ISOLATED_TREES = utils.vocabs.Term(
@@ -580,18 +536,14 @@ ISOLATED_VINES = utils.vocabs.Term(
     labels=("ISOLATED VINES",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/d42312a8-1e09-5dc4-ae32-df980671e7d7"),
     description=(
-        "Refers to the type of habitat characterised by isolated or sparse stragglers or "
-        "climbing woody vines."
+        "Refers to the type of habitat characterised by isolated or sparse stragglers or " "climbing woody vines."
     ),
 )
 
 LICHENLAND = utils.vocabs.Term(
     labels=("LICHENLAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/700fd743-4b00-59cf-87fd-a2bb56d93002"),
-    description=(
-        "Refers to the type of habitat predominated by lichens on rocks, trees or tree "
-        "stumps, etc."
-    ),
+    description=("Refers to the type of habitat predominated by lichens on rocks, trees or tree " "stumps, etc."),
 )
 
 LIVERWORTLAND = utils.vocabs.Term(
@@ -622,9 +574,7 @@ MALLEE_WOODLAND = utils.vocabs.Term(
 MOSSLAND = utils.vocabs.Term(
     labels=("MOSSLAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/9ad6291c-900f-5538-af2d-6e241b0264ba"),
-    description=(
-        "Refers to the type of habitat dominated by mosses."
-    ),
+    description=("Refers to the type of habitat dominated by mosses."),
 )
 
 MUDFLAT = utils.vocabs.Term(
@@ -711,10 +661,7 @@ OPEN_LICHENLAND = utils.vocabs.Term(
 OPEN_LIVERWORTLAND = utils.vocabs.Term(
     labels=("OPEN LIVERWORTLAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/30d4c6a6-5558-5fd3-bed3-487c6fd7d015"),
-    description=(
-        "Refers to the type of habitat characterised by open or sparse lichenised tree "
-        "trunks and rocks."
-    ),
+    description=("Refers to the type of habitat characterised by open or sparse lichenised tree " "trunks and rocks."),
 )
 
 OPEN_MALLEE_FOREST = utils.vocabs.Term(
@@ -789,7 +736,7 @@ OPEN_SOD_GRASSLAND = utils.vocabs.Term(
     description=(
         "Refers to the type of habitat characterised by open or sparse (10-30% ground "
         "cover) of a characteristic sod-like (turf) grass."
-    )
+    ),
 )
 
 OPEN_TUSSOCK_GRASSLAND = utils.vocabs.Term(
@@ -822,10 +769,7 @@ OPEN_WOODLAND = utils.vocabs.Term(
 ROCK_OUTCROP = utils.vocabs.Term(
     labels=("ROCK OUTCROP",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/dc4aeb3c-5a67-5232-89d3-9ee250cf3cda"),
-    description=(
-        "Refers to the type of habitat characterised by rocks, which protrudes through the "
-        "surface layer."
-    ),
+    description=("Refers to the type of habitat characterised by rocks, which protrudes through the " "surface layer."),
 )
 
 RUSHLAND = utils.vocabs.Term(
@@ -861,15 +805,14 @@ SHRUBLAND = utils.vocabs.Term(
     description=(
         "Refers to the NVIS dominant vegetation structural formation class, with a percent "
         "cover of about 50-80% of shrubs (e.g., shrub, cycad, grass-tree, tree-fern)."
-    )
+    ),
 )
 
 SOD_GRASSLAND = utils.vocabs.Term(
     labels=("SOD GRASSLAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/585bbfcc-cb43-5d7a-9a58-1c90031300fd"),
     description=(
-        "Refers to the type of habitat characterised by mid-dense (30-70% cover) sod or "
-        "turf-like grasses."
+        "Refers to the type of habitat characterised by mid-dense (30-70% cover) sod or " "turf-like grasses."
     ),
 )
 
@@ -927,10 +870,7 @@ SPARSE_LICHENLAND = utils.vocabs.Term(
 SPARSE_LIVERWORTLAND = utils.vocabs.Term(
     labels=("SPARSE LIVERWORTLAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/64c1dc43-cde9-55b4-b1bb-fe58a340e20a"),
-    description=(
-        "Refers to the type of habitat characterised by very sparse (<10% cover) "
-        "liverworts."
-    ),
+    description=("Refers to the type of habitat characterised by very sparse (<10% cover) " "liverworts."),
 )
 
 SPARSE_MALLEE_SHRUBLAND = utils.vocabs.Term(
@@ -979,8 +919,7 @@ SPARSE_SOD_GRASSLAND = utils.vocabs.Term(
     labels=("SPARSE SOD GRASSLAND",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/a4fccf87-04df-5982-a89f-4aaf6b089777"),
     description=(
-        "Refers to the type of habitat characterised by very sparse (<10% cover) sod or "
-        "turf-like grasses."
+        "Refers to the type of habitat characterised by very sparse (<10% cover) sod or " "turf-like grasses."
     ),
 )
 

@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.plugins.mutual_inclusion` module"""
 
-
 # Third-Party
 import frictionless
 
@@ -17,7 +16,6 @@ def test_checks_mutually_inclusive() -> None:
             {"a": "A", "b": "B", "c": "C"},
             {"a": "A", "b": "B", "c": None},
             {"a": None, "b": None, "c": "C"},
-
             # Invalid
             {"a": None, "b": "B", "c": "C"},
             {"a": None, "b": "B", "c": None},

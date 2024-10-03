@@ -31,9 +31,9 @@ def test_generate_table(
 
     # Assert
     assert dest.getvalue() == (
-        'Template field name,Preferred label,Definition,Alternate label\r\n'
-        'someName,SOME LABEL,Some description.,ANOTHER LABEL\r\n'
-        '\n'
+        "Template field name,Preferred label,Definition,Alternate label\r\n"
+        "someName,SOME LABEL,Some description.,ANOTHER LABEL\r\n"
+        "\n"
     )
 
 
@@ -55,7 +55,7 @@ def test_generate_table_markdown(
 
     # Assert
     assert actual == (
-        '|Template field name|Preferred label|Definition|Alternate label|\n'
-        '|:---|:---|:---|:---|\n'
+        "|Template field name|Preferred label|Definition|Alternate label|\n"
+        "|:---|:---|:---|:---|\n"
         '|<a name="someName-vocabularies"></a>someName|SOME LABEL|Some description.|ANOTHER LABEL|\n'
     )

@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.plugins.timestamp` module"""
 
-
 # Third-Party
 import frictionless
 import frictionless.fields
@@ -27,12 +26,12 @@ def test_timestamp_plugin() -> None:
 def test_timestamp_registered() -> None:
     """Tests the timestamp field type is registered."""
     # Create schema with timestamp field
-    schema: frictionless.Schema = frictionless.Schema.from_descriptor({
-        'fields': [{'name': 'someTimestamp', 'type': 'timestamp'}]
-    })
+    schema: frictionless.Schema = frictionless.Schema.from_descriptor(
+        {"fields": [{"name": "someTimestamp", "type": "timestamp"}]}
+    )
 
     # Extract timestamp field
-    field = schema.get_field('someTimestamp')
+    field = schema.get_field("someTimestamp")
 
     # Will only reach this assertion if schema created (i.e. timestamp type registered)
     assert not field.builtin
@@ -89,8 +88,9 @@ def test_timestamp_type_year_month() -> None:
     assert field.read_cell("04/2022")[0] == types.temporal.YearMonth(year=2022, month=4)  # Year month
     assert field.read_cell("4/2022")[0] == types.temporal.YearMonth(year=2022, month=4)  # Year month
     assert field.read_cell("04/0022")[0] == types.temporal.YearMonth(year=22, month=4)  # Year month
-    assert field.read_cell(types.temporal.YearMonth(2022, 4))[0] ==\
-           types.temporal.YearMonth(year=2022, month=4)  # Year month
+    assert field.read_cell(types.temporal.YearMonth(2022, 4))[0] == types.temporal.YearMonth(
+        year=2022, month=4
+    )  # Year month
 
     # Write cell
     assert field.write_cell(types.temporal.YearMonth(year=2022, month=4))[0] == "2022-04"

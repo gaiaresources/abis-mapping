@@ -1,6 +1,5 @@
 """Provides custom frictionless timestamp plugin for the package"""
 
-
 # Third-Party
 import attrs
 import frictionless
@@ -49,7 +48,7 @@ class TimestampField(frictionless.Field):
         "required",
         "minimum",
         "maximum",
-        "enum"
+        "enum",
     ]
 
     def create_value_reader(self) -> frictionless.schema.types.IValueReader:
@@ -87,6 +86,7 @@ class TimestampField(frictionless.Field):
 
     def create_value_writer(self) -> frictionless.schema.types.IValueWriter:
         """Creates value writer callable."""
+
         def value_writer(cell: temporal.Timestamp) -> str:
             """Convert cell (write direction)
 

@@ -13,14 +13,15 @@ from docs import tables
 
 class TestBaseTabler:
     """Test suite for the BaseTabler class"""
+
     def test_init_raises_invalid_template_id(self) -> None:
         """Tests initialisation raises on invalid template id."""
         with pytest.raises(ValueError):
             tables.fields.FieldTabler("FAKE_ID")
 
     def test_init_raises_invalid_format(
-            self,
-            mocked_mapper: unittest.mock.MagicMock,
+        self,
+        mocked_mapper: unittest.mock.MagicMock,
     ) -> None:
         """Tests constructor raises on invalid format.
 
@@ -43,6 +44,7 @@ class TestBaseTabler:
 
 class TestMarkdownDictWriter:
     """Test suite for the MarkdownDictWriter class"""
+
     def test_writeheader(self) -> None:
         """Tests writeheader method."""
         # Create memory io to write to
@@ -55,10 +57,7 @@ class TestMarkdownDictWriter:
         writer.writeheader()
 
         # Assert
-        assert output.getvalue() == (
-            "|Some|Header|Fields|\n"
-            "|:---|:---|:---|\n"
-        )
+        assert output.getvalue() == ("|Some|Header|Fields|\n" "|:---|:---|:---|\n")
 
     def test_writeheader_with_alignment(self) -> None:
         """Tests writeheader method with alignment."""
@@ -76,10 +75,7 @@ class TestMarkdownDictWriter:
         writer.writeheader()
 
         # Assert
-        assert output.getvalue() == (
-            "|Some|Header|Fields|\n"
-            "|:---|:---:|---:|\n"
-        )
+        assert output.getvalue() == ("|Some|Header|Fields|\n" "|:---|:---:|---:|\n")
 
     def test_writeheader_invalid_alignment_length(self) -> None:
         """Tests writeheader method with invalid alignment length."""
@@ -122,9 +118,7 @@ class TestMarkdownDictWriter:
         writer.writerow(data)
 
         # Assert
-        assert output.getvalue() == (
-            "|Value 1|2.0|True|\n"
-        )
+        assert output.getvalue() == ("|Value 1|2.0|True|\n")
 
     def test_writerows(self) -> None:
         """Tests the writerows method."""

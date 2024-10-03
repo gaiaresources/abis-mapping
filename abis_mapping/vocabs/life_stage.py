@@ -1,6 +1,5 @@
 """Provides life stage vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 
@@ -10,7 +9,10 @@ from abis_mapping import utils
 
 # Terms
 ADULT = utils.vocabs.Term(
-    labels=("ADULT", "IMAGO", ),
+    labels=(
+        "ADULT",
+        "IMAGO",
+    ),
     iri=utils.rdf.uri("lifeStage/adult", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "An adult is a plant, animal, or person who has reached full growth or "
@@ -18,7 +20,11 @@ ADULT = utils.vocabs.Term(
     ),
 )
 EMBRYO = utils.vocabs.Term(
-    labels=("EMBRYO", "EGG", "SEED", ),
+    labels=(
+        "EMBRYO",
+        "EGG",
+        "SEED",
+    ),
     iri=utils.rdf.uri("lifeStage/embryo", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "An embryo is a multicellular diploid eukaryote in its earliest stage of "
@@ -27,7 +33,12 @@ EMBRYO = utils.vocabs.Term(
     ),
 )
 GAMETE = utils.vocabs.Term(
-    labels=("GAMETE", "OVUM", "SPERM", "POLLEN", ),
+    labels=(
+        "GAMETE",
+        "OVUM",
+        "SPERM",
+        "POLLEN",
+    ),
     iri=utils.rdf.uri("lifeStage/gamete", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "A gamete is a cell that fuses with another gamete during fertilisation in "
@@ -44,7 +55,13 @@ GAMETE = utils.vocabs.Term(
     ),
 )
 GAMETOPHYTE = utils.vocabs.Term(
-    labels=("GAMETOPHYTE", "GAMONT", "PROTONEMA", "POLLEN", "OVULE", ),
+    labels=(
+        "GAMETOPHYTE",
+        "GAMONT",
+        "PROTONEMA",
+        "POLLEN",
+        "OVULE",
+    ),
     iri=utils.rdf.uri("lifeStage/gametophyte", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "In plants and algae that undergo alternation of generations, a "
@@ -120,10 +137,13 @@ LARVA = utils.vocabs.Term(
         "origin than the adult form. The early life stages of most fish species are "
         "considerably different from juveniles and adults of their species and are "
         "called larvae."
-    )
+    ),
 )
 PUPA = utils.vocabs.Term(
-    labels=("PUPA", "PUPPE", ),
+    labels=(
+        "PUPA",
+        "PUPPE",
+    ),
     iri=utils.rdf.uri("lifeStage/pupa", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "A pupa is the life stage of some insects undergoing transformation "
@@ -133,7 +153,7 @@ PUPA = utils.vocabs.Term(
     ),
 )
 SPORE = utils.vocabs.Term(
-    labels=("SPORE", ),
+    labels=("SPORE",),
     iri=utils.rdf.uri("lifeStage/spore", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "A spore is a reproductive structure that is adapted for dispersal and "
@@ -153,7 +173,10 @@ SPORE = utils.vocabs.Term(
     ),
 )
 SPOROPHYTE = utils.vocabs.Term(
-    labels=("SPOROPHYTE", "AGAMONT", ),
+    labels=(
+        "SPOROPHYTE",
+        "AGAMONT",
+    ),
     iri=utils.rdf.uri("lifeStage/sporophyte", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "All land plants, and some algae, have life cycles in which a haploid "
@@ -167,7 +190,10 @@ SPOROPHYTE = utils.vocabs.Term(
     ),
 )
 ZYGOTE = utils.vocabs.Term(
-    labels=("ZYGOTE", "BLASTOMERE", ),
+    labels=(
+        "ZYGOTE",
+        "BLASTOMERE",
+    ),
     iri=utils.rdf.uri("lifeStage/zygote", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "A zygote (or zygocyte) describes the first stage of a new unique organism blastomere "

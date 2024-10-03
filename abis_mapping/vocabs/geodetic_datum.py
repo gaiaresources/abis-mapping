@@ -1,6 +1,5 @@
 """Provides geodetic datum vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 

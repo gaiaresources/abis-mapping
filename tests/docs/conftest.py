@@ -38,7 +38,7 @@ def mocked_mapper(mocker: pytest_mock.MockerFixture) -> unittest.mock.MagicMock:
                         "SOME EXAMPLE",
                         "Option 2",
                         "plan C",
-                    ]
+                    ],
                 },
                 "vocabularies": [
                     "SOME_VOCAB",
@@ -58,9 +58,9 @@ def mocked_mapper(mocker: pytest_mock.MockerFixture) -> unittest.mock.MagicMock:
                         "ANOTHER EXAMPLE",
                         "Option 22",
                         "plan CC",
-                    ]
+                    ],
                 },
-            }
+            },
         ]
     }
 

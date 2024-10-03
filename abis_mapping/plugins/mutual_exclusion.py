@@ -1,6 +1,5 @@
 """Provides extra frictionless mutual exclusion checks for the package"""
 
-
 # Third-Party
 import frictionless
 import frictionless.errors

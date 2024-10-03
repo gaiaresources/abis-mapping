@@ -17,6 +17,7 @@ from typing import IO, Literal
 
 class ThreatStatusRow(pydantic.BaseModel):
     """Threat status conservation Authority table row."""
+
     conservation_authority: str = pydantic.Field(serialization_alias="conservationAuthority")
     threat_status: str = pydantic.Field(serialization_alias="threatStatus")
     threat_status_alt_labels: str = pydantic.Field(serialization_alias="threatStatus alternative labels")
@@ -24,12 +25,14 @@ class ThreatStatusRow(pydantic.BaseModel):
 
 class ThreatStatusRowDeprecated(ThreatStatusRow):
     """Threat status conservation jurisdiction table row."""
+
     # Redefine as previously conservationAuthority was declared as conservationJurisdiction
     conservation_authority: str = pydantic.Field(serialization_alias="conservationJurisdiction")
 
 
 class ThreatStatusTabler(tables.base.BaseTabler):
     """Tabler implementation for the threat status table."""
+
     # Class attributes
     alignment = ["c", "l", "l"]
     SupportedFormats = Literal["csv", "markdown"]
@@ -51,7 +54,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
                 by the mapper template.
         """
         super().__init__(template_id=template_id, format=format)
-        fields = self.mapper.schema()['fields']
+        fields = self.mapper.schema()["fields"]
         if not [fld for fld in fields if fld.get("vocabularies") and "THREAT_STATUS" in fld.get("vocabularies")]:
             raise ValueError(f"No THREAT_STATUS vocabularies found for template {template_id}")
 
@@ -95,10 +98,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
         # Return
         return self.output.getvalue()
 
-    def generate_row(
-        self,
-        threat_stat_cons_jur_term: utils.vocabs.Term
-    ) -> ThreatStatusRow:
+    def generate_row(self, threat_stat_cons_jur_term: utils.vocabs.Term) -> ThreatStatusRow:
         """Generates a single row for the table.
 
         Args:
@@ -114,13 +114,13 @@ class ThreatStatusTabler(tables.base.BaseTabler):
         # Check preferred label
         if (preferred_label := threat_stat_cons_jur_term.preferred_label) is not None:
             # Split out preferred label
-            splt_preferred = preferred_label.split('/')
+            splt_preferred = preferred_label.split("/")
         else:
             # Raise
             raise ValueError(f"No preferred label for {threat_stat_cons_jur_term}")
 
         # Split threat status alt labels
-        threat_stat_alt: set[str] = {lbl.split('/')[1] for lbl in threat_stat_cons_jur_term.alternative_labels}
+        threat_stat_alt: set[str] = {lbl.split("/")[1] for lbl in threat_stat_cons_jur_term.alternative_labels}
         threat_stat_alt.difference_update({splt_preferred[1]})
 
         # Perform mapping
@@ -140,11 +140,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="A tool to generate a csv table of vocabularies from a mapper.")
     parser.add_argument("template_id", type=str, help="ID of the template.")
     parser.add_argument(
-        "-o", "--output",
+        "-o",
+        "--output",
         dest="output_dest",
         type=argparse.FileType("w"),
         default=sys.stdout,
-        help="Output destination. Default is stdout."
+        help="Output destination. Default is stdout.",
     )
 
     # Parse command line arguments

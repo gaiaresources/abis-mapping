@@ -193,9 +193,7 @@ def add_site_shape(g: rdflib.Graph, dataset_shape: rdflib.term.Node) -> rdflib.t
     terms_list_shape = rdflib.BNode()
     dcterms_type_opts = rdflib.BNode()
     g.add((dcterms_type_prop, SH.path, rdflib.DCTERMS.type))
-    site_type_vocab_values: list[rdflib.term.Node] = [
-        v.iri for v in vocabs.site_type.SiteType.terms if v is not None
-    ]
+    site_type_vocab_values: list[rdflib.term.Node] = [v.iri for v in vocabs.site_type.SiteType.terms if v is not None]
     rdflib.collection.Collection(g, terms_list, site_type_vocab_values)
     g.add((terms_list_shape, SH["in"], terms_list))
     site_type_concept_shape = site_type_concept(g)
@@ -267,8 +265,13 @@ def site_type_concept(g: rdflib.Graph) -> rdflib.term.Node:
     # Add scheme
     scheme_prop = rdflib.BNode()
     g.add((scheme_prop, SH.path, rdflib.SKOS.inScheme))
-    g.add((scheme_prop, SH.hasValue,
-           rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74aa68d3-28fd-468d-8ff5-7e791d9f7159")))
+    g.add(
+        (
+            scheme_prop,
+            SH.hasValue,
+            rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74aa68d3-28fd-468d-8ff5-7e791d9f7159"),
+        )
+    )
     g.add((concept_shape, SH.property, scheme_prop))
 
     # Add preflabel

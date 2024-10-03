@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.plugins.coordinates` module"""
 
-
 # Third-Party
 import frictionless
 
@@ -14,15 +13,13 @@ def test_checks_valid_coordinates() -> None:
     resource = frictionless.Resource(
         source=[
             # Missing
-            {"name": "A", "lat": None,       "lon": None},
+            {"name": "A", "lat": None, "lon": None},
             {"name": "B", "lat": -31.953512, "lon": None},
-            {"name": "C", "lat": None,       "lon": 115.857048},
-
+            {"name": "C", "lat": None, "lon": 115.857048},
             # Valid
             {"name": "D", "lat": -31.953512, "lon": 115.857048},
-
             # Invalid
-            {"name": "E", "lat": 100.0,      "lon": 100.0},
+            {"name": "E", "lat": 100.0, "lon": 100.0},
         ],
     )
 

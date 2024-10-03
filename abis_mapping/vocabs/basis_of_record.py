@@ -1,6 +1,5 @@
 """Provides basis of record vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 
@@ -10,12 +9,12 @@ from abis_mapping import utils
 
 # Terms
 HUMAN_OBSERVATION = utils.vocabs.Term(
-    labels=("HUMAN OBSERVATION", ),
+    labels=("HUMAN OBSERVATION",),
     iri=utils.rdf.uri("basisOfRecord/HumanObservation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="An output of a human observation.",
 )
 OCCURRENCE = utils.vocabs.Term(
-    labels=("OCCURRENCE", ),
+    labels=("OCCURRENCE",),
     iri=utils.rdf.uri("basisOfRecord/Occurrence", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "An existence of an Organism (sensu http://rs.tdwg.org/dwc/terms/Organism)"
@@ -23,27 +22,27 @@ OCCURRENCE = utils.vocabs.Term(
     ),
 )
 PRESERVED_SPECIMEN = utils.vocabs.Term(
-    labels=("PRESERVED SPECIMEN", ),
+    labels=("PRESERVED SPECIMEN",),
     iri=utils.rdf.uri("basisOfRecord/PreservedSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="A specimen that has been preserved.",
 )
 FOSSIL_SPECIMEN = utils.vocabs.Term(
-    labels=("FOSSIL SPECIMEN", ),
+    labels=("FOSSIL SPECIMEN",),
     iri=utils.rdf.uri("basisOfRecord/FossilSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="A preserved specimen that is a fossil.",
 )
 LIVING_SPECIMEN = utils.vocabs.Term(
-    labels=("LIVING SPECIMEN", ),
+    labels=("LIVING SPECIMEN",),
     iri=utils.rdf.uri("basisOfRecord/LivingSpecimen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="A specimen that is alive.",
 )
 MACHINE_OBSERVATION = utils.vocabs.Term(
-    labels=("MACHINE OBSERVATION", ),
+    labels=("MACHINE OBSERVATION",),
     iri=utils.rdf.uri("basisOfRecord/MachineObservation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="An output of a machine observation process.",
 )
 MATERIAL_SAMPLE = utils.vocabs.Term(
-    labels=("MATERIAL SAMPLE", ),
+    labels=("MATERIAL SAMPLE",),
     iri=utils.rdf.uri("basisOfRecord/MaterialSample", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "A physical result of a sampling (or subsampling) event. In biological collections, the "

@@ -20,6 +20,7 @@ from typing import IO
 
 class FieldTableRow(pydantic.BaseModel):
     """Field table row."""
+
     field_name: str = pydantic.Field(serialization_alias="Field Name")
     description: str = pydantic.Field(serialization_alias="Description")
     mandatory_optional: str = pydantic.Field(
@@ -31,6 +32,7 @@ class FieldTableRow(pydantic.BaseModel):
 
 class FieldTabler(tables.base.BaseTabler):
     """Tabler class for creating fields tables."""
+
     alignment = ["l", "l", "c", "c", "l"]
 
     @property
@@ -91,11 +93,7 @@ class FieldTabler(tables.base.BaseTabler):
         # Return
         return self.output.getvalue()
 
-    def mandatory_optional_text(
-        self,
-        required: bool,
-        field_name: str
-    ) -> str:
+    def mandatory_optional_text(self, required: bool, field_name: str) -> str:
         """Determines text value to use for a mandatory / optional field.
 
         Args:
@@ -127,9 +125,7 @@ class FieldTabler(tables.base.BaseTabler):
         return "Optional"
 
     @staticmethod
-    def generate_row(
-        field: types.schema.Field
-    ) -> FieldTableRow:
+    def generate_row(field: types.schema.Field) -> FieldTableRow:
         """Takes a field object and generates a corresponding csv row object.
 
         Args:
@@ -180,10 +176,7 @@ class FieldTabler(tables.base.BaseTabler):
             return None
 
     @staticmethod
-    def mutual_inclusivity(
-        field_name: str,
-        checklist: frictionless.Checklist
-    ) -> set[str]:
+    def mutual_inclusivity(field_name: str, checklist: frictionless.Checklist) -> set[str]:
         """Retrieves all fields that share a mutual inclusive check with supplied field name.
 
         Args:
@@ -195,8 +188,9 @@ class FieldTabler(tables.base.BaseTabler):
             set[str]: Field's mutually inclusive with named field.
         """
         # Filter out mutually inclusive checks from the checklist
-        mutual_inclusive_checks: list[plugins.mutual_inclusion.MutuallyInclusive] = \
-            [check for check in checklist.checks if isinstance(check, plugins.mutual_inclusion.MutuallyInclusive)]
+        mutual_inclusive_checks: list[plugins.mutual_inclusion.MutuallyInclusive] = [
+            check for check in checklist.checks if isinstance(check, plugins.mutual_inclusion.MutuallyInclusive)
+        ]
 
         # Empty set to hold results
         fields: set[str] = set()
@@ -218,11 +212,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="A tool to generate a csv table of schema fields from a mapper.")
     parser.add_argument("template_id", type=str, help="ID of the template.")
     parser.add_argument(
-        "-o", "--output",
+        "-o",
+        "--output",
         dest="output_dest",
         type=argparse.FileType("w"),
         default=sys.stdout,
-        help="Output destination. Default is stdout."
+        help="Output destination. Default is stdout.",
     )
 
     # Parse supplied command line arguments

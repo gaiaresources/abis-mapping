@@ -33,10 +33,7 @@ def test_geometry_init_shapely_geometry() -> None:
     s_geom = shapely.Polygon(((0, 0), (0, 1), (1, 1), (1, 0), (0, 0)))
 
     # Create geometry
-    geometry = types.spatial.Geometry(
-        raw=s_geom,
-        datum="WGS84"
-    )
+    geometry = types.spatial.Geometry(raw=s_geom, datum="WGS84")
 
     # Assert geometry created
     assert geometry is not None
@@ -60,10 +57,7 @@ def test_geometry_init_latlong() -> None:
 def test_geometry_init_type_invalid() -> None:
     """Tests that Geometry object raises TypeError on invalid types."""
     with pytest.raises(TypeError):
-        types.spatial.Geometry(
-            raw=123,
-            datum="WGS84"
-        )
+        types.spatial.Geometry(raw=123, datum="WGS84")
 
 
 def test_geometry_init_wkt_string_invalid() -> None:
@@ -78,10 +72,7 @@ def test_geometry_init_wkt_string_invalid() -> None:
 def test_geometry_init_datum_invalid() -> None:
     """Tests that Geometry raises error on invalid datum."""
     with pytest.raises(types.spatial.GeometryError):
-        types.spatial.Geometry(
-            raw="POINT(0 0)",
-            datum="NOTADATUM000"
-        )
+        types.spatial.Geometry(raw="POINT(0 0)", datum="NOTADATUM000")
 
 
 @pytest.mark.parametrize(
@@ -90,7 +81,7 @@ def test_geometry_init_datum_invalid() -> None:
         ("WGS84", "WGS84"),
         ("http://www.opengis.net/def/crs/EPSG/0/7844", "GDA2020"),
         ("wgs 84", "WGS84"),
-    ]
+    ],
 )
 def test_geometry_original_datum_name(datum_in: str, datum_out: str) -> None:
     """Tests the original_datum_name property."""
@@ -106,7 +97,7 @@ def test_geometry_original_datum_name(datum_in: str, datum_out: str) -> None:
     "datum, uri",
     [
         ("WGS84", "http://www.opengis.net/def/crs/EPSG/0/4326"),
-    ]
+    ],
 )
 def test_geometry_original_datum_uri(datum: str, uri: str) -> None:
     """Tests the original_datum_uri property."""
@@ -146,11 +137,11 @@ def test_geometry_transformer_datum_uri() -> None:
         (
             rdflib.Literal(
                 lexical_or_value="<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(0 0)",
-                datatype=utils.namespaces.GEO.wktLiteral
+                datatype=utils.namespaces.GEO.wktLiteral,
             ),
             "WGS84",
         ),
-    ]
+    ],
 )
 def test_geometry_from_geosparql_wkt_literal_valid(
     literal_in: str | rdflib.Literal,
@@ -169,7 +160,7 @@ def test_geometry_from_geosparql_wkt_literal_valid(
     [
         ("<http://www.opengis.net/def/crs/EPSG/0/NOTADATUM> POINT(0 0)", types.spatial.GeometryError),
         ("<http://www.opengis.net/def/crs/EPSG/0/7844> NOTAGEOMETRY(0 0)", types.spatial.GeometryError),
-    ]
+    ],
 )
 def test_geometry_from_geosparql_wkt_literal_invalid(
     literal_in: str | rdflib.Literal,
@@ -183,10 +174,7 @@ def test_geometry_from_geosparql_wkt_literal_invalid(
 def test_geometry_to_rdf_literal() -> None:
     """Tests the Geometry to_rdf_literal method."""
     # Create geometry
-    geometry = types.spatial.Geometry(
-        raw=types.spatial.LatLong(0, 0),
-        datum="GDA2020"
-    )
+    geometry = types.spatial.Geometry(raw=types.spatial.LatLong(0, 0), datum="GDA2020")
 
     # Expected output
     expected = rdflib.Literal(
@@ -206,7 +194,7 @@ def test_geometry_to_rdf_literal() -> None:
             "EPSG:26917",
             f"<{vocabs.geodetic_datum.GeodeticDatum(rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> POINT (-80 50)",  # noqa: E501
         ),
-    ]
+    ],
 )
 def test_geometry_to_tranformed_crs_rdf_literal(raw: str, datum: str, expected_str: str) -> None:
     """Tests the Geometry to_transformed_crs_rdf_literal method."""

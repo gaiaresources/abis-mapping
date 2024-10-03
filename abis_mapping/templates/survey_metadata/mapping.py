@@ -36,6 +36,7 @@ CONCEPT_TARGET_TAXONOMIC_SCOPE = rdflib.URIRef(
 @dataclasses.dataclass
 class SurveyIDDatatype:
     """Contains data items for a survey organisation"""
+
     name: str
     datatype: rdflib.URIRef
     agent: rdflib.URIRef
@@ -44,6 +45,7 @@ class SurveyIDDatatype:
 @dataclasses.dataclass
 class AttributeValue:
     """Contains data items to enable producing attribute and value nodes"""
+
     raw: str
     attribute: rdflib.URIRef
     value: rdflib.URIRef
@@ -56,11 +58,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
     DATASET_DEFAULT_NAME = "Example Systematic Survey Metadata Dataset"
     DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Metadata Dataset by Gaia Resources"
 
-    def apply_validation(
-        self,
-        data: base.types.ReadableType,
-        **kwargs: Any
-    ) -> frictionless.Report:
+    def apply_validation(self, data: base.types.ReadableType, **kwargs: Any) -> frictionless.Report:
         """Applies Frictionless validation for the 'survey_metadata.csv' template
 
         Args:
@@ -90,7 +88,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 checks=[
                     # Enforces non-empty and maximum row count.
                     frictionless.checks.table_dimensions(max_rows=1, min_rows=1),
-
                     # Extra Custom Checks
                     plugins.tabular.IsTabular(),
                     plugins.chronological.ChronologicalOrder(
@@ -145,7 +142,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Construct Resource
         resource = frictionless.Resource(
             source=data,
-            format="csv",   # TODO -> Hardcoded to csv for now
+            format="csv",  # TODO -> Hardcoded to csv for now
             schema=schema,
             encoding="utf-8",
         )
@@ -253,12 +250,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                     SurveyIDDatatype(
                         name=raw_org,
                         datatype=utils.rdf.uri(
-                            internal_id=f"datatype/surveyID/{raw_org}",
-                            namespace=utils.namespaces.CREATEME
+                            internal_id=f"datatype/surveyID/{raw_org}", namespace=utils.namespaces.CREATEME
                         ),
-                        agent=utils.rdf.uri(
-                            internal_id=f"agent/{raw_org}"
-                        )
+                        agent=utils.rdf.uri(internal_id=f"agent/{raw_org}"),
                     )
                 )
 
@@ -326,11 +320,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Add survey type attribute node
         self.add_survey_type_attribute(
-            uri=survey_type_attribute,
-            dataset=dataset,
-            survey_type_value=survey_type_value,
-            row=row,
-            graph=graph
+            uri=survey_type_attribute, dataset=dataset, survey_type_value=survey_type_value, row=row, graph=graph
         )
 
         # Add survey type value node
@@ -468,13 +458,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Add survey ID
         if (survey_id := row["surveyID"]) is not None:
-
             # Add survey id literals per organisation
             for survey_org in survey_org_objects:
-                id_literal = rdflib.Literal(
-                    lexical_or_value=survey_id,
-                    datatype=survey_org.datatype
-                )
+                id_literal = rdflib.Literal(lexical_or_value=survey_id, datatype=survey_org.datatype)
                 graph.add((uri, rdflib.DCTERMS.identifier, id_literal))
 
             # Add survey id as type string if no organisation provided
@@ -604,28 +590,28 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         if survey_method_urls:
             for survey_method_url in survey_method_urls:
                 # Add literal containing the method URL
-                graph.add((
-                    uri,
-                    rdflib.SDO.url,
-                    rdflib.Literal(survey_method_url, datatype=rdflib.XSD.anyURI)
-                ))
+                graph.add((uri, rdflib.SDO.url, rdflib.Literal(survey_method_url, datatype=rdflib.XSD.anyURI)))
 
         if survey_method_description:
             # Add literal containing the description
-            graph.add((
-                uri,
-                rdflib.SDO.description,
-                rdflib.Literal(survey_method_description),
-            ))
+            graph.add(
+                (
+                    uri,
+                    rdflib.SDO.description,
+                    rdflib.Literal(survey_method_description),
+                )
+            )
 
         if survey_method_refs:
             for survey_method_ref in survey_method_refs:
                 # Add bibliographic reference
-                graph.add((
-                    uri,
-                    rdflib.SDO.citation,
-                    rdflib.Literal(survey_method_ref),
-                ))
+                graph.add(
+                    (
+                        uri,
+                        rdflib.SDO.citation,
+                        rdflib.Literal(survey_method_ref),
+                    )
+                )
 
     def add_survey_id_source_datatypes(
         self,
@@ -691,7 +677,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 (
                     uri,
                     utils.namespaces.TERN.hasAttribute,
-                    utils.rdf.uri("attribute/surveyType", utils.namespaces.CREATEME)
+                    utils.rdf.uri("attribute/surveyType", utils.namespaces.CREATEME),
                 )
             )
         if row["samplingEffortValue"] and row["samplingEffortUnit"]:
@@ -699,7 +685,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 (
                     uri,
                     utils.namespaces.TERN.hasAttribute,
-                    utils.rdf.uri("attribute/samplingEffort", utils.namespaces.CREATEME)
+                    utils.rdf.uri("attribute/samplingEffort", utils.namespaces.CREATEME),
                 )
             )
         if row["targetHabitatScope"]:
@@ -707,7 +693,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 (
                     uri,
                     utils.namespaces.TERN.hasAttribute,
-                    utils.rdf.uri("attribute/targetHabitatScope", utils.namespaces.CREATEME)
+                    utils.rdf.uri("attribute/targetHabitatScope", utils.namespaces.CREATEME),
                 )
             )
         if row["targetTaxonomicScope"]:
@@ -715,7 +701,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 (
                     uri,
                     utils.namespaces.TERN.hasAttribute,
-                    utils.rdf.uri("attribute/targetTaxa", utils.namespaces.CREATEME)
+                    utils.rdf.uri("attribute/targetTaxa", utils.namespaces.CREATEME),
                 )
             )
 

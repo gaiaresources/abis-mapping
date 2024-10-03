@@ -1,6 +1,5 @@
 """Provides rdf utilities for the package"""
 
-
 # Standard
 import uuid
 import urllib.parse

@@ -18,6 +18,7 @@ from typing import Iterator, IO
 
 class VocabTableRow(pydantic.BaseModel):
     """Model for a vocab table row."""
+
     field_name: str = pydantic.Field(serialization_alias="Template field name")
     preferred_label: str = pydantic.Field(serialization_alias="Preferred label")
     definition: str = pydantic.Field(serialization_alias="Definition")
@@ -25,7 +26,6 @@ class VocabTableRow(pydantic.BaseModel):
 
 
 class VocabTabler(tables.base.BaseTabler):
-
     @property
     def header(self) -> list[str]:
         """Getter for the header row."""
@@ -100,7 +100,7 @@ class VocabTabler(tables.base.BaseTabler):
         # If markdown then the first row must contain an anchor
         if self.format == "markdown" and (term_key := next(sorted_terms, None)) is not None:
             yield self.generate_row(
-                field=field.model_copy(update={'name': f'<a name="{field.name}-vocabularies"></a>{field.name}'}),
+                field=field.model_copy(update={"name": f'<a name="{field.name}-vocabularies"></a>{field.name}'}),
                 term=terms_map[term_key],
             )
         # Iterate through terms and yield each row.
@@ -142,11 +142,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="A tool to generate a csv table of vocabularies from a mapper.")
     parser.add_argument("template_id", type=str, help="ID of the template.")
     parser.add_argument(
-        "-o", "--output",
+        "-o",
+        "--output",
         dest="output_dest",
         type=argparse.FileType("w"),
         default=sys.stdout,
-        help="Output destination. Default is stdout."
+        help="Output destination. Default is stdout.",
     )
 
     # Parse command line arguments

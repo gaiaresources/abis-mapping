@@ -1,6 +1,5 @@
 """Provides sex vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 
@@ -10,15 +9,21 @@ from abis_mapping import utils
 
 # Terms
 FEMALE = utils.vocabs.Term(
-    labels=("FEMALE", "F", "♀", ),
+    labels=(
+        "FEMALE",
+        "F",
+        "♀",
+    ),
     iri=utils.rdf.uri("sex/female", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
-        "Female (♀) is the sex of an organism, or a part of an organism, which "
-        "produces mobile ova (egg cells)."
+        "Female (♀) is the sex of an organism, or a part of an organism, which " "produces mobile ova (egg cells)."
     ),
 )
 HERMAPHRODITE = utils.vocabs.Term(
-    labels=("HERMAPHRODITE", "ZWITTER", ),
+    labels=(
+        "HERMAPHRODITE",
+        "ZWITTER",
+    ),
     iri=utils.rdf.uri("sex/hermaphrodite", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "One organism having both male and female sexual characteristics and "
@@ -27,7 +32,11 @@ HERMAPHRODITE = utils.vocabs.Term(
     ),
 )
 MALE = utils.vocabs.Term(
-    labels=("MALE", "M", "♂", ),
+    labels=(
+        "MALE",
+        "M",
+        "♂",
+    ),
     iri=utils.rdf.uri("sex/male", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "Male (♂) refers to the sex of an organism, or part of an organism, which "
@@ -35,7 +44,11 @@ MALE = utils.vocabs.Term(
     ),
 )
 UNDETERMINED = utils.vocabs.Term(
-    labels=("UNDETERMINED", "UNDET.", "UNKNOWN", ),
+    labels=(
+        "UNDETERMINED",
+        "UNDET.",
+        "UNKNOWN",
+    ),
     iri=utils.rdf.uri("sex/undetermined", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="If the sex of an organism can't be determined for some reason.",
 )

@@ -18,21 +18,21 @@ def test_extract_site_visit_id_keys(mocker: pytest_mock.MockerFixture) -> None:
     mapper = abis_mapping.templates.survey_occurrence_data_v2.mapping.SurveyOccurrenceMapper()
 
     # Modify schema to only include the necessary fields
-    descriptor = {"fields": [
-        {"name": "siteVisitID", "type": "string"}
-    ]}
+    descriptor = {"fields": [{"name": "siteVisitID", "type": "string"}]}
     mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Create raw data csv string
-    csv_data = b"\r\n".join([
-        b"siteVisitID",
-        b"S1",
-        b"S2",
-        b"",
-        b"S3",
-        b"S2",
-        b"S1",
-    ])
+    csv_data = b"\r\n".join(
+        [
+            b"siteVisitID",
+            b"S1",
+            b"S2",
+            b"",
+            b"S3",
+            b"S2",
+            b"S1",
+        ]
+    )
 
     expected = {
         "S1": True,

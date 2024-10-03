@@ -19,14 +19,13 @@ _ctx = {
         "fields": tables.fields.FieldTabler(template_id=mapper_id, format="markdown").generate_table(),
         "vocabularies": tables.vocabs.VocabTabler(template_id=mapper_id, format="markdown").generate_table(),
         "threat_status": tables.threat_status.ThreatStatusTabler(
-            template_id=mapper_id,
-            format="markdown"
+            template_id=mapper_id, format="markdown"
         ).generate_table(),
     },
     "values": {
         "geodetic_datum_count": len(vocabs.geodetic_datum.GeodeticDatum.terms),
     },
-    "metadata": mapper.metadata() if mapper is not None else None
+    "metadata": mapper.metadata() if mapper is not None else None,
 }
 
 # Register

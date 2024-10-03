@@ -19,7 +19,7 @@ class WKTPlugin(frictionless.Plugin):
 
     def select_field_class(
         self,
-        type: Optional[str] = None  # noqa: A002
+        type: Optional[str] = None,  # noqa: A002
     ) -> Optional[Type[frictionless.Field]]:
         """Return the custom field class for the plugin.
 

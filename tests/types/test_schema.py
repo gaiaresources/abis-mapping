@@ -30,9 +30,7 @@ class TestField:
             "constraints": {
                 "required": False,
             },
-            "vocabularies": [
-                "SEX"
-            ],
+            "vocabularies": ["SEX"],
         }
 
     def test_check_vocabularies(self, field_d: dict[str, Any]) -> None:

@@ -1,6 +1,5 @@
 """Provides ABIS Mapper for `incidental_occurrence_data.csv` Template"""
 
-
 # Standard
 import pathlib
 import functools
@@ -33,7 +32,9 @@ CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = utils.rdf.uri("concept/scientificName", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri(
+    "concept/data-generalizations", utils.namespaces.EXAMPLE
+)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_KINGDOM = utils.rdf.uri("concept/kingdom", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_TAXON_RANK = utils.rdf.uri("concept/taxonRank", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_INDIVIDUAL_COUNT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1")
@@ -42,22 +43,44 @@ CONCEPT_HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-
 CONCEPT_BASIS_OF_RECORD = utils.rdf.uri("concept/basisOfRecord", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri("concept/establishmentMeans", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri(
+    "concept/establishmentMeans", utils.namespaces.EXAMPLE
+)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_LIFE_STAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3")
 CONCEPT_SEX = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36")
-CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri("concept/reproductiveCondition", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
-CONCEPT_ACCEPTED_NAME_USAGE = utils.rdf.uri("concept/acceptedNameUsage", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
-CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri("methods/name-check-method", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri(
+    "concept/reproductiveCondition", utils.namespaces.EXAMPLE
+)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_ACCEPTED_NAME_USAGE = utils.rdf.uri(
+    "concept/acceptedNameUsage", utils.namespaces.EXAMPLE
+)  # TODO -> Need real URI  # noqa: E501
+CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri(
+    "methods/name-check-method", utils.namespaces.EXAMPLE
+)  # TODO -> Need real URI  # noqa: E501
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_CONSERVATION_STATUS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6")  # noqa: E501
-CONCEPT_CONSERVATION_JURISDICTION = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7")  # noqa: E501
+CONCEPT_CONSERVATION_STATUS = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6"
+)  # noqa: E501
+CONCEPT_CONSERVATION_JURISDICTION = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7"
+)  # noqa: E501
 
 # Roles
-ROLE_ORIGINATOR = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator")  # noqa: E501
-ROLE_RIGHTS_HOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/rightsHolder")  # noqa: E501
-ROLE_RESOURCE_PROVIDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider")  # noqa: E501
-ROLE_CUSTODIAN = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian")  # noqa: E501
-ROLE_STAKEHOLDER = rdflib.URIRef("http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder")  # noqa: E501
+ROLE_ORIGINATOR = rdflib.URIRef(
+    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator"
+)  # noqa: E501
+ROLE_RIGHTS_HOLDER = rdflib.URIRef(
+    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/rightsHolder"
+)  # noqa: E501
+ROLE_RESOURCE_PROVIDER = rdflib.URIRef(
+    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider"
+)  # noqa: E501
+ROLE_CUSTODIAN = rdflib.URIRef(
+    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian"
+)  # noqa: E501
+ROLE_STAKEHOLDER = rdflib.URIRef(
+    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder"
+)  # noqa: E501
 
 
 class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
@@ -107,7 +130,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                     plugins.empty.NotEmpty(),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["threatStatus", "conservationJurisdiction"],
-                    )
+                    ),
                 ],
             ),
         )
@@ -195,7 +218,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 # Check Whether to Yield a Chunk
                 # The row_number needs to be reduced by one as the numbering of rows
                 # in a Resource includes the header
-                if chunk_size is not None and (row.row_number-1) % chunk_size == 0:
+                if chunk_size is not None and (row.row_number - 1) % chunk_size == 0:
                     # Yield Chunk
                     yield graph
 
@@ -1027,8 +1050,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Create geometry
         geometry = types.spatial.Geometry(
-            raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
-            datum=row["geodeticDatum"]
+            raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]), datum=row["geodeticDatum"]
         )
 
         # Retrieve vocab
@@ -1492,10 +1514,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
 
         # Handle Orphan collectionCode (See: BDRC-89)
-        if (
-            row["collectionCode"]
-            and not has_specimen(row)
-        ):
+        if row["collectionCode"] and not has_specimen(row):
             # Add to Graph
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
@@ -1602,11 +1621,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # If `ownerInstitutionCode` is provided, but both `catalogNumber` and
         # `occurrenceID` have been omitted then we associate the orphaned
         # `ownerInstitutionCode` with this Specimen Sample
-        if (
-            row["ownerInstitutionCode"]
-            and not row["catalogNumber"]
-            and not row["occurrenceID"]
-        ):
+        if row["ownerInstitutionCode"] and not row["catalogNumber"] and not row["occurrenceID"]:
             # Add ownerInstitutionCode Association
             graph.add((uri, rdflib.PROV.wasAssociatedWith, owner_institution_code))
 
@@ -1618,10 +1633,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((qualifier, rdflib.PROV.hadRole, ROLE_CUSTODIAN))
 
         # Handle Orphan collectionCode (See: BDRC-89)
-        if (
-            row["collectionCode"]
-            and (not row["ownerInstitutionCode"] or not row["catalogNumber"])
-        ):
+        if row["collectionCode"] and (not row["ownerInstitutionCode"] or not row["catalogNumber"]):
             # Add to Graph
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
@@ -2922,10 +2934,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Get Timestamp
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDate` (fallback)
         date_determined: types.temporal.Timestamp = (
-            row["threatStatusDateDetermined"]
-            or row["dateIdentified"]
-            or row["preparedDate"]
-            or row["eventDate"]
+            row["threatStatusDateDetermined"] or row["dateIdentified"] or row["preparedDate"] or row["eventDate"]
         )
         # Retrieve vocab for field
         vocab = self.fields()["threatStatusCheckProtocol"].get_vocab()
@@ -2957,9 +2966,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["threatStatusDateDetermined"]:
             # Determine Used Date Column
             date_used = (
-                "dateIdentified" if row["dateIdentified"] else
-                "preparedDate" if row["preparedDate"] else
-                "eventDate"
+                "dateIdentified" if row["dateIdentified"] else "preparedDate" if row["preparedDate"] else "eventDate"
             )
 
             # Comment

@@ -1,6 +1,5 @@
 """Dynamically loads template mappers"""
 
-
 # Standard
 import importlib
 import pathlib

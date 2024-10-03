@@ -23,6 +23,7 @@ class TestDefaultMap:
     @attrs.define(kw_only=True)
     class Scenario:
         """Dataclass to hold the scenario parameters."""
+
         name: str
         raws: list[list[str]]
         expected_error_codes: set[str] = set()
@@ -39,9 +40,7 @@ class TestDefaultMap:
                 ["site3", "-38.94", "115.21", "AGD66", "", "", "", ""],
                 ["site4", "-38.94", "115.21", "EPSG:4202", "", "", "", ""],
             ],
-            default_map={
-                "site1": "something"
-            }
+            default_map={"site1": "something"},
         ),
         Scenario(
             name="invalid_missing_from_default_map",
@@ -50,10 +49,8 @@ class TestDefaultMap:
                 ["site1", "", "", "", "", "", "", ""],
                 ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
-            default_map={
-                "site3": "something"
-            },
-            expected_error_codes={"row-constraint"}
+            default_map={"site3": "something"},
+            expected_error_codes={"row-constraint"},
         ),
         Scenario(
             name="invalid_incidental_occurrence_requires_latlong",
@@ -63,7 +60,7 @@ class TestDefaultMap:
                 ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={},
-            expected_error_codes={"row-constraint"}
+            expected_error_codes={"row-constraint"},
         ),
         Scenario(
             name="valid_incidental_occurrence_requires_latlong",
@@ -85,10 +82,8 @@ class TestDefaultMap:
                 ["site1", "-38.94", "", "WGS84", "", "", "", ""],
                 ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
-            default_map={
-                "site1": "something"
-            },
-            expected_error_codes={"row-constraint"}
+            default_map={"site1": "something"},
+            expected_error_codes={"row-constraint"},
         ),
         Scenario(
             name="invalid_missing_lat",
@@ -97,10 +92,8 @@ class TestDefaultMap:
                 ["site1", "", "115.21", "WGS84", "", "", "", ""],
                 ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
-            default_map={
-                "site1": "something"
-            },
-            expected_error_codes={"row-constraint"}
+            default_map={"site1": "something"},
+            expected_error_codes={"row-constraint"},
         ),
         Scenario(
             name="invalid_incidental_occurrence_missing_lat",
@@ -110,7 +103,7 @@ class TestDefaultMap:
                 ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={},
-            expected_error_codes={"row-constraint"}
+            expected_error_codes={"row-constraint"},
         ),
         Scenario(
             name="invalid_incidental_occurrence_missing_long",
@@ -120,7 +113,7 @@ class TestDefaultMap:
                 ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={},
-            expected_error_codes={"row-constraint"}
+            expected_error_codes={"row-constraint"},
         ),
         Scenario(
             name="invalid_missing_geodetic_datum",
@@ -129,10 +122,8 @@ class TestDefaultMap:
                 ["site1", "-38.94", "115.21", "", "", "", "", ""],
                 ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
-            default_map={
-                "site1": "something"
-            },
-            expected_error_codes={"row-constraint"}
+            default_map={"site1": "something"},
+            expected_error_codes={"row-constraint"},
         ),
         Scenario(
             name="invalid_incidental_occurrence_missing_geodetic_datum",
@@ -142,7 +133,7 @@ class TestDefaultMap:
                 ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
             ],
             default_map={},
-            expected_error_codes={"row-constraint"}
+            expected_error_codes={"row-constraint"},
         ),
     ]
 
@@ -176,9 +167,7 @@ class TestDefaultMap:
         assert mapper is not None
 
         # Modify schema to only fields required for test
-        descriptor = {
-            "fields": [field for field in mapper.schema()["fields"] if field["name"] in rawh]
-        }
+        descriptor = {"fields": [field for field in mapper.schema()["fields"] if field["name"] in rawh]}
         descriptor["fields"].sort(key=lambda f: rawh.index(f["name"]))
 
         # Patch the schema for the test
@@ -203,15 +192,13 @@ class TestDefaultMap:
         # Assert
         assert report.valid == (scenario.expected_error_codes == set())
         if not report.valid:
-            error_codes = [code for codes in report.flatten(['type']) for code in codes]
+            error_codes = [code for codes in report.flatten(["type"]) for code in codes]
             assert set(error_codes) == scenario.expected_error_codes
 
     def test_apply_mapping(self) -> None:
         """Tests apply_mapping method with default geometry map."""
         # Build a dataframe from an existing csv
-        df = pd.read_csv(
-            "abis_mapping/templates/survey_occurrence_data/examples/organism_qty.csv"
-        )
+        df = pd.read_csv("abis_mapping/templates/survey_occurrence_data/examples/organism_qty.csv")
 
         # Modify and preserve first entry
         col_names = ["decimalLongitude", "decimalLatitude", "geodeticDatum"]
@@ -250,10 +237,12 @@ class TestDefaultMap:
         default_map = {s_geo_vals["siteID"]: val}
 
         # Create graph
-        graphs = list(mapper().apply_mapping(
-            data=csv_data,
-            site_id_geometry_map=default_map,
-        ))
+        graphs = list(
+            mapper().apply_mapping(
+                data=csv_data,
+                site_id_geometry_map=default_map,
+            )
+        )
         assert len(graphs) == 1
 
         # Now with the provided default map values the graph should match.
@@ -278,9 +267,7 @@ def test_extract_site_id_keys(mocker: pytest_mock.MockerFixture) -> None:
     mapper = abis_mapping.templates.survey_occurrence_data.mapping.SurveyOccurrenceMapper()
 
     # Modify schema to only include the necessary fields
-    descriptor = {"fields": [
-        {"name": "siteID", "type": "string"}
-    ]}
+    descriptor = {"fields": [{"name": "siteID", "type": "string"}]}
     mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Create raw data csv string

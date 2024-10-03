@@ -1,6 +1,5 @@
 """Provides coordinate utilities for the package"""
 
-
 # Standard
 import dataclasses
 import decimal
@@ -10,6 +9,7 @@ import decimal
 @dataclasses.dataclass
 class CoordinateRange:
     """Simple Data Container for Coordinate Range"""
+
     min_lat: decimal.Decimal
     min_lon: decimal.Decimal
     max_lat: decimal.Decimal

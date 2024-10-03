@@ -12,6 +12,7 @@ from abis_mapping import settings
 
 class TemplateMetadata(pydantic.BaseModel):
     """Model for the template `metadata.json` file."""
+
     name: str
     label: str
     version: str
@@ -44,7 +45,7 @@ class TemplateMetadata(pydantic.BaseModel):
         # Create string representation
         str_url = urllib.parse.urljoin(
             base=str(settings.Settings().INSTRUCTIONS_BASE_URL),
-            url='/'.join([settings.Settings().INSTRUCTIONS_VERSION, self.id])
+            url="/".join([settings.Settings().INSTRUCTIONS_VERSION, self.id]),
         )
         # Perform validation
         pydantic.AnyUrl(str_url)

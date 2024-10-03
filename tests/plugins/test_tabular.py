@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.plugins.tabular` module"""
 
-
 # Third-Party
 import frictionless
 

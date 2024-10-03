@@ -1,6 +1,5 @@
 """Provides extra frictionless default lookup checks for the package."""
 
-
 # Third-party
 import attrs
 import frictionless
@@ -49,5 +48,5 @@ class DefaultLookup(frictionless.Check):
             note=(
                 f"'{self.key_field}': '{row[self.key_field]}' has no default value "
                 f"for field '{self.value_field}' and no other value provided."
-            )
+            ),
         )

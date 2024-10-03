@@ -17,10 +17,7 @@ mapper = base.mapper.get_mapper(mapper_id)
 _ctx = {
     "tables": {
         "fields": tables.fields.FieldTabler(template_id=mapper_id, format="markdown").generate_table(),
-        "vocabularies": tables.vocabs.VocabTabler(
-            template_id=mapper_id,
-            format="markdown"
-        ).generate_table(),
+        "vocabularies": tables.vocabs.VocabTabler(template_id=mapper_id, format="markdown").generate_table(),
     },
     "values": {
         "geodetic_datum_count": len(vocabs.geodetic_datum.GeodeticDatum.terms),

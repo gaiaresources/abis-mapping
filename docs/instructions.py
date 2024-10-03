@@ -1,6 +1,5 @@
 """Provides instruction rendering for templates."""
 
-
 # Standard
 import argparse
 import importlib.metadata
@@ -61,8 +60,7 @@ class MapperLoader(jinja2.BaseLoader):
 
         # Check mapper returned
         if mapper is None:
-            raise ValueError(
-                f"Template '{self.mapper_id}' not defined; got NoneType")
+            raise ValueError(f"Template '{self.mapper_id}' not defined; got NoneType")
 
         # Create path
         path = mapper().root_dir() / "templates" / template
@@ -126,7 +124,7 @@ def render_index(filepath: pathlib.Path) -> str:
         str: Rendered index.html
     """
     # Directory name made from template markdown name which will be relative url path for redirect
-    page_name = filepath.parts[-1].rsplit('.', 1)[0]
+    page_name = filepath.parts[-1].rsplit(".", 1)[0]
 
     # Create loader
     loader = jinja2.FileSystemLoader("docs/templates")
@@ -146,23 +144,24 @@ def render_index(filepath: pathlib.Path) -> str:
 
 if __name__ == "__main__":
     """Main entry point."""
-    parser = argparse.ArgumentParser(
-        description="Generates instruction documents.")
+    parser = argparse.ArgumentParser(description="Generates instruction documents.")
     parser.add_argument("mapper_id", type=str, help="Mapper template ID.")
 
     parser.add_argument(
-        "-o", "--output",
+        "-o",
+        "--output",
         dest="output_dest",
         type=argparse.FileType("w"),
         default=sys.stdout,
-        help="Output destination. Default is stdout."
+        help="Output destination. Default is stdout.",
     )
 
     parser.add_argument(
-        "-i", "--index",
+        "-i",
+        "--index",
         dest="index",
         action="store_true",
-        help="Set current template as homepage. This will generate an additional `index.md` document."
+        help="Set current template as homepage. This will generate an additional `index.md` document.",
     )
 
     # Parse command line arguments

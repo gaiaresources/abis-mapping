@@ -138,7 +138,7 @@ class ABISMapper(abc.ABC):
         # Get raw schema
         fields: list[dict] = json.loads(schema_file.read_text())["fields"]
         out_path = directory / f"{cls.metadata()['name']}.{cls.metadata()['file_type'].lower()}"
-        with out_path.open('w') as f:
+        with out_path.open("w") as f:
             csv_writer = csv.DictWriter(f, [field["name"] for field in fields])
             csv_writer.writeheader()
 
@@ -172,7 +172,7 @@ class ABISMapper(abc.ABC):
     @classmethod
     def extract_extra_fields(
         cls,
-        row: frictionless.Row
+        row: frictionless.Row,
     ) -> dict[str, Any]:
         """Extracts extra values from a row not in template schema.
 
@@ -193,7 +193,7 @@ class ABISMapper(abc.ABC):
     def extra_fields_schema(
         cls,
         data: frictionless.Row | base_types.ReadableType,
-        full_schema: bool = False
+        full_schema: bool = False,
     ) -> frictionless.Schema:
         """Creates a schema with all extra fields found in data.
 
@@ -234,14 +234,13 @@ class ABISMapper(abc.ABC):
         # Find list of extra fieldnames
         existing_fieldnames = existing_schema.field_names
         if len(actual_fieldnames) > len(existing_fieldnames):
-            extra_fieldnames = actual_fieldnames[len(existing_fieldnames):]
+            extra_fieldnames = actual_fieldnames[len(existing_fieldnames) :]
         else:
             extra_fieldnames = []
 
         # Construct list of extra Fields with type of string
         extra_fields = [
-            frictionless.Field.from_descriptor({"name": fieldname, "type": "string"})
-            for fieldname in extra_fieldnames
+            frictionless.Field.from_descriptor({"name": fieldname, "type": "string"}) for fieldname in extra_fieldnames
         ]
 
         if full_schema:

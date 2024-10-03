@@ -1,6 +1,5 @@
 """Provides extra frictionless coordinate validation checks for the package"""
 
-
 # Third-Party
 import frictionless
 import frictionless.errors
