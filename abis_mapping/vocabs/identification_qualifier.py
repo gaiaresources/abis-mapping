@@ -1,6 +1,5 @@
 """Provides identification qualifier vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 
@@ -10,7 +9,10 @@ from abis_mapping import utils
 
 # Terms
 ANIMALIA_CETERA = utils.vocabs.Term(
-    labels=("ANIMALIA CETERA", "A.C.", ),
+    labels=(
+        "ANIMALIA CETERA",
+        "A.C.",
+    ),
     iri=utils.rdf.uri("identificationQualifier/animalia-cetera", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "It groups all the unidentified specimens that are not listed as separate "
@@ -21,58 +23,87 @@ ANIMALIA_CETERA = utils.vocabs.Term(
     ),
 )
 CONFER = utils.vocabs.Term(
-    labels=("CONFER", "CF.", "CFR.", "CONF.", "SP. CF.", ),
+    labels=(
+        "CONFER",
+        "CF.",
+        "CFR.",
+        "CONF.",
+        "SP. CF.",
+    ),
     iri=utils.rdf.uri("identificationQualifier/confer", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
-        "\"Compare with\". Specimens should be compared to reference material, "
+        '"Compare with". Specimens should be compared to reference material, '
         "since most of the diagnostic characters correspond to a given species but "
         "some are unclear. Also used in the sense of affinis and species incerta "
         "(these usages are discouraged)."
     ),
 )
 EX_GREGE = utils.vocabs.Term(
-    labels=("EX GREGE", "EX GR.", "GR.", ),
+    labels=(
+        "EX GREGE",
+        "EX GR.",
+        "GR.",
+    ),
     iri=utils.rdf.uri("identificationQualifier/ex-grege", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
-        "\"Of the group including\". The specimen has some affinity to a known "
+        '"Of the group including". The specimen has some affinity to a known '
         "species or it belongs to a species group or species complex; see also "
         "affinis and species proxima."
     ),
 )
 FAMILIA_GENUS_SPECIES = utils.vocabs.Term(
-    labels=("FAMILIA GENUS SPECIES", "FAM. GEN. SP.", ),
-    iri=utils.rdf.uri("identificationQualifier/familia-genus-species", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
-    description=(
-        "The specimen has not been attributed to any known species nor family; "
-        "see also species."
+    labels=(
+        "FAMILIA GENUS SPECIES",
+        "FAM. GEN. SP.",
     ),
+    iri=utils.rdf.uri(
+        "identificationQualifier/familia-genus-species", utils.namespaces.EXAMPLE
+    ),  # TODO -> Need real URI  # noqa: E501
+    description=("The specimen has not been attributed to any known species nor family; " "see also species."),
 )
 GENUS_ET_SPECIES_NOVA = utils.vocabs.Term(
-    labels=("GENUS ET SPECIES NOVA", "GEN. ET SP.", "GEN. NOV.", "SP. NOV.", "NOV. GEN. ET SP.", ),
-    iri=utils.rdf.uri("identificationQualifier/genus-et-species-nova", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
+    labels=(
+        "GENUS ET SPECIES NOVA",
+        "GEN. ET SP.",
+        "GEN. NOV.",
+        "SP. NOV.",
+        "NOV. GEN. ET SP.",
+    ),
+    iri=utils.rdf.uri(
+        "identificationQualifier/genus-et-species-nova", utils.namespaces.EXAMPLE
+    ),  # TODO -> Need real URI  # noqa: E501
     description=(
-        "The specimen is considered to belong to a new species and a new genus; "
-        "for more details, see species nova."
+        "The specimen is considered to belong to a new species and a new genus; " "for more details, see species nova."
     ),
 )
 GENUS_NOVUM = utils.vocabs.Term(
-    labels=("GENUS NOVUM", "GEN. NOV.", "G. NOV.", "GEN. N.", "G. N.", "NOV. GEN", ),
+    labels=(
+        "GENUS NOVUM",
+        "GEN. NOV.",
+        "G. NOV.",
+        "GEN. N.",
+        "G. N.",
+        "NOV. GEN",
+    ),
     iri=utils.rdf.uri("identificationQualifier/genus-novum", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
-        "The specimen is considered to belong to a new species and a new genus; "
-        "for more details, see species nova"
+        "The specimen is considered to belong to a new species and a new genus; " "for more details, see species nova"
     ),
 )
 GENUS_SPECIES = utils.vocabs.Term(
-    labels=("GENUS SPECIES", "GEN. SP.", "G. SP.", ),
-    iri=utils.rdf.uri("identificationQualifier/genus-species", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description=(
-        "The specimen has not been related to any known species nor genus; "
-        "also species."
+    labels=(
+        "GENUS SPECIES",
+        "GEN. SP.",
+        "G. SP.",
     ),
+    iri=utils.rdf.uri("identificationQualifier/genus-species", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description=("The specimen has not been related to any known species nor genus; " "also species."),
 )
 SP = utils.vocabs.Term(
-    labels=("SPECIES", "SP", ),
+    labels=(
+        "SPECIES",
+        "SP",
+    ),
     iri=utils.rdf.uri("identificationQualifier/sp", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "The specimen has not been identified, nor it has been related to any "
@@ -83,18 +114,23 @@ SP = utils.vocabs.Term(
     ),
 )
 SPECIES_PL = utils.vocabs.Term(
-    labels=("SPECIES (PL.)", "SPP.", "SP. PL.", ),
-    iri=utils.rdf.uri("identificationQualifier/species-pl", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description=(
-        "More than one species belonging to the same genus (or higher-rank "
-        "taxon) are included."
+    labels=(
+        "SPECIES (PL.)",
+        "SPP.",
+        "SP. PL.",
     ),
+    iri=utils.rdf.uri("identificationQualifier/species-pl", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    description=("More than one species belonging to the same genus (or higher-rank " "taxon) are included."),
 )
 SPECIES_AFFINIS = utils.vocabs.Term(
-    labels=("SPECIES AFFINIS", "AFF.", "SP. AFF.", ),
+    labels=(
+        "SPECIES AFFINIS",
+        "AFF.",
+        "SP. AFF.",
+    ),
     iri=utils.rdf.uri("identificationQualifier/species-affinis", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
-        "\"Has affinity with\". The specimen has some affinity to a known species but "
+        '"Has affinity with". The specimen has some affinity to a known species but '
         "it is not identical to it; it generally implies distinction more than a possible "
         "identity, in contrast with the qualifier confer; see also species Proxima and "
         "ex grege. It is often used in combination with the ON qualifier species "
@@ -102,18 +138,29 @@ SPECIES_AFFINIS = utils.vocabs.Term(
     ),
 )
 SPECIES_INCERTA = utils.vocabs.Term(
-    labels=("SPECIES INCERTA", "SP. INC.", ),
+    labels=(
+        "SPECIES INCERTA",
+        "SP. INC.",
+    ),
     iri=utils.rdf.uri("identificationQualifier/species-incerta", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "The identification is uncertain; it usually indicates a higher reliability with ?, sp. Inc "
-        "respect to confer. The sign \"sp. inc.\" is also used in the sense of species, "
+        'respect to confer. The sign "sp. inc." is also used in the sense of species, '
         "species indeterminabilis and species inquirenda (these usages are "
         "discouraged)."
     ),
 )
 SPECIES_INDETERMINABILIS = utils.vocabs.Term(
-    labels=("SPECIES INDETERMINABILIS", "INDET.", "IND.", "SP. INDET.", "SP. IND.", ),  # noqa: E501
-    iri=utils.rdf.uri("identificationQualifier/species-indeterminabilis", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
+    labels=(
+        "SPECIES INDETERMINABILIS",
+        "INDET.",
+        "IND.",
+        "SP. INDET.",
+        "SP. IND.",
+    ),  # noqa: E501
+    iri=utils.rdf.uri(
+        "identificationQualifier/species-indeterminabilis", utils.namespaces.EXAMPLE
+    ),  # TODO -> Need real URI  # noqa: E501
     description=(
         "The specimen is indeterminable beyond a certain taxonomic level due to "
         "the deterioration or lack of diagnostic characters. Also used in the sense "
@@ -121,7 +168,15 @@ SPECIES_INDETERMINABILIS = utils.vocabs.Term(
     ),
 )
 SPECIES_NOVA = utils.vocabs.Term(
-    labels=("SPECIES NOVA", "SP. NOV.", "SPEC. NOV.", "SP. N.", "NOV. SP.", "NOV. SPEC.", "N. SP.", ),
+    labels=(
+        "SPECIES NOVA",
+        "SP. NOV.",
+        "SPEC. NOV.",
+        "SP. N.",
+        "NOV. SP.",
+        "NOV. SPEC.",
+        "N. SP.",
+    ),
     iri=utils.rdf.uri("identificationQualifier/species-nova", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "The specimen is considered to belong to a new, previously undescribed "
@@ -132,15 +187,23 @@ SPECIES_NOVA = utils.vocabs.Term(
     ),
 )
 SPECIES_PROXIMA = utils.vocabs.Term(
-    labels=("SPECIES PROXIMA", "PROX.", "SP. PROX.", "NR.", "SP.NR.", ),
+    labels=(
+        "SPECIES PROXIMA",
+        "PROX.",
+        "SP. PROX.",
+        "NR.",
+        "SP.NR.",
+    ),
     iri=utils.rdf.uri("identificationQualifier/species-proxima", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
-        "The specimen is near to a known species but it is not identical to it; see "
-        "also affinis and ex grege."
+        "The specimen is near to a known species but it is not identical to it; see " "also affinis and ex grege."
     ),
 )
 STETIT = utils.vocabs.Term(
-    labels=("STETIT", "STET.", ),
+    labels=(
+        "STETIT",
+        "STET.",
+    ),
     iri=utils.rdf.uri("identificationQualifier/stetit", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "Identification at a lower taxonomic level has not been attempted, even if "
@@ -149,8 +212,14 @@ STETIT = utils.vocabs.Term(
     ),
 )
 SUBSPECIES = utils.vocabs.Term(
-    labels=("SUBSPECIES", "SSP.", "SUBSP.", ),
-    iri=utils.rdf.uri("identificationQualifier/subspecies", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
+    labels=(
+        "SUBSPECIES",
+        "SSP.",
+        "SUBSP.",
+    ),
+    iri=utils.rdf.uri(
+        "identificationQualifier/subspecies", utils.namespaces.EXAMPLE
+    ),  # TODO -> Need real URI  # noqa: E501
     description=(
         "The only infraspecific rank regulated by the ICZN (1999). As ON qualifier, "
         "it indicates that the specimen probably belongs to a subspecies but it has "
@@ -165,7 +234,9 @@ class IdentificationQualifier(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of identificationQualifier.")
     base = utils.rdf.uri("bdr-cv/attribute/identificationQualifier/")
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = utils.rdf.uri("bdr-cv/attribute/identificationQualifier", utils.namespaces.EXAMPLE)  # TODO -> Need real URI  # noqa: E501
+    broader = utils.rdf.uri(
+        "bdr-cv/attribute/identificationQualifier", utils.namespaces.EXAMPLE
+    )  # TODO -> Need real URI  # noqa: E501
     default = None  # No default, ommitted if not provided
     terms = (
         ANIMALIA_CETERA,

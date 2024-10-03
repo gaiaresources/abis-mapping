@@ -1,6 +1,5 @@
 """Provides extra frictionless date and time validation checks for the package"""
 
-
 # Third-party
 import frictionless
 import frictionless.errors
@@ -44,5 +43,5 @@ class ChronologicalOrder(frictionless.Check):
         if not all(x <= y for x, y in zip(tstmps[:-1], tstmps[1:], strict=True)):
             yield frictionless.errors.RowConstraintError.from_row(
                 row=row,
-                note=f"the following dates are not in chronological order: {self.field_names}; with values: {tstmps}"
+                note=f"the following dates are not in chronological order: {self.field_names}; with values: {tstmps}",
             )

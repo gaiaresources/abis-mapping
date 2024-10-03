@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.utils.timestamps` module"""
 
-
 # Third-Party
 import pytest
 import rdflib
@@ -17,10 +16,7 @@ from typing import Any, Tuple
 
 
 @pytest.mark.parametrize(
-    [
-        "raw",
-        "expected"
-    ],
+    ["raw", "expected"],
     [
         ("26/04/2022", "2022-04-26"),
         ("2022-04-26", "2022-04-26"),
@@ -37,8 +33,8 @@ from typing import Any, Tuple
         ("2022-04", "2022-04"),
         ("04/2022", "2022-04"),
         ("4/2022", "2022-04"),
-        ("2022", "2022")
-    ]
+        ("2022", "2022"),
+    ],
 )
 def test_timestamp_parse_valid(raw: str, expected: str) -> None:
     """Tests the Timestamp Parser with Valid Input
@@ -56,11 +52,11 @@ def test_timestamp_parse_valid(raw: str, expected: str) -> None:
         "raw",
     ],
     [
-        ("hello world", ),
-        ("26/04/2022 22:00:00Z", ),
-        ("22", ),
-        ("2022-4", ),
-    ]
+        ("hello world",),
+        ("26/04/2022 22:00:00Z",),
+        ("22",),
+        ("2022-4",),
+    ],
 )
 def test_timestamp_parse_invalid(raw: Any) -> None:
     """Tests the Timestamp Parser with Invalid Input
@@ -77,32 +73,39 @@ def test_timestamp_parse_invalid(raw: Any) -> None:
     "tstmps,is_ordered",
     [
         # Scenario 1
-        ([
-            temporal.Datetime(2022, 9, 11, 15, 15, 15),
-            temporal.Datetime(2023, 9, 11, 15, 15, 15),
-            temporal.Date(2023, 10, 11),
-            temporal.Date(2023, 10, 11),
-            temporal.Datetime(2023, 10, 12, 0, 0, 1),
-            temporal.YearMonth(2023, 11),
-            temporal.YearMonth(2023, 12),
-            temporal.Year(2024),
-            temporal.Year(2024),
-            temporal.YearMonth(2024, 1),
-        ], True),
-
+        (
+            [
+                temporal.Datetime(2022, 9, 11, 15, 15, 15),
+                temporal.Datetime(2023, 9, 11, 15, 15, 15),
+                temporal.Date(2023, 10, 11),
+                temporal.Date(2023, 10, 11),
+                temporal.Datetime(2023, 10, 12, 0, 0, 1),
+                temporal.YearMonth(2023, 11),
+                temporal.YearMonth(2023, 12),
+                temporal.Year(2024),
+                temporal.Year(2024),
+                temporal.YearMonth(2024, 1),
+            ],
+            True,
+        ),
         # Scenario 2
-        ([
-            temporal.Date(2022, 9, 11),
-            temporal.Datetime(2023, 10, 11, 15, 15, 15),
-            temporal.Datetime(2023, 9, 11, 15, 15, 15),
-        ], False),
-
+        (
+            [
+                temporal.Date(2022, 9, 11),
+                temporal.Datetime(2023, 10, 11, 15, 15, 15),
+                temporal.Datetime(2023, 9, 11, 15, 15, 15),
+            ],
+            False,
+        ),
         # Scenario 3
-        ([
-            temporal.Datetime(2023, 9, 11, 15, 15, 15),
-            temporal.Datetime(2023, 9, 11, 15, 15, 14),
-        ], False),
-    ]
+        (
+            [
+                temporal.Datetime(2023, 9, 11, 15, 15, 15),
+                temporal.Datetime(2023, 9, 11, 15, 15, 14),
+            ],
+            False,
+        ),
+    ],
 )
 def test_timestamp_le_comparison(tstmps: list[temporal.Timestamp], is_ordered: bool) -> None:
     """Tests implementation of the __le__ method for timestamp types."""
@@ -119,7 +122,7 @@ def test_timestamp_le_comparison(tstmps: list[temporal.Timestamp], is_ordered: b
         (2022, 2, 28, contextlib.nullcontext()),
         (2022, 13, 0, pytest.raises(ValueError)),
         (-5, 12, 0, pytest.raises(ValueError)),
-    ]
+    ],
 )
 def test_max_date(
     year: int,
@@ -142,6 +145,7 @@ def test_max_date(
 
 class TestSharedParams:
     """These tests grouped up as they have shared parameters formed through class attributes."""
+
     # Constants to create shared test params
     dt1 = temporal.Datetime(1111, 1, 1, 1, 1, 1)
     dt2 = temporal.Datetime(2222, 2, 2, 2, 2, 2)
@@ -156,27 +160,33 @@ class TestSharedParams:
         [
             # Both naive
             ((dt1, dt2), (dt1, dt2)),
-
             # Both timezoned same
-            ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
-              dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
-             (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
-              dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))))),
-
+            (
+                (
+                    dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+                    dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+                ),
+                (
+                    dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+                    dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+                ),
+            ),
             # Both timezoned different
-            ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
-              dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=2)))),
-             (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
-              dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=2))))),
-
+            (
+                (
+                    dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+                    dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=2))),
+                ),
+                (
+                    dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+                    dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=2))),
+                ),
+            ),
             # First timezoned second naive
-            ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))), dt2),
-             (dt1, dt2)),
-
+            ((dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))), dt2), (dt1, dt2)),
             # Second timezoned first naive
-            ((dt1, dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
-             (dt1, dt2))
-        ]
+            ((dt1, dt2.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))), (dt1, dt2)),
+        ],
     )
     def test_set_offsets_for_comparison(
         self,
@@ -195,9 +205,11 @@ class TestSharedParams:
         "timestamp,round_up,expected",
         [
             # datetime with timezone
-            (dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
-             False,
-             dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1)))),
+            (
+                dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+                False,
+                dt1.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=1))),
+            ),
             # datetime naive
             (dt1, False, dt1),
             # date
@@ -212,13 +224,10 @@ class TestSharedParams:
             (y1, False, datetime.datetime.combine(datetime.date(2022, 1, 1), min_time)),
             # year roundup
             (y1, True, datetime.datetime.combine(datetime.date(2022, 12, 31), max_time)),
-        ]
+        ],
     )
     def test_transform_timestamp_to_datetime(
-        self,
-        timestamp: temporal.Timestamp,
-        round_up: bool,
-        expected: datetime.datetime
+        self, timestamp: temporal.Timestamp, round_up: bool, expected: datetime.datetime
     ) -> None:
         """Tests the transform_timestamp_to_datetime function.
 
@@ -243,7 +252,7 @@ class TestSharedParams:
         (temporal.YearMonth(year=2022, month=12), rdflib.TIME.inXSDgYearMonth),
         # Test Year
         (temporal.Year(2022), rdflib.TIME.inXSDgYear),
-    ]
+    ],
 )
 def test_rdf_in_xsd(time: temporal.Timestamp, expected: rdflib.URIRef) -> None:
     """Tests the rdf_in_xsd parameter method.
@@ -269,8 +278,8 @@ def test_rdf_in_xsd(time: temporal.Timestamp, expected: rdflib.URIRef) -> None:
         # Test Year month
         (temporal.YearMonth(year=2022, month=4), rdflib.XSD.gYearMonth),
         # Test year only
-        (temporal.Year(2022), rdflib.XSD.gYear)
-    ]
+        (temporal.Year(2022), rdflib.XSD.gYear),
+    ],
 )
 def test_to_rdf_literal(time: temporal.Timestamp, expected_datatype: rdflib.Literal) -> None:
     """Tests the to_rdf_literal() method."""

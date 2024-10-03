@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.plugins.default_lookup` module"""
 
-
 # Third-party
 import frictionless
 
@@ -25,7 +24,6 @@ def test_default_lookup() -> None:
             {"a": "AA", "b": None, "c": "C"},
             {"a": "AAA", "b": "B", "c": "C"},
             {"a": None, "b": "B", "c": "C"},
-
             # Invalid
             {"a": "AAA", "b": None, "c": "C"},
             {"a": None, "b": None, "c": "C"},
@@ -37,9 +35,9 @@ def test_default_lookup() -> None:
         checklist=frictionless.Checklist(
             checks=[
                 plugins.default_lookup.DefaultLookup(
-                   key_field="a",
-                   value_field="b",
-                   default_map=default_map,
+                    key_field="a",
+                    value_field="b",
+                    default_map=default_map,
                 )
             ]
         )

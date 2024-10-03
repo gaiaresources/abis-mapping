@@ -1,6 +1,5 @@
 """Provides reproductive condition vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 

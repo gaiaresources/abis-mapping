@@ -12,6 +12,7 @@ from typing import Any, Type
 
 class Constraints(pydantic.BaseModel):
     """The constraints of a schema field primarily defined by frictionless."""
+
     required: bool
     minimum: float | int | None = None
     maximum: float | int | None = None
@@ -20,6 +21,7 @@ class Constraints(pydantic.BaseModel):
 
 class Field(pydantic.BaseModel):
     """Field model of a schema"""
+
     name: str
     title: str
     description: str
@@ -103,6 +105,7 @@ class Field(pydantic.BaseModel):
 
 class Schema(pydantic.BaseModel):
     """Model for overall schema object of a schema definition."""
+
     fields: list[Field]
     primaryKey: str | None = None
     foreignKeys: list[dict[str, Any]] | None = None

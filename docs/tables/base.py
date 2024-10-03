@@ -23,6 +23,7 @@ class BaseTabler(abc.ABC):
         supported_formats (list[str]): Computed list of formats supported as defined,
             via the SupportedFormats alias.
     """
+
     # Class attributes
     alignment: list[str] | None = None
     SupportedFormats = Literal["markdown", "csv"]
@@ -106,9 +107,10 @@ class BaseTabler(abc.ABC):
 
 class MarkdownDialect(csv.excel):
     """Custom dialect for markdown tables."""
-    delimiter = '|'
-    escapechar = '\\'
-    lineterminator = '\n'
+
+    delimiter = "|"
+    escapechar = "\\"
+    lineterminator = "\n"
     quoting = csv.QUOTE_NONE
     quotechar = None
 
@@ -118,7 +120,8 @@ csv.register_dialect("markdown", MarkdownDialect)
 
 
 class MarkdownDictWriter(csv.DictWriter):
-    """Custom CSV writer that produces """
+    """Custom CSV writer that produces"""
+
     def __init__(
         self,
         f: IO,
@@ -237,7 +240,7 @@ class MarkdownDictWriter(csv.DictWriter):
             str: Cleaned content.
         """
         # Perform replacement
-        return contents.replace('\n', "<br>")
+        return contents.replace("\n", "<br>")
 
     def writerows(self, rowdicts: Iterable[Mapping[Any, Any]]) -> None:
         """Writes rows of the markdown table.
@@ -247,6 +250,4 @@ class MarkdownDictWriter(csv.DictWriter):
                 the markdown dict writer
         """
         # Raise
-        raise NotImplementedError(
-            "writerows functionality not implemented for markdown table writer."
-        )
+        raise NotImplementedError("writerows functionality not implemented for markdown table writer.")

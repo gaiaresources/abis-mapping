@@ -1,6 +1,5 @@
 """Provides Utils Types for the Package"""
 
-
 # Standard
 import datetime
 import abc
@@ -18,6 +17,7 @@ from typing import Tuple, Any
 
 class Timestamp(abc.ABC):
     """Common interface for Timestamp types."""
+
     @abc.abstractmethod
     def to_datetime(self, round_up: bool) -> datetime.datetime:
         """Converts a Timestamp to a datetime.
@@ -72,7 +72,7 @@ class Timestamp(abc.ABC):
         # Convert each operand to datetime and set offsets for comparison
         (dt1, dt2) = set_offsets_for_comparison(
             self.to_datetime(round_up=False),
-            other.to_datetime(round_up=True)
+            other.to_datetime(round_up=True),
         )
 
         # Return datetime comparison
@@ -192,7 +192,6 @@ class Datetime(Timestamp, datetime.datetime):
 
 
 class YearMonth(Timestamp):
-
     def __init__(self, year: int, month: int) -> None:
         """Constructor for YearMonth
 
@@ -271,7 +270,6 @@ class YearMonth(Timestamp):
 
 
 class Year(Timestamp):
-
     def __init__(self, year: int) -> None:
         """Year constructor.
 
@@ -338,14 +336,14 @@ class Year(Timestamp):
 def parse_timestamp(raw: str) -> Timestamp:
     """Parses a string value into a Timestamp object.
 
-      Args:
-          raw (str): The string representation of the timestamp.
+    Args:
+        raw (str): The string representation of the timestamp.
 
-      Returns:
-          Timestamp: An instance of Timestamp or its subclasses (Year, YearMonth, Date, Datetime).
+    Returns:
+        Timestamp: An instance of Timestamp or its subclasses (Year, YearMonth, Date, Datetime).
 
-      Raises:
-          ValueError: If the input value cannot be parsed as a valid timestamp.
+    Raises:
+        ValueError: If the input value cannot be parsed as a valid timestamp.
     """
     # Regular expressions for matching different timestamp formats
     year_only = re.compile(r"^\d{4}$")

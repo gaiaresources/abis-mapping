@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.plugins.mutual_exclusion` module"""
 
-
 # Third-Party
 import frictionless
 
@@ -63,7 +62,7 @@ def test_checks_mutually_exclusive_not_valid() -> None:
     assert not report.valid
     assert len(report.tasks[0].errors) == 2
     for error in report.tasks[0].errors:
-        assert error.type == 'row-constraint'
+        assert error.type == "row-constraint"
         assert error.note == (
             "The columns ['C1', 'C2'] are mutually exclusive and must not be "
             "provided together (columns ['C1', 'C2'] were provided together)"

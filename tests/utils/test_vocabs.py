@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.utils.vocabs` module"""
 
-
 # Standard
 import textwrap
 
@@ -40,6 +39,7 @@ def test_vocabs_term() -> None:
 
 def test_vocabs_restricted_vocab() -> None:
     """Tests the RestrictedVocab Class"""
+
     # Create Vocab
     class Vocab(abis_mapping.utils.vocabs.RestrictedVocabulary):
         vocab_id = "TEST_RESTRICT"
@@ -55,6 +55,7 @@ def test_vocabs_restricted_vocab() -> None:
                 description="B",
             ),
         )
+
     vocab = Vocab(graph=rdflib.Graph())
 
     # Assert Existing Values
@@ -70,6 +71,7 @@ def test_vocabs_restricted_vocab() -> None:
 
 def test_vocabs_flexible_vocab() -> None:
     """Tests the FlexibleVocab Class"""
+
     # Create Vocab
     class Vocab(abis_mapping.utils.vocabs.FlexibleVocabulary):
         vocab_id = "TEST_FLEX"
@@ -90,6 +92,7 @@ def test_vocabs_flexible_vocab() -> None:
                 description="B",
             ),
         )
+
     # Create graph
     graph = rdflib.Graph()
 
@@ -105,8 +108,10 @@ def test_vocabs_flexible_vocab() -> None:
     # Assert New Values
     vocab.source = rdflib.URIRef("D")
     assert vocab.get("C") == rdflib.URIRef("base/C")
-    assert graph.serialize(format="ttl").strip() == textwrap.dedent(
-        """
+    assert (
+        graph.serialize(format="ttl").strip()
+        == textwrap.dedent(
+            """
         @prefix dcterms: <http://purl.org/dc/terms/> .
         @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
         @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -118,7 +123,8 @@ def test_vocabs_flexible_vocab() -> None:
             skos:inScheme <scheme> ;
             skos:prefLabel "C" .
         """
-    ).strip()
+        ).strip()
+    )
 
     # Assert Invalid Values
     with pytest.raises(abis_mapping.utils.vocabs.VocabularyError):

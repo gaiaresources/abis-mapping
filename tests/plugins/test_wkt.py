@@ -25,12 +25,10 @@ def test_wkt_plugin() -> None:
 def test_wkt_registered() -> None:
     """Tests the wkt field type is registered."""
     # Create schema with wkt field
-    schema: frictionless.Schema = frictionless.Schema.from_descriptor({
-        'fields': [{'name': 'someWKT', 'type': 'wkt'}]
-    })
+    schema: frictionless.Schema = frictionless.Schema.from_descriptor({"fields": [{"name": "someWKT", "type": "wkt"}]})
 
     # Extract timestamp field
-    field = schema.get_field('someWKT')
+    field = schema.get_field("someWKT")
 
     # Will only reach this assertion if schema created (i.e. WKT type registered)
     assert not field.builtin

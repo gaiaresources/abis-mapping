@@ -1,6 +1,5 @@
 """Provides sensitivity authority vocabulary"""
 
-
 # Third-Party
 import rdflib
 

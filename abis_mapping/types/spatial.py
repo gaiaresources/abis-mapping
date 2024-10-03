@@ -21,6 +21,7 @@ from typing import NamedTuple
 
 class LatLong(NamedTuple):
     """Named tuple representing coordinates."""
+
     latitude: float | int | decimal.Decimal
     longitude: float | int | decimal.Decimal
 
@@ -147,7 +148,7 @@ class Geometry:
         # Create and return Geometry object
         return Geometry(
             raw=match.group(2),
-            datum=match.group(1) or "WGS84"
+            datum=match.group(1) or "WGS84",
         )
 
     def to_rdf_literal(self) -> rdflib.Literal:
@@ -162,7 +163,7 @@ class Geometry:
         # Construct  and return rdf literal
         wkt_string = shapely.to_wkt(
             geometry=self._geometry,
-            rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION
+            rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION,
         )
         return rdflib.Literal(
             lexical_or_value=datum_string + wkt_string,
@@ -181,7 +182,7 @@ class Geometry:
         # Construct and return rdf literal
         wkt_string = shapely.to_wkt(
             geometry=self._transformed_geometry,
-            rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION
+            rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION,
         )
         return rdflib.Literal(
             lexical_or_value=datum_string + wkt_string,
@@ -191,4 +192,5 @@ class Geometry:
 
 class GeometryError(BaseException):
     """Exception class for the geometry type."""
+
     pass

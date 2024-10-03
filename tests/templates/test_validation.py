@@ -27,6 +27,6 @@ def test_apply_validation(template_id: str, test_params: conftest.MappingParamet
     assert report.valid == test_params.should_validate
     # Validate errors if invalid expected (and supplied).
     if not report.valid:
-        error_codes = [code for codes in report.flatten(['type']) for code in codes]
+        error_codes = [code for codes in report.flatten(["type"]) for code in codes]
         for code in test_params.expected_error_codes:
             assert code in error_codes

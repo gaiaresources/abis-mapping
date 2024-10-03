@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.plugins.list` module"""
 
-
 # Third-Party
 import frictionless
 import pytest
@@ -15,17 +14,17 @@ from typing import Any, Optional
 def test_list_type_registered() -> None:
     """Tests the list field type is registered and delimiter property works."""
     # Create schema with list field
-    schema: frictionless.Schema = frictionless.Schema.from_descriptor({
-        'fields': [{'name': 'someList', 'type': 'list', 'delimiter': ' '}]
-    })
+    schema: frictionless.Schema = frictionless.Schema.from_descriptor(
+        {"fields": [{"name": "someList", "type": "list", "delimiter": " "}]}
+    )
 
     # Extract list field
-    field = schema.get_field('someList')
+    field = schema.get_field("someList")
 
     # Will only reach this assertion if schema created (won't create if list not registered)
     assert not field.builtin
     # Assert delimiter set as per descriptor
-    assert field.__getattribute__("delimiter") == ' '
+    assert field.__getattribute__("delimiter") == " "
 
 
 @pytest.mark.parametrize(
@@ -51,12 +50,11 @@ def test_list_type_registered() -> None:
         ("uri", "|", "https://a.com | https://b.com", ["https://a.com", "https://b.com"]),
         ("uri", "|", "https://a.com   |   https://b.com", ["https://a.com", "https://b.com"]),
         ("uri", "|", "https://a.com   ||||   https://b.com", ["https://a.com", "https://b.com"]),
-
         # Invalid
         ("uri", "|", 123, None),
         ("uri", "|", "a", None),
         ("uri", "|", "a|b|c", None),
-    ]
+    ],
 )
 def test_list_type_read(
     format: str,  # noqa: A002
@@ -103,7 +101,7 @@ def test_list_type_read(
         ("uri", " ", ["https://a.com", "https://b.com"], "https://a.com https://b.com"),
         ("uri", "|", ["https://a.com"], "https://a.com"),
         ("uri", "|", ["https://a.com", "https://b.com"], "https://a.com|https://b.com"),
-    ]
+    ],
 )
 def test_list_type_write(
     format: str,  # noqa: A002

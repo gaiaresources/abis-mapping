@@ -1,6 +1,5 @@
 """Provides custom frictionless list plugin for the package"""
 
-
 # Third-Party
 import frictionless
 import frictionless.fields
@@ -62,15 +61,9 @@ class ListField(frictionless.Field):
                     return None
 
                 # Create StringField instance
-                string_field = frictionless.fields.StringField(
-                    name="delegatedParser",
-                    format=self.format
-                )
+                string_field = frictionless.fields.StringField(name="delegatedParser", format=self.format)
                 # Split, Strip, Filter and Delegate Cell Parsing to the String Type
-                cell = [
-                    string_field.read_cell(c.strip())[0]
-                    for c in cell.split(self.delimiter) if c
-                ]
+                cell = [string_field.read_cell(c.strip())[0] for c in cell.split(self.delimiter) if c]
 
                 # Check for Cell Parsing Failures
                 if not all(cell):
@@ -85,6 +78,7 @@ class ListField(frictionless.Field):
 
     def create_value_writer(self) -> frictionless.schema.types.IValueWriter:
         """Creates value writer callable."""
+
         def value_writer(cell: list[str]) -> str:
             """Convert cell (write direction).
 
@@ -101,10 +95,7 @@ class ListField(frictionless.Field):
             )
 
             # Join and Delegate Cell Serialization to the String Type
-            return self.delimiter.join(
-                string_field.write_cell(c)[0]
-                for c in cell
-            )
+            return self.delimiter.join(string_field.write_cell(c)[0] for c in cell)
 
         # Return writer callable
         return value_writer

@@ -1,6 +1,5 @@
 """Provides rdf namespaces for the package"""
 
-
 # Third-Party
 import rdflib
 

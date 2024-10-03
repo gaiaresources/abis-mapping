@@ -64,15 +64,11 @@ minversion = pytest.mark.skipif(
         ),
         Parameters(
             mapper=abis_mapping.templates.survey_metadata_v2.mapping.SurveyMetadataMapper,
-            data=pathlib.Path(
-                "abis_mapping/templates/survey_metadata_v2/examples/minimal.csv"
-            ).read_bytes(),
-            expected=pathlib.Path(
-                "abis_mapping/templates/survey_metadata_v2/examples/minimal.ttl"
-            ).read_text(),
+            data=pathlib.Path("abis_mapping/templates/survey_metadata_v2/examples/minimal.csv").read_bytes(),
+            expected=pathlib.Path("abis_mapping/templates/survey_metadata_v2/examples/minimal.ttl").read_text(),
             shacl=None,
         ),
-    ]
+    ],
 )
 class TestMapping:
     def test_apply_validation(self, parameters: Parameters) -> None:

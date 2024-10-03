@@ -1,6 +1,5 @@
 """Provides sensitivity category vocabulary"""
 
-
 # Third-Party
 import rdflib
 

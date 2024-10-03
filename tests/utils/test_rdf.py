@@ -1,6 +1,5 @@
 """Provides Unit Tests for the `abis_mapping.utils.rdf` module"""
 
-
 # Third-Party
 import rdflib
 import pytest
@@ -47,7 +46,7 @@ def test_rdf_uri() -> None:
     [
         ("http://hello.org", rdflib.Literal("http://hello.org", datatype=rdflib.XSD.anyURI)),
         ("some name", rdflib.Literal("some name")),
-    ]
+    ],
 )
 def test_rdf_uri_or_string_literal(raw: str, expected: rdflib.Literal) -> None:
     """Test the uri_or_string_literal function.

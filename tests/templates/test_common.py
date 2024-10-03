@@ -38,7 +38,7 @@ def test_registered_has_test_case(mapper_id: str, case_template_ids: list[str]) 
 @pytest.mark.parametrize(
     argnames="test_params",
     argvalues=[tc for tc in conftest.TEST_CASES],
-    ids=[tc.template_id for tc in conftest.TEST_CASES]
+    ids=[tc.template_id for tc in conftest.TEST_CASES],
 )
 class TestTemplateBasicSuite:
     @pytest.fixture(scope="class")
@@ -47,9 +47,7 @@ class TestTemplateBasicSuite:
         return abis_mapping.get_mappers()
 
     def test_template_registered(
-        self,
-        mappers: dict[str, abis_mapping.base.mapper.ABISMapper],
-        test_params: conftest.TemplateTestParameters
+        self, mappers: dict[str, abis_mapping.base.mapper.ABISMapper], test_params: conftest.TemplateTestParameters
     ) -> None:
         """Tests that the supplied template id is registered."""
         assert test_params.template_id in mappers
@@ -179,7 +177,7 @@ class TestTemplateBasicSuite:
         # Validate
         report = mapper().apply_validation(data)
         assert not report.valid
-        error_codes = [code for codes in report.flatten(['type']) for code in codes]
+        error_codes = [code for codes in report.flatten(["type"]) for code in codes]
         assert "table-dimensions" in error_codes
 
     def test_blank_template(self, test_params: conftest.TemplateTestParameters) -> None:
@@ -193,7 +191,7 @@ class TestTemplateBasicSuite:
 
         # Perform validation
         report = mapper().apply_validation(data)
-        error_codes = [code for codes in report.flatten(['type']) for code in codes]
+        error_codes = [code for codes in report.flatten(["type"]) for code in codes]
 
         # Confirm header is as expected
         assert "extra-label" not in error_codes
@@ -240,4 +238,4 @@ class TestTemplateBasicSuite:
         mocked_validate.assert_called_once()
         # The following asserts determine that the extra fields schema was used in creating the resource
         mocked_extra_fields_schema.assert_called_once()
-        mocked_resource.assert_called_with(source=data, schema=schema, format='csv', encoding="utf-8")
+        mocked_resource.assert_called_with(source=data, schema=schema, format="csv", encoding="utf-8")

@@ -1,6 +1,5 @@
 """Provides unit tests for the abis_mapping.plugins.site_geometry module."""
 
-
 # Third-party
 import frictionless
 import pytest
@@ -16,6 +15,7 @@ from typing import Any, Iterator
 @attrs.define(kw_only=True)
 class Parameters:
     """Parameters for the test cases"""
+
     header: list[str]
     cases: list[tuple]
 
@@ -77,10 +77,7 @@ class TestSiteGeometry:
         ],
     )
 
-    @pytest.mark.parametrize(
-        "source,site_ids,valid",
-        params.compiled()
-    )
+    @pytest.mark.parametrize("source,site_ids,valid", params.compiled())
     def test_check_site_geometry_valid(self, source: dict[str, Any], site_ids: set[str], valid: bool) -> None:
         """Tests the site goemetry checker.
 

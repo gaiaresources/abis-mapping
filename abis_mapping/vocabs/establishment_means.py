@@ -1,6 +1,5 @@
 """Provides establishment means vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 
@@ -10,25 +9,36 @@ from abis_mapping import utils
 
 # Terms
 INTRODUCED = utils.vocabs.Term(
-    labels=("INTRODUCED", ),
+    labels=("INTRODUCED",),
     iri=utils.rdf.uri("establishmentMeans/introduced", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Establishment of a taxon by numan agency into an area that is not part of its natural range.",
 )
 INTRODUCED_ASSISTED_COLONISATION = utils.vocabs.Term(
-    labels=("INTRODUCED ASSISTED COLONISATION", "ASSISTED COLONISATION", ),
-    iri=utils.rdf.uri("establishmentMeans/introducedAssistedColonisation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI  # noqa: E501
+    labels=(
+        "INTRODUCED ASSISTED COLONISATION",
+        "ASSISTED COLONISATION",
+    ),
+    iri=utils.rdf.uri(
+        "establishmentMeans/introducedAssistedColonisation", utils.namespaces.EXAMPLE
+    ),  # TODO -> Need real URI  # noqa: E501
     description=(
         "Establishment of a taxon specifically with the intention of creating a self-sustaining wild "
         "population in an area that is not part of the taxon's natural range."
     ),
 )
 NATIVE = utils.vocabs.Term(
-    labels=("NATIVE", "NATIVE (INDIGENOUS)", ),
+    labels=(
+        "NATIVE",
+        "NATIVE (INDIGENOUS)",
+    ),
     iri=utils.rdf.uri("establishmentMeans/native", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="A taxon occurring within its natural range.",
 )
 NATIVE_REINTRODUCED = utils.vocabs.Term(
-    labels=("NATIVE REINTRODUCED", "NATIVE: REINTRODUCED", ),
+    labels=(
+        "NATIVE REINTRODUCED",
+        "NATIVE: REINTRODUCED",
+    ),
     iri=utils.rdf.uri("establishmentMeans/nativeReintroduced", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "A taxon re-established by direct introduction by humans into an area that is not part of "
@@ -36,12 +46,19 @@ NATIVE_REINTRODUCED = utils.vocabs.Term(
     ),
 )
 UNCERTAIN = utils.vocabs.Term(
-    labels=("UNCERTAIN", "UNKNOWN", "CRYPTOGENIC", ),
+    labels=(
+        "UNCERTAIN",
+        "UNKNOWN",
+        "CRYPTOGENIC",
+    ),
     iri=utils.rdf.uri("establishmentMeans/uncertain", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="The origin of the occurrence of the taxon in an area is obscure.",
 )
 VAGRANT = utils.vocabs.Term(
-    labels=("VAGRANT", "CASUAL", ),
+    labels=(
+        "VAGRANT",
+        "CASUAL",
+    ),
     iri=utils.rdf.uri("establishmentMeans/vagrant", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="The temporary occurrence of a taxon far outside its natural or migratory range.",
 )

@@ -27,16 +27,17 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
     """
     # Construct a dummy raw data set using only the fields that matter to the method.
     rawh = ["siteID", "footprintWKT", "decimalLongitude", "decimalLatitude", "geodeticDatum"]
-    raws = [["site1", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", "WGS84"],
-            ["site2", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "10.0", "20.0", "WGS84"],
-            ["site3", "", "10.0", "20.0", "WGS84"],
-            ["site4", "", "", "", ""],
-            ["site5", "", "10.0", "20.0", ""],
-            ["site6", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", ""],
-            ["site7", "", "10.0", "20.0", "AGD66"],
-            ["site8", "", "11.0", "21.0", "EPSG:4202"],
-            ["site9", "", "12.0", "22.0", "GRS20"],
-            ]
+    raws = [
+        ["site1", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", "WGS84"],
+        ["site2", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "10.0", "20.0", "WGS84"],
+        ["site3", "", "10.0", "20.0", "WGS84"],
+        ["site4", "", "", "", ""],
+        ["site5", "", "10.0", "20.0", ""],
+        ["site6", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", ""],
+        ["site7", "", "10.0", "20.0", "AGD66"],
+        ["site8", "", "11.0", "21.0", "EPSG:4202"],
+        ["site9", "", "12.0", "22.0", "GRS20"],
+    ]
     # Amalgamate into a list of dicts
     all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in raws]
 
@@ -44,13 +45,15 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
     mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
 
     # Modify schema to only include the necessary fields for test
-    descriptor = {"fields": [
-        {"name": "siteID", "type": "string"},
-        {"name": "footprintWKT", "type": "wkt"},
-        {"name": "decimalLongitude", "type": "number"},
-        {"name": "decimalLatitude", "type": "number"},
-        {"name": "geodeticDatum", "type": "string"},
-    ]}
+    descriptor = {
+        "fields": [
+            {"name": "siteID", "type": "string"},
+            {"name": "footprintWKT", "type": "wkt"},
+            {"name": "decimalLongitude", "type": "number"},
+            {"name": "decimalLatitude", "type": "number"},
+            {"name": "geodeticDatum", "type": "string"},
+        ]
+    }
     mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Create raw data csv string
@@ -81,6 +84,7 @@ class TestSiteIDForeignKeys:
     @attrs.define(kw_only=True)
     class Scenario:
         """Dataclass to hold the scenario parameters."""
+
         name: str
         raws: list[list[str]]
         site_id_map: dict[str, bool]
@@ -103,17 +107,15 @@ class TestSiteIDForeignKeys:
             site_id_map={
                 "site4": True,
                 "siteNone": True,
-            }
+            },
         ),
         Scenario(
             name="invalid_missing_geometry_and_not_in_map",
             raws=[
                 ["site1", "", "", "", ""],
             ],
-            site_id_map={
-                "site2": True
-            },
-            expected_error_codes={"row-constraint"}
+            site_id_map={"site2": True},
+            expected_error_codes={"row-constraint"},
         ),
     ]
 
@@ -137,9 +139,7 @@ class TestSiteIDForeignKeys:
         mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
 
         # Modify schema to only fields required for test
-        descriptor = {
-            "fields": [field for field in mapper.schema()["fields"] if field["name"] in rawh]
-        }
+        descriptor = {"fields": [field for field in mapper.schema()["fields"] if field["name"] in rawh]}
         descriptor["fields"].sort(key=lambda f: rawh.index(f["name"]))
 
         # Patch the schema for the test
@@ -164,7 +164,7 @@ class TestSiteIDForeignKeys:
         # Assert
         assert report.valid == (scenario.expected_error_codes == set())
         if not report.valid:
-            error_codes = [code for codes in report.flatten(['type']) for code in codes]
+            error_codes = [code for codes in report.flatten(["type"]) for code in codes]
             assert set(error_codes) == scenario.expected_error_codes
 
 
@@ -174,7 +174,7 @@ class TestSiteIDForeignKeys:
         {"footprintWKT": None, "geodeticDatum": None},
         {"footprintWKT": None, "geodeticDatum": "WGS84"},
         {"footprintWKT": "POINT (0 0)", "geodeticDatum": None},
-    ]
+    ],
 )
 def test_add_footprint_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
     """Tests that add_footprint_geometry won't add to graph without valid WKT geometry.
@@ -186,9 +186,7 @@ def test_add_footprint_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
     graph = rdflib.Graph()
 
     # Create resource
-    resource = frictionless.Resource(
-        source=[row_dict]
-    )
+    resource = frictionless.Resource(source=[row_dict])
 
     # Extract row
     with resource.open() as r:
@@ -221,7 +219,7 @@ def test_add_footprint_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
         {"decimalLatitude": 0, "decimalLongitude": None, "geodeticDatum": None},
         {"decimalLatitude": 0, "decimalLongitude": None, "geodeticDatum": "WGS84"},
         {"decimalLatitude": 0, "decimalLongitude": 0, "geodeticDatum": None},
-    ]
+    ],
 )
 def test_add_point_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
     """Tests that add_point_geometry method doesn't add to graph for no point geometries.
@@ -233,9 +231,7 @@ def test_add_point_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
     graph = rdflib.Graph()
 
     # Create resource
-    resource = frictionless.Resource(
-        source=[row_dict]
-    )
+    resource = frictionless.Resource(source=[row_dict])
 
     # Extract row
     with resource.open() as r:

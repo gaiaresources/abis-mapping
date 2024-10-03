@@ -31,10 +31,7 @@ def test_render_index() -> None:
     assert actual.count("some_markdown") == pn_count
 
 
-def test_build_instructions(
-        mocker: pytest_mock.MockFixture,
-        mocked_mapper: unittest.mock.MagicMock
-) -> None:
+def test_build_instructions(mocker: pytest_mock.MockFixture, mocked_mapper: unittest.mock.MagicMock) -> None:
     """Tests the build_instructions function.
 
     Args:
@@ -109,8 +106,7 @@ class TestMapperLoader:
 
         # Invoke
         src, pth, rld = instructions.MapperLoader("some_id").get_source(
-            environment=env,
-            template="BASE_TEMPLATE blank_template.md"
+            environment=env, template="BASE_TEMPLATE blank_template.md"
         )
 
         # Should call mock with the BASE_TEMPLATE keyword stripped.

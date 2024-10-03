@@ -1,6 +1,5 @@
 """Provides preparations vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 
@@ -10,72 +9,72 @@ from abis_mapping import utils
 
 # Terms
 ALCOHOL = utils.vocabs.Term(
-    labels=("ALCOHOL", ),
+    labels=("ALCOHOL",),
     iri=utils.rdf.uri("preparations/alcohol", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Alcohol",
 )
 DEEPFROZEN = utils.vocabs.Term(
-    labels=("DEEP FROZEN", ),
+    labels=("DEEP FROZEN",),
     iri=utils.rdf.uri("preparations/deepFrozen", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Deep frozen",
 )
 DRIED = utils.vocabs.Term(
-    labels=("DRIED", ),
+    labels=("DRIED",),
     iri=utils.rdf.uri("preparations/dried", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Dried",
 )
 DRIEDANDPRESSED = utils.vocabs.Term(
-    labels=("DRIED AND PRESSED", ),
+    labels=("DRIED AND PRESSED",),
     iri=utils.rdf.uri("preparations/driedAndPressed", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="Dried and pressed"
+    description="Dried and pressed",
 )
 FORMALIN = utils.vocabs.Term(
-    labels=("FORMALIN", ),
+    labels=("FORMALIN",),
     iri=utils.rdf.uri("preparations/formalin", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="Formalin"
+    description="Formalin",
 )
 FREEZEDRIED = utils.vocabs.Term(
-    labels=("FREEZE DRIED", ),
+    labels=("FREEZE DRIED",),
     iri=utils.rdf.uri("preparations/freezeDried", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Freeze-dried",
 )
 GLYCERIN = utils.vocabs.Term(
-    labels=("GLYCERIN", ),
+    labels=("GLYCERIN",),
     iri=utils.rdf.uri("preparations/glycerin", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Glycerin",
 )
 GUMARABIC = utils.vocabs.Term(
-    labels=("GUM ARABIC", ),
+    labels=("GUM ARABIC",),
     iri=utils.rdf.uri("preparations/gumArabic", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Gum arabic",
 )
 MICROSCOPICPREPARATION = utils.vocabs.Term(
-    labels=("MICROSCOPIC PREPARATION", ),
+    labels=("MICROSCOPIC PREPARATION",),
     iri=utils.rdf.uri("preparations/microscopicPreparation", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="Microscopic preparation"
+    description="Microscopic preparation",
 )
 MOUNTED = utils.vocabs.Term(
-    labels=("MOUNTED", ),
+    labels=("MOUNTED",),
     iri=utils.rdf.uri("preparations/mounted", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Mounted",
 )
 NOTREATMENT = utils.vocabs.Term(
-    labels=("NO TREATMENT", ),
+    labels=("NO TREATMENT",),
     iri=utils.rdf.uri("preparations/noTreatment", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="No treatment",
 )
 OTHER = utils.vocabs.Term(
-    labels=("OTHER", ),
+    labels=("OTHER",),
     iri=utils.rdf.uri("preparations/other", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Other",
 )
 PINNED = utils.vocabs.Term(
-    labels=("PINNED", ),
+    labels=("PINNED",),
     iri=utils.rdf.uri("preparations/pinned", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Pinned",
 )
 REFRIGERATED = utils.vocabs.Term(
-    labels=("REFRIGERATED", ),
+    labels=("REFRIGERATED",),
     iri=utils.rdf.uri("preparations/refrigerated", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Refrigerated",
 )

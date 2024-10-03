@@ -1,6 +1,5 @@
 """Provides conservation authority vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 

@@ -35,20 +35,17 @@ class ContextualStringIO(io.StringIO):
 
 
 class StubMapper(base.mapper.ABISMapper):
-
     def apply_mapping(
         self,
         data: base_types.ReadableType,
         dataset_iri: Optional[rdflib.URIRef] = None,
         base_iri: Optional[rdflib.Namespace] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterator[rdflib.Graph]:
         yield from []
 
     def apply_validation(  # type: ignore[empty-body]
-        self,
-        data: base_types.ReadableType,
-        **kwargs: Any
+        self, data: base_types.ReadableType, **kwargs: Any
     ) -> frictionless.Report:
         pass
 
@@ -99,9 +96,7 @@ def test_schema(mocker: pytest_mock.MockerFixture) -> None:
                 "example": "8022FSJMJ079c5cf",
                 "type": "string",
                 "format": "default",
-                "constraints": {
-                    "required": True
-                }
+                "constraints": {"required": True},
             },
             {
                 "name": "providerRecordIDSource",
@@ -112,7 +107,7 @@ def test_schema(mocker: pytest_mock.MockerFixture) -> None:
                 "format": "default",
                 "constraints": {
                     "required": True,
-                }
+                },
             },
             {
                 "name": "locality",
@@ -122,15 +117,12 @@ def test_schema(mocker: pytest_mock.MockerFixture) -> None:
                 "type": "string",
                 "format": "default",
                 "url": "https://dwc.tdwg.org/terms/#dwc:locality",
-                "constraints": {
-                    "required": False
-                }
+                "constraints": {"required": False},
             },
         ]
     }
     # Patch the pathlib.Path.read_text method
-    mocker.patch.object(pathlib.Path, "read_text",
-                        return_value=json.dumps(raw_schema))
+    mocker.patch.object(pathlib.Path, "read_text", return_value=json.dumps(raw_schema))
 
     # Create mapper
     mapper = StubMapper()
@@ -158,11 +150,14 @@ def test_generate_blank_template(mocker: pytest_mock.MockerFixture) -> None:
     """
     # Create and assign mock for pathlib.Path.read_text method
     return_value = {
-        "fields": [{
-            "name": "col1",
-        }, {
-            "name": "col2",
-        }],
+        "fields": [
+            {
+                "name": "col1",
+            },
+            {
+                "name": "col2",
+            },
+        ],
     }
     mocked_read_text = mocker.patch.object(pathlib.Path, "read_text")
     mocked_read_text.return_value = json.dumps(return_value)
@@ -223,8 +218,7 @@ def test_extra_fields_schema_row_data(mocker: pytest_mock.MockerFixture) -> None
             assert set(diff_schema.field_names) == expected_extra_fieldnames
             for field in diff_schema.fields:
                 assert field.type == "string"
-            assert set(full_schema.field_names) == \
-                set(existing_schema.field_names) | expected_extra_fieldnames
+            assert set(full_schema.field_names) == set(existing_schema.field_names) | expected_extra_fieldnames
 
 
 def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None:
@@ -235,18 +229,8 @@ def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None
     """
     # Create raw data
     data = [
-        {
-            "A": 123,
-            "B": 321,
-            "extraInformation1": "some extra information",
-            "extraInformation2": ""
-        },
-        {
-            "A": 321,
-            "B": 123,
-            "extraInformation1": "",
-            "extraInformation2": "some more extra information"
-        },
+        {"A": 123, "B": 321, "extraInformation1": "some extra information", "extraInformation2": ""},
+        {"A": 321, "B": 123, "extraInformation1": "", "extraInformation2": "some more extra information"},
     ]
 
     # Expected extra field names
@@ -276,8 +260,7 @@ def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None
     assert set(diff_schema.field_names) == expected_extra_fieldnames
     for field in diff_schema.fields:
         assert field.type == "string"
-    assert set(full_schema.field_names) == \
-        set(existing_schema.field_names) | expected_extra_fieldnames
+    assert set(full_schema.field_names) == set(existing_schema.field_names) | expected_extra_fieldnames
 
 
 def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
@@ -288,33 +271,13 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
     """
     # Construct dataset
     data = [
-        {
-            "A": 123,
-            "B": 321,
-            "C": 321.6546454654654,
-            "D": True,
-            "E": "something"
-        },
-        {
-            "A": 321,
-            "B": 123,
-            "C": 6.54654e-15,
-            "D": False,
-            "E": "another thing"
-        },
+        {"A": 123, "B": 321, "C": 321.6546454654654, "D": True, "E": "something"},
+        {"A": 321, "B": 123, "C": 6.54654e-15, "D": False, "E": "another thing"},
     ]
     # Expected results
     overall_expected = [
-        {
-            "C": "321.6546454654654",
-            "D": "True",
-            "E": "something"
-        },
-        {
-            "C": "6.54654e-15",
-            "D": "False",
-            "E": "another thing"
-        },
+        {"C": "321.6546454654654", "D": "True", "E": "something"},
+        {"C": "6.54654e-15", "D": "False", "E": "another thing"},
     ]
 
     # Serialize data to csv
@@ -356,12 +319,7 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
 
     # Create raw data
     data = [
-        {
-            "A": 123,
-            "B": 321,
-            "extraInformation1": "some additional info",
-            "extraInformation2": "some more info"
-        },
+        {"A": 123, "B": 321, "extraInformation1": "some additional info", "extraInformation2": "some more info"},
     ]
 
     # Get data
@@ -400,7 +358,7 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
 
     # Assert
     assert len(graph) == 1
-    for (s, p, o) in graph:
+    for s, p, o in graph:
         assert s == base_uri
         assert p == rdflib.RDFS.comment
         assert isinstance(o, rdflib.Literal)
@@ -486,7 +444,7 @@ def test_extra_fields_middle(mocker: pytest_mock.MockerFixture) -> None:
 
     # Assert
     assert not report.valid
-    error_codes = [code for codes in report.flatten(['type']) for code in codes]
+    error_codes = [code for codes in report.flatten(["type"]) for code in codes]
     assert error_codes == ["incorrect-label"]
 
 
@@ -513,8 +471,9 @@ def test_fields(
                 "constraints": {
                     "required": False,
                 },
-                "vocabularies": ["vocabularyA"]
-            }, {
+                "vocabularies": ["vocabularyA"],
+            },
+            {
                 "name": "fieldB",
                 "title": "Title B",
                 "description": "Description B",
@@ -524,8 +483,8 @@ def test_fields(
                 "constraints": {
                     "required": False,
                 },
-                "vocabularies": ["vocabularyB"]
-            }
+                "vocabularies": ["vocabularyB"],
+            },
         ]
     }
     mocker.patch.object(base.mapper.ABISMapper, "schema", return_value=descriptor)

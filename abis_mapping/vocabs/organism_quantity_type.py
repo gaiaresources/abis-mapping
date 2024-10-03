@@ -8,7 +8,10 @@ import rdflib
 
 # Terms
 PERCENTAGE_OF_SPECIES = utils.vocabs.Term(
-    labels=("PERCENTAGE OF SPECIES", "% OF SPECIES", ),
+    labels=(
+        "PERCENTAGE OF SPECIES",
+        "% OF SPECIES",
+    ),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/percentageOfSpecies"),
     description=(
         "A measurement type where the quantity of a species in a sample is recorded as "
@@ -17,7 +20,10 @@ PERCENTAGE_OF_SPECIES = utils.vocabs.Term(
 )
 
 PERCENTAGE_OF_BIOVOLUME = utils.vocabs.Term(
-    labels=("PERCENTAGE OF BIOVOLUME", "% OF BIOVOLUME", ),
+    labels=(
+        "PERCENTAGE OF BIOVOLUME",
+        "% OF BIOVOLUME",
+    ),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/percentageOfBiovolume"),
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
@@ -26,7 +32,10 @@ PERCENTAGE_OF_BIOVOLUME = utils.vocabs.Term(
 )
 
 PERCENTAGE_OF_BIOMASS = utils.vocabs.Term(
-    labels=("PERCENTAGE OF BIOMASS", "% OF BIOMASS", ),
+    labels=(
+        "PERCENTAGE OF BIOMASS",
+        "% OF BIOMASS",
+    ),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/percentageOfBiomass"),
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
@@ -35,7 +44,10 @@ PERCENTAGE_OF_BIOMASS = utils.vocabs.Term(
 )
 
 PERCENTAGE_COVERAGE = utils.vocabs.Term(
-    labels=("PERCENTAGE COVERAGE", "% COVERAGE", ),
+    labels=(
+        "PERCENTAGE COVERAGE",
+        "% COVERAGE",
+    ),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/percentageCoverage"),
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
@@ -44,7 +56,7 @@ PERCENTAGE_COVERAGE = utils.vocabs.Term(
 )
 
 INDIVIDUALS = utils.vocabs.Term(
-    labels=("INDIVIDUALS", ),
+    labels=("INDIVIDUALS",),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/individuals"),
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
@@ -53,24 +65,25 @@ INDIVIDUALS = utils.vocabs.Term(
 )
 
 DOMIN_SCALE = utils.vocabs.Term(
-    labels=("DOMIN SCALE", ),
+    labels=("DOMIN SCALE",),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/dominScale"),
-    description=(
-        "A measurement type where the cover of a species in a sample is recorded using the Domin scale."
-    )
+    description=("A measurement type where the cover of a species in a sample is recorded using the Domin scale."),
 )
 
 BRAUN_BLANQUET_SCALE = utils.vocabs.Term(
-    labels=("BRAUN BLANQUET SCALE", ),
+    labels=("BRAUN BLANQUET SCALE",),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/braunBlanquetScale"),
     description=(
-        "A measurement type where the cover of a species in a sample is recorded "
-        "using the Braun-Blanquet scale."
+        "A measurement type where the cover of a species in a sample is recorded " "using the Braun-Blanquet scale."
     ),
 )
 
 BIOMASS_AFDG = utils.vocabs.Term(
-    labels=("BIOMASS AFDG", "BIOMASS ASH FREE DRY WEIGHT IN GRAMS", "BIOMASS ASH FREE DRY WEIGHT GRAMS", ),
+    labels=(
+        "BIOMASS AFDG",
+        "BIOMASS ASH FREE DRY WEIGHT IN GRAMS",
+        "BIOMASS ASH FREE DRY WEIGHT GRAMS",
+    ),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/biomassAFDG"),
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
@@ -79,7 +92,11 @@ BIOMASS_AFDG = utils.vocabs.Term(
 )
 
 BIOMASS_G = utils.vocabs.Term(
-    labels=("BIOMASS G", "BIOMASS IN GRAMS", "BIOMASS GRAMS", ),
+    labels=(
+        "BIOMASS G",
+        "BIOMASS IN GRAMS",
+        "BIOMASS GRAMS",
+    ),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/biomassG"),
     description=(
         "A measurement type where the quantity of a species in a sample is recorded as the biomass in grams (g)."
@@ -87,7 +104,11 @@ BIOMASS_G = utils.vocabs.Term(
 )
 
 BIOMASS_KG = utils.vocabs.Term(
-    labels=("BIOMASS KG", "BIOMASS IN KILOGRAMS", "BIOMASS KILOGRAMS", ),
+    labels=(
+        "BIOMASS KG",
+        "BIOMASS IN KILOGRAMS",
+        "BIOMASS KILOGRAMS",
+    ),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/biomassKg"),
     description=(
         "A measurement type where the quantity of a species in a sample is recorded as the biomass in kilograms (kg)."
@@ -95,7 +116,10 @@ BIOMASS_KG = utils.vocabs.Term(
 )
 
 BIOVOLUME_CUBIC_MICRONS = utils.vocabs.Term(
-    labels=("BIOVOLUME CUBIC MICRONS", "BIOVOLUME IN CUBIC MICRONS", ),
+    labels=(
+        "BIOVOLUME CUBIC MICRONS",
+        "BIOVOLUME IN CUBIC MICRONS",
+    ),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/biovolumeCubicMicrons"),
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
@@ -104,7 +128,11 @@ BIOVOLUME_CUBIC_MICRONS = utils.vocabs.Term(
 )
 
 BIOVOLUME_ML = utils.vocabs.Term(
-    labels=("BIOVOLUME ML", "BIOVOLUME IN MILLILITRES", "BIOVOLUME MILLILITRES", ),
+    labels=(
+        "BIOVOLUME ML",
+        "BIOVOLUME IN MILLILITRES",
+        "BIOVOLUME MILLILITRES",
+    ),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/biovolumeMl"),
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "

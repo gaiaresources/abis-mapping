@@ -8,15 +8,9 @@ from abis_mapping import utils
 
 
 # Terms
-SAME_AS = utils.vocabs.Term(
-    labels=("SAME AS", ),
-    iri=rdflib.SDO.sameAs,
-    description="When two sites are the same."
-)
+SAME_AS = utils.vocabs.Term(labels=("SAME AS",), iri=rdflib.SDO.sameAs, description="When two sites are the same.")
 PART_OF = utils.vocabs.Term(
-    labels=("PART OF", ),
-    iri=rdflib.SDO.isPartOf,
-    description="When a site is a subset of another site."
+    labels=("PART OF",), iri=rdflib.SDO.isPartOf, description="When a site is a subset of another site."
 )
 
 

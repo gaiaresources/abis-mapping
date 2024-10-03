@@ -33,7 +33,7 @@ def mocked_vocab(mocker: pytest_mock.MockerFixture) -> unittest.mock.MagicMock:
     # Patch terms
     mocked_vocab.return_value.terms = (
         utils.vocabs.Term(
-            labels=("SOME LABEL", "ANOTHER LABEL", ),
+            labels=("SOME LABEL", "ANOTHER LABEL"),
             iri=rdflib.URIRef("https://example.org/some-term"),
             description="Some description.",
         ),
@@ -75,7 +75,7 @@ def compare_graphs(
     assert isinstance(graph2, rdflib.Graph)
 
     for graph in (graph1, graph2):
-        for (s, p, o) in graph.triples((None, None, None)):
+        for s, p, o in graph.triples((None, None, None)):
             if isinstance(o, rdflib.Literal):
                 # Replace Timestamps
                 # In many cases, dates and datetimes are generately systematically as a

@@ -1,6 +1,5 @@
 """Provides sequencing method vocabulary for the package"""
 
-
 # Third-Party
 import rdflib
 
@@ -10,8 +9,8 @@ from abis_mapping import utils
 
 # Terms
 UNDEFINED = utils.vocabs.Term(
-    labels=("UNDEFINED", ),
-    iri=utils.rdf.uri("sequencingMethod/undefined", utils.namespaces.EXAMPLE),   # TODO -> Need real URI
+    labels=("UNDEFINED",),
+    iri=utils.rdf.uri("sequencingMethod/undefined", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description="Undefined",
 )
 

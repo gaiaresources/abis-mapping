@@ -1,6 +1,5 @@
 """Provides string utilities for the package"""
 
-
 # Standard
 import re
 

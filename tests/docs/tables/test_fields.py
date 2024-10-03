@@ -31,11 +31,7 @@ def mocked_determine_checklist(mocker: pytest_mock.MockerFixture) -> unittest.mo
     """
     # Create a checklist to return from the mocked method.
     checklist = frictionless.Checklist(
-        checks=[
-            plugins.mutual_inclusion.MutuallyInclusive(
-                field_names=["FieldA", "FieldB"]
-            )
-        ]
+        checks=[plugins.mutual_inclusion.MutuallyInclusive(field_names=["FieldA", "FieldB"])]
     )
     # Patch and return mock
     return mocker.patch.object(
@@ -62,8 +58,8 @@ def mocked_determine_checklist(mocker: pytest_mock.MockerFixture) -> unittest.mo
                         "SOME EXAMPLE",
                         "Option 2",
                         "plan C",
-                    ]
-                }
+                    ],
+                },
             },
             {
                 "Field Name": "someName",
@@ -87,8 +83,8 @@ def mocked_determine_checklist(mocker: pytest_mock.MockerFixture) -> unittest.mo
                         "SOME EXAMPLE",
                         "Option 2",
                         "plan C",
-                    ]
-                }
+                    ],
+                },
             },
             {
                 "Field Name": "someName",
@@ -96,7 +92,7 @@ def mocked_determine_checklist(mocker: pytest_mock.MockerFixture) -> unittest.mo
                 "Mandatory / Optional": "Mandatory",
                 "Datatype Format": "String",
                 "Examples": "SOME EXAMPLE",
-            }
+            },
         ),
     ],
 )
@@ -155,9 +151,9 @@ def test_generate_table(
     mocked_vocab.assert_called()
     mocked_mapper.assert_called()
     assert dest.getvalue() == (
-        'Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n'
-        'someName,Some description,Mandatory,String,SOME EXAMPLE\r\n'
-        'anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n\n'
+        "Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
+        "someName,Some description,Mandatory,String,SOME EXAMPLE\r\n"
+        "anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n\n"
     )
 
 
@@ -181,10 +177,10 @@ def test_generate_table_markdown(
     mocked_mapper.assert_called()
     mocked_vocab.assert_called()
     assert actual == (
-        '|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n'
-        '|:---|:---|:---:|:---:|:---|\n'
-        '|someName|Some description|Mandatory|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
-        '|[anotherName](http://example.com/)|Another description|Mandatory|String|ANOTHER EXAMPLE|\n'
+        "|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n"
+        "|:---|:---|:---:|:---:|:---|\n"
+        "|someName|Some description|Mandatory|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n"
+        "|[anotherName](http://example.com/)|Another description|Mandatory|String|ANOTHER EXAMPLE|\n"
     )
 
 
@@ -223,12 +219,8 @@ def test_mandatory_optional_text_conditional_with_multiple_fields(
     # Modify mock return value
     checklist = frictionless.Checklist(
         checks=[
-            plugins.mutual_inclusion.MutuallyInclusive(
-                field_names=["FieldA", "FieldB"]
-            ),
-            plugins.mutual_inclusion.MutuallyInclusive(
-                field_names=["FieldA", "FieldC"]
-            ),
+            plugins.mutual_inclusion.MutuallyInclusive(field_names=["FieldA", "FieldB"]),
+            plugins.mutual_inclusion.MutuallyInclusive(field_names=["FieldA", "FieldC"]),
             plugins.mutual_inclusion.MutuallyInclusive(
                 field_names=["FieldA", "FieldD"],
             ),
@@ -243,7 +235,7 @@ def test_mandatory_optional_text_conditional_with_multiple_fields(
     actual = tabler.mandatory_optional_text(required=False, field_name="FieldA")
 
     # Regex response
-    regex = re.compile(r'^Conditionally mandatory with Field[BCD]{1}, Field[BCD]{1} and Field[BCD]{1}$')
+    regex = re.compile(r"^Conditionally mandatory with Field[BCD]{1}, Field[BCD]{1} and Field[BCD]{1}$")
 
     # Assert
     assert regex.match(actual) is not None
@@ -254,12 +246,8 @@ def test_mutual_inclusivity() -> None:
     # Create checklist
     checklist = frictionless.Checklist(
         checks=[
-            plugins.mutual_inclusion.MutuallyInclusive(
-                field_names=["fieldA", "fieldB"]
-            ),
-            plugins.mutual_inclusion.MutuallyInclusive(
-                field_names=["fieldB", "fieldC"]
-            )
+            plugins.mutual_inclusion.MutuallyInclusive(field_names=["fieldA", "fieldB"]),
+            plugins.mutual_inclusion.MutuallyInclusive(field_names=["fieldB", "fieldC"]),
         ]
     )
 
