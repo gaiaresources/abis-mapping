@@ -1,0 +1,6 @@
+# This file contains hashes of commits git blame should ignore.
+# Run `git config blame.ignoreRevsFile .git-blame-ignore-revs` to enable.
+# Requires git 2.23+.
+
+# 2024-10-03 Applied ruff format to all python code
+98477463d23e270c276097edde9eb41a8f944ca2
