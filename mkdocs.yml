@@ -8,6 +8,7 @@ theme:
     repo: fontawesome/brands/github
   features:
     - toc.integrate
+    - navigation.indexes
 docs_dir: docs/pages
 extra:
   version:
