@@ -14,6 +14,8 @@ from abis_mapping import utils
 
 # Typing
 from typing import Iterator, IO
+
+
 class VocabTableRow(pydantic.BaseModel):
     """Model for a vocab table row."""
 
