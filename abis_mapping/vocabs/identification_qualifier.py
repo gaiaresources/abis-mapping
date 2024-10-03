@@ -217,9 +217,7 @@ SUBSPECIES = utils.vocabs.Term(
         "SSP.",
         "SUBSP.",
     ),
-    iri=utils.rdf.uri(
-        "identificationQualifier/subspecies", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI
+    iri=utils.rdf.uri("identificationQualifier/subspecies", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
         "The only infraspecific rank regulated by the ICZN (1999). As ON qualifier, "
         "it indicates that the specimen probably belongs to a subspecies but it has "
