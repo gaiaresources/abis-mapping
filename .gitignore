@@ -83,6 +83,7 @@ Dockerfile
 /result.md
 /tests/templates/**/*-result.ttl
 /docs/pages/**/*.md
+!/docs/pages/archived_templates/*.md
 !/docs/pages/index.md
 /docs/pages/index.html
 site/
