@@ -460,7 +460,7 @@
     {
       "name": "acceptedNameUsage",
       "title": "Accepted Name Usage",
-      "description": "...",
+      "description": "Calaendia excelsa Hopper & A.P.Br.",
       "example": "Occiperipatoides gilesii (Spencer, 1909)",
       "type": "string",
       "format": "default",
