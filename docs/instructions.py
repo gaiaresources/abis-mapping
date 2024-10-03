@@ -4,6 +4,7 @@
 import argparse
 import importlib.metadata
 import io
+import os
 import pathlib
 import sys
 
@@ -167,22 +168,31 @@ if __name__ == "__main__":
     # Parse command line arguments
     args = parser.parse_args()
 
-    # Generate instructions
-    rendered = build_instructions(args.mapper_id)
+    # Redeclaring here to help IDE
+    od: io.FileIO = args.output_dest
 
-    # Output to file
-    print(rendered, file=args.output_dest)
+    try:
+        # Generate instructions
+        rendered = build_instructions(args.mapper_id)
+
+        # Output to file
+        print(rendered, file=args.output_dest)
+
+        # Check index flag and output is a file
+        if args.index and od.name != "<stdout>":
+            # Create Path object from output destination
+            pth = pathlib.Path(od.name)
+            rendered_index = render_index(pth)
+            # Open destination index.html and write
+            with open(f"{pth.parent}/index.html", "w") as f:
+                f.write(rendered_index)
+    except (ValueError, jinja2.TemplateNotFound) as e:
+        # Check output dest is not stdout
+        if od.name != "<stdout>":
+            # Close and remove file
+            od.close()
+            os.unlink(od.name)
+        raise e
 
     # Close file
-    args.output_dest.close()
-
-    # Check index flag and output is a file
-    if args.index and args.output_dest.name != "<stdout>":
-        # Redeclaring here to help IDE
-        od: io.FileIO = args.output_dest
-        # Create Path object from output destination
-        pth = pathlib.Path(od.name)
-        rendered_index = render_index(pth)
-        # Open destination index.html and write
-        with open(f"{pth.parent}/index.html", "w") as f:
-            f.write(rendered_index)
+    od.close()
