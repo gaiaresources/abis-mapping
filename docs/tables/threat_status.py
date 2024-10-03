@@ -85,7 +85,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
         self.writer.writeheader()
 
         # Iterate through vocab's terms
-        for term in sorted(utils.vocabs.get_vocab("THREAT_STATUS").terms, key=lambda x: x.preferred_label):  # type: ignore[arg-type, return-value] # noqa: E501
+        for term in sorted(utils.vocabs.get_vocab("THREAT_STATUS").terms, key=lambda x: x.preferred_label):  # type: ignore[arg-type, return-value]
             # Generate row
             row = self.generate_row(term)
             # Write to output

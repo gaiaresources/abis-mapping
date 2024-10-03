@@ -20,7 +20,7 @@ INTRODUCED_ASSISTED_COLONISATION = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "establishmentMeans/introducedAssistedColonisation", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description=(
         "Establishment of a taxon specifically with the intention of creating a self-sustaining wild "
         "population in an area that is not part of the taxon's natural range."

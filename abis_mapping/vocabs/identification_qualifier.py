@@ -58,7 +58,7 @@ FAMILIA_GENUS_SPECIES = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "identificationQualifier/familia-genus-species", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description=("The specimen has not been attributed to any known species nor family; " "see also species."),
 )
 GENUS_ET_SPECIES_NOVA = utils.vocabs.Term(
@@ -71,7 +71,7 @@ GENUS_ET_SPECIES_NOVA = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "identificationQualifier/genus-et-species-nova", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description=(
         "The specimen is considered to belong to a new species and a new genus; " "for more details, see species nova."
     ),
@@ -157,10 +157,10 @@ SPECIES_INDETERMINABILIS = utils.vocabs.Term(
         "IND.",
         "SP. INDET.",
         "SP. IND.",
-    ),  # noqa: E501
+    ),
     iri=utils.rdf.uri(
         "identificationQualifier/species-indeterminabilis", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description=(
         "The specimen is indeterminable beyond a certain taxonomic level due to "
         "the deterioration or lack of diagnostic characters. Also used in the sense "
@@ -219,7 +219,7 @@ SUBSPECIES = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "identificationQualifier/subspecies", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description=(
         "The only infraspecific rank regulated by the ICZN (1999). As ON qualifier, "
         "it indicates that the specimen probably belongs to a subspecies but it has "
@@ -236,7 +236,7 @@ class IdentificationQualifier(utils.vocabs.FlexibleVocabulary):
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
     broader = utils.rdf.uri(
         "bdr-cv/attribute/identificationQualifier", utils.namespaces.EXAMPLE
-    )  # TODO -> Need real URI  # noqa: E501
+    )  # TODO -> Need real URI
     default = None  # No default, ommitted if not provided
     terms = (
         ANIMALIA_CETERA,

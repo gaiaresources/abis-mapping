@@ -28,7 +28,7 @@ HABITAT_DESCRIPTION = rdflib.URIRef("https://linked.data.gov.au/def/nrm/aa4c96f6
 CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)
 CONCEPT_VEGETATION_CONDITION = rdflib.URIRef(
     "http://linked.data.gov.au/def/ausplots-cv/ff69c254-e549-45e8-a320-e28ead5092c8"
-)  # noqa: E501
+)
 DEFAULT_SURVEY = utils.rdf.uri("survey/SSD-Survey/1", utils.namespaces.CREATEME)  # TODO: Cross reference
 UNSPECIFIED_CONDITION_METHOD = utils.rdf.uri("bdr-cv/methods/conditionMethod/Unspecified", utils.namespaces.CREATEME)
 

@@ -47,7 +47,7 @@ ACT_REGIONALLY_CONSERVATION_DEPENDENT = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "threatStatus/ACT/regionally-conservation-dependent", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description="Australian Capital Territory, regionally conservation dependent.",
 )
 ACT_VULNERABLE = utils.vocabs.Term(
@@ -247,7 +247,7 @@ NT_EN_EXTINCT_IN_WILD_IN_NT = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "threatStatus/NT/Endangered-extinct-in-wild-in-NT", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description="Northern Territory, endangered extinct in wild in Northern Territory.",
 )
 NT_EW = utils.vocabs.Term(
@@ -259,7 +259,7 @@ NT_EW = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "threatStatus/NT/Critically-endangered-possibly-extinct", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description="Northern Territory, critically endangered possibly extinct.",
 )
 NT_EX = utils.vocabs.Term(
@@ -351,7 +351,7 @@ QLD_CR = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "threatStatus/QLD/Critically-endangered-wildlife", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description="Queensland, critically endangered wildlife.",
 )
 QLD_E = utils.vocabs.Term(
@@ -403,7 +403,7 @@ QLD_PE = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "threatStatus/QLD/Extinct-in-the-wild-wildlife", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description="Queensland, extinct in the wild wildlife.",
 )
 QLD_SL = utils.vocabs.Term(
@@ -415,7 +415,7 @@ QLD_SL = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "threatStatus/QLD/Special-least-concern-wildlife", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description="Queensland, special least-concern wildlife.",
 )
 QLD_V = utils.vocabs.Term(
@@ -461,9 +461,9 @@ SA_V = utils.vocabs.Term(
 SA_SP = utils.vocabs.Term(
     labels=(
         "SA/SP",
-        "SA/INDICATES THAT A RATING HAS BEEN APPLIED TO THE SPECIES LEVEL THE STATUS HAS NOT BEEN ASSESSED AT THE SUBSPECIES LEVEL",  # noqa: E501
+        "SA/INDICATES THAT A RATING HAS BEEN APPLIED TO THE SPECIES LEVEL THE STATUS HAS NOT BEEN ASSESSED AT THE SUBSPECIES LEVEL",
         "SOUTH AUSTRALIA/SP",
-        "SOUTH AUSTRALIA/INDICATES THAT A RATING HAS BEEN APPLIED TO THE SPECIES LEVEL THE STATUS HAS NOT BEEN ASSESSED AT THE SUBSPECIES LEVEL",  # noqa: E501
+        "SOUTH AUSTRALIA/INDICATES THAT A RATING HAS BEEN APPLIED TO THE SPECIES LEVEL THE STATUS HAS NOT BEEN ASSESSED AT THE SUBSPECIES LEVEL",
     ),
     iri=utils.rdf.uri("threatStatus/SA/sp", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
@@ -555,7 +555,7 @@ VIC_ENDANGERED_EXTINCT_IN_VICTORIA = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "threatStatus/VIC/Endangered-Extinct-in-Victoria", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description="Victoria, endangered, extinct in Victoria.",
 )
 VIC_EXTINCT = utils.vocabs.Term(
@@ -602,7 +602,7 @@ WA_CD = utils.vocabs.Term(
     iri=utils.rdf.uri(
         "threatStatus/WA/species-of-special-conservation-interest-conservation-dependent-fauna",
         utils.namespaces.EXAMPLE,
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description=("Western Australia, species of special conservation interest conservation dependent fauna."),
 )
 WA_CR = utils.vocabs.Term(
@@ -672,7 +672,7 @@ WA_OS = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "threatStatus/WA/other-specifically-protected-fauna", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description="Western Australia, other specifically protected fauna.",
 )
 WA_P1 = utils.vocabs.Term(
@@ -720,7 +720,7 @@ WA_P4 = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri(
         "threatStatus/WA/P4-rare-near-threatened-and-other-species-in-need-of-monitoring", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI  # noqa: E501
+    ),  # TODO -> Need real URI
     description=("Western Australia, priority 4 rare near threatened and other species in need of monitoring."),
 )
 WA_SPECIALLY_PROTECTED_SPECIES = utils.vocabs.Term(

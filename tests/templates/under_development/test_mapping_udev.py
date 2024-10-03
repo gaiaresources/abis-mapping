@@ -41,10 +41,10 @@ minversion = pytest.mark.skipif(
         Parameters(
             mapper=abis_mapping.templates.incidental_occurrence_data_v3.mapping.IncidentalOccurrenceMapper,
             data=pathlib.Path(
-                "abis_mapping/templates/incidental_occurrence_data_v3/examples/margaret_river_flora/margaret_river_flora.csv"  # noqa: E501
+                "abis_mapping/templates/incidental_occurrence_data_v3/examples/margaret_river_flora/margaret_river_flora.csv"
             ).read_bytes(),
             expected=pathlib.Path(
-                "abis_mapping/templates/incidental_occurrence_data_v3/examples/margaret_river_flora/margaret_river_flora.ttl"  # noqa: E501
+                "abis_mapping/templates/incidental_occurrence_data_v3/examples/margaret_river_flora/margaret_river_flora.ttl"
             ).read_text(),
             shacl=pathlib.Path(
                 "abis_mapping/templates/incidental_occurrence_data_v3/validators/validator.ttl"
@@ -53,10 +53,10 @@ minversion = pytest.mark.skipif(
         Parameters(
             mapper=abis_mapping.templates.survey_occurrence_data_v2.mapping.SurveyOccurrenceMapper,
             data=pathlib.Path(
-                "abis_mapping/templates/survey_occurrence_data_v2/examples/margaret_river_flora/margaret_river_flora.csv"  # noqa: E501
+                "abis_mapping/templates/survey_occurrence_data_v2/examples/margaret_river_flora/margaret_river_flora.csv"
             ).read_bytes(),
             expected=pathlib.Path(
-                "abis_mapping/templates/survey_occurrence_data_v2/examples/margaret_river_flora/margaret_river_flora.ttl"  # noqa: E501
+                "abis_mapping/templates/survey_occurrence_data_v2/examples/margaret_river_flora/margaret_river_flora.ttl"
             ).read_text(),
             shacl=pathlib.Path(
                 "abis_mapping/templates/survey_occurrence_data_v2/validators/validator.ttl"
