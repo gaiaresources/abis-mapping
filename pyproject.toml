@@ -56,7 +56,7 @@ select = [
     "A",  # builtins
     "S",  # bandit
     "G",  # logging-format
-	"RUF100", # unused suppressions
+    "RUF100", # unused suppressions
 ]
 
 [tool.ruff.lint.per-file-ignores]
