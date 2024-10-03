@@ -16,8 +16,7 @@ For data validation, you will need your data file to:
 
 - be the correct **file format,**
 - have **matching template fields** to the template downloaded (do not remove, or 
-change the order of fields), however
-- additional fields may be added **after the templated fields** (noting that the
+change the order of fields), however, additional fields may be added **after the templated fields** (noting that the
 data type is not assumed and values will be encoded as strings),
 - have values in **mandatory fields** (see Table 1),
 - comply with data **value constraints** for example the geographic coordinates are
