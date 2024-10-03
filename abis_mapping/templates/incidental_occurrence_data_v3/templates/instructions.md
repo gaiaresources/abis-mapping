@@ -91,7 +91,7 @@ must come from one of five options in this table.</font></ins>
 
 <a name="threatStatus-vocabularies"></a>
 <ins>Table 2b: Suggested values for conditionally mandatory values for the threatStatus and
-conservationAuthority in the template. State and Territory conservationAuthority spelt out
+conservationAuthority in the template. State and Territory Conservation Authorities spelt out
 in words are also valid. For some threatStatus terms, alternative labels are provided that are also
 valid for that conservationAuthority.
 
