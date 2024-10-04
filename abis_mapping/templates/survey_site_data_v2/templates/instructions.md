@@ -8,6 +8,7 @@ Site area where species occurrences have been sampled during a systematic survey
 
 This Systematic Survey Site template **must be used in combination** with the
 `Systematic Survey Occurrence` template and the `Systematic Survey Metadata` template.
+It can **optionally** be used in combination with the `Systematic Survey Site Visit` template.
 
 Templates have been provided to facilitate integration of data into the Biodiversity Data
 Repository (BDR) database. Not all types of data have been catered for in the available
@@ -63,7 +64,7 @@ your data to the template indicating:
 Data that does not match the existing template fields may be added as additional columns in
 the CSV files after the templated fields.
 For example, `fieldNotes`, `continent`, `country`, `countryCode`, `stateProvince`, `georeferencedDate`,
-`landformPattern`, `landformElement`, `aspect`, `slope`, `visitNo`.
+`landformPattern`, `landformElement`, `aspect`, `slope`.
 
 <ins>Table 1: Systematic Survey Site data template fields with descriptions, conditions, datatype format, and examples.</ins>
 
