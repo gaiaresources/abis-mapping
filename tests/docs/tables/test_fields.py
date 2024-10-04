@@ -179,8 +179,8 @@ def test_generate_table_markdown(
     assert actual == (
         "|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n"
         "|:---|:---|:---:|:---:|:---|\n"
-        "|someName|Some description|Mandatory|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n"
-        "|[anotherName](http://example.com/)|Another description|Mandatory|String|ANOTHER EXAMPLE|\n"
+        '|<a name="someName-field"></a>someName|Some description|Mandatory|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
+        '|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|Mandatory|String|ANOTHER EXAMPLE|\n'
     )
 
 
