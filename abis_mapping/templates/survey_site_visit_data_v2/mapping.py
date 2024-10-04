@@ -6,13 +6,14 @@ import rdflib
 
 # Local
 from abis_mapping import base
+from abis_mapping import settings
 
 # Typing
 from typing import Any, Iterator
 
 
 class SurveySiteVisitMapper(base.mapper.ABISMapper):
-    """ABIS mapper for the v2 survey site data csv template."""
+    """ABIS mapper for the v2 survey site visit data csv template."""
 
     # Default Dataset Metadata
     DATASET_DEFAULT_NAME = "Example Systematic Survey Site Visit Dataset"
@@ -83,3 +84,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         """
         # TODO: Implement
         raise NotImplementedError
+
+
+# Register Mapper
+if settings.SETTINGS.MAJOR_VERSION >= 5:
+    # SSD v2 is still in development, keep hidden until v5 release candidates are created
+    base.mapper.ABISMapper.register_mapper(SurveySiteVisitMapper)
