@@ -83,6 +83,10 @@ class FieldTabler(tables.base.BaseTabler):
             if self.format == "markdown" and field.url:
                 field_table_row.field_name = f"[{field_table_row.field_name}]({field.url})"
 
+            # If markdown add an anchor so each row can be linked to via url fragment. e.g. #name-field
+            if self.format == "markdown":
+                field_table_row.field_name = f'<a name="{field.name}-field"></a>{field_table_row.field_name}'
+
             # Write row to csv
             self.writer.writerow(field_table_row.model_dump(by_alias=True))
 

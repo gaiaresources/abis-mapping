@@ -69,6 +69,21 @@ datatype format, and examples.</ins>
 
 {{tables.fields}}
 
+## CHANGELOG
+
+Changes from Incidental Occurrence Data Template v1.0.0
+
+### CHANGED FIELDS
+
+* `recordID` is renamed [`providerRecordID`](#providerRecordID-field) and its value is now **mandatory**
+* [`providerRecordIDSource`](#providerRecordIDSource-field) is an added field. Its type is string and its value is **mandatory**.
+* [`organismQuantity`](#organismQuantity-field) is an added field. Its type is number. Can be blank.
+* [`organismQuantityType`](#organismQuantityType-field) is an added field. Its type is string. Can be blank.
+* `occurrenceID` is renamed [`ownerRecordID`](#ownerRecordID-field). Can be blank.
+* `ownerInstitutionCode` is renamed [`ownerRecordIDSource`](#ownerRecordIDSource-field). Can be blank.
+* `institutionCode` is replaced by [`catalogNumberSource`](#catalogNumberSource-field). Can be blank.
+* [`otherCatalogNumbersSource`](#otherCatalogNumbersSource-field) is an added field. Its type is string. Can be blank.
+
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
 Apart from geodeticDatum, the data validation does not require adherence to the below vocabularies
