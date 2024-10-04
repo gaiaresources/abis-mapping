@@ -61,6 +61,9 @@ CONCEPT_CONSERVATION_STATUS = rdflib.URIRef(
 CONCEPT_CONSERVATION_AUTHORITY = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7"
 )
+CONCEPT_SENSITIVITY_CATEGORY = utils.rdf.uri(
+    "concept/sensitiveCategory", utils.namespaces.EXAMPLE
+)  # TODO Need real URI
 
 # Roles
 CI_ROLECODE_ORIGINATOR = rdflib.URIRef(
@@ -83,9 +86,6 @@ CI_ROLECODE_OWNER = rdflib.URIRef(
 )
 DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/resourceProvider")
 DATA_ROLE_OWNER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/owner")
-
-# Temporary
-DEFAULT_SURVEY = rdflib.URIRef("http://createme.org/survey/SSD-Survey/1")  # TODO -> Cross reference
 
 
 class SurveyOccurrenceMapper(base.mapper.ABISMapper):
@@ -147,6 +147,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 ),
             ],
         )
+
+        # TODO: Check for surveyID from metadata template.
 
         # Modify schema and checklist in the event default geometry map provided
         if site_id_geometry_map is not None:
@@ -411,6 +413,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         threat_status_value = utils.rdf.uri(f"value/threatStatus/{row_num}", base_iri)
         conservation_authority_attribute = utils.rdf.uri(f"attribute/conservationAuthority/{row_num}", base_iri)
         conservation_authority_value = utils.rdf.uri(f"value/conservationAuthority/{row_num}", base_iri)
+        sensitivity_category_attribute = utils.rdf.uri(f"attribute/sensitivityCategory/{row_num}", base_iri)
+        sensitivity_category_value = utils.rdf.uri(f"value/sensitivityCategory/{row_num}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
         organism_quantity_observation = utils.rdf.uri(f"observation/organismQuantity/{row_num}", base_iri)
         organism_quantity_value = utils.rdf.uri(f"value/organismQuantity/{row_num}", base_iri)
@@ -425,7 +429,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Conditionally create uris dependent on ownerRecordIDSource field
         if owner_record_id_source := row["ownerRecordIDSource"]:
             owner_record_id_datatype = utils.rdf.uri(f"datatype/recordID/{owner_record_id_source}", base_iri)
-            owner_record_id_provider = utils.rdf.uri(f"provider/{row['ownerRecordIDSource']}", base_iri)
+            owner_record_id_provider = utils.rdf.uri(f"provider/{owner_record_id_source}", base_iri)
         else:
             owner_record_id_datatype = None
             owner_record_id_provider = None
@@ -456,6 +460,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         else:
             other_catalog_numbers_datatype = None
             other_catalog_numbers_provider = None
+
+        # Conditionally create uri dependent on surveyID field.
+        if survey_id := row["surveyID"]:
+            survey = utils.rdf.uri(f"survey/{urllib.parse.quote(survey_id, safe='')}", base_iri)
+        else:
+            survey = None
+
+        # Conditionally create uri dependent on siteVisitID field.
+        if site_visit_id := row["siteVisitID"]:
+            site_visit = utils.rdf.uri(f"visit/{urllib.parse.quote(site_visit_id, safe='')}", base_iri)
+        else:
+            site_visit = None
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -530,6 +546,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             basis=basis_attribute,
             site=site,
             site_id_geometry_map=site_id_geometry_map,
+            survey=survey,
+            site_visit=site_visit,
             graph=graph,
         )
 
@@ -1012,6 +1030,23 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
+        # Add Sensitivity Category Attribute
+        self.add_sensitivity_category_attribute(
+            uri=sensitivity_category_attribute,
+            row=row,
+            dataset=dataset,
+            sensitivity_category_value=sensitivity_category_value,
+            graph=graph,
+        )
+
+        # Add Sensitivity Category Value
+        self.add_sensitivity_category_value(
+            uri=sensitivity_category_value,
+            row=row,
+            dataset=dataset,
+            graph=graph,
+        )
+
         # Add extra fields JSON
         self.add_extra_fields_json(
             subject_uri=sampling_field,
@@ -1335,6 +1370,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         basis: rdflib.URIRef,
         site: rdflib.URIRef | None,
         site_id_geometry_map: dict[str, str] | None,
+        survey: rdflib.URIRef | None,
+        site_visit: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Field to the Graph
@@ -1357,6 +1394,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site (rdflib.URIRef | None): Site if one was provided else None.
             site_id_geometry_map (dict[str, str] | None): Default geometry value to use
                 if none available for given site id.
+            survey (rdflib.URIRef | None): Survey if one was provided else None.
+            site_visit (rdflib.URIRef | None): Site visit if one was provided else None.
             graph (rdflib.Graph): Graph to add to
         """
         # Extract values
@@ -1380,9 +1419,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Should not reach this as data is already validated included for completeness
             return
 
-        # Add survey
-        graph.add((uri, rdflib.SDO.isPartOf, DEFAULT_SURVEY))  # TODO -> Cross reference
-
         # Retrieve vocab for field
         vocab = self.fields()["samplingProtocol"].get_vocab()
 
@@ -1405,6 +1441,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
+
+        # Conditionally add survey
+        if survey is not None:
+            graph.add((uri, rdflib.SDO.isMemberOf, survey))
+
+        # Conditionally add site visit
+        if site_visit is not None:
+            graph.add((uri, utils.namespaces.TERN.hasSiteVisit, site_visit))
 
         self.add_geometry_supplied_as(
             subj=uri,
@@ -3467,6 +3511,80 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
         graph.add((uri, rdflib.SOSA.isSampleOf, terminal_foi))
+
+    def add_sensitivity_category_attribute(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        sensitivity_category_value: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Sensitivity Category Attribute to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node.
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            sensitivity_category_value (rdflib.URIRef): Sensitivity
+                Category Value associated with this node
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["sensitivityCategory"]:
+            return
+
+        simple_value = f"{row['sensitivityCategory']} - {row['sensitivityAuthority']}"
+
+        # Sensitivity Category Attribute
+        graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_SENSITIVITY_CATEGORY))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(simple_value)))
+        graph.add((uri, utils.namespaces.TERN.hasValue, sensitivity_category_value))
+
+    def add_sensitivity_category_value(
+        self,
+        uri: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds Sensitivity Category Value to the Graph
+
+        Args:
+            uri (rdflib.URIRef): URI to use for this node
+            row (frictionless.Row): Row to retrieve data from
+            dataset (rdflib.URIRef): Dataset this belongs to
+            graph (rdflib.Graph): Graph to add to
+        """
+        # Check Existence
+        if not row["sensitivityCategory"]:
+            return
+
+        # Retrieve vocab for field
+        vocab = self.fields()["sensitivityCategory"].get_vocab()
+        vocab_instance = vocab(graph=graph, source=dataset)
+
+        # Set the scope note to use if a new term is created on the fly.
+        scope_note = f"Under the authority of {row['sensitivityAuthority']}"
+        if not isinstance(vocab_instance, utils.vocabs.FlexibleVocabulary):
+            raise RuntimeError("sensitiveCategory vocabulary is expected to be a FlexibleVocabulary")
+        vocab_instance.scope_note = rdflib.Literal(scope_note)
+        # This has to be done here, instead of at the Vocabulary definition,
+        # because the value is computed from another field (sensitivityAuthority).
+
+        # Retrieve term or Create on the Fly
+        term = vocab_instance.get(row["sensitivityCategory"])
+
+        # Construct Label
+        label = f"sensitivity category = {row['sensitivityCategory']}"
+
+        # Conservation Authority Value
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))
+        graph.add((uri, rdflib.RDF.value, term))
 
 
 # Helper Functions
