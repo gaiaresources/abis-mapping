@@ -9,6 +9,14 @@ They are mutually inclusive, both must be provided or both must be blank.
 For more details on the Incidental Occurrence v3.0.0 template,
 see the [Incidental Occurrence v3.0.0 instruction manual](https://gaiaresources.github.io/abis-mapping/dev/incidental_occurrence_data-v3.0.0.csv/)
 
+### Systematic Survey Metadata v2.0.0
+#### [Schema v2.0.0](https://github.com/gaiaresources/abis-mapping/blob/main/abis_mapping/templates/survey_metadata_v2/schema.json) changes (by column order).
+* `samplingPerformedBy` is removed.
+* `samplingEffortValue` was moved to the Systematic Survey Site Visit Data Template
+* `samplingEffortUnit` was moved to the Systematic Survey Site Visit Data Template
+
+For more details on the Systematic Survey Metadata v2.0.0 template,
+see the [Systematic Survey Metadata v2.0.0 instruction manual](https://gaiaresources.github.io/abis-mapping/dev/survey_metadata-v2.0.0.csv/)
 
 # April 2024
 ## Templates
