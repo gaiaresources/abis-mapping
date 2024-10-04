@@ -68,6 +68,17 @@ datatype format, and examples.</ins>
 
 {{tables.fields}}
 
+## CHANGELOG
+
+Changes from Incidental Occurrence Data Template v2.0.0
+
+### CHANGED FIELDS
+
+* `conservationJurisdiction` is renamed to [`conservationAuthority`](#conservationAuthority-field).
+* [`sensitivityCategory`](#sensitivityCategory-field) and [`sensitivityAuthority`](#sensitivityAuthority-field)
+are new fields. Both are type string.
+They are mutually inclusive, both must be provided or both must be blank.
+
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
 Apart from geodeticDatum, the data validation does not require adherence to the below vocabularies
