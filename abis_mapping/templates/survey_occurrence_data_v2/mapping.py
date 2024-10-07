@@ -463,13 +463,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Conditionally create uri dependent on surveyID field.
         if survey_id := row["surveyID"]:
-            survey = utils.rdf.uri("survey/", base_iri) + urllib.parse.quote(survey_id, safe='')
+            survey = utils.rdf.uri("survey/", base_iri) + urllib.parse.quote(survey_id, safe="")
         else:
             survey = None
 
         # Conditionally create uri dependent on siteVisitID field.
         if site_visit_id := row["siteVisitID"]:
-            site_visit = utils.rdf.uri("visit/", base_iri) + urllib.parse.quote(site_visit_id, safe='')
+            site_visit = utils.rdf.uri("visit/", base_iri) + urllib.parse.quote(site_visit_id, safe="")
         else:
             site_visit = None
 
