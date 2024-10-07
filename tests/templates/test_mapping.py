@@ -1,7 +1,9 @@
 """Provides all relevant mapping tests."""
 
 # Third-party
+import pyshacl
 import pytest
+import rdflib
 
 # Local
 from tests.templates import conftest
@@ -50,6 +52,21 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     # determine whether a statement is valid in our specific context. As such,
     # we check here to see if any `None`s have snuck their way into the RDF.
     assert "None" not in graphs[0].serialize(format="ttl")
+
+    # Perform shacl validation if provided
+    if test_params.shacl is not None:
+        shape_graph = rdflib.Graph().parse(data=test_params.shacl.read_bytes())
+        for data_graph in graphs:
+            valid, _, report = pyshacl.validate(data_graph=data_graph, shacl_graph=shape_graph)
+            # If not valid raise assertion error with report output
+            assert valid, report
+
+        # Perform validation on the expected result as well
+        expected_graph = rdflib.Graph().parse(data=expected)
+        valid, _, report = pyshacl.validate(data_graph=expected_graph, shacl_graph=shape_graph)
+
+        # If not valid raise assertion error with report output
+        assert valid, report
 
 
 @pytest.mark.parametrize(

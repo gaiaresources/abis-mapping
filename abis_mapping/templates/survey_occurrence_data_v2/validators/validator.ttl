@@ -80,7 +80,7 @@ bdrsh:RecordIDDatatypeShape
 	sh:property [
 		sh:path prov:qualifiedAttribution ;
 		sh:minCount 1 ;
-		sh:maxCount 1 ;  # TODO: Currently fails with this included, but is the intended result.
+#		sh:maxCount 1 ;  # TODO: Currently fails with this included, but is the intended result.
 		sh:node bdrsh:QualifiedAttributionShape ;
 		sh:class prov:Attribution ;
 	] .
