@@ -5,8 +5,9 @@
 ## Intended Usage
 Use the Systematic Survey Metadata template to record metadata relating to a Systematic Survey dataset.
 
-The Systematic Survey Metadata template must be used in combination with the Systematic
-Survey Occurrence template, and in some cases the Systematic Survey Site template.
+The Systematic Survey Metadata template must be used in combination with the
+`Systematic Survey Occurrence` template, and in some cases the `Systematic Survey Site` template
+and the `Systematic Survey Site Visit` template.
 
 Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
@@ -67,6 +68,16 @@ For example, `sampleSizeUnit`, `sampleSizeValue`.
 datatype format, and examples.</ins>
 
 {{tables.fields}}
+
+## CHANGELOG
+
+Changes from Systematic Survey Metadata Template v1.0.0
+
+### CHANGED FIELDS
+
+* `samplingPerformedBy` is removed.
+* `samplingEffortValue` was moved to the Systematic Survey Site Visit Data Template.
+* `samplingEffortUnit` was moved to the Systematic Survey Site Visit Data Template.
 
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
