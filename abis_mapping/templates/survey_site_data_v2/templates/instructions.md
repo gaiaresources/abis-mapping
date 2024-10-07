@@ -70,6 +70,16 @@ For example, `fieldNotes`, `continent`, `country`, `countryCode`, `stateProvince
 
 {{tables.fields}}
 
+## CHANGELOG
+
+Changes from Systematic Survey Site Data Template v1.0.0
+
+### CHANGED FIELDS
+
+* Add field `locality`. Type is string, can be blank.
+* Moved fields `surveyID`, `siteVisitID`, `siteVisitStart`, `siteVisitEnd`, `visitOrgs`, `visitObservers`, `condition` 
+to the new Systematic Survey Site Visit Data Template.
+
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
 With the exception of `geodeticDatum` and `relationshipToRelatedSite`, data validation
