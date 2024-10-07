@@ -35,7 +35,7 @@ class MappingParameters:
     scenario_name: Optional[str] = None
     should_validate: bool = True
     expected_error_codes: set[str] = set()
-    shacl: pathlib.Path | None = None  # TODO: Integrate into template via a method or similar
+    shacl: pathlib.Path | None = None 
 
 
 @attrs.define(kw_only=True)
