@@ -16,6 +16,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://gaiaresources.github.io/abis-mappping/latest/survey_metadata-v2.0.0.csv/</loc>
+         <lastmod>2024-10-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://gaiaresources.github.io/abis-mappping/latest/survey_occurrence_data-v1.0.0.csv/</loc>
          <lastmod>2024-10-07</lastmod>
          <changefreq>daily</changefreq>

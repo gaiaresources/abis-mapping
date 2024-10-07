@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://gaiaresources.github.io/abis-mappping/latest/survey_metadata-v1.0.0.csv/">
+        <link rel="canonical" href="https://gaiaresources.github.io/abis-mappping/latest/survey_metadata-v2.0.0.csv/">
       
       
-        <link rel="prev" href="../incidental_occurrence_data-v3.0.0.csv/">
+        <link rel="prev" href="../survey_metadata-v1.0.0.csv/">
       
       
-        <link rel="next" href="../survey_metadata-v2.0.0.csv/">
+        <link rel="next" href="../survey_occurrence_data-v1.0.0.csv/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Systematic Survey Metadata Template - v1.0.0 - BDR ABIS Mapping</title>
+        <title>Systematic Survey Metadata Template - v2.0.0 - BDR ABIS Mapping</title>
       
     
     
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Systematic Survey Metadata Template - v1.0.0
+              Systematic Survey Metadata Template - v2.0.0
             
           </span>
         </div>
@@ -223,6 +223,26 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_metadata-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Metadata Template - v1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -239,7 +259,7 @@
           
   
   <span class="md-ellipsis">
-    Systematic Survey Metadata Template - v1.0.0
+    Systematic Survey Metadata Template - v2.0.0
   </span>
   
 
@@ -250,7 +270,7 @@
         
   
   <span class="md-ellipsis">
-    Systematic Survey Metadata Template - v1.0.0
+    Systematic Survey Metadata Template - v2.0.0
   </span>
   
 
@@ -344,6 +364,30 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGELOG
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CHANGELOG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGED FIELDS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#appendices" class="md-nav__link">
     <span class="md-ellipsis">
       APPENDICES
@@ -398,26 +442,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../survey_metadata-v2.0.0.csv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Systematic Survey Metadata Template - v2.0.0
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -534,13 +558,14 @@
 
 
 <p><small>
-<strong>abis-mapping</strong> v4.2.3 &emsp; <strong>survey_metadata</strong> v1.0.0
+<strong>abis-mapping</strong> v4.2.3 &emsp; <strong>survey_metadata</strong> v2.0.0
 </small></p>
 <h1 id="systematic-survey-metadata-template-instructions">SYSTEMATIC SURVEY METADATA TEMPLATE INSTRUCTIONS</h1>
 <h2 id="intended-usage">Intended Usage</h2>
 <p>Use the Systematic Survey Metadata template to record metadata relating to a Systematic Survey dataset.</p>
-<p>The Systematic Survey Metadata template must be used in combination with the Systematic
-Survey Occurrence template, and in some cases the Systematic Survey Site template.</p>
+<p>The Systematic Survey Metadata template must be used in combination with the
+<code>Systematic Survey Occurrence</code> template, and in some cases the <code>Systematic Survey Site</code> template
+and the <code>Systematic Survey Site Visit</code> template.</p>
 <p>Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
 templates at this stage; therefore, if you are unable to find a suitable template, please
@@ -683,13 +708,6 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">NSW Department of Planning, Industry and Environment | CSIRO</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a name="samplingPerformedBy-field"></a>samplingPerformedBy</td>
-<td style="text-align: left;">Similar to eco:samplingPerformedBy. Individual/s that carried out the survey. These can be represented by identifiers. Multiple values allare allowed, separated by a vertical bar aka pipe |</td>
-<td style="text-align: center;">Optional</td>
-<td style="text-align: center;">List</td>
-<td style="text-align: left;">https://orcid.org/0000-0003-1092-9705 | https://orcid.org/0009-0004-5278-4238</td>
-</tr>
-<tr>
 <td style="text-align: left;"><a name="surveyMethodCitation-field"></a>surveyMethodCitation</td>
 <td style="text-align: left;">A citation or reference to the survey methods used.</td>
 <td style="text-align: center;">Optional</td>
@@ -711,20 +729,6 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf | https://doi.org/10.1002/9781118945568.ch11</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a name="samplingEffortValue-field"></a>samplingEffortValue</td>
-<td style="text-align: left;">Similar to eco:samplingEffortValue. The total sampling effort value. A samplingEffortValue must have a corresponding samplingEffortUnit</td>
-<td style="text-align: center;">Conditionally mandatory with samplingEffortUnit</td>
-<td style="text-align: center;">String</td>
-<td style="text-align: left;">20 x 12</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a name="samplingEffortUnit-field"></a>samplingEffortUnit</td>
-<td style="text-align: left;">Similar to eco:samplingEffortUnit. The units associated with samplingEffortValue.</td>
-<td style="text-align: center;">Conditionally mandatory with samplingEffortValue</td>
-<td style="text-align: center;">String</td>
-<td style="text-align: left;">trapDays</td>
-</tr>
-<tr>
 <td style="text-align: left;"><a name="keywords-field"></a>keywords</td>
 <td style="text-align: left;">Terms, phrases or descriptors that highlight the key attributes of the study. Multiple terms are allowed, separated by a vertical bar aka pipe |</td>
 <td style="text-align: center;">Optional</td>
@@ -733,6 +737,14 @@ datatype format, and examples.</ins></p>
 </tr>
 </tbody>
 </table>
+<h2 id="changelog">CHANGELOG</h2>
+<p>Changes from Systematic Survey Metadata Template v1.0.0</p>
+<h3 id="changed-fields">CHANGED FIELDS</h3>
+<ul>
+<li><code>samplingPerformedBy</code> is removed.</li>
+<li><code>samplingEffortValue</code> was moved to the Systematic Survey Site Visit Data Template.</li>
+<li><code>samplingEffortUnit</code> was moved to the Systematic Survey Site Visit Data Template.</li>
+</ul>
 <h2 id="appendices">APPENDICES</h2>
 <h3 id="appendix-i-vocabulary-list">APPENDIX-I: VOCABULARY LIST</h3>
 <p>With the exception of <code>geodeticDatum</code>, data validation
