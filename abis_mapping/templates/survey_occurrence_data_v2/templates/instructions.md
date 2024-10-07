@@ -73,6 +73,18 @@ datatype format, and examples.</ins>
 
 {{tables.fields}}
 
+## CHANGELOG
+
+Changes from Systematic Survey Occurrence Data Template v1.0.0
+
+### CHANGED FIELDS
+
+* `conservationJurisdiction` is renamed `conservationAuthority`.
+* `sensitivityCategory` and `sensitivityAuthority` are added fields. Both are type string.
+They are mutually inclusive, both must be provided or both must be blank.
+* Add field `siteVisitID`. Type is string, can be blank. 
+If provided, should match a `siteVisitID` in the `survey_site_visit_data.csv` template.
+
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
 With the exception of `geodeticDatum`, data validation does not require fields to adhere to the
