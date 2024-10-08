@@ -17,6 +17,7 @@ contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
 #### Data Validation Requirements:
 For data validation, you will need your data file to:
+
 - be in the correct **file format,**
 - have **fields that match the template downloaded** (do not remove, or 
   change the order of fields),

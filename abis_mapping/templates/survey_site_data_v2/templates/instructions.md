@@ -17,6 +17,7 @@ contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
 #### Data Validation Requirements:
 For data validation, you will need your data file to:
+
 - be the correct **file format**,
 - have **fields that match the template downloaded** (do not remove, or 
   change the order of fields),
@@ -24,6 +25,7 @@ For data validation, you will need your data file to:
 - comply with all **data value constraints**; for example the geographic coordinates are
   consistent with a [geodeticDatum](#geodeticDatum-vocabularies) type of the 
   ***{{values.geodetic_datum_count}}*** available options.
+
 Additional fields may be added **after the templated fields** (noting that the data type 
 is not assumed and values will be encoded as strings).
 
