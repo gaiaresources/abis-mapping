@@ -104,7 +104,7 @@ must come from one of five options in this table.</font></ins>
 
 {{tables.vocabularies}}
 
-<a name="threatStatus-vocabularies"></a>
+<a name="threatStatus-vocabularies"></a><a name="conservationJurisdiction-vocabularies"></a>
 <ins>Table 2b: Suggested values for conditionally mandatory values for the threatStatus and
 conservationJurisdiction in the template. State and Territory conservationJurisdictions spelt out
 in words are also valid. For some threatStatus terms, alternative labels are provided that are also
