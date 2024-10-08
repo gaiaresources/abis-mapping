@@ -493,7 +493,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Add siteID
         dt = site_id_datatype if site_id_datatype is not None else rdflib.XSD.string
-        graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(site_id, datatype=dt)))
+        graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(site_id, datatype=dt)))
 
         # Add related site if available
         if (relationship_to_related_site := row["relationshipToRelatedSite"]) and (
@@ -523,7 +523,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         site_type_term = site_type_vocab(graph=graph, source=dataset).get(site_type)
 
         # Add to site type graph
-        graph.add((uri, rdflib.DCTERMS.type, site_type_term))
+        graph.add((uri, rdflib.SDO.type, site_type_term))
 
         # Add site name if available
         if site_name:
@@ -736,7 +736,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Add site visit id
         if site_visit_id := row["siteVisitID"]:
-            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(site_visit_id)))
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(site_visit_id)))
 
         # Add temporal information
         site_visit_start: types.temporal.Timestamp = row["siteVisitStart"]

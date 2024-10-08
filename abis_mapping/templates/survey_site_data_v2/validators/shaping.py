@@ -173,7 +173,7 @@ def add_site_shape(g: rdflib.Graph, dataset_shape: rdflib.term.Node) -> rdflib.t
 
     # Add the site id property
     site_id_prop = rdflib.BNode()
-    g.add((site_id_prop, SH.path, rdflib.DCTERMS.identifier))
+    g.add((site_id_prop, SH.path, rdflib.SDO.identifier))
     g.add((site_id_prop, SH.datatype, rdflib.XSD.string))
     g.add((site_id_prop, SH.minCount, rdflib.Literal(1)))
     g.add((site_id_prop, SH.maxCount, rdflib.Literal(1)))
@@ -192,7 +192,7 @@ def add_site_shape(g: rdflib.Graph, dataset_shape: rdflib.term.Node) -> rdflib.t
     terms_list = rdflib.BNode()
     terms_list_shape = rdflib.BNode()
     dcterms_type_opts = rdflib.BNode()
-    g.add((dcterms_type_prop, SH.path, rdflib.DCTERMS.type))
+    g.add((dcterms_type_prop, SH.path, rdflib.SDO.additionalType))
     site_type_vocab_values: list[rdflib.term.Node] = [v.iri for v in vocabs.site_type.SiteType.terms if v is not None]
     rdflib.collection.Collection(g, terms_list, site_type_vocab_values)
     g.add((terms_list_shape, SH["in"], terms_list))

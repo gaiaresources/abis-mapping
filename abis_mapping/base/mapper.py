@@ -85,9 +85,9 @@ class ABISMapper(abc.ABC):
         """
         # Add Default Dataset to Graph
         graph.add((uri, a, utils.namespaces.TERN.Dataset))
-        graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(self.DATASET_DEFAULT_NAME)))
-        graph.add((uri, rdflib.DCTERMS.description, rdflib.Literal(self.DATASET_DEFAULT_DESCRIPTION)))
-        graph.add((uri, rdflib.DCTERMS.issued, types.temporal.Date.today().to_rdf_literal()))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(self.DATASET_DEFAULT_NAME)))
+        graph.add((uri, rdflib.SDO.description, rdflib.Literal(self.DATASET_DEFAULT_DESCRIPTION)))
+        graph.add((uri, rdflib.SDO.dateIssued, types.temporal.Date.today().to_rdf_literal()))
 
     def add_geometry_supplied_as(
         self,

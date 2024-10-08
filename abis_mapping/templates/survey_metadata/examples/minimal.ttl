@@ -64,21 +64,21 @@
     schema:name "NSW Department of Planning, Industry and Environment" .
 
 <http://createme.org/bdr-cv/attribute/samplingEffortUnit/trapDays> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
+	schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/concept/samplingEffortUnit> ;
     skos:definition "A type of samplingEffortUnit" ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "trapDays" .
 
 <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
+	schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
     skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     skos:definition "A type of targetTaxonomicScope" ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "Coleoptera" .
 
 <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Insecta> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
+	schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI ;
     skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     skos:definition "A type of targetTaxonomicScope" ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
@@ -153,9 +153,9 @@
         "woodland" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> a tern:Dataset ;
-    dcterms:description "Example Systematic Survey Metadata Dataset by Gaia Resources" ;
-    dcterms:issued "2024-04-09"^^xsd:date ;
-    dcterms:title "Example Systematic Survey Metadata Dataset" .
+    schema:description "Example Systematic Survey Metadata Dataset by Gaia Resources" ;
+	schema:dateIssued "2024-04-09"^^xsd:date ;
+	schema:name "Example Systematic Survey Metadata Dataset" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;

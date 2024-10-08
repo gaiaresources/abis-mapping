@@ -393,9 +393,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.VOID.inDataset, dataset))
 
         # Add (required) project name, id (not required) and purpose (not required).
-        graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(project_name)))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(project_name)))
         if project_id:
-            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(project_id)))
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(project_id)))
 
         # Attach survey
         graph.add((uri, rdflib.SDO.hasPart, survey))
@@ -428,19 +428,19 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.PROV.hadPlan, survey_method))
 
         # Add survey name
-        graph.add((uri, rdflib.DCTERMS.title, rdflib.Literal(row["surveyName"])))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["surveyName"])))
 
         # Add survey ID
         if (survey_id := row["surveyID"]) is not None:
             # Add survey id literals per organisation
             for survey_org in survey_org_objects:
                 id_literal = rdflib.Literal(lexical_or_value=survey_id, datatype=survey_org.datatype)
-                graph.add((uri, rdflib.DCTERMS.identifier, id_literal))
+                graph.add((uri, rdflib.SDO.identifier, id_literal))
 
             # Add survey id as type string if no organisation provided
             if len(survey_org_objects) == 0:
                 id_literal = rdflib.Literal(survey_id)
-                graph.add((uri, rdflib.DCTERMS.identifier, id_literal))
+                graph.add((uri, rdflib.SDO.identifier, id_literal))
 
         # Add taxonomic coverage
         if taxonomic_coverage := row["targetTaxonomicScope"]:

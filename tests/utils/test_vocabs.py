@@ -112,16 +112,16 @@ def test_vocabs_flexible_vocab() -> None:
         graph.serialize(format="ttl").strip()
         == textwrap.dedent(
             """
-        @prefix dcterms: <http://purl.org/dc/terms/> .
+        @prefix schema: <https://schema.org/> .
         @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
         @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
         <base/C> a skos:Concept ;
-            dcterms:source "D"^^xsd:anyURI ;
             skos:broader <broader> ;
             skos:definition "definition" ;
             skos:inScheme <scheme> ;
-            skos:prefLabel "C" .
+            skos:prefLabel "C" ;
+            schema:citation "D"^^xsd:anyURI .
         """
         ).strip()
     )
