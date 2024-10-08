@@ -82,11 +82,11 @@ Dockerfile
 /result.csv
 /result.md
 /tests/templates/**/*-result.ttl
+
+# Instruction documents, mkdocs and mike
+site/
 /docs/pages/**/*.md
 !/docs/pages/archived_templates/*.md
 !/docs/pages/index.md
 /docs/pages/index.html
-site/
 
-# YAPF
-.style.yapf
