@@ -134,7 +134,7 @@ def create_dataset_shape(graph: rdflib.Graph) -> rdflib.term.Node:
     dataset_prop = utils.namespaces.BDR.DatasetShape
     graph.add((dataset_prop, a, SH.PropertyShape))
     graph.add((dataset_prop, SH.path, rdflib.VOID.inDataset))
-    graph.add((dataset_prop, SH["class"], utils.namespaces.TERN.RDFDataset))
+    graph.add((dataset_prop, SH["class"], utils.namespaces.TERN.Dataset))
     graph.add((dataset_prop, SH.minCount, rdflib.Literal(1)))
     graph.add((dataset_prop, SH.maxCount, rdflib.Literal(1)))
 
