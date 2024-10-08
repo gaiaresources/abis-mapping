@@ -80,7 +80,7 @@ Changes from Systematic Survey Occurrence Data Template v1.0.0
 
 ### CHANGED FIELDS
 
-* `conservationJurisdiction` is renamed `conservationAuthority`.
+* The field `conservationJurisdiction` is replaced by [`conservationAuthority`](#conservationAuthority-field).
 * `sensitivityCategory` and `sensitivityAuthority` are added fields. Both are type string.
 They are mutually inclusive, both must be provided or both must be blank.
 * Add field `siteVisitID`. Type is string, can be blank. 
