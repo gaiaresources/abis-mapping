@@ -2,7 +2,7 @@
 ## Templates
 ### Incidental Occurrence v3.0.0
 #### [Schema v3.0.0](https://github.com/gaiaresources/abis-mapping/blob/main/abis_mapping/templates/incidental_occurrence_data_v3/schema.json) changes (by column order).
-* `conservationJurisdiction` is renamed `conservationAuthority`.
+* The field `conservationJurisdiction` is replaced by `conservationAuthority`.
 * `sensitivityCategory` and `sensitivityAuthority` are added fields. Both are type string.
 They are mutually inclusive, both must be provided or both must be blank.
 
@@ -20,7 +20,7 @@ see the [Systematic Survey Metadata v2.0.0 instruction manual](https://gaiaresou
 
 ### Systematic Survey Occurrence Data v2.0.0
 #### [Schema v2.0.0](https://github.com/gaiaresources/abis-mapping/blob/main/abis_mapping/templates/survey_occurrence_data_v2/schema.json) changes (by column order).
-* `conservationJurisdiction` is renamed `conservationAuthority`.
+* The field `conservationJurisdiction` is replaced by `conservationAuthority`.
 * `sensitivityCategory` and `sensitivityAuthority` are added fields. Both are type string.
 They are mutually inclusive, both must be provided or both must be blank.
 * Add field `siteVisitID`. Type is string, can be blank. 

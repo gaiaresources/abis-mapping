@@ -74,7 +74,7 @@ Changes from Incidental Occurrence Data Template v2.0.0
 
 ### CHANGED FIELDS
 
-* `conservationJurisdiction` is renamed to [`conservationAuthority`](#conservationAuthority-field).
+* The field `conservationJurisdiction` is replaced by [`conservationAuthority`](#conservationAuthority-field).
 * [`sensitivityCategory`](#sensitivityCategory-field) and [`sensitivityAuthority`](#sensitivityAuthority-field)
 are new fields. Both are type string.
 They are mutually inclusive, both must be provided or both must be blank.
