@@ -94,7 +94,7 @@
     sosa:isSampleOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset/site/P1> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> a tern:RDFDataset ;
+<http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> a tern:Dataset ;
     dcterms:description "Example Systematic Survey Occurrence Dataset by Gaia Resources" ;
     dcterms:issued "2024-07-04"^^xsd:date ;
     dcterms:title "Example Systematic Survey Occurrence Dataset" .

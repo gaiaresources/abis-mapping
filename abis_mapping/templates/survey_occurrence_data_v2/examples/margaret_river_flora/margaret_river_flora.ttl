@@ -1941,7 +1941,7 @@
 <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
     schema:name "Stream Environment and Water Pty Ltd" .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> a tern:RDFDataset ;
+<http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> a tern:Dataset ;
     dcterms:description "Example Systematic Survey Occurrence Dataset by Gaia Resources" ;
     dcterms:issued "2024-10-04"^^xsd:date ;
     dcterms:title "Example Systematic Survey Occurrence Dataset" .

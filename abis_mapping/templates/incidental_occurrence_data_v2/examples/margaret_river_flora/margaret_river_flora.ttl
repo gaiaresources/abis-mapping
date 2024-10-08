@@ -1843,7 +1843,7 @@
 <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
     schema:name "Stream Environment and Water Pty Ltd" .
 
-<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> a tern:RDFDataset ;
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> a tern:Dataset ;
     dcterms:description "Example Incidental Occurrence Dataset by Gaia Resources" ;
     dcterms:issued "2024-07-04"^^xsd:date ;
     dcterms:title "Example Incidental Occurrence Dataset" .

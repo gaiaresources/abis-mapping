@@ -26,7 +26,7 @@
                     time:inXSDDate "2016-02-28"^^xsd:date ] ] ;
     schema:isPartOf <http://createme.org/survey/SSD-Survey/1> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> a tern:RDFDataset ;
+<http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> a tern:Dataset ;
     dcterms:description "Example Systematic Survey Site Dataset by Gaia Resources" ;
     dcterms:issued "2024-04-19"^^xsd:date ;
     dcterms:title "Example Systematic Survey Site Dataset" .

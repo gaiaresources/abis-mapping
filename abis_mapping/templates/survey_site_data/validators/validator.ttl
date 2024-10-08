@@ -67,7 +67,7 @@ bdr:SiteTypeConceptShape a sh:NodeShape ;
     sh:targetClass skos:Concept .
 
 bdr:DatasetShape a sh:PropertyShape ;
-    sh:class tern:RDFDataset ;
+    sh:class tern:Dataset ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
     sh:path void:inDataset .
