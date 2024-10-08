@@ -2065,8 +2065,8 @@
 
 <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> a tern:Dataset ;
     schema:description "Example Incidental Occurrence Dataset by Gaia Resources" ;
-	schema:dateIssued "2024-03-13"^^xsd:date ;
-	schema:name "Example Incidental Occurrence Dataset" .
+    schema:dateIssued "2024-03-13"^^xsd:date ;
+    schema:name "Example Incidental Occurrence Dataset" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;

@@ -1825,8 +1825,8 @@
 
 <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> a tern:Dataset ;
     schema:description "Example Systematic Survey Occurrence Dataset by Gaia Resources" ;
-	schema:dateIssued "2024-07-04"^^xsd:date ;
-	schema:name "Example Systematic Survey Occurrence Dataset" .
+    schema:dateIssued "2024-07-04"^^xsd:date ;
+    schema:name "Example Systematic Survey Occurrence Dataset" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
