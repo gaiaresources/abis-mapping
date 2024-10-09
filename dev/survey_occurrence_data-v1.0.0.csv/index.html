@@ -963,14 +963,14 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific jurisdiction.</td>
 <td style="text-align: center;">Conditionally mandatory with conservationJurisdiction</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">EN</td>
+<td style="text-align: left;">EN<br>(<a href="#threatStatus-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="conservationJurisdiction-field"></a>conservationJurisdiction</td>
 <td style="text-align: left;">The jurisdiction under which an organism is recognised to have a specific conservation status applied.</td>
 <td style="text-align: center;">Conditionally mandatory with threatStatus</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">EPBC, WA</td>
+<td style="text-align: left;">EPBC, WA<br>(<a href="#conservationJurisdiction-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="threatStatusCheckProtocol-field"></a>threatStatusCheckProtocol</td>
@@ -1720,7 +1720,7 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 </tr>
 </tbody>
 </table>
-<p><a name="threatStatus-vocabularies"></a>
+<p><a name="threatStatus-vocabularies"></a><a name="conservationJurisdiction-vocabularies"></a>
 <ins>Table 2b: Suggested values for conditionally mandatory values for the <code>threatStatus</code> and
 <code>conservationJurisdiction</code> fields in the template. State and Territory <code>conservationJurisdictions</code> 
 spelt out as words are also valid. For some <code>threatStatus</code> terms, alternative labels are provided
@@ -1777,7 +1777,7 @@ that are also valid for that <code>conservationJurisdiction</code>.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">CE</td>
-<td style="text-align: left;">CRITICALLY ENDANGERED, CR</td>
+<td style="text-align: left;">CR, CRITICALLY ENDANGERED</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -1807,7 +1807,7 @@ that are also valid for that <code>conservationJurisdiction</code>.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">V</td>
-<td style="text-align: left;">VU, VULNERABLE</td>
+<td style="text-align: left;">VULNERABLE, VU</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -2032,7 +2032,7 @@ that are also valid for that <code>conservationJurisdiction</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CD</td>
-<td style="text-align: left;">SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA, CONSERVATION DEPENDENT</td>
+<td style="text-align: left;">CONSERVATION DEPENDENT, SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2042,7 +2042,7 @@ that are also valid for that <code>conservationJurisdiction</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">EN</td>
-<td style="text-align: left;">ENDANGERED SPECIES, ENDANGERED</td>
+<td style="text-align: left;">ENDANGERED, ENDANGERED SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2092,12 +2092,12 @@ that are also valid for that <code>conservationJurisdiction</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">T</td>
-<td style="text-align: left;">THREATENED, THREATENED SPECIES</td>
+<td style="text-align: left;">THREATENED SPECIES, THREATENED</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">VU</td>
-<td style="text-align: left;">VULNERABLE SPECIES, VULNERABLE</td>
+<td style="text-align: left;">VULNERABLE, VULNERABLE SPECIES</td>
 </tr>
 </tbody>
 </table>

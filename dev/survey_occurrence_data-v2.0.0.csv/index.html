@@ -987,14 +987,14 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.</td>
 <td style="text-align: center;">Conditionally mandatory with conservationAuthority</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">EN</td>
+<td style="text-align: left;">EN<br>(<a href="#threatStatus-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="conservationAuthority-field"></a>conservationAuthority</td>
 <td style="text-align: left;">The authority under which an organism is recognised to have a specific conservation status applied.</td>
 <td style="text-align: center;">Conditionally mandatory with threatStatus</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">EPBC, WA</td>
+<td style="text-align: left;">EPBC, WA<br>(<a href="#conservationAuthority-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="threatStatusCheckProtocol-field"></a>threatStatusCheckProtocol</td>
@@ -1775,7 +1775,7 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 </tr>
 </tbody>
 </table>
-<p><a name="threatStatus-vocabularies"></a>
+<p><a name="threatStatus-vocabularies"></a><a name="conservationAuthority-vocabularies"></a>
 <ins>Table 2b: Suggested values for conditionally mandatory values for the <code>threatStatus</code> and
 <code>conservationAuthority</code> fields in the template. State and Territory <code>conservationAuthority</code> 
 spelt out as words are also valid. For some <code>threatStatus</code> terms, alternative labels are provided
@@ -1862,12 +1862,12 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">V</td>
-<td style="text-align: left;">VULNERABLE, VU</td>
+<td style="text-align: left;">VU, VULNERABLE</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">XW</td>
-<td style="text-align: left;">EXTINCT IN THE WILD, EW</td>
+<td style="text-align: left;">EW, EXTINCT IN THE WILD</td>
 </tr>
 <tr>
 <td style="text-align: center;">NSW</td>
@@ -2087,7 +2087,7 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CD</td>
-<td style="text-align: left;">SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA, CONSERVATION DEPENDENT</td>
+<td style="text-align: left;">CONSERVATION DEPENDENT, SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2107,12 +2107,12 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">EX</td>
-<td style="text-align: left;">EXTINCT, EXTINCT SPECIES</td>
+<td style="text-align: left;">EXTINCT SPECIES, EXTINCT</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">MI</td>
-<td style="text-align: left;">MIGRATORY, MIGRATORY SPECIES</td>
+<td style="text-align: left;">MIGRATORY SPECIES, MIGRATORY</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2122,12 +2122,12 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P1</td>
-<td style="text-align: left;">PRIORITY 1 POORLY KNOWN SPECIES, PRIORITY 1 POORLY KNOWN</td>
+<td style="text-align: left;">PRIORITY 1 POORLY KNOWN, PRIORITY 1 POORLY KNOWN SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P2</td>
-<td style="text-align: left;">PRIORITY 2 POORLY KNOWN, PRIORITY 2 POORLY KNOWN SPECIES</td>
+<td style="text-align: left;">PRIORITY 2 POORLY KNOWN SPECIES, PRIORITY 2 POORLY KNOWN</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2147,7 +2147,7 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">T</td>
-<td style="text-align: left;">THREATENED, THREATENED SPECIES</td>
+<td style="text-align: left;">THREATENED SPECIES, THREATENED</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
