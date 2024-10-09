@@ -523,7 +523,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         site_type_term = site_type_vocab(graph=graph, source=dataset).get(site_type)
 
         # Add to site type graph
-        graph.add((uri, rdflib.SDO.type, site_type_term))
+        graph.add((uri, rdflib.SDO.additionalType, site_type_term))
 
         # Add site name if available
         if site_name:
