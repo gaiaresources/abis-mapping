@@ -59,6 +59,12 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
                     # Extra custom checks
                     plugins.tabular.IsTabular(),
                     plugins.empty.NotEmpty(),
+                    plugins.logical_or.LogicalOr(
+                        field_names=["siteVisitStart", "siteVisitEnd"],
+                    ),
+                    plugins.chronological.ChronologicalOrder(
+                        field_names=["siteVisitStart", "siteVisitEnd"],
+                    ),
                 ],
             ),
         )
