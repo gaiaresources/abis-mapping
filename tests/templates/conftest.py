@@ -269,6 +269,38 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
         metadata_sampling_type="systematic survey",
         allows_extra_cols=True,
     ),
+    TemplateTestParameters(
+        template_id="survey_site_visit_data-v2.0.0.csv",
+        empty_template=pathlib.Path(
+            "abis_mapping/templates/survey_site_visit_data_v2/survey_site_visit_data.csv",
+        ),
+        mapping_cases=[
+            MappingParameters(
+                data=pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal.csv"),
+                expected=None,
+            ),
+            MappingParameters(
+                scenario_name="missing_start_or_end_date",
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_site_visit_data_v2/examples/minimal-error-no-dates.csv"
+                ),
+                expected=None,
+                should_validate=False,
+                expected_error_codes={"row-constraint"},
+            ),
+            MappingParameters(
+                scenario_name="dates_in_wrong_order",
+                data=pathlib.Path(
+                    "abis_mapping/templates/survey_site_visit_data_v2/examples/minimal-error-dates-wrong-order.csv"
+                ),
+                expected=None,
+                should_validate=False,
+                expected_error_codes={"row-constraint"},
+            ),
+        ],
+        metadata_sampling_type="systematic survey",
+        allows_extra_cols=True,
+    ),
     # Incidental templates
     TemplateTestParameters(
         template_id="incidental_occurrence_data-v1.0.0.csv",
