@@ -27,9 +27,9 @@
     schema:isPartOf <http://createme.org/survey/SSD-Survey/1> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> a tern:Dataset ;
-    dcterms:description "Example Systematic Survey Site Dataset by Gaia Resources" ;
-    dcterms:issued "2024-04-19"^^xsd:date ;
-    dcterms:title "Example Systematic Survey Site Dataset" .
+    schema:description "Example Systematic Survey Site Dataset by Gaia Resources" ;
+    schema:dateIssued "2024-04-19"^^xsd:date ;
+    schema:name "Example Systematic Survey Site Dataset" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> a tern:Site ;
     dcterms:identifier "P1"^^<http://createme.org/datatype/siteID/WAM> ;

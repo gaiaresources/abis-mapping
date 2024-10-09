@@ -1467,7 +1467,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add(
             (
                 uri,
-                rdflib.DCTERMS.identifier,
+                rdflib.SDO.identifier,
                 rdflib.Literal(row["providerRecordID"], datatype=provider_record_id_source),
             )
         )
@@ -1934,7 +1934,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.DCTERMS.identifier,
+                    rdflib.SDO.identifier,
                     rdflib.Literal(owner_record_id, datatype=owner_record_id_datatype),
                 )
             )
@@ -3184,7 +3184,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Loop Through Associated Sequences
         for identifier in row["associatedSequences"]:
             # Add Identifier
-            graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(identifier)))
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(identifier)))
 
     def add_provider_determined_by(
         self,

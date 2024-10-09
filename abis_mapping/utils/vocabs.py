@@ -310,7 +310,7 @@ class FlexibleVocabulary(Vocabulary):
             uri = rdflib.Literal(self.source, datatype=rdflib.XSD.anyURI)
 
             # Add Source
-            self.graph.add((iri, rdflib.DCTERMS.source, uri))
+            self.graph.add((iri, rdflib.SDO.citation, uri))
 
         if self.scope_note is not None:
             self.graph.add((iri, rdflib.SKOS.scopeNote, self.scope_note))

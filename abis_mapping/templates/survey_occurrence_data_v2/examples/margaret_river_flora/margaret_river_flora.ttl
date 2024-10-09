@@ -1,4 +1,3 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -848,131 +847,131 @@
     tern:hasValue <http://createme.org/value/taxonRank/16> .
 
 <http://createme.org/bdr-cv/attribute/basisOfRecord/new-basis-of-record> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/basisOfRecord> ;
     skos:definition "A type of basisOfRecord." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new basis of record" .
 
 <http://createme.org/bdr-cv/attribute/identificationQualifier/new-identification-qualifier> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new identification qualifier" .
 
 <http://createme.org/bdr-cv/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/preparations> ;
     skos:definition "A type of preparations." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "Wet (in ethanol or some other preservative)" .
 
 <http://createme.org/bdr-cv/attribute/preparations/new-preparations> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/preparations> ;
     skos:definition "A type of preparations." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new preparations" .
 
 <http://createme.org/bdr-cv/attribute/taxonRank/new-taxon-rank> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/taxonRank> ;
     skos:definition "A type of taxonRank." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new taxon rank" .
 
 <http://createme.org/bdr-cv/featureType/occurrence/kingdom/new-kingdom> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:definition "The existence of the organism from this kingdom sampled at a particular place at a particular time." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d> ;
     skos:prefLabel "new kingdom occurrence" .
 
 <http://createme.org/bdr-cv/featureType/specimen/kingdom/new-kingdom> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:definition "A specimen sampled from an organism of this kingdom." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d> ;
     skos:prefLabel "new kingdom specimen" .
 
 <http://createme.org/bdr-cv/methods/samplingProtocol/new-sampling-protocol> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/samplingProtocol> ;
     skos:definition "A type of samplingProtocol." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "new sampling protocol" .
 
 <http://createme.org/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/sequencingMethod> ;
     skos:definition "A type of sequencingMethod." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "Sanger dideoxy sequencing" .
 
 <http://createme.org/bdr-cv/methods/sequencingMethod/new-sequencing-method> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/sequencingMethod> ;
     skos:definition "A type of sequencingMethod." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "new sequencing method" .
 
 <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https//www-dpaw-wa-gov-au/plants-and-animals/threatened-species-and-communities/threatened-animals-Last-updated-13-June-2022> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/threatStatusCheckProtocol> ;
     skos:definition "A type of threatStatusCheckProtocol." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "Check against Threatened and Priority Fauna List WA available from https://www.dpaw.wa.gov.au/plants-and-animals/threatened-species-and-communities/threatened-animals. Last updated 13 June 2022" .
 
 <http://createme.org/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/threatStatusCheckProtocol> ;
     skos:definition "A type of threatStatusCheckProtocol." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "a random selection" .
 
 <http://createme.org/bdr-cv/parameter/establishmentMeans/new-establishment-means> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/establishmentMeans> ;
     skos:definition "A type of establishmentMeans." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new establishment means" .
 
 <http://createme.org/bdr-cv/parameter/lifeStage/new-life-stage> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/lifeStage> ;
     skos:definition "A type of lifeStage." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new life stage" .
 
 <http://createme.org/bdr-cv/parameter/occurrenceStatus/new-occurrence-status> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/occurrenceStatus> ;
     skos:definition "A type of occurrenceStatus." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new occurrence status" .
 
 <http://createme.org/bdr-cv/parameter/reproductiveCondition/No-breeding-evident> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/reproductiveCondition> ;
     skos:definition "A type of reproductiveCondition." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "No breeding evident" .
 
 <http://createme.org/bdr-cv/parameter/reproductiveCondition/new-reproductiveCondition> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/reproductiveCondition> ;
     skos:definition "A type of reproductiveCondition." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new reproductiveCondition" .
 
 <http://createme.org/bdr-cv/parameter/sex/new-sex> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/sex> ;
     skos:definition "A type of sex." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
     skos:prefLabel "new sex" .
 
 <http://createme.org/bdr-cv/parameter/threatStatus/WA/new-threat-status> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/parameter/threatStatus> ;
     skos:definition "A type of threatStatus." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
@@ -989,7 +988,7 @@
 
 <http://createme.org/sample/sequence/15> a tern:FeatureOfInterest,
         tern:Sample ;
-    dcterms:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
+    schema:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
         "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "sequence-sample" ;
@@ -999,7 +998,7 @@
 
 <http://createme.org/sample/sequence/16> a tern:FeatureOfInterest,
         tern:Sample ;
-    dcterms:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
+    schema:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
         "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "sequence-sample" ;
@@ -1392,14 +1391,14 @@
     tern:hasValue <http://createme.org/value/dataGeneralizations/16> .
 
 <http://createme.org/bdr-cv/attribute/identificationQualifier/> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "?" .
 
 <http://createme.org/bdr-cv/attribute/sensitivityCategory/Category-1> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/attribute/sensitivityCategory> ;
     skos:definition "A type of sensitivityCategory." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
@@ -1407,14 +1406,14 @@
     skos:scopeNote "Under the authority of Department of Biodiversity and Conservation" .
 
 <http://createme.org/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "Visually identified in the field (sighting)" .
 
 <http://createme.org/bdr-cv/methods/identificationMethod/new-identification-method> a skos:Concept ;
-    dcterms:source "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset"^^xsd:anyURI ;
     skos:broader <http://example.com/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
@@ -1444,7 +1443,7 @@
     tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
 
 <http://createme.org/sampling/field/1> a tern:Sampling ;
-    dcterms:identifier "1"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "1"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:N87f3381df8084f2a8d3fc1c4e61f5d1e ;
     rdfs:comment "field-sampling" ;
@@ -1457,7 +1456,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/10> a tern:Sampling ;
-    dcterms:identifier "10"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "10"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:N1bab45f298054f719afe39207a5d908e ;
     rdfs:comment "field-sampling" ;
@@ -1470,7 +1469,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/11> a tern:Sampling ;
-    dcterms:identifier "11"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "11"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:Nd4d3222801704a10b9e00961beddec31 ;
     rdfs:comment "field-sampling" ;
@@ -1483,7 +1482,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/12> a tern:Sampling ;
-    dcterms:identifier "12"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "12"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:N931e6437079a417ea969f44f6def439b ;
     rdfs:comment "field-sampling" ;
@@ -1494,7 +1493,7 @@
     sosa:usedProcedure <http://example.com/sampling-protocol/default> .
 
 <http://createme.org/sampling/field/13> a tern:Sampling ;
-    dcterms:identifier "13"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "13"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:Nc234a7e3ddfc43bfa4dd6c0a46b77bd6 ;
     rdfs:comment "field-sampling" ;
@@ -1507,7 +1506,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/14> a tern:Sampling ;
-    dcterms:identifier "14"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "14"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:N81b732d85b71408499ba391f88b06f1d ;
     geo:hasMetricSpatialAccuracy 2e+01 ;
@@ -1522,7 +1521,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/15> a tern:Sampling ;
-    dcterms:identifier "8022FSJMJ079c5cf"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "8022FSJMJ079c5cf"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:N890ce7ee36f94ee19e11461cf0dd61c8 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
@@ -1540,7 +1539,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/16> a tern:Sampling ;
-    dcterms:identifier "ABC123"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "ABC123"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:N469b0e195a0c4340927e3651ec9f62c0 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
@@ -1557,7 +1556,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/2> a tern:Sampling ;
-    dcterms:identifier "2"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "2"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:Nb7c2e9e5cff0477a9fe11feb72001172 ;
     rdfs:comment "field-sampling" ;
@@ -1570,7 +1569,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/3> a tern:Sampling ;
-    dcterms:identifier "3"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "3"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:Nea75fc71ec124a7caa06b2f2e8f54ff6 ;
     rdfs:comment "field-sampling" ;
@@ -1583,7 +1582,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/4> a tern:Sampling ;
-    dcterms:identifier "4"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "4"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:N119cf6dc23ad4af0aac181fdcc6d256b ;
     rdfs:comment "field-sampling" ;
@@ -1596,7 +1595,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/5> a tern:Sampling ;
-    dcterms:identifier "5"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "5"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:Na315741015eb40219b1b7e14a7f5f356 ;
     rdfs:comment "field-sampling" ;
@@ -1609,7 +1608,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/6> a tern:Sampling ;
-    dcterms:identifier "6"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "6"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:N5dbbc53329094ce888857067591d7ecc ;
     rdfs:comment "field-sampling" ;
@@ -1622,7 +1621,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/7> a tern:Sampling ;
-    dcterms:identifier "7"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "7"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:N8aea8138122541ebb8e9baaa04a9ead5 ;
     rdfs:comment "field-sampling" ;
@@ -1635,7 +1634,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/8> a tern:Sampling ;
-    dcterms:identifier "8022FSJMJ079c5cf"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "8022FSJMJ079c5cf"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:N83adeff98f1f4b6a9e0ba0068092974f ;
     rdfs:comment "field-sampling" ;
@@ -1648,7 +1647,7 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/sampling/field/9> a tern:Sampling ;
-    dcterms:identifier "9"^^<http://createme.org/datatype/recordID/WAM> ;
+    schema:identifier "9"^^<http://createme.org/datatype/recordID/WAM> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     geo:hasGeometry _:Nfa7f247daa3f45dd84b53e2db2f879de ;
     rdfs:comment "field-sampling" ;
@@ -1883,7 +1882,7 @@
 
 <http://createme.org/sample/field/15> a tern:FeatureOfInterest,
         tern:Sample ;
-    dcterms:identifier "MR-456"^^<http://createme.org/datatype/recordID/Stream-Environment-and-Water-Pty-Ltd> ;
+    schema:identifier "MR-456"^^<http://createme.org/datatype/recordID/Stream-Environment-and-Water-Pty-Ltd> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     dwc:otherCatalogNumbers "BHP2012-7521"^^<http://createme.org/datatype/catalogNumber/BHP>,
         "M12378"^^<http://createme.org/datatype/catalogNumber/BHP>,
@@ -1896,7 +1895,7 @@
 
 <http://createme.org/sample/field/16> a tern:FeatureOfInterest,
         tern:Sample ;
-    dcterms:identifier "MR-457"^^<http://createme.org/datatype/recordID/Stream-Environment-and-Water-Pty-Ltd> ;
+    schema:identifier "MR-457"^^<http://createme.org/datatype/recordID/Stream-Environment-and-Water-Pty-Ltd> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     dwc:otherCatalogNumbers "BHP2012-7522"^^<http://createme.org/datatype/catalogNumber/BHP>,
         "M12379"^^<http://createme.org/datatype/catalogNumber/BHP>,
@@ -1942,9 +1941,9 @@
     schema:name "Stream Environment and Water Pty Ltd" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> a tern:Dataset ;
-    dcterms:description "Example Systematic Survey Occurrence Dataset by Gaia Resources" ;
-    dcterms:issued "2024-10-04"^^xsd:date ;
-    dcterms:title "Example Systematic Survey Occurrence Dataset" .
+    schema:description "Example Systematic Survey Occurrence Dataset by Gaia Resources" ;
+    schema:dateIssued "2024-10-04"^^xsd:date ;
+    schema:name "Example Systematic Survey Occurrence Dataset" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;

@@ -1,4 +1,3 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -27,13 +26,13 @@
     schema:isPartOf <http://createme.org/survey/SSD-Survey/1> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> a tern:Dataset ;
-    dcterms:description "Example Systematic Survey Site Dataset by Gaia Resources" ;
-    dcterms:issued "2024-04-19"^^xsd:date ;
-    dcterms:title "Example Systematic Survey Site Dataset" .
+    schema:description "Example Systematic Survey Site Dataset by Gaia Resources" ;
+    schema:dateIssued "2024-04-19"^^xsd:date ;
+    schema:name "Example Systematic Survey Site Dataset" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> a tern:Site ;
-    dcterms:identifier "P1"^^<http://createme.org/datatype/siteID/WAM> ;
-    dcterms:type <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
+    schema:identifier "P1"^^<http://createme.org/datatype/siteID/WAM> ;
+    schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     geo:hasGeometry _:N80cb167ff39346b7b93c2f6d0ae16523,
         _:Nc7c5f771a61645eaaa59a9a285e09aa4 ;
