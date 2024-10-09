@@ -6,6 +6,7 @@ import rdflib
 
 # Local
 from abis_mapping import base
+from abis_mapping import plugins
 from abis_mapping import settings
 
 # Typing
@@ -36,9 +37,6 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
-        # TODO: Implement
-        raise NotImplementedError
-
         # Extract keyword arguments
         # TODO: Uncomment
         # site_visit_id_map: dict[str, bool] = kwargs.get("site_visit_id_map", {})
@@ -55,7 +53,15 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         )
 
         # Validate
-        report = resource.validate()
+        report = resource.validate(
+            checklist=frictionless.Checklist(
+                checks=[
+                    # Extra custom checks
+                    plugins.tabular.IsTabular(),
+                    plugins.empty.NotEmpty(),
+                ],
+            ),
+        )
 
         # Return validation report
         return report

@@ -269,6 +269,20 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
         metadata_sampling_type="systematic survey",
         allows_extra_cols=True,
     ),
+    TemplateTestParameters(
+        template_id="survey_site_visit_data-v2.0.0.csv",
+        empty_template=pathlib.Path(
+            "abis_mapping/templates/survey_site_visit_data_v2/survey_site_visit_data.csv",
+        ),
+        mapping_cases=[
+            MappingParameters(
+                data=pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal.csv"),
+                expected=None,
+            ),
+        ],
+        metadata_sampling_type="systematic survey",
+        allows_extra_cols=True,
+    ),
     # Incidental templates
     TemplateTestParameters(
         template_id="incidental_occurrence_data-v1.0.0.csv",
