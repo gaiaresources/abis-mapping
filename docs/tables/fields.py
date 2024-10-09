@@ -42,6 +42,17 @@ class FieldTabler(tables.base.BaseTabler):
         raw_hdr = (hdr.serialization_alias or hdr.title for hdr in FieldTableRow.model_fields.values())
         return [hdr for hdr in raw_hdr if hdr is not None]
 
+    @property
+    def fields(self) -> list[types.schema.Field]:
+        """Getter for the fields.
+
+        Returns:
+            list[types.schema.Field]: List of all fields from schema.
+        """
+        # Get fields from schema and return
+        dict_fields = self.mapper.schema()["fields"]
+        return [types.schema.Field.model_validate(f) for f in dict_fields]
+
     def generate_table(
         self,
         dest: IO | None = None,
@@ -60,12 +71,8 @@ class FieldTabler(tables.base.BaseTabler):
         # Write header
         self.writer.writeheader()
 
-        # Localize fields
-        dict_fields = self.mapper.schema()["fields"]
-        fields: list[types.schema.Field] = [types.schema.Field.model_validate(f) for f in dict_fields]
-
         # Iterate through fields and add to csv
-        for field in fields:
+        for field in self.fields:
             # Perform basic mapping initially
             field_table_row = self.generate_row(field)
 
@@ -208,6 +215,47 @@ class FieldTabler(tables.base.BaseTabler):
 
         # Return
         return fields
+
+
+class OccurrenceField(types.schema.Field):
+    """Specific implementation of the field model.
+
+    To be used only in the creation of survey and incidental occurrence field tables.
+    """
+
+    @property
+    def publishable_vocabularies(self) -> list[str]:
+        """Returns a list of only those vocabularies that are publishable.
+
+        Returns:
+            list[str]: The publishable vocabularies.
+        """
+        # Filter and return
+        vocabs = []
+        for v_id in self.vocabularies:
+            v = self.get_vocab(v_id)
+            # Modified from normal case threatStatus and conservationAuthority fields to make them
+            # publishable so links are created for their corresponding vocab which is
+            # currently its own table in the instructions.
+            if v.publish or v.vocab_id in ["THREAT_STATUS", "CONSERVATION_AUTHORITY"]:
+                vocabs.append(v_id)
+        return vocabs
+
+
+class OccurrenceFieldTabler(FieldTabler):
+    """Specific implementation of the field tabler for survey and incidental occurrence templates."""
+
+    @property
+    def fields(self) -> list[types.schema.Field]:
+        """Getter for the fields.
+
+        Returns:
+            list[OccurrenceField]: List of all fields from schema. Note: this specifically
+                returns OccurrenceField object list
+        """
+        # Get fields from schema and return
+        dict_fields = self.mapper.schema()["fields"]
+        return [OccurrenceField.model_validate(f) for f in dict_fields]
 
 
 if __name__ == "__main__":
