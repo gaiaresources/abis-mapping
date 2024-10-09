@@ -1533,7 +1533,7 @@
     sosa:hasFeatureOfInterest <http://createme.org/location/Australia> ;
     sosa:hasResult <http://createme.org/sample/field/15> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isMemberOf <http://createme.org/survey/MR-R1> ;
+    schema:memberOf <http://createme.org/survey/MR-R1> ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/15>,
         <http://createme.org/attribute/habitat/15> ;
     tern:hasSiteVisit <http://createme.org/visit/MR-R1-V1> ;
@@ -1551,7 +1551,7 @@
     sosa:hasFeatureOfInterest <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset/site/MR-S1> ;
     sosa:hasResult <http://createme.org/sample/field/16> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/samplingProtocol/new-sampling-protocol> ;
-    schema:isMemberOf <http://createme.org/survey/MR-R1> ;
+    schema:memberOf <http://createme.org/survey/MR-R1> ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/16>,
         <http://createme.org/attribute/habitat/16> ;
     tern:locationDescription "Cowaramup Bay Road" .

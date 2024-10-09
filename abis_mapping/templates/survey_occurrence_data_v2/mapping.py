@@ -1443,7 +1443,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Conditionally add survey
         if survey is not None:
-            graph.add((uri, rdflib.SDO.isMemberOf, survey))
+            graph.add((uri, rdflib.SDO.memberOf, survey))
 
         # Conditionally add site visit
         if site_visit is not None:
