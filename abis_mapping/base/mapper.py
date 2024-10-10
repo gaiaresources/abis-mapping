@@ -35,7 +35,7 @@ class ABISMapper(abc.ABC):
     # Default Dataset Metadata
     DATASET_DEFAULT_NAME = "Example Dataset"
     DATASET_DEFAULT_DESCRIPTION = "Example Dataset by Gaia Resources"
-    DATASET_DEFAULT_ORGANISATION = "Gaia Resources"
+    DATASET_DEFAULT_ORGANIZATION = "Gaia Resources"
 
     @abc.abstractmethod
     def apply_validation(
@@ -95,7 +95,7 @@ class ABISMapper(abc.ABC):
         graph.add((uri, rdflib.SDO.dateIssued, types.temporal.Date.today().to_rdf_literal()))
 
         # Add default dataset datatype
-        default_dataset_datatype = utils.rdf.uri(f"datatype/datasetID/{self.DATASET_DEFAULT_ORGANISATION}")
+        default_dataset_datatype = utils.rdf.uri(f"datatype/datasetID/{self.DATASET_DEFAULT_ORGANIZATION}")
         self._add_default_dataset_datatype(default_dataset_datatype, base_iri, graph)
 
     def _add_default_dataset_datatype(
@@ -116,11 +116,11 @@ class ABISMapper(abc.ABC):
         """
         # Add default dataset datatype to graph
         graph.add((uri, a, rdflib.RDFS.Datatype))
-        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{self.DATASET_DEFAULT_ORGANISATION} datasetID")))
+        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{self.DATASET_DEFAULT_ORGANIZATION} datasetID")))
         graph.add((uri, rdflib.SKOS.definition, rdflib.Literal("An identifier for the dataset")))
 
         # Add default dataset datatype attribution
-        default_dataset_attribution = utils.rdf.uri(f"provider/{self.DATASET_DEFAULT_ORGANISATION}", base_iri)
+        default_dataset_attribution = utils.rdf.uri(f"provider/{self.DATASET_DEFAULT_ORGANIZATION}", base_iri)
         graph.add((uri, rdflib.PROV.wasAttributedTo, default_dataset_attribution))
 
     def add_geometry_supplied_as(
