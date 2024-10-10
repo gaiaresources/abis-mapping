@@ -53,20 +53,27 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     # we check here to see if any `None`s have snuck their way into the RDF.
     assert "None" not in graphs[0].serialize(format="ttl")
 
-    # Perform shacl validation if provided
-    if test_params.shacl is not None:
-        shape_graph = rdflib.Graph().parse(data=test_params.shacl.read_bytes())
-        for data_graph in graphs:
-            valid, _, report = pyshacl.validate(data_graph=data_graph, shacl_graph=shape_graph)
-            # If not valid raise assertion error with report output
-            assert valid, report
+    # Perform shacl validation only if provided
+    if not test_params.shacl:
+        return
 
-        # Perform validation on the expected result as well
-        expected_graph = rdflib.Graph().parse(data=expected)
-        valid, _, report = pyshacl.validate(data_graph=expected_graph, shacl_graph=shape_graph)
+    # Consruct shape graph
+    shape_graph = rdflib.Graph()
+    for shacl in test_params.shacl:
+        shape_graph.parse(data=shacl.read_bytes())
 
+    # Perform validation per data graph
+    for data_graph in graphs:
+        valid, _, report = pyshacl.validate(data_graph=data_graph, shacl_graph=shape_graph)
         # If not valid raise assertion error with report output
         assert valid, report
+
+    # Perform validation on the expected result as well
+    expected_graph = rdflib.Graph().parse(data=expected)
+    valid, _, report = pyshacl.validate(data_graph=expected_graph, shacl_graph=shape_graph)
+
+    # If not valid raise assertion error with report output
+    assert valid, report
 
 
 @pytest.mark.parametrize(

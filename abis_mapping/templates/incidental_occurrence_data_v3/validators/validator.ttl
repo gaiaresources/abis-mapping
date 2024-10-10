@@ -13,6 +13,7 @@ bdrsh:DatatypeShape
         bdrsh:RecordIDDatatypeShape 
         bdrsh:RecordNumberDatatypeShape
         bdrsh:CatalogNumberDatatypeShape
+        bdrsh:DatasetDatatypeShape  # Specified in the base mapper.
     ) .
 
 bdrsh:CatalogNumberDatatypeShape

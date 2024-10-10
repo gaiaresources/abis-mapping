@@ -26,7 +26,7 @@ class MappingParameters:
             pass validation. Default: True
         expected_error_codes (set[str]): Set of frictionless error codes expected to
             to be returned for scenario.
-        shacl (pathlib.Path | None): Optional path to shape graph to perform validation
+        shacl (list[pathlib.Path]): Optional list of paths to shape graphs to perform validation
             against.
     """
 
@@ -35,7 +35,7 @@ class MappingParameters:
     scenario_name: Optional[str] = None
     should_validate: bool = True
     expected_error_codes: set[str] = set()
-    shacl: pathlib.Path | None = None
+    shacl: list[pathlib.Path] = []
 
 
 @attrs.define(kw_only=True)
@@ -174,7 +174,10 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
                         "/margaret_river_flora/margaret_river_flora.ttl"
                     )
                 ),
-                shacl=pathlib.Path("abis_mapping/templates/survey_occurrence_data_v2/validators/validator.ttl"),
+                shacl=[
+                    pathlib.Path("abis_mapping/base/validators/shapes.ttl"),
+                    pathlib.Path("abis_mapping/templates/survey_occurrence_data_v2/validators/validator.ttl"),
+                ],
             ),
             MappingParameters(
                 scenario_name="organism_qty",
@@ -391,7 +394,10 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
                         "margaret_river_flora/margaret_river_flora.ttl"
                     )
                 ),
-                shacl=pathlib.Path("abis_mapping/templates/incidental_occurrence_data_v3/validators/validator.ttl"),
+                shacl=[
+                    pathlib.Path("abis_mapping/base/validators/shapes.ttl"),
+                    pathlib.Path("abis_mapping/templates/incidental_occurrence_data_v3/validators/validator.ttl"),
+                ],
             ),
         ],
         metadata_sampling_type="incidental",

@@ -200,6 +200,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             # Add Example Default Dataset if not Supplied
             self.add_default_dataset(
                 uri=dataset_iri,
+                base_iri=base_iri,
                 graph=graph,
             )
 
@@ -321,7 +322,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
         provider_record_id_agent = utils.rdf.uri(f"agent/{provider_record_id_source}", base_iri)
         provider_record_id_attribution = utils.rdf.uri(
-            internal_id=f"attribution/{provider_record_id_source}/resourceProvider", 
+            internal_id=f"attribution/{provider_record_id_source}/resourceProvider",
             namespace=base_iri,
         )
 

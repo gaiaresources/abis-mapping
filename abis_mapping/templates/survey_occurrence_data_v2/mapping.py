@@ -298,6 +298,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Add Example Default Dataset if not Supplied
             self.add_default_dataset(
                 uri=dataset_iri,
+                base_iri=base_iri,
                 graph=graph,
             )
 
