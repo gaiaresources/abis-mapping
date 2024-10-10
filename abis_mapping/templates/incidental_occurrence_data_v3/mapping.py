@@ -200,6 +200,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             # Add Example Default Dataset if not Supplied
             self.add_default_dataset(
                 uri=dataset_iri,
+                base_iri=base_iri,
                 graph=graph,
             )
 
@@ -313,19 +314,27 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         sensitivity_category_attribute = utils.rdf.uri(f"attribute/sensitivityCategory/{row_num}", base_iri)
         sensitivity_category_value = utils.rdf.uri(f"value/sensitivityCategory/{row_num}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
+
+        provider_record_id_source = row["providerRecordIDSource"]
         provider_record_id_datatype = utils.rdf.uri(
-            internal_id=f"datatype/recordID/{row['providerRecordIDSource']}",
+            internal_id=f"datatype/recordID/{provider_record_id_source}",
             namespace=base_iri,
         )
-        provider_record_id_agent = utils.rdf.uri(f"agent/{row['providerRecordIDSource']}", base_iri)
+        provider_record_id_agent = utils.rdf.uri(f"agent/{provider_record_id_source}", base_iri)
+        provider_record_id_attribution = utils.rdf.uri(
+            internal_id=f"attribution/{provider_record_id_source}/resourceProvider",
+            namespace=base_iri,
+        )
 
         # Conditionally create uris dependent on ownerRecordIDSource field
         if owner_record_id_source := row["ownerRecordIDSource"]:
             owner_record_id_datatype = utils.rdf.uri(f"datatype/recordID/{owner_record_id_source}", base_iri)
-            owner_record_id_provider = utils.rdf.uri(f"provider/{row['ownerRecordIDSource']}", base_iri)
+            owner_record_id_provider = utils.rdf.uri(f"provider/{owner_record_id_source}", base_iri)
+            owner_record_id_attribution = utils.rdf.uri(f"attribution/{owner_record_id_source}/owner", base_iri)
         else:
             owner_record_id_datatype = None
             owner_record_id_provider = None
+            owner_record_id_attribution = None
 
         # Conditionally create uri's dependent on recordedBy field.
         if recorded_by := row["recordedBy"]:
@@ -392,8 +401,15 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add owner record id datatype
         self.add_record_id_datatype(
             uri=owner_record_id_datatype,
-            provider=owner_record_id_provider,
+            attribution=owner_record_id_attribution,
             value=owner_record_id_source,
+            graph=graph,
+        )
+
+        # Add attribution for record id datatype
+        self.add_attribution(
+            uri=owner_record_id_attribution,
+            provider=owner_record_id_provider,
             provider_role_type=DATA_ROLE_OWNER,
             graph=graph,
         )
@@ -423,8 +439,15 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add provider record ID datatype
         self.add_record_id_datatype(
             uri=provider_record_id_datatype,
+            attribution=provider_record_id_attribution,
+            value=provider_record_id_source,
+            graph=graph,
+        )
+
+        # Add attribution for provider record id datatype
+        self.add_attribution(
+            uri=provider_record_id_attribution,
             provider=provider_record_id_agent,
-            value=provider_record_id_datatype,
             provider_role_type=DATA_ROLE_RESOURCE_PROVIDER,
             graph=graph,
         )
@@ -1121,18 +1144,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
     def add_record_id_datatype(
         self,
         uri: rdflib.URIRef | None,
-        provider: rdflib.URIRef | None,
+        attribution: rdflib.URIRef | None,
         value: str | None,
-        provider_role_type: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds the owner record id datatype to the graph.
 
         Args:
-            uri (rdflib.URIRef): Subject of the node.
-            provider (rdflib.URIRef): Provider of the datatype.
+            uri (rdflib.URIRef | None): Subject of the node or None.
+            provider (rdflib.URIRef | None): Provider of the datatype or None.
+            attribution (rdflib.URIRef | None): Attribution of the recordID datatype or None.
             value (str | None): Raw value provided for the record id source.
-            provider_role_type (rdflib.URIRef): Role type of provider.
             graph (rdflid.Graph): Graph to be modified.
         """
         # Check to see subject provided.
@@ -1150,12 +1172,35 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SKOS.definition, rdflib.Literal("An identifier for the record")))
 
         # Add attribution
+        if attribution is not None:
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, attribution))
+
+    def add_attribution(
+        self,
+        uri: rdflib.URIRef | None,
+        provider: rdflib.URIRef | None,
+        provider_role_type: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds an attribution node to the graph.
+
+        Args:
+            uri (rdflib.URIRef | None): Subject of the node or None.
+            provider (rdflib.URIRef | None): Provider of the datatype or None.
+            provider_role_type (rdflib.URIRef): Role type of provider.
+            graph (rdflid.Graph): Graph to be modified.
+        """
+        # Check to see subject provided.
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.PROV.Attribution))
+
         if provider is not None:
-            qualified_attribution = rdflib.BNode()
-            graph.add((qualified_attribution, a, rdflib.PROV.Attribution))
-            graph.add((qualified_attribution, rdflib.PROV.agent, provider))
-            graph.add((qualified_attribution, rdflib.PROV.hadRole, provider_role_type))
-            graph.add((uri, rdflib.PROV.qualifiedAttribution, qualified_attribution))
+            graph.add((uri, rdflib.PROV.agent, provider))
+
+        graph.add((uri, rdflib.PROV.hadRole, provider_role_type))
 
     def add_owner_record_id_provider(
         self,

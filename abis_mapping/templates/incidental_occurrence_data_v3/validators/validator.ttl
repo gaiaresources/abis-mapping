@@ -5,98 +5,97 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-
-rdfs:Datatype
-	a rdfs:Class, sh:NodeShape ;
-	sh:targetClass rdfs:Datatype ;
-	sh:xone (
-		bdrsh:RecordIDDatatypeShape 
-		bdrsh:RecordNumberDatatypeShape
-		bdrsh:CatalogNumberDatatypeShape
-	) .
+bdrsh:DatatypeShape
+    a rdfs:Class, sh:NodeShape ;
+    sh:targetClass rdfs:Datatype ;
+    sh:xone (
+        bdrsh:RecordIDDatatypeShape 
+        bdrsh:RecordNumberDatatypeShape
+        bdrsh:CatalogNumberDatatypeShape
+        bdrsh:DatasetDatatypeShape  # Specified in the base mapper.
+    ) .
 
 bdrsh:CatalogNumberDatatypeShape
-	a sh:NodeShape ;
-	sh:property [
-		sh:path skos:prefLabel ;
-		sh:datatype xsd:string ;
-		sh:nodeKind sh:Literal ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:pattern " catalogNumber$" ;
-	] ;
-	sh:property [
-		sh:path skos:definition ;
-		sh:datatype xsd:string ;
-		sh:nodeKind sh:Literal ;
-		sh:minCount 1;
-		sh:maxCount 1;
-		sh:pattern "^A catalog number for the sample$" ;
-	] .
+    a sh:NodeShape ;
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern " catalogNumber$" ;
+    ] ;
+    sh:property [
+        sh:path skos:definition ;
+        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1;
+        sh:maxCount 1;
+        sh:pattern "^A catalog number for the sample$" ;
+    ] .
 
 bdrsh:RecordNumberDatatypeShape
-	a sh:NodeShape ;
-	sh:property [
-		sh:path skos:prefLabel ;
-		sh:datatype xsd:string ;
-		sh:nodeKind sh:Literal ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:pattern " recordNumber$" ;
-	] ;
-	sh:property [
-		sh:path skos:definition ;
-		sh:datatype xsd:string ;
-		sh:nodeKind sh:Literal ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:pattern "^The record number of the original observation from the original observer of the organism$" ;
-	] ;
-	sh:property [
-		sh:path prov:wasAttributedTo ;
-		sh:nodeKind sh:IRI ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] .
+    a sh:NodeShape ;
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern " recordNumber$" ;
+    ] ;
+    sh:property [
+        sh:path skos:definition ;
+        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^The record number of the original observation from the original observer of the organism$" ;
+    ] ;
+    sh:property [
+        sh:path prov:wasAttributedTo ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
 
 bdrsh:RecordIDDatatypeShape
-	a sh:NodeShape ;
-	sh:property [
-		sh:path skos:prefLabel ;
-		sh:datatype xsd:string ;
-		sh:nodeKind sh:Literal ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:pattern " recordID$" ;
-	] ;
-	sh:property [
-		sh:path skos:definition ;
-		sh:datatype xsd:string ;
-		sh:nodeKind sh:Literal ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:pattern "^An identifier for the record$" ;
-	] ;
-	sh:property [
-		sh:path prov:qualifiedAttribution ;
-		sh:minCount 1 ;
-#		sh:maxCount 1 ;  # TODO: Currently fails with this included, but is the intended result.
-		sh:node bdrsh:QualifiedAttributionShape ;
-		sh:class prov:Attribution ;
-	] .
+    a sh:NodeShape ;
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern " recordID$" ;
+    ] ;
+    sh:property [
+        sh:path skos:definition ;
+        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^An identifier for the record$" ;
+    ] ;
+    sh:property [
+        sh:path prov:qualifiedAttribution ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ; 
+        sh:node bdrsh:AttributionShape ;
+        sh:class prov:Attribution ;
+    ] .
 
-bdrsh:QualifiedAttributionShape
-	a sh:NodeShape ;
-	sh:property [
-		sh:path prov:agent ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:nodeKind sh:IRI ;
-	] ;
-	sh:property [
-		sh:path prov:hadRole ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:nodeKind sh:IRI ;
-	] .
-		
+bdrsh:AttributionShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path prov:agent ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        sh:path prov:hadRole ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+    ] .

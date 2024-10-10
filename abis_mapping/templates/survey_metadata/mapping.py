@@ -158,6 +158,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             # Add the default dataset
             self.add_default_dataset(
                 uri=dataset_iri,
+                base_iri=base_iri,
                 graph=graph,
             )
 
