@@ -2,6 +2,7 @@
 
 # Standard
 import decimal
+import functools
 import re
 
 # Third-party
@@ -17,6 +18,12 @@ from abis_mapping import utils
 
 # Typing
 from typing import NamedTuple
+
+
+# Create cached lookup functions for pyproj.CRS and pyproj.Transformer objects,
+# to avoid the cost of repeatedly creating them when mapping.
+_CRS_cached = functools.cache(pyproj.CRS)
+_transformer_from_crs_cached = functools.cache(pyproj.Transformer.from_crs)
 
 
 class LatLong(NamedTuple):
@@ -65,12 +72,12 @@ class Geometry:
         # Attempt to create a converter using proj.
         try:
             # Will raise if geodetic datum not supported
-            self._crs = pyproj.CRS(datum)
+            self._crs = _CRS_cached(datum)
 
             # Create a default CRS transformer
-            self._transformer = pyproj.Transformer.from_crs(
+            self._transformer = _transformer_from_crs_cached(
                 crs_from=datum,
-                crs_to=settings.Settings().DEFAULT_TARGET_CRS,
+                crs_to=settings.SETTINGS.DEFAULT_TARGET_CRS,
                 always_xy=True,
             )
         except pyproj.ProjError as exc:
