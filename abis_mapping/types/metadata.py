@@ -5,6 +5,7 @@ import urllib.parse
 
 # Third-party
 import pydantic
+from typing import Literal
 
 # Local
 from abis_mapping import settings
@@ -23,7 +24,7 @@ class TemplateMetadata(pydantic.BaseModel):
     sampling_type: str
     template_url: str
     schema_url: str
-    template_status: str
+    template_lifecycle_status: Literal ["Beta", "Current", "Deprecated"]
 
     @pydantic.computed_field  # type: ignore[prop-decorator]
     @property
