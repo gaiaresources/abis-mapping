@@ -2,6 +2,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 bdrsh:DatasetDatatypeShape
@@ -27,3 +28,49 @@ bdrsh:DatasetDatatypeShape
         sh:nodeKind sh:IRI ;
         sh:minCount 1 ;
     ] .
+
+bdrsh:TemporalEntityShape
+    a sh:NodeShape ;
+    sh:targetClass time:TemporalEntity ;
+    sh:nodeKind sh:BlankNode ;
+    sh:or (
+        [ 
+            sh:path time:hasBeginning ;
+            sh:maxCount 1 ;
+            sh:class time:Instant ;
+            sh:node bdrsh:TemporalInstantShape ;
+        ]
+        [
+            sh:path time:hasEnd ;
+            sh:maxCount 1 ;
+            sh:class time:Instant ;
+            sh:node bdrsh:TemporalInstantShape ;
+        ]
+    ) .
+
+bdrsh:TemporalInstantShape
+    a sh:NodeShape ;
+    sh:class time:Instant ;
+    sh:nodeKind sh:BlankNode ;
+    sh:or (
+        [
+            sh:path time:inXSDDate ;
+            sh:datatype xsd:date ;
+        ]
+        [
+            sh:path time:inXSDDateTime ;
+            sh:datatype xsd:dateTime ;
+        ]
+        [
+            sh:path time:inXSDDateTimeStamp ;
+            sh:datatype xsd:dateTimeStamp ;
+        ]
+        [
+            sh:path time:inXSDgYearMonth ;
+            sh:datatype xsd:gYearMonth ;
+        ]
+        [
+            sh:path time:inXSDgYear ;
+            sh:datatype xsd:gYear ;
+        ]
+    ) . 

@@ -1152,7 +1152,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         Args:
             uri (rdflib.URIRef | None): Subject of the node or None.
-            provider (rdflib.URIRef | None): Provider of the datatype or None.
             attribution (rdflib.URIRef | None): Attribution of the recordID datatype or None.
             value (str | None): Raw value provided for the record id source.
             graph (rdflid.Graph): Graph to be modified.
