@@ -26,7 +26,7 @@ class TestTemplateMetadata:
             sampling_type="someSamplingType",
             template_url="http://example.com/some_template_url",
             schema_url="http://example.com/some_schema_url",
-            template_lifecycle_status="Current"
+            template_lifecycle_status="Current",
         )
 
     def test_id(

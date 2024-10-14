@@ -24,7 +24,7 @@ class TemplateMetadata(pydantic.BaseModel):
     sampling_type: str
     template_url: str
     schema_url: str
-    template_lifecycle_status: Literal ["Beta", "Current", "Deprecated"]
+    template_lifecycle_status: Literal["Beta", "Current", "Deprecated"]
 
     @pydantic.computed_field  # type: ignore[prop-decorator]
     @property
