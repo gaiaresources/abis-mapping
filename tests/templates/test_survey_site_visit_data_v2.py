@@ -38,6 +38,9 @@ def mapper() -> Iterator[mapping.SurveySiteVisitMapper]:
     # Yield mapper
     yield mapper
 
+    # Clear schema cache again
+    mapper.schema.cache_clear()
+
 
 @dataclasses.dataclass
 class Scenario:
@@ -127,9 +130,6 @@ class TestExtractTemporalDefaults:
 
         # Patch and return
         yield mocker.patch.object(mapping.SurveySiteVisitMapper, "schema", return_value=descriptor)
-
-        # Clear schema lru_cache
-        mapping.SurveySiteVisitMapper.schema.cache_clear()
 
     def test_extract_temporal_defaults(
         self, mocked_schema: unittest.mock.MagicMock, mapper: mapping.SurveySiteVisitMapper
