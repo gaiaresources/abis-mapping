@@ -37,8 +37,13 @@ class LogicalOr(frictionless.Check):
         if len(filtered) > 0:
             return
 
+
+        # Create error note base on values provided to the check
+        note = f"the fields {self.field_names}"
+        note += " are constrained by logical OR, one or more value must be provided"
+
         # Yield Error
         yield frictionless.errors.RowConstraintError.from_row(
             row=row,
-            note=f"the fields {self.field_names} are constrained by logical OR, one or more value must be provided",
+            note=note,
         )
