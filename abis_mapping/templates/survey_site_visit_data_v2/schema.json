@@ -161,14 +161,5 @@
                 "SAMPLING_EFFORT_UNIT"
             ]
         }
-    ],
-    "foreignKeys": [
-        {
-            "fields": "siteVisitID",
-            "reference": {
-                "resource": "survey_occurrence_data",
-                "fields": "siteVisitID"
-            }
-        }
     ]
 }

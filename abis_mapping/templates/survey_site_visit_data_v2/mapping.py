@@ -71,7 +71,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Check to see if site visit id map was provided
         if site_visit_id_map:
             # Construct foreign key map
-            fk_map = {"siteVisitID": set(site_visit_id_map)} if site_visit_id_map else dict()
+            fk_map = {"siteVisitID": set(site_visit_id_map)}
 
             # Add custom check for temporal flexibility with whitelists. Here deferring
             # the check on any ids found in the occurrence template, to when validaation
