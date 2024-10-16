@@ -68,7 +68,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             ),
         ]
 
-        # Check to see if site visit id map was provided
+        # Check to see if site visit id map was provided or was empty
         if site_visit_id_map:
             # Construct foreign key map
             fk_map = {"siteVisitID": set(site_visit_id_map)}
