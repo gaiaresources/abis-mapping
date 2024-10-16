@@ -7,8 +7,8 @@ This Systematic Survey Site Data template should be used to record data about a
 Site area where species occurrences have been sampled during a systematic survey.
 
 This Systematic Survey Site template **must be used in combination** with the
-`Systematic Survey Occurrence` template and the `Systematic Survey Metadata` template.
-It can **optionally** be used in combination with the `Systematic Survey Site Visit` template.
+`Systematic Survey Occurrence Data` template and the `Systematic Survey Metadata` template,
+and in some cases the `Systematic Survey Site Visit` template. 
 
 Templates have been provided to facilitate integration of data into the Biodiversity Data
 Repository (BDR) database. Not all types of data have been catered for in the available
@@ -84,8 +84,8 @@ to the new Systematic Survey Site Visit Data Template.
 
 ## APPENDICES
 ### APPENDIX-I: VOCABULARY LIST
-With the exception of `geodeticDatum` and `relationshipToRelatedSite`, data validation
-does not require adherence to the vocabularies for the various vocabularied fields.
+With the exception of `geodeticDatum` and `relationshipToRelatedSite`, the data validation
+does not require fields to adhere to the vocabularies specified for the various vocabularied fields.
 These vocabularies are merely provided as a means of assistance in developing consistent language
 within the database. New terms may be added to more appropriately describe your data that goes 
 beyond the current list.
