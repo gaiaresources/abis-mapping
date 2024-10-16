@@ -2,7 +2,6 @@
 
 # Third-Party
 import frictionless
-import pytest
 
 # Local
 from abis_mapping import plugins

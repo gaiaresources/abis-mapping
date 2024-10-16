@@ -272,7 +272,7 @@ class TestApplyValidation:
         """
         # Construct map
         svid_map = {"FAKEID": True}
-        
+
         # Invoke
         report = mapper.apply_validation(data_no_start_date, site_visit_id_map=svid_map)
 
