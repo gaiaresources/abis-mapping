@@ -741,14 +741,14 @@
     {
       "fields": "siteID",
       "reference": {
-        "resource": "survey_site_data.csv",
+        "resource": "survey_site_data",
         "fields": "siteID"
       }
     },
     {
       "fields": "siteVisitID",
       "reference": {
-        "resource": "survey_site_visit_data.csv",
+        "resource": "survey_site_visit_data",
         "fields": "siteVisitID"
       }
     }
