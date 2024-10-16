@@ -260,25 +260,21 @@ python-dateutil = ">=2.8.1"
 dev = ["flake8", "markdown", "twine", "wheel"]
 
 [[package]]
-name = "html5lib"
-version = "1.1"
+name = "html5rdf"
+version = "1.2"
 description = "HTML parser based on the WHATWG HTML specification"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.8"
 files = [
-    {file = "html5lib-1.1-py2.py3-none-any.whl", hash = "sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d"},
-    {file = "html5lib-1.1.tar.gz", hash = "sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f"},
+    {file = "html5rdf-1.2-py2.py3-none-any.whl", hash = "sha256:08169aa52a98ee3a6d3456d83feb36211fb5edcbcf3e05f6d19e0136f581638c"},
+    {file = "html5rdf-1.2.tar.gz", hash = "sha256:08378cbbbb63993ba7bb5eb1eac44bf9ca7b1a23dbee3d2afef5376597fb00a5"},
 ]
 
-[package.dependencies]
-six = ">=1.9"
-webencodings = "*"
-
 [package.extras]
-all = ["chardet (>=2.2)", "genshi", "lxml"]
-chardet = ["chardet (>=2.2)"]
-genshi = ["genshi"]
-lxml = ["lxml"]
+all = ["chardet (>=2.2.1)", "genshi (>=0.7.1)", "lxml (>=3.4.0)"]
+chardet = ["chardet (>=2.2.1)"]
+genshi = ["genshi (>=0.7.1)"]
+lxml = ["lxml (>=3.4.0)"]
 
 [[package]]
 name = "humanize"
@@ -660,13 +656,13 @@ pyyaml = ">=5.1"
 
 [[package]]
 name = "mkdocs-material"
-version = "9.5.27"
+version = "9.5.42"
 description = "Documentation that simply works"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "mkdocs_material-9.5.27-py3-none-any.whl", hash = "sha256:af8cc263fafa98bb79e9e15a8c966204abf15164987569bd1175fd66a7705182"},
-    {file = "mkdocs_material-9.5.27.tar.gz", hash = "sha256:a7d4a35f6d4a62b0c43a0cfe7e987da0980c13587b5bc3c26e690ad494427ec0"},
+    {file = "mkdocs_material-9.5.42-py3-none-any.whl", hash = "sha256:452a7c5d21284b373f36b981a2cbebfff59263feebeede1bc28652e9c5bbe316"},
+    {file = "mkdocs_material-9.5.42.tar.gz", hash = "sha256:92779b5e9b5934540c574c11647131d217dc540dce72b05feeda088c8eb1b8f2"},
 ]
 
 [package.dependencies]
@@ -1297,17 +1293,16 @@ certifi = "*"
 
 [[package]]
 name = "pyshacl"
-version = "0.25.0"
+version = "0.28.1"
 description = "Python SHACL Validator"
 optional = false
-python-versions = ">=3.8.1,<4.0.0"
+python-versions = "<4.0.0,>=3.8.1"
 files = [
-    {file = "pyshacl-0.25.0-py3-none-any.whl", hash = "sha256:716b65397486b1a306efefd018d772d3c112a3828ea4e1be27aae16aee524243"},
-    {file = "pyshacl-0.25.0.tar.gz", hash = "sha256:91e87ed04ccb29aa47abfcf8a3e172d35a8831fce23a011cfbf35534ce4c940b"},
+    {file = "pyshacl-0.28.1-py3-none-any.whl", hash = "sha256:345fe96fb2f38218c53a0f977329ed0aa1a54256526bf6de62243ac7ae823d6b"},
+    {file = "pyshacl-0.28.1.tar.gz", hash = "sha256:c98e1927541f0cbeb0ba27f3fbe585d638281d6e63f314462dcc32282b3c8353"},
 ]
 
 [package.dependencies]
-html5lib = ">=1.1,<2"
 importlib-metadata = {version = ">6", markers = "python_version < \"3.12\""}
 owlrl = ">=6.0.2,<7"
 packaging = ">=21.3"
@@ -1315,24 +1310,24 @@ prettytable = [
     {version = ">=3.5.0", markers = "python_version >= \"3.8\" and python_version < \"3.12\""},
     {version = ">=3.7.0", markers = "python_version >= \"3.12\""},
 ]
-rdflib = {version = ">=6.3.2,<8.0", markers = "python_full_version >= \"3.8.1\""}
+rdflib = {version = ">=6.3.2,<8.0", extras = ["html"], markers = "python_full_version >= \"3.8.1\""}
 
 [package.extras]
 dev-coverage = ["coverage (>6.1,!=6.1.1,<7)", "platformdirs", "pytest-cov (>=2.8.1,<3.0.0)"]
-dev-lint = ["black (==23.11.0)", "platformdirs", "ruff (>=0.1.5,<0.2.0)"]
+dev-lint = ["black (==24.3.0)", "platformdirs", "ruff (>=0.1.5,<0.2.0)"]
 dev-type-checking = ["mypy (>=0.812,<0.900)", "mypy (>=0.900,<0.1000)", "platformdirs", "types-setuptools"]
 http = ["sanic (>=22.12,<23)", "sanic-cors (==2.2.0)", "sanic-ext (>=23.3,<23.6)"]
 js = ["pyduktape2 (>=0.4.6,<0.5.0)"]
 
 [[package]]
 name = "pytest"
-version = "8.3.2"
+version = "8.3.3"
 description = "pytest: simple powerful testing with Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pytest-8.3.2-py3-none-any.whl", hash = "sha256:4ba08f9ae7dcf84ded419494d229b48d0903ea6407b030eaec46df5e6a73bba5"},
-    {file = "pytest-8.3.2.tar.gz", hash = "sha256:c132345d12ce551242c87269de812483f5bcc87cdbb4722e48487ba194f9fdce"},
+    {file = "pytest-8.3.3-py3-none-any.whl", hash = "sha256:a6853c7375b2663155079443d2e45de913a911a11d669df02a50814944db57b2"},
+    {file = "pytest-8.3.3.tar.gz", hash = "sha256:70b98107bd648308a7952b06e6ca9a50bc660be218d53c257cc1fc94fda10181"},
 ]
 
 [package.dependencies]
@@ -1523,6 +1518,7 @@ files = [
 ]
 
 [package.dependencies]
+html5rdf = {version = ">=1.2,<2", optional = true, markers = "extra == \"html\""}
 pyparsing = ">=2.1.0,<4"
 
 [package.extras]
@@ -2134,17 +2130,6 @@ files = [
 ]
 
 [[package]]
-name = "webencodings"
-version = "0.5.1"
-description = "Character encoding aliases for legacy web content"
-optional = false
-python-versions = "*"
-files = [
-    {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
-    {file = "webencodings-0.5.1.tar.gz", hash = "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"},
-]
-
-[[package]]
 name = "win32-setctime"
 version = "1.1.0"
 description = "A small Python utility to set file creation time on Windows"
@@ -2214,4 +2199,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "bfbc51b660ca113acaafcce05a2a9fbe6cf7a38af2b403e0ba8f47c68b0acc6d"
+content-hash = "f897e11c69be307372b1b35929b871470175d379d4cb444320eeccf30b24b351"
