@@ -6,6 +6,7 @@ import pytest
 # Local
 from abis_mapping import settings
 from abis_mapping import types
+from abis_mapping.types.metadata import TemplateMetadataLifecycleStatus
 
 
 class TestTemplateMetadata:
@@ -26,7 +27,7 @@ class TestTemplateMetadata:
             sampling_type="someSamplingType",
             template_url="http://example.com/some_template_url",
             schema_url="http://example.com/some_schema_url",
-            template_lifecycle_status="Current",
+            template_lifecycle_status=TemplateMetadataLifecycleStatus.CURRENT
         )
 
     def test_id(

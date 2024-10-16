@@ -6,9 +6,16 @@ import urllib.parse
 # Third-party
 import pydantic
 from typing import Literal
+from enum import StrEnum
 
 # Local
 from abis_mapping import settings
+
+
+class TemplateMetadataLifecycleStatus(StrEnum):
+    BETA = 'beta'
+    CURRENT = 'current'
+    DEPRECATED = 'deprecated'
 
 
 class TemplateMetadata(pydantic.BaseModel):
@@ -24,7 +31,10 @@ class TemplateMetadata(pydantic.BaseModel):
     sampling_type: str
     template_url: str
     schema_url: str
-    template_lifecycle_status: Literal["Beta", "Current", "Deprecated"]
+    template_lifecycle_status: Literal[TemplateMetadataLifecycleStatus.BETA,
+        TemplateMetadataLifecycleStatus.CURRENT,
+        TemplateMetadataLifecycleStatus.DEPRECATED
+    ]
 
     @pydantic.computed_field  # type: ignore[prop-decorator]
     @property
