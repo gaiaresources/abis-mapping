@@ -2,16 +2,16 @@
 
 # Standard
 import urllib.parse
+import enum
 
 # Third-party
 import pydantic
-from typing import Literal
 
 # Local
 from abis_mapping import settings
 
 # Typing
-import enum
+
 
 class TemplateMetadataLifecycleStatus(enum.StrEnum):
     BETA = "beta"
@@ -32,11 +32,19 @@ class TemplateMetadata(pydantic.BaseModel):
     sampling_type: str
     template_url: str
     schema_url: str
-    template_lifecycle_status: Literal[
-        TemplateMetadataLifecycleStatus.BETA.value,
-        TemplateMetadataLifecycleStatus.CURRENT.value,
-        TemplateMetadataLifecycleStatus.DEPRECATED.value,
-    ]
+    template_lifecycle_status: TemplateMetadataLifecycleStatus
+
+    @pydantic.field_serializer("template_lifecycle_status")
+    def serialize_lifecycle_status(self, status: TemplateMetadataLifecycleStatus) -> str:
+        """Custom serializer for the url field to return string on dump.
+
+        Args:
+            status (TemplateMetadataLifecycleStatus): the status
+
+        Returns:
+            str: String representation of the status.
+        """
+        return str(status)
 
     @pydantic.computed_field  # type: ignore[prop-decorator]
     @property
