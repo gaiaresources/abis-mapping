@@ -104,12 +104,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         Keyword Args:
             site_id_geometry_map (dict[str, str]): Default values to use for geometry
                 for given siteID.
+            site_visit_id_temporal_map (dict[str, str]): Default RDF (serialized as turtle) 
+                to use for temporal entity for given siteVisitID.
 
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
         # Extract kwargs
         site_id_geometry_map = kwargs.get("site_id_geometry_map")
+        site_visit_id_temporal_map = kwargs.get("site_visit_id_temporal_map")
 
         # Construct Schema
         schema = self.extra_fields_schema(
@@ -147,7 +150,20 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             ],
         )
 
-        # TODO: Check for surveyID from metadata template.
+        # Modify schema and checklist in the event default temporal map provided
+        if site_visit_id_temporal_map is not None:
+            # Need to make sure that required is false from the eventDate field
+            # since this would override the default lookup check.
+            schema.get_field("eventDate").constraints["required"] = False
+
+            # Perform a default lookup check based on passed in map.
+            checklist.add_check(
+                plugins.default_lookup.DefaultLookup(
+                    key_field="siteVisitID",
+                    value_field="eventDate",
+                    default_map=site_visit_id_temporal_map,
+                )
+            )
 
         # Modify schema and checklist in the event default geometry map provided
         if site_id_geometry_map is not None:
