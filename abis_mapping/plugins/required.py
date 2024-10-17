@@ -74,7 +74,7 @@ class RequiredEnhanced(frictionless.Check):
                 f" unless the values provided in fields {self.whitelists.keys()}"
                 " match any of those in their supplied whitelists"
             )
-        note += f"({missing} are missing)."
+        note += f" ({missing} are missing)."
 
         # Yield Error
         yield frictionless.errors.RowConstraintError.from_row(

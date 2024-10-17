@@ -42,7 +42,7 @@ class MutuallyInclusive(frictionless.Check):
 
         note = (
             f"the columns {self.field_names} are mutually inclusive and values"
-            " must be provided together (columns {missing} are missing values)"
+            f" must be provided together (columns {missing} are missing values)"
         )
 
         # Yield Error
