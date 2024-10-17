@@ -1,5 +1,8 @@
 """Provides unit tests for the metadata module."""
 
+# Standard
+import json
+
 # Third-party
 import pytest
 
@@ -27,7 +30,7 @@ class TestTemplateMetadata:
             sampling_type="someSamplingType",
             template_url="http://example.com/some_template_url",
             schema_url="http://example.com/some_schema_url",
-            template_lifecycle_status=TemplateMetadataLifecycleStatus.CURRENT.value,
+            template_lifecycle_status=TemplateMetadataLifecycleStatus.CURRENT,
         )
 
     def test_id(
@@ -62,3 +65,13 @@ class TestTemplateMetadata:
         # Assert as expected
         assert template_metadata.instructions_url == expected
         assert template_metadata.model_dump()["instructions_url"] == expected
+
+    def test_serialization(
+        self,
+        template_metadata: types.metadata.TemplateMetadata,
+    ) -> None:
+        """Tests the serialization method."""
+        # json encode/decode
+        python_val = json.loads(template_metadata.model_dump_json())
+        # compare pydantic models
+        assert types.metadata.TemplateMetadata(**python_val) == template_metadata
