@@ -43,34 +43,50 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             frictionless.Report: Validation report for the specified data.
         """
         # Extract keyword arguments
-        # TODO: Uncomment
-        # site_visit_id_map: dict[str, bool] = kwargs.get("site_visit_id_map", {})
+        site_visit_id_map: dict[str, bool] = kwargs.get("site_visit_id_map", {})
 
         # Construct schema
         schema = self.extra_fields_schema(data=data, full_schema=True)
 
         # Construct resource
-        resource = frictionless.Resource(
+        resource_site_visit_data = frictionless.Resource(
             source=data,
             format="csv",
             schema=schema,
             encoding="utf-8",
         )
 
-        # Validate
-        report = resource.validate(
+        # Base extra custom checks
+        checks = [
+            plugins.tabular.IsTabular(),
+            plugins.empty.NotEmpty(),
+            plugins.chronological.ChronologicalOrder(
+                field_names=["siteVisitStart", "siteVisitEnd"],
+            ),
+            plugins.logical_or.LogicalOr(
+                field_names=["siteVisitStart", "siteVisitEnd"],
+            ),
+        ]
+
+        # Check to see if site visit id map was provided or was empty
+        if site_visit_id_map:
+            # Construct foreign key map
+            fk_map = {"siteVisitID": set(site_visit_id_map)}
+
+            # Add custom check for temporal flexibility with whitelists. Here deferring
+            # the check on any ids found in the occurrence template, to when validaation
+            # occurs on it in line with temporal flexibility rules.
+            checks += [
+                plugins.required.RequiredEnhanced(
+                    field_names=["siteVisitStart"],
+                    whitelists=fk_map,
+                )
+            ]
+
+        # Validate the site visit resource
+        report: frictionless.Report = resource_site_visit_data.validate(
             checklist=frictionless.Checklist(
-                checks=[
-                    # Extra custom checks
-                    plugins.tabular.IsTabular(),
-                    plugins.empty.NotEmpty(),
-                    plugins.logical_or.LogicalOr(
-                        field_names=["siteVisitStart", "siteVisitEnd"],
-                    ),
-                    plugins.chronological.ChronologicalOrder(
-                        field_names=["siteVisitStart", "siteVisitEnd"],
-                    ),
-                ],
+                checks=checks,
             ),
         )
 
@@ -109,7 +125,10 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
                 start_date: types.temporal.Timestamp = row["siteVisitStart"]
                 end_date: types.temporal.Timestamp = row["siteVisitEnd"]
                 site_visit_id: str = row["siteVisitID"]
-                if not start_date and not end_date:
+
+                # Temporal flexibility is dependent upon a start_date being
+                # present only.
+                if not start_date:
                     continue
 
                 # Create new graph
@@ -146,12 +165,12 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Create temporal coverage node
         temporal_coverage = rdflib.BNode()
         graph.add((temporal_coverage, a, rdflib.TIME.TemporalEntity))
-        if start_date:
+        if start_date is not None:
             begin = rdflib.BNode()
             graph.add((temporal_coverage, rdflib.TIME.hasBeginning, begin))
             graph.add((begin, a, rdflib.TIME.Instant))
             graph.add((begin, start_date.rdf_in_xsd, start_date.to_rdf_literal()))
-        if end_date:
+        if end_date is not None:
             end = rdflib.BNode()
             graph.add((temporal_coverage, rdflib.TIME.hasEnd, end))
             graph.add((end, a, rdflib.TIME.Instant))

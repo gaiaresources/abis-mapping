@@ -40,11 +40,13 @@ class MutuallyInclusive(frictionless.Check):
             # Short-circuit
             return
 
+        note = (
+            f"the columns {self.field_names} are mutually inclusive and values"
+            f" must be provided together (columns {missing} are missing values)"
+        )
+
         # Yield Error
         yield frictionless.errors.RowConstraintError.from_row(
             row=row,
-            note=(
-                f"the columns {self.field_names} are mutually inclusive and must be provided together "
-                f"(columns {missing} are missing)"
-            ),
+            note=note,
         )

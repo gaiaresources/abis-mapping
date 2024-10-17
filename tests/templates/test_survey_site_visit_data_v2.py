@@ -5,9 +5,9 @@ import csv
 import dataclasses
 import io
 import pathlib
-import unittest
 
 # Third-party
+import pandas as pd
 import pyshacl
 import pytest
 import pytest_mock
@@ -15,14 +15,30 @@ import rdflib
 
 # Local
 from abis_mapping import types
-import abis_mapping.templates.survey_site_visit_data_v2.mapping
+from abis_mapping.templates.survey_site_visit_data_v2 import mapping
 
 # Typing
-from typing import Callable
+from typing import Callable, Iterator
 
 
-# Alias mapper
-Mapper = abis_mapping.templates.survey_site_visit_data_v2.mapping.SurveySiteVisitMapper
+@pytest.fixture
+def mapper() -> Iterator[mapping.SurveySiteVisitMapper]:
+    """Provides site visit mapper for tests.
+
+    Yields:
+        SurveySiteVisitMapper: site visit mapper instance.
+    """
+    # Create mapper
+    mapper = mapping.SurveySiteVisitMapper()
+
+    # Clear schema cache
+    mapper.schema.cache_clear()
+
+    # Yield mapper
+    yield mapper
+
+    # Clear schema cache again
+    mapper.schema.cache_clear()
 
 
 @dataclasses.dataclass
@@ -57,12 +73,15 @@ scenarios = [
     argvalues=scenarios,
     ids=[s.name for s in scenarios],
 )
-def test_add_temporal_coverage_node(graph_comparer: Callable, scenario: Scenario) -> None:
+def test_add_temporal_coverage_node(
+    graph_comparer: Callable, scenario: Scenario, mapper: mapping.SurveySiteVisitMapper
+) -> None:
     """Tests the graph output from add_temporal_coverage_node method.
 
     Args:
         scenario (Scenario): Data structure containing test parameters.
         graph_comparer (Callable): Graph comparer fixture.
+        mapper (SurveySiteVisitMapper): Site visit mapper instance fixture.
     """
     # Parse dates
     date_fn = lambda x: types.temporal.parse_timestamp(x) if x is not None else None  # noqa: E731
@@ -71,9 +90,6 @@ def test_add_temporal_coverage_node(graph_comparer: Callable, scenario: Scenario
 
     # Create graph
     graph = rdflib.Graph()
-
-    # Create mapper
-    mapper = Mapper()
 
     # Invoke
     mapper.add_temporal_coverage_bnode(
@@ -92,18 +108,19 @@ def test_add_temporal_coverage_node(graph_comparer: Callable, scenario: Scenario
 
 
 class TestExtractTemporalDefaults:
-    @pytest.fixture
-    def mocked_schema(self, mocker: pytest_mock.MockerFixture) -> unittest.mock.MagicMock:
-        """Patches and returns mock for schema method on mapper.
+    def test_extract_temporal_defaults(
+        self,
+        mapper: mapping.SurveySiteVisitMapper,
+        mocker: pytest_mock.MockerFixture,
+    ) -> None:
+        """Tests the extract_temporal_defaults method.
 
         Args:
-            mocker (pytest_mock.MockerFixture): Mocker fixture.
-
-        Returns:
-            unittest.mock.MagicMock: Mocked schema.
+            mapper (SurveySiteVisitMapper): Site visit mapper instance fixture.
+            mocker (pytest_mock.MockerFixture): The mocker fixture
         """
         # Retrieve actual descriptor
-        descriptor = Mapper.schema()
+        descriptor = mapping.SurveySiteVisitMapper.schema()
 
         # Define fields of relevance for tests
         fieldnames = ["siteVisitID", "siteVisitStart", "siteVisitEnd"]
@@ -111,15 +128,9 @@ class TestExtractTemporalDefaults:
         # Make descriptor only include these fields
         descriptor["fields"] = [f for f in descriptor["fields"] if f["name"] in fieldnames]
 
-        # Patch and return
-        return mocker.patch.object(Mapper, "schema", return_value=descriptor)
+        # Patch schema
+        mocked_schema = mocker.patch.object(mapping.SurveySiteVisitMapper, "schema", return_value=descriptor)
 
-    def test_extract_temporal_defaults(self, mocked_schema: unittest.mock.MagicMock) -> None:
-        """Tests the extract_temporal_defaults method.
-
-        Args:
-            mocked_schema (unittest.mock.MagicMock): Mocked schema method fixture.
-        """
         # Declare some raw data
         rows = [
             {
@@ -131,19 +142,18 @@ class TestExtractTemporalDefaults:
                 "siteVisitID": "SV2",
                 "siteVisitStart": "2024-10-14",
             },
+            # The map should exclude these since there are no
+            # values for default temporal entity must have start date
             {
                 "siteVisitID": "SV3",
                 "siteVisitEnd": "2025-10-14",
             },
-            # The map should exclude this since there are no
-            # values for temporal entity provided without error
             {
                 "siteVisitID": "SV4",
             },
         ]
         # Build elements for expected map
-        graphs = [rdflib.Graph() for _ in range(3)]
-        mapper = Mapper()
+        graphs = [rdflib.Graph() for _ in range(2)]
         for g, r in zip(graphs, rows, strict=False):
             raw_start = r.get("siteVisitStart")
             raw_end = r.get("siteVisitEnd")
@@ -164,7 +174,99 @@ class TestExtractTemporalDefaults:
 
             csv_data = output.getvalue().encode("utf-8")
         # Invoke
-        actual = Mapper().extract_temporal_defaults(csv_data)
+        actual = mapper.extract_temporal_defaults(csv_data)
 
         # Assert
         assert actual == expected
+        mocked_schema.assert_called_once()
+
+
+class TestApplyValidation:
+    @pytest.fixture(scope="class")
+    def data(self) -> bytes:
+        """Takes an existing csv path and returns it unmodified.
+
+        The csv returned is expected to have both start and end dates plus site visit id
+        included for all rows.
+        """
+        # Create path object and return contents
+        return pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal.csv").read_bytes()
+
+    def _nullify_columns(self, columns: list[str], data: bytes) -> bytes:
+        """Replaces any values in specified csv colunms with null.
+
+        Args:
+            columns (list[str]): Field names in supplied csv
+                to make null values.
+            data (bytes): Original csv data to modify.
+
+        Returns:
+            bytes: Modified csv.
+        """
+        # Create dataframe from existing csv
+        df = pd.read_csv(io.BytesIO(data))
+        # Set all values for columns to null
+        for col in columns:
+            df[col].values[:] = pd.NA
+        # Return csv
+        result: bytes = df.to_csv(index=False).encode("utf-8")
+        return result
+
+    @pytest.fixture(scope="class")
+    def data_no_start_date(self, data: bytes) -> bytes:
+        """Modifies existing csv and sets all start dates to null.
+
+        Args:
+            data (bytes): The original data fixture
+
+        Returns:
+            bytes: Modified csv.
+        """
+        return self._nullify_columns(["siteVisitStart"], data)
+
+    @pytest.fixture(scope="class")
+    def data_no_end_date(self, data: bytes) -> bytes:
+        """Modifies existing csv and sets all end dates to null.
+
+        Args:
+            data (bytes): The original csv data fixture.
+
+        Returns:
+            bytes: Modified csv.
+        """
+        return self._nullify_columns(["siteVisitEnd"], data)
+
+    def test_with_site_visit_id_map(self, mapper: mapping.SurveySiteVisitMapper, data_no_start_date: bytes) -> None:
+        """Tests the apply_validation method with site_visit_id map supplied and no start date.
+
+        Args:
+            mapper (SurveySiteVisitMapper): Site visit mapper instance fixture.
+            data_no_start_date (bytes): Csv with no start dates.
+        """
+        # Construct map
+        svid_map = {"VA-99": True, "FAKEID": True}
+
+        # Invoke
+        report = mapper.apply_validation(data_no_start_date, site_visit_id_map=svid_map)
+
+        # Assert
+        assert report.valid
+
+    def test_with_site_visit_id_map_invalid(
+        self, mapper: mapping.SurveySiteVisitMapper, data_no_start_date: bytes
+    ) -> None:
+        """Tests the apply_validation method with site_visit_id_map supplied and no corresponding id in map.
+
+        Args:
+            mapper (mapping.SurveySiteVisitMapper): Site visit mapper instances fixture.
+            data_no_start_date (bytes): Csv with no start dates.
+        """
+        # Construct map
+        svid_map = {"FAKEID": True}
+
+        # Invoke
+        report = mapper.apply_validation(data_no_start_date, site_visit_id_map=svid_map)
+
+        # Assert and check errors
+        assert not report.valid
+        assert report.flatten(["type"]) == [["row-constraint"]]
