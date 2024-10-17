@@ -71,7 +71,10 @@ class TestTemplateMetadata:
         template_metadata: types.metadata.TemplateMetadata,
     ) -> None:
         """Tests the serialization method."""
-        # json encode/decode
+        # pydantic dump json -> json decode
         python_val = json.loads(template_metadata.model_dump_json())
+        assert types.metadata.TemplateMetadata(**python_val) == template_metadata
+        # pydantic dump python -> json encode -> json decode
+        python_val = json.loads(json.dumps(template_metadata.model_dump()))
         # compare pydantic models
         assert types.metadata.TemplateMetadata(**python_val) == template_metadata

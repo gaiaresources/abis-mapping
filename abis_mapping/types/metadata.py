@@ -34,18 +34,6 @@ class TemplateMetadata(pydantic.BaseModel):
     schema_url: str
     template_lifecycle_status: TemplateMetadataLifecycleStatus
 
-    @pydantic.field_serializer("template_lifecycle_status")
-    def serialize_lifecycle_status(self, status: TemplateMetadataLifecycleStatus) -> str:
-        """Custom serializer for the url field to return string on dump.
-
-        Args:
-            status (TemplateMetadataLifecycleStatus): the status
-
-        Returns:
-            str: String representation of the status.
-        """
-        return str(status)
-
     @pydantic.computed_field  # type: ignore[prop-decorator]
     @property
     def id(self) -> str:
