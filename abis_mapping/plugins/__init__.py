@@ -9,6 +9,7 @@ from . import list
 from . import logical_or
 from . import mutual_exclusion
 from . import mutual_inclusion
+from . import required
 from . import sites_geometry
 from . import tabular
 from . import timestamp

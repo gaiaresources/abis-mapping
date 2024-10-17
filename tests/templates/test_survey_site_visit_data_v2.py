@@ -5,7 +5,6 @@ import csv
 import dataclasses
 import io
 import pathlib
-import unittest
 
 # Third-party
 import pandas as pd
@@ -109,15 +108,16 @@ def test_add_temporal_coverage_node(
 
 
 class TestExtractTemporalDefaults:
-    @pytest.fixture
-    def mocked_schema(self, mocker: pytest_mock.MockerFixture) -> Iterator[unittest.mock.MagicMock]:
-        """Patches and returns mock for schema method on mapper.
+    def test_extract_temporal_defaults(
+        self,
+        mapper: mapping.SurveySiteVisitMapper,
+        mocker: pytest_mock.MockerFixture,
+    ) -> None:
+        """Tests the extract_temporal_defaults method.
 
         Args:
-            mocker (pytest_mock.MockerFixture): Mocker fixture.
-
-        Yields:
-            unittest.mock.MagicMock: Mocked schema.
+            mapper (SurveySiteVisitMapper): Site visit mapper instance fixture.
+            mocker (pytest_mock.MockerFixture): The mocker fixture
         """
         # Retrieve actual descriptor
         descriptor = mapping.SurveySiteVisitMapper.schema()
@@ -128,18 +128,9 @@ class TestExtractTemporalDefaults:
         # Make descriptor only include these fields
         descriptor["fields"] = [f for f in descriptor["fields"] if f["name"] in fieldnames]
 
-        # Patch and return
-        yield mocker.patch.object(mapping.SurveySiteVisitMapper, "schema", return_value=descriptor)
+        # Patch schema
+        mocked_schema = mocker.patch.object(mapping.SurveySiteVisitMapper, "schema", return_value=descriptor)
 
-    def test_extract_temporal_defaults(
-        self, mocked_schema: unittest.mock.MagicMock, mapper: mapping.SurveySiteVisitMapper
-    ) -> None:
-        """Tests the extract_temporal_defaults method.
-
-        Args:
-            mocked_schema (unittest.mock.MagicMock): Mocked schema method fixture.
-            mapper (SurveySiteVisitMapper): Site visit mapper instance fixture.
-        """
         # Declare some raw data
         rows = [
             {

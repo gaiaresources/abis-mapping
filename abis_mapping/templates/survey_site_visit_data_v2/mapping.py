@@ -77,8 +77,8 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             # the check on any ids found in the occurrence template, to when validaation
             # occurs on it in line with temporal flexibility rules.
             checks += [
-                plugins.mutual_inclusion.MutuallyInclusive(
-                    field_names=["siteVisitID", "siteVisitStart"],
+                plugins.required.RequiredEnhanced(
+                    field_names=["siteVisitStart"],
                     whitelists=fk_map,
                 )
             ]
