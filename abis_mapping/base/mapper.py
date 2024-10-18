@@ -329,7 +329,7 @@ class ABISMapper(abc.ABC):
 
         # Read Metadata and validate
         md_dict = json.loads(metadata_file.read_text())
-        md_class = types.metadata.TemplateMetadata.model_validate(md_dict, strict=True)
+        md_class = types.metadata.TemplateMetadata.model_validate(md_dict, strict=False)
 
         # Return
         return md_class.model_dump()
