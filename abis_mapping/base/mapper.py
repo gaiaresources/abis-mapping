@@ -130,6 +130,7 @@ class ABISMapper(abc.ABC):
         obj: rdflib.graph.Node,
         geom: types.spatial.Geometry,
         graph: rdflib.Graph,
+        spatial_accuracy: rdflib.Literal | None = None,
     ) -> None:
         """Add geometry supplied as originally to the graph.
 
@@ -140,6 +141,7 @@ class ABISMapper(abc.ABC):
             obj (rdflib.graph.Node): Object containing the transformed geometry.
             geom (spatial.Geometry): Geometry object containing values.
             graph (rdflib.Graph): Graph to be added to.
+            spatial_accuracy: Spatial accuracy of the supplied geometry.
         """
         # Create top blank node to hold statement
         top_node = rdflib.BNode()
@@ -155,6 +157,8 @@ class ABISMapper(abc.ABC):
         supplied_as = rdflib.BNode()
         graph.add((supplied_as, a, utils.namespaces.GEO.Geometry))
         graph.add((supplied_as, utils.namespaces.GEO.asWKT, geom.to_rdf_literal()))
+        if spatial_accuracy is not None:
+            graph.add((supplied_as, utils.namespaces.GEO.hasMetricSpatialAccuracy, spatial_accuracy))
         graph.add((top_node, utils.namespaces.GEO.hasGeometry, supplied_as))
 
     @classmethod

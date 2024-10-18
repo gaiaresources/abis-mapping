@@ -25,23 +25,21 @@ from typing import Any, Optional, Iterator
 
 # Constants and shortcuts
 a = rdflib.RDF.type
-HABITAT_DESCRIPTION = rdflib.URIRef("https://linked.data.gov.au/def/nrm/aa4c96f6-9ea8-4bd3-8800-0bfddcd8a37c")
+HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99")
 CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)
-CONCEPT_VEGETATION_CONDITION = rdflib.URIRef(
-    "http://linked.data.gov.au/def/ausplots-cv/ff69c254-e549-45e8-a320-e28ead5092c8"
-)
-DEFAULT_SURVEY = utils.rdf.uri("survey/SSD-Survey/1", utils.namespaces.CREATEME)  # TODO: Cross reference
-UNSPECIFIED_CONDITION_METHOD = utils.rdf.uri("bdr-cv/methods/conditionMethod/Unspecified", utils.namespaces.CREATEME)
+DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/resourceProvider")
+LOCATION_AUSTRALIA = utils.rdf.uri("/location/Australia")
 
 
 # Dataclasses used in mapping
 @dataclasses.dataclass
 class AttributeValue:
-    """Contains data items to enable producing attribute and value nodes"""
+    """Contains data items to enable producing attribute, value and sample collection nodes"""
 
     raw: str
     attribute: rdflib.URIRef
     value: rdflib.URIRef
+    sample_collection: rdflib.URIRef
 
 
 @dataclasses.dataclass
@@ -248,6 +246,25 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
             yield graph
 
+    def get_site_uri(
+        self,
+        dataset: rdflib.URIRef,
+        raw_site_id: str,
+    ) -> rdflib.URIRef:
+        """Get the URI for a site
+
+        Args:
+            dataset: Dataset IRI this site is a part of.
+            raw_site_id: The raw site id from the CSV, e.g. "S1".
+
+        Returns:
+            The site URI.
+        """
+        # url-quote so the exact ID is preserved
+        quoted_site_id = urllib.parse.quote(raw_site_id, safe="")
+        site_uri = dataset + f"/Site/{quoted_site_id}"
+        return site_uri
+
     def apply_mapping_row(
         self,
         row: frictionless.Row,
@@ -264,62 +281,46 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             base_iri (Optional[rdflib.Namespace]): Optional base IRI
                 to use for mapping.
         """
-        # Set the row number to start from the data, excluding header
-        row_num = row.row_number - 1
-
-        site_visit = utils.rdf.uri(f"visit/site/{row_num}", base_iri)
-        site_id = urllib.parse.quote(row["siteID"], safe="")
-        site = dataset + f"/Site/{site_id}"
-        condition_site_observation = utils.rdf.uri(f"observation/site/condition/{row_num}", base_iri)
-        condition_value = utils.rdf.uri(f"value/condition/{row_num}")
+        site = self.get_site_uri(dataset=dataset, raw_site_id=row["siteID"])
 
         # Conditionally create uris dependent on siteIDSource
         if site_id_src := row["siteIDSource"]:
             site_id_datatype = utils.rdf.uri(f"datatype/siteID/{site_id_src}", base_iri)
             site_id_agent = utils.rdf.uri(f"agent/{site_id_src}", base_iri)
+            site_id_attribution = utils.rdf.uri(f"attribution/{site_id_src}/resourceProvider", base_iri)
         else:
             site_id_datatype = None
             site_id_agent = None
+            site_id_attribution = None
 
         # Conditionally create uris dependent on dataGeneralizations
-        if row["dataGeneralizations"]:
-            data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/site/{row_num}", base_iri)
-            data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/site/{row_num}", base_iri)
+        if data_generalizations := row["dataGeneralizations"]:
+            data_generalizations_attribute = utils.rdf.uri(
+                f"attribute/dataGeneralizations/{data_generalizations}",
+                base_iri,
+            )
+            data_generalizations_value = utils.rdf.uri(
+                f"value/dataGeneralizations/{data_generalizations}",
+                base_iri,
+            )
+            data_generalizations_sample_collection = utils.rdf.extend_uri(
+                dataset, "SiteCollection", "dataGeneralizations", data_generalizations
+            )
         else:
             data_generalizations_attribute = None
             data_generalizations_value = None
+            data_generalizations_sample_collection = None
 
         # Create habitat attribute and value objects
         habitat_objects: list[AttributeValue] = []
         if habitats := row["habitat"]:
-            for i, habitat in enumerate(habitats, start=1):
+            for habitat in habitats:
                 habitat_objects.append(
                     AttributeValue(
                         raw=habitat,
-                        attribute=utils.rdf.uri(f"attribute/habitat/site/{row_num}/{i}", base_iri),
-                        value=utils.rdf.uri(f"value/habitat/site/{row_num}/{i}", base_iri),
-                    )
-                )
-
-        # Create organization agent objects
-        org_agent_objects: list[Agent] = []
-        if organization_agents := row["visitOrgs"]:
-            for organizations_agent in organization_agents:
-                org_agent_objects.append(
-                    Agent(
-                        raw=organizations_agent,
-                        uri=utils.rdf.uri(f"agent/{organizations_agent}", base_iri),
-                    )
-                )
-
-        # Create observer agent objects
-        observer_agent_objects: list[Agent] = []
-        if observer_agents := row["visitObservers"]:
-            for observer_agent in observer_agents:
-                observer_agent_objects.append(
-                    Agent(
-                        raw=observer_agent,
-                        uri=utils.rdf.uri(f"agent/{observer_agent}", base_iri),
+                        attribute=utils.rdf.uri(f"attribute/habitat/{habitat}", base_iri),
+                        value=utils.rdf.uri(f"value/habitat/{habitat}", base_iri),
+                        sample_collection=utils.rdf.extend_uri(dataset, "SiteCollection", "habitat", habitat),
                     )
                 )
 
@@ -327,7 +328,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         self.add_site(
             uri=site,
             dataset=dataset,
-            site_visit=site_visit,
             site_id_datatype=site_id_datatype,
             habitat_attributes=[h.attribute for h in habitat_objects],
             data_generalizations_attribute=data_generalizations_attribute,
@@ -338,6 +338,14 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add site id datatype
         self.add_site_id_datatype(
             uri=site_id_datatype,
+            attribution=site_id_attribution,
+            row=row,
+            graph=graph,
+        )
+
+        # Add site id attribution
+        self.add_site_id_attribution(
+            uri=site_id_attribution,
             agent=site_id_agent,
             graph=graph,
         )
@@ -368,6 +376,16 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
 
+            # Add habitat attribute Sample Collection
+            self.add_habitat_sample_collection(
+                uri=habitat_object.sample_collection,
+                raw_habitat_value=habitat_object.raw,
+                attribute=habitat_object.attribute,
+                site=site,
+                dataset=dataset,
+                graph=graph,
+            )
+
         # Add data generalizations attribute
         self.add_data_generalizations_attribute(
             uri=data_generalizations_attribute,
@@ -384,45 +402,13 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add site visit
-        self.add_site_visit(
-            uri=site_visit,
-            dataset=dataset,
-            agents=[agent.uri for agent in org_agent_objects + observer_agent_objects],
-            row=row,
-            graph=graph,
-        )
-
-        # Add organization agents
-        for org_agent in org_agent_objects:
-            self.add_organization_agent(
-                uri=org_agent.uri,
-                raw=org_agent.raw,
-                graph=graph,
-            )
-
-        # Add observer agents
-        for obs_agent in observer_agent_objects:
-            self.add_observer_agent(
-                uri=obs_agent.uri,
-                raw=obs_agent.raw,
-                graph=graph,
-            )
-
-        # Add site condition
-        self.add_site_condition(
-            uri=condition_site_observation,
-            dataset=dataset,
+        # Add data generalizations attribute Sample Collection
+        self.add_data_generalizations_sample_collection(
+            uri=data_generalizations_sample_collection,
+            raw_data_generalizations_value=data_generalizations,
+            attribute=data_generalizations_attribute,
             site=site,
-            value=condition_value,
-            row=row,
-            graph=graph,
-        )
-
-        # TODO: Add condition value
-        self.add_condition_value(
-            uri=condition_value,
-            row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -450,7 +436,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
-        site_visit: rdflib.URIRef,
         site_id_datatype: rdflib.URIRef | None,
         habitat_attributes: list[rdflib.URIRef],
         data_generalizations_attribute: rdflib.URIRef | None,
@@ -462,7 +447,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         Args:
            uri (rdflib.URIRef): URI to use for this node.
            dataset (rdflib.URIRef): Dataset to which data belongs.
-           site_visit (rdflib.URIRef): Site visit the site corresponds to.
            site_id_datatype (rdflib.URIRef | None): Datatype to use for
                 the site id literal.
            habitat_attributes (list[rdflib.URIRef]): List of habitat attribute
@@ -477,7 +461,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         site_name = row["siteName"]
         site_type = row["siteType"]
         site_description = row["siteDescription"]
-        coordinate_uncertainty = row["coordinateUncertaintyInMeters"]
+        locality = row["locality"]
 
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Site))
@@ -487,10 +471,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Add habitat attributes
         for habitat_attribute in habitat_attributes:
-            graph.add((uri, utils.namespaces.TERN.hasAttribute, habitat_attribute))
-
-        # Link to site visit
-        graph.add((uri, utils.namespaces.TERN.hasSiteVisit, site_visit))
+            graph.add((uri, utils.namespaces.TERN.attribute, habitat_attribute))
 
         # Add siteID
         dt = site_id_datatype if site_id_datatype is not None else rdflib.XSD.string
@@ -508,11 +489,16 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 relationship_to_related_site
             )
 
-            # Assign triple based on related site string
-            if (related_site_literal := utils.rdf.uri_or_string_literal(related_site)).datatype == rdflib.XSD.string:
-                graph.add((uri, relationship_to_related_site_term, related_site_literal))
+            # Determine related site URI based on related site string
+            if utils.rdf.uri_or_string_literal(related_site).datatype is None:
+                # related site URI is a site in this dataset
+                related_site_uri = self.get_site_uri(dataset=dataset, raw_site_id=related_site)
             else:
-                graph.add((uri, relationship_to_related_site_term, rdflib.URIRef(related_site)))
+                # related site URI is an external URI
+                related_site_uri = rdflib.URIRef(related_site)
+
+            # Add related site triple
+            graph.add((uri, relationship_to_related_site_term, related_site_uri))
 
         # Add site tern featuretype
         graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
@@ -534,27 +520,30 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         if site_description:
             graph.add((uri, rdflib.SDO.description, rdflib.Literal(site_description)))
 
-        # Add coordinate uncertainty if available
-        if coordinate_uncertainty:
-            accuracy = rdflib.Literal(coordinate_uncertainty, datatype=rdflib.XSD.double)
-            graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
-
         # Add data generalizations attribute if available
         if data_generalizations_attribute is not None:
-            graph.add((uri, utils.namespaces.TERN.hasAttribute, data_generalizations_attribute))
+            graph.add((uri, utils.namespaces.TERN.attribute, data_generalizations_attribute))
+
+        # Add sample of
+        graph.add((uri, rdflib.SOSA.isSampleOf, LOCATION_AUSTRALIA))
+
+        # Add locality as location description
+        if locality:
+            graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(locality)))
 
     def add_site_id_datatype(
         self,
         uri: rdflib.URIRef | None,
-        agent: rdflib.URIRef | None,
+        attribution: rdflib.URIRef | None,
+        row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds site id datatype to the graph.
 
         Args:
             uri (rdflib.URIRef | None): Subject of the node.
-            agent (rdflib.URIRef | None): Agent that the datatype
-                corresponds.
+            attribution (rdflib.URIRef | None): Attribution that the datatype corresponds to.
+            row (frictionless.Row): Raw data.
             graph (rdflib.Graph): Graph to be modified.
         """
         # Check subject provided
@@ -565,11 +554,41 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.RDFS.Datatype))
 
         # Add label
-        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("siteID source")))
+        graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{row['siteIDSource']} Site ID")))
+
+        # Add definition
+        graph.add((uri, rdflib.SKOS.definition, rdflib.Literal("An identifier for the site")))
 
         # Add attribution
+        if attribution is not None:
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, attribution))
+
+    def add_site_id_attribution(
+        self,
+        uri: rdflib.URIRef | None,
+        agent: rdflib.URIRef | None,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds site id attribution to the graph.
+
+        Args:
+            uri (rdflib.URIRef | None): Subject of the node.
+            agent (rdflib.URIRef | None): Agent that the attribution corresponds to.
+            graph (rdflib.Graph): Graph to be modified.
+        """
+        # Check subject provided
+        if uri is None:
+            return
+
+        # Add attribution
+        graph.add((uri, a, rdflib.PROV.Attribution))
+
+        # Add agent
         if agent is not None:
-            graph.add((uri, rdflib.PROV.wasAttributedTo, agent))
+            graph.add((uri, rdflib.PROV.agent, agent))
+
+        # Add hadRole
+        graph.add((uri, rdflib.PROV.hadRole, DATA_ROLE_RESOURCE_PROVIDER))
 
     def add_site_id_agent(
         self,
@@ -618,7 +637,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.VOID.inDataset, dataset))
 
         # Add tern values
-        graph.add((uri, utils.namespaces.TERN.attribute, HABITAT_DESCRIPTION))
+        graph.add((uri, utils.namespaces.TERN.attribute, HABITAT))
         graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(raw)))
         graph.add((uri, utils.namespaces.TERN.hasValue, value))
 
@@ -642,7 +661,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
 
         # Add label
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("Site habitat")))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(raw)))
 
         # Retrieve vocab for field
         vocab = self.fields()["habitat"].get_vocab()
@@ -650,6 +669,36 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add flexible vocab term
         term = vocab(graph=graph, source=dataset).get(raw)
         graph.add((uri, rdflib.RDF.value, term))
+
+    def add_habitat_sample_collection(
+        self,
+        uri: rdflib.URIRef,
+        raw_habitat_value: str,
+        attribute: rdflib.URIRef,
+        site: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add a habitat attribute Sample Collection to the graph
+
+        Args:
+            uri: The uri for the SampleCollection.
+            raw_habitat_value: Habitat value from template.
+            attribute: The uri for the attribute node.
+            site: The uri for the site node.
+            dataset: The uri for the dateset node.
+            graph: The graph.
+        """
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.SampleCollection))
+        # Add identifier
+        graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(f"Site Collection - Habitat - {raw_habitat_value}")))
+        # Add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        # add link to this site
+        graph.add((uri, rdflib.SOSA.hasMember, site))
+        # Add link to attribute
+        graph.add((uri, utils.namespaces.TERN.hasAttribute, attribute))
 
     def add_data_generalizations_attribute(
         self,
@@ -680,7 +729,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Add tern values
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_DATA_GENERALIZATIONS))
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, row["dataGeneralizations"]))
+        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["dataGeneralizations"])))
         if value is not None:
             graph.add((uri, utils.namespaces.TERN.hasValue, value))
 
@@ -708,177 +757,46 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add raw value
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["dataGeneralizations"])))
 
-    def add_site_visit(
+    def add_data_generalizations_sample_collection(
         self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
-        agents: list[rdflib.URIRef],
-        row: frictionless.Row,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds site visit to the graph.
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            dataset (rdflib.URIRef): Dataset to which data belongs.
-            agents (list[rdflib.URIRef]): Agents involved in the site visit.
-            row (frictionless.Row): Raw data.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Add type
-        graph.add((uri, a, utils.namespaces.TERN.SiteVisit))
-
-        # Add to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-
-        # TODO: Cross reference
-        # Add survey
-        graph.add((uri, rdflib.SDO.isPartOf, DEFAULT_SURVEY))
-
-        # Add site visit id
-        if site_visit_id := row["siteVisitID"]:
-            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(site_visit_id)))
-
-        # Add temporal information
-        site_visit_start: types.temporal.Timestamp = row["siteVisitStart"]
-        start_instant = rdflib.BNode()
-        graph.add((start_instant, a, rdflib.TIME.Instant))
-        graph.add((start_instant, site_visit_start.rdf_in_xsd, site_visit_start.to_rdf_literal()))
-
-        temporal_entity = rdflib.BNode()
-        graph.add((temporal_entity, a, rdflib.TIME.TemporalEntity))
-        graph.add((temporal_entity, rdflib.TIME.hasBeginning, start_instant))
-
-        site_visit_end: types.temporal.Timestamp | None = row["siteVisitEnd"]
-        if site_visit_end is not None:
-            end_instant = rdflib.BNode()
-            graph.add((end_instant, a, rdflib.TIME.Instant))
-            graph.add((end_instant, site_visit_end.rdf_in_xsd, site_visit_end.to_rdf_literal()))
-            graph.add((temporal_entity, rdflib.TIME.hasEnd, end_instant))
-
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-
-        # Add agents
-        for agent in agents:
-            graph.add((uri, rdflib.PROV.wasAssociatedWith, agent))
-
-    def add_organization_agent(
-        self,
-        uri: rdflib.URIRef,
-        raw: str,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds organization agent node to the graph.
-
-        Args:
-            uri (rdflib.URIRef): Subject of the node.
-            raw (str): Raw data.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Add type
-        graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, a, rdflib.PROV.Organization))
-
-        # Add name
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(raw)))
-
-    def add_observer_agent(
-        self,
-        uri: rdflib.URIRef,
-        raw: str,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds observer agent node to the graph
-
-        Args:
-            uri (rdflib.URIRef): Subject of the node.
-            raw (str): Raw data.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Add type
-        graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, a, rdflib.PROV.Person))
-
-        # Add name
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(raw)))
-
-    def add_site_condition(
-        self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
+        raw_data_generalizations_value: str | None,
+        attribute: rdflib.URIRef | None,
         site: rdflib.URIRef,
-        value: rdflib.URIRef,
-        row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds site condition node to the graph.
+        """Add a Data Generalizations attribute Sample Collection to the graph
 
         Args:
-            uri (rdflib.URIRef): Subject of the node.
-            dataset (rdflib.URIRef): Dataset raw data belongs.
-            site (rdflib.URIRef): Site that condition references.
-            value (rdflib.URIRef): Corresponding value node reference.
-            row (frictionless.Row): Raw data.
-            graph (rdflib.Graph): Graph to be modified.
+            uri: The uri for the SampleCollection.
+            raw_data_generalizations_value: DataGeneralizations value from template.
+            attribute: The uri for the attribute node.
+            site: The uri for the site node.
+            dataset: The uri for the dateset node.
+            graph: The graph.
         """
-        # Check to see if a condition was supplied
-        if not (condition := row["condition"]):
+        if uri is None:
             return
 
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Observation))
-
-        # Add dataset
+        graph.add((uri, a, utils.namespaces.TERN.SampleCollection))
+        # Add identifier
+        if raw_data_generalizations_value:
+            graph.add(
+                (
+                    uri,
+                    rdflib.SDO.identifier,
+                    rdflib.Literal(f"Site Collection - Data Generalizations - {raw_data_generalizations_value}"),
+                )
+            )
+        # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
-
-        # Add comment
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("site-condition")))
-
-        # Add feature of interest
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, site))
-
-        # Add result
-        graph.add((uri, rdflib.SOSA.hasResult, value))
-        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(condition)))
-
-        # Add observed property
-        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_VEGETATION_CONDITION))
-
-        # Add temporal information
-        site_visit_start: types.temporal.Timestamp = row["siteVisitStart"]
-        start_instant = rdflib.BNode()
-        graph.add((start_instant, a, rdflib.TIME.Instant))
-        graph.add((start_instant, site_visit_start.rdf_in_xsd, site_visit_start.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.phenomenonTime, start_instant))
-
-        graph.add((uri, utils.namespaces.TERN.resultDateTime, site_visit_start.to_rdf_literal()))
-
-        # Add method
-        graph.add((uri, rdflib.SOSA.usedProcedure, UNSPECIFIED_CONDITION_METHOD))
-
-    def add_condition_value(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds condition value node to graph.
-
-        Args:
-            uri (rdflib.URIRef): Subject of the node.
-            row (frictionless.Row): Raw data.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Check to ensure value for condition provided.
-        if not (condition := row["condition"]):
-            return
-
-        # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Text))
-        graph.add((uri, a, utils.namespaces.TERN.Value))
-
-        # Add value
-        graph.add((uri, rdflib.RDF.value, condition))
+        # add link to this site
+        graph.add((uri, rdflib.SOSA.hasMember, site))
+        # Add link to attribute
+        if attribute is not None:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, attribute))
 
     def add_footprint_geometry(
         self,
@@ -896,6 +814,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Extract values
         geodetic_datum = row["geodeticDatum"]
         footprint_wkt = row["footprintWKT"]
+        coordinate_uncertainty = row["coordinateUncertaintyInMeters"]
 
         if footprint_wkt is None or geodetic_datum is None:
             return
@@ -912,6 +831,13 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
 
+        # Add coordinate uncertainty if available
+        if coordinate_uncertainty:
+            spatial_accuracy = rdflib.Literal(coordinate_uncertainty, datatype=rdflib.XSD.double)
+            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, spatial_accuracy))
+        else:
+            spatial_accuracy = None
+
         # Add original geometry supplied as statement
         self.add_geometry_supplied_as(
             subj=uri,
@@ -919,6 +845,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             obj=geometry_node,
             geom=geometry,
             graph=graph,
+            spatial_accuracy=spatial_accuracy,
         )
 
     def add_point_geometry(
@@ -938,6 +865,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         decimal_latitude = row["decimalLatitude"]
         decimal_longitude = row["decimalLongitude"]
         geodetic_datum = row["geodeticDatum"]
+        coordinate_uncertainty = row["coordinateUncertaintyInMeters"]
 
         if decimal_latitude is None or decimal_longitude is None or geodetic_datum is None:
             return
@@ -954,6 +882,13 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
 
+        # Add coordinate uncertainty if available
+        if coordinate_uncertainty:
+            spatial_accuracy = rdflib.Literal(coordinate_uncertainty, datatype=rdflib.XSD.double)
+            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, spatial_accuracy))
+        else:
+            spatial_accuracy = None
+
         # Add original geometry supplied as statement
         self.add_geometry_supplied_as(
             subj=uri,
@@ -961,6 +896,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             obj=geometry_node,
             geom=geometry,
             graph=graph,
+            spatial_accuracy=spatial_accuracy,
         )
 
 
