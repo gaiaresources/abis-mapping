@@ -42,6 +42,25 @@ def test_rdf_uri() -> None:
 
 
 @pytest.mark.parametrize(
+    ("base", "extension", "expected"),
+    [
+        (rdflib.URIRef("https://test.com/foo"), ["bar"], rdflib.URIRef("https://test.com/foo/bar")),
+        (rdflib.URIRef("https://test.com/foo/"), ["bar"], rdflib.URIRef("https://test.com/foo/bar")),
+        (rdflib.URIRef("https://test.com/foo"), ["bar", "cc"], rdflib.URIRef("https://test.com/foo/bar/cc")),
+        (rdflib.URIRef("https://test.com/foo/"), ["bar", "cc"], rdflib.URIRef("https://test.com/foo/bar/cc")),
+        (rdflib.URIRef("https://test.com/foo"), ["a a", "/c?d:"], rdflib.URIRef("https://test.com/foo/a-a/c-d")),
+    ],
+)
+def test_extend_uri(
+    base: rdflib.URIRef,
+    extension: list[str],
+    expected: rdflib.URIRef,
+) -> None:
+    result = utils.rdf.extend_uri(base, *extension)
+    assert result == expected
+
+
+@pytest.mark.parametrize(
     "raw, expected",
     [
         ("http://hello.org", rdflib.Literal("http://hello.org", datatype=rdflib.XSD.anyURI)),

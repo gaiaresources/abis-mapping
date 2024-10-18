@@ -86,6 +86,28 @@ def uri(
     return namespace[internal_id]
 
 
+def extend_uri(
+    base: rdflib.URIRef,
+    *parts: str,
+) -> rdflib.URIRef:
+    """Extends the base URI with the provided extensions separated by /
+
+    >>> extend_uri(rdflib.URIRef("https://example.com/foo"), "bar", "Some value")
+    >>> rdflib.URIRef("https://example.com/foo/bar/Some-value")
+
+    Args:
+        base: Base uri
+        *parts: URl parts to add to the base uri. Will be slugified.
+
+    Returns:
+        Extended URI
+    """
+    # slugify each part of the extension and join with /
+    extension = "/".join(slugify.slugify(part, lowercase=False) for part in parts)
+    joiner = "" if base[-1] == "/" else "/"
+    return base + joiner + extension
+
+
 def uri_or_string_literal(raw: str) -> rdflib.Literal:
     """Determines if supplied string is an uri or a string literal.
 
