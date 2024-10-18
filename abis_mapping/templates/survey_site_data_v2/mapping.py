@@ -14,7 +14,6 @@ import shapely.geometry
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
-from abis_mapping import settings
 from abis_mapping import types
 from abis_mapping import utils
 from abis_mapping import vocabs
@@ -901,6 +900,4 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-if settings.SETTINGS.MAJOR_VERSION >= 5:
-    # SSD v2 is still in development, keep hidden until v5 release candidates are created
-    base.mapper.ABISMapper.register_mapper(SurveySiteMapper)
+base.mapper.ABISMapper.register_mapper(SurveySiteMapper)
