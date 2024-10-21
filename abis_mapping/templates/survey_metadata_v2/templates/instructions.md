@@ -6,8 +6,8 @@
 Use the Systematic Survey Metadata template to record metadata relating to a Systematic Survey dataset.
 
 The Systematic Survey Metadata template must be used in combination with the
-`Systematic Survey Occurrence` template, and in some cases the `Systematic Survey Site` template
-and the `Systematic Survey Site Visit` template.
+`Systematic Survey Occurrence` template, and in some cases the `Systematic Survey Site` template,
+with or without the `Systematic Survey Site Visit` template.
 
 Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
@@ -24,6 +24,8 @@ For data validation, you will need your data file to:
 - comply with all **data value constraints**; for example the geographic coordinates are
   consistent with a [geodeticDatum](#geodeticDatum-vocabularies) type of the ***{{values.geodetic_datum_count}}*** available
   options.
+- only **one row of metadata** should be included and only the first row of metadata will be accepted
+  (this symbolises one Survey per dataset submission).
 
 Additional fields may be added **after the templated fields** (noting that the data type 
 is not assumed and values will be encoded as strings).
@@ -108,6 +110,8 @@ The length of a WKT string or of its components is not prescribed; however, MS E
 
 It is possible to edit CSV files outside of Excel in order to include more than 32K characters.
 
+**Note:** Ensure the coordinates are arranged in `longitude latitude` order and do not include the CRS in the WKT expression (it comes from the geodeticDatum field).
+
 ![Multipart geometries (2D) WKT](assets/multipart_geometries_2d_wkt.png)
 <br><center><small>*Source: Mwtoews - CC BY-SA 3.0 -  Wikipedia <https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry>*</small></center>
 
@@ -129,6 +133,8 @@ Where:<br/>
 &emsp; `hh`: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
 &emsp; `mm`: two digits of minute (00 through 59) <br/>
 &emsp; `ss`: two digits of second (00 through 59) <br/>
+&emsp; `s`: one or more digits representing a decimal fraction of a second <br/>
+&emsp; `TZD`: time zone designator (Z or +hh:mm or -hh:mm) <br/>
 
 ### APPENDIX-IV: UTF-8
 UTF-8 encoding is considered a best practice for handling character encoding, especially in

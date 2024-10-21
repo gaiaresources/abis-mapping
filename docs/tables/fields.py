@@ -94,6 +94,10 @@ class FieldTabler(tables.base.BaseTabler):
             if self.format == "markdown":
                 field_table_row.field_name = f'<a name="{field.name}-field"></a>{field_table_row.field_name}'
 
+            # If WKT field add link to WKT appendix
+            if self.format == "markdown" and field.name in ["spatialCoverageWKT", "footprintWKT"]:
+                field_table_row.examples += "<br>([WKT notes](#appendix-ii-well-known-text-wkt))"
+
             # Write row to csv
             self.writer.writerow(field_table_row.model_dump(by_alias=True))
 
