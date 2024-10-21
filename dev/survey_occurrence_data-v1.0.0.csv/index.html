@@ -912,7 +912,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">The method used to obtain sequence data for example DNA, RNA, or protein from the sample.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Sanger-dideoxy-sequencing</td>
+<td style="text-align: left;">Sanger-dideoxy-sequencing<br>(<a href="#sequencingMethod-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="verbatimIdentification-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:verbatimIdentification">verbatimIdentification</a></td>
@@ -940,7 +940,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Method used to associate the organism with the scientificName label.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">DNA</td>
+<td style="text-align: left;">DNA<br>(<a href="#identificationMethod-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="scientificName-field"></a><a href="http://rs.tdwg.org/dwc/terms/scientificName">scientificName</a></td>
@@ -1003,7 +1003,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">The method used to determine if the organism is listed under the relevant jurisdictional threatened species list.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Species name check of the Department of Climate Change, Energy, the Environment and Water’s Species Profile and Threat Database http://www.environment.gov.au/cgi-bin/sprat/public/sprat.pl</td>
+<td style="text-align: left;">Species name check of the Department of Climate Change, Energy, the Environment and Water’s Species Profile and Threat Database http://www.environment.gov.au/cgi-bin/sprat/public/sprat.pl<br>(<a href="#threatStatusCheckProtocol-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="threatStatusDateDetermined-field"></a>threatStatusDateDetermined</td>
@@ -1103,6 +1103,12 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 <td style="text-align: left;"></td>
 </tr>
 <tr>
+<td style="text-align: left;"><a name="conservationJurisdiction-vocabularies"></a>conservationJurisdiction</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
 <td style="text-align: left;"><a name="establishmentMeans-vocabularies"></a>establishmentMeans</td>
 <td style="text-align: left;">INTRODUCED</td>
 <td style="text-align: left;">Establishment of a taxon by numan agency into an area that is not part of its natural range.</td>
@@ -1167,6 +1173,12 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 <td style="text-align: left;">WGS84</td>
 <td style="text-align: left;">World Geodetic System 1984, used in GPS</td>
 <td style="text-align: left;">EPSG:4326</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="identificationMethod-vocabularies"></a>identificationMethod</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="identificationQualifier-vocabularies"></a>identificationQualifier</td>
@@ -1505,6 +1517,12 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 <td style="text-align: left;"></td>
 </tr>
 <tr>
+<td style="text-align: left;"><a name="reproductiveCondition-vocabularies"></a>reproductiveCondition</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
 <td style="text-align: left;"><a name="samplingProtocol-vocabularies"></a>samplingProtocol</td>
 <td style="text-align: left;">HUMAN OBSERVATION</td>
 <td style="text-align: left;">An observation performed by a human.</td>
@@ -1514,6 +1532,12 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 <td style="text-align: left;">samplingProtocol</td>
 <td style="text-align: left;">UNSPECIFIED</td>
 <td style="text-align: left;">No protocol provided.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sequencingMethod-vocabularies"></a>sequencingMethod</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr>
@@ -1744,6 +1768,18 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 <td style="text-align: left;">Variety</td>
 <td style="text-align: left;">VARIETAS</td>
 </tr>
+<tr>
+<td style="text-align: left;"><a name="threatStatus-vocabularies"></a>threatStatus</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="threatStatusCheckProtocol-vocabularies"></a>threatStatusCheckProtocol</td>
+<td style="text-align: left;">UNSPECIFIED</td>
+<td style="text-align: left;">Unspecified</td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
 <p><a name="threatStatus-vocabularies"></a><a name="conservationJurisdiction-vocabularies"></a>
@@ -1803,7 +1839,7 @@ that are also valid for that <code>conservationJurisdiction</code>.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">CE</td>
-<td style="text-align: left;">CRITICALLY ENDANGERED, CR</td>
+<td style="text-align: left;">CR, CRITICALLY ENDANGERED</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -1833,12 +1869,12 @@ that are also valid for that <code>conservationJurisdiction</code>.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">V</td>
-<td style="text-align: left;">VULNERABLE, VU</td>
+<td style="text-align: left;">VU, VULNERABLE</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">XW</td>
-<td style="text-align: left;">EW, EXTINCT IN THE WILD</td>
+<td style="text-align: left;">EXTINCT IN THE WILD, EW</td>
 </tr>
 <tr>
 <td style="text-align: center;">NSW</td>
@@ -2058,12 +2094,12 @@ that are also valid for that <code>conservationJurisdiction</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CD</td>
-<td style="text-align: left;">CONSERVATION DEPENDENT, SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA</td>
+<td style="text-align: left;">SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA, CONSERVATION DEPENDENT</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CR</td>
-<td style="text-align: left;">CRITICALLY ENDANGERED, CRITICALLY ENDANGERED SPECIES</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED SPECIES, CRITICALLY ENDANGERED</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2078,7 +2114,7 @@ that are also valid for that <code>conservationJurisdiction</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">EX</td>
-<td style="text-align: left;">EXTINCT, EXTINCT SPECIES</td>
+<td style="text-align: left;">EXTINCT SPECIES, EXTINCT</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2098,7 +2134,7 @@ that are also valid for that <code>conservationJurisdiction</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P2</td>
-<td style="text-align: left;">PRIORITY 2 POORLY KNOWN SPECIES, PRIORITY 2 POORLY KNOWN</td>
+<td style="text-align: left;">PRIORITY 2 POORLY KNOWN, PRIORITY 2 POORLY KNOWN SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>

@@ -935,7 +935,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">The method used to obtain sequence data for example DNA, RNA, or protein from the sample.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Sanger dideoxy sequencing</td>
+<td style="text-align: left;">Sanger dideoxy sequencing<br>(<a href="#sequencingMethod-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="verbatimIdentification-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:verbatimIdentification">verbatimIdentification</a></td>
@@ -963,7 +963,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Method used to associate the organism with the scientificName label.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Visually identified in the field (sighting)</td>
+<td style="text-align: left;">Visually identified in the field (sighting)<br>(<a href="#identificationMethod-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="scientificName-field"></a><a href="http://rs.tdwg.org/dwc/terms/scientificName">scientificName</a></td>
@@ -1026,7 +1026,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">The method used to determine if the organism is listed under the relevant jurisdictional threatened species list.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Species name check of the Department of Climate Change, Energy, the Environment and Water’s Species Profile and Threat Database http://www.environment.gov.au/cgi-bin/sprat/public/sprat.pl</td>
+<td style="text-align: left;">Species name check of the Department of Climate Change, Energy, the Environment and Water’s Species Profile and Threat Database http://www.environment.gov.au/cgi-bin/sprat/public/sprat.pl<br>(<a href="#threatStatusCheckProtocol-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="threatStatusDateDetermined-field"></a>threatStatusDateDetermined</td>
@@ -1047,14 +1047,14 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">A category that defines a type of data sensitivity or restriction.</td>
 <td style="text-align: center;">Conditionally mandatory with sensitivityAuthority</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Category 2</td>
+<td style="text-align: left;">Category 2<br>(<a href="#sensitivityCategory-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="sensitivityAuthority-field"></a>sensitivityAuthority</td>
 <td style="text-align: left;">The authority under which a data sensitivity or restriction has been applied.</td>
 <td style="text-align: center;">Conditionally mandatory with sensitivityCategory</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Department of Environment, Climate Change and Water NSW</td>
+<td style="text-align: left;">Department of Environment, Climate Change and Water NSW<br>(<a href="#sensitivityAuthority-vocabularies">Vocabulary link</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -1132,6 +1132,12 @@ must come from one of five options in this table.</font></ins></p>
 <td style="text-align: left;">basisOfRecord</td>
 <td style="text-align: left;">PRESERVED SPECIMEN</td>
 <td style="text-align: left;">A specimen that has been preserved.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="conservationAuthority-vocabularies"></a>conservationAuthority</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr>
@@ -1897,6 +1903,12 @@ must come from one of five options in this table.</font></ins></p>
 <td style="text-align: left;"></td>
 </tr>
 <tr>
+<td style="text-align: left;"><a name="identificationMethod-vocabularies"></a>identificationMethod</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
 <td style="text-align: left;"><a name="identificationQualifier-vocabularies"></a>identificationQualifier</td>
 <td style="text-align: left;">ANIMALIA CETERA</td>
 <td style="text-align: left;">It groups all the unidentified specimens that are not listed as separate taxa. The term cetera (abbreviated c. or cet.) may be applied to a given high-rank taxon, meaning that identification at a lower taxonomic level has not been attempted (see also stetit) but explicitly not including subordinate taxa that may have been identified.</td>
@@ -2161,6 +2173,12 @@ must come from one of five options in this table.</font></ins></p>
 <td style="text-align: left;"></td>
 </tr>
 <tr>
+<td style="text-align: left;"><a name="reproductiveCondition-vocabularies"></a>reproductiveCondition</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
 <td style="text-align: left;"><a name="samplingProtocol-vocabularies"></a>samplingProtocol</td>
 <td style="text-align: left;">HUMAN OBSERVATION</td>
 <td style="text-align: left;">An observation performed by a human.</td>
@@ -2170,6 +2188,24 @@ must come from one of five options in this table.</font></ins></p>
 <td style="text-align: left;">samplingProtocol</td>
 <td style="text-align: left;">UNSPECIFIED</td>
 <td style="text-align: left;">No protocol provided.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sensitivityAuthority-vocabularies"></a>sensitivityAuthority</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sensitivityCategory-vocabularies"></a>sensitivityCategory</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sequencingMethod-vocabularies"></a>sequencingMethod</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr>
@@ -2400,6 +2436,18 @@ must come from one of five options in this table.</font></ins></p>
 <td style="text-align: left;">Variety</td>
 <td style="text-align: left;">VARIETAS</td>
 </tr>
+<tr>
+<td style="text-align: left;"><a name="threatStatus-vocabularies"></a>threatStatus</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="threatStatusCheckProtocol-vocabularies"></a>threatStatusCheckProtocol</td>
+<td style="text-align: left;">UNSPECIFIED</td>
+<td style="text-align: left;">Unspecified</td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
 <p><a name="threatStatus-vocabularies"></a><a name="conservationAuthority-vocabularies"></a>
@@ -2459,7 +2507,7 @@ valid for that conservationAuthority.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">CE</td>
-<td style="text-align: left;">CRITICALLY ENDANGERED, CR</td>
+<td style="text-align: left;">CR, CRITICALLY ENDANGERED</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -2714,12 +2762,12 @@ valid for that conservationAuthority.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CD</td>
-<td style="text-align: left;">CONSERVATION DEPENDENT, SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA</td>
+<td style="text-align: left;">SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA, CONSERVATION DEPENDENT</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CR</td>
-<td style="text-align: left;">CRITICALLY ENDANGERED, CRITICALLY ENDANGERED SPECIES</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED SPECIES, CRITICALLY ENDANGERED</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2774,7 +2822,7 @@ valid for that conservationAuthority.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">T</td>
-<td style="text-align: left;">THREATENED, THREATENED SPECIES</td>
+<td style="text-align: left;">THREATENED SPECIES, THREATENED</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>

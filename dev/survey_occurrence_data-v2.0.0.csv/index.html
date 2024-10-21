@@ -624,9 +624,10 @@
 <h2 id="intended-usage">Intended Usage</h2>
 <p>This template is used to record occurrence data; that is, the presence or absence of an organism
 at a particular site locality at a point in time.</p>
-<p>The Systematic Survey Occurrences template <strong>must be used in combination</strong> with the
-Systematic Survey Metadata template, and in some cases the Systematic Survey Sites
-template.</p>
+<p>The Systematic Survey Occurrences Data template <strong>must be used in combination</strong> with the
+Systematic Survey Metadata template, or with the Systematic Survey Metadata and the Systematic Survey Sites Data
+template, or with the Systematic Survey Metadata, the Systematic Survey Site Data and the Systematic Survey Site Visit
+Data template.</p>
 <p>Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
 templates at this stage; therefore, if you are unable to find a suitable template, please
@@ -931,7 +932,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">The method used to obtain sequence data for example DNA, RNA, or protein from the sample.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Sanger-dideoxy-sequencing</td>
+<td style="text-align: left;">Sanger-dideoxy-sequencing<br>(<a href="#sequencingMethod-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="verbatimIdentification-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:verbatimIdentification">verbatimIdentification</a></td>
@@ -959,7 +960,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Method used to associate the organism with the scientificName label.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">DNA</td>
+<td style="text-align: left;">DNA<br>(<a href="#identificationMethod-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="scientificName-field"></a><a href="http://rs.tdwg.org/dwc/terms/scientificName">scientificName</a></td>
@@ -1022,7 +1023,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">The method used to determine if the organism is listed under the relevant jurisdictional threatened species list.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Species name check of the Department of Climate Change, Energy, the Environment and Water’s Species Profile and Threat Database http://www.environment.gov.au/cgi-bin/sprat/public/sprat.pl</td>
+<td style="text-align: left;">Species name check of the Department of Climate Change, Energy, the Environment and Water’s Species Profile and Threat Database http://www.environment.gov.au/cgi-bin/sprat/public/sprat.pl<br>(<a href="#threatStatusCheckProtocol-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="threatStatusDateDetermined-field"></a>threatStatusDateDetermined</td>
@@ -1043,14 +1044,14 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">A category that defines a type of data sensitivity or restriction.</td>
 <td style="text-align: center;">Conditionally mandatory with sensitivityAuthority</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Category 2</td>
+<td style="text-align: left;">Category 2<br>(<a href="#sensitivityCategory-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="sensitivityAuthority-field"></a>sensitivityAuthority</td>
 <td style="text-align: left;">The authority under which a data sensitivity or restriction has been applied.</td>
 <td style="text-align: center;">Conditionally mandatory with sensitivityCategory</td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Department of Environment, Climate Change and Water NSW</td>
+<td style="text-align: left;">Department of Environment, Climate Change and Water NSW<br>(<a href="#sensitivityAuthority-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="siteID-field"></a>siteID</td>
@@ -1153,6 +1154,12 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 <td style="text-align: left;"></td>
 </tr>
 <tr>
+<td style="text-align: left;"><a name="conservationAuthority-vocabularies"></a>conservationAuthority</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
 <td style="text-align: left;"><a name="establishmentMeans-vocabularies"></a>establishmentMeans</td>
 <td style="text-align: left;">INTRODUCED</td>
 <td style="text-align: left;">Establishment of a taxon by numan agency into an area that is not part of its natural range.</td>
@@ -1217,6 +1224,12 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 <td style="text-align: left;">WGS84</td>
 <td style="text-align: left;">World Geodetic System 1984, used in GPS</td>
 <td style="text-align: left;">EPSG:4326</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="identificationMethod-vocabularies"></a>identificationMethod</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="identificationQualifier-vocabularies"></a>identificationQualifier</td>
@@ -1555,6 +1568,12 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 <td style="text-align: left;"></td>
 </tr>
 <tr>
+<td style="text-align: left;"><a name="reproductiveCondition-vocabularies"></a>reproductiveCondition</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
 <td style="text-align: left;"><a name="samplingProtocol-vocabularies"></a>samplingProtocol</td>
 <td style="text-align: left;">HUMAN OBSERVATION</td>
 <td style="text-align: left;">An observation performed by a human.</td>
@@ -1564,6 +1583,24 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 <td style="text-align: left;">samplingProtocol</td>
 <td style="text-align: left;">UNSPECIFIED</td>
 <td style="text-align: left;">No protocol provided.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sensitivityAuthority-vocabularies"></a>sensitivityAuthority</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sensitivityCategory-vocabularies"></a>sensitivityCategory</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sequencingMethod-vocabularies"></a>sequencingMethod</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr>
@@ -1794,6 +1831,18 @@ labels with similar semantics are provided. Note: <font color="red"><code>geodet
 <td style="text-align: left;">Variety</td>
 <td style="text-align: left;">VARIETAS</td>
 </tr>
+<tr>
+<td style="text-align: left;"><a name="threatStatus-vocabularies"></a>threatStatus</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="threatStatusCheckProtocol-vocabularies"></a>threatStatusCheckProtocol</td>
+<td style="text-align: left;">UNSPECIFIED</td>
+<td style="text-align: left;">Unspecified</td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
 <p><a name="threatStatus-vocabularies"></a><a name="conservationAuthority-vocabularies"></a>
@@ -1863,7 +1912,7 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">E</td>
-<td style="text-align: left;">ENDANGERED, EN</td>
+<td style="text-align: left;">EN, ENDANGERED</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -1883,12 +1932,12 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">V</td>
-<td style="text-align: left;">VU, VULNERABLE</td>
+<td style="text-align: left;">VULNERABLE, VU</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">XW</td>
-<td style="text-align: left;">EW, EXTINCT IN THE WILD</td>
+<td style="text-align: left;">EXTINCT IN THE WILD, EW</td>
 </tr>
 <tr>
 <td style="text-align: center;">NSW</td>
@@ -2108,12 +2157,12 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CD</td>
-<td style="text-align: left;">CONSERVATION DEPENDENT, SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA</td>
+<td style="text-align: left;">SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA, CONSERVATION DEPENDENT</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CR</td>
-<td style="text-align: left;">CRITICALLY ENDANGERED, CRITICALLY ENDANGERED SPECIES</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED SPECIES, CRITICALLY ENDANGERED</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2128,7 +2177,7 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">EX</td>
-<td style="text-align: left;">EXTINCT SPECIES, EXTINCT</td>
+<td style="text-align: left;">EXTINCT, EXTINCT SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2143,17 +2192,17 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P1</td>
-<td style="text-align: left;">PRIORITY 1 POORLY KNOWN SPECIES, PRIORITY 1 POORLY KNOWN</td>
+<td style="text-align: left;">PRIORITY 1 POORLY KNOWN, PRIORITY 1 POORLY KNOWN SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P2</td>
-<td style="text-align: left;">PRIORITY 2 POORLY KNOWN SPECIES, PRIORITY 2 POORLY KNOWN</td>
+<td style="text-align: left;">PRIORITY 2 POORLY KNOWN, PRIORITY 2 POORLY KNOWN SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P3</td>
-<td style="text-align: left;">PRIORITY 3 POORLY KNOWN SPECIES, PRIORITY 3 POORLY KNOWN</td>
+<td style="text-align: left;">PRIORITY 3 POORLY KNOWN, PRIORITY 3 POORLY KNOWN SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -2168,12 +2217,12 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">T</td>
-<td style="text-align: left;">THREATENED, THREATENED SPECIES</td>
+<td style="text-align: left;">THREATENED SPECIES, THREATENED</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">VU</td>
-<td style="text-align: left;">VULNERABLE SPECIES, VULNERABLE</td>
+<td style="text-align: left;">VULNERABLE, VULNERABLE SPECIES</td>
 </tr>
 </tbody>
 </table>
@@ -2215,7 +2264,9 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 &emsp; <code>dd</code>: two-digit day of month (01 through 31) <br/>
 &emsp; <code>hh</code>: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
 &emsp; <code>mm</code>: two digits of minute (00 through 59) <br/>
-&emsp; <code>ss</code>: two digits of second (00 through 59) <br/></p>
+&emsp; <code>ss</code>: two digits of second (00 through 59) <br/>
+&emsp; <code>s</code>: one or more digits representing a decimal fraction of a second
+&emsp; <code>TZD</code>: time zone designator (Z or +hh:mm or -hh:mm)</p>
 <h3 id="appendix-iii-utf-8">APPENDIX-III: UTF-8</h3>
 <p>UTF-8 encoding is considered a best practice for handling character encoding, especially in
 the context of web development, data exchange, and modern software systems. UTF-8
