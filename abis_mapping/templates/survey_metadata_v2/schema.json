@@ -100,7 +100,7 @@
     {
       "name": "spatialCoverageWKT",
       "title": "Spatial Coverage (WKT)",
-      "description": "Well Known Text (WKT) expression of the geographic coordinates that describe the survey's spatial extent.",
+      "description": "Well Known Text (WKT) expression of the geographic coordinates that describe the survey's spatial extent. Ensure the coordinates are arranged in 'longitude latitude' order and do not include the CRS in the WKT expression (it comes from the geodeticDatum field).",
       "example": "POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))",
       "type": "wkt",
       "format": "default",
