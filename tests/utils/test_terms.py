@@ -5,29 +5,22 @@ import re
 
 # Third-party
 import pytest
+import pytest_mock
 import rdflib.graph
 import rdflib.term
 
 # Local
 from abis_mapping import utils
 
-# Typing
-from typing import Iterable
-
 
 a = rdflib.RDF.type
 
 
-@pytest.fixture(scope="module")
-def patch_rdflib_bnode() -> Iterable[None]:
+@pytest.fixture
+def patch_rdflib_bnode(mocker: pytest_mock.MockerFixture) -> None:
     """Expected overriding/patching of rdflib.BNode will be done at the start of a module"""
-    rdflib.BNode = utils.terms.BNodeAlwaysUUID4  # type: ignore[misc]
-    rdflib.term.BNode = utils.terms.BNodeAlwaysUUID4  # type: ignore[misc]
-
-    yield None
-
-    rdflib.BNode = rdflib.BNode  # type: ignore[misc]
-    rdflib.term.BNode = rdflib.term.BNode  # type: ignore[misc]
+    mocker.patch.object(rdflib.term, "BNode", new=utils.terms.BNodeAlwaysUUID4)
+    mocker.patch.object(rdflib, "BNode", new=utils.terms.BNodeAlwaysUUID4)
 
 
 def test_bnode_with_value(patch_rdflib_bnode: None) -> None:

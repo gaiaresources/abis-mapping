@@ -280,7 +280,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 ingest before yielding a graph. `None` will ingest all rows.
             site_id_geometry_map (dict[str, str]): Default values of geometry wkt
                 to use for a given site id.
-            site_viset_id_temporal_map (dict[str, str]): Default values of
+            site_visit_id_temporal_map (dict[str, str]): Default values of
                 temporal entity rdf, as turtle, to use for a given site visit id.
 
         Yields:
