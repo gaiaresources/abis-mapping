@@ -633,8 +633,8 @@
 <h2 id="intended-usage">Intended Usage</h2>
 <p>Use the Systematic Survey Metadata template to record metadata relating to a Systematic Survey dataset.</p>
 <p>The Systematic Survey Metadata template must be used in combination with the
-<code>Systematic Survey Occurrence</code> template, and in some cases the <code>Systematic Survey Site</code> template
-and the <code>Systematic Survey Site Visit</code> template.</p>
+<code>Systematic Survey Occurrence</code> template, and in some cases the <code>Systematic Survey Site</code> template,
+with or without the <code>Systematic Survey Site Visit</code> template.</p>
 <p>Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
 templates at this stage; therefore, if you are unable to find a suitable template, please
@@ -649,6 +649,8 @@ contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&
 <li>comply with all <strong>data value constraints</strong>; for example the geographic coordinates are
   consistent with a <a href="#geodeticDatum-vocabularies">geodeticDatum</a> type of the <strong><em>5</em></strong> available
   options.</li>
+<li>only <strong>one row of metadata</strong> should be included and only the first row of metadata will be accepted
+  (this symbolises one Survey per dataset submission).</li>
 </ul>
 <p>Additional fields may be added <strong>after the templated fields</strong> (noting that the data type 
 is not assumed and values will be encoded as strings).</p>
@@ -759,10 +761,10 @@ datatype format, and examples.</ins></p>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="spatialCoverageWKT-field"></a>spatialCoverageWKT</td>
-<td style="text-align: left;">Well Known Text (WKT) expression of the geographic coordinates that describe the survey's spatial extent.</td>
+<td style="text-align: left;">Well Known Text (WKT) expression of the geographic coordinates that describe the survey's spatial extent. Ensure the coordinates are arranged in 'longitude latitude' order and do not include the CRS in the WKT expression (it comes from the geodeticDatum field).</td>
 <td style="text-align: center;">Conditionally mandatory with geodeticDatum</td>
 <td style="text-align: center;">WKT</td>
-<td style="text-align: left;">POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))</td>
+<td style="text-align: left;">POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))<br>(<a href="#appendix-ii-well-known-text-wkt">WKT notes</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="geodeticDatum-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
@@ -1622,6 +1624,7 @@ must come from one of five options in this table.</font></ins></p>
 The length of a WKT string or of its components is not prescribed; however, MS Excel <em>does</em> has a
 32,767 (32K) character limit on individual cells in a spreadsheet.</p>
 <p>It is possible to edit CSV files outside of Excel in order to include more than 32K characters.</p>
+<p><strong>Note:</strong> Ensure the coordinates are arranged in <code>longitude latitude</code> order and do not include the CRS in the WKT expression (it comes from the geodeticDatum field).</p>
 <p><img alt="Multipart geometries (2D) WKT" src="../assets/multipart_geometries_2d_wkt.png" />
 <br><center><small><em>Source: Mwtoews - CC BY-SA 3.0 -  Wikipedia <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry</a></em></small></center></p>
 <h3 id="appendix-iii-timestamp">APPENDIX-III: Timestamp</h3>
@@ -1662,7 +1665,9 @@ The length of a WKT string or of its components is not prescribed; however, MS E
 &emsp; <code>dd</code>: two-digit day of month (01 through 31) <br/>
 &emsp; <code>hh</code>: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
 &emsp; <code>mm</code>: two digits of minute (00 through 59) <br/>
-&emsp; <code>ss</code>: two digits of second (00 through 59) <br/></p>
+&emsp; <code>ss</code>: two digits of second (00 through 59) <br/>
+&emsp; <code>s</code>: one or more digits representing a decimal fraction of a second <br/>
+&emsp; <code>TZD</code>: time zone designator (Z or +hh:mm or -hh:mm) <br/></p>
 <h3 id="appendix-iv-utf-8">APPENDIX-IV: UTF-8</h3>
 <p>UTF-8 encoding is considered a best practice for handling character encoding, especially in
 the context of web development, data exchange, and modern software systems. UTF-8
