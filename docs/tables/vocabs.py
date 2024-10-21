@@ -6,6 +6,7 @@ import sys
 
 # Third-party
 import pydantic
+import rdflib
 
 # Local
 from docs import tables
@@ -14,6 +15,14 @@ from abis_mapping import utils
 
 # Typing
 from typing import Iterator, IO
+
+
+# A placeholder term for vocabs without any terms
+TBC_TERM = utils.vocabs.Term(
+    labels=["TBC"],
+    iri=rdflib.URIRef("http://example.com/TBC"),
+    description="TBC",
+)
 
 
 class VocabTableRow(pydantic.BaseModel):
@@ -52,7 +61,7 @@ class VocabTabler(tables.base.BaseTabler):
         # Get all fields that have associated vocabularies.
         dict_fields = self.mapper.schema()["fields"]
         fields: list[types.schema.Field] = [
-            types.schema.Field.model_validate(f) for f in dict_fields if f.get("vocabularies") is not None
+            types.schema.Field.model_validate(f) for f in dict_fields if f.get("vocabularies")
         ]
         fields = sorted(fields, key=lambda f: f.name)
 
@@ -97,13 +106,20 @@ class VocabTabler(tables.base.BaseTabler):
         # Sort terms and turn into a generator
         sorted_terms: Iterator[str] = (t for t in sorted(terms_map))
 
+        # Retrieve first term
+        term_key = next(sorted_terms, None)
+        term = terms_map[term_key] if term_key is not None else TBC_TERM
+
         # If markdown then the first row must contain an anchor
-        if self.format == "markdown" and (term_key := next(sorted_terms, None)) is not None:
+        if self.format == "markdown":
             yield self.generate_row(
                 field=field.model_copy(update={"name": f'<a name="{field.name}-vocabularies"></a>{field.name}'}),
-                term=terms_map[term_key],
+                term=term,
             )
-        # Iterate through terms and yield each row.
+        else:
+            yield self.generate_row(field=field, term=term)
+
+        # Iterate through all remaining terms and yield each row.
         for term_key in sorted_terms:
             yield self.generate_row(
                 field=field,

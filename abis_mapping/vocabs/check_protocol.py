@@ -26,7 +26,7 @@ class CheckProtocol(utils.vocabs.FlexibleVocabulary):
     )  # TODO -> Need real URI
     default = UNSPECIFIED
     terms = (UNSPECIFIED,)
-    publish = False
+    publish = True
 
 
 # Register

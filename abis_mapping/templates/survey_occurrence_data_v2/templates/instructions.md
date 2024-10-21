@@ -6,9 +6,10 @@
 This template is used to record occurrence data; that is, the presence or absence of an organism
 at a particular site locality at a point in time.
 
-The Systematic Survey Occurrences template **must be used in combination** with the
-Systematic Survey Metadata template, and in some cases the Systematic Survey Sites
-template.
+The Systematic Survey Occurrences Data template **must be used in combination** with the
+Systematic Survey Metadata template, or with the Systematic Survey Metadata and the Systematic Survey Sites Data
+template, or with the Systematic Survey Metadata, the Systematic Survey Site Data and the Systematic Survey Site Visit
+Data template.
 
 Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
@@ -132,6 +133,8 @@ Where<br/>
 &emsp; `hh`: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
 &emsp; `mm`: two digits of minute (00 through 59) <br/>
 &emsp; `ss`: two digits of second (00 through 59) <br/>
+&emsp; `s`: one or more digits representing a decimal fraction of a second
+&emsp; `TZD`: time zone designator (Z or +hh:mm or -hh:mm)
 
 
 ### APPENDIX-III: UTF-8

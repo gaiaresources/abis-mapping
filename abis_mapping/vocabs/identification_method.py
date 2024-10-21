@@ -24,7 +24,7 @@ class IdentificationMethod(utils.vocabs.FlexibleVocabulary):
     broader = utils.rdf.uri("bdr-cv/methods/identificationMethod", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
     default = UNDEFINED
     terms = ()  # No baseline vocabulary values
-    publish = False
+    publish = True
 
 
 # Register
