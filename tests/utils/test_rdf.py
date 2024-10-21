@@ -56,6 +56,12 @@ def test_extend_uri(
     extension: list[str],
     expected: rdflib.URIRef,
 ) -> None:
+    """Test the extend_uri function.
+
+    * with/without trailing / in base
+    * with/without special chars
+    * different length extensions
+    """
     result = utils.rdf.extend_uri(base, *extension)
     assert result == expected
 
