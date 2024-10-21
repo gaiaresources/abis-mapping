@@ -11,11 +11,15 @@ import rdflib.term
 # Local
 from abis_mapping import utils
 
+# Typing
+from typing import Iterable
+
 
 a = rdflib.RDF.type
 
+
 @pytest.fixture(scope="module")
-def patch_rdflib_bnode() -> None:
+def patch_rdflib_bnode() -> Iterable[None]:
     """Expected overriding/patching of rdflib.BNode will be done at the start of a module"""
     rdflib.BNode = utils.terms.BNodeAlwaysUUID4  # type: ignore[misc]
     rdflib.term.BNode = utils.terms.BNodeAlwaysUUID4  # type: ignore[misc]

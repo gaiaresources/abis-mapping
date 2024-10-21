@@ -28,12 +28,13 @@ Mapper = abis_mapping.templates.survey_occurrence_data_v2.mapping.SurveyOccurren
 # Convenient shortcut
 a = rdflib.RDF.type
 
+
 @pytest.fixture
 def mapper() -> Iterable[Mapper]:
     """Fixture to provide a mapper instance for tests."""
     # Clear schema lru cache prior to creating instance
     Mapper.schema.cache_clear()
-    
+
     # Yield
     yield Mapper()
 
@@ -224,7 +225,7 @@ class TestDefaultGeometryMap:
 
         # Modify schema to only fields required for test
         original_fields = mapper.schema()["fields"]
-        assert set(rawh) - {f["name"] for f in original_fields} == set() 
+        assert set(rawh) - {f["name"] for f in original_fields} == set()
         descriptor = {"fields": [field for field in original_fields if field["name"] in rawh]}
         descriptor["fields"].sort(key=lambda f: rawh.index(f["name"]))
 
@@ -309,12 +310,14 @@ class TestDefaultGeometryMap:
         assert conftest.compare_graphs(graphs[0], expected)
         assert "None" not in graphs[0].serialize(format="ttl")
 
+
 class TestDefaultTemporalMap:
     """Tests specific to the provision of a default temporal map."""
-    
+
     @attrs.define(kw_only=True)
     class Scenario:
         """Dataclass to hold the scenario parameters."""
+
         name: str
         raws: list[list[str]]
         expected_error_codes: set[str] = set()
@@ -329,10 +332,7 @@ class TestDefaultTemporalMap:
                 ["SV3", "2024-10-16T15:15:15+0800"],
                 ["SV4", ""],
             ],
-            default_map={
-                "SV2": "some rdf",
-                "SV4": "some rdf"
-            }
+            default_map={"SV2": "some rdf", "SV4": "some rdf"},
         ),
         Scenario(
             name="invalid_with_default_map",
@@ -342,12 +342,11 @@ class TestDefaultTemporalMap:
                 ["SV3", "2024-10-16T15:15:15+0800"],
                 ["SV4", ""],
             ],
-            default_map={
-                "SV2": "some rdf"
-            },
+            default_map={"SV2": "some rdf"},
             expected_error_codes={"row-constraint"},
         ),
     ]
+
     @pytest.mark.parametrize(
         argnames="scenario",
         argvalues=scenarios,
@@ -427,5 +426,3 @@ class TestDefaultTemporalMap:
         res_g = next(graphs)
         # Ensure temporal entity added to graph
         assert next(res_g.subjects(a, ftn)) is not None
-
-
