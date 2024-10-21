@@ -6,6 +6,7 @@ import urllib.parse
 # Third-Party
 import frictionless
 import rdflib
+import rdflib.term
 
 # Local
 from abis_mapping import base
@@ -19,9 +20,10 @@ from typing import Iterator, Optional, Any
 
 
 # Constants and Shortcuts
-# These constants are specific to this template, and as such are defined here
+# These constants and shortcuts are specific to this template, and as such are defined here
 # rather than in a common `utils` module.
 a = rdflib.RDF.type
+
 CONCEPT_AUSTRALIA = rdflib.URIRef("https://sws.geonames.org/2077456/")
 CONCEPT_TAXON = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")
 CONCEPT_SITE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4")
@@ -104,12 +106,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         Keyword Args:
             site_id_geometry_map (dict[str, str]): Default values to use for geometry
                 for given siteID.
+            site_visit_id_temporal_map (dict[str, str]): Default RDF (serialized as turtle)
+                to use for temporal entity for given siteVisitID.
 
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
         # Extract kwargs
         site_id_geometry_map = kwargs.get("site_id_geometry_map")
+        site_visit_id_temporal_map = kwargs.get("site_visit_id_temporal_map")
 
         # Construct Schema
         schema = self.extra_fields_schema(
@@ -147,7 +152,20 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             ],
         )
 
-        # TODO: Check for surveyID from metadata template.
+        # Modify schema and checklist in the event default temporal map provided
+        if site_visit_id_temporal_map is not None:
+            # Need to make sure that required is false from the eventDate field
+            # since this would override the default lookup check.
+            schema.get_field("eventDate").constraints["required"] = False
+
+            # Perform a default lookup check based on passed in map.
+            checklist.add_check(
+                plugins.default_lookup.DefaultLookup(
+                    key_field="siteVisitID",
+                    value_field="eventDate",
+                    default_map=site_visit_id_temporal_map,
+                )
+            )
 
         # Modify schema and checklist in the event default geometry map provided
         if site_id_geometry_map is not None:
@@ -262,6 +280,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 ingest before yielding a graph. `None` will ingest all rows.
             site_id_geometry_map (dict[str, str]): Default values of geometry wkt
                 to use for a given site id.
+            site_visit_id_temporal_map (dict[str, str]): Default values of
+                temporal entity rdf, as turtle, to use for a given site visit id.
 
         Yields:
             rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
@@ -272,6 +292,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             chunk_size = None
 
         site_id_geometry_map = kwargs.get("site_id_geometry_map")
+        site_visit_id_temporal_map = kwargs.get("site_visit_id_temporal_map")
 
         # Construct Schema
         schema = self.extra_fields_schema(
@@ -324,6 +345,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                     graph=graph,
                     base_iri=base_iri,
                     site_id_geometry_map=site_id_geometry_map,
+                    site_visit_id_temporal_map=site_visit_id_temporal_map,
                 )
 
                 # Check Whether to Yield a Chunk
@@ -347,6 +369,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         base_iri: Optional[rdflib.Namespace] = None,
         site_id_geometry_map: dict[str, str] | None = None,
+        site_visit_id_temporal_map: dict[str, str] | None = None,
     ) -> rdflib.Graph:
         """Applies Mapping for a Row in the `survey_occurrence_data.csv` Template
 
@@ -359,6 +382,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 to use for mapping.
             site_id_geometry_map (dict[str, str] | None): Optional site id to geometry
                 default map.
+            site_visit_id_temporal_map (dict[str, str] | None): Optional site visit id
+                to temporal entity rdf default map.
 
         Returns:
             rdflib.Graph: Graph with row mapped into it.
@@ -562,6 +587,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_id_geometry_map=site_id_geometry_map,
             survey=survey,
             site_visit=site_visit,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -640,6 +666,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             generalizations=data_generalizations_attribute,
             basis=basis_attribute,
             site_id_geometry_map=site_id_geometry_map,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -703,6 +730,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             qualifier=id_qualifier_attribute,
             remarks=id_remarks_attribute,
             taxon_rank=taxon_rank_attribute,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -715,6 +743,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             verbatim_id=text_verbatim_id,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -758,6 +787,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             sample_field=sample_field,
             individual_count_value=individual_count_value,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -775,6 +805,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             sample_field=sample_field,
             organism_remarks_value=organism_remarks_value,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -839,6 +870,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             sample_field=sample_field,
             occurrence_status_value=occurrence_status_value,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -874,6 +906,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             sample_field=sample_field,
             establishment_means_value=establishment_means_value,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -893,6 +926,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             life_stage_value=life_stage_value,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -912,6 +946,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             sex_value=sex_value,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -931,6 +966,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sample_field=sample_field,
             sample_specimen=sample_specimen,
             reproductive_condition_value=reproductive_condition_value,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -949,6 +985,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             scientific_name=text_scientific_name,
             accepted_name_usage_value=accepted_name_usage_value,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -968,6 +1005,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             feature_of_interest=sample_specimen,
             sample_sequence=sample_sequence,
             site_id_geometry_map=site_id_geometry_map,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -998,6 +1036,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             threat_status_value=threat_status_value,
             authority_attribute=conservation_authority_attribute,
             determined_by=provider_determined_by,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -1031,6 +1070,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sample_field=sample_field,
             dataset=dataset,
             row=row,
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
         )
 
@@ -1144,6 +1184,51 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.PROV.Agent))
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["recordedBy"])))
 
+    def add_default_temporal_entity(
+        self,
+        uri: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> rdflib.term.Node | None:
+        """Adds a default temporal entity BNode to the graph.
+
+        Args:
+            uri (rdflib.URIRef): The subject that the temporal
+                entity will belong.
+            site_visit_id_temporal_map (dict[str, str] | None): The
+                map containing serialized rdf of default
+                temporal entity.
+            row (frictionless.Row): Raw data.
+            graph (rdflib.Graph): The graph to be modified.
+
+        Returns:
+            rdflib.BNode | None: Reference to the top level blank node of the
+                temporal entity or None
+        """
+        # Check to see map provided
+        if not site_visit_id_temporal_map:
+            return None
+
+        # Create graph from supplied rdf
+        temp_graph = rdflib.Graph().parse(data=site_visit_id_temporal_map[row["siteVisitID"]])
+
+        # Obtain reference to subject node
+        top_node = next(temp_graph.subjects(a, rdflib.TIME.TemporalEntity))
+
+        # Merge with main graph using addition assignment (modify inplace).
+        # Note: Be aware that BNode IDs are not modified or checked during this process
+        # and there are risks of name collision during merging. If blank nodes are ever
+        # assigned names manually in future, then that may impact this operation
+        # Refer to https://rdflib.readthedocs.io/en/stable/merging.html for more information.
+        graph += temp_graph
+
+        # Add hasTime property to uri node
+        graph.add((uri, rdflib.TIME.hasTime, top_node))
+
+        # Return reference to TemporalEntity
+        return top_node
+
     def add_observation_scientific_name(
         self,
         uri: rdflib.URIRef,
@@ -1156,6 +1241,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         qualifier: rdflib.URIRef,
         remarks: rdflib.URIRef,
         taxon_rank: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Observation Scientific Name to the Graph
@@ -1177,6 +1263,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 associated with this node
             taxon_rank (rdflib.URIRef): Taxon Rank attribute associated with
                 this node
+            site_visit_id_temporal_map (dict[str, str] | None): Map
+                of site visit ids to default temporal entity to use if requlred.
             graph (rdflib.Graph): Graph to add to
         """
         # Get Timestamps
@@ -1201,21 +1289,34 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, scientific_name))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["scientificName"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.usedProcedure, term))
+
+        # Check for date provided within given template
+        if date_identified is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
+            graph.add((uri, rdflib.SOSA.usedProcedure, term))
+            # Check for which date provided
+            if not row["dateIdentified"] and row["eventDate"]:
+                # Add comment to temporal entity
+                comment = "Date unknown, template eventDate used as proxy"
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        else:
+            # Add default temporal entity from map
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
             graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
-
-        # Check for dateIdentified
-        if not row["dateIdentified"]:
-            # Add comment to temporal entity
-            comment = "Date unknown, template eventDate used as proxy"
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Check for identificationQualifier
         if row["identificationQualifier"]:
@@ -1238,6 +1339,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         sample_field: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         verbatim_id: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Observation Verbatim ID to the Graph
@@ -1252,6 +1354,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
             verbatim_id (rdflib.URIRef): Verbatim ID associated with this node
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site
+                visit ids to default temporal entity rdf.
             graph (rdflib.Graph): Graph to add to
         """
         # Check for verbatimIdentification
@@ -1280,21 +1384,33 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, verbatim_id))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["verbatimIdentification"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.usedProcedure, term))
+        # Check to see if date provided from own template
+        if date_identified is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
+            graph.add((uri, rdflib.SOSA.usedProcedure, term))
+            # Check for dateIdentified
+            if not row["dateIdentified"]:
+                # Add comment to temporal entity
+                comment = "Date unknown, template eventDate used as proxy"
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        else:
+            # Add default temporal entity from map
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
             graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
-
-        # Check for dateIdentified
-        if not row["dateIdentified"]:
-            # Add comment to temporal entity
-            comment = "Date unknown, template eventDate used as proxy"
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_provider_recorded_by_agent(
         self,
@@ -1414,6 +1530,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_id_geometry_map: dict[str, str] | None,
         survey: rdflib.URIRef | None,
         site_visit: rdflib.URIRef | None,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Field to the Graph
@@ -1438,7 +1555,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 if none available for given site id.
             survey (rdflib.URIRef | None): Survey if one was provided else None.
             site_visit (rdflib.URIRef | None): Site visit if one was provided else None.
-            graph (rdflib.Graph): Graph to add to
+            site_visit_id_temporal_map (dict[str, str] | None): Map containing default
+                site visit id to temporal entity rdf.
+            graph (rdflib.Graph): Graph to add to.
         """
         # Extract values
         latitude = row["decimalLatitude"]
@@ -1471,11 +1590,25 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.usedProcedure, term))
+
+        # Check eventDate provided
+        if event_date is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+            graph.add((uri, rdflib.SOSA.usedProcedure, term))
+        else:
+            # Use the default temporal entity map
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add geometry
         geometry_node = rdflib.BNode()
@@ -1785,6 +1918,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         generalizations: rdflib.URIRef,
         basis: rdflib.URIRef,
         site_id_geometry_map: dict[str, str] | None,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Specimen to the Graph
@@ -1802,6 +1936,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             basis (rdflib.URIRef): Basis Of Record associated with this node
             site_id_geometry_map (dict[str, str] | None): Map with default wkt
                 string for a given site id.
+            site_visit_id_temporal_map (dict[str, str] | None): Map with default
+                rdf string for a given site visit id.
             graph (rdflib.Graph): Graph to add to
         """
         # Check if Row has a Specimen
@@ -1840,10 +1976,29 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, timestamp.rdf_in_xsd, timestamp.to_rdf_literal()))
+
+        # Check to see date already found
+        if timestamp is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, timestamp.rdf_in_xsd, timestamp.to_rdf_literal()))
+            # Check for preparedDate
+            if not row["preparedDate"]:
+                # Add comment to temporal entity
+                temporal_comment = "Date unknown, template eventDate used as proxy"
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add geometry
         geometry_node = rdflib.BNode()
@@ -1862,12 +2017,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add comment to geometry
         spatial_comment = "Location unknown, location of field sampling used as proxy"
         graph.add((geometry_node, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
-
-        # Check for preparedDate
-        if not row["preparedDate"]:
-            # Add comment to temporal entity
-            temporal_comment = "Date unknown, template eventDate used as proxy"
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Check for coordinateUncertaintyInMeters
         if row["coordinateUncertaintyInMeters"]:
@@ -2222,6 +2371,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         individual_count_value: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Individual Count Observation to the Graph
@@ -2234,6 +2384,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 node
             individual_count_value (rdflib.URIRef): Individual Count Value
                 associated with this node
+            site_visit_id_temporal_map (dict[str, str] | None): Map providing a
+                default temporal entity rdf for a site visit id.
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2255,14 +2407,27 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["individualCount"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_INDIVIDUAL_COUNT))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
-        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        # Check event date supplied
+        if event_date is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+            # Add comment
+            comment = "Date unknown, template eventDate used as proxy"
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+
+        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -2298,6 +2463,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         organism_remarks_value: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Organism Remarks Observation to the Graph
@@ -2310,6 +2476,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 node
             organism_remarks_value (rdflib.URIRef): Organism Remarks Value
                 associated with this node
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
+                id to default temporal entity as serialized rdf.
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2331,14 +2499,27 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["organismRemarks"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ORGANISM_REMARKS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
-        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        # Check for eventDate
+        if event_date is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+            # Add comment to temporal entity
+            comment = "Date unknown, template eventDate used as proxy"
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -2526,6 +2707,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         occurrence_status_value: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Occurrence Status Observation to the Graph
@@ -2538,6 +2720,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 node
             occurrence_status_value (rdflib.URIRef): Occurrence Status Value
                 associated with this node
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
+                id to default temporal entity as rdf.
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2559,10 +2743,24 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["occurrenceStatus"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_OCCURRENCE_STATUS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+
+        # Check event date supplied
+        if event_date is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -2666,6 +2864,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         establishment_means_value: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Establishment Means Observation to the Graph
@@ -2678,6 +2877,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 node
             establishment_means_value (rdflib.URIRef): Establishment Means
                 Value associated with this node
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
+                id to default rdf to use for temporal entity.
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2699,14 +2900,27 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["establishmentMeans"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ESTABLISHMENT_MEANS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
-        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        # Check eventDate supplied
+        if event_date is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+            # Add comment to temporal entity
+            comment = "Date unknown, template eventDate used as proxy"
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -2751,6 +2965,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         sample_field: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         life_stage_value: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Life Stage Observation to the Graph
@@ -2765,6 +2980,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 this node
             life_stage_value (rdflib.URIRef): Life Stage Value associated with
                 this node
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
+                id to temporal entity rdf default map.
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2791,14 +3008,28 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["lifeStage"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_LIFE_STAGE))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
-        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        # Check eventDate supplied
+        if event_date is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+
+            # Add comment to temporal entity
+            comment = "Date unknown, template eventDate used as proxy"
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -2843,6 +3074,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         sample_field: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         sex_value: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sex Observation to the Graph
@@ -2856,6 +3088,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
             sex_value (rdflib.URIRef): Sex Value associated with this node
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
+                id to default temporal entity rdf.
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2882,14 +3116,27 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["sex"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SEX))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
-        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        # Check eventDate provided
+        if event_date is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+            # Add comment to temporal entity
+            comment = "Date unknown, template eventDate used as proxy"
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -2934,6 +3181,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         sample_field: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         reproductive_condition_value: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Reproductive Condition Observation to the Graph
@@ -2948,6 +3196,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 this node
             reproductive_condition_value (rdflib.URIRef): Reproductive
                 Condition Value associated with this node
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
+                id to temporal entity rdf.
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -2974,14 +3224,27 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["reproductiveCondition"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_REPRODUCTIVE_CONDITION))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
-        # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
-        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        # Check eventDate provided
+        if event_date is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+            # Add comment to temporal entity
+            comment = "Date unknown, template eventDate used as proxy"
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -3025,19 +3288,22 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
         accepted_name_usage_value: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Accepted Name Usage Observation to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
+            row (frictionless.Row): Row to retrieve data from.
+            dataset (rdflib.URIRef): Dataset this belongs to.
             scientific_name (rdflib.URIRef): Scientific Name associated with
-                this node
+                this node.
             accepted_name_usage_value (rdflib.URIRef): Accepted Name Usage
-                Value associated with this node
-            graph (rdflib.Graph): Graph to add to
+                Value associated with this node.
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
+                id to default temporal entity as rdf.
+            graph (rdflib.Graph): Graph to add to.
         """
         # Check Existence
         if not row["acceptedNameUsage"]:
@@ -3055,15 +3321,30 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["acceptedNameUsage"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_NAME_CHECK_METHOD))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
 
-        # Add comment to temporal entity
-        timestamp_used = "dateIdentified" if row["dateIdentified"] else "eventDate"  # Determine which field was used
-        temporal_comment = f"Date unknown, template {timestamp_used} used as proxy"
-        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
+        # Check date supplied within template
+        if date_identified is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
+            # Add comment to temporal entity
+            timestamp_used = (
+                "dateIdentified" if row["dateIdentified"] else "eventDate"
+            )  # Determine which field was used
+            comment = f"Date unknown, template {timestamp_used} used as proxy"
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_accepted_name_usage_value(
         self,
@@ -3101,6 +3382,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         feature_of_interest: rdflib.URIRef,
         sample_sequence: rdflib.URIRef,
         site_id_geometry_map: dict[str, str] | None,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Sequencing to the Graph
@@ -3115,6 +3397,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 this node
             site_id_geometry_map (dict[str, str] | None): Map of default geometry
                 string values for a given site id.
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
+                id to default temporal entity rdf.
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -3156,11 +3440,28 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequencing-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.usedProcedure, term))
+
+        # Determin eventDate supplied
+        if event_date is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+            graph.add((uri, rdflib.SOSA.usedProcedure, term))
+            # Add comment to temporal entity
+            comment = "Date unknown, template eventDate used as proxy"
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add geometry
         geometry_node = rdflib.BNode()
@@ -3181,10 +3482,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Add Spatial Accuracy
             accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
             graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
-
-        # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
-        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add comment to geometry
         spatial_comment = "Location unknown, location of field sampling used as proxy"
@@ -3260,6 +3557,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         threat_status_value: rdflib.URIRef,
         authority_attribute: rdflib.URIRef,
         determined_by: rdflib.URIRef,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Threat Status Observation to the Graph
@@ -3278,6 +3576,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 Attribute associated with this node
             determined_by (rdflib.URIRef): Determined By Provider associated
                 with this node
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
+                id to default temporal entity as rdf.
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -3311,25 +3611,40 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
         graph.add((uri, rdflib.PROV.wasInfluencedBy, authority_attribute))
         graph.add((uri, rdflib.SOSA.usedProcedure, term))
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, date_determined.rdf_in_xsd, date_determined.to_rdf_literal()))
 
-        # Check for threatStatusDeterminedBy
-        if row["threatStatusDeterminedBy"]:
-            # Add wasAssociatedWith
-            graph.add((uri, rdflib.PROV.wasAssociatedWith, determined_by))
-
-        # Check for threatStatusDateDetermined
-        if not row["threatStatusDateDetermined"]:
-            # Determine Used Date Column
-            date_used = (
-                "dateIdentified" if row["dateIdentified"] else "preparedDate" if row["preparedDate"] else "eventDate"
+        # Check date provided within template
+        if date_determined is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, date_determined.rdf_in_xsd, date_determined.to_rdf_literal()))
+            # Check for threatStatusDeterminedBy
+            if row["threatStatusDeterminedBy"]:
+                # Add wasAssociatedWith
+                graph.add((uri, rdflib.PROV.wasAssociatedWith, determined_by))
+            # Check for threatStatusDateDetermined
+            if not row["threatStatusDateDetermined"]:
+                # Determine Used Date Column
+                date_used = (
+                    "dateIdentified"
+                    if row["dateIdentified"]
+                    else "preparedDate"
+                    if row["preparedDate"]
+                    else "eventDate"
+                )
+                # Add comment to temporal entity
+                comment = f"Date unknown, template {date_used} used as proxy"
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
             )
-
             # Add comment to temporal entity
-            comment = f"Date unknown, template {date_used} used as proxy"
+            comment = "Date unknown, site visit dates used as proxy."
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_threat_status_value(
@@ -3433,6 +3748,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         row: frictionless.Row,
+        site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds observation organism quantity to the graph.
@@ -3442,6 +3758,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset which data belongs.
             sample_field (rdflib.URIRef): URI for the sample field node.
             row (frictionless.Row): Row to retrieve data from.
+            site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
+                id to default temporal entity as rdf.
             graph (rdflib.Graph): Graph to be modified.
         """
         # Extract values
@@ -3462,11 +3780,27 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("organismQuantity-observation")))
         graph.add((uri, rdflib.SOSA.observedProperty, utils.namespaces.DWC.organismQuantity))
 
-        # Add event date(time)
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+        # Check eventDate provided
+        if event_date is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((temporal_entity, a, rdflib.TIME.Instant))
+            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+            # Add comment to temporal entity
+            graph.add(
+                (temporal_entity, rdflib.RDFS.comment, rdflib.Literal("Date unknown, template eventDate used as proxy"))
+            )
+        else:
+            # Use default rdf from site visit as temporal entity
+            temporal_entity = self.add_default_temporal_entity(
+                uri=uri,
+                site_visit_id_temporal_map=site_visit_id_temporal_map,
+                row=row,
+                graph=graph,
+            )
+            # Add comment to temporal entity
+            comment = "Date unknown, site visit dates used as proxy."
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add Human observation as proxy for observation method
         human_observation = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157")
@@ -3482,11 +3816,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 rdflib.RDFS.comment,
                 rdflib.Literal("Observation method unknown, 'human observation' used as proxy"),
             )
-        )
-
-        # Add comment to temporal entity
-        graph.add(
-            (temporal_entity, rdflib.RDFS.comment, rdflib.Literal("Date unknown, template eventDate used as proxy"))
         )
 
     def add_organism_quantity_value(
