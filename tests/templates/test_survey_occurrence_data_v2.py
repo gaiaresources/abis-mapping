@@ -10,6 +10,7 @@ import attrs
 import pandas as pd
 import pytest
 import pytest_mock
+import rdflib
 
 # Local
 from abis_mapping import base
@@ -21,7 +22,11 @@ from tests import conftest
 from typing import Iterable
 
 
+# Alias mapper
 Mapper = abis_mapping.templates.survey_occurrence_data_v2.mapping.SurveyOccurrenceMapper
+
+# Convenient shortcut
+a = rdflib.RDF.type
 
 @pytest.fixture
 def mapper() -> Iterable[Mapper]:
@@ -391,4 +396,36 @@ class TestDefaultTemporalMap:
         if not report.valid:
             error_codes = [code for codes in report.flatten(["type"]) for code in codes]
             assert set(error_codes) == scenario.expected_error_codes
+
+    def test_apply_mapping(self, mapper: Mapper) -> None:
+        """Tests the `apply_mapping` method with supplied default map.
+
+        Args:
+            mapper (Mapper): Mapper instance fixture.
+        """
+        # Build a dataframe from an existing csv
+        df: pd.DataFrame = pd.read_csv("abis_mapping/templates/survey_occurrence_data_v2/examples/organism_qty.csv")
+
+        # Set first row site_visit_id to test value and nullify event date
+        df["siteVisitID"] = df["siteVisitID"].astype(str)
+        df.loc[0, "siteVisitID"] = "SV1"
+        df.loc[0, "eventDate"] = pd.NA
+
+        # Create a default temporal map.
+        temp_g = rdflib.Graph()
+        top_node = rdflib.BNode()
+        ftn = rdflib.URIRef("http://example.com/FakeTestNode")
+        temp_g.add((top_node, a, rdflib.TIME.TemporalEntity))
+        temp_g.add((top_node, a, ftn))
+        site_visit_id_temporal_map = {"SV1": temp_g.serialize()}
+
+        # Invoke
+        graphs = mapper.apply_mapping(
+            data=df.to_csv(index=False).encode("utf-8"),
+            site_visit_id_temporal_map=site_visit_id_temporal_map,
+        )
+        res_g = next(graphs)
+        # Ensure temporal entity added to graph
+        assert next(res_g.subjects(a, ftn)) is not None
+
 
