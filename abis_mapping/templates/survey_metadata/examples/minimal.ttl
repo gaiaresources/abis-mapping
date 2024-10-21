@@ -69,8 +69,7 @@
     schema:name "NSW Department of Planning, Industry and Environment" .
 
 <http://createme.org/bdr-cv/attribute/samplingEffortUnit/trapDays> a skos:Concept ;
-    skos:broader <http://example.com/bdr-cv/concept/samplingEffortUnit> ;
-    skos:definition "A type of samplingEffortUnit" ;
+    skos:definition "In conjunction with the sampling effort value, the sampling effort unit gives an indication of the effort applied to the specified protocol." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "trapDays" ;
     schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI .
