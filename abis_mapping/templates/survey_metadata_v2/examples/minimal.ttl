@@ -142,12 +142,12 @@
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))"^^geo:wktLiteral ] ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral ] ;
     rdf:object _:N3ef3a82dbea244cc8b716f7bfb8328af ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/survey/SSD-Survey/1> ;
     rdfs:comment "supplied as" .
 
 _:N3ef3a82dbea244cc8b716f7bfb8328af a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))"^^geo:wktLiteral .
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral .
 

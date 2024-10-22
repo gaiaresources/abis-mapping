@@ -8,6 +8,7 @@ import re
 # Third-party
 import shapely
 import shapely.ops
+import numpy as np
 import pyproj
 import rdflib
 
@@ -42,6 +43,11 @@ class Geometry:
         datum: str,
     ) -> None:
         """Constructor for a Geometry object.
+
+        All internal geometries are created and stored in long-lat format
+        until geosparql wkt string representations are made which will
+        produce lat-long representations of coordinates if a datum is
+        provided.
 
         Args:
             raw (LatLong | str | shapely.Geometry): Input geometry
@@ -152,10 +158,22 @@ class Geometry:
         if match is None:
             raise ValueError(f"supplied literal '{literal}' is not GeoSPARQL WKT format.")
 
+        # Attempt to make shapely geometry and catch errors
+        try:
+            raw = shapely.from_wkt(match.group(2))
+        except shapely.errors.ShapelyError as exc:
+            raise GeometryError from exc
+
+        # Check to see if datum provided
+        if datum := match.group(1):
+            # Flip the coordinates from lat-long to long-lat
+            # Note: Assumption is that the datum provided is of lat-long orientation.
+            raw = _swap_coordinates(raw)
+
         # Create and return Geometry object
         return Geometry(
-            raw=match.group(2),
-            datum=match.group(1) or "WGS84",
+            raw=raw,
+            datum=datum or "WGS84",
         )
 
     def to_rdf_literal(self) -> rdflib.Literal:
@@ -167,11 +185,17 @@ class Geometry:
         # Construct Datum URI to be Embedded
         datum_string = f"<{self.original_datum_uri}> " if self.original_datum_uri is not None else ""
 
+        # Manipulate geometry coordinates to suit datum string as per geosparql
+        # literal requirements. Note: It is assumed all geodetic datums supplied are of
+        # the lat-long orientation and not the default WKT representation of long-lat.
+        geometry = _swap_coordinates(self._geometry) if datum_string else self._geometry
+
         # Construct  and return rdf literal
         wkt_string = shapely.to_wkt(
-            geometry=self._geometry,
+            geometry=geometry,
             rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION,
         )
+
         return rdflib.Literal(
             lexical_or_value=datum_string + wkt_string,
             datatype=namespaces.GEO.wktLiteral,
@@ -186,15 +210,45 @@ class Geometry:
         # Construct Datum URI to be embedded
         datum_string = f"<{self.transformer_datum_uri}> " if self.transformer_datum_uri is not None else ""
 
+        # Manipulate geometry coordinates to suit datum string as per geosparql
+        # literal requirements. Note: It is assumed all geodetic datums supplied are of
+        # the lat-long orientation and not the default WKT representation of long-lat.
+        geometry = _swap_coordinates(self._transformed_geometry) if datum_string else self._transformed_geometry
+
         # Construct and return rdf literal
         wkt_string = shapely.to_wkt(
-            geometry=self._transformed_geometry,
+            geometry=geometry,
             rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION,
         )
         return rdflib.Literal(
             lexical_or_value=datum_string + wkt_string,
             datatype=namespaces.GEO.wktLiteral,
         )
+
+
+def _swap_coordinates(original: shapely.Geometry) -> shapely.Geometry:
+    """Swaps x,y coordinates to y,x.
+
+    Args:
+        original (shapely.Geometry): Original geometry
+            with coords (x, y)
+
+    Returns:
+        shapely.Geometry: All coords now (y, x)
+
+    Raises:
+        GeometryError: If supplied original geometry is not
+            2 dimensional.
+    """
+    # Check original is 2D
+    if shapely.get_coordinate_dimension(original) != 2:
+        raise GeometryError("Coordinate swapping is only supported for 2D geometries.")
+
+    # Perform flip on coords
+    txd = shapely.transform(original, np.fliplr)
+
+    # Return transformed geometry
+    return txd
 
 
 class GeometryError(BaseException):
