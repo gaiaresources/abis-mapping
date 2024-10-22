@@ -279,22 +279,14 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{row_num}", base_iri)
         id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{row_num}", base_iri)
         id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{row_num}", base_iri)
-        data_generalizations_attribute = utils.rdf.uri(f"attribute/dataGeneralizations/{row_num}", base_iri)
-        data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{row_num}", base_iri)
         taxon_rank_attribute = utils.rdf.uri(f"attribute/taxonRank/{row_num}", base_iri)
         taxon_rank_value = utils.rdf.uri(f"value/taxonRank/{row_num}", base_iri)
         individual_count_observation = utils.rdf.uri(f"observation/individualCount/{row_num}", base_iri)
         individual_count_value = utils.rdf.uri(f"value/individualCount/{row_num}", base_iri)
         organism_remarks_observation = utils.rdf.uri(f"observation/organismRemarks/{row_num}", base_iri)
         organism_remarks_value = utils.rdf.uri(f"value/organismRemarks/{row_num}", base_iri)
-        habitat_attribute = utils.rdf.uri(f"attribute/habitat/{row_num}", base_iri)
-        habitat_value = utils.rdf.uri(f"value/habitat/{row_num}", base_iri)
-        basis_attribute = utils.rdf.uri(f"attribute/basisOfRecord/{row_num}", base_iri)
-        basis_value = utils.rdf.uri(f"value/basisOfRecord/{row_num}", base_iri)
         occurrence_status_observation = utils.rdf.uri(f"observation/occurrenceStatus/{row_num}", base_iri)
         occurrence_status_value = utils.rdf.uri(f"value/occurrenceStatus/{row_num}", base_iri)
-        preparations_attribute = utils.rdf.uri(f"attribute/preparations/{row_num}", base_iri)
-        preparations_value = utils.rdf.uri(f"value/preparations/{row_num}", base_iri)
         establishment_means_observation = utils.rdf.uri(f"observation/establishmentMeans/{row_num}", base_iri)
         establishment_means_value = utils.rdf.uri(f"value/establishmentMeans/{row_num}", base_iri)
         life_stage_observation = utils.rdf.uri(f"observation/lifeStage/{row_num}", base_iri)
@@ -336,6 +328,32 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             owner_record_id_provider = None
             owner_record_id_attribution = None
 
+        # Conditionally create uris dependant of dataGeneralizations field
+        if data_generalizations := row["dataGeneralizations"]:
+            data_generalizations_attribute = utils.rdf.uri(
+                f"attribute/dataGeneralizations/{data_generalizations}", base_iri
+            )
+            data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{data_generalizations}", base_iri)
+            data_generalizations_sample_collection = utils.rdf.extend_uri(
+                dataset, "OccurrenceCollection", "dataGeneralizations", data_generalizations
+            )
+        else:
+            data_generalizations_attribute = None
+            data_generalizations_value = None
+            data_generalizations_sample_collection = None
+
+        # Conditionally create uris dependant of basisOfRecord field
+        if basis_of_record := row["basisOfRecord"]:
+            basis_attribute = utils.rdf.uri(f"attribute/basisOfRecord/{basis_of_record}", base_iri)
+            basis_value = utils.rdf.uri(f"value/basisOfRecord/{basis_of_record}", base_iri)
+            basis_sample_collection = utils.rdf.extend_uri(
+                dataset, "OccurrenceCollection", "basisOfRecord", basis_of_record
+            )
+        else:
+            basis_attribute = None
+            basis_value = None
+            basis_sample_collection = None
+
         # Conditionally create uri's dependent on recordedBy field.
         if recorded_by := row["recordedBy"]:
             record_number_datatype = utils.rdf.uri(f"datatype/recordNumber/{recorded_by}", base_iri)
@@ -343,6 +361,16 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         else:
             record_number_datatype = None
             provider_recorded_by = None
+
+        # Conditionally create uri's dependent on habitat field.
+        if habitat := row["habitat"]:
+            habitat_attribute = utils.rdf.uri(f"attribute/habitat/{habitat}", base_iri)
+            habitat_value = utils.rdf.uri(f"value/habitat/{habitat}", base_iri)
+            habitat_sample_collection = utils.rdf.extend_uri(dataset, "OccurrenceCollection", "habitat", habitat)
+        else:
+            habitat_attribute = None
+            habitat_value = None
+            habitat_sample_collection = None
 
         # Conditionally create uris dependent on catalogNumberSource field.
         if catalog_number_source := row["catalogNumberSource"]:
@@ -362,6 +390,18 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         else:
             other_catalog_numbers_datatype = None
             other_catalog_numbers_provider = None
+
+        # Conditionally create uris dependent on preparations field
+        if preparations := row["preparations"]:
+            preparations_attribute = utils.rdf.uri(f"attribute/preparations/{preparations}", base_iri)
+            preparations_value = utils.rdf.uri(f"value/preparations/{preparations}", base_iri)
+            preparations_sample_collection = utils.rdf.extend_uri(
+                dataset, "OccurrenceCollection", "preparations", preparations
+            )
+        else:
+            preparations_attribute = None
+            preparations_value = None
+            preparations_sample_collection = None
 
         # Add Provider Identified By
         self.add_provider_identified(
@@ -430,9 +470,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             provider=provider_recorded_by,
             feature_of_interest=terminal_foi,
             sample_field=sample_field,
-            generalizations=data_generalizations_attribute,
-            habitat=habitat_attribute,
-            basis=basis_attribute,
             graph=graph,
         )
 
@@ -466,7 +503,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             sampling_specimen=sampling_specimen,
             sample_field=sample_field,
-            preparations=preparations_attribute,
             catalog_number_datatype=catalog_number_datatype,
             graph=graph,
         )
@@ -508,8 +544,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             sample_field=sample_field,
             sample_specimen=sample_specimen,
-            generalizations=data_generalizations_attribute,
-            basis=basis_attribute,
             graph=graph,
         )
 
@@ -591,7 +625,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add Data Generalizations Attribute
         self.add_data_generalizations_attribute(
             uri=data_generalizations_attribute,
-            row=row,
+            data_generalizations=data_generalizations,
             dataset=dataset,
             data_generalizations_value=data_generalizations_value,
             graph=graph,
@@ -600,7 +634,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add Data Generalizations Value
         self.add_data_generalizations_value(
             uri=data_generalizations_value,
-            row=row,
+            data_generalizations=data_generalizations,
+            graph=graph,
+        )
+
+        # Add Data Generalizations Sample Collection
+        self.add_data_generalizations_sample_collection(
+            uri=data_generalizations_sample_collection,
+            data_generalizations=data_generalizations,
+            data_generalizations_attribute=data_generalizations_attribute,
+            sample_field=sample_field,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -658,7 +702,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add Habitat Attribute
         self.add_habitat_attribute(
             uri=habitat_attribute,
-            row=row,
+            habitat=habitat,
             dataset=dataset,
             habitat_value=habitat_value,
             graph=graph,
@@ -667,14 +711,25 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add Habitat Value
         self.add_habitat_value(
             uri=habitat_value,
-            row=row,
+            habitat=habitat,
+            dataset=dataset,
+            graph=graph,
+        )
+
+        # Add habitat attribute sample collection
+        self.add_habitat_sample_collection(
+            uri=habitat_sample_collection,
+            habitat=habitat,
+            habitat_attribute=habitat_attribute,
+            sample_field=sample_field,
+            dataset=dataset,
             graph=graph,
         )
 
         # Add Basis of Record Attribute
         self.add_basis_attribute(
             uri=basis_attribute,
-            row=row,
+            basis_of_record=basis_of_record,
             dataset=dataset,
             basis_value=basis_value,
             graph=graph,
@@ -683,6 +738,18 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add Basis of Record Value
         self.add_basis_value(
             uri=basis_value,
+            basis_of_record=basis_of_record,
+            dataset=dataset,
+            graph=graph,
+        )
+
+        # Add Basis of Record Sample Collection
+        self.add_basis_sample_collection(
+            uri=basis_sample_collection,
+            basis_of_record=basis_of_record,
+            basis_attribute=basis_attribute,
+            sample_specimen=sample_specimen,
+            sample_field=sample_field,
             row=row,
             dataset=dataset,
             graph=graph,
@@ -723,7 +790,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add Preparations Attribute
         self.add_preparations_attribute(
             uri=preparations_attribute,
-            row=row,
+            preparations=preparations,
             dataset=dataset,
             preparations_value=preparations_value,
             graph=graph,
@@ -732,7 +799,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add Preparations Value
         self.add_preparations_value(
             uri=preparations_value,
-            row=row,
+            preparations=preparations,
+            dataset=dataset,
+            graph=graph,
+        )
+
+        # Add Preparations attribute Sample Collection
+        self.add_preparations_sample_collection(
+            uri=preparations_sample_collection,
+            preparations=preparations,
+            preparations_attribute=preparations_attribute,
+            sample_specimen=sample_specimen,
             dataset=dataset,
             graph=graph,
         )
@@ -1233,9 +1310,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         provider: rdflib.URIRef | None,
         feature_of_interest: rdflib.URIRef,
         sample_field: rdflib.URIRef,
-        generalizations: rdflib.URIRef,
-        habitat: rdflib.URIRef,
-        basis: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Field to the Graph
@@ -1251,10 +1325,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 with this node.
             sample_field (rdflib.URIRef): Sample Field associated with this
                 node
-            generalizations (rdflib.URIRef): Data Generalizations associated
-                with this node
-            habitat (rdflib.URIRef): Habitat associated with this node
-            basis (rdflib.URIRef): Basis Of Record associated with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Extract values from row
@@ -1325,21 +1395,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             # Add Spatial Accuracy
             accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
             graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
-
-        # Check for dataGeneralizations
-        if row["dataGeneralizations"]:
-            # Add Data Generalizations Attribute
-            graph.add((uri, utils.namespaces.TERN.hasAttribute, generalizations))
-
-        # Check for habitat
-        if row["habitat"]:
-            # Add Habitat Attribute
-            graph.add((uri, utils.namespaces.TERN.hasAttribute, habitat))
-
-        # Check for basisOfRecord and if Row has no Specimen
-        if not has_specimen(row) and row["basisOfRecord"]:
-            # Add Basis Of Record Attribute
-            graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
 
     def add_provider_record_id_agent(
         self,
@@ -1581,8 +1636,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sample_field: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
-        generalizations: rdflib.URIRef,
-        basis: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sampling Specimen to the Graph
@@ -1595,9 +1648,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
-            generalizations (rdflib.URIRef): Data Generalizations associated
-                with this node
-            basis (rdflib.URIRef): Basis Of Record associated with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Check if Row has a Specimen
@@ -1653,16 +1703,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             # Add Spatial Accuracy
             accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
             graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
-
-        # Check for dataGeneralizations
-        if row["dataGeneralizations"]:
-            # Add Data Generalizations Attribute
-            graph.add((uri, utils.namespaces.TERN.hasAttribute, generalizations))
-
-        # Check for basisOfRecord and if Row has a Specimen
-        if has_specimen(row) and row["basisOfRecord"]:
-            # Add Basis Of Record Attribute
-            graph.add((uri, utils.namespaces.TERN.hasAttribute, basis))
 
     def add_text_verbatim_id(
         self,
@@ -1812,7 +1852,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sampling_specimen: rdflib.URIRef,
         sample_field: rdflib.URIRef,
-        preparations: rdflib.URIRef,
         catalog_number_datatype: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
@@ -1826,8 +1865,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 with this node
             sample_field (rdflib.URIRef): Sample Field associated with this
                 node
-            preparations (rdflib.URIRef): Preparations Attribute associated
-                with this node
             catalog_number_datatype (rdflib.URIRef): Catalog number source
                 datatype.
             graph (rdflib.Graph): Graph to add to
@@ -1867,61 +1904,100 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             # Add to Graph
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
-        # Check for preparations
-        if row["preparations"]:
-            # Add Preparations
-            graph.add((uri, utils.namespaces.TERN.hasAttribute, preparations))
-
     def add_data_generalizations_attribute(
         self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
+        uri: rdflib.URIRef | None,
+        data_generalizations: str | None,
         dataset: rdflib.URIRef,
-        data_generalizations_value: rdflib.URIRef,
+        data_generalizations_value: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Data Generalizations Attribute to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            data_generalizations_value (rdflib.URIRef): Data Generalizations
-                Value associated with this node
-            graph (rdflib.Graph): Graph to add to
+            uri: URI to use for this node.
+            data_generalizations: dataGeneralizations value from the CSV
+            dataset: Dataset this belongs to
+            data_generalizations_value: Data Generalizations Value associated with this node
+            graph: Graph to add to
         """
         # Check Existence
-        if not row["dataGeneralizations"]:
+        if uri is None:
             return
 
         # Data Generalizations Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_DATA_GENERALIZATIONS))
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["dataGeneralizations"])))
-        graph.add((uri, utils.namespaces.TERN.hasValue, data_generalizations_value))
+        if data_generalizations:
+            graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(data_generalizations)))
+        if data_generalizations_value is not None:
+            graph.add((uri, utils.namespaces.TERN.hasValue, data_generalizations_value))
 
     def add_data_generalizations_value(
         self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
+        uri: rdflib.URIRef | None,
+        data_generalizations: str | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Data Generalizations Value to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node
-            row (frictionless.Row): Row to retrieve data from
+            data_generalizations: dataGeneralizations value from the CSV
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if not row["dataGeneralizations"]:
+        if uri is None:
             return
 
         # Data Generalizations Value
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
-        graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["dataGeneralizations"])))
+        graph.add((uri, rdflib.RDF.value, rdflib.Literal(data_generalizations)))
+
+    def add_data_generalizations_sample_collection(
+        self,
+        uri: rdflib.URIRef | None,
+        data_generalizations: str | None,
+        data_generalizations_attribute: rdflib.URIRef | None,
+        sample_field: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add a data generalizations attribute Sample Collection to the graph
+
+        Args:
+            uri: The uri for the SampleCollection.
+            data_generalizations: dataGeneralizations value from template.
+            data_generalizations_attribute: The uri for the attribute node.
+            sample_field: The sample field node that should be a member of the collection.
+            dataset: The uri for the dateset node.
+            graph: The graph.
+        """
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.SampleCollection))
+        # Add identifier
+        if data_generalizations:
+            graph.add(
+                (
+                    uri,
+                    rdflib.SDO.identifier,
+                    rdflib.Literal(
+                        f"Occurrence Collection - Data Generalizations - {data_generalizations}",
+                    ),
+                )
+            )
+        # Add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        # add link to the sample field
+        graph.add((uri, rdflib.SOSA.hasMember, sample_field))
+        # Add link to attribute
+        if data_generalizations_attribute:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, data_generalizations_attribute))
 
     def add_taxon_rank_attribute(
         self,
@@ -2136,115 +2212,215 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
     def add_habitat_attribute(
         self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
+        uri: rdflib.URIRef | None,
+        habitat: str | None,
         dataset: rdflib.URIRef,
-        habitat_value: rdflib.URIRef,
+        habitat_value: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Habitat Attribute to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            habitat_value (rdflib.URIRef): Habitat Value associated with this
-                node
-            graph (rdflib.Graph): Graph to add to
+            uri: URI to use for this node.
+            habitat: Raw habitat from CSV.
+            dataset: Dataset this belongs to
+            habitat_value: Habitat Value associated with this node
+            graph: Graph to add to
         """
         # Check Existence
-        if not row["habitat"]:
+        if uri is None:
             return
 
         # Habitat Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_HABITAT))
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["habitat"])))
-        graph.add((uri, utils.namespaces.TERN.hasValue, habitat_value))
+        if habitat:
+            graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(habitat)))
+        if habitat_value is not None:
+            graph.add((uri, utils.namespaces.TERN.hasValue, habitat_value))
 
     def add_habitat_value(
         self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
+        uri: rdflib.URIRef | None,
+        habitat: str | None,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Habitat Value to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node
-            row (frictionless.Row): Row to retrieve data from
-            graph (rdflib.Graph): Graph to add to
+            uri: URI to use for this node
+            habitat: Habitat from the CSV
+            dataset: Dataset this belongs to
+            graph: Graph to add to
         """
         # Check Existence
-        if not row["habitat"]:
+        if uri is None:
             return
 
         # Habitat Value
-        graph.add((uri, a, utils.namespaces.TERN.Text))
+        graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("habitat")))
-        graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["habitat"])))
+        if habitat:
+            # Add label
+            graph.add((uri, rdflib.RDFS.label, rdflib.Literal(habitat)))
+
+            # Retrieve vocab for field
+            vocab = self.fields()["habitat"].get_vocab()
+            # Retrieve term or Create on the Fly
+            term = vocab(graph=graph, source=dataset).get(habitat)
+            # Add value
+            graph.add((uri, rdflib.RDF.value, term))
+
+    def add_habitat_sample_collection(
+        self,
+        uri: rdflib.URIRef | None,
+        habitat: str | None,
+        habitat_attribute: rdflib.URIRef | None,
+        sample_field: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add a habitat attribute Sample Collection to the graph
+
+        Args:
+            uri: The uri for the SampleCollection.
+            habitat: Habitat value from template.
+            habitat_attribute: The uri for the attribute node.
+            sample_field: The sample field node that should be a member of the collection.
+            dataset: The uri for the dateset node.
+            graph: The graph.
+        """
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.SampleCollection))
+        # Add identifier
+        if habitat:
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(f"Occurrence Collection - Habitat - {habitat}")))
+        # Add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        # add link to the sample field
+        graph.add((uri, rdflib.SOSA.hasMember, sample_field))
+        # Add link to attribute
+        if habitat_attribute:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, habitat_attribute))
 
     def add_basis_attribute(
         self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
+        uri: rdflib.URIRef | None,
+        basis_of_record: str | None,
         dataset: rdflib.URIRef,
-        basis_value: rdflib.URIRef,
+        basis_value: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Basis of Record Attribute to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            basis_value (rdflib.URIRef): Basis of Record Value associated with
-                this node
+            uri: URI to use for this node.
+            basis_of_record: basisOfRecord value from the CSV
+            dataset: Dataset this belongs to
+            basis_value: Basis of Record Value associated with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if not row["basisOfRecord"]:
+        if uri is None:
             return
 
         # Basis of Record Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_BASIS_OF_RECORD))
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["basisOfRecord"])))
-        graph.add((uri, utils.namespaces.TERN.hasValue, basis_value))
+        if basis_of_record:
+            graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(basis_of_record)))
+        if basis_value:
+            graph.add((uri, utils.namespaces.TERN.hasValue, basis_value))
 
     def add_basis_value(
         self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
+        uri: rdflib.URIRef | None,
+        basis_of_record: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Basis of Record Value to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            graph (rdflib.Graph): Graph to add to
+            uri: URI to use for this node
+            basis_of_record: basisOfRecord value from the CSV
+            dataset: Dataset this belongs to
+            graph: Graph to add to
         """
         # Check Existence
-        if not row["basisOfRecord"]:
+        if uri is None:
             return
-
-        # Retrieve vocab for field
-        vocab = self.fields()["basisOfRecord"].get_vocab()
-
-        # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["basisOfRecord"])
 
         # Basis of Record Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("basisOfRecord")))
-        graph.add((uri, rdflib.RDF.value, term))
+        if basis_of_record:
+            # Add label
+            graph.add((uri, rdflib.RDFS.label, rdflib.Literal(basis_of_record)))
+
+            # Retrieve vocab for field
+            vocab = self.fields()["basisOfRecord"].get_vocab()
+            # Retrieve term or Create on the Fly
+            term = vocab(graph=graph, source=dataset).get(basis_of_record)
+            # Add value
+            graph.add((uri, rdflib.RDF.value, term))
+
+    def add_basis_sample_collection(
+        self,
+        uri: rdflib.URIRef | None,
+        basis_of_record: str | None,
+        basis_attribute: rdflib.URIRef | None,
+        sample_specimen: rdflib.URIRef,
+        sample_field: rdflib.URIRef,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add a basisOfRecord attribute Sample Collection to the graph
+
+        Either the sample_specimen node or the sample_field node should be a member
+        of this collection, depending on if the row has a specimen.
+
+        Args:
+            uri: The uri for the SampleCollection.
+            basis_of_record: basisOfRecord value from template.
+            basis_attribute: The uri for the attribute node.
+            sample_specimen: The sample specimen node.
+            sample_field: The sample field node that.
+            row: The CSV row.
+            dataset: The uri for the dateset node.
+            graph: The graph.
+        """
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.SampleCollection))
+        # Add identifier
+        if basis_of_record:
+            graph.add(
+                (
+                    uri,
+                    rdflib.SDO.identifier,
+                    rdflib.Literal(f"Occurrence Collection - Basis Of Record - {basis_of_record}"),
+                )
+            )
+        # Add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        # add link to the appropriate sample node
+        if has_specimen(row):
+            graph.add((uri, rdflib.SOSA.hasMember, sample_specimen))
+        else:
+            graph.add((uri, rdflib.SOSA.hasMember, sample_field))
+        # Add link to attribute
+        if basis_attribute:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, basis_attribute))
 
     def add_owner_institution_provider(
         self,
@@ -2368,63 +2544,107 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
     def add_preparations_attribute(
         self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
+        uri: rdflib.URIRef | None,
+        preparations: str | None,
         dataset: rdflib.URIRef,
-        preparations_value: rdflib.URIRef,
+        preparations_value: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Preparations Attribute to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            preparations_value (rdflib.URIRef): Preparations Value associated
-                with this node
-            graph (rdflib.Graph): Graph to add to
+            uri: URI to use for this node.
+            preparations: preparations value from the CSV
+            dataset: Dataset this belongs to
+            preparations_value: Preparations Value associated with this node
+            graph: Graph to add to
         """
         # Check Existence
-        if not row["preparations"]:
+        if uri is None:
             return
 
         # Preparations Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_PREPARATIONS))
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row["preparations"])))
-        graph.add((uri, utils.namespaces.TERN.hasValue, preparations_value))
+        if preparations:
+            graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(preparations)))
+        if preparations_value:
+            graph.add((uri, utils.namespaces.TERN.hasValue, preparations_value))
 
     def add_preparations_value(
         self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
+        uri: rdflib.URIRef | None,
+        preparations: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Preparations Value to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            graph (rdflib.Graph): Graph to add to
+            uri: URI to use for this node
+            preparations: preparations value from the CSV
+            dataset: Dataset this belongs to
+            graph: Graph to add to
         """
         # Check Existence
-        if not row["preparations"]:
+        if uri is None:
             return
-
-        # Retrieve vocab for field
-        vocab = self.fields()["preparations"].get_vocab()
-
-        # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["preparations"])
 
         # Preparations Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("preparations")))
-        graph.add((uri, rdflib.RDF.value, term))
+        if preparations:
+            # Add label
+            graph.add((uri, rdflib.RDFS.label, rdflib.Literal(preparations)))
+
+            # Retrieve vocab for field
+            vocab = self.fields()["preparations"].get_vocab()
+            # Retrieve term or Create on the Fly
+            term = vocab(graph=graph, source=dataset).get(preparations)
+            # Add value
+            graph.add((uri, rdflib.RDF.value, term))
+
+    def add_preparations_sample_collection(
+        self,
+        uri: rdflib.URIRef | None,
+        preparations: str | None,
+        preparations_attribute: rdflib.URIRef | None,
+        sample_specimen: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add a preparations attribute Sample Collection to the graph
+
+        Args:
+            uri: The uri for the SampleCollection.
+            preparations: preparations value from template.
+            preparations_attribute: The uri for the attribute node.
+            sample_specimen: The sample specimen node that should be a member of the collection.
+            dataset: The uri for the dateset node.
+            graph: The graph.
+        """
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.SampleCollection))
+        # Add identifier
+        if preparations:
+            graph.add(
+                (
+                    uri,
+                    rdflib.SDO.identifier,
+                    rdflib.Literal(f"Occurrence Collection - Preparations - {preparations}"),
+                )
+            )
+        # Add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        # add link to the sample_specimen node
+        graph.add((uri, rdflib.SOSA.hasMember, sample_specimen))
+        # Add link to attribute
+        if preparations_attribute:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, preparations_attribute))
 
     def add_establishment_means_observation(
         self,
