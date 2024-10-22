@@ -69,9 +69,9 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
     expected = {
         "site1": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (2.5 2.5)",
         "site2": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (2.5 2.5)",
-        "site3": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (10 20)",
-        "site7": "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (10 20)",
-        "site8": "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (11 21)",
+        "site3": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (20 10)",
+        "site7": "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (20 10)",
+        "site8": "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (21 11)",
     }
     # Invoke method
     actual = mapper.extract_geometry_defaults(csv_data)

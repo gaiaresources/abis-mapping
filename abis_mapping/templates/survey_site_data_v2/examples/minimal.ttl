@@ -92,7 +92,7 @@
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (114.99 -33.85, 115 -33.85)"^^geo:wktLiteral ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N6800c627487c4a8c9a62f59a799545be ;
     rdf:predicate geo:hasGeometry ;
@@ -101,7 +101,7 @@
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON ((114.98 -33.85, 115.01 -33.85, 115.01 -33.87, 114.98 -33.87, 114.98 -33.85))"^^geo:wktLiteral ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON ((-33.85 114.98, -33.85 115.01, -33.87 115.01, -33.87 114.98, -33.85 114.98))"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N2952b6066f2b4cebb9b4a50d41ebb8ea ;
     rdf:predicate geo:hasGeometry ;
@@ -110,7 +110,7 @@
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (114.99 -33.85)"^^geo:wktLiteral ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.85 114.99)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N1c3ebed8bb624c9ba69063ad0c274e88 ;
     rdf:predicate geo:hasGeometry ;
@@ -118,14 +118,14 @@
     rdfs:comment "supplied as" .
 
 _:N1c3ebed8bb624c9ba69063ad0c274e88 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (114.99 -33.85)"^^geo:wktLiteral ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
 _:N2952b6066f2b4cebb9b4a50d41ebb8ea a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((114.98 -33.85, 115.01 -33.85, 115.01 -33.87, 114.98 -33.87, 114.98 -33.85))"^^geo:wktLiteral ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.85 114.98, -33.85 115.01, -33.87 115.01, -33.87 114.98, -33.85 114.98))"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
 _:N6800c627487c4a8c9a62f59a799545be a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (114.99 -33.85, 115 -33.85)"^^geo:wktLiteral ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
