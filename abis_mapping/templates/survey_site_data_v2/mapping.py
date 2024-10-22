@@ -328,8 +328,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             uri=site,
             dataset=dataset,
             site_id_datatype=site_id_datatype,
-            habitat_attributes=[h.attribute for h in habitat_objects],
-            data_generalizations_attribute=data_generalizations_attribute,
             row=row,
             graph=graph,
         )
@@ -436,8 +434,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
         site_id_datatype: rdflib.URIRef | None,
-        habitat_attributes: list[rdflib.URIRef],
-        data_generalizations_attribute: rdflib.URIRef | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
@@ -448,10 +444,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
            dataset (rdflib.URIRef): Dataset to which data belongs.
            site_id_datatype (rdflib.URIRef | None): Datatype to use for
                 the site id literal.
-           habitat_attributes (list[rdflib.URIRef]): List of habitat attribute
-                iris.
-           data_generalizations_attribute (rdflib.URIRef | None): Data generalization
-                the site corresponds.
            row (frictionless.Row): Row to retrieve data from.
            graph (rdflib.Graph): Graph to be modified.
         """
@@ -467,10 +459,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Add dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
-
-        # Add habitat attributes
-        for habitat_attribute in habitat_attributes:
-            graph.add((uri, utils.namespaces.TERN.attribute, habitat_attribute))
 
         # Add siteID
         dt = site_id_datatype if site_id_datatype is not None else rdflib.XSD.string
@@ -518,10 +506,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add site description if available
         if site_description:
             graph.add((uri, rdflib.SDO.description, rdflib.Literal(site_description)))
-
-        # Add data generalizations attribute if available
-        if data_generalizations_attribute is not None:
-            graph.add((uri, utils.namespaces.TERN.attribute, data_generalizations_attribute))
 
         # Add sample of
         graph.add((uri, rdflib.SOSA.isSampleOf, LOCATION_AUSTRALIA))
