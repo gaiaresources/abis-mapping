@@ -94,7 +94,11 @@ class VocabTabler(tables.base.BaseTabler):
         """
         # Retrieve publishable vocabs for field
         vocabs = (utils.vocabs.get_vocab(v) for v in field.vocabularies)
-        publishable_vocabs = (v for v in vocabs if v.publish)
+        publishable_vocabs = [v for v in vocabs if v.publish]
+
+        # If no publishable vocabs then no rows
+        if not publishable_vocabs:
+            return
 
         # Map terms based on their preferred label
         grouped_terms = (v.terms for v in publishable_vocabs)

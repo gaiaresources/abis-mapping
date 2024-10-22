@@ -65,6 +65,22 @@ def test_generate_table_markdown(
     )
 
 
+def test_generate_table_unpublishable_vocab(
+    mocked_mapper: unittest.mock.MagicMock, mocked_vocab: unittest.mock.MagicMock, mocker: pytest_mock.MockerFixture
+) -> None:
+    """Makes sure row does not get created from an unpublishable vocab."""
+    #
+    mocked_vocab.return_value.publish = False
+    # Create a tabler
+    tabler = tables.vocabs.VocabTabler("some_id", format="markdown")
+
+    # Invoke
+    actual = tabler.generate_table()
+
+    # Assert
+    assert actual == ("|Template field name|Preferred label|Definition|Alternate label|\n" "|:---|:---|:---|:---|\n")
+
+
 class TestTBC:
     """Tests the table generation for vocabs with no terms."""
 
