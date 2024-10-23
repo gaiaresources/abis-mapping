@@ -124,7 +124,12 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
                 # Determine if any dates are present in the row
                 start_date: types.temporal.Timestamp = row["siteVisitStart"]
                 end_date: types.temporal.Timestamp = row["siteVisitEnd"]
-                site_visit_id: str = row["siteVisitID"]
+                site_visit_id: str | None = row["siteVisitID"]
+
+                # Check for siteVisitID, even though siteVisitID is a mandatory field, it can be missing here
+                # because this method is called for cross-validation, regardless of if this template is valid.
+                if not site_visit_id:
+                    continue
 
                 # Temporal flexibility is dependent upon a start_date being
                 # present only.

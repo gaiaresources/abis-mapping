@@ -14,16 +14,34 @@ import rdflib
 # Local
 from abis_mapping import base
 import abis_mapping.templates.survey_site_data.mapping
+import abis_mapping.templates.survey_site_data_v2.mapping
 
 # Typing
 from typing import Any
 
 
-def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
+@pytest.mark.parametrize(
+    ("mapper_class",),
+    [
+        pytest.param(
+            abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper,
+            id="survey_site_mapper_v1",
+        ),
+        pytest.param(
+            abis_mapping.templates.survey_site_data_v2.mapping.SurveySiteMapper,
+            id="survey_site_mapper_v2",
+        ),
+    ],
+)
+def test_extract_geometry_defaults(
+    mocker: pytest_mock.MockerFixture,
+    mapper_class: type[base.mapper.ABISMapper],
+) -> None:
     """Test the extract_geometry_defaults method.
 
     Args:
-        mocker (pytest_mock.MockerFixture): The mocker fixture.
+        mocker: The mocker fixture.
+        mapper_class: The ABISMapper class to use.
     """
     # Construct a dummy raw data set using only the fields that matter to the method.
     rawh = ["siteID", "footprintWKT", "decimalLongitude", "decimalLatitude", "geodeticDatum"]
@@ -37,12 +55,15 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
         ["site7", "", "10.0", "20.0", "AGD66"],
         ["site8", "", "11.0", "21.0", "EPSG:4202"],
         ["site9", "", "12.0", "22.0", "GRS20"],
+        # rows with missing siteID should not be included in map
+        ["", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", "WGS84"],
+        ["", "", "10.0", "20.0", "WGS84"],
     ]
     # Amalgamate into a list of dicts
     all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in raws]
 
     # Get the specific mapper
-    mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
+    mapper = mapper_class()
 
     # Modify schema to only include the necessary fields for test
     descriptor = {
@@ -74,6 +95,7 @@ def test_extract_geometry_defaults(mocker: pytest_mock.MockerFixture) -> None:
         "site8": "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (21 11)",
     }
     # Invoke method
+    assert hasattr(mapper, "extract_geometry_defaults")
     actual = mapper.extract_geometry_defaults(csv_data)
 
     # Validate
