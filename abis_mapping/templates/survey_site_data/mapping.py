@@ -147,10 +147,16 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Context manager for row streaming
         with resource.open() as r:
             # Create empty dictionary to hold mapping values
-            result = {}
+            result: dict[str, str] = {}
             for row in r.row_stream:
                 # Extract values
-                site_id: str = row["siteID"]
+                site_id: str | None = row["siteID"]
+
+                # Check for siteID, even though siteID is a mandatory field, it can be missing here
+                # because this method is called for cross-validation, regardless of if this template is valid.
+                if not site_id:
+                    continue
+
                 footprint_wkt: shapely.geometry.base.BaseGeometry = row["footprintWKT"]
                 longitude: decimal.Decimal = row["decimalLongitude"]
                 latitude: decimal.Decimal = row["decimalLatitude"]
