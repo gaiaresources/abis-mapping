@@ -9,13 +9,13 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     sosa:hasMember <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> ;
     schema:identifier "Site Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/SiteCollection/habitat/Closed-forest> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/SiteCollection/habitat/Closed-forest> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     sosa:hasMember <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P0>,
         <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> ;
