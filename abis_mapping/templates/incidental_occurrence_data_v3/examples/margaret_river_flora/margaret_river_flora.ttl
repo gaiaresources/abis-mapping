@@ -17,57 +17,57 @@
     tern:hasSimpleValue "Category 1 - The Department of Biodiversity and Conservation" ;
     tern:hasValue <http://createme.org/value/sensitivityCategory/16> .
 
-<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/basisOfRecord/HumanObservation> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/basisOfRecord/HumanObservation> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     sosa:hasMember <http://createme.org/sample/specimen/14> ;
     schema:identifier "Occurrence Collection - Basis Of Record - HumanObservation" ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/HumanObservation> .
 
-<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/basisOfRecord/PreservedSpecimen> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/basisOfRecord/PreservedSpecimen> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     sosa:hasMember <http://createme.org/sample/specimen/13>,
         <http://createme.org/sample/specimen/15> ;
     schema:identifier "Occurrence Collection - Basis Of Record - PreservedSpecimen" ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/PreservedSpecimen> .
 
-<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/basisOfRecord/new-basis-of-record> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/basisOfRecord/new-basis-of-record> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     sosa:hasMember <http://createme.org/sample/specimen/16> ;
     schema:identifier "Occurrence Collection - Basis Of Record - new basis of record" ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/new-basis-of-record> .
 
-<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/dataGeneralizations/Coordinates-generalised> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/dataGeneralizations/Coordinates-generalised> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     sosa:hasMember <http://createme.org/sample/field/16> ;
     schema:identifier "Occurrence Collection - Data Generalizations - Coordinates generalised" ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/Coordinates-generalised> .
 
-<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     sosa:hasMember <http://createme.org/sample/field/14>,
         <http://createme.org/sample/field/15> ;
     schema:identifier "Occurrence Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
-<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     sosa:hasMember <http://createme.org/sample/field/15> ;
     schema:identifier "Occurrence Collection - Habitat - Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
     tern:hasAttribute <http://createme.org/attribute/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> .
 
-<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/habitat/new-habitat> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/habitat/new-habitat> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     sosa:hasMember <http://createme.org/sample/field/16> ;
     schema:identifier "Occurrence Collection - Habitat - new habitat" ;
     tern:hasAttribute <http://createme.org/attribute/habitat/new-habitat> .
 
-<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/preparations/Wet-in-ethanol-or-some-other-preservative> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/preparations/Wet-in-ethanol-or-some-other-preservative> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     sosa:hasMember <http://createme.org/sample/specimen/15> ;
     schema:identifier "Occurrence Collection - Preparations - Wet (in ethanol or some other preservative)" ;
     tern:hasAttribute <http://createme.org/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> .
 
-<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/preparations/new-preparations> a tern:SampleCollection ;
+<http://createme.org/dataset/Example-Incidental-Occurrence-Dataset/OccurrenceCollection/preparations/new-preparations> a tern:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     sosa:hasMember <http://createme.org/sample/specimen/16> ;
     schema:identifier "Occurrence Collection - Preparations - new preparations" ;
