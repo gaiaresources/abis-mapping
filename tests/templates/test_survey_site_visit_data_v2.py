@@ -205,7 +205,7 @@ class TestApplyValidation:
         included for all rows.
         """
         # Create path object and return contents
-        return pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal.csv").read_bytes()
+        return pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal-1-row.csv").read_bytes()
 
     def _nullify_columns(self, columns: list[str], data: bytes) -> bytes:
         """Replaces any values in specified csv colunms with null.
