@@ -2360,7 +2360,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Collection))
+        graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         if data_generalizations:
             graph.add(
@@ -2375,7 +2375,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to the sample field
-        graph.add((uri, rdflib.SOSA.hasMember, sample_field))
+        graph.add((uri, rdflib.SDO.member, sample_field))
         # Add link to attribute
         if data_generalizations_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, data_generalizations_attribute))
@@ -2710,14 +2710,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Collection))
+        graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         if habitat:
             graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(f"Occurrence Collection - Habitat - {habitat}")))
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to the sample field
-        graph.add((uri, rdflib.SOSA.hasMember, sample_field))
+        graph.add((uri, rdflib.SDO.member, sample_field))
         # Add link to attribute
         if habitat_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, habitat_attribute))
@@ -2815,7 +2815,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Collection))
+        graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         if basis_of_record:
             graph.add(
@@ -2829,9 +2829,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to the appropriate sample node
         if has_specimen(row):
-            graph.add((uri, rdflib.SOSA.hasMember, sample_specimen))
+            graph.add((uri, rdflib.SDO.member, sample_specimen))
         else:
-            graph.add((uri, rdflib.SOSA.hasMember, sample_field))
+            graph.add((uri, rdflib.SDO.member, sample_field))
         # Add link to attribute
         if basis_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis_attribute))
@@ -3059,7 +3059,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Collection))
+        graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         if preparations:
             graph.add(
@@ -3072,7 +3072,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to the sample_specimen node
-        graph.add((uri, rdflib.SOSA.hasMember, sample_specimen))
+        graph.add((uri, rdflib.SDO.member, sample_specimen))
         # Add link to attribute
         if preparations_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, preparations_attribute))
