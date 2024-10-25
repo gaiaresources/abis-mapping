@@ -1979,7 +1979,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Collection))
+        graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         if data_generalizations:
             graph.add(
@@ -2296,7 +2296,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Collection))
+        graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         if habitat:
             graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(f"Occurrence Collection - Habitat - {habitat}")))
@@ -2401,7 +2401,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Collection))
+        graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         if basis_of_record:
             graph.add(
@@ -2628,7 +2628,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.Collection))
+        graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         if preparations:
             graph.add(
