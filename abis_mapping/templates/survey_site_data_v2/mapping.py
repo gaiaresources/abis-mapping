@@ -685,7 +685,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to this site
-        graph.add((uri, rdflib.SOSA.hasMember, site))
+        graph.add((uri, rdflib.SDO.member, site))
         # Add link to attribute
         graph.add((uri, utils.namespaces.TERN.hasAttribute, attribute))
 
@@ -782,7 +782,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to this site
-        graph.add((uri, rdflib.SOSA.hasMember, site))
+        graph.add((uri, rdflib.SDO.member, site))
         # Add link to attribute
         if attribute is not None:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, attribute))
