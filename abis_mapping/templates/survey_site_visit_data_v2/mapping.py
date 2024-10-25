@@ -66,6 +66,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             plugins.logical_or.LogicalOr(
                 field_names=["siteVisitStart", "siteVisitEnd"],
             ),
+            plugins.mutual_inclusion.MutuallyInclusive(
+                field_names=["samplingEffortValue", "samplingEffortUnit"],
+            ),
         ]
 
         # Check to see if site visit id map was provided or was empty
