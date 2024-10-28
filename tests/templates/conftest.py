@@ -280,7 +280,7 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
         mapping_cases=[
             MappingParameters(
                 data=pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal.csv"),
-                expected=None,
+                expected=pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal.ttl"),
             ),
             MappingParameters(
                 scenario_name="missing_start_or_end_date",

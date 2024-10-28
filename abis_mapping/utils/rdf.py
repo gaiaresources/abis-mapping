@@ -108,6 +108,35 @@ def extend_uri(
     return base + joiner + extension
 
 
+def extend_uri_quoted(
+    base: rdflib.URIRef,
+    *parts: str,
+) -> rdflib.URIRef:
+    """Extends the base URI with the result of url-quoting the provided extension.
+
+    >>> extend_uri(rdflib.URIRef("https://example.com/foo"), "bar", "Some value")
+    >>> rdflib.URIRef("https://example.com/foo/bar/Some%20value")
+
+    Each extension part is url-quoted to ensure no url-unsafe chars are included in the final URI.
+    url-quoting is used instead of slugifying;
+        1. So that the exact original value can be determined from the URI.
+           This is not possible with slugifying which will remove or replace chars with "-".
+        2. Different input values always result in different final URIs.
+           This is not always the case with slugifying, since chars can be dropped or replaced with "-".
+
+    Args:
+        base: Base uri
+        *parts: URl parts to add to the base uri. Will be url-quoted.
+
+    Returns:
+        Extended URI
+    """
+    # url-quote each part of the extension and join with /
+    extension = "/".join(urllib.parse.quote(part, safe="") for part in parts)
+    joiner = "" if base[-1] == "/" else "/"
+    return base + joiner + extension
+
+
 def uri_or_string_literal(raw: str) -> rdflib.Literal:
     """Determines if supplied string is an uri or a string literal.
 
