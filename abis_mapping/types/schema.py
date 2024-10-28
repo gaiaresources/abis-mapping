@@ -13,8 +13,7 @@ from typing import Any, Type, Annotated
 class Constraints(pydantic.BaseModel):
     """The constraints of a schema field.
 
-    Currently all defined below are a subset of those available from frictionless.
-    https://specs.frictionlessdata.io/table-schema/#constraints
+    Currently all defined below are a subset of those available from [frictionless](https://specs.frictionlessdata.io/table-schema/#constraints).
     """
 
     required: Annotated[
@@ -47,52 +46,46 @@ class Constraints(pydantic.BaseModel):
 class Field(pydantic.BaseModel):
     """Field model of a schema.
 
-    A the properties of a field consist of those used by frictionless for performing validations as well
+    The properties of a field consisting of those properties used by frictionless for performing validations as well
     as extras to assist with the looking up of vocabularies when mapping as well as assisting with the creation
     of instruction documentation.
-    Frictionless table schema requirements can be found https://specs.frictionlessdata.io/table-schema
+    [Frictionless reference](https://specs.frictionlessdata.io/table-schema).
     """
 
     name: Annotated[
         str,
         pydantic.Field(
-            description="Required by frictionless. The field descriptor MUST contain a name property. This property SHOULD correspond to the name of field/column in the data file (if it has a name). As such it SHOULD be unique (though it is possible, but very bad practice, for the data file to have multiple columns with the same name). name SHOULD NOT be considered case sensitive in determining uniqueness. However, since it should correspond to the name of the field in the data file it may be important to preserve case.",
-            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#name"},
+            description="[Required by frictionless](https://specs.frictionlessdata.io/table-schema/#name). The field descriptor MUST contain a name property. This property SHOULD correspond to the name of field/column in the data file (if it has a name). As such it SHOULD be unique (though it is possible, but very bad practice, for the data file to have multiple columns with the same name). name SHOULD NOT be considered case sensitive in determining uniqueness. However, since it should correspond to the name of the field in the data file it may be important to preserve case.",
         ),
     ]
     title: Annotated[
         str,
         pydantic.Field(
-            description="A human readable label or title for the field.",
-            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#title"},
+            description="[Frictionless reference](https://specs.frictionlessdata.io/table-schema/#title). A human readable label or title for the field.",
         ),
     ]
     description: Annotated[
         str,
         pydantic.Field(
-            description='A description for this field e.g. "The recipient of the funds".',
-            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#description"},
+            description='[Frictionless reference](https://specs.frictionlessdata.io/table-schema/#description). A description for this field e.g. "The recipient of the funds".',
         ),
     ]
     example: Annotated[
         str | None,
         pydantic.Field(
-            description="An example value of the field",
-            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#example"},
+            description="[Frictionless reference](https://specs.frictionlessdata.io/table-schema/#example). An example value of the field",
         ),
     ] = None
     type: Annotated[
         str,
         pydantic.Field(
-            description="`type` and `format` properties are used to give the type of the field. A fields `type` property is a string indicating the type of this field.",
-            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#types-and-formats"},
+            description="[Frictionless reference](https://specs.frictionlessdata.io/table-schema/#types-and-formats). `type` and `format` properties are used to give the type of the field. A fields `type` property is a string indicating the type of this field.",
         ),
     ]
     format: Annotated[
         str | None,
         pydantic.Field(
-            description="`type` and `format` properties are used to give the type of the field. A field's `format` property is a string, indicating a format for the field type.",
-            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#types-and-formats"},
+            description="[Frictionless reference](https://specs.frictionlessdata.io/table-schema/#types-and-formats). `type` and `format` properties are used to give the type of the field. A field's `format` property is a string, indicating a format for the field type.",
         ),
     ]
     url: Annotated[pydantic.AnyUrl | None, pydantic.Field(description="The IRI of the field's concept.")] = None
@@ -176,27 +169,29 @@ class Field(pydantic.BaseModel):
 
 
 class Schema(pydantic.BaseModel):
-    """Model for overall schema object of a schema definition."""
+    """Model for overall schema object of a schema definition.
+    
+    Typically defined using a `schema.json` file within a template's file structure.
+    All properties are currently defined by the [frictionless table schema](https://specs.frictionlessdata.io/table-schema/)
+    however, `fields` and `fields.constraints` are customised implementations for the project.
+    """
 
     fields: Annotated[
         list[Field],
         pydantic.Field(
-            description="An array where each entry in the array is a field descriptor.",
-            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#descriptor"},
+            description="[Frictionless reference](https://specs.frictionlessdata.io/table-schema/#descriptor). An array where each entry in the array is a field descriptor.",
         ),
     ]
     primaryKey: Annotated[
         str | None,
         pydantic.Field(
-            description="Used by frictionless, currently only supporting single values, contains the name of a field that effectively gets set to `required: true` and unique, and can provide reference for foreign keys when used in a Data Package.",
-            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#primary-key"},
+            description="[Used by frictionless](https://specs.frictionlessdata.io/table-schema/#primary-key), currently only supporting single values, contains the name of a field that effectively gets set to `required: true` and unique, and can provide reference for foreign keys when used in a Data Package.",
         ),
     ] = None
     foreignKeys: Annotated[
         list[dict[str, Any]] | None,
         pydantic.Field(
-            description="Used by frictionless, a foreign key is a reference where values in a field (or fields) on the table (‘resource’ in data package terminology) described by this Table Schema connect to values a field (or fields) on this or a separate table (resource). They are directly modelled on the concept of foreign keys in SQL.",
-            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#foreign-keys"},
+            description="[Used by frictionless](https://specs.frictionlessdata.io/table-schema/#foreign-keys), a foreign key is a reference where values in a field (or fields) on the table (‘resource’ in data package terminology) described by this Table Schema connect to values a field (or fields) on this or a separate table (resource). They are directly modelled on the concept of foreign keys in SQL.",
         ),
     ] = None
 
