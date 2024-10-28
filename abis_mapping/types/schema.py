@@ -7,31 +7,102 @@ import pydantic
 from abis_mapping import utils
 
 # Typing
-from typing import Any, Type
+from typing import Any, Type, Annotated
 
 
 class Constraints(pydantic.BaseModel):
-    """The constraints of a schema field primarily defined by frictionless."""
+    """The constraints of a schema field.
 
-    required: bool
-    unique: bool | None = None
-    minimum: float | int | None = None
-    maximum: float | int | None = None
-    enum: list[str] | None = None
+    Currently all defined below are a subset of those available from frictionless.
+    https://specs.frictionlessdata.io/table-schema/#constraints
+    """
+
+    required: Annotated[
+        bool,
+        pydantic.Field(
+            description="Indicates whether this field cannot be null. If required is false (the default), then null is allowed."
+        ),
+    ]
+    unique: Annotated[
+        bool | None,
+        pydantic.Field(
+            description="If true, then all values for that field MUST be unique within the data file in which it is found."
+        ),
+    ] = None
+    minimum: Annotated[
+        float | int | None,
+        pydantic.Field(
+            description="Specifies a minimum value for a field. This is different to minLength which checks the number of items in the value. A minimum value constraint checks whether a field value is greater than or equal to the specified value. The range checking depends on the type of the field. If a minimum value constraint is specified then the field descriptor MUST contain a type key."
+        ),
+    ] = None
+    maximum: Annotated[
+        float | int | None, pydantic.Field(description="As for `minimum`, but specifies a maximum value for a field.")
+    ] = None
+    enum: Annotated[
+        list[str] | None,
+        pydantic.Field(description="The value of the field must exactly match a value in the enum array."),
+    ] = None
 
 
 class Field(pydantic.BaseModel):
-    """Field model of a schema"""
+    """Field model of a schema.
 
-    name: str
-    title: str
-    description: str
-    example: str | None = None
-    type: str
-    format: str | None
-    url: pydantic.AnyUrl | None = None
+    A the properties of a field consist of those used by frictionless for performing validations as well
+    as extras to assist with the looking up of vocabularies when mapping as well as assisting with the creation
+    of instruction documentation.
+    Frictionless table schema requirements can be found https://specs.frictionlessdata.io/table-schema
+    """
+
+    name: Annotated[
+        str,
+        pydantic.Field(
+            description="Required by frictionless. The field descriptor MUST contain a name property. This property SHOULD correspond to the name of field/column in the data file (if it has a name). As such it SHOULD be unique (though it is possible, but very bad practice, for the data file to have multiple columns with the same name). name SHOULD NOT be considered case sensitive in determining uniqueness. However, since it should correspond to the name of the field in the data file it may be important to preserve case.",
+            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#name"},
+        ),
+    ]
+    title: Annotated[
+        str,
+        pydantic.Field(
+            description="A human readable label or title for the field.",
+            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#title"},
+        ),
+    ]
+    description: Annotated[
+        str,
+        pydantic.Field(
+            description='A description for this field e.g. "The recipient of the funds".',
+            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#description"},
+        ),
+    ]
+    example: Annotated[
+        str | None,
+        pydantic.Field(
+            description="An example value of the field",
+            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#example"},
+        ),
+    ] = None
+    type: Annotated[
+        str,
+        pydantic.Field(
+            description="`type` and `format` properties are used to give the type of the field. A fields `type` property is a string indicating the type of this field.",
+            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#types-and-formats"},
+        ),
+    ]
+    format: Annotated[
+        str | None,
+        pydantic.Field(
+            description="`type` and `format` properties are used to give the type of the field. A field's `format` property is a string, indicating a format for the field type.",
+            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#types-and-formats"},
+        ),
+    ]
+    url: Annotated[pydantic.AnyUrl | None, pydantic.Field(description="The IRI of the field's concept.")] = None
     constraints: Constraints
-    vocabularies: list[str] = []
+    vocabularies: Annotated[
+        list[str],
+        pydantic.Field(
+            description="Optional list of vocabulary IDs, defined internally within the project. Provided IDs need to have been registered to be valid. See `abis_mapping.vocabularies`."
+        ),
+    ] = []
 
     # Allow extra fields to be captured mainly to catch errors in json
     model_config = pydantic.ConfigDict(extra="allow")
@@ -107,9 +178,27 @@ class Field(pydantic.BaseModel):
 class Schema(pydantic.BaseModel):
     """Model for overall schema object of a schema definition."""
 
-    fields: list[Field]
-    primaryKey: str | None = None
-    foreignKeys: list[dict[str, Any]] | None = None
+    fields: Annotated[
+        list[Field],
+        pydantic.Field(
+            description="An array where each entry in the array is a field descriptor.",
+            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#descriptor"},
+        ),
+    ]
+    primaryKey: Annotated[
+        str | None,
+        pydantic.Field(
+            description="Used by frictionless, currently only supporting single values, contains the name of a field that effectively gets set to `required: true` and unique, and can provide reference for foreign keys when used in a Data Package.",
+            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#primary-key"},
+        ),
+    ] = None
+    foreignKeys: Annotated[
+        list[dict[str, Any]] | None,
+        pydantic.Field(
+            description="Used by frictionless, a foreign key is a reference where values in a field (or fields) on the table (‘resource’ in data package terminology) described by this Table Schema connect to values a field (or fields) on this or a separate table (resource). They are directly modelled on the concept of foreign keys in SQL.",
+            json_schema_extra={"frictionless-url": "https://specs.frictionlessdata.io/table-schema/#foreign-keys"},
+        ),
+    ] = None
 
     # Allow extra fields to be captured mainly to catch errors in json
     model_config = pydantic.ConfigDict(extra="allow")
