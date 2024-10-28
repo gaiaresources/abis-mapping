@@ -1,6 +1,6 @@
 # Schema
 
-Model for overall schema object of a schema definition.
+Model for a template's schema descriptor.
 
 Typically defined using a `schema.json` file within a template's file structure.
 All properties are currently defined by the [frictionless table schema](https://specs.frictionlessdata.io/table-schema/)
@@ -56,4 +56,4 @@ of instruction documentation.
 | constraints | `object` | ✅ | [Constraints](#constraints) |  |
 | example | `string` or `null` |  | string | [Frictionless reference](https://specs.frictionlessdata.io/table-schema/#example). An example value of the field |
 | url | `string` or `null` |  | Format: [`uri`](https://json-schema.org/understanding-json-schema/reference/string#built-in-formats) | The IRI of the field's concept. |
-| vocabularies | `array` |  | string | Optional list of vocabulary IDs, defined internally within the project. Provided IDs need to have been registered to be valid. See `abis_mapping.vocabularies`. |
+| vocabularies | `array` |  | string | Optional list of vocabulary IDs, defined internally within the project. Provided IDs need to have been registered to be valid. See [`abis_mapping.vocabs`](/abis_mapping/vocabs/). |

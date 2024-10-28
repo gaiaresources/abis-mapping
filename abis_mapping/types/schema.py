@@ -93,7 +93,7 @@ class Field(pydantic.BaseModel):
     vocabularies: Annotated[
         list[str],
         pydantic.Field(
-            description="Optional list of vocabulary IDs, defined internally within the project. Provided IDs need to have been registered to be valid. See `abis_mapping.vocabularies`."
+            description="Optional list of vocabulary IDs, defined internally within the project. Provided IDs need to have been registered to be valid. See [`abis_mapping.vocabs`](/abis_mapping/vocabs/)."
         ),
     ] = []
 
@@ -169,7 +169,7 @@ class Field(pydantic.BaseModel):
 
 
 class Schema(pydantic.BaseModel):
-    """Model for overall schema object of a schema definition.
+    """Model for a template's schema descriptor.
     
     Typically defined using a `schema.json` file within a template's file structure.
     All properties are currently defined by the [frictionless table schema](https://specs.frictionlessdata.io/table-schema/)

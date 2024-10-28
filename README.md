@@ -16,12 +16,14 @@ A template is defined through a set of key files
 
 * A CSV file containing a single header row, each cell containing a field name (**required**).
 * A `schema.json` file, containing schema definitions for each of the fields declared in the CSV (**required**).
-* A `metadata.json` file, containing overall descriptions and other key values (**required**). See the detailed definition [here](docs/markdown/Schema.schema.md).
+* A `metadata.json` file, containing overall descriptions and other key values (**required**). See the detailed definition [here](/docs/models/markdown/Schema.schema.md).
 * A `mapping.py` file, containing the logic for the validation of input CSV data and performing CSV-to-RDF mapping (**required**).
 * An `examples/` directory, containing example input CSV data and resulting output serialised RDF files (*optional*).
 * A `validators/` directory, containing serialised RDF files defining shapes used in the template's mapping, using SHACL (*optional*).
 
-### Schema
+### `schema.json`
+
+[`schema.json` model definition](/docs/models/markdown/Schema.schema.md)
 
 ## Documentation
 
@@ -36,9 +38,9 @@ poe generate-instructions
 ```
 This will programmatically build a markdown instructions document per Template,
 from the Template source code and a Jinja2 template.
-The script will place these instruction documents in `<docs/pages/>`.
+The script will place these instruction documents in [`docs/pages/`](/docs/pages/).
 
-Then use `mkdocs` to build the instructions' site from the `<docs/pages/>` directory.
+Then use `mkdocs` to build the instructions' site from the [`docs/pages/`](/docs/pages/) directory.
 This includes the previously generated pages plus some static pages in that directory.
 
 To just build the site:
@@ -60,7 +62,7 @@ or using Poe the Poet
 ```shell
 poe generate-model-docs
 ```
-The resulting markdown documents will be stored in `<docs/models/markdown>`
+The resulting markdown documents will be stored in [`docs/models/markdown`](/docs/models/markdown/)
 
 ### Markdown Instruction Generation
 To generate an instruction document, perform the following
