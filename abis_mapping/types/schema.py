@@ -170,7 +170,7 @@ class Field(pydantic.BaseModel):
 
 class Schema(pydantic.BaseModel):
     """Model for a template's schema descriptor.
-    
+
     Typically defined using a `schema.json` file within a template's file structure.
     All properties are currently defined by the [frictionless table schema](https://specs.frictionlessdata.io/table-schema/)
     however, `fields` and `fields.constraints` are customised implementations for the project.

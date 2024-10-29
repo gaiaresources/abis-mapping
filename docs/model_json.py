@@ -99,4 +99,3 @@ if __name__ == "__main__":
     # Print to stdout if no output file
     if args.output_dest is None:
         print(schema)
-
