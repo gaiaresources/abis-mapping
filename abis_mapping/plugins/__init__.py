@@ -1,6 +1,7 @@
 """Exports sub-package interface"""
 
 # Local
+from . import chained_inclusion
 from . import chronological
 from . import coordinates
 from . import default_lookup
