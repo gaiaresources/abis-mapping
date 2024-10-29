@@ -49,8 +49,7 @@ class ChainedInclusion(frictionless.Check):
             return
 
         note = (
-            f"the columns {self.field_names} are chained inclusive and values"
-            " must be provided together if its preceding field contains a value"
+            f"The column(s) {self.field_names[1:]} must be provided when the column {self.field_names[0]} is provided."
             f" (columns {missing} are missing values)"
         )
 
