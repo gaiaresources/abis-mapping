@@ -9,5 +9,5 @@
   "sampling_type": "systematic survey",
   "template_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/survey_metadata/survey_metadata.csv",
   "schema_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/survey_metadata/schema.json",
-  "template_lifecycle_status": "deprecated"
+  "template_lifecycle_status": "current"
 }
