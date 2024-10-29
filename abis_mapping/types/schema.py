@@ -93,9 +93,10 @@ class Field(pydantic.BaseModel):
     vocabularies: Annotated[
         list[str],
         pydantic.Field(
-            description="Optional list of vocabulary IDs, defined internally within the project. Provided IDs need to have been registered to be valid. See [`abis_mapping.vocabs`](/abis_mapping/vocabs/)."
+            description="Optional list of vocabulary IDs, defined internally within the project. Provided IDs need to have been registered to be valid. See [`abis_mapping.vocabs`](/abis_mapping/vocabs/).",
+            default_factory=list,
         ),
-    ] = []
+    ]
 
     # Allow extra fields to be captured mainly to catch errors in json
     model_config = pydantic.ConfigDict(extra="allow")

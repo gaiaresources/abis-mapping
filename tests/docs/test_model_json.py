@@ -72,15 +72,10 @@ def test_create_json_schema(mocker: pytest_mock.MockerFixture) -> None:
     """
     # Patch open
     mocked_open = mocker.mock_open()
-    print(__name__)
     mocker.patch("docs.model_json.open", mocked_open)
 
     # Invoke
-    try:
-        result = model_json.create_json_schema(FakeModel, "some/fake/path")
-    except FileNotFoundError as exc:
-        mocked_open.assert_called()
-        raise exc
+    result = model_json.create_json_schema(FakeModel, "some/fake/path")
 
     # Assert
     assert result == json.dumps(FakeModel.model_json_schema(), indent=2)

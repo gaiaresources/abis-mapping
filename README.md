@@ -15,8 +15,8 @@ it into ABIS conformant RDF.
 A template is defined through a set of key files
 
 * A CSV file containing a single header row, each cell containing a field name (**required**).
-* A `schema.json` file, containing schema definitions for each of the fields declared in the CSV (**required**).
-* A `metadata.json` file, containing overall descriptions and other key values (**required**). See the detailed definition [here](/docs/models/markdown/Schema.schema.md).
+* A `schema.json` file, containing schema definitions for each of the fields declared in the CSV (**required**). See the detailed definition [here](/docs/models/markdown/Schema.schema.md).
+* A `metadata.json` file, containing overall descriptions and other key values (**required**). 
 * A `mapping.py` file, containing the logic for the validation of input CSV data and performing CSV-to-RDF mapping (**required**).
 * An `examples/` directory, containing example input CSV data and resulting output serialised RDF files (*optional*).
 * A `validators/` directory, containing serialised RDF files defining shapes used in the template's mapping, using SHACL (*optional*).
