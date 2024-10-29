@@ -142,10 +142,16 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Context manager for row streaming
         with resource.open() as r:
             # Create empty dictionary to hold mapping values
-            result = {}
+            result: dict[str, str] = {}
             for row in r.row_stream:
                 # Extract values
-                site_id: str = row["siteID"]
+                site_id: str | None = row["siteID"]
+
+                # Check for siteID, even though siteID is a mandatory field, it can be missing here
+                # because this method is called for cross-validation, regardless of if this template is valid.
+                if not site_id:
+                    continue
+
                 footprint_wkt: shapely.geometry.base.BaseGeometry = row["footprintWKT"]
                 longitude: decimal.Decimal = row["decimalLongitude"]
                 latitude: decimal.Decimal = row["decimalLatitude"]
@@ -328,8 +334,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             uri=site,
             dataset=dataset,
             site_id_datatype=site_id_datatype,
-            habitat_attributes=[h.attribute for h in habitat_objects],
-            data_generalizations_attribute=data_generalizations_attribute,
             row=row,
             graph=graph,
         )
@@ -436,8 +440,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
         site_id_datatype: rdflib.URIRef | None,
-        habitat_attributes: list[rdflib.URIRef],
-        data_generalizations_attribute: rdflib.URIRef | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
@@ -448,10 +450,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
            dataset (rdflib.URIRef): Dataset to which data belongs.
            site_id_datatype (rdflib.URIRef | None): Datatype to use for
                 the site id literal.
-           habitat_attributes (list[rdflib.URIRef]): List of habitat attribute
-                iris.
-           data_generalizations_attribute (rdflib.URIRef | None): Data generalization
-                the site corresponds.
            row (frictionless.Row): Row to retrieve data from.
            graph (rdflib.Graph): Graph to be modified.
         """
@@ -467,10 +465,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Add dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
-
-        # Add habitat attributes
-        for habitat_attribute in habitat_attributes:
-            graph.add((uri, utils.namespaces.TERN.attribute, habitat_attribute))
 
         # Add siteID
         dt = site_id_datatype if site_id_datatype is not None else rdflib.XSD.string
@@ -518,10 +512,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add site description if available
         if site_description:
             graph.add((uri, rdflib.SDO.description, rdflib.Literal(site_description)))
-
-        # Add data generalizations attribute if available
-        if data_generalizations_attribute is not None:
-            graph.add((uri, utils.namespaces.TERN.attribute, data_generalizations_attribute))
 
         # Add sample of
         graph.add((uri, rdflib.SOSA.isSampleOf, LOCATION_AUSTRALIA))
@@ -689,13 +679,13 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             graph: The graph.
         """
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.SampleCollection))
+        graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(f"Site Collection - Habitat - {raw_habitat_value}")))
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to this site
-        graph.add((uri, rdflib.SOSA.hasMember, site))
+        graph.add((uri, rdflib.SDO.member, site))
         # Add link to attribute
         graph.add((uri, utils.namespaces.TERN.hasAttribute, attribute))
 
@@ -779,7 +769,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             return
 
         # Add type
-        graph.add((uri, a, utils.namespaces.TERN.SampleCollection))
+        graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         if raw_data_generalizations_value:
             graph.add(
@@ -792,7 +782,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to this site
-        graph.add((uri, rdflib.SOSA.hasMember, site))
+        graph.add((uri, rdflib.SDO.member, site))
         # Add link to attribute
         if attribute is not None:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, attribute))

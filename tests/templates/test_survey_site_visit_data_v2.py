@@ -120,19 +120,22 @@ class TestExtractTemporalDefaults:
             mocker (pytest_mock.MockerFixture): The mocker fixture
         """
         # Retrieve actual descriptor
-        descriptor = mapping.SurveySiteVisitMapper.schema()
+        original_descriptor = mapping.SurveySiteVisitMapper.schema()
 
         # Define fields of relevance for tests
         fieldnames = ["siteVisitID", "siteVisitStart", "siteVisitEnd"]
 
         # Make descriptor only include these fields
-        descriptor["fields"] = [f for f in descriptor["fields"] if f["name"] in fieldnames]
+        descriptor = {
+            **original_descriptor,
+            "fields": [f for f in original_descriptor["fields"] if f["name"] in fieldnames],
+        }
 
         # Patch schema
         mocked_schema = mocker.patch.object(mapping.SurveySiteVisitMapper, "schema", return_value=descriptor)
 
         # Declare some raw data
-        rows = [
+        expected_rows = [
             {
                 "siteVisitID": "SV1",
                 "siteVisitStart": "2024-10-14",
@@ -142,6 +145,8 @@ class TestExtractTemporalDefaults:
                 "siteVisitID": "SV2",
                 "siteVisitStart": "2024-10-14",
             },
+        ]
+        excluded_rows = [
             # The map should exclude these since there are no
             # values for default temporal entity must have start date
             {
@@ -151,10 +156,20 @@ class TestExtractTemporalDefaults:
             {
                 "siteVisitID": "SV4",
             },
+            # map should exclude these because there is no siteVisitID
+            {
+                "siteVisitID": "",
+                "siteVisitStart": "2024-10-14",
+                "siteVisitEnd": "2025-10-14",
+            },
+            {
+                "siteVisitID": "",
+                "siteVisitStart": "2024-10-14",
+            },
         ]
         # Build elements for expected map
         graphs = [rdflib.Graph() for _ in range(2)]
-        for g, r in zip(graphs, rows, strict=False):
+        for g, r in zip(graphs, expected_rows, strict=True):
             raw_start = r.get("siteVisitStart")
             raw_end = r.get("siteVisitEnd")
             start = types.temporal.parse_timestamp(raw_start) if raw_start is not None else None
@@ -162,14 +177,14 @@ class TestExtractTemporalDefaults:
             mapper.add_temporal_coverage_bnode(g, start, end)
 
         # Construct expected map
-        expected = {r["siteVisitID"]: g.serialize(format="turtle") for g, r in zip(graphs, rows, strict=False)}
+        expected = {r["siteVisitID"]: g.serialize(format="turtle") for g, r in zip(graphs, expected_rows, strict=True)}
 
         # Create raw data csv string
         with io.StringIO() as output:
-            csv_writer = csv.DictWriter(output, fieldnames=rows[0].keys())
+            csv_writer = csv.DictWriter(output, fieldnames=expected_rows[0].keys())
             csv_writer.writeheader()
 
-            for row in rows:
+            for row in expected_rows + excluded_rows:
                 csv_writer.writerow(row)
 
             csv_data = output.getvalue().encode("utf-8")
@@ -190,7 +205,7 @@ class TestApplyValidation:
         included for all rows.
         """
         # Create path object and return contents
-        return pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal.csv").read_bytes()
+        return pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal-1-row.csv").read_bytes()
 
     def _nullify_columns(self, columns: list[str], data: bytes) -> bytes:
         """Replaces any values in specified csv colunms with null.

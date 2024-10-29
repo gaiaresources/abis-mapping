@@ -109,7 +109,10 @@
             "format": "default",
             "constraints": {
                 "required": false
-            }
+            },
+            "vocabularies": [
+                "TARGET_TAXONOMIC_SCOPE"
+            ]
         },
         {
             "name": "protocolName",

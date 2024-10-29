@@ -1,5 +1,8 @@
 """Provides unit tests for the geometry module."""
 
+# Standard
+import copy
+
 # Third-party
 import shapely
 import pytest
@@ -130,22 +133,24 @@ def test_geometry_transformer_datum_uri() -> None:
 
 
 @pytest.mark.parametrize(
-    "literal_in, expected_name",
+    "literal_in, expected_name, expected_geometry",
     [
-        ("<http://www.opengis.net/def/crs/EPSG/0/7844> POINT(0 0)", "GDA2020"),
-        ("POINT(0 0)", "WGS84"),
+        ("<http://www.opengis.net/def/crs/EPSG/0/7844> POINT(1 2)", "GDA2020", shapely.Point(2, 1)),
+        ("POINT(1 2)", "WGS84", shapely.Point(1, 2)),
         (
             rdflib.Literal(
-                lexical_or_value="<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(0 0)",
+                lexical_or_value="<http://www.opengis.net/def/crs/EPSG/0/4326> POINT(1 2)",
                 datatype=utils.namespaces.GEO.wktLiteral,
             ),
             "WGS84",
+            shapely.Point(2, 1),
         ),
     ],
 )
 def test_geometry_from_geosparql_wkt_literal_valid(
     literal_in: str | rdflib.Literal,
     expected_name: str,
+    expected_geometry: shapely.Geometry,
 ) -> None:
     """Tests the geometry from_geosparql_wkt_literal method."""
     # Create geometry
@@ -153,6 +158,7 @@ def test_geometry_from_geosparql_wkt_literal_valid(
 
     # Assert
     assert geometry.original_datum_name == expected_name
+    assert geometry._geometry == expected_geometry
 
 
 @pytest.mark.parametrize(
@@ -192,7 +198,12 @@ def test_geometry_to_rdf_literal() -> None:
         (
             "POINT (571666.4475041276 5539109.815175673)",
             "EPSG:26917",
-            f"<{vocabs.geodetic_datum.GeodeticDatum(rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> POINT (-80 50)",
+            f"<{vocabs.geodetic_datum.GeodeticDatum(rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> POINT (50 -80)",
+        ),
+        (
+            "LINESTRING (1 2, 3 4)",
+            "WGS84",
+            f"<{vocabs.geodetic_datum.GeodeticDatum(rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> LINESTRING (2 1, 4 3)",
         ),
     ],
 )
@@ -212,3 +223,41 @@ def test_geometry_to_tranformed_crs_rdf_literal(raw: str, datum: str, expected_s
 
     # Assert
     assert geometry.to_transformed_crs_rdf_literal() == expected
+
+
+@pytest.mark.parametrize(
+    "geometry,expected",
+    [
+        (shapely.LineString([(2, 3), (3, 4)]), shapely.LineString([(3, 2), (4, 3)])),
+        (shapely.Point(1, 2), shapely.Point(2, 1)),
+        (
+            shapely.Polygon([(1, 2), (2, 3), (1, 4), (0, 3), (1, 2)]),
+            shapely.Polygon([(2, 1), (3, 2), (4, 1), (3, 0), (2, 1)]),
+        ),
+    ],
+)
+def test_swap_coordinates(geometry: shapely.Geometry, expected: shapely.Geometry) -> None:
+    """Tests the _swap_coordinates module function.
+
+    Args:
+        geometry (shapely.Geometry): Input geometry to be transformed.
+        expected (shapely.Geometry): Expected result.
+    """
+    # Copy original
+    original = copy.deepcopy(geometry)
+
+    # Invoke and assert
+    assert types.spatial._swap_coordinates(geometry) == expected
+
+    # Ensure no changing in place
+    assert geometry == original
+
+
+def test_swap_coordinates_3d() -> None:
+    """Tests _swap_coordinates module function with 3d geometry supplied"""
+    # Create geometry
+    geometry = shapely.LineString([(2, 3, 4), (5, 6, 7)])
+
+    # Should raise GeometryError
+    with pytest.raises(types.spatial.GeometryError):
+        types.spatial._swap_coordinates(geometry)

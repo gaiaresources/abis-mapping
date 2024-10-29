@@ -67,6 +67,35 @@ def test_extend_uri(
 
 
 @pytest.mark.parametrize(
+    ("base", "extension", "expected"),
+    [
+        (rdflib.URIRef("https://test.com/foo"), ["bar"], rdflib.URIRef("https://test.com/foo/bar")),
+        (rdflib.URIRef("https://test.com/foo/"), ["bar"], rdflib.URIRef("https://test.com/foo/bar")),
+        (rdflib.URIRef("https://test.com/foo"), ["bar", "cc"], rdflib.URIRef("https://test.com/foo/bar/cc")),
+        (rdflib.URIRef("https://test.com/foo/"), ["bar", "cc"], rdflib.URIRef("https://test.com/foo/bar/cc")),
+        (
+            rdflib.URIRef("https://test.com/foo"),
+            ["a a", "/c?d:"],
+            rdflib.URIRef("https://test.com/foo/a%20a/%2Fc%3Fd%3A"),
+        ),
+    ],
+)
+def test_extend_uri_quoted(
+    base: rdflib.URIRef,
+    extension: list[str],
+    expected: rdflib.URIRef,
+) -> None:
+    """Test the extend_uri function.
+
+    * with/without trailing / in base
+    * with/without special chars
+    * different length extensions
+    """
+    result = utils.rdf.extend_uri_quoted(base, *extension)
+    assert result == expected
+
+
+@pytest.mark.parametrize(
     "raw, expected",
     [
         ("http://hello.org", rdflib.Literal("http://hello.org", datatype=rdflib.XSD.anyURI)),

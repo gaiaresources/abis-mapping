@@ -17,7 +17,7 @@ class SensitivityAuthority(utils.vocabs.FlexibleVocabulary):
     broader = utils.rdf.uri("bdr-cv/attribute/sensitivityAuthority", utils.namespaces.EXAMPLE)
     default = None  # No default, omitted if not provided
     terms = ()
-    publish = False
+    publish = True
 
 
 # Register

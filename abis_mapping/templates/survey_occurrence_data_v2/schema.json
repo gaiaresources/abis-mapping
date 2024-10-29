@@ -205,7 +205,10 @@
       "url": "http://rs.tdwg.org/dwc/terms/habitat",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "TARGET_HABITAT_SCOPE"
+      ]
     },
     {
       "name": "establishmentMeans",
