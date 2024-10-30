@@ -502,6 +502,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Extract relevant values
         datum = row["geodeticDatum"]
         sc_geometry = row["spatialCoverageWKT"]
+        spatial_accuracy = row["coordinateUncertaintyInMeters"]
 
         if not (datum and sc_geometry):
             return
@@ -517,6 +518,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+
+        if spatial_accuracy is not None:
+            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, spatial_accuracy))
 
         self.add_geometry_supplied_as(
             subj=uri,
