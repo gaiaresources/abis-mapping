@@ -43,7 +43,7 @@ class VLookupMatch(frictionless.Check):
         # Check for null key
         if row[self.key_field] is None:
             # Bypass
-            return 
+            return
 
         # Confirm key column value exists in map
         if self.lu_map.get(row[self.key_field]) is not None:

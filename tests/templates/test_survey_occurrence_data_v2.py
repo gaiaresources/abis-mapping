@@ -428,6 +428,7 @@ class TestDefaultTemporalMap:
         # Ensure temporal entity added to graph
         assert next(res_g.subjects(a, ftn)) is not None
 
+
 class TestSiteVisitIDSiteIDMap:
     """Tests specific to the provision of a site visit id -> site id map."""
 
@@ -513,4 +514,3 @@ class TestSiteVisitIDSiteIDMap:
         if not report.valid:
             error_codes = [code for codes in report.flatten(["type"]) for code in codes]
             assert set(error_codes) == scenario.expected_error_codes
-

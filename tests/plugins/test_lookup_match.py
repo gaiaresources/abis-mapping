@@ -49,4 +49,3 @@ def test_checks_vlookup_match() -> None:
     assert len(row_numbers) == 5
     # Confirm that the rows in error are where we expect
     assert all([r[0] > 7 for r in row_numbers])
-
