@@ -146,8 +146,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 plugins.mutual_inclusion.MutuallyInclusive(
                     field_names=["sensitivityCategory", "sensitivityAuthority"],
                 ),
-                plugins.mutual_exclusion.MutuallyExclusive(
-                    field_names=["siteID", "siteVisitID"],
+                plugins.chained_inclusion.ChainedInclusion(
+                    field_names=["siteVisitID", "siteID"],
                 ),
             ],
         )

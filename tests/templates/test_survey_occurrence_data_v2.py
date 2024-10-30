@@ -327,20 +327,20 @@ class TestDefaultTemporalMap:
         Scenario(
             name="valid_with_default_map",
             raws=[
-                ["SV1", "2024-10-16"],
-                ["SV2", ""],
-                ["SV3", "2024-10-16T15:15:15+0800"],
-                ["SV4", ""],
+                ["SV1", "S1", "2024-10-16"],
+                ["SV2", "S1", ""],
+                ["SV3", "S1", "2024-10-16T15:15:15+0800"],
+                ["SV4", "S1", ""],
             ],
             default_map={"SV2": "some rdf", "SV4": "some rdf"},
         ),
         Scenario(
             name="invalid_with_default_map",
             raws=[
-                ["SV1", "2024-10-16"],
-                ["SV2", ""],
-                ["SV3", "2024-10-16T15:15:15+0800"],
-                ["SV4", ""],
+                ["SV1", "S1", "2024-10-16"],
+                ["SV2", "S1", ""],
+                ["SV3", "S1", "2024-10-16T15:15:15+0800"],
+                ["SV4", "S1", ""],
             ],
             default_map={"SV2": "some rdf"},
             expected_error_codes={"row-constraint"},
@@ -363,6 +363,7 @@ class TestDefaultTemporalMap:
         # Construct fake data
         rawh = [
             "siteVisitID",
+            "siteID",
             "eventDate",
         ]
         all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in scenario.raws]
