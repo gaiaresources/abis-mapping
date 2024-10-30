@@ -43,11 +43,12 @@ class SurveyIDDatatype:
 
 @dataclasses.dataclass
 class AttributeValue:
-    """Contains data items to enable producing attribute and value nodes"""
+    """Contains data items to enable producing attribute, value and collection nodes"""
 
     raw: str
     attribute: rdflib.URIRef
     value: rdflib.URIRef
+    collection: rdflib.URIRef
 
 
 class SurveyMetadataMapper(base.mapper.ABISMapper):
@@ -200,33 +201,44 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Create survey plan IRI
         survey_plan = utils.rdf.uri(f"survey/SSD-survey/{row_num}/plan")
 
-        # Create survey type attribute IRI
-        survey_type_attribute = utils.rdf.uri(f"attribute/surveyType/{row_num}", base_iri)
-
-        # Create survey type value IRI
-        survey_type_value = utils.rdf.uri(f"value/surveyType/{row_num}", base_iri)
+        # Conditionally create survey type attribute, value and collection IRIs
+        row_survey_type: str | None = row["surveyType"]
+        if row_survey_type:
+            survey_type_attribute = utils.rdf.extend_uri(dataset, "attribute", "surveyType", row_survey_type)
+            survey_type_value = utils.rdf.extend_uri(dataset, "value", "surveyType", row_survey_type)
+            survey_type_collection = utils.rdf.extend_uri(dataset, "SurveyCollection", "surveyType", row_survey_type)
+        else:
+            survey_type_attribute = None
+            survey_type_value = None
+            survey_type_collection = None
 
         # Create target habitat scope attribute and value objects
         target_habitat_objects: list[AttributeValue] = []
         if target_habitats := row["targetHabitatScope"]:
-            for i, target_habitat in enumerate(target_habitats, start=1):
+            for target_habitat in target_habitats:
                 target_habitat_objects.append(
                     AttributeValue(
                         raw=target_habitat,
-                        attribute=utils.rdf.uri(f"attribute/targetHabitatScope/{row_num}/{i}", base_iri),
-                        value=utils.rdf.uri(f"value/targetHabitatScope/{row_num}/{i}", base_iri),
+                        attribute=utils.rdf.extend_uri(dataset, "attribute", "targetHabitatScope", target_habitat),
+                        value=utils.rdf.extend_uri(dataset, "value", "targetHabitatScope", target_habitat),
+                        collection=utils.rdf.extend_uri(
+                            dataset, "SurveyCollection", "targetHabitatScope", target_habitat
+                        ),
                     ),
                 )
 
         # Create target taxonomic scope attribute and value IRIs (list input)
         target_taxonomic_objects: list[AttributeValue] = []
         if target_taxa := row["targetTaxonomicScope"]:
-            for i, target_taxon in enumerate(target_taxa, start=1):
+            for target_taxon in target_taxa:
                 target_taxonomic_objects.append(
                     AttributeValue(
                         raw=target_taxon,
-                        attribute=utils.rdf.uri(f"attribute/targetTaxonomicScope/{row_num}/{i}", base_iri),
-                        value=utils.rdf.uri(f"value/targetTaxonomicScope/{row_num}/{i}", base_iri),
+                        attribute=utils.rdf.extend_uri(dataset, "attribute", "targetTaxonomicScope", target_taxon),
+                        value=utils.rdf.extend_uri(dataset, "value", "targetTaxonomicScope", target_taxon),
+                        collection=utils.rdf.extend_uri(
+                            dataset, "SurveyCollection", "targetTaxonomicScope", target_taxon
+                        ),
                     )
                 )
 
@@ -309,17 +321,27 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add survey type attribute node
         self.add_survey_type_attribute(
             uri=survey_type_attribute,
-            dataset=dataset,
             survey_type_value=survey_type_value,
-            row=row,
+            row_survey_type=row_survey_type,
+            dataset=dataset,
             graph=graph,
         )
 
         # Add survey type value node
         self.add_survey_type_value(
             uri=survey_type_value,
+            row_survey_type=row_survey_type,
             dataset=dataset,
-            row=row,
+            graph=graph,
+        )
+
+        # Add survey type collection node
+        self.add_survey_type_collection(
+            uri=survey_type_collection,
+            row_survey_type=row_survey_type,
+            survey_type_attribute=survey_type_attribute,
+            survey=survey,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -342,6 +364,16 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
 
+            # Add target habitat scope collection
+            self.add_target_habitat_collection(
+                uri=th_obj.collection,
+                raw_value=th_obj.raw,
+                target_habitat_attribute=th_obj.attribute,
+                survey=survey,
+                dataset=dataset,
+                graph=graph,
+            )
+
         # Iterate through target taxonomic objects
         for tt_obj in target_taxonomic_objects:
             # Add target taxonomic scope attribute node
@@ -358,6 +390,16 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 uri=tt_obj.value,
                 dataset=dataset,
                 raw_value=tt_obj.raw,
+                graph=graph,
+            )
+
+            # Add target taxonomic scope collection node
+            self.add_target_taxonomic_scope_collection(
+                uri=tt_obj.collection,
+                raw_value=tt_obj.raw,
+                target_taxon_attribute=tt_obj.attribute,
+                survey=survey,
+                dataset=dataset,
                 graph=graph,
             )
 
@@ -694,25 +736,23 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
     def add_survey_type_attribute(
         self,
-        uri: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
+        survey_type_value: rdflib.URIRef | None,
+        row_survey_type: str | None,
         dataset: rdflib.URIRef,
-        survey_type_value: rdflib.URIRef,
-        row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds survey type attribute node.
 
         Args:
-            uri (rdflib.URIRef): Node reference
-            dataset (rdflib.URIRef): Dataset the data belongs.
-            row (frictionless.Row): Raw data.
-            graph (rdflib.Graph): Graph to be modified.
+            uri: Attribute node for survey type
+            survey_type_value: Value node for Survey type
+            row_survey_type: Raw value from the template for surveyType
+            dataset: Dataset the data belongs.
+            graph: Graph to be modified.
         """
-        # Extract value
-        survey_type = row["surveyType"]
-
         # Non default field, return if not present
-        if not survey_type:
+        if uri is None:
             return
 
         # Add type
@@ -725,44 +765,87 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_SURVEY_TYPE))
 
         # Add value
-        graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(survey_type)))
-        graph.add((uri, utils.namespaces.TERN.hasValue, survey_type_value))
+        if row_survey_type:
+            graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(row_survey_type)))
+        if survey_type_value:
+            graph.add((uri, utils.namespaces.TERN.hasValue, survey_type_value))
 
     def add_survey_type_value(
         self,
-        uri: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
+        row_survey_type: str | None,
         dataset: rdflib.URIRef,
-        row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds the survey type value node to graph.
 
         Args:
-            uri (rdflib.URIRef): Survey type value iri.
-            dataset (rdflib.URIRef): Dataset raw data belongs.
-            row (frictionless.Row): Raw data.
-            graph (rdflib.Graph): Graph to be modified.
+            uri: Survey type value iri.
+            row_survey_type: Raw value from the template for surveyType
+            dataset: Dataset raw data belongs.
+            graph: Graph to be modified.
         """
-        # Extract value
-        survey_type = row["surveyType"]
-
-        # Return if not a value
-        if survey_type is None:
+        # Return no value IRI
+        if uri is None:
             return
 
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.IRI))
         graph.add((uri, a, utils.namespaces.TERN.Value))
 
-        # Add label
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("surveyType")))
+        if row_survey_type:
+            # Add label
+            graph.add((uri, rdflib.RDFS.label, rdflib.Literal(row_survey_type)))
 
-        # Retrieve vocab for field
-        vocab = self.fields()["surveyType"].get_vocab()
+            # Retrieve vocab for field
+            vocab = self.fields()["surveyType"].get_vocab()
 
-        # Add value
-        term = vocab(graph=graph, source=dataset).get(survey_type)
-        graph.add((uri, rdflib.RDF.value, term))
+            # Add value
+            term = vocab(graph=graph, source=dataset).get(row_survey_type)
+            graph.add((uri, rdflib.RDF.value, term))
+
+    def add_survey_type_collection(
+        self,
+        *,
+        uri: rdflib.URIRef | None,
+        row_survey_type: str | None,
+        survey_type_attribute: rdflib.URIRef | None,
+        survey: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add a survey type Collection to the graph
+
+        Args:
+            uri: The uri for the Collection.
+            row_survey_type: surveyType value from template.
+            survey_type_attribute: The uri for the attribute node.
+            survey: The uri for the Survey node that wil be a member of the Collection.
+            dataset: The uri for the dateset node.
+            graph: The graph.
+        """
+        # Check if collection node should be created
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.SDO.Collection))
+        # Add identifier
+        if row_survey_type:
+            graph.add(
+                (
+                    uri,
+                    rdflib.SDO.identifier,
+                    rdflib.Literal(f"Survey Collection - Survey Type - {row_survey_type}"),
+                )
+            )
+        # Add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        # Add link to attribute
+        if survey_type_attribute:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, survey_type_attribute))
+        # add link to the Survey node
+        graph.add((uri, rdflib.SDO.member, survey))
 
     def add_target_habitat_attribute(
         self,
@@ -814,7 +897,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
 
         # Add label
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("targetHabitatScope")))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(raw_value)))
 
         # Retrieve vocab for field
         vocab = self.fields()["targetHabitatScope"].get_vocab()
@@ -822,6 +905,43 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add value
         term = vocab(graph=graph, source=dataset).get(raw_value)
         graph.add((uri, rdflib.RDF.value, term))
+
+    def add_target_habitat_collection(
+        self,
+        *,
+        uri: rdflib.URIRef,
+        raw_value: str,
+        target_habitat_attribute: rdflib.URIRef,
+        survey: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add a target habitat Collection to the graph
+
+        Args:
+            uri: The uri for the Collection.
+            raw_value: targetTaxonomicScope value from template.
+            target_habitat_attribute: The uri for the attribute node.
+            survey: The uri for the Survey node that wil be a member of the Collection.
+            dataset: The uri for the dateset node.
+            graph: The graph.
+        """
+        # Add type
+        graph.add((uri, a, rdflib.SDO.Collection))
+        # Add identifier
+        graph.add(
+            (
+                uri,
+                rdflib.SDO.identifier,
+                rdflib.Literal(f"Survey Collection - Target Habitat Scope - {raw_value}"),
+            )
+        )
+        # Add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        # Add link to attribute
+        graph.add((uri, utils.namespaces.TERN.hasAttribute, target_habitat_attribute))
+        # add link to the Survey node
+        graph.add((uri, rdflib.SDO.member, survey))
 
     def add_target_taxonomic_attribute(
         self,
@@ -874,7 +994,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
 
         # Add label
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("targetTaxonomicScope")))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal(raw_value)))
 
         # Retrieve vocab for field
         vocab = self.fields()["targetTaxonomicScope"].get_vocab()
@@ -882,6 +1002,43 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add value
         term = vocab(graph=graph, source=dataset).get(raw_value)
         graph.add((uri, rdflib.RDF.value, term))
+
+    def add_target_taxonomic_scope_collection(
+        self,
+        *,
+        uri: rdflib.URIRef,
+        raw_value: str,
+        target_taxon_attribute: rdflib.URIRef,
+        survey: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add a target taxonomic scope Collection to the graph
+
+        Args:
+            uri: The uri for the Collection.
+            raw_value: targetTaxonomicScope value from template.
+            target_taxon_attribute: The uri for the attribute node.
+            survey: The uri for the Survey node that wil be a member of the Collection.
+            dataset: The uri for the dateset node.
+            graph: The graph.
+        """
+        # Add type
+        graph.add((uri, a, rdflib.SDO.Collection))
+        # Add identifier
+        graph.add(
+            (
+                uri,
+                rdflib.SDO.identifier,
+                rdflib.Literal(f"Survey Collection - Target Taxonomic Scope - {raw_value}"),
+            )
+        )
+        # Add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        # Add link to attribute
+        graph.add((uri, utils.namespaces.TERN.hasAttribute, target_taxon_attribute))
+        # add link to the Survey node
+        graph.add((uri, rdflib.SDO.member, survey))
 
 
 # Register Mapper
