@@ -110,7 +110,7 @@
     rdfs:label "targetTaxonomicScope" ;
     rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
 
-<http://createme.org/survey/SSD-Survey/1> a bdr:Survey ;
+<http://createme.org/survey/SSD-Survey/1> a tern:Survey ;
     bdr:purpose "Summer sampling for peak insect diversity." ;
     bdr:target "Coleoptera",
         "Insecta" ;

@@ -191,7 +191,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Create BDR project IRI
         project = utils.rdf.uri(f"project/SSD-Survey-Project/{row_num}", base_iri)
 
-        # Create BDR survey IRI
+        # Create TERN survey IRI
         survey = utils.rdf.uri(f"survey/SSD-Survey/{row_num}", base_iri)
 
         # Create survey method procedure IRI
@@ -410,7 +410,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
-        """Adds the BDR survey to the graph.
+        """Adds the tern:Survey to the graph.
 
         Args:
             uri (rdflib.URIRef): URI of the survey.
@@ -423,7 +423,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): The graph to be modified.
         """
         # Add type and dataset
-        graph.add((uri, a, utils.namespaces.BDR.Survey))
+        graph.add((uri, a, utils.namespaces.TERN.Survey))
 
         # Add survey method procedure node
         graph.add((uri, rdflib.PROV.hadPlan, survey_method))
