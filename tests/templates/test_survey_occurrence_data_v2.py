@@ -427,3 +427,90 @@ class TestDefaultTemporalMap:
         res_g = next(graphs)
         # Ensure temporal entity added to graph
         assert next(res_g.subjects(a, ftn)) is not None
+
+class TestSiteVisitIDSiteIDMap:
+    """Tests specific to the provision of a site visit id -> site id map."""
+
+    @attrs.define(kw_only=True)
+    class Scenario:
+        """Dataclass to hold the scenario parameters."""
+
+        name: str
+        raws: list[list[str]]
+        expected_error_codes: set[str] = set()
+        lookup_map: dict[str, str]
+
+    scenarios: list[Scenario] = [
+        Scenario(
+            name="valid_with_default_map",
+            raws=[
+                ["SV1", "S1"],
+                ["SV2", "S1"],
+                ["SV3", "S1"],
+                ["SV4", "S1"],
+                ["", "S1"],
+            ],
+            lookup_map={"SV1": "S1", "SV2": "S1", "SV3": "S1", "SV4": "S1"},
+        ),
+        Scenario(
+            name="invalid_with_default_map",
+            raws=[
+                ["SV1", "S1"],
+                ["SV2", "S1"],
+                ["SV3", "S1"],
+                ["SV4", "S1"],
+            ],
+            lookup_map={"SV2": "S2"},
+            expected_error_codes={"row-constraint"},
+        ),
+    ]
+
+    @pytest.mark.parametrize(
+        argnames="scenario",
+        argvalues=scenarios,
+        ids=[scenario.name for scenario in scenarios],
+    )
+    def test_apply_validation(self, scenario: Scenario, mocker: pytest_mock.MockerFixture, mapper: Mapper) -> None:
+        """Tests the `apply_validation` method with a supplied default map.
+
+        Args:
+            scenario (Scenario): The parameters of the scenario under test.
+            mocker (pytest_mock.MockerFixture): The mocker fixture.
+            mapper (Mapper): Mapper instance fixture.
+        """
+        # Construct fake data
+        rawh = [
+            "siteVisitID",
+            "siteID",
+        ]
+        all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in scenario.raws]
+
+        # Modify schema to only fields required for test
+        descriptor = {"fields": [field for field in Mapper.schema()["fields"] if field["name"] in rawh]}
+        descriptor["fields"].sort(key=lambda f: rawh.index(f["name"]))
+
+        # Patch the schema for the test
+        mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+
+        # Create raw data csv string
+        with io.StringIO() as output:
+            csv_writer = csv.DictWriter(output, fieldnames=rawh)
+            csv_writer.writeheader()
+
+            for row in all_raw:
+                csv_writer.writerow(row)
+
+            csv_data = output.getvalue().encode("utf-8")
+
+        # Apply validation
+        report = mapper.apply_validation(
+            data=csv_data,
+            site_visit_id_site_id_map=scenario.lookup_map,
+        )
+
+        # Assert
+        assert report.valid == (scenario.expected_error_codes == set())
+        if not report.valid:
+            error_codes = [code for codes in report.flatten(["type"]) for code in codes]
+            assert set(error_codes) == scenario.expected_error_codes
+

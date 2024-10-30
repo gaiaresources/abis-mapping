@@ -108,6 +108,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 for given siteID.
             site_visit_id_temporal_map (dict[str, str]): Default RDF (serialized as turtle)
                 to use for temporal entity for given siteVisitID.
+            site_visit_id_site_id_map (dict[str, str]): Valid site ID for a given site visit ID.
 
         Returns:
             frictionless.Report: Validation report for the specified data.
@@ -115,6 +116,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Extract kwargs
         site_id_geometry_map = kwargs.get("site_id_geometry_map")
         site_visit_id_temporal_map = kwargs.get("site_visit_id_temporal_map")
+        site_visit_id_site_id_map = kwargs.get("site_visit_id_site_id_map")
 
         # Construct Schema
         schema = self.extra_fields_schema(
@@ -151,6 +153,17 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 ),
             ],
         )
+
+        # Modify checklist in the event site visit id to site id map provided
+        if site_visit_id_site_id_map is not None:
+            # Add lookup match check
+            checklist.add_check(
+                plugins.lookup_match.VLookupMatch(
+                    key_field="siteVisitID",
+                    value_field="siteID",
+                    lu_map=site_visit_id_site_id_map,
+                )
+            )
 
         # Modify schema and checklist in the event default temporal map provided
         if site_visit_id_temporal_map is not None:

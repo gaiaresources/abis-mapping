@@ -8,6 +8,7 @@ from . import default_lookup
 from . import empty
 from . import list
 from . import logical_or
+from . import lookup_match
 from . import mutual_exclusion
 from . import mutual_inclusion
 from . import required
