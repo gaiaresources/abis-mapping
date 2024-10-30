@@ -112,7 +112,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Return validation report
         return report
 
-    def extract_site_id_map(
+    def extract_site_visit_id_to_site_id_map(
         self,
         data: base.types.ReadableType,
     ) -> dict[str, str]:

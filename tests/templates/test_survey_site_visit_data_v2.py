@@ -197,12 +197,12 @@ class TestMapExtractors:
         assert actual == expected
         mocked_schema.assert_called_once()
 
-    def test_extract_site_id_map(
+    def test_extract_site_visit_id_to_site_id_map(
         self,
         mapper: mapping.SurveySiteVisitMapper,
         mocker: pytest_mock.MockerFixture,
     ) -> None:
-        """Tests the extract_site_id_map method.
+        """Tests the extract_site_visit_id_to_site_id_map method.
 
         Args:
             mapper: Mapper instance fixture.
@@ -268,7 +268,7 @@ class TestMapExtractors:
 
             csv_data = output.getvalue().encode("utf-8")
         # Invoke
-        actual = mapper.extract_site_id_map(csv_data)
+        actual = mapper.extract_site_visit_id_to_site_id_map(csv_data)
 
         # Assert
         assert actual == expected
