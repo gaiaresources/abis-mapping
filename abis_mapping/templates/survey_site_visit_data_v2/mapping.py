@@ -112,6 +112,37 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Return validation report
         return report
 
+    def extract_site_id_map(
+        self,
+        data: base.types.ReadableType,
+    ) -> dict[str, str]:
+        """Constructs a dictionary mapping site visit id to site id.
+
+        Args:
+            data: Raw data to be mapped.
+
+        Returns:
+            Map with site visit id for keys and site id for values.
+        """
+        # Construct schema
+        schema = frictionless.Schema.from_descriptor(self.schema())
+
+        # Construct resource
+        resource = frictionless.Resource(source=data, format="csv", schema=schema, encoding="utf-8")
+
+        # Declare result reference
+        result: dict[str, str] = {}
+
+        # Context manager for row streaming
+        with resource.open() as r:
+            for row in r.row_stream:
+                # Check that the cells have values and add to map
+                if (svid := row["siteVisitID"]) is not None and (sid := row["siteID"]) is not None:
+                    result[svid] = sid
+
+        # Return
+        return result
+
     def extract_temporal_defaults(
         self,
         data: base.types.ReadableType,
