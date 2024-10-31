@@ -10,3 +10,4 @@ from . import survey_metadata
 from . import survey_metadata_v2
 from . import survey_site_data
 from . import survey_site_data_v2
+from . import survey_site_visit_data_v2
