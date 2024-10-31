@@ -692,7 +692,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         Args:
             uri: Plan reference.
-            survey_type_attribute: SurveyType attribute for the node 
+            survey_type_attribute: SurveyType attribute for the node
             target_habitat_scope_attribute: targetHabitatScope attribute for the node.
             target_taxa_attribute: target taxa attribute for the node.
             row: Raw data row.
