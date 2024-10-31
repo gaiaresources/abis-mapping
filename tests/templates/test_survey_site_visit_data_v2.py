@@ -107,7 +107,9 @@ def test_add_temporal_coverage_node(
     assert valid, report
 
 
-class TestExtractTemporalDefaults:
+class TestMapExtractors:
+    """Tests for the key value extraction methods."""
+
     def test_extract_temporal_defaults(
         self,
         mapper: mapping.SurveySiteVisitMapper,
@@ -190,6 +192,83 @@ class TestExtractTemporalDefaults:
             csv_data = output.getvalue().encode("utf-8")
         # Invoke
         actual = mapper.extract_temporal_defaults(csv_data)
+
+        # Assert
+        assert actual == expected
+        mocked_schema.assert_called_once()
+
+    def test_extract_site_visit_id_to_site_id_map(
+        self,
+        mapper: mapping.SurveySiteVisitMapper,
+        mocker: pytest_mock.MockerFixture,
+    ) -> None:
+        """Tests the extract_site_visit_id_to_site_id_map method.
+
+        Args:
+            mapper: Mapper instance fixture.
+            mocker: The mocker fixture.
+        """
+        # Retrieve actual descriptor
+        original_descriptor = mapping.SurveySiteVisitMapper.schema()
+
+        # Define fields of relevance for tests
+        fieldnames = ["siteID", "siteVisitID"]
+
+        # Make descriptor only include these fields
+        descriptor = {
+            **original_descriptor,
+            "fields": [f for f in original_descriptor["fields"] if f["name"] in fieldnames],
+        }
+
+        # Patch schema
+        mocked_schema = mocker.patch.object(mapping.SurveySiteVisitMapper, "schema", return_value=descriptor)
+
+        # Declare some raw data
+        expected_rows: list[dict[str, str | None]] = [
+            {
+                "siteID": "S1",
+                "siteVisitID": "SV1",
+            },
+            {
+                "siteID": "S1",
+                "siteVisitID": "SV2",
+            },
+        ]
+        excluded_rows: list[dict[str, str | None]] = [
+            # The map should exclude these since there are no
+            # values for siteID
+            {
+                "siteID": "",
+                "siteVisitID": "SV3",
+            },
+            {
+                "siteID": None,
+                "siteVisitID": "SV4",
+            },
+            # map should exclude these because there is no siteVisitID
+            {
+                "siteID": "S2",
+                "siteVisitID": "",
+            },
+            {
+                "siteID": "S3",
+                "siteVisitID": None,
+            },
+        ]
+        # Construct expected map
+        expected = {r["siteVisitID"]: r["siteID"] for r in expected_rows}
+
+        # Create raw data csv string
+        with io.StringIO() as output:
+            csv_writer = csv.DictWriter(output, fieldnames=expected_rows[0].keys())
+            csv_writer.writeheader()
+
+            for row in expected_rows + excluded_rows:
+                csv_writer.writerow(row)
+
+            csv_data = output.getvalue().encode("utf-8")
+        # Invoke
+        actual = mapper.extract_site_visit_id_to_site_id_map(csv_data)
 
         # Assert
         assert actual == expected
