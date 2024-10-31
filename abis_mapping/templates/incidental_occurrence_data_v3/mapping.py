@@ -1355,6 +1355,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
 
+        spatial_accuracy = row["coordinateUncertaintyInMeters"] if "coordinateUncertaintyInMeters" in row else None
+        if spatial_accuracy:
+            accuracy = rdflib.Literal(spatial_accuracy, datatype=rdflib.XSD.double)
+            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+
         # Add 'supplied as' geometry
         self.add_geometry_supplied_as(
             subj=uri,

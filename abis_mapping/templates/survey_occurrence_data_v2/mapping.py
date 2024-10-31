@@ -1685,6 +1685,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+
+        spatial_accuracy = row["coordinateUncertaintyInMeters"] if "coordinateUncertaintyInMeters" in row else None
+        if spatial_accuracy:
+            accuracy = rdflib.Literal(spatial_accuracy, datatype=rdflib.XSD.double)
+            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
 
         # Conditionally add survey
