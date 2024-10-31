@@ -502,7 +502,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Extract relevant values
         datum = row["geodeticDatum"]
         sc_geometry = row["spatialCoverageWKT"]
-        spatial_accuracy = row["coordinateUncertaintyInMeters"]
+        spatial_accuracy = row["coordinateUncertaintyInMeters"] if "coordinateUncertaintyInMeters" in row else None
 
         if not (datum and sc_geometry):
             return
