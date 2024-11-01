@@ -139,7 +139,7 @@
     dcterms:identifier "COL1"^^<http://createme.org/datatype/surveyID/CSIRO>,
         "COL1"^^<http://createme.org/datatype/surveyID/NSW-Department-of-Planning-Industry-and-Environment> ;
     dcterms:title "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" ;
-    geo:hasGeometry _:Ncac6df2790fc4a2182fbd6081b77a3e9 ;
+    geo:hasGeometry _:N3b433d680f13245b5cb163b000000000 ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2015-01-21"^^xsd:date ] ;
@@ -157,19 +157,19 @@
         "woodland" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> a tern:Dataset ;
-    schema:dateCreated "2024-10-10"^^xsd:date ;
-    schema:dateIssued "2024-10-10"^^xsd:date ;
+    schema:dateCreated "2020-01-01"^^xsd:date ;
+    schema:dateIssued "2020-01-01"^^xsd:date ;
     schema:description "Example Systematic Survey Metadata Dataset by Gaia Resources" ;
     schema:name "Example Systematic Survey Metadata Dataset" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral ] ;
-    rdf:object _:Ncac6df2790fc4a2182fbd6081b77a3e9 ;
+    rdf:object _:N3b433d680f13245b5cb163b000000000 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/survey/SSD-Survey/1> ;
     rdfs:comment "supplied as" .
 
-_:Ncac6df2790fc4a2182fbd6081b77a3e9 a geo:Geometry ;
+_:N3b433d680f13245b5cb163b000000000 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral .
 
