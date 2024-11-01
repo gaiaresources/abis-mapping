@@ -3,7 +3,7 @@
     "label": "Systematic Survey Occurrence Data Template",
     "version": "2.0.0",
     "description": "A template to translate some Darwin Core fields",
-    "biodiversity_type": "Species Occurrences",
+    "biodiversity_type": "Systematic Species Occurrences",
     "spatial_type": "Point",
     "file_type": "CSV",
     "sampling_type": "systematic survey",
