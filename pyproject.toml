@@ -36,9 +36,10 @@ lint = "ruff check"
 lint-fix = "ruff check --fix-only"
 format = "ruff format"
 format-check = "ruff format --check"
-typecheck = "mypy tests/ abis_mapping/ docs/"
+typecheck = "mypy tests/ abis_mapping/ docs/ scripts/"
 generate-instructions = "./scripts/generate_instructions.sh"
 generate-model-docs = "./scripts/generate_model_docs.sh"
+generate-example-ttl-files = "python ./scripts/generate_example_ttl_files.py"
 test = "pytest tests --cov=abis_mapping --cov=docs --cov-report=term-missing"
 
 [build-system]
