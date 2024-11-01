@@ -139,7 +139,7 @@
     bdr:purpose "Summer sampling for peak insect diversity." ;
     bdr:target "Coleoptera",
         "Insecta" ;
-    geo:hasGeometry _:N0a0dab4ad2544ed3845f0717a9e1a09c ;
+    geo:hasGeometry _:N52d3d4f338b894a95032d27200000000 ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2015-01-21"^^xsd:date ] ;
@@ -160,19 +160,19 @@
     schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> a tern:Dataset ;
-    schema:dateCreated "2024-10-31"^^xsd:date ;
-    schema:dateIssued "2024-10-31"^^xsd:date ;
+    schema:dateCreated "2020-01-01"^^xsd:date ;
+    schema:dateIssued "2020-01-01"^^xsd:date ;
     schema:description "Example Systematic Survey Metadata Dataset by Gaia Resources" ;
     schema:name "Example Systematic Survey Metadata Dataset" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral ] ;
-    rdf:object _:N0a0dab4ad2544ed3845f0717a9e1a09c ;
+    rdf:object _:N52d3d4f338b894a95032d27200000000 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/survey/SSD-Survey/1> ;
     rdfs:comment "supplied as" .
 
-_:N0a0dab4ad2544ed3845f0717a9e1a09c a geo:Geometry ;
+_:N52d3d4f338b894a95032d27200000000 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral .
 
