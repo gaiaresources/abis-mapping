@@ -435,8 +435,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         sample_sequence = utils.rdf.uri(f"sample/sequence/{row_num}", base_iri)
         threat_status_observation = utils.rdf.uri(f"observation/threatStatus/{row_num}", base_iri)
         threat_status_value = utils.rdf.uri(f"value/threatStatus/{row_num}", base_iri)
-        sensitivity_category_attribute = utils.rdf.uri(f"attribute/sensitivityCategory/{row_num}", base_iri)
-        sensitivity_category_value = utils.rdf.uri(f"value/sensitivityCategory/{row_num}", base_iri)
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
         organism_quantity_observation = utils.rdf.uri(f"observation/organismQuantity/{row_num}", base_iri)
         organism_quantity_value = utils.rdf.uri(f"value/organismQuantity/{row_num}", base_iri)
@@ -591,6 +589,21 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             conservation_authority_attribute = None
             conservation_authority_value = None
             conservation_authority_collection = None
+
+        # Conditionally create IRIs for the sensitivityCategory field
+        sensitivity_category: str | None = row["sensitivityCategory"]
+        if sensitivity_category:
+            sensitivity_category_attribute = utils.rdf.uri(
+                f"attribute/sensitivityCategory/{sensitivity_category}", base_iri
+            )
+            sensitivity_category_value = utils.rdf.uri(f"value/sensitivityCategory/{sensitivity_category}", base_iri)
+            sensitivity_category_collection = utils.rdf.extend_uri(
+                dataset, "OccurrenceCollection", "sensitivityCategory", sensitivity_category
+            )
+        else:
+            sensitivity_category_attribute = None
+            sensitivity_category_value = None
+            sensitivity_category_collection = None
 
         # Conditionally create uri dependent on surveyID field.
         if survey_id := row["surveyID"]:
@@ -1276,6 +1289,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         self.add_sensitivity_category_value(
             uri=sensitivity_category_value,
             row=row,
+            dataset=dataset,
+            graph=graph,
+        )
+
+        # Add Sensitivity Category Collection
+        self.add_sensitivity_category_collection(
+            uri=sensitivity_category_collection,
+            sensitivity_category=sensitivity_category,
+            sensitivity_category_attribute=sensitivity_category_attribute,
             dataset=dataset,
             graph=graph,
         )
@@ -4358,24 +4380,23 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
     def add_sensitivity_category_attribute(
         self,
-        uri: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sensitivity_category_value: rdflib.URIRef,
+        sensitivity_category_value: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Sensitivity Category Attribute to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node.
+            uri: URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sensitivity_category_value (rdflib.URIRef): Sensitivity
-                Category Value associated with this node
+            sensitivity_category_value: Sensitivity Category Value associated with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if not row["sensitivityCategory"]:
+        if uri is None:
             return
 
         simple_value = f"{row['sensitivityCategory']} - {row['sensitivityAuthority']}"
@@ -4385,11 +4406,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_SENSITIVITY_CATEGORY))
         graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(simple_value)))
-        graph.add((uri, utils.namespaces.TERN.hasValue, sensitivity_category_value))
+        if sensitivity_category_value:
+            graph.add((uri, utils.namespaces.TERN.hasValue, sensitivity_category_value))
 
     def add_sensitivity_category_value(
         self,
-        uri: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
@@ -4397,13 +4419,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         """Adds Sensitivity Category Value to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node
+            uri: URI to use for this node
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
-        if not row["sensitivityCategory"]:
+        if uri is None:
             return
 
         # Retrieve vocab for field
@@ -4429,6 +4451,46 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(label)))
         graph.add((uri, rdflib.RDF.value, term))
+
+    def add_sensitivity_category_collection(
+        self,
+        *,
+        uri: rdflib.URIRef | None,
+        sensitivity_category: str | None,
+        sensitivity_category_attribute: rdflib.URIRef | None,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add a sensitivity category Collection to the graph
+
+        Args:
+            uri: The uri for the Collection.
+            sensitivity_category: sensitivityCategory value from template.
+            sensitivity_category_attribute: The uri for the attribute node.
+            dataset: The uri for the dateset node.
+            graph: The graph.
+        """
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, rdflib.SDO.Collection))
+        # Add identifier
+        if sensitivity_category:
+            graph.add(
+                (
+                    uri,
+                    rdflib.SDO.identifier,
+                    rdflib.Literal(f"Occurrence Collection - Sensitivity Category - {sensitivity_category}"),
+                )
+            )
+        # Add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        # Add link to attribute
+        if sensitivity_category_attribute:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, sensitivity_category_attribute))
+        # TODO add link to the abis:BiodiversityRecord node once that is implemented
+        # graph.add((uri, rdflib.SDO.member, ...))
 
 
 # Helper Functions
