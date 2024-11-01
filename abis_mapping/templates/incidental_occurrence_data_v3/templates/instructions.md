@@ -74,6 +74,8 @@ Changes from Incidental Occurrence Data Template v2.0.0
 
 ### CHANGED FIELDS
 
+* The field `eventDate` is renamed [`eventDateStart`](#eventDateStart-field).
+* The field [`eventDateEnd`](#eventDateEnd-field) is added. It is an optional field with type Timestamp.
 * The field `conservationJurisdiction` is replaced by [`conservationAuthority`](#conservationAuthority-field).
 * [`sensitivityCategory`](#sensitivityCategory-field) and [`sensitivityAuthority`](#sensitivityAuthority-field)
 are new fields. Both are type string.

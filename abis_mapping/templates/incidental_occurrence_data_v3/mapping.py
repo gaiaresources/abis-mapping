@@ -127,6 +127,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                     # Extra Custom Checks
                     plugins.tabular.IsTabular(),
                     plugins.empty.NotEmpty(),
+                    plugins.chronological.ChronologicalOrder(
+                        field_names=["eventDateStart", "eventDateEnd"],
+                    ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["threatStatus", "conservationAuthority"],
                     ),
@@ -1174,7 +1177,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Get Timestamp
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -1208,7 +1211,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Check for dateIdentified
         if not row["dateIdentified"]:
             # Add comment to temporal entity
-            comment = "Date unknown, template eventDate used as proxy"
+            comment = "Date unknown, template eventDateStart used as proxy"
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_observation_verbatim_id(
@@ -1241,7 +1244,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -1275,7 +1278,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Check for dateIdentified
         if not row["dateIdentified"]:
             # Add comment to temporal entity
-            comment = "Date unknown, template eventDate used as proxy"
+            comment = "Date unknown, template eventDateStart used as proxy"
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_provider_recorded_by_agent(
@@ -1411,7 +1414,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Extract values from row
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Create geometry
         geometry = types.spatial.Geometry(
@@ -1836,7 +1839,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Get Timestamp
-        timestamp: types.temporal.Timestamp = row["preparedDate"] or row["eventDate"]
+        timestamp: types.temporal.Timestamp = row["preparedDate"] or row["eventDateStart"]
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -1870,7 +1873,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Check for preparedDate
         if not row["preparedDate"]:
             # Add comment to temporal entity
-            temporal_comment = "Date unknown, template eventDate used as proxy"
+            temporal_comment = "Date unknown, template eventDateStart used as proxy"
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Check for coordinateUncertaintyInMeters
@@ -2307,7 +2310,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2327,7 +2330,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_comment = "Date unknown, template eventDateStart used as proxy"
         graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add Method Qualifier comment
@@ -2383,7 +2386,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2403,7 +2406,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_comment = "Date unknown, template eventDateStart used as proxy"
         graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add method comment to node
@@ -2711,7 +2714,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2895,7 +2898,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2915,7 +2918,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_comment = "Date unknown, template eventDateStart used as proxy"
         graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add method comment to node
@@ -2982,7 +2985,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3007,7 +3010,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_comment = "Date unknown, template eventDateStart used as proxy"
         graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add method comment to node
@@ -3073,7 +3076,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3098,7 +3101,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_comment = "Date unknown, template eventDateStart used as proxy"
         graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add method comment to node
@@ -3165,7 +3168,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3190,7 +3193,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
         # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_comment = "Date unknown, template eventDateStart used as proxy"
         graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add method comment to node
@@ -3254,7 +3257,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
 
         # Accepted Name Usage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -3271,7 +3274,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
 
         # Add comment to temporal entity
-        timestamp_used = "dateIdentified" if row["dateIdentified"] else "eventDate"  # Determine which field was used
+        # Determine which field was used
+        timestamp_used = "dateIdentified" if row["dateIdentified"] else "eventDateStart"
         temporal_comment = f"Date unknown, template {timestamp_used} used as proxy"
         graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
@@ -3325,7 +3329,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Extract values from row
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Check Existence
         if not row["associatedSequences"]:
@@ -3377,7 +3381,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
 
         # Add comment to temporal entity
-        temporal_comment = "Date unknown, template eventDate used as proxy"
+        temporal_comment = "Date unknown, template eventDateStart used as proxy"
         graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
 
         # Add comment to geometry
@@ -3481,9 +3485,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         foi = accepted_name_usage if row["acceptedNameUsage"] else scientific_name
 
         # Get Timestamp
-        # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDate` (fallback)
+        # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDateStart` (fallback)
         date_determined: types.temporal.Timestamp = (
-            row["threatStatusDateDetermined"] or row["dateIdentified"] or row["preparedDate"] or row["eventDate"]
+            row["threatStatusDateDetermined"] or row["dateIdentified"] or row["preparedDate"] or row["eventDateStart"]
         )
 
         # Retrieve vocab for field
@@ -3515,7 +3519,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["threatStatusDateDetermined"]:
             # Determine Used Date Column
             date_used = (
-                "dateIdentified" if row["dateIdentified"] else "preparedDate" if row["preparedDate"] else "eventDate"
+                "dateIdentified"
+                if row["dateIdentified"]
+                else "preparedDate"
+                if row["preparedDate"]
+                else "eventDateStart"
             )
 
             # Add comment to temporal entity
