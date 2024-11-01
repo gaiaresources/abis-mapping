@@ -3673,10 +3673,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         Args:
             uri: URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
+            row: Row to retrieve data from
+            dataset: Dataset this belongs to
             sensitivity_category_value: Sensitivity Category Value associated with this node
-            graph (rdflib.Graph): Graph to add to
+            graph: Graph to add to
         """
         # Check Existence
         if uri is None:
@@ -3703,9 +3703,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         Args:
             uri: URI to use for this node
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            graph (rdflib.Graph): Graph to add to
+            row: Row to retrieve data from
+            dataset: Dataset this belongs to
+            graph: Graph to add to
         """
         # Check Existence
         if uri is None:
