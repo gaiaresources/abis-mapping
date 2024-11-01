@@ -19,7 +19,7 @@ summary: {{ metadata.description }}
 !!! warning "Template In Beta"
 
     This Template is in Beta, and may not be ready for use.
-    Changes to the Template may be made before it ready for use.
+    Changes to the Template may be made before it is ready for use.
 
 {% endif %}
 
