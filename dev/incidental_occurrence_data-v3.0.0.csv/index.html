@@ -759,11 +759,18 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Coordinates rounded to the nearest 10 km for conservation concern</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a name="eventDate-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:eventDate">eventDate</a></td>
-<td style="text-align: left;">The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context</td>
+<td style="text-align: left;"><a name="eventDateStart-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:eventDate">eventDateStart</a></td>
+<td style="text-align: left;">The start date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone (in ISO 8601 format for example 2022-05-20T06:23:00+08:00) of the period during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context</td>
 <td style="text-align: center;">Mandatory</td>
 <td style="text-align: center;">Timestamp</td>
 <td style="text-align: left;">2019-09-23T14:03+08:00</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="eventDateEnd-field"></a>eventDateEnd</td>
+<td style="text-align: left;">The end date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone (in ISO 8601 format for example 2022-05-20T06:23:00+08:00) of the period during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Timestamp</td>
+<td style="text-align: left;">2019-09-24</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="samplingProtocol-field"></a><a href="https://dwc.tdwg.org/terms/#dwciri:samplingProtocol">samplingProtocol</a></td>
@@ -1065,6 +1072,8 @@ datatype format, and examples.</ins></p>
 <p>Changes from Incidental Occurrence Data Template v2.0.0</p>
 <h3 id="changed-fields">CHANGED FIELDS</h3>
 <ul>
+<li>The field <code>eventDate</code> is renamed <a href="#eventDateStart-field"><code>eventDateStart</code></a>.</li>
+<li>The field <a href="#eventDateEnd-field"><code>eventDateEnd</code></a> is added. It is an optional field with type Timestamp.</li>
 <li>The field <code>conservationJurisdiction</code> is replaced by <a href="#conservationAuthority-field"><code>conservationAuthority</code></a>.</li>
 <li><a href="#sensitivityCategory-field"><code>sensitivityCategory</code></a> and <a href="#sensitivityAuthority-field"><code>sensitivityAuthority</code></a>
 are new fields. Both are type string.
@@ -2816,7 +2825,7 @@ valid for that conservationAuthority.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">CE</td>
-<td style="text-align: left;">CR, CRITICALLY ENDANGERED</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED, CR</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -2826,7 +2835,7 @@ valid for that conservationAuthority.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">E</td>
-<td style="text-align: left;">EN, ENDANGERED</td>
+<td style="text-align: left;">ENDANGERED, EN</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -2846,7 +2855,7 @@ valid for that conservationAuthority.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">V</td>
-<td style="text-align: left;">VU, VULNERABLE</td>
+<td style="text-align: left;">VULNERABLE, VU</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -3076,7 +3085,7 @@ valid for that conservationAuthority.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CR</td>
-<td style="text-align: left;">CRITICALLY ENDANGERED SPECIES, CRITICALLY ENDANGERED</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED, CRITICALLY ENDANGERED SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -3106,7 +3115,7 @@ valid for that conservationAuthority.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P1</td>
-<td style="text-align: left;">PRIORITY 1 POORLY KNOWN SPECIES, PRIORITY 1 POORLY KNOWN</td>
+<td style="text-align: left;">PRIORITY 1 POORLY KNOWN, PRIORITY 1 POORLY KNOWN SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -3116,7 +3125,7 @@ valid for that conservationAuthority.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P3</td>
-<td style="text-align: left;">PRIORITY 3 POORLY KNOWN SPECIES, PRIORITY 3 POORLY KNOWN</td>
+<td style="text-align: left;">PRIORITY 3 POORLY KNOWN, PRIORITY 3 POORLY KNOWN SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
