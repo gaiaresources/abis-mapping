@@ -130,6 +130,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 # Extra Custom Checks
                 plugins.tabular.IsTabular(),
                 plugins.empty.NotEmpty(),
+                plugins.chronological.ChronologicalOrder(
+                    field_names=["eventDateStart", "eventDateEnd"],
+                ),
                 plugins.mutual_inclusion.MutuallyInclusive(
                     field_names=["threatStatus", "conservationAuthority"],
                 ),
@@ -167,15 +170,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Modify schema and checklist in the event default temporal map provided
         if site_visit_id_temporal_map is not None:
-            # Need to make sure that required is false from the eventDate field
+            # Need to make sure that required is false for the eventDateStart field
             # since this would override the default lookup check.
-            schema.get_field("eventDate").constraints["required"] = False
+            schema.get_field("eventDateStart").constraints["required"] = False
 
             # Perform a default lookup check based on passed in map.
             checklist.add_check(
                 plugins.default_lookup.DefaultLookup(
                     key_field="siteVisitID",
-                    value_field="eventDate",
+                    value_field="eventDateStart",
                     default_map=site_visit_id_temporal_map,
                 )
             )
@@ -1453,7 +1456,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Get Timestamps
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -1483,9 +1486,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
             graph.add((uri, rdflib.SOSA.usedProcedure, term))
             # Check for which date provided
-            if not row["dateIdentified"] and row["eventDate"]:
+            if not row["dateIdentified"] and row["eventDateStart"]:
                 # Add comment to temporal entity
-                comment = "Date unknown, template eventDate used as proxy"
+                comment = "Date unknown, template eventDateStart used as proxy"
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
         else:
             # Add default temporal entity from map
@@ -1536,7 +1539,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -1567,7 +1570,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Check for dateIdentified
             if not row["dateIdentified"]:
                 # Add comment to temporal entity
-                comment = "Date unknown, template eventDate used as proxy"
+                comment = "Date unknown, template eventDateStart used as proxy"
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
         else:
             # Add default temporal entity from map
@@ -1729,7 +1732,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         latitude = row["decimalLatitude"]
         longitude = row["decimalLongitude"]
         site_id = row["siteID"]
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         if latitude is not None and longitude is not None:
             # Create geometry
@@ -1757,7 +1760,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
 
-        # Check eventDate provided
+        # Check eventDateStart provided
         if event_date is not None:
             temporal_entity = rdflib.BNode()
             graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
@@ -2205,7 +2208,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        timestamp: types.temporal.Timestamp = row["preparedDate"] or row["eventDate"]
+        timestamp: types.temporal.Timestamp = row["preparedDate"] or row["eventDateStart"]
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -2224,7 +2227,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Check for preparedDate
             if not row["preparedDate"]:
                 # Add comment to temporal entity
-                temporal_comment = "Date unknown, template eventDate used as proxy"
+                temporal_comment = "Date unknown, template eventDateStart used as proxy"
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(temporal_comment)))
         else:
             # Use default rdf from site visit as temporal entity
@@ -2704,7 +2707,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2726,7 +2729,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment
-            comment = "Date unknown, template eventDate used as proxy"
+            comment = "Date unknown, template eventDateStart used as proxy"
         else:
             # Use default rdf from site visit as temporal entity
             temporal_entity = self.add_default_temporal_entity(
@@ -2796,7 +2799,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2811,14 +2814,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ORGANISM_REMARKS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
-        # Check for eventDate
+        # Check for eventDateStart
         if event_date is not None:
             temporal_entity = rdflib.BNode()
             graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment to temporal entity
-            comment = "Date unknown, template eventDate used as proxy"
+            comment = "Date unknown, template eventDateStart used as proxy"
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
         else:
             # Use default rdf from site visit as temporal entity
@@ -3140,7 +3143,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3341,7 +3344,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3356,14 +3359,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ESTABLISHMENT_MEANS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
-        # Check eventDate supplied
+        # Check eventDateStart supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
             graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment to temporal entity
-            comment = "Date unknown, template eventDate used as proxy"
+            comment = "Date unknown, template eventDateStart used as proxy"
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
         else:
             # Use default rdf from site visit as temporal entity
@@ -3444,7 +3447,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3464,7 +3467,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_LIFE_STAGE))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
-        # Check eventDate supplied
+        # Check eventDateStart supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
             graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
@@ -3472,7 +3475,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
             # Add comment to temporal entity
-            comment = "Date unknown, template eventDate used as proxy"
+            comment = "Date unknown, template eventDateStart used as proxy"
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
         else:
             # Use default rdf from site visit as temporal entity
@@ -3552,7 +3555,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3572,14 +3575,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SEX))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
-        # Check eventDate provided
+        # Check eventDateStart provided
         if event_date is not None:
             temporal_entity = rdflib.BNode()
             graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment to temporal entity
-            comment = "Date unknown, template eventDate used as proxy"
+            comment = "Date unknown, template eventDateStart used as proxy"
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
         else:
             # Use default rdf from site visit as temporal entity
@@ -3660,7 +3663,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3680,14 +3683,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_REPRODUCTIVE_CONDITION))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
-        # Check eventDate provided
+        # Check eventDateStart provided
         if event_date is not None:
             temporal_entity = rdflib.BNode()
             graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment to temporal entity
-            comment = "Date unknown, template eventDate used as proxy"
+            comment = "Date unknown, template eventDateStart used as proxy"
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
         else:
             # Use default rdf from site visit as temporal entity
@@ -3765,7 +3768,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDate"]
+        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
 
         # Accepted Name Usage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -3785,7 +3788,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
             # Add comment to temporal entity
             timestamp_used = (
-                "dateIdentified" if row["dateIdentified"] else "eventDate"
+                "dateIdentified" if row["dateIdentified"] else "eventDateStart"
             )  # Determine which field was used
             comment = f"Date unknown, template {timestamp_used} used as proxy"
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
@@ -3865,7 +3868,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         longitude = row["decimalLongitude"]
         geodetic_datum = row["geodeticDatum"]
         site_id = row["siteID"]
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
 
         if latitude is not None and longitude is not None:
             # Create geometry
@@ -3896,7 +3899,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
 
-        # Determin eventDate supplied
+        # Determin eventDateStart supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
             graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
@@ -3904,7 +3907,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             graph.add((uri, rdflib.SOSA.usedProcedure, term))
             # Add comment to temporal entity
-            comment = "Date unknown, template eventDate used as proxy"
+            comment = "Date unknown, template eventDateStart used as proxy"
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
         else:
             # Use default rdf from site visit as temporal entity
@@ -4042,9 +4045,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         foi = accepted_name_usage if row["acceptedNameUsage"] else scientific_name
 
         # Get Timestamp
-        # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDate` (fallback)
+        # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDateStart` (fallback)
         date_determined: types.temporal.Timestamp = (
-            row["threatStatusDateDetermined"] or row["dateIdentified"] or row["preparedDate"] or row["eventDate"]
+            row["threatStatusDateDetermined"] or row["dateIdentified"] or row["preparedDate"] or row["eventDateStart"]
         )
 
         # Retrieve vocab for field
@@ -4081,7 +4084,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                     if row["dateIdentified"]
                     else "preparedDate"
                     if row["preparedDate"]
-                    else "eventDate"
+                    else "eventDateStart"
                 )
                 # Add comment to temporal entity
                 comment = f"Date unknown, template {date_used} used as proxy"
@@ -4258,7 +4261,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to be modified.
         """
         # Extract values
-        event_date: types.temporal.Timestamp = row["eventDate"]
+        event_date: types.temporal.Timestamp = row["eventDateStart"]
         organism_qty = row["organismQuantity"]
         organism_qty_type = row["organismQuantityType"]
 
@@ -4275,7 +4278,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("organismQuantity-observation")))
         graph.add((uri, rdflib.SOSA.observedProperty, utils.namespaces.DWC.organismQuantity))
 
-        # Check eventDate provided
+        # Check eventDateStart provided
         if event_date is not None:
             temporal_entity = rdflib.BNode()
             graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
@@ -4283,7 +4286,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment to temporal entity
             graph.add(
-                (temporal_entity, rdflib.RDFS.comment, rdflib.Literal("Date unknown, template eventDate used as proxy"))
+                (
+                    temporal_entity,
+                    rdflib.RDFS.comment,
+                    rdflib.Literal("Date unknown, template eventDateStart used as proxy"),
+                )
             )
         else:
             # Use default rdf from site visit as temporal entity

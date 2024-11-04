@@ -20,6 +20,8 @@ see the [Systematic Survey Metadata v2.0.0 instruction manual](https://gaiaresou
 
 ### Systematic Survey Occurrence Data v2.0.0
 #### [Schema v2.0.0](https://github.com/gaiaresources/abis-mapping/blob/main/abis_mapping/templates/survey_occurrence_data_v2/schema.json) changes (by column order).
+* The field `eventDate` is renamed `eventDateStart`.
+* The field `eventDateEnd` is added. It is an optional field with type Timestamp.
 * The field `conservationJurisdiction` is replaced by `conservationAuthority`.
 * `sensitivityCategory` and `sensitivityAuthority` are added fields. Both are type string.
 They are mutually inclusive, both must be provided or both must be blank.
