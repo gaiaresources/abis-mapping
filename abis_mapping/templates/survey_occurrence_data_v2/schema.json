@@ -718,10 +718,10 @@
       ]
     },
     {
-      "name": "siteID",
-      "title": "Site ID",
-      "description": "Corresponds to a unique site identifier, provided within accompanying survey_site_data.csv template.",
-      "example": "P1",
+      "name": "surveyID",
+      "title": "Survey ID",
+      "description": "The identifier of the Survey that the occurrence comes from. This field should be completed if it is ambiguous as to which survey the occurrence belongs to.",
+      "example": "AR220-01",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -729,10 +729,10 @@
       }
     },
     {
-      "name": "surveyID",
-      "title": "Survey ID",
-      "description": "The identifier of the Survey that the occurrence comes from. This field should be completed if it is ambiguous as to which survey the occurrence belongs to.",
-      "example": "AR220-01",
+      "name": "siteID",
+      "title": "Site ID",
+      "description": "Corresponds to a unique site identifier, provided within accompanying survey_site_data.csv template.",
+      "example": "P1",
       "type": "string",
       "format": "default",
       "constraints": {
