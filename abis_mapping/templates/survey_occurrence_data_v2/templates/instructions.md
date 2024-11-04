@@ -81,9 +81,12 @@ Changes from Systematic Survey Occurrence Data Template v1.0.0
 
 ### CHANGED FIELDS
 
+* The field `eventDate` is renamed [`eventDateStart`](#eventDateStart-field).
+* The field [`eventDateEnd`](#eventDateEnd-field) is added. It is an optional field with type Timestamp.
 * The field `conservationJurisdiction` is replaced by [`conservationAuthority`](#conservationAuthority-field).
 * `sensitivityCategory` and `sensitivityAuthority` are added fields. Both are type string.
 They are mutually inclusive, both must be provided or both must be blank.
+* Swapped positions of fields [`surveyID`](#surveyID-field) and [`siteID`](#siteID-field) so that `surveyID` is first.
 * Add field `siteVisitID`. Type is string, can be blank. 
 If provided, should match a `siteVisitID` in the `survey_site_visit_data.csv` template.
 

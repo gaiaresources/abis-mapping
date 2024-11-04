@@ -115,15 +115,26 @@
       }
     },
     {
-      "name": "eventDate",
-      "title": "Event Date",
-      "description": "The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context.",
+      "name": "eventDateStart",
+      "title": "Event Date Start",
+      "description": "The start date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone (in ISO 8601 format for example 2022-05-20T06:23:00+08:00) of the period during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context.",
       "example": "2019-09-23T14:03+08:00",
       "type": "timestamp",
       "format": "default",
       "url": "https://dwc.tdwg.org/terms/#dwc:eventDate",
       "constraints": {
         "required": true
+      }
+    },
+    {
+      "name": "eventDateEnd",
+      "title": "Event Date End",
+      "description": "The end date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone (in ISO 8601 format for example 2022-05-20T06:23:00+08:00) of the period during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context.",
+      "example": "2019-09-24",
+      "type": "timestamp",
+      "format": "default",
+      "constraints": {
+        "required": false
       }
     },
     {
@@ -707,10 +718,10 @@
       ]
     },
     {
-      "name": "siteID",
-      "title": "Site ID",
-      "description": "Corresponds to a unique site identifier, provided within accompanying survey_site_data.csv template.",
-      "example": "P1",
+      "name": "surveyID",
+      "title": "Survey ID",
+      "description": "The identifier of the Survey that the occurrence comes from. This field should be completed if it is ambiguous as to which survey the occurrence belongs to.",
+      "example": "AR220-01",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -718,10 +729,10 @@
       }
     },
     {
-      "name": "surveyID",
-      "title": "Survey ID",
-      "description": "The identifier of the Survey that the occurrence comes from. This field should be completed if it is ambiguous as to which survey the occurrence belongs to.",
-      "example": "AR220-01",
+      "name": "siteID",
+      "title": "Site ID",
+      "description": "Corresponds to a unique site identifier, provided within accompanying survey_site_data.csv template.",
+      "example": "P1",
       "type": "string",
       "format": "default",
       "constraints": {

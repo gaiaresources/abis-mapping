@@ -26,7 +26,7 @@
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "organismQuantity-observation" ;
     time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
     sosa:hasResult <http://createme.org/value/organismQuantity/1> ;
@@ -38,7 +38,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDate used as proxy" ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/sample/field/1> ;
     sosa:hasResult <http://createme.org/scientificName/1> ;
