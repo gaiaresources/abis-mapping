@@ -1,8 +1,16 @@
+@prefix abis: <https://linked.data.gov.au/def/abis/> .
 @prefix bdrsh: <http://example.com/bdr-schema/shapes/> .
+@prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix tern: <https://w3id.org/tern/ontologies/tern/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 bdrsh:DatatypeShape
@@ -99,3 +107,144 @@ bdrsh:AttributionShape
         sh:maxCount 1 ;
         sh:nodeKind sh:IRI ;
     ] .
+
+bdrsh:BiodiversityRecordShape
+	a sh:NodeShape ;
+	sh:targetClass abis:BiodiversityRecord ;
+	sh:property [
+		sh:path schema:identifier ;
+		sh:nodeKind sh:Literal ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:path schema:about ;
+		sh:nodeKind sh:IRI ;
+		sh:class dwc:Occurrence ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] .
+
+bdrsh:CollectionShape
+	a sh:NodeShape ;
+	sh:targetClass schema:Collection ;
+	sh:xone (
+		bdrsh:GeneralCollectionShape
+		bdrsh:SensitivityCategoryCollectionShape
+	) .
+
+bdrsh:GeneralCollectionShape
+	a sh:NodeShape ;
+	sh:class schema:Collection ;
+	sh:property [
+		sh:path void:inDataset ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:nodeKind sh:IRI ;
+		sh:class tern:Dataset ;
+	] ;
+	sh:property [
+		sh:path schema:identifier ;
+		sh:nodeKind sh:Literal ;
+		sh:pattern "^Occurrence Collection - (?:Identification Qualifier|Identification Remarks|Data Generalizations|Taxon Rank|Habitat|Basis Of Record|Preparations|Conservation Authority) - " ;
+		sh:datatype xsd:string ;
+		sh:minCount 1;
+		sh:maxCount 1;
+	] ;
+	sh:property [
+		sh:path tern:hasAttribute ;
+		sh:nodeKind sh:IRI ;
+		sh:class tern:Attribute;
+		sh:maxCount 1;
+	] .
+
+# Shape exclusively relevant for a sensitivity category collection
+bdrsh:SensitivityCategoryCollectionShape
+	a sh:NodeShape ;
+	sh:class schema:Collection ;
+	sh:property [
+		sh:path void:inDataset ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:nodeKind sh:IRI ;
+		sh:class tern:Dataset ;
+	] ;
+	sh:property [
+		sh:path schema:identifier ;
+		sh:nodeKind sh:Literal ;
+		sh:pattern "^Occurrence Collection - Sensitivity Category - " ;
+		sh:datatype xsd:string ;
+		sh:minCount 1;
+		sh:maxCount 1;
+	] ;
+	sh:property [
+		sh:path tern:hasAttribute ;
+		sh:nodeKind sh:IRI ;
+		sh:class tern:Attribute;
+		sh:maxCount 1;
+	] ;
+	sh:property [
+		sh:path schema:member ;
+		sh:nodeKind sh:IRI ;
+		sh:class abis:BiodiversityRecord ;
+		sh:minCount 1;
+	] .
+
+bdrsh:IncidentalOccurrenceShape
+	a sh:NodeShape ;
+	sh:targetClass dwc:Occurrence ;
+	sh:class tern:FeatureOfInterest,
+		dwc:Occurrence ;
+	sh:property [
+		sh:path void:inDataset ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:nodeKind sh:IRI ;
+		sh:class tern:Dataset ;
+	] ;
+	sh:property [
+		sh:path schema:identifier ;
+		sh:nodeKind sh:Literal ;
+	] ;
+	sh:property [
+		sh:path tern:featureType ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		sh:nodeKind sh:IRI ;
+	] ;
+	sh:property [
+		sh:path schema:spatial ;
+		sh:nodeKind sh:BlankNode ;
+		sh:minCount 1 ;
+		sh:class geo:Geometry ;
+	] ;
+	sh:property [
+		sh:path schema:temporal ;
+		sh:nodeKind sh:BlankNode ;
+		sh:minCount 1 ;
+		sh:class time:TemporalEntity ;
+	] ;
+	sh:property [
+		sh:path sosa:usedProcedure ;
+		sh:nodeKind sh:IRI ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:path tern:locationDescription ;
+		sh:datatype xsd:string ;
+		sh:nodeKind sh:Literal ;
+	] ;
+	sh:property [
+		sh:path prov:wasAssociatedWith ;
+		sh:nodeKind sh:IRI ;
+		sh:maxCount 1 ;
+		sh:class prov:Agent ;
+	] ;
+	sh:property [
+		sh:path schema:isPartOf ;
+		sh:maxCount 0 ;
+	] ;
+	sh:property [
+		sh:path tern:hasSite ;
+		sh:maxCount 0 ;
+	] .

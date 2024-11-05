@@ -207,16 +207,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
 
-        # Create Terminal Feature of Interest IRI
-        terminal_foi = utils.rdf.uri("location/Australia", base_iri)
-
-        # Add Terminal Feature of Interest (Australia)
-        self.add_terminal_feature_of_interest(
-            uri=terminal_foi,
-            dataset=dataset_iri,
-            graph=graph,
-        )
-
         # Open the Resource to allow row streaming
         with resource.open() as r:
             # Loop through Rows
@@ -225,7 +215,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 self.apply_mapping_row(
                     row=row,
                     dataset=dataset_iri,
-                    terminal_foi=terminal_foi,
                     graph=graph,
                     base_iri=base_iri,
                 )
@@ -247,7 +236,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         self,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        terminal_foi: rdflib.URIRef,
         graph: rdflib.Graph,
         base_iri: Optional[rdflib.Namespace] = None,
     ) -> rdflib.Graph:
@@ -256,7 +244,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         Args:
             row (frictionless.Row): Row to be processed in the dataset.
             dataset (rdflib.URIRef): Dataset uri this row is apart of.
-            terminal_foi (rdflib.URIRef): Terminal feature of interest.
             graph (rdflib.Graph): Graph to map row into.
             base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
                 to use for mapping.
@@ -270,8 +257,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Create URIs
         provider_provider_record_id_src = utils.rdf.uri(f"provider/{row['providerRecordIDSource']}", base_iri)
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
-        sample_field = utils.rdf.uri(f"sample/field/{row_num}", base_iri)
-        sampling_field = utils.rdf.uri(f"sampling/field/{row_num}", base_iri)
         sample_specimen = utils.rdf.uri(f"sample/specimen/{row_num}", base_iri)
         sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_num}", base_iri)
         text_scientific_name = utils.rdf.uri(f"scientificName/{row_num}", base_iri)
@@ -310,6 +295,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             internal_id=f"attribution/{provider_record_id_source}/resourceProvider",
             namespace=base_iri,
         )
+        provider_record_id = row["providerRecordID"]
+        provider_record_id_occurrence = utils.rdf.uri(f"occurrence/{provider_record_id}", base_iri)
+        provider_record_id_biodiversity_record = utils.rdf.uri(f"biodiversityRecord/{provider_record_id}")
 
         # Conditionally create uris dependent on ownerRecordIDSource field
         if owner_record_id_source := row["ownerRecordIDSource"]:
@@ -472,19 +460,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add Sample Field
-        self.add_sample_field(
-            uri=sample_field,
-            row=row,
-            dataset=dataset,
-            feature_of_interest=terminal_foi,
-            sampling_field=sampling_field,
-            owner_record_id_datatype=owner_record_id_datatype,
-            other_catalog_numbers_datatype=other_catalog_numbers_datatype,
-            record_number_datatype=record_number_datatype,
-            graph=graph,
-        )
-
         # Add record number datatype
         self.add_record_number_datatype(
             uri=record_number_datatype,
@@ -523,18 +498,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add Sampling Field
-        self.add_sampling_field(
-            uri=sampling_field,
-            row=row,
-            dataset=dataset,
-            provider_record_id_source=provider_record_id_datatype,
-            provider=provider_recorded_by,
-            feature_of_interest=terminal_foi,
-            sample_field=sample_field,
-            graph=graph,
-        )
-
         # Add provider record ID datatype
         self.add_record_id_datatype(
             uri=provider_record_id_datatype,
@@ -564,7 +527,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             sampling_specimen=sampling_specimen,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             catalog_number_datatype=catalog_number_datatype,
             graph=graph,
         )
@@ -604,7 +567,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=sampling_specimen,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             graph=graph,
         )
@@ -683,7 +646,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             provider=provider_identified,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             scientific_name=text_scientific_name,
             graph=graph,
@@ -695,7 +658,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             provider=provider_identified,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             verbatim_id=text_verbatim_id,
             graph=graph,
@@ -722,7 +685,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=data_generalizations_sample_collection,
             data_generalizations=data_generalizations,
             data_generalizations_attribute=data_generalizations_attribute,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             dataset=dataset,
             graph=graph,
         )
@@ -759,7 +722,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=individual_count_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             individual_count_value=individual_count_value,
             graph=graph,
         )
@@ -776,7 +739,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=organism_remarks_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             organism_remarks_value=organism_remarks_value,
             graph=graph,
         )
@@ -810,7 +773,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=habitat_sample_collection,
             habitat=habitat,
             habitat_attribute=habitat_attribute,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             dataset=dataset,
             graph=graph,
         )
@@ -838,7 +801,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             basis_of_record=basis_of_record,
             basis_attribute=basis_attribute,
             sample_specimen=sample_specimen,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             row=row,
             dataset=dataset,
             graph=graph,
@@ -863,7 +826,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=occurrence_status_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             occurrence_status_value=occurrence_status_value,
             graph=graph,
         )
@@ -908,7 +871,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=establishment_means_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             establishment_means_value=establishment_means_value,
             graph=graph,
         )
@@ -926,7 +889,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=life_stage_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             life_stage_value=life_stage_value,
             graph=graph,
@@ -945,7 +908,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=sex_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             sex_value=sex_value,
             graph=graph,
@@ -964,7 +927,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=reproductive_condition_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             reproductive_condition_value=reproductive_condition_value,
             graph=graph,
@@ -1091,43 +1054,41 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=sensitivity_category_collection,
             sensitivity_category=sensitivity_category,
             sensitivity_category_attribute=sensitivity_category_attribute,
+            provider_record_id_biodiversity_record=provider_record_id_biodiversity_record,
             dataset=dataset,
+            graph=graph,
+        )
+
+        # Add biodiversity record
+        self.add_biodiversity_record(
+            uri=provider_record_id_biodiversity_record,
+            provider_record_id_datatype=provider_record_id_datatype,
+            provider_record_id_occurrence=provider_record_id_occurrence,
+            row=row,
+            graph=graph,
+        )
+
+        # Add occurrence
+        self.add_occurrence(
+            uri=provider_record_id_occurrence,
+            record_number_datatype=record_number_datatype,
+            owner_record_id_datatype=owner_record_id_datatype,
+            other_catalog_numbers_datatype=other_catalog_numbers_datatype,
+            provider_recorded_by=provider_recorded_by,
+            dataset=dataset,
+            row=row,
             graph=graph,
         )
 
         # Add extra fields JSON
         self.add_extra_fields_json(
-            subject_uri=sampling_field,
+            subject_uri=provider_record_id_occurrence,
             row=row,
             graph=graph,
         )
 
         # Return
         return graph
-
-    def add_terminal_feature_of_interest(
-        self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds the Terminal Feature of Interest to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            dataset (rdflib.URIRef): Dataset this belongs to
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Add Terminal Feature of Interest to Graph
-        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SITE))
-
-        # Add Geometry
-        geometry = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
-        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry, utils.namespaces.GEO.sfWithin, CONCEPT_AUSTRALIA))
 
     def add_provider_identified(
         self,
@@ -1156,7 +1117,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         provider: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
         graph: rdflib.Graph,
@@ -1168,7 +1129,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             provider (rdflib.URIRef): Provider associated with this node
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -1182,7 +1143,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
         # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
+        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve vocab for field
         vocab = self.fields()["identificationMethod"].get_vocab()
@@ -1220,7 +1181,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         provider: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         verbatim_id: rdflib.URIRef,
         graph: rdflib.Graph,
@@ -1232,7 +1193,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             provider (rdflib.URIRef): Provider associated with this node
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -1249,7 +1210,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
         # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
+        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve vocab for field
         vocab = self.fields()["identificationMethod"].get_vocab()
@@ -1386,102 +1347,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add name
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["ownerRecordIDSource"])))
-
-    def add_sampling_field(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        provider_record_id_source: rdflib.URIRef,
-        provider: rdflib.URIRef | None,
-        feature_of_interest: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Sampling Field to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            provider_record_id_source (rdflib.URIRef): Provider record id source
-                associated with this node.
-            provider (rdflib.URIRef | None): Provider associated with this node
-            feature_of_interest (rdflib.URIRef): Feature of Interest associated
-                with this node.
-            sample_field (rdflib.URIRef): Sample Field associated with this
-                node
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Extract values from row
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
-
-        # Create geometry
-        geometry = types.spatial.Geometry(
-            raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
-            datum=row["geodeticDatum"],
-        )
-
-        # Retrieve vocab for field
-        vocab = self.fields()["samplingProtocol"].get_vocab()
-
-        # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["samplingProtocol"])
-
-        # Add to Graph
-        graph.add((uri, a, utils.namespaces.TERN.Sampling))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
-        graph.add((uri, rdflib.SOSA.hasResult, sample_field))
-
-        # Add geometry
-        geometry_node = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
-        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
-
-        spatial_accuracy = row["coordinateUncertaintyInMeters"]
-        accuracy = None
-        if spatial_accuracy is not None:
-            accuracy = rdflib.Literal(spatial_accuracy, datatype=rdflib.XSD.double)
-            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
-
-        # Add 'supplied as' geometry
-        self.add_geometry_supplied_as(
-            subj=uri,
-            pred=utils.namespaces.GEO.hasGeometry,
-            obj=geometry_node,
-            geom=geometry,
-            graph=graph,
-            spatial_accuracy=accuracy,
-        )
-
-        # Add temporal members
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.Instant))
-        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
-        graph.add((uri, rdflib.SOSA.usedProcedure, term))
-
-        # Add Identifier
-        graph.add(
-            (
-                uri,
-                rdflib.SDO.identifier,
-                rdflib.Literal(row["providerRecordID"], datatype=provider_record_id_source),
-            )
-        )
-
-        # Check for recordedBy
-        if row["recordedBy"] and provider is not None:
-            # Add Associated Provider
-            graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
-
-        # Check for locality
-        if row["locality"]:
-            # Add Location Description
-            graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(row["locality"])))
 
     def add_provider_record_id_agent(
         self,
@@ -1813,7 +1678,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -1823,7 +1688,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -1846,7 +1711,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
         temporal_entity = rdflib.BNode()
@@ -1905,82 +1770,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["verbatimIdentification"])))
 
-    def add_sample_field(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        feature_of_interest: rdflib.URIRef,
-        sampling_field: rdflib.URIRef,
-        owner_record_id_datatype: rdflib.URIRef | None,
-        other_catalog_numbers_datatype: rdflib.URIRef | None,
-        record_number_datatype: rdflib.URIRef | None,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Sample Field to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            feature_of_interest (rdflib.URIRef): Feature of Interest associated
-                with this node.
-            sampling_field (rdflib.URIRef): Sampling Field associated with this
-                node
-            owner_record_id_datatype (rdflib.URIRef | None): Source of owner ID
-                used as datatype.
-            other_catalog_numbers_datatype (rdflib.URIRef): Datatype to use
-                with other catalog numbers literals.
-            record_number_datatype (rdflib.URIRef | None): Datatype to  use
-                with record number literal.
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Retrieve vocab for field
-        vocab = self.fields()["kingdom"].get_vocab("KINGDOM_OCCURRENCE")
-
-        # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["kingdom"])
-
-        # Add to Graph
-        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
-        graph.add((uri, a, utils.namespaces.TERN.Sample))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sample")))
-        graph.add((uri, rdflib.SOSA.isResultOf, sampling_field))
-        graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
-        graph.add((uri, utils.namespaces.TERN.featureType, term))
-
-        # Check for recordNumber
-        if row["recordNumber"]:
-            # Determine which datatype to use for literal
-            dt = record_number_datatype or rdflib.XSD.string
-            # Add to Graph
-            graph.add((uri, utils.namespaces.DWC.recordNumber, rdflib.Literal(row["recordNumber"], datatype=dt)))
-
-        # Check for ownerRecordID
-        if (owner_record_id := row["ownerRecordID"]) and owner_record_id_datatype:
-            # Add to Graph
-            graph.add(
-                (
-                    uri,
-                    rdflib.SDO.identifier,
-                    rdflib.Literal(owner_record_id, datatype=owner_record_id_datatype),
-                )
-            )
-
-        # Check for otherCatalogNumbers
-        if (other_catalog_numbers := row["otherCatalogNumbers"]) and other_catalog_numbers_datatype is not None:
-            # Iterate through the catalog numbers
-            for num in other_catalog_numbers:
-                # Add catalog number literal
-                graph.add(
-                    (
-                        uri,
-                        utils.namespaces.DWC.otherCatalogNumbers,
-                        rdflib.Literal(num, datatype=other_catalog_numbers_datatype),
-                    )
-                )
-
     def add_record_number_datatype(
         self,
         uri: rdflib.URIRef | None,
@@ -2030,7 +1819,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         sampling_specimen: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         catalog_number_datatype: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
@@ -2042,7 +1831,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset this belongs to
             sampling_specimen (rdflib.URIRef): Sampling Specimen associated
                 with this node
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             catalog_number_datatype (rdflib.URIRef): Catalog number source
                 datatype.
@@ -2064,7 +1853,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
-        graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
+        graph.add((uri, rdflib.SOSA.isSampleOf, provider_record_id_occurrence))
         graph.add((uri, utils.namespaces.TERN.featureType, term))
 
         # Check for catalogNumber
@@ -2140,7 +1929,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         data_generalizations: str | None,
         data_generalizations_attribute: rdflib.URIRef | None,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2150,7 +1939,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri: The uri for the SampleCollection.
             data_generalizations: dataGeneralizations value from template.
             data_generalizations_attribute: The uri for the attribute node.
-            sample_field: The sample field node that should be a member of the collection.
+            provider_record_id_occurrence: Occurrence associated with this
+                node
             dataset: The uri for the dateset node.
             graph: The graph.
         """
@@ -2173,7 +1963,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to the sample field
-        graph.add((uri, rdflib.SDO.member, sample_field))
+        graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
         # Add link to attribute
         if data_generalizations_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, data_generalizations_attribute))
@@ -2290,7 +2080,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         individual_count_value: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2300,7 +2090,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             individual_count_value (rdflib.URIRef): Individual Count Value
                 associated with this node
@@ -2320,7 +2110,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("individualCount-observation")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, individual_count_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["individualCount"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_INDIVIDUAL_COUNT))
@@ -2366,7 +2156,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         organism_remarks_value: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2376,7 +2166,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             organism_remarks_value (rdflib.URIRef): Organism Remarks Value
                 associated with this node
@@ -2396,7 +2186,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("organismRemarks-observation")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, organism_remarks_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["organismRemarks"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ORGANISM_REMARKS))
@@ -2505,7 +2295,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         habitat: str | None,
         habitat_attribute: rdflib.URIRef | None,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2515,7 +2305,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri: The uri for the SampleCollection.
             habitat: Habitat value from template.
             habitat_attribute: The uri for the attribute node.
-            sample_field: The sample field node that should be a member of the collection.
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
+                node
             dataset: The uri for the dateset node.
             graph: The graph.
         """
@@ -2530,7 +2321,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to the sample field
-        graph.add((uri, rdflib.SDO.member, sample_field))
+        graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
         # Add link to attribute
         if habitat_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, habitat_attribute))
@@ -2604,7 +2395,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         basis_of_record: str | None,
         basis_attribute: rdflib.URIRef | None,
         sample_specimen: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
@@ -2619,7 +2410,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             basis_of_record: basisOfRecord value from template.
             basis_attribute: The uri for the attribute node.
             sample_specimen: The sample specimen node.
-            sample_field: The sample field node that.
+            provider_record_id_occurrence: Occurrence associated with this
+                node
             row: The CSV row.
             dataset: The uri for the dateset node.
             graph: The graph.
@@ -2644,7 +2436,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if has_specimen(row):
             graph.add((uri, rdflib.SDO.member, sample_specimen))
         else:
-            graph.add((uri, rdflib.SDO.member, sample_field))
+            graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
         # Add link to attribute
         if basis_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis_attribute))
@@ -2694,7 +2486,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         occurrence_status_value: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2704,7 +2496,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             occurrence_status_value (rdflib.URIRef): Occurrence Status Value
                 associated with this node
@@ -2724,7 +2516,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("occurrenceStatus-observation")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, occurrence_status_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["occurrenceStatus"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_OCCURRENCE_STATUS))
@@ -2878,7 +2670,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         establishment_means_value: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2888,7 +2680,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             establishment_means_value (rdflib.URIRef): Establishment Means
                 Value associated with this node
@@ -2908,7 +2700,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("establishmentMeans-observation")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, establishment_means_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["establishmentMeans"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ESTABLISHMENT_MEANS))
@@ -2962,7 +2754,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         life_stage_value: rdflib.URIRef,
         graph: rdflib.Graph,
@@ -2973,7 +2765,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -2991,7 +2783,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
         # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
+        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3054,7 +2846,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         sex_value: rdflib.URIRef,
         graph: rdflib.Graph,
@@ -3065,7 +2857,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -3082,7 +2874,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
         # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
+        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3145,7 +2937,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         reproductive_condition_value: rdflib.URIRef,
         graph: rdflib.Graph,
@@ -3156,7 +2948,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -3174,7 +2966,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
         # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
+        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3750,6 +3542,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         sensitivity_category: str | None,
         sensitivity_category_attribute: rdflib.URIRef | None,
+        provider_record_id_biodiversity_record: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -3759,6 +3552,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri: The uri for the Collection.
             sensitivity_category: sensitivityCategory value from template.
             sensitivity_category_attribute: The uri for the attribute node.
+            provider_record_id_biodiversity_record: The biodiversity record.
             dataset: The uri for the dateset node.
             graph: The graph.
         """
@@ -3781,8 +3575,141 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to attribute
         if sensitivity_category_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, sensitivity_category_attribute))
-        # TODO add link to the abis:BiodiversityRecord node once that is implemented
-        # graph.add((uri, rdflib.SDO.member, ...))
+        # Add link to the biodiversity record
+        graph.add((uri, rdflib.SDO.member, provider_record_id_biodiversity_record))
+
+    def add_biodiversity_record(
+        self,
+        uri: rdflib.URIRef,
+        provider_record_id_datatype: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds biodiversity record node to graph.
+
+        Args:
+            uri: Subject of the node.
+            provider_record_id_datatype: The datatype associated with
+                the provider record id.
+            provider_record_id_occurrence: Reference to the occurrence
+                of the row.
+            row: Raw data for row.
+            graph: Graph to be modified.
+        """
+        # Add class
+        graph.add((uri, a, utils.namespaces.ABIS.BiodiversityRecord))
+        # Add identifier value literal
+        graph.add(
+            (uri, rdflib.SDO.identifier, rdflib.Literal(row["providerRecordID"], datatype=provider_record_id_datatype))
+        )
+        # Add about property
+        graph.add((uri, rdflib.SDO.about, provider_record_id_occurrence))
+
+    def add_occurrence(
+        self,
+        uri: rdflib.URIRef,
+        record_number_datatype: rdflib.URIRef | None,
+        owner_record_id_datatype: rdflib.URIRef | None,
+        other_catalog_numbers_datatype: rdflib.URIRef | None,
+        provider_recorded_by: rdflib.URIRef | None,
+        dataset: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds occurrence node to the graph.
+
+        Args:
+            uri: Subject of the node.
+            record_number_datatype: Datatype associated with the recordNumber.
+            owner_record_id_datatype: Datatype associated with the owner recordID.
+            other_catalog_numbers_datatype: Datatype associated with other catalog numbers.
+            provider_recorded_by: Agent derived from the recordedBy field.
+            dataset: The uri for the dateset node.
+            row: Raw data from the row.
+            graph: Graph to be modified.
+        """
+        # Class
+        graph.add((uri, a, utils.namespaces.DWC.Occurrence))
+        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
+
+        # Add to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+
+        # Add identifiers
+        if record_number := row["recordNumber"]:
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(record_number, datatype=record_number_datatype)))
+        if owner_record_id := row["ownerRecordID"]:
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(owner_record_id, datatype=owner_record_id_datatype)))
+        for catalog_number in row["otherCatalogNumbers"] or []:
+            graph.add(
+                (uri, rdflib.SDO.identifier, rdflib.Literal(catalog_number, datatype=other_catalog_numbers_datatype))
+            )
+
+        # Add feature type from vocab
+        kingdom_vocab = self.fields()["kingdom"].get_vocab("KINGDOM_OCCURRENCE")
+        graph.add((uri, utils.namespaces.TERN.featureType, kingdom_vocab(graph=graph).get(row["kingdom"])))
+
+        # Create geometry
+        geometry = types.spatial.Geometry(
+            raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+            datum=row["geodeticDatum"],
+        )
+
+        # Add geometry
+        geometry_node = rdflib.BNode()
+        graph.add((uri, rdflib.SDO.spatial, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+
+        # Check for coordinateUncertaintyInMeters
+        accuracy: rdflib.Literal | None = None
+        if coordinate_uncertainty := row["coordinateUncertaintyInMeters"]:
+            # Add Spatial Accuracy
+            accuracy = rdflib.Literal(coordinate_uncertainty, datatype=rdflib.XSD.double)
+            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+
+        # Add 'supplied as' geometry
+        self.add_geometry_supplied_as(
+            subj=uri,
+            pred=rdflib.SDO.spatial,
+            obj=geometry_node,
+            geom=geometry,
+            graph=graph,
+            spatial_accuracy=accuracy,
+        )
+
+        # Add temporal entity
+        event_date_start: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date_end: types.temporal.Timestamp | None = row["eventDateEnd"]
+        # Check any event dates provided
+        if event_date_start is not None or event_date_end is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((temporal_entity, a, rdflib.TIME.TemporalEntity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
+            if event_date_start is not None:
+                start_instant = rdflib.BNode()
+                graph.add((start_instant, a, rdflib.TIME.Instant))
+                graph.add((start_instant, event_date_start.rdf_in_xsd, event_date_start.to_rdf_literal()))
+                graph.add((temporal_entity, rdflib.TIME.hasBeginning, start_instant))
+            if event_date_end is not None:
+                end_instant = rdflib.BNode()
+                graph.add((end_instant, a, rdflib.TIME.Instant))
+                graph.add((end_instant, event_date_end.rdf_in_xsd, event_date_end.to_rdf_literal()))
+                graph.add((temporal_entity, rdflib.TIME.hasEnd, end_instant))
+
+        # Add procedure from vocab
+        protocol_vocab = self.fields()["samplingProtocol"].get_vocab()
+        graph.add((uri, rdflib.SOSA.usedProcedure, protocol_vocab(graph=graph).get(row["samplingProtocol"])))
+
+        # Add location description if provided
+        if locality := row["locality"]:
+            graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(locality)))
+
+        # Add associated with agents if provided
+        if provider_recorded_by is not None:
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, provider_recorded_by))
+
 
 
 # Helper Functions

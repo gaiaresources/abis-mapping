@@ -57,9 +57,33 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     # we check here to see if any `None`s have snuck their way into the RDF.
     assert "None" not in graphs[0].serialize(format="ttl")
 
-    # Perform shacl validation only if provided
-    if not test_params.shacl:
-        return
+@pytest.mark.parametrize(
+    argnames="template_id,test_params",
+    argvalues=[(id_, params) for (_, id_, params) in conftest.mapping_test_args() if params.shacl],
+    ids=[id_ for (id_, _, params) in conftest.mapping_test_args() if params.shacl],
+)
+def test_against_shacl(template_id: str, test_params: conftest.MappingParameters) -> None:
+    """Tests the mapping for the template against defined shapes.
+
+    Args:
+        template_id (str): The id of the template.
+        test_params (conftest.MappingParameters): Datastructure
+            holding parameters used commonly in tests.
+    """
+    # Load Data and Expected Output
+    data = test_params.data.read_bytes()
+    assert test_params.expected is not None
+    expected = test_params.expected.read_text()
+
+    # Get Mapper
+    mapper = abis_mapping.get_mapper(template_id)
+    assert mapper
+
+    # Map
+    graphs = list(mapper().apply_mapping(data))
+
+    # Assert
+    assert len(graphs) == 1
 
     # Consruct shape graph
     shape_graph = rdflib.Graph()
