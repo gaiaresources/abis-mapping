@@ -519,9 +519,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
 
-        if spatial_accuracy is not None:
-            accuracy = rdflib.Literal(spatial_accuracy, datatype=rdflib.XSD.double)
-            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+        accuracy = rdflib.Literal(spatial_accuracy, datatype=rdflib.XSD.double)
+        graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
 
         self.add_geometry_supplied_as(
             subj=uri,
