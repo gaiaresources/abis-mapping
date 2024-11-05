@@ -647,6 +647,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             agent (rdflib.URIRef): Agent uri.
             graph (rdflib.Graph): Graph to be modified.
         """
+        # Add type
+        graph.add((uri, a, rdflib.RDFS.Datatype))
+
         # Add label
         graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("surveyID source")))
 
