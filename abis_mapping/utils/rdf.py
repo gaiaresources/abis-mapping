@@ -87,6 +87,54 @@ def uri(
     return namespace[internal_id]
 
 
+def uri_quoted(
+    namespace: Optional[rdflib.Namespace],
+    path: str,
+    /,
+    **kwargs: str,
+) -> rdflib.URIRef:
+    """Generates a rdflib.URIRef using the supplied namespace and path.
+
+    The path string can contain fields to be replaced in braces, e.g "survey/{survey_id}"
+    These fields are replaced by the contents of kwargs.
+    Each kwarg value is sanitised by being url-quoted before being inserted in the path.
+    Then the resulting path is then appended to the namespace to get the URI.
+
+    Some examples:
+    >>> uri_quoted(namespaces.EXAMPLE, "someField/{the_value}", the_value="foo")
+    rdflib.URIRef("http://example.com/someField/foo")
+    >>> uri_quoted(namespaces.EXAMPLE, "Type/{field}/{value}", field="foo", value="Hello There!")
+    rdflib.URIRef("http://example.com/Type/foo/Hello%20There%21")
+
+    url-quoting is used instead of slugify-ing;
+        1. So that the exact original value can be determined from the URI.
+           This is not possible with slugify-ing which will remove or replace chars with "-".
+        2. Different input values always result in different final URIs.
+           This is not always the case with slugify-ing, since chars can be dropped or replaced with "-".
+
+    Args:
+        namespace: Namespace for the uri.
+        path: Path to append to the namespace.
+            Can contain fields to be replaced, e.g. "survey/{survey_id}".
+        kwargs: Fields and values to replace in the path string.
+
+    Returns:
+        Generated URI.
+    Raises:
+        KeyError: When the path string contains a field not specified in kwargs.
+    """
+    # Check for namespace
+    if namespace is None:
+        # Set Default Namespace
+        namespace = namespaces.CREATEME
+
+    # fill in any {field} names in path with url-quoted kwargs.
+    path = path.format_map({field: urllib.parse.quote(value, safe="") for field, value in kwargs.items()})
+
+    # Create URIRef and Return
+    return namespace[path]
+
+
 def extend_uri(
     base: rdflib.URIRef,
     *parts: str,

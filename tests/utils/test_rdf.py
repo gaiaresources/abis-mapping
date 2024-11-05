@@ -42,6 +42,41 @@ def test_rdf_uri() -> None:
 
 
 @pytest.mark.parametrize(
+    ("namespace", "path", "fields", "expected"),
+    [
+        (rdflib.Namespace("https://test.com/foo/"), "", {}, rdflib.URIRef("https://test.com/foo/")),
+        (rdflib.Namespace("https://test.com/foo/"), "bar", {}, rdflib.URIRef("https://test.com/foo/bar")),
+        (
+            rdflib.Namespace("https://test.com/foo/"),
+            "bar/{v}",
+            {"v": "123"},
+            rdflib.URIRef("https://test.com/foo/bar/123"),
+        ),
+        (
+            rdflib.Namespace("https://test.com/foo/"),
+            "bar/{v1}/cat/{v2}",
+            {"v1": "123", "v2": "A B C?!"},
+            rdflib.URIRef("https://test.com/foo/bar/123/cat/A%20B%20C%3F%21"),
+        ),
+    ],
+)
+def test_uri_quoted(
+    namespace: rdflib.Namespace,
+    path: str,
+    fields: dict[str, str],
+    expected: rdflib.URIRef,
+) -> None:
+    """Test the uri_quoted function.
+
+    * different length paths
+    * with/without special chars
+    * with/without replacement fields
+    """
+    result = utils.rdf.uri_quoted(namespace, path, **fields)
+    assert result == expected
+
+
+@pytest.mark.parametrize(
     ("base", "extension", "expected"),
     [
         (rdflib.URIRef("https://test.com/foo"), ["bar"], rdflib.URIRef("https://test.com/foo/bar")),
