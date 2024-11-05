@@ -18,7 +18,6 @@ class VisitProtocolName(utils.vocabs.FlexibleVocabulary):
     broader = None
     default = None
     terms = ()
-    publish = False
 
 
 # Register
