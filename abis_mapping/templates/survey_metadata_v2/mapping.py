@@ -197,7 +197,11 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         survey = utils.iri_patterns.survey_iri(base_iri, survey_id=survey_id)
 
         # Create survey plan IRI
-        survey_plan = utils.rdf.uri(f"survey/SSD-survey/{row_num}/plan")
+        survey_plan = utils.rdf.uri_quoted(
+            base_iri,
+            "Plan/{survey_id}",
+            survey_id=(survey_id or str(row_num)),  # fallback to row number when surveyID not available.
+        )
 
         # Conditionally create survey type attribute, value and collection IRIs
         row_survey_type: str | None = row["surveyType"]
