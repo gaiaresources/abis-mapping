@@ -195,9 +195,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Create TERN survey IRI
         survey = utils.rdf.uri(f"survey/SSD-Survey/{row_num}", base_iri)
 
-        # Create survey method procedure IRI
-        survey_method_procedure = utils.rdf.uri(f"survey/procedure/surveyMethod/{row_num}", base_iri)
-
         # Create survey plan IRI
         survey_plan = utils.rdf.uri(f"survey/SSD-survey/{row_num}/plan")
 
@@ -266,7 +263,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add BDR survey
         self.add_survey(
             uri=survey,
-            survey_method=survey_method_procedure,
             survey_plan=survey_plan,
             survey_org_objects=survey_org_objects,
             row=row,
@@ -276,13 +272,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Attach temporal coverage if present
         self.add_temporal_coverage(
             uri=survey,
-            row=row,
-            graph=graph,
-        )
-
-        # Add survey method urls
-        self.add_survey_methodologies(
-            uri=survey_method_procedure,
             row=row,
             graph=graph,
         )
@@ -444,7 +433,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
     def add_survey(
         self,
         uri: rdflib.URIRef,
-        survey_method: rdflib.URIRef,
         survey_plan: rdflib.URIRef,
         survey_org_objects: list[SurveyIDDatatype],
         row: frictionless.Row,
@@ -454,8 +442,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         Args:
             uri (rdflib.URIRef): URI of the survey.
-            survey_method (rdflib.URIRef): URI of node associated with
-                survey method data.
             survey_plan (rdflib.URIRef): URI of survey plan
             survey_org_objects (list[SurveyIDDatatype]): Data objects
                 describing the survey organisations
@@ -464,9 +450,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         """
         # Add type and dataset
         graph.add((uri, a, utils.namespaces.TERN.Survey))
-
-        # Add survey method procedure node
-        graph.add((uri, rdflib.PROV.hadPlan, survey_method))
 
         # Add survey name
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["surveyName"])))
@@ -575,64 +558,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Attach to survey node
         graph.add((uri, rdflib.TIME.hasTime, temporal_coverage))
-
-    def add_survey_methodologies(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds the survey methodology URIs to the graph.
-
-        Args:
-            uri (rdflib.URIRef): Base URI the methodologies will be attached.
-            row (frictionless.Row): Row containing CSV data row contents.
-            graph (rdflib.Graph): Graph to be modified.
-        """
-        # Extract relevant values from row
-        survey_method_urls = row["surveyMethodURL"]
-        survey_method_description = row["surveyMethodDescription"]
-        survey_method_refs = row["surveyMethodCitation"]
-
-        # If no relevant data provided then no change to graph
-        if not (survey_method_urls or survey_method_description or survey_method_refs):
-            return
-
-        # Add type
-        graph.add((uri, a, rdflib.PROV.Plan))
-
-        # Attach survey methodologies
-        if survey_method_urls:
-            for survey_method_url in survey_method_urls:
-                # Add literal containing the method URL
-                graph.add(
-                    (
-                        uri,
-                        rdflib.SDO.url,
-                        rdflib.Literal(survey_method_url, datatype=rdflib.XSD.anyURI),
-                    )
-                )
-
-        if survey_method_description:
-            # Add literal containing the description
-            graph.add(
-                (
-                    uri,
-                    rdflib.SDO.description,
-                    rdflib.Literal(survey_method_description),
-                )
-            )
-
-        if survey_method_refs:
-            for survey_method_ref in survey_method_refs:
-                # Add bibliographic reference
-                graph.add(
-                    (
-                        uri,
-                        rdflib.SDO.citation,
-                        rdflib.Literal(survey_method_ref),
-                    )
-                )
 
     def add_survey_id_source_datatypes(
         self,
