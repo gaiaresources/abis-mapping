@@ -213,8 +213,8 @@
     schema:name "WAM" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> a tern:Dataset ;
-    schema:dateCreated "2024-10-28"^^xsd:date ;
-    schema:dateIssued "2024-10-28"^^xsd:date ;
+    schema:dateCreated "2020-01-01"^^xsd:date ;
+    schema:dateIssued "2020-01-01"^^xsd:date ;
     schema:description "Example Systematic Survey Site Visit Dataset by Gaia Resources" ;
     schema:name "Example Systematic Survey Site Visit Dataset" .
 

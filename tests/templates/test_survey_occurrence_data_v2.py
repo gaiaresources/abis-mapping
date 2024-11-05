@@ -364,7 +364,7 @@ class TestDefaultTemporalMap:
         rawh = [
             "siteVisitID",
             "siteID",
-            "eventDate",
+            "eventDateStart",
         ]
         all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in scenario.raws]
 
@@ -409,7 +409,7 @@ class TestDefaultTemporalMap:
         # Set first row site_visit_id to test value and nullify event date
         df["siteVisitID"] = df["siteVisitID"].astype(str)
         df.loc[0, "siteVisitID"] = "SV1"
-        df.loc[0, "eventDate"] = pd.NA
+        df.loc[0, "eventDateStart"] = pd.NA
 
         # Create a default temporal map.
         temp_g = rdflib.Graph()

@@ -47,6 +47,10 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     assert tests.conftest.compare_graphs(
         graph1=graphs[0],
         graph2=expected,
+    ), (
+        "Mapping result did not compare equal with expected graph. "
+        "Run the ./scripts/generate_example_ttl_files.py script to update the ttl files "
+        "that hold the expected graphs if you have made changes to mapping."
     )
 
     # Check that there are no `None`s in the Graph

@@ -32,8 +32,8 @@
     schema:isPartOf <http://createme.org/survey/SSD-Survey/1> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> a tern:Dataset ;
-    schema:dateCreated "2024-10-10"^^xsd:date ;
-    schema:dateIssued "2024-10-10"^^xsd:date ;
+    schema:dateCreated "2020-01-01"^^xsd:date ;
+    schema:dateIssued "2020-01-01"^^xsd:date ;
     schema:description "Example Systematic Survey Site Dataset by Gaia Resources" ;
     schema:name "Example Systematic Survey Site Dataset" .
 
@@ -41,8 +41,8 @@
     dcterms:identifier "P1"^^<http://createme.org/datatype/siteID/WAM> ;
     dcterms:type <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
-    geo:hasGeometry _:N5539fde43577403b8173c49b1660e865,
-        _:N982f49e076374d1890542d5fc736d381 ;
+    geo:hasGeometry _:N37427f90dd24537af087917a00000000,
+        _:N4c8ca862a85a27910679928500000000 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     schema:description "Fine woody debris." ;
     schema:name "Plot 1" ;
@@ -52,7 +52,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (-34.036 146.363, -34.037 146.363)"^^geo:wktLiteral ] ;
-    rdf:object _:N982f49e076374d1890542d5fc736d381 ;
+    rdf:object _:N4c8ca862a85a27910679928500000000 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> ;
     rdfs:comment "supplied as" .
@@ -60,14 +60,14 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-34.036 146.363)"^^geo:wktLiteral ] ;
-    rdf:object _:N5539fde43577403b8173c49b1660e865 ;
+    rdf:object _:N37427f90dd24537af087917a00000000 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> ;
     rdfs:comment "supplied as" .
 
-_:N5539fde43577403b8173c49b1660e865 a geo:Geometry ;
+_:N37427f90dd24537af087917a00000000 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-34.036 146.363)"^^geo:wktLiteral .
 
-_:N982f49e076374d1890542d5fc736d381 a geo:Geometry ;
+_:N4c8ca862a85a27910679928500000000 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (-34.036 146.363, -34.037 146.363)"^^geo:wktLiteral .
 

@@ -249,10 +249,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 survey_org_objects.append(
                     SurveyIDDatatype(
                         name=raw_org,
-                        datatype=utils.rdf.uri(
-                            internal_id=f"datatype/surveyID/{raw_org}", namespace=utils.namespaces.CREATEME
-                        ),
-                        agent=utils.rdf.uri(internal_id=f"agent/{raw_org}"),
+                        datatype=utils.rdf.uri(f"datatype/surveyID/{raw_org}", base_iri),
+                        agent=utils.rdf.uri(f"agent/{raw_org}"),
                     )
                 )
 
@@ -314,6 +312,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add plan
         self.add_plan(
             uri=survey_plan,
+            survey_type_attribute=survey_type_attribute,
+            target_habitat_scope_attributes=(hbt.attribute for hbt in target_habitat_objects),
+            target_taxa_attributes=(tx.attribute for tx in target_taxonomic_objects),
             row=row,
             graph=graph,
         )
@@ -681,44 +682,34 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
     def add_plan(
         self,
         uri: rdflib.URIRef,
+        survey_type_attribute: rdflib.URIRef | None,
+        target_habitat_scope_attributes: Iterator[rdflib.URIRef],
+        target_taxa_attributes: Iterator[rdflib.URIRef],
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds plan to graph.
 
         Args:
-            uri (rdflib.URIRef): Plan reference.
-            row (frictionless.Row): Raw data row.
-            graph (rdflib.Graph): Graph to be modified.
+            uri: Plan reference.
+            survey_type_attribute: SurveyType attribute for the node
+            target_habitat_scope_attribute: targetHabitatScope attribute for the node.
+            target_taxa_attribute: target taxa attribute for the node.
+            row: Raw data row.
+            graph: Graph to be modified.
         """
         # Add type
         graph.add((uri, a, rdflib.PROV.Plan))
 
         # Add attributes
-        if row["surveyType"]:
-            graph.add(
-                (
-                    uri,
-                    utils.namespaces.TERN.hasAttribute,
-                    utils.rdf.uri("attribute/surveyType", utils.namespaces.CREATEME),
-                )
-            )
-        if row["targetHabitatScope"]:
-            graph.add(
-                (
-                    uri,
-                    utils.namespaces.TERN.hasAttribute,
-                    utils.rdf.uri("attribute/targetHabitatScope", utils.namespaces.CREATEME),
-                )
-            )
-        if row["targetTaxonomicScope"]:
-            graph.add(
-                (
-                    uri,
-                    utils.namespaces.TERN.hasAttribute,
-                    utils.rdf.uri("attribute/targetTaxa", utils.namespaces.CREATEME),
-                )
-            )
+        if survey_type_attribute:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, survey_type_attribute))
+
+        for hbt_attr in target_habitat_scope_attributes:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, hbt_attr))
+
+        for tx_attr in target_taxa_attributes:
+            graph.add((uri, utils.namespaces.TERN.hasAttribute, tx_attr))
 
         # Add citation(s)
         if citations := row["surveyMethodCitation"]:
