@@ -235,7 +235,7 @@ WET_PITFALL_TRAP = utils.vocabs.Term(
 
 # Vocabulary
 class ProtocolName(utils.vocabs.FlexibleVocabulary):
-    vocab_id = "PROTOCOL_NAME"
+    vocab_id = "VISIT_PROTOCOL_NAME"
     definition = rdflib.Literal("A type of samplingProtocol.")
     base = utils.rdf.uri("bdr-cv/methods/samplingProtocol/")
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c")

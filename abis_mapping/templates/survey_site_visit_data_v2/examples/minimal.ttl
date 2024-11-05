@@ -49,24 +49,6 @@
     skos:prefLabel "Gaia Resources datasetID" ;
     prov:wasAttributedTo <http://createme.org/provider/Gaia-Resources> .
 
-<http://createme.org/bdr-cv/attribute/protocolName/human-observation> a skos:Concept ;
-    skos:definition "A type of protocolName" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "human observation" ;
-    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
-
-<http://createme.org/bdr-cv/attribute/protocolName/litter-sifting> a skos:Concept ;
-    skos:definition "A type of protocolName" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "litter sifting" ;
-    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
-
-<http://createme.org/bdr-cv/attribute/protocolName/wet-pitfall-trap> a skos:Concept ;
-    skos:definition "A type of protocolName" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "wet pitfall trap" ;
-    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
-
 <http://createme.org/bdr-cv/attribute/samplingEffortUnit/sifts> a skos:Concept ;
     skos:definition "In conjunction with the sampling effort value, the sampling effort unit gives an indication of the effort applied to the specified protocol." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
@@ -78,6 +60,13 @@
     skos:definition "A type of targetTaxonomicScope" ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new_taxon" ;
+    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
+
+<http://createme.org/bdr-cv/methods/samplingProtocol/litter-sifting> a skos:Concept ;
+    skos:broader <https://linkeddata.tern.org.au/prez/dawe-cv/v/collection/nrm:f1592e71-cc16-4b81-90c4-06b418a5a766> ;
+    skos:definition "A type of samplingProtocol." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:prefLabel "litter sifting" ;
     schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/DBCA> a prov:Agent,
@@ -162,15 +151,15 @@
         "P1"^^<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/datatype/siteVisitID/WAM> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/plan/TIS-24-03-P1-01> a prov:Plan ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/attribute/protocolName/wet-pitfall-trap> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/4caf0cde-9ffb-56c2-bdc6-17c4c2a7275a> ;
     schema:description "10 x square buckets of size 20 x 20 x 15 cm. Propylene glycol." .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/plan/TIS-24-03-P1-02> a prov:Plan ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/attribute/protocolName/litter-sifting> ;
+    sosa:usedProcedure <http://createme.org/bdr-cv/methods/samplingProtocol/litter-sifting> ;
     schema:description "50 cm diameter sifter with 5 mm mesh. Litter samles taken ~1 metre from each pitfall trap" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/plan/TIS-24-03-P1-03> a prov:Plan ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/attribute/protocolName/human-observation> .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/ORCID00001> a prov:Agent,
         prov:Person ;
@@ -213,8 +202,8 @@
     schema:name "WAM" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> a tern:Dataset ;
-    schema:dateCreated "2020-01-01"^^xsd:date ;
-    schema:dateIssued "2020-01-01"^^xsd:date ;
+    schema:dateCreated "2024-11-05"^^xsd:date ;
+    schema:dateIssued "2024-11-05"^^xsd:date ;
     schema:description "Example Systematic Survey Site Visit Dataset by Gaia Resources" ;
     schema:name "Example Systematic Survey Site Visit Dataset" .
 
