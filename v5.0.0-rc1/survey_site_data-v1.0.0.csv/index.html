@@ -1,0 +1,1775 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://gaiaresources.github.io/abis-mappping/latest/survey_site_data-v1.0.0.csv/">
+      
+      
+        <link rel="prev" href="../survey_occurrence_data-v2.0.0.csv/">
+      
+      
+        <link rel="next" href="../survey_site_data-v2.0.0.csv/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Systematic Survey Site Data Template - v1.0.0 - BDR ABIS Mapping</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#systematic-survey-site-data-template-instructions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BDR ABIS Mapping" class="md-header__button md-logo" aria-label="BDR ABIS Mapping" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BDR ABIS Mapping
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Systematic Survey Site Data Template - v1.0.0
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gaiaresources/abis-mapping/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    gaiaresources/abis-mapping
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BDR ABIS Mapping" class="md-nav__button md-logo" aria-label="BDR ABIS Mapping" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BDR ABIS Mapping
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gaiaresources/abis-mapping/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    gaiaresources/abis-mapping
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incidental_occurrence_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Data Template - v2.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incidental_occurrence_data-v3.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Data Template - v3.0.0
+- Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_metadata-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Metadata Template - v1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_metadata-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Metadata Template - v2.0.0
+- Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_occurrence_data-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Occurrence Data Template - v1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_occurrence_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Occurrence Data Template - v2.0.0
+- Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Data Template - v1.0.0
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Data Template - v1.0.0
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intended-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intended Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intended Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-validation-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Validation Requirements:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      FILE FORMAT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FILE FORMAT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      FILE SIZE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEMPLATE FIELDS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TEMPLATE FIELDS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADDITIONAL FIELDS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDICES
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="APPENDICES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#appendix-i-vocabulary-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDIX-I: VOCABULARY LIST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-ii-well-known-text-wkt" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDIX-II: Well Known Text (WKT)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-iii-timestamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDIX-III: Timestamp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-iv-utf-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDIX-IV: UTF-8
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_site_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Data Template - v2.0.0
+- Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_site_visit_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Visit Data Template - v2.0.0
+- Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../archived_templates/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Archived templates
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Archived templates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/incidental_occurrence_data-v1.0.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Data v1.0.0 - ARCHIVED
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<p><small>
+<strong>abis-mapping</strong> v5.0.0rc1 &emsp; <strong>survey_site_data</strong> v1.0.0
+</small></p>
+<h1 id="systematic-survey-site-data-template-instructions">SYSTEMATIC SURVEY SITE DATA TEMPLATE INSTRUCTIONS</h1>
+<h2 id="intended-usage">Intended Usage</h2>
+<p>This Systematic Survey Site Data template should be used to record data about a 
+Site area where species occurrences have been sampled during a systematic survey.</p>
+<p>This Systematic Survey Site template <strong>must be used in combination</strong> with the
+<code>Systematic Survey Occurrence</code> template and the <code>Systematic Survey Metadata</code> template.</p>
+<p>Templates have been provided to facilitate integration of data into the Biodiversity Data
+Repository (BDR) database. Not all types of data have been catered for in the available
+templates at this stage - if you are unable to find a suitable template, please
+contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
+<h4 id="data-validation-requirements">Data Validation Requirements:</h4>
+<p>For data validation, you will need your data file to:</p>
+<ul>
+<li>be the correct <strong>file format</strong>,</li>
+<li>have <strong>fields that match the template downloaded</strong> (do not remove, or 
+  change the order of fields),</li>
+<li>have extant values for <strong>mandatory fields</strong> (see Table 1), and</li>
+<li>comply with all <strong>data value constraints</strong>; for example the geographic coordinates are
+  consistent with a <a href="#geodeticDatum-vocabularies">geodeticDatum</a> type of the 
+  <strong><em>5</em></strong> available options.</li>
+</ul>
+<p>Additional fields may be added <strong>after the templated fields</strong> (noting that the data type 
+is not assumed and values will be encoded as strings).</p>
+<h3 id="file-format">FILE FORMAT</h3>
+<ul>
+<li>The systematic survey site data template is a <a href="#appendix-iv-utf-8">UTF-8</a> encoded csv (not Microsoft
+  Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
+  otherwise it will not pass the csv validation step upon upload.
+  <br><code>[MS Excel: Save As &gt; More options &gt; Tools &gt; Web options &gt; Save this document as &gt;
+  Unicode (UTF-8)]</code><br>
+  otherwise it will not pass the csv validation step upon upload.</li>
+<li><strong>Do not include empty rows</strong>.</li>
+</ul>
+<h4 id="file-size">FILE SIZE</h4>
+<p>MS Excel imposes a limit of 1,048,576 rows on a spreadsheet, limiting a CSV file to the
+header row followed by 1,048,575 occurrences. Furthermore, MS Excel has a 32,767 character
+limit on individual cells in a spreadsheet. These limits may be overcome by using or
+editing CSV files with other software.</p>
+<p>Larger datasets may be more readily ingested using the API interface. Please contact
+<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
+<h2 id="template-fields">TEMPLATE FIELDS</h2>
+<p>The template contains the field names in the top row. Table 1 will assist you in transferring
+your data to the template indicating:</p>
+<ul>
+<li><strong>Field name</strong> in the template (and an external link to the <a href="https://dwc.tdwg.org/terms/">Darwin Core standard</a>
+  for that field where relevant);</li>
+<li><strong>Description</strong> of the field;</li>
+<li><strong>Required</strong> i.e. whether the field is <strong><font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional</strong>;</li>
+<li><strong>Format</strong> (datatype) required for the data values for example text (string), number
+  (integer, float), or date;</li>
+<li><strong>Example</strong> of an entry or entries for that field; and</li>
+<li><strong><a href="#appendix-i-vocabulary-list">Vocabulary links</a></strong> within this document (for example pick list values) where
+  relevant. The fields that have suggested values options for the fields in Table 1 are
+  listed in Table 2 in alphabetical order of the field name.</li>
+</ul>
+<h3 id="additional-fields">ADDITIONAL FIELDS</h3>
+<p>Data that does not match the existing template fields may be added as additional columns in
+the CSV files after the templated fields.
+For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</code>, <code>countryCode</code>, <code>stateProvince</code>, <code>georeferencedDate</code>,
+<code>landformPattern</code>, <code>landformElement</code>, <code>aspect</code>, <code>slope</code>, <code>visitNo</code>.</p>
+<p><ins>Table 1: Systematic Survey Site data template fields with descriptions, conditions, datatype format, and examples.</ins></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: center;">Mandatory / Optional</th>
+<th style="text-align: center;">Datatype Format</th>
+<th style="text-align: left;">Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a name="siteID-field"></a>siteID</td>
+<td style="text-align: left;">A unique within dataset string identifier for the site. Valid values include strings that are used specifically for this survey or URIs from BDR Sites that have been established in previous surveys.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">P1</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="siteIDSource-field"></a>siteIDSource</td>
+<td style="text-align: left;">The organisation that assigned the SiteID to this Site</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">TERN</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="siteType-field"></a>siteType</td>
+<td style="text-align: left;">The type of site that relates to its sampling type and/or dimensions.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Plot<br>(<a href="#siteType-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="siteName-field"></a>siteName</td>
+<td style="text-align: left;">A name for the site that may be more descriptive than the siteID.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Plot 1</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="siteDescription-field"></a>siteDescription</td>
+<td style="text-align: left;">The site (plot) description covers important aspects of the site (generally of the land surface). Some overlap in collected information does occur due to the modular nature of the survey processes. The description provides significant background information to gain an appreciation of the plot history, topography, position in the landscape and for understanding the likely relationship between the soils, vegetation and fauna.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Fine woody debris.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="habitat-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:habitat">habitat</a></td>
+<td style="text-align: left;">A collection of habitat types representing the dominant vegetation structural formation class adopted by the National Vegetation Information System (NVIS).</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">List</td>
+<td style="text-align: left;">Chenopod Shrubland | Closed Fernland<br>(<a href="#habitat-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="relatedSiteID-field"></a>relatedSiteID</td>
+<td style="text-align: left;">Identifier of a related site to the specified site e.g. parent site, same site with different identifier.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with relationshipToRelatedSite</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Same as within dataset or existing URI</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="relationshipToRelatedSite-field"></a>relationshipToRelatedSite</td>
+<td style="text-align: left;">Relationship between the site and the related site. This field can be used to record Site identifiers for the same site from different custodians through the use of URIs.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with relatedSiteID</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Same as within dataset or existing URI<br>(<a href="#relationshipToRelatedSite-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="decimalLatitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLatitude">decimalLatitude</a></td>
+<td style="text-align: left;">The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are north of the Equator, negative values are south of it. Legal values lie between -90 and 0, inclusive for Southern hemisphere.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">-34.036</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="decimalLongitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLongitude">decimalLongitude</a></td>
+<td style="text-align: left;">The geographic longitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are east of the Greenwich Meridian, negative values are west of it. Legal values lie between 0 and 180, inclusive for the BDR use case.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">146.363</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="footprintWKT-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:footprintWKT">footprintWKT</a></td>
+<td style="text-align: left;">A Well-Known Text (WKT) representation of the shape (footprint, geometry) that defines the Site. A Site may have both a point-radius representation and a footprint representation, and they may differ from each other.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">WKT</td>
+<td style="text-align: left;">LINESTRING (146.363 -34.036, 146.363 -34.037)<br>(<a href="#appendix-ii-well-known-text-wkt">WKT notes</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="geodeticDatum-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
+<td style="text-align: left;">The geodetic datum, or spatial reference system (SRS) upon which the geographic coordinates given for the Site are based.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">WGS84<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="coordinateUncertaintyInMeters-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:coordinateUncertaintyInMeters">coordinateUncertaintyInMeters</a></td>
+<td style="text-align: left;">The horizontal distance (in metres) from the given decimalLatitude and decimalLongitude describing the smallest circle containing the whole of the Site. Leave the value empty if the uncertainty is unknown, cannot be estimated, or is not applicable (because there are no coordinates). Zero is not a valid value for this term.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: left;">50</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="dataGeneralizations-field"></a>dataGeneralizations</td>
+<td style="text-align: left;">Actions taken to make the shared data less specific or complete than in its original form.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Coordinates given in decimalLatitude, decimalLongitude, easting and northing have been rounded to 0.1 DEG. The observer name has been changed to a unique User ID.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="surveyID-field"></a>surveyID</td>
+<td style="text-align: left;">The identifier of the Survey that the Site is related to in this dataset.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">AR220-01</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="siteVisitID-field"></a>siteVisitID</td>
+<td style="text-align: left;">The unique key assigned to a visit. A visit is a time distinct assessment conducted within a survey at a designated site.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">CPXEI0000001</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="siteVisitStart-field"></a>siteVisitStart</td>
+<td style="text-align: left;">The temporal start of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;">Timestamp</td>
+<td style="text-align: left;">2016-02-28</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="siteVisitEnd-field"></a>siteVisitEnd</td>
+<td style="text-align: left;">The temporal end of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Timestamp</td>
+<td style="text-align: left;">2016-02-28</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="visitOrgs-field"></a>visitOrgs</td>
+<td style="text-align: left;">The names of the organisations responsible for recording the original Occurrence.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">List</td>
+<td style="text-align: left;">NSW Dept of Planning, Industry and Environment.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="visitObservers-field"></a>visitObservers</td>
+<td style="text-align: left;">A list (concatenated and separated using |) of names of people, groups, or organisations responsible for recording the original Occurrence.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">List</td>
+<td style="text-align: left;">Oliver P. Pearson | Anita K. Pearson</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="condition-field"></a>condition</td>
+<td style="text-align: left;">The state of a patch of vegetation at the time of sampling relative to some specified standard or benchmark (where available).</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Burnt</td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendices">APPENDICES</h2>
+<h3 id="appendix-i-vocabulary-list">APPENDIX-I: VOCABULARY LIST</h3>
+<p>With the exception of <code>geodeticDatum</code> and <code>relationshipToRelatedSite</code>, data validation
+does not require adherence to the vocabularies for the various vocabularied fields.
+These vocabularies are merely provided as a means of assistance in developing consistent language
+within the database. New terms may be added to more appropriately describe your data that goes 
+beyond the current list.</p>
+<p><ins>Table 2: Suggested values for controlled vocabulary fields in the template. Each term has a preferred label with a definition to aid understanding
+of its meaning. For some terms, alternative
+labels with similar semantics are provided. </ins>
+<br><strong>Note:</strong> <font color="red">The values for <code>geodeticDatum</code> and <code>relationshipToRelatedSite</code> must come from one of the Preferred labels or Alternate Labels in this
+table.</font></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Template field name</th>
+<th style="text-align: left;">Preferred label</th>
+<th style="text-align: left;">Definition</th>
+<th style="text-align: left;">Alternate label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a name="geodeticDatum-vocabularies"></a>geodeticDatum</td>
+<td style="text-align: left;">AGD66</td>
+<td style="text-align: left;">Australian Geodetic Datum 1966</td>
+<td style="text-align: left;">EPSG:4202</td>
+</tr>
+<tr>
+<td style="text-align: left;">geodeticDatum</td>
+<td style="text-align: left;">AGD84</td>
+<td style="text-align: left;">Australian Geodetic Datum 1984</td>
+<td style="text-align: left;">EPSG:4203</td>
+</tr>
+<tr>
+<td style="text-align: left;">geodeticDatum</td>
+<td style="text-align: left;">GDA2020</td>
+<td style="text-align: left;">Geocentric Datum of Australia 2020</td>
+<td style="text-align: left;">EPSG:7844</td>
+</tr>
+<tr>
+<td style="text-align: left;">geodeticDatum</td>
+<td style="text-align: left;">GDA94</td>
+<td style="text-align: left;">Geocentric Datum of Australia 1994</td>
+<td style="text-align: left;">EPSG:4283</td>
+</tr>
+<tr>
+<td style="text-align: left;">geodeticDatum</td>
+<td style="text-align: left;">WGS84</td>
+<td style="text-align: left;">World Geodetic System 1984, used in GPS</td>
+<td style="text-align: left;">EPSG:4326</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="habitat-vocabularies"></a>habitat</td>
+<td style="text-align: left;">BEACH</td>
+<td style="text-align: left;">Type of Landform Element, which is usually short; low; very wide slope; gently or moderately inclined; built up or eroded by waves; forming the shore of a lake or sea.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">BILLABONG OR SWAMP</td>
+<td style="text-align: left;">A swamp is a wetland that features temporary or permanent inundation of large areas of land by shallow bodies of water, generally with a substantial number of hammocks, or dry-land protrusions, and covered by aquatic vegetation, or vegetation that tolerates periodical inundation.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CAVE</td>
+<td style="text-align: left;">The type of habitat representative of a naturally formed, subterranean open area or chamber.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CHENOPOD SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% members of Chenopodiaceae.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED CHENOPOD SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of Chenopodiaceae.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED FERNLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of Fern and Fern-allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED FORBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of Forbs or herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED FOREST</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of Forbs or herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED HEATHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of heath shrubs (e.g., members of Ericaceae, Myrtaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED HUMMOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of hummock (e.g., Triodia) grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED LICHENLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by lichenised tree trunks and rocks.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED LIVERWORTLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by lower plant groups such as moss, liverworts and bryophytes.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED MALLEE FOREST</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of tree mallee (e.g., some members of Eucalyptus).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED MALLEE SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of mallee shrubs (e.g., some members of Eucalyptus).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED MOSSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by lower plant groups such as moss, liverworts and bryophytes.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED RUSHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of Rushes (e.g., Juncaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED SEDGELAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of sedges (e.g., Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of sedges (e.g., Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED SOD GRASSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat representative of a characteristic sod-like (turf) grass.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED TUSSOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of tussock grasses (e.g., Poa).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED VINELAND</td>
+<td style="text-align: left;">Refers to the type of habitat represented by a closed vegetation dominated by stragglers and woody climbers.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">COASTAL WATERS</td>
+<td style="text-align: left;">Refers to the type of habitat representative of an aquatic body typically characterized by a shallow continental shelf, gently sloping seaward to a continental slope, which drops relatively abruptly to the deep ocean.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CROP LAND</td>
+<td style="text-align: left;">Refers to the type of habitat representative of a cultivated land or land on which agricultural crops are grown or land that is set aside or temporarily not being used for crop production.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ESTUARY</td>
+<td style="text-align: left;">Type of Landform Element which has a stream channel close to its junction with a sea or lake; where the action of channelled stream flow is modified by tide and waves. The width typically increases downstream.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">FERNLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% members of Fern and Fern-allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">FORBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% members of Forbs or herbaceous plants other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">FRESHWATER LAKE</td>
+<td style="text-align: left;">Refers to the type of habitat representative of an enclosed aquatic body having a relatively low mineral content, generally less than 500 mg/l of dissolved solids.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">GRAZING LAND</td>
+<td style="text-align: left;">Refers to the type of habitat representative of a land predominantly used for grazing.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">HEATHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% members of Heath (e.g., Ericaceae, Myrtaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">HUMMOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% members of hummock grasses (e.g., Triodia).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CHENOPOD SHRUBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% members of Chenopodiaceae.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF CHENOPOD SHRUBS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of chenopod shrubs.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF HEATH SHRUBS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of heath or heath-like shrubs.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF HUMMOCK GRASSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of hummocky grass (e.g., Triodia spp., Spinifex spp.).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF LIVERWORTS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of bryophytes, moss and liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF MALLEE SHRUBS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of mallee shrubs (members of Eucalyptus spp., multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF MALLEE TREES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of tree mallee (members of Eucalyptus spp., multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF MOSSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of bryophytes, moss and liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF RUSHES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of rushes.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF SEDGES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of sedges.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF SHRUBS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of shrubs.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF SOD GRASSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of sod grass.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF TREES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of trees.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF TUSSOCK GRASSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of tussock grasses (e.g., Poa spp).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF VINES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of vines.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMPS OF FERNS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0-5% members of Fern and Fern-allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMPS OF FORBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0-5% members of Forbs or herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUP OF LICHENS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of lichens.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED FERNS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of fern and fern allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED FORBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of forbs or herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED HEATH SHRUBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of heath shrubs (e.g., Ericaceae, Myrtaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED HUMMOCK GRASSES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of hummock grasses (e.g., Triodia).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED LICHENS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated or sparse lichens.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED LIVERWORTS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated or sparse liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED MALLEE SHRUBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of mallee shrubs (e.g., some multistemmed individuals from base of Eucalyptus).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED MALLEE TREES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of tree mallee (e.g., some multistemmed individuals from base of Eucalyptus).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED MOSSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated mosses, including bryophytes and liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED RUSHES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of rushes (e.g., Juncaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED SEDGES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of sedges (e.g., Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED SHRUBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of shrubs including cycads, grass-tree and tree-fern.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED SOD GRASSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated or sparse sod or turf-like grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED TREES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of trees including palms.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED TUSSOCK GRASSES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of tussock grass (e.g. Poa species).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED VINES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated or sparse stragglers or climbing woody vines.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">LICHENLAND</td>
+<td style="text-align: left;">Refers to the type of habitat predominated by lichens on rocks, trees or tree stumps, etc.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">LIVERWORTLAND</td>
+<td style="text-align: left;">Refers to the type of habitat predominated by liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">MALLEE SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of shrub mallee (e.g., individuals of some Eucalypts multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">MALLEE WOODLAND</td>
+<td style="text-align: left;">Refers to the dominant vegetation structural formation, with a percent cover of about 20-50% of Tree Mallee.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">MOSSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat dominated by mosses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">MUDFLAT</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by a wetland that forms when mud is deposited by the tides, rivers, sea or oceans.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN CHENOPOD SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of members of Chenopodiaceae.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN FERNLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of ferns and fern allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN FORBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of forbs or herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN FOREST</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of trees including palms.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN HEATH</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of heaths (e.g., Ericaceae, Myrtaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN HUMMOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of hummock grasses (e.g., Triodia).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN LICHENLAND</td>
+<td style="text-align: left;">Refers to the type of habitat represented by open or sparse (i.e., 10-30%) hummocky grasses (e.g., Spinifex spp., Triodia spp.).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN LIVERWORTLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by open or sparse lichenised tree trunks and rocks.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN MALLEE FOREST</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of tree Mallee (e.g., certain individuals of Eucalypts multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN MALLEE SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of Mallee shrubs (e.g., certain individuals of Eucalypts multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN MALLEE WOODLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of tree mallee (e.g., certain individuals of Eucalypts multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN MOSSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by open or sparse members of lower plant groups such as moss, liverworts and bryophytes.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN OCEAN</td>
+<td style="text-align: left;">Refers to the type of habitat surrounded by ocean, i.e., a continuous saline-water bodies that surround the continents and fill the Earth's great depressions.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN RUSHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of rushes (e.g. Juncaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN SEDGELAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of sedges (e.g. Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of shrubs (e.g. shrubs, cycads, grass-tree, tree-fern).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN SOD GRASSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by open or sparse (10-30% ground cover) of a characteristic sod-like (turf) grass.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN TUSSOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of tussock grasses (e.g. Poa species).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN VINELAND</td>
+<td style="text-align: left;">Refers to the type of habitat represented by a closed vegetation dominated by stragglers and woody climbers.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN WOODLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of trees including palms.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ROCK OUTCROP</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by rocks, which protrudes through the surface layer.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">RUSHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of rushes (e.g. Juncaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SALTWATER LAKE</td>
+<td style="text-align: left;">Refers to the type of habitat representative of an aquatic body filled with water (with high salinity) of considerable size contained in a depression on a landmass.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SEDGELAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of sedges (e.g., Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of shrubs (e.g., shrub, cycad, grass-tree, tree-fern).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SOD GRASSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by mid-dense (30-70% cover) sod or turf-like grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE CHENOPOD SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of members of Chenopodiaceae.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE FERNLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of members of fern and fern-allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE FORBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of members of forbs and herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE HEATH</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of members of heath (e.g., Ericaceae, Myrtaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE LICHENLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by very sparse (&lt;10% cover) lichens.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE LIVERWORTLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by very sparse (&lt;10% cover) liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE MALLEE SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of members of shrub Mallee.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE MOSSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by very sparse (&lt;10% cover) mosses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE RUSHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of rushes (e.g., Juncaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE SEDGELAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of sedges (e.g., Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of shrubs, including cycad, grass-tree, tree-fern.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE SOD GRASSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by very sparse (&lt;10% cover) sod or turf-like grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE TUSSOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of tussock grass (e.g., Poa species).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE VINELAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by well separated or very sparse crown stragglers or woody vines.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">STREAM OR RIVER</td>
+<td style="text-align: left;">Refers to the type of habitat representative of an aquatic body with a watercourse which is linear and flows across the solid portion of a planetary surface.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">TUSSOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of tussock grass (e.g., Poa species).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">URBAN</td>
+<td style="text-align: left;">Refers to the type of habitat relating to, located in, or characteristic of a city or densely populated area.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">VINELAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by woody climbers/straggling vines.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">WOODLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by a low-density forest forming open habitats with plenty of sunlight and limited shade.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="relationshipToRelatedSite-vocabularies"></a>relationshipToRelatedSite</td>
+<td style="text-align: left;">PART OF</td>
+<td style="text-align: left;">When a site is a subset of another site.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">relationshipToRelatedSite</td>
+<td style="text-align: left;">SAME AS</td>
+<td style="text-align: left;">When two sites are the same.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="siteType-vocabularies"></a>siteType</td>
+<td style="text-align: left;">PARENT SITE</td>
+<td style="text-align: left;">Parent site.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">siteType</td>
+<td style="text-align: left;">PLOT</td>
+<td style="text-align: left;">Land area selected from within a survey region which abiotic and biotic properties are sampled.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">siteType</td>
+<td style="text-align: left;">QUADRAT</td>
+<td style="text-align: left;">A transportable frame (usually a square made out of PVC tube, metal rod or wood) used to isolate a standard unit of area for study of the distribution of item(s) over a large area (e.g. a plot).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">siteType</td>
+<td style="text-align: left;">SITE</td>
+<td style="text-align: left;">A place in which study/protocol/sampling activities are conducted.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">siteType</td>
+<td style="text-align: left;">TRANSECT</td>
+<td style="text-align: left;">A line along which biotic and abiotic characteristics are sampled</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="appendix-ii-well-known-text-wkt">APPENDIX-II: Well Known Text (WKT)</h3>
+<p>For general information on how WKT coordinate reference data is formatted is available <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">here</a>.
+The length of a WKT string or of its components is not prescribed; however, MS Excel <em>does</em> has a
+32,767 (32K) character limit on individual cells in a spreadsheet.</p>
+<p>It is possible to edit CSV files outside of Excel in order to include more than 32K characters.</p>
+<p><img alt="Multipart geometries (2D) WKT" src="../assets/multipart_geometries_2d_wkt.png" />
+<br><center><small><em>Source: Mwtoews - CC BY-SA 3.0 -  Wikipedia <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry</a></em></small></center></p>
+<h3 id="appendix-iii-timestamp">APPENDIX-III: Timestamp</h3>
+<p>Following date and date-time formats are acceptable within the timestamp:</p>
+<table>
+<thead>
+<tr>
+<th>TYPE</th>
+<th>FORMAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>xsd:dateTimeStamp with timezone</strong></td>
+<td>yyyy-mm-ddThh:mm:ss.sTZD (eg 1997-07-16T19:20:30.45+01:00) OR <br/> yyyy-mm-ddThh:mm:ssTZD (eg 1997-07-16T19:20:30+01:00) OR <br/>  yyyy-mm-ddThh:mmTZD (eg 1997-07-16T19:20+01:00)</td>
+</tr>
+<tr>
+<td><strong>xsd:dateTime</strong></td>
+<td>yyyy-mm-ddThh:mm:ss.s (eg 1997-07-16T19:20:30.45) OR<br/> yyyy-mm-ddThh:mm:ss (eg 1997-07-16T19:20:30) OR<br/> yyyy-mm-ddThh:mm (eg 1997-07-16T19:20)</td>
+</tr>
+<tr>
+<td><strong>xsd:Date</strong></td>
+<td>dd/mm/yyyy OR<br/> d/m/yyyy OR<br/> yyyy-mm-dd OR<br/> yyyy-m-d</td>
+</tr>
+<tr>
+<td><strong>xsd:gYearMonth</strong></td>
+<td>mm/yyyy OR<br/> m/yyyy OR<br/> yyyy-mm</td>
+</tr>
+<tr>
+<td><strong>xsd:gYear</strong></td>
+<td>yyyy</td>
+</tr>
+</tbody>
+</table>
+<p>Where:<br/>
+&emsp; <code>yyyy</code>: four-digit year <br/>
+&emsp; <code>mm</code>: two-digit month (01=January, etc.) <br/>
+&emsp; <code>dd</code>: two-digit day of month (01 through 31) <br/>
+&emsp; <code>hh</code>: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
+&emsp; <code>mm</code>: two digits of minute (00 through 59) <br/>
+&emsp; <code>ss</code>: two digits of second (00 through 59) <br/></p>
+<h3 id="appendix-iv-utf-8">APPENDIX-IV: UTF-8</h3>
+<p>UTF-8 encoding is considered a best practice for handling character encoding, especially in
+the context of web development, data exchange, and modern software systems. UTF-8
+(Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
+encoding all possible characters (code points) in Unicode.<br/>
+Here are some reasons why UTF-8 is recommended:
+- <strong>Universal Character Support:</strong> UTF-8 can represent almost all characters from all writing 
+  systems in use today. This includes characters from various languages, mathematical symbols, 
+  and other special characters.
+- <strong>Backward Compatibility:</strong> UTF-8 is backward compatible with ASCII (American
+  Standard Code for Information Interchange). The first 128 characters in UTF-8 are
+  identical to ASCII, making it easy to work with systems that use ASCII.
+- <strong>Efficiency:</strong> UTF-8 is space-efficient for Latin-script characters (common in English
+  and many other languages). It uses one byte for ASCII characters and up to four
+  bytes for other characters. This variable-length encoding minimises storage and
+  bandwidth requirements.
+- <strong>Web Standards:</strong> UTF-8 is the dominant character encoding for web content. It is
+  widely supported by browsers, servers, and web-related technologies.
+- <strong>Globalisation:</strong> As software applications become more globalised, supporting a wide
+  range of languages and scripts becomes crucial. UTF-8 is well-suited for
+  internationalisation and multilingual support.
+- <strong>Compatibility with Modern Systems:</strong> UTF-8 is the default encoding for many
+  programming languages, databases, and operating systems. Choosing UTF-8 helps
+  ensure compatibility across different platforms and technologies.</p>
+<p>When working with text data, UTF-8 encoding is recommended to avoid issues related to character
+representation and ensure that a diverse set of characters and languages is supported.</p>
+<p>For assistance, please contact: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate", "navigation.indexes"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
