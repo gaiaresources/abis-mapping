@@ -675,7 +675,8 @@ information:</p>
 <li><strong>Field name</strong> in the template (and an external link to the Darwin Core standard for that
 field where available);</li>
 <li><strong>Description</strong> of the field;</li>
-<li><strong>Required</strong> i.e. whether the field is <strong>mandatory or optional;</strong></li>
+<li><strong>Required</strong> i.e. whether the field is <strong><font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional</strong>;</li>
 <li><strong>Datatype format</strong> required for the data values for example text (string), number
 (integer, float), or date; and</li>
 <li><strong>Example/s</strong> of an entry for that field.</li>
@@ -710,7 +711,7 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="surveyName-field"></a>surveyName</td>
 <td style="text-align: left;">Brief title for the survey.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer</td>
 </tr>
@@ -731,7 +732,7 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="surveyStart-field"></a>surveyStart</td>
 <td style="text-align: left;">The date data collection commenced.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">Timestamp</td>
 <td style="text-align: left;">21/09/2020</td>
 </tr>
@@ -759,14 +760,14 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="spatialCoverageWKT-field"></a>spatialCoverageWKT</td>
 <td style="text-align: left;">Well Known Text (WKT) expression of the geographic coordinates that describe the survey's spatial extent.</td>
-<td style="text-align: center;">Conditionally mandatory with geodeticDatum</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with geodeticDatum</font></strong></td>
 <td style="text-align: center;">WKT</td>
 <td style="text-align: left;">POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))<br>(<a href="#appendix-ii-well-known-text-wkt">WKT notes</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="geodeticDatum-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
 <td style="text-align: left;">The geodetic datum upon which the geographic coordinates in the Spatial coverage (WKT) are based.</td>
-<td style="text-align: center;">Conditionally mandatory with spatialCoverageWKT</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with spatialCoverageWKT</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">GDA2020<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
 </tr>
@@ -808,14 +809,14 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="samplingEffortValue-field"></a>samplingEffortValue</td>
 <td style="text-align: left;">Similar to eco:samplingEffortValue. The total sampling effort value. A samplingEffortValue must have a corresponding samplingEffortUnit</td>
-<td style="text-align: center;">Conditionally mandatory with samplingEffortUnit</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with samplingEffortUnit</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">20 x 12</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="samplingEffortUnit-field"></a>samplingEffortUnit</td>
 <td style="text-align: left;">Similar to eco:samplingEffortUnit. The units associated with samplingEffortValue.</td>
-<td style="text-align: center;">Conditionally mandatory with samplingEffortValue</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with samplingEffortValue</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">trapDays<br>(<a href="#samplingEffortUnit-vocabularies">Vocabulary link</a>)</td>
 </tr>

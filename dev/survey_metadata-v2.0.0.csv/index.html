@@ -303,17 +303,17 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Intended Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-validation-requirements" class="md-nav__link">
     <span class="md-ellipsis">
       Data Validation Requirements:
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Data Validation Requirements:">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#file-format" class="md-nav__link">
@@ -405,7 +405,7 @@
           <li class="md-nav__item">
   <a href="#appendix-i-vocabulary-list" class="md-nav__link">
     <span class="md-ellipsis">
-      APPENDIX-I: VOCABULARY LIST
+      APPENDIX-I: Vocabulary List
     </span>
   </a>
   
@@ -663,15 +663,15 @@ Changes to the Template may be made before it is ready for use.</p>
 </div>
 <h1 id="systematic-survey-metadata-template-instructions">SYSTEMATIC SURVEY METADATA TEMPLATE INSTRUCTIONS</h1>
 <h2 id="intended-usage">Intended Usage</h2>
-<p>Use the Systematic Survey Metadata template to record metadata relating to a Systematic Survey dataset.</p>
-<p>The Systematic Survey Metadata template must be used in combination with the
-<code>Systematic Survey Occurrence</code> template, and in some cases the <code>Systematic Survey Site</code> template,
-with or without the <code>Systematic Survey Site Visit</code> template.</p>
+<p>This Systematic Survey Metadata template should be used to record metadata relating to a Systematic Survey dataset.</p>
+<p>The Systematic Survey Metadata template <strong>must be used in combination</strong> with the
+Systematic Survey Occurrence template and, in some cases, the Systematic Survey Site template
+with or without the Systematic Survey Site Visit template.</p>
 <p>Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
 templates at this stage; therefore, if you are unable to find a suitable template, please
 contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
-<h4 id="data-validation-requirements">Data Validation Requirements:</h4>
+<h2 id="data-validation-requirements">Data Validation Requirements:</h2>
 <p>For data validation, you will need your data file to:</p>
 <ul>
 <li>be the correct <strong>file format</strong>,</li>
@@ -710,7 +710,8 @@ information:</p>
 <li><strong>Field name</strong> in the template (and an external link to the Darwin Core standard for that
 field where available);</li>
 <li><strong>Description</strong> of the field;</li>
-<li><strong>Required</strong> i.e. whether the field is <strong>mandatory or optional;</strong></li>
+<li><strong>Required</strong> i.e. whether the field is <strong><font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional</strong>;</li>
 <li><strong>Datatype format</strong> required for the data values for example text (string), number
 (integer, float), or date; and</li>
 <li><strong>Example/s</strong> of an entry for that field.</li>
@@ -745,7 +746,7 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="surveyName-field"></a>surveyName</td>
 <td style="text-align: left;">Brief title for the survey.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer</td>
 </tr>
@@ -766,7 +767,7 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="surveyStart-field"></a>surveyStart</td>
 <td style="text-align: left;">The date data collection commenced.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">Timestamp</td>
 <td style="text-align: left;">21/09/2020</td>
 </tr>
@@ -794,14 +795,14 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="spatialCoverageWKT-field"></a>spatialCoverageWKT</td>
 <td style="text-align: left;">Well Known Text (WKT) expression of the geographic coordinates that describe the survey's spatial extent. Ensure the coordinates are arranged in 'longitude latitude' order and do not include the CRS in the WKT expression (it comes from the geodeticDatum field).</td>
-<td style="text-align: center;">Conditionally mandatory with geodeticDatum</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with geodeticDatum</font></strong></td>
 <td style="text-align: center;">WKT</td>
 <td style="text-align: left;">POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))<br>(<a href="#appendix-ii-well-known-text-wkt">WKT notes</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="geodeticDatum-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
 <td style="text-align: left;">The geodetic datum upon which the geographic coordinates in the Spatial coverage (WKT) are based.</td>
-<td style="text-align: center;">Conditionally mandatory with spatialCoverageWKT</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with spatialCoverageWKT</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">GDA2020<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
 </tr>
@@ -851,7 +852,7 @@ datatype format, and examples.</ins></p>
 <li><code>samplingEffortUnit</code> was moved to the Systematic Survey Site Visit Data Template.</li>
 </ul>
 <h2 id="appendices">APPENDICES</h2>
-<h3 id="appendix-i-vocabulary-list">APPENDIX-I: VOCABULARY LIST</h3>
+<h3 id="appendix-i-vocabulary-list">APPENDIX-I: Vocabulary List</h3>
 <p>With the exception of <code>geodeticDatum</code>, data validation
 does not require adherence to the vocabularies for the various vocabularied fields.. These vocabularies are provided as a
 means of assistance in developing consistent language within the database. New terms can be added

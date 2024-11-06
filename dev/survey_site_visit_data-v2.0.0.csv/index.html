@@ -406,17 +406,17 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Intended Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-validation-requirements" class="md-nav__link">
     <span class="md-ellipsis">
       Data Validation Requirements:
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Data Validation Requirements:">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#file-format" class="md-nav__link">
@@ -484,7 +484,7 @@
           <li class="md-nav__item">
   <a href="#appendix-i-vocabulary-list" class="md-nav__link">
     <span class="md-ellipsis">
-      APPENDIX-I: VOCABULARY LIST
+      APPENDIX-I: Vocabulary List
     </span>
   </a>
   
@@ -638,7 +638,7 @@ Systematic Survey Site Data template.</p>
 Repository (BDR) database. Not all types of data have been catered for in the available
 templates at this stage - if you are unable to find a suitable template, please
 contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
-<h4 id="data-validation-requirements">Data Validation Requirements:</h4>
+<h2 id="data-validation-requirements">Data Validation Requirements:</h2>
 <p>For data validation, you will need your data file to:
 - be the correct <strong>file format</strong>,
 - have <strong>fields that match the template downloaded</strong> (do not remove, or change the order of fields),
@@ -672,8 +672,8 @@ your data to the template indicating:</p>
 <li><strong>Field name</strong> in the template (and an external link to the <a href="https://linkeddata.tern.org.au/">Data standard</a>
   for that field where relevant);</li>
 <li><strong>Description</strong> of the field;</li>
-<li><strong>Required</strong> i.e. whether the field is <strong><font color="red">mandatory</font>,
-<font color="DarkOrange">conditionally mandatory</font>, or optional</strong>;</li>
+<li><strong>Required</strong> i.e. whether the field is <strong><font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional</strong>;</li>
 <li><strong>Format</strong> (datatype) required for the data values for example text (string), number
   (integer, float), or date;</li>
 <li><strong>Example</strong> of an entry or entries for that field; and</li>
@@ -707,7 +707,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <tr>
 <td style="text-align: left;"><a name="siteID-field"></a>siteID</td>
 <td style="text-align: left;">A unique within dataset string identifier for the site. Valid values include strings that are used specifically for this survey or URIs from BDR Sites that have been established in previous surveys.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">P1</td>
 </tr>
@@ -721,7 +721,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <tr>
 <td style="text-align: left;"><a name="siteVisitID-field"></a>siteVisitID</td>
 <td style="text-align: left;">The unique key assigned to a visit. A visit is a time distinct assessment conducted within a survey at a designated site.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">CPXEI0000001</td>
 </tr>
@@ -784,21 +784,21 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <tr>
 <td style="text-align: left;"><a name="samplingEffortValue-field"></a>samplingEffortValue</td>
 <td style="text-align: left;">Similar to eco:samplingEffortValue. The total sampling effort value. A samplingEffortValue must have a corresponding samplingEffortUnit</td>
-<td style="text-align: center;">Conditionally mandatory with samplingEffortUnit</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with samplingEffortUnit</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">20 x 12</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="samplingEffortUnit-field"></a>samplingEffortUnit</td>
 <td style="text-align: left;">Similar to eco:samplingEffortUnit. The units associated with samplingEffortValue.</td>
-<td style="text-align: center;">Conditionally mandatory with samplingEffortValue</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with samplingEffortValue</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">trapDays<br>(<a href="#samplingEffortUnit-vocabularies">Vocabulary link</a>)</td>
 </tr>
 </tbody>
 </table>
 <h2 id="appendices">APPENDICES</h2>
-<h3 id="appendix-i-vocabulary-list">APPENDIX-I: VOCABULARY LIST</h3>
+<h3 id="appendix-i-vocabulary-list">APPENDIX-I: Vocabulary List</h3>
 <p>Data validation does not require adherence to the vocabularies for the various vocabularied fields.
 These vocabularies are merely provided as a means of assistance in developing consistent language
 within the database. New terms may be added to more appropriately describe your data that goes 

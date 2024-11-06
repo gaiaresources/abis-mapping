@@ -344,17 +344,17 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Intended Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-validation-requirements" class="md-nav__link">
     <span class="md-ellipsis">
       Data Validation Requirements:
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Data Validation Requirements:">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#file-format" class="md-nav__link">
@@ -446,7 +446,7 @@
           <li class="md-nav__item">
   <a href="#appendix-i-vocabulary-list" class="md-nav__link">
     <span class="md-ellipsis">
-      APPENDIX-I: VOCABULARY LIST
+      APPENDIX-I: Vocabulary List
     </span>
   </a>
   
@@ -654,9 +654,10 @@ Changes to the Template may be made before it is ready for use.</p>
 </div>
 <h1 id="systematic-survey-occurrences-data-template-instructions">SYSTEMATIC SURVEY OCCURRENCES DATA TEMPLATE INSTRUCTIONS</h1>
 <h2 id="intended-usage">Intended Usage</h2>
-<p>This template is used to record occurrence data; that is, the presence or absence of an organism
+<p>This Systematic Survey Occurrences Data template is used to record occurrence data;
+that is, the presence or absence of an organism
 at a particular site locality at a point in time.</p>
-<p>The Systematic Survey Occurrences Data template <strong>must be used in combination</strong> with the
+<p>This Systematic Survey Occurrences Data template <strong>must be used in combination</strong> with the
 Systematic Survey Metadata template, or with the Systematic Survey Metadata and the Systematic Survey Sites Data
 template, or with the Systematic Survey Metadata, the Systematic Survey Site Data and the Systematic Survey Site Visit
 Data template.</p>
@@ -664,7 +665,7 @@ Data template.</p>
 Data Repository database. Not all types of data have been catered for in the available
 templates at this stage; therefore, if you are unable to find a suitable template, please
 contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
-<h4 id="data-validation-requirements">Data Validation Requirements:</h4>
+<h2 id="data-validation-requirements">Data Validation Requirements:</h2>
 <p>For data validation, you will need your data file to:</p>
 <ul>
 <li>be in the correct <strong>file format,</strong></li>
@@ -703,7 +704,8 @@ your data to the template by providing guidance on:</p>
 <li><strong>Field name</strong> in the template (and an external link to the <a href="https://dwc.tdwg.org/terms/">Darwin Core standard</a>
   for that field where relevant);</li>
 <li><strong>Description</strong> of the field;</li>
-<li><strong>Required</strong> whether the field is <strong><font color="red">mandatory</font> or optional</strong>;</li>
+<li><strong>Required</strong> i.e. whether the field is <strong><font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional</strong>;</li>
 <li><strong>Format</strong> (datatype) required for the data values for example text (string), number
   (integer, float), or date;</li>
 <li><strong>Example</strong> of an entry or entries for that field; and</li>
@@ -731,14 +733,14 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="providerRecordID-field"></a>providerRecordID</td>
 <td style="text-align: left;">Unique (within provider) identifier for the record.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">8022FSJMJ079c5cf</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="providerRecordIDSource-field"></a>providerRecordIDSource</td>
 <td style="text-align: left;">Person or Organisation that generated the providerRecordID.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Western Australian Biodiversity Information Office</td>
 </tr>
@@ -752,21 +754,21 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="decimalLatitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLatitude">decimalLatitude</a></td>
 <td style="text-align: left;">The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic centre of a Location. Positive values are north of the Equator, negative values are south of it. Valid coordinate ranges for the BDR system are within and inclusive of -90 to 0.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">-33.812314</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="decimalLongitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLongitude">decimalLongitude</a></td>
 <td style="text-align: left;">The geographic longitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic centre of a Location. Positive values are east of the Greenwich Meridian, negative values are west of it. Valid coordinate ranges for the BDR system are within and inclusive of 0 to 180.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">115.231512</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="geodeticDatum-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
 <td style="text-align: left;">The acronym for the ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geographic (non-projected) coordinates given in decimalLatitude and decimalLongitude as based.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">WGS84<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
 </tr>
@@ -787,7 +789,7 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="eventDateStart-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:eventDate">eventDateStart</a></td>
 <td style="text-align: left;">The start date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone (in ISO 8601 format for example 2022-05-20T06:23:00+08:00) of the period during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">Timestamp</td>
 <td style="text-align: left;">2019-09-23T14:03+08:00</td>
 </tr>
@@ -864,14 +866,14 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="organismQuantity-field"></a><a href="https://dwc.tdwg.org/list/#dwc_organismQuantity">organismQuantity</a></td>
 <td style="text-align: left;">A number or enumeration value for the quantity of organisms.</td>
-<td style="text-align: center;">Conditionally mandatory with organismQuantityType</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with organismQuantityType</font></strong></td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">12.5</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="organismQuantityType-field"></a><a href="https://dwc.tdwg.org/list/#dwc_organismQuantityType">organismQuantityType</a></td>
 <td style="text-align: left;">The type of quantification system used for the quantity organisms.</td>
-<td style="text-align: center;">Conditionally mandatory with organismQuantity</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with organismQuantity</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">% biomass<br>(<a href="#organismQuantityType-vocabularies">Vocabulary link</a>)</td>
 </tr>
@@ -899,14 +901,14 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="ownerRecordID-field"></a>ownerRecordID</td>
 <td style="text-align: left;">Identifier given to the occurrence by the owner of the data. Populate this field if the data owner is different to the data provider. Unique (within data owner) identifier for the record.</td>
-<td style="text-align: center;">Conditionally mandatory with ownerRecordIDSource</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with ownerRecordIDSource</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">12345NT521mc5h</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="ownerRecordIDSource-field"></a>ownerRecordIDSource</td>
 <td style="text-align: left;">Person or Organisation that generated the ownerRecordID. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation who owns the data.</td>
-<td style="text-align: center;">Conditionally mandatory with ownerRecordID</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with ownerRecordID</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">WAM</td>
 </tr>
@@ -920,28 +922,28 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="catalogNumber-field"></a><a href="http://rs.tdwg.org/dwc/terms/catalogNumber">catalogNumber</a></td>
 <td style="text-align: left;">An identifier (preferably unique) for the record within the data set or collection.</td>
-<td style="text-align: center;">Conditionally mandatory with catalogNumberSource</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with catalogNumberSource</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">145732, 145732a, 2008.1334, R-4313</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="catalogNumberSource-field"></a>catalogNumberSource</td>
 <td style="text-align: left;">Organisation that generated the catalogNumber. In the BDR context, this is likely to be a collecting institution where a specimen or material sample is located. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.</td>
-<td style="text-align: center;">Conditionally mandatory with catalogNumber</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with catalogNumber</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Western Australian Museum</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="otherCatalogNumbers-field"></a><a href="http://rs.tdwg.org/dwc/terms/otherCatalogNumbers">otherCatalogNumbers</a></td>
 <td style="text-align: left;">A list (concatenated and separated with a space vertical bar space ( | )) of previous or alternate fully qualified catalog numbers or other human-used identifiers for the same Occurrence, whether in the current or any other data set or collection.</td>
-<td style="text-align: center;">Conditionally mandatory with otherCatalogNumbersSource</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with otherCatalogNumbersSource</font></strong></td>
 <td style="text-align: center;">List</td>
 <td style="text-align: left;">BHP2012-7521 | M12378</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="otherCatalogNumbersSource-field"></a>otherCatalogNumbersSource</td>
 <td style="text-align: left;">Organisation that generated the otherCatalogNumbers. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.</td>
-<td style="text-align: center;">Conditionally mandatory with otherCatalogNumbers</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with otherCatalogNumbers</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">University of Western Australia</td>
 </tr>
@@ -1004,7 +1006,7 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="scientificName-field"></a><a href="http://rs.tdwg.org/dwc/terms/scientificName">scientificName</a></td>
 <td style="text-align: left;">The full scientific name, with authorship and date information if known. When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the identificationQualifier column.<br>NOTE: Phrase names such as Rhagodia sp. Hamersley (M.Trudgen 17794) are permitted in the scientificName field where those are in use.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Caladenia excelsa</td>
 </tr>
@@ -1032,7 +1034,7 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="kingdom-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:kingdom">kingdom</a></td>
 <td style="text-align: left;">The full scientific name of the kingdom in which the taxon is classified.</td>
-<td style="text-align: center;">Mandatory</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Plantae<br>(<a href="#kingdom-vocabularies">Vocabulary link</a>)</td>
 </tr>
@@ -1046,14 +1048,14 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="threatStatus-field"></a>threatStatus</td>
 <td style="text-align: left;">The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.</td>
-<td style="text-align: center;">Conditionally mandatory with conservationAuthority</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with conservationAuthority</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">EN<br>(<a href="#threatStatus-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="conservationAuthority-field"></a>conservationAuthority</td>
 <td style="text-align: left;">The authority under which an organism is recognised to have a specific conservation status applied.</td>
-<td style="text-align: center;">Conditionally mandatory with threatStatus</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with threatStatus</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">EPBC, WA<br>(<a href="#conservationAuthority-vocabularies">Vocabulary link</a>)</td>
 </tr>
@@ -1081,14 +1083,14 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: left;"><a name="sensitivityCategory-field"></a>sensitivityCategory</td>
 <td style="text-align: left;">A category that defines a type of data sensitivity or restriction.</td>
-<td style="text-align: center;">Conditionally mandatory with sensitivityAuthority</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with sensitivityAuthority</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Category 2<br>(<a href="#sensitivityCategory-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a name="sensitivityAuthority-field"></a>sensitivityAuthority</td>
 <td style="text-align: left;">The authority under which a data sensitivity or restriction has been applied.</td>
-<td style="text-align: center;">Conditionally mandatory with sensitivityCategory</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with sensitivityCategory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">Department of Environment, Climate Change and Water NSW<br>(<a href="#sensitivityAuthority-vocabularies">Vocabulary link</a>)</td>
 </tr>
@@ -1129,7 +1131,7 @@ They are mutually inclusive, both must be provided or both must be blank.</li>
 If provided, should match a <code>siteVisitID</code> in the <code>survey_site_visit_data.csv</code> template.</li>
 </ul>
 <h2 id="appendices">APPENDICES</h2>
-<h3 id="appendix-i-vocabulary-list">APPENDIX-I: VOCABULARY LIST</h3>
+<h3 id="appendix-i-vocabulary-list">APPENDIX-I: Vocabulary List</h3>
 <p>With the exception of <code>geodeticDatum</code>, data validation does not require fields to adhere to the
 vocabularies specified for the various vocabularied fields. These vocabularies are merely provided as a
 means of assistance in developing a consistent language within the database. New terms may be added
@@ -2946,7 +2948,7 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">CE</td>
-<td style="text-align: left;">CRITICALLY ENDANGERED, CR</td>
+<td style="text-align: left;">CR, CRITICALLY ENDANGERED</td>
 </tr>
 <tr>
 <td style="text-align: center;">EPBC</td>
@@ -2981,7 +2983,7 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">EPBC</td>
 <td style="text-align: left;">XW</td>
-<td style="text-align: left;">EW, EXTINCT IN THE WILD</td>
+<td style="text-align: left;">EXTINCT IN THE WILD, EW</td>
 </tr>
 <tr>
 <td style="text-align: center;">NSW</td>
@@ -3201,17 +3203,17 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CD</td>
-<td style="text-align: left;">SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA, CONSERVATION DEPENDENT</td>
+<td style="text-align: left;">CONSERVATION DEPENDENT, SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">CR</td>
-<td style="text-align: left;">CRITICALLY ENDANGERED, CRITICALLY ENDANGERED SPECIES</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED SPECIES, CRITICALLY ENDANGERED</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">EN</td>
-<td style="text-align: left;">ENDANGERED SPECIES, ENDANGERED</td>
+<td style="text-align: left;">ENDANGERED, ENDANGERED SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -3221,7 +3223,7 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">EX</td>
-<td style="text-align: left;">EXTINCT SPECIES, EXTINCT</td>
+<td style="text-align: left;">EXTINCT, EXTINCT SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
@@ -3236,7 +3238,7 @@ that are also valid for that <code>conservationAuthority</code>.</p>
 <tr>
 <td style="text-align: center;">WA</td>
 <td style="text-align: left;">P1</td>
-<td style="text-align: left;">PRIORITY 1 POORLY KNOWN SPECIES, PRIORITY 1 POORLY KNOWN</td>
+<td style="text-align: left;">PRIORITY 1 POORLY KNOWN, PRIORITY 1 POORLY KNOWN SPECIES</td>
 </tr>
 <tr>
 <td style="text-align: center;">WA</td>
