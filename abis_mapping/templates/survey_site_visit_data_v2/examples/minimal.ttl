@@ -49,22 +49,11 @@
     skos:prefLabel "Gaia Resources datasetID" ;
     prov:wasAttributedTo <http://createme.org/provider/Gaia-Resources> .
 
-<http://createme.org/bdr-cv/attribute/protocolName/human-observation> a skos:Concept ;
-    skos:definition "A type of protocolName" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "human observation" ;
-    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
-
 <http://createme.org/bdr-cv/attribute/protocolName/litter-sifting> a skos:Concept ;
+    skos:broader <https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766> ;
     skos:definition "A type of protocolName" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "litter sifting" ;
-    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
-
-<http://createme.org/bdr-cv/attribute/protocolName/wet-pitfall-trap> a skos:Concept ;
-    skos:definition "A type of protocolName" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "wet pitfall trap" ;
     schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
 
 <http://createme.org/bdr-cv/attribute/samplingEffortUnit/sifts> a skos:Concept ;
@@ -149,7 +138,7 @@
     rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/new-taxon> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/plan/TIS-24-03-P1-01> a prov:Plan ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/attribute/protocolName/wet-pitfall-trap> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/4caf0cde-9ffb-56c2-bdc6-17c4c2a7275a> ;
     schema:description "10 x square buckets of size 20 x 20 x 15 cm. Propylene glycol." .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/plan/TIS-24-03-P1-02> a prov:Plan ;
@@ -157,7 +146,7 @@
     schema:description "50 cm diameter sifter with 5 mm mesh. Litter samles taken ~1 metre from each pitfall trap" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/plan/TIS-24-03-P1-03> a prov:Plan ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/attribute/protocolName/human-observation> .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/visit/TIS-24-03-P1-03> a tern:SiteVisit ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
