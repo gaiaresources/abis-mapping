@@ -1441,8 +1441,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
 
-        spatial_accuracy = row.get("coordinateUncertaintyInMeters")
-        if spatial_accuracy:
+        spatial_accuracy = row["coordinateUncertaintyInMeters"]
+        accuracy = None
+        if spatial_accuracy is not None:
             accuracy = rdflib.Literal(spatial_accuracy, datatype=rdflib.XSD.double)
             graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
 
@@ -1453,6 +1454,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             obj=geometry_node,
             geom=geometry,
             graph=graph,
+            spatial_accuracy=accuracy
         )
 
         # Add temporal members
@@ -1481,11 +1483,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             # Add Location Description
             graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(row["locality"])))
 
-        # Check for coordinateUncertaintyInMeters
-        if row["coordinateUncertaintyInMeters"]:
-            # Add Spatial Accuracy
-            accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
-            graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
 
     def add_provider_record_id_agent(
         self,

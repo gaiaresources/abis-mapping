@@ -158,8 +158,7 @@ class ABISMapper(abc.ABC):
         graph.add((supplied_as, a, utils.namespaces.GEO.Geometry))
         graph.add((supplied_as, utils.namespaces.GEO.asWKT, geom.to_rdf_literal()))
         if spatial_accuracy is not None:
-            accuracy = rdflib.Literal(spatial_accuracy, datatype=rdflib.XSD.double)
-            graph.add((supplied_as, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+            graph.add((supplied_as, utils.namespaces.GEO.hasMetricSpatialAccuracy, spatial_accuracy))
         graph.add((top_node, utils.namespaces.GEO.hasGeometry, supplied_as))
 
     @classmethod
