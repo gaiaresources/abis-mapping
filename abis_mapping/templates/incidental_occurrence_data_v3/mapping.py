@@ -297,7 +297,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
         provider_record_id = row["providerRecordID"]
         provider_record_id_occurrence = utils.rdf.uri(f"occurrence/{provider_record_id}", base_iri)
-        provider_record_id_biodiversity_record = utils.rdf.uri(f"biodiversityRecord/{provider_record_id}")
+        provider_record_id_biodiversity_record = utils.rdf.uri(f"biodiversityRecord/{provider_record_id}", base_iri)
 
         # Conditionally create uris dependent on ownerRecordIDSource field
         if owner_record_id_source := row["ownerRecordIDSource"]:
@@ -3709,7 +3709,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add associated with agents if provided
         if provider_recorded_by is not None:
             graph.add((uri, rdflib.PROV.wasAssociatedWith, provider_recorded_by))
-
 
 
 # Helper Functions

@@ -57,6 +57,7 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     # we check here to see if any `None`s have snuck their way into the RDF.
     assert "None" not in graphs[0].serialize(format="ttl")
 
+
 @pytest.mark.parametrize(
     argnames="template_id,test_params",
     argvalues=[(id_, params) for (_, id_, params) in conftest.mapping_test_args() if params.shacl],

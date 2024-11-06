@@ -60,6 +60,10 @@
     schema:about <http://createme.org/occurrence/7> ;
     schema:identifier "7"^^<http://createme.org/datatype/recordID/WAM> .
 
+<http://createme.org/biodiversityRecord/8> a abis:BiodiversityRecord ;
+    schema:about <http://createme.org/occurrence/8> ;
+    schema:identifier "8"^^<http://createme.org/datatype/recordID/WAM> .
+
 <http://createme.org/biodiversityRecord/8022FSJMJ079c5cf> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
     schema:identifier "8022FSJMJ079c5cf"^^<http://createme.org/datatype/recordID/WAM> .
@@ -541,7 +545,7 @@
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
+    sosa:hasFeatureOfInterest <http://createme.org/occurrence/8> ;
     sosa:hasResult <http://createme.org/scientificName/8> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
@@ -747,7 +751,7 @@
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
+    sosa:hasFeatureOfInterest <http://createme.org/occurrence/8> ;
     sosa:hasResult <http://createme.org/verbatimID/8> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
@@ -1759,6 +1763,18 @@
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
+<http://createme.org/occurrence/8> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:spatial _:N489292b7f1191795326ddd2200000015 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
 <http://createme.org/occurrence/9> a dwc:Occurrence,
         tern:FeatureOfInterest ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
@@ -1786,6 +1802,22 @@
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:spatial _:N489292b7f1191795326ddd2200000027 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/occurrence/8022FSJMJ079c5cf> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
+    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:identifier "BHP2012-7521"^^<http://createme.org/datatype/catalogNumber/BHP>,
+        "M12378"^^<http://createme.org/datatype/catalogNumber/BHP>,
+        "MR-456"^^<http://createme.org/datatype/recordID/Stream-Environment-and-Water-Pty-Ltd>,
+        "PE:12:8832"^^<http://createme.org/datatype/recordNumber/Stream-Environment-and-Water-Pty-Ltd> ;
+    schema:spatial _:N489292b7f1191795326ddd220000002a ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
@@ -1827,27 +1859,6 @@
     sosa:isResultOf <http://createme.org/sampling/specimen/16> ;
     sosa:isSampleOf <http://createme.org/occurrence/ABC123> ;
     tern:featureType <http://createme.org/bdr-cv/featureType/specimen/kingdom/new-kingdom> .
-
-<http://createme.org/occurrence/8022FSJMJ079c5cf> a dwc:Occurrence,
-        tern:FeatureOfInterest ;
-    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157>,
-        <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:identifier "BHP2012-7521"^^<http://createme.org/datatype/catalogNumber/BHP>,
-        "M12378"^^<http://createme.org/datatype/catalogNumber/BHP>,
-        "MR-456"^^<http://createme.org/datatype/recordID/Stream-Environment-and-Water-Pty-Ltd>,
-        "PE:12:8832"^^<http://createme.org/datatype/recordNumber/Stream-Environment-and-Water-Pty-Ltd> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000015,
-        _:N489292b7f1191795326ddd220000002a ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ],
-        [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
-    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
     schema:name "Stream Environment and Water Pty Ltd" .
@@ -1919,7 +1930,7 @@
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
     rdf:object _:N489292b7f1191795326ddd2200000015 ;
     rdf:predicate schema:spatial ;
-    rdf:subject <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
+    rdf:subject <http://createme.org/occurrence/8> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;

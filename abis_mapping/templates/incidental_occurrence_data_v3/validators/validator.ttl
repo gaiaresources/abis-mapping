@@ -216,23 +216,27 @@ bdrsh:IncidentalOccurrenceShape
 		sh:path schema:spatial ;
 		sh:nodeKind sh:BlankNode ;
 		sh:minCount 1 ;
+		sh:maxCount 1 ;
 		sh:class geo:Geometry ;
 	] ;
 	sh:property [
 		sh:path schema:temporal ;
 		sh:nodeKind sh:BlankNode ;
 		sh:minCount 1 ;
+		sh:maxCount 1 ;
 		sh:class time:TemporalEntity ;
 	] ;
 	sh:property [
 		sh:path sosa:usedProcedure ;
 		sh:nodeKind sh:IRI ;
+		sh:maxCount 1 ;
 		sh:minCount 1 ;
 	] ;
 	sh:property [
 		sh:path tern:locationDescription ;
 		sh:datatype xsd:string ;
 		sh:nodeKind sh:Literal ;
+		sh:maxCount 1;
 	] ;
 	sh:property [
 		sh:path prov:wasAssociatedWith ;
@@ -240,11 +244,17 @@ bdrsh:IncidentalOccurrenceShape
 		sh:maxCount 1 ;
 		sh:class prov:Agent ;
 	] ;
+	# The next three properties are defined to protect against
+	# potential copy paste issues with survey occurrence templates
 	sh:property [
 		sh:path schema:isPartOf ;
 		sh:maxCount 0 ;
 	] ;
 	sh:property [
 		sh:path tern:hasSite ;
+		sh:maxCount 0 ;
+	] ;
+	sh:property [
+		sh:path tern:hasSiteVisit ;
 		sh:maxCount 0 ;
 	] .
