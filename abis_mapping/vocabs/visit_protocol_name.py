@@ -1,6 +1,6 @@
 """Provides protocol name vocabulary for the package"""
 
-# Third-Party
+# Third-party
 import rdflib
 
 # Local
@@ -235,12 +235,12 @@ WET_PITFALL_TRAP = utils.vocabs.Term(
 
 # Vocabulary
 class VisitProtocolName(utils.vocabs.FlexibleVocabulary):
-    vocab_id = "SAMPLING_PROTOCOL"
-    definition = rdflib.Literal("A type of samplingProtocol.")
-    base = utils.rdf.uri("bdr-cv/methods/samplingProtocol/")
+    vocab_id = "VISIT_PROTOCOL_NAME"
+    definition = rdflib.Literal("A type of protocolName")
+    base = utils.rdf.uri("bdr-cv/attribute/protocolName/")
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c")
     broader = rdflib.URIRef(
-        "https://linkeddata.tern.org.au/prez/dawe-cv/v/collection/nrm:f1592e71-cc16-4b81-90c4-06b418a5a766"
+        "https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766"
     )
     default = NO_STATED_METHOD
     terms = (
