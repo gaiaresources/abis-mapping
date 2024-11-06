@@ -52,7 +52,8 @@ information:
 - **Field name** in the template (and an external link to the Darwin Core standard for that
 field where available);
 - **Description** of the field;
-- **Required** i.e. whether the field is **mandatory or optional;**
+- **Required** i.e. whether the field is **<font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional**;
 - **Datatype format** required for the data values for example text (string), number
 (integer, float), or date; and
 - **Example/s** of an entry for that field.

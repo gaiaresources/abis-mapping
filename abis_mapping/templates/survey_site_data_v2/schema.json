@@ -114,6 +114,7 @@
       "example": "Cowaramup Bay Road",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:locality",
       "constraints": {
         "required": false
       }
@@ -205,6 +206,7 @@
       "example": "Coordinates given in decimalLatitude, decimalLongitude, easting and northing have been rounded to 0.1 DEG. The observer name has been changed to a unique User ID.",
       "type": "string",
       "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:dataGeneralizations",
       "constraints": {
         "required": false
       }

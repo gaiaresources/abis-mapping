@@ -179,8 +179,8 @@ def test_generate_table_markdown(
     assert actual == (
         "|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n"
         "|:---|:---|:---:|:---:|:---|\n"
-        '|<a name="someName-field"></a>someName|Some description|Mandatory|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
-        '|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|Mandatory|String|ANOTHER EXAMPLE|\n'
+        '|<a name="someName-field"></a>someName|Some description|**<font color="Crimson">Mandatory</font>**|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
+        '|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|**<font color="Crimson">Mandatory</font>**|String|ANOTHER EXAMPLE|\n'
     )
 
 
@@ -199,10 +199,11 @@ def test_mandatory_optional_text_conditional_with_single_field(
     tabler = tables.fields.FieldTabler("some id")
 
     # Call method
-    actual = tabler.mandatory_optional_text(required=False, field_name="FieldA")
+    actual, mandatory_type = tabler.mandatory_optional_text(required=False, field_name="FieldA")
 
     # Assert
     assert actual == "Conditionally mandatory with FieldB"
+    assert mandatory_type == tables.fields.MandatoryType.CONDITIONALLY_MANDATORY
 
 
 def test_mandatory_optional_text_conditional_with_multiple_fields(
@@ -232,13 +233,14 @@ def test_mandatory_optional_text_conditional_with_multiple_fields(
     tabler = tables.fields.FieldTabler("some id")
 
     # Call method
-    actual = tabler.mandatory_optional_text(required=False, field_name="FieldA")
+    actual, mandatory_type = tabler.mandatory_optional_text(required=False, field_name="FieldA")
 
     # Regex response
     regex = re.compile(r"^Conditionally mandatory with Field[BCD]{1}, Field[BCD]{1} and Field[BCD]{1}$")
 
     # Assert
     assert regex.match(actual) is not None
+    assert mandatory_type == tables.fields.MandatoryType.CONDITIONALLY_MANDATORY
 
 
 def test_mutual_inclusivity() -> None:

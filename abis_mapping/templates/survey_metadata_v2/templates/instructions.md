@@ -3,18 +3,18 @@
 # SYSTEMATIC SURVEY METADATA TEMPLATE INSTRUCTIONS
 
 ## Intended Usage
-Use the Systematic Survey Metadata template to record metadata relating to a Systematic Survey dataset.
+This Systematic Survey Metadata template should be used to record metadata relating to a Systematic Survey dataset.
 
-The Systematic Survey Metadata template must be used in combination with the
-`Systematic Survey Occurrence` template, and in some cases the `Systematic Survey Site` template,
-with or without the `Systematic Survey Site Visit` template.
+The Systematic Survey Metadata template **must be used in combination** with the
+Systematic Survey Occurrence template and, in some cases, the Systematic Survey Site template
+with or without the Systematic Survey Site Visit template.
 
 Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
 templates at this stage; therefore, if you are unable to find a suitable template, please
 contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
-#### Data Validation Requirements:
+## Data Validation Requirements:
 For data validation, you will need your data file to:
 
 - be the correct **file format**,
@@ -55,7 +55,8 @@ information:
 - **Field name** in the template (and an external link to the Darwin Core standard for that
 field where available);
 - **Description** of the field;
-- **Required** i.e. whether the field is **mandatory or optional;**
+- **Required** i.e. whether the field is **<font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional**;
 - **Datatype format** required for the data values for example text (string), number
 (integer, float), or date; and
 - **Example/s** of an entry for that field.
@@ -84,7 +85,7 @@ Changes from Systematic Survey Metadata Template v1.0.0
 * `samplingEffortUnit` was moved to the Systematic Survey Site Visit Data Template.
 
 ## APPENDICES
-### APPENDIX-I: VOCABULARY LIST
+### APPENDIX-I: Vocabulary List
 With the exception of `geodeticDatum`, data validation
 does not require adherence to the vocabularies for the various vocabularied fields.. These vocabularies are provided as a
 means of assistance in developing consistent language within the database. New terms can be added
