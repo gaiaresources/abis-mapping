@@ -2,6 +2,7 @@
 
 # Standard
 import argparse
+import enum
 import sys
 from unittest import mock
 
@@ -18,6 +19,12 @@ from docs import tables
 from typing import IO
 
 
+class MandatoryType(enum.Enum):
+    OPTIONAL = enum.auto()
+    CONDITIONALLY_MANDATORY = enum.auto()
+    MANDATORY = enum.auto()
+
+
 class FieldTableRow(pydantic.BaseModel):
     """Field table row."""
 
@@ -26,6 +33,7 @@ class FieldTableRow(pydantic.BaseModel):
     mandatory_optional: str = pydantic.Field(
         serialization_alias="Mandatory / Optional",
     )
+    mandatory_optional_type: MandatoryType = pydantic.Field(exclude=True)
     datatype_format: str = pydantic.Field(serialization_alias="Datatype Format")
     examples: str = pydantic.Field(serialization_alias="Examples")
 
@@ -77,7 +85,7 @@ class FieldTabler(tables.base.BaseTabler):
             field_table_row = self.generate_row(field)
 
             # Modify mandatory_optional attribute
-            field_table_row.mandatory_optional = self.mandatory_optional_text(
+            field_table_row.mandatory_optional, mandatory_optional_type = self.mandatory_optional_text(
                 required=field.constraints.required,
                 field_name=field.name,
             )
@@ -98,6 +106,13 @@ class FieldTabler(tables.base.BaseTabler):
             if self.format == "markdown" and field.name in ["spatialCoverageWKT", "footprintWKT"]:
                 field_table_row.examples += "<br>([WKT notes](#appendix-ii-well-known-text-wkt))"
 
+            # If markdown, and mandatory, wrap field name in colored font.
+            if self.format == "markdown" and mandatory_optional_type != MandatoryType.OPTIONAL:
+                color = "Crimson" if mandatory_optional_type == MandatoryType.MANDATORY else "DarkGoldenRod"
+                field_table_row.mandatory_optional = (
+                    f'**<font color="{color}">{field_table_row.mandatory_optional}</font>**'
+                )
+
             # Write row to csv
             self.writer.writerow(field_table_row.model_dump(by_alias=True))
 
@@ -108,7 +123,7 @@ class FieldTabler(tables.base.BaseTabler):
         # Return
         return self.output.getvalue()
 
-    def mandatory_optional_text(self, required: bool, field_name: str) -> str:
+    def mandatory_optional_text(self, required: bool, field_name: str) -> tuple[str, MandatoryType]:
         """Determines text value to use for a mandatory / optional field.
 
         Args:
@@ -117,6 +132,7 @@ class FieldTabler(tables.base.BaseTabler):
 
         Returns:
             str: Text to use for mandatory / optional field.
+            MandatoryType: what type of "mandatory-ness" the field has
         """
         # Get checklist
         checklist = self.determine_checklist()
@@ -130,14 +146,20 @@ class FieldTabler(tables.base.BaseTabler):
 
         # Conditionally send corresponding text
         if required:
-            return "Mandatory"
+            return "Mandatory", MandatoryType.MANDATORY
         elif len(fields) == 1:
-            return f"Conditionally mandatory with {fields.pop()}"
+            return (
+                f"Conditionally mandatory with {fields.pop()}",
+                MandatoryType.CONDITIONALLY_MANDATORY,
+            )
         elif len(fields) > 1:
             last_field = fields.pop()
-            return f"Conditionally mandatory with {', '.join(fields)} and {last_field}"
+            return (
+                f"Conditionally mandatory with {', '.join(fields)} and {last_field}",
+                MandatoryType.CONDITIONALLY_MANDATORY,
+            )
 
-        return "Optional"
+        return "Optional", MandatoryType.OPTIONAL
 
     @staticmethod
     def generate_row(field: types.schema.Field) -> FieldTableRow:
@@ -154,6 +176,7 @@ class FieldTabler(tables.base.BaseTabler):
             field_name=field.name,
             description=field.description,
             mandatory_optional="Mandatory" if field.constraints.required else "Optional",
+            mandatory_optional_type=(MandatoryType.MANDATORY if field.constraints.required else MandatoryType.OPTIONAL),
             datatype_format=field.type.title() if field.type not in ["wkt"] else field.type.upper(),
             examples=field.example or "",
         )

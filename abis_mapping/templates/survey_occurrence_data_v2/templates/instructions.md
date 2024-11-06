@@ -3,10 +3,11 @@
 # SYSTEMATIC SURVEY OCCURRENCES DATA TEMPLATE INSTRUCTIONS
 
 ## Intended Usage
-This template is used to record occurrence data; that is, the presence or absence of an organism
+This Systematic Survey Occurrences Data template is used to record occurrence data;
+that is, the presence or absence of an organism
 at a particular site locality at a point in time.
 
-The Systematic Survey Occurrences Data template **must be used in combination** with the
+This Systematic Survey Occurrences Data template **must be used in combination** with the
 Systematic Survey Metadata template, or with the Systematic Survey Metadata and the Systematic Survey Sites Data
 template, or with the Systematic Survey Metadata, the Systematic Survey Site Data and the Systematic Survey Site Visit
 Data template.
@@ -16,7 +17,7 @@ Data Repository database. Not all types of data have been catered for in the ava
 templates at this stage; therefore, if you are unable to find a suitable template, please
 contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
-#### Data Validation Requirements:
+## Data Validation Requirements:
 For data validation, you will need your data file to:
 
 - be in the correct **file format,**
@@ -57,7 +58,8 @@ your data to the template by providing guidance on:
 - **Field name** in the template (and an external link to the [Darwin Core standard](https://dwc.tdwg.org/terms/)
   for that field where relevant);
 - **Description** of the field;
-- **Required** whether the field is **<font color="red">mandatory</font> or optional**;
+- **Required** i.e. whether the field is **<font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional**;
 - **Format** (datatype) required for the data values for example text (string), number
   (integer, float), or date;
 - **Example** of an entry or entries for that field; and
@@ -91,7 +93,7 @@ They are mutually inclusive, both must be provided or both must be blank.
 If provided, should match a `siteVisitID` in the `survey_site_visit_data.csv` template.
 
 ## APPENDICES
-### APPENDIX-I: VOCABULARY LIST
+### APPENDIX-I: Vocabulary List
 With the exception of `geodeticDatum`, data validation does not require fields to adhere to the
 vocabularies specified for the various vocabularied fields. These vocabularies are merely provided as a
 means of assistance in developing a consistent language within the database. New terms may be added

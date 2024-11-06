@@ -14,7 +14,7 @@ Repository (BDR) database. Not all types of data have been catered for in the av
 templates at this stage - if you are unable to find a suitable template, please
 contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
-#### Data Validation Requirements:
+## Data Validation Requirements:
 For data validation, you will need your data file to:
 - be the correct **file format**,
 - have **fields that match the template downloaded** (do not remove, or change the order of fields),
@@ -51,8 +51,8 @@ your data to the template indicating:
 - **Field name** in the template (and an external link to the [Data standard](https://linkeddata.tern.org.au/)
   for that field where relevant);
 - **Description** of the field;
-- **Required** i.e. whether the field is **<font color="red">mandatory</font>,
-<font color="DarkOrange">conditionally mandatory</font>, or optional**;
+- **Required** i.e. whether the field is **<font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional**;
 - **Format** (datatype) required for the data values for example text (string), number
   (integer, float), or date;
 - **Example** of an entry or entries for that field; and
@@ -70,7 +70,7 @@ For example, `instrumentType`, `instrumentIdentifier`, `weatherConditions`.
 {{tables.fields}}
 
 ## APPENDICES
-### APPENDIX-I: VOCABULARY LIST
+### APPENDIX-I: Vocabulary List
 Data validation does not require adherence to the vocabularies for the various vocabularied fields.
 These vocabularies are merely provided as a means of assistance in developing consistent language
 within the database. New terms may be added to more appropriately describe your data that goes 

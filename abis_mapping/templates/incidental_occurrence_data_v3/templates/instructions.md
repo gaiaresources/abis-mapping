@@ -2,29 +2,30 @@
 {% block body %}
 # INCIDENTAL OCCURRENCE DATA TEMPLATE INSTRUCTIONS
 
-## OVERVIEW
-Use this template to record occurrence data; that is the presence or absence of an organism
-at a particular site locality at a point in time.
+## Intended Usage
+This Incidental Occurrence Data template should be used to record occurrence data;
+that is the presence or absence of an organism at a particular site locality at a point in time.
 
 Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
 templates at this stage; therefore, if you are unable to find a suitable template, please 
 contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
 
-#### NEED TO KNOW:
+## Data Validation Requirements:
 For data validation, you will need your data file to:
 
 - be the correct **file format,**
-- have **matching template fields** to the template downloaded (do not remove, or 
-change the order of fields), however, additional fields may be added **after the templated fields** (noting that the
-data type is not assumed and values will be encoded as strings),
-- have values in **mandatory fields** (see Table 1),
+- have **fields that match the template downloaded** (do not remove, or change the order of fields),
+- have extant values in **mandatory fields** (see Table 1),
 - comply with data **value constraints** for example the geographic coordinates are
 consistent with a [geodeticDatum](#geodeticDatum-vocabularies) type of the ***{{values.geodetic_datum_count}}*** available 
 options, and
 - align with existing controlled [vocabularies](#appendix-i-vocabulary-list) wherever possible (this is mandatory
 for geodeticDatum), but new terms may be submitted for consideration amd will not cause a 
 validation error.
+
+Additional fields may be added **after the templated fields**
+(noting that the data type is not assumed and values will be encoded as strings).
 
 ### FILE FORMAT
 - The incidental occurrence data template is a [UTF-8](#appendix-iii-utf-8) encoded csv (not Microsoft
@@ -50,7 +51,8 @@ your data to the template indicating:
 - **Field name** in the template (and an external link to the [Darwin Core standard](https://dwc.tdwg.org/terms/)
 for that field where relevant);
 - **Description** of the field;
-- **Required** whether the field is **<font color="red">mandatory</font> or optional**;
+- **Required** i.e. whether the field is **<font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional**;
 - **Format** (datatype) required for the data values for example text (string), number
   (integer, float), or date;
 - **Example** of an entry or entries for that field; and
@@ -82,9 +84,10 @@ are new fields. Both are type string.
 They are mutually inclusive, both must be provided or both must be blank.
 
 ## APPENDICES
-### APPENDIX-I: VOCABULARY LIST
-Apart from geodeticDatum, the data validation does not require adherence to the below vocabularies
-for each of the fields indicated as having vocabularies. These vocabularies are provided as a 
+### APPENDIX-I: Vocabulary List
+With the exception of geodeticDatum, data validation does not require fields to adhere to the
+vocabularies specified for the various vocabularied fields.
+These vocabularies are merely provided as a 
 means of assistance in developing consistent language within the database. New terms can be added
 to more appropriately describe your data that goes beyond the current list. Table 2 provides some 
 suggested values from existing sources such as: [Biodiversity Information Standard (TDWG)](https://dwc.tdwg.org/),

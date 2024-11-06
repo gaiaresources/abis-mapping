@@ -56,7 +56,8 @@ your data to the template by providing guidance on:
 - **Field name** in the template (and an external link to the [Darwin Core standard](https://dwc.tdwg.org/terms/)
   for that field where relevant);
 - **Description** of the field;
-- **Required** whether the field is **<font color="red">mandatory</font> or optional**;
+- **Required** i.e. whether the field is **<font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional**;
 - **Format** (datatype) required for the data values for example text (string), number
   (integer, float), or date;
 - **Example** of an entry or entries for that field; and
