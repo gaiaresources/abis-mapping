@@ -1784,6 +1784,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+
+        spatial_accuracy = row["coordinateUncertaintyInMeters"]
+        accuracy = None
+        if spatial_accuracy is not None:
+            accuracy = rdflib.Literal(spatial_accuracy, datatype=rdflib.XSD.double)
+            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+
         graph.add((uri, rdflib.SOSA.hasResult, sample_field))
 
         # Conditionally add survey
@@ -1800,6 +1807,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             obj=geometry_node,
             geom=geometry,
             graph=graph,
+            spatial_accuracy=accuracy,
         )
 
         # Add site if one provided
@@ -1826,12 +1834,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if row["locality"]:
             # Add Location Description
             graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(row["locality"])))
-
-        # Check for coordinateUncertaintyInMeters
-        if row["coordinateUncertaintyInMeters"]:
-            # Add Spatial Accuracy
-            accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
-            graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
 
     def add_provider_record_id_agent(
         self,

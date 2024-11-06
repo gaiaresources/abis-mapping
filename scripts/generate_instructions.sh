@@ -15,3 +15,4 @@ python docs/instructions.py -o docs/pages/survey_site_data-v1.0.0.csv.md survey_
 python docs/instructions.py -o docs/pages/survey_metadata-v2.0.0.csv.md survey_metadata-v2.0.0.csv
 python docs/instructions.py -o docs/pages/survey_occurrence_data-v2.0.0.csv.md survey_occurrence_data-v2.0.0.csv
 python docs/instructions.py -o docs/pages/survey_site_data-v2.0.0.csv.md survey_site_data-v2.0.0.csv
+python docs/instructions.py -o docs/pages/survey_site_visit_data-v2.0.0.csv.md survey_site_visit_data-v2.0.0.csv

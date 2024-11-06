@@ -118,7 +118,7 @@
             "name": "protocolName",
             "title": "Protocol Name",
             "description": "Categorical descriptive name for the method used during the Site Visit.",
-            "example": "harpTrapping",
+            "example": "HARD TRAP",
             "type": "string",
             "format": "default",
             "constraints": {
