@@ -1807,7 +1807,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             obj=geometry_node,
             geom=geometry,
             graph=graph,
-            spatial_accuracy=accuracy
+            spatial_accuracy=accuracy,
         )
 
         # Add site if one provided
@@ -1834,7 +1834,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if row["locality"]:
             # Add Location Description
             graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(row["locality"])))
-
 
     def add_provider_record_id_agent(
         self,
