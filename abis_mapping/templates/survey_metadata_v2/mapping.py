@@ -2,6 +2,7 @@
 
 # Standard
 import dataclasses
+import urllib.parse
 
 # Third-party
 import frictionless
@@ -192,8 +193,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Create BDR project IRI
         project = utils.rdf.uri(f"project/SSD-Survey-Project/{row_num}", base_iri)
 
-        # Create TERN survey IRI
-        survey = utils.rdf.uri(f"survey/SSD-Survey/{row_num}", base_iri)
+        # Create TERN survey IRI - Note this needs to match the iri construction of the
+        # survey occurrence and site vist template mapping, ensuring they will resolve properly.
+        survey = utils.rdf.uri("survey/", base_iri) + urllib.parse.quote(row["surveyID"], safe="")
 
         # Create survey plan IRI
         survey_plan = utils.rdf.uri(f"survey/SSD-survey/{row_num}/plan")

@@ -12,31 +12,31 @@
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/collection/samplingEffort/10-sifts> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:identifier "Site Visit Collection - Sampling Effort - 10 sifts" ;
-    schema:member <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/TIS-24-03-P1-02> ;
+    schema:member <http://createme.org/visit/TIS-24-03-P1-02> ;
     tern:hasAttribute <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/attribute/samplingEffort/10-sifts> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/collection/samplingEffort/240-trap-nights> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:identifier "Site Visit Collection - Sampling Effort - 240 trap nights" ;
-    schema:member <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/TIS-24-03-P1-01> ;
+    schema:member <http://createme.org/visit/TIS-24-03-P1-01> ;
     tern:hasAttribute <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/attribute/samplingEffort/240-trap-nights> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/collection/targetTaxonomicScope/bird> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:identifier "Site Visit Collection - Target Taxonomic Scope - bird" ;
-    schema:member <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/TIS-24-03-P1-03> ;
+    schema:member <http://createme.org/visit/TIS-24-03-P1-03> ;
     tern:hasAttribute <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/attribute/targetTaxonomicScope/bird> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/collection/targetTaxonomicScope/invertebrate> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:identifier "Site Visit Collection - Target Taxonomic Scope - invertebrate" ;
-    schema:member <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/TIS-24-03-P1-02> ;
+    schema:member <http://createme.org/visit/TIS-24-03-P1-02> ;
     tern:hasAttribute <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/attribute/targetTaxonomicScope/invertebrate> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/collection/targetTaxonomicScope/new-taxon> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:identifier "Site Visit Collection - Target Taxonomic Scope - new_taxon" ;
-    schema:member <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/TIS-24-03-P1-01> ;
+    schema:member <http://createme.org/visit/TIS-24-03-P1-01> ;
     tern:hasAttribute <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/attribute/targetTaxonomicScope/new-taxon> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/datatype/siteVisitID/WAM> a rdfs:Datatype ;
@@ -148,19 +148,6 @@
         tern:Value ;
     rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/new-taxon> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/TIS-24-03-P1-03> a tern:SiteVisit ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
-    time:hasTime [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2024-03-12"^^xsd:date ] ] ;
-    prov:hadPlan <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/plan/TIS-24-03-P1-03> ;
-    prov:wasAssociatedWith <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/ORCID00003>,
-        <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/WAM> ;
-    schema:identifier "TIS-24-03-P1-03" ;
-    schema:isPartOf <http://createme.org/survey/SSD-Survey/TIS-24-03> ;
-    tern:hasSite <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/Site/P1>,
-        "P1"^^<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/datatype/siteVisitID/WAM> .
-
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/plan/TIS-24-03-P1-01> a prov:Plan ;
     sosa:usedProcedure <http://createme.org/bdr-cv/attribute/protocolName/wet-pitfall-trap> ;
     schema:description "10 x square buckets of size 20 x 20 x 15 cm. Propylene glycol." .
@@ -172,11 +159,24 @@
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/plan/TIS-24-03-P1-03> a prov:Plan ;
     sosa:usedProcedure <http://createme.org/bdr-cv/attribute/protocolName/human-observation> .
 
+<http://createme.org/visit/TIS-24-03-P1-03> a tern:SiteVisit ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
+    time:hasTime [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2024-03-12"^^xsd:date ] ] ;
+    prov:hadPlan <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/plan/TIS-24-03-P1-03> ;
+    prov:wasAssociatedWith <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/ORCID00003>,
+        <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/WAM> ;
+    schema:identifier "TIS-24-03-P1-03" ;
+    schema:isPartOf <http://createme.org/survey/TIS-24-03> ;
+    tern:hasSite <http://createme.org/site/P1>,
+        "P1"^^<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/datatype/siteVisitID/WAM> .
+
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/ORCID00001> a prov:Agent,
         prov:Person ;
     schema:name "ORCID00001" .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/TIS-24-03-P1-01> a tern:SiteVisit ;
+<http://createme.org/visit/TIS-24-03-P1-01> a tern:SiteVisit ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -189,12 +189,12 @@
         <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/ORCID00002>,
         <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/WAM> ;
     schema:identifier "TIS-24-03-P1-01" ;
-    schema:isPartOf <http://createme.org/survey/SSD-Survey/TIS-24-03> ;
-    tern:hasSite <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/Site/P1>,
+    schema:isPartOf <http://createme.org/survey/TIS-24-03> ;
+    tern:hasSite <http://createme.org/site/P1>,
         "P1"^^<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/datatype/siteVisitID/WAM> ;
     tern:siteDescription "dry" .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/visit/TIS-24-03-P1-02> a tern:SiteVisit ;
+<http://createme.org/visit/TIS-24-03-P1-02> a tern:SiteVisit ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasEnd [ a time:Instant ;
@@ -203,8 +203,8 @@
     prov:wasAssociatedWith <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/ORCID00001>,
         <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/WAM> ;
     schema:identifier "TIS-24-03-P1-02" ;
-    schema:isPartOf <http://createme.org/survey/SSD-Survey/TIS-24-03> ;
-    tern:hasSite <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/Site/P1>,
+    schema:isPartOf <http://createme.org/survey/TIS-24-03> ;
+    tern:hasSite <http://createme.org/site/P1>,
         "P1"^^<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/datatype/siteVisitID/WAM> ;
     tern:siteDescription "moist leaf litter after recent rain" .
 

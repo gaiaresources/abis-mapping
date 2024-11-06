@@ -12,14 +12,14 @@
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:identifier "Site Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
-    schema:member <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> ;
+    schema:member <http://createme.org/site/P1> ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/SiteCollection/habitat/Closed-forest> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:identifier "Site Collection - Habitat - Closed forest" ;
-    schema:member <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P0>,
-        <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> ;
+    schema:member <http://createme.org/site/P0>,
+        <http://createme.org/site/P1> ;
     tern:hasAttribute <http://createme.org/attribute/habitat/Closed-forest> .
 
 <http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;
@@ -60,7 +60,7 @@
     rdfs:label "Closed forest" ;
     rdf:value <https://linked.data.gov.au/def/nrm/ac2238c8-b7bc-5a89-8cc3-774bc3a53064> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P0> a tern:Site ;
+<http://createme.org/site/P0> a tern:Site ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     geo:hasGeometry _:N53dd57c04e35e4aa3188c0b800000000 ;
     sosa:isSampleOf <http://createme.org//location/Australia> ;
@@ -71,7 +71,7 @@
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> a tern:Site ;
+<http://createme.org/site/P1> a tern:Site ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     geo:hasGeometry _:N2d5e0873e8e72e68e4a9793300000000,
         _:N53dd57c04e35e4aa3188c0b800000001 ;
@@ -79,7 +79,7 @@
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:identifier "P1"^^<http://createme.org/datatype/siteID/WAM> ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P0> ;
+    schema:isPartOf <http://createme.org/site/P1> ;
     schema:name "Plot 1" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
@@ -96,7 +96,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N53dd57c04e35e4aa3188c0b800000000 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P0> ;
+    rdf:subject <http://createme.org/site/P0> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -105,7 +105,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N53dd57c04e35e4aa3188c0b800000001 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> ;
+    rdf:subject <http://createme.org/site/P1> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -114,7 +114,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N2d5e0873e8e72e68e4a9793300000000 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset/Site/P1> ;
+    rdf:subject <http://createme.org/site/P1> ;
     rdfs:comment "supplied as" .
 
 _:N2d5e0873e8e72e68e4a9793300000000 a geo:Geometry ;
