@@ -339,16 +339,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
 
-        # Create Terminal Feature of Interest IRI
-        terminal_foi = utils.rdf.uri("location/Australia", base_iri)
-
-        # Add Terminal Feature of Interest (Australia)
-        self.add_terminal_feature_of_interest(
-            uri=terminal_foi,
-            dataset=dataset_iri,
-            graph=graph,
-        )
-
         # Open the Resource to allow row streaming
         with resource.open() as r:
             # Loop through Rows
@@ -357,7 +347,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 self.apply_mapping_row(
                     row=row,
                     dataset=dataset_iri,
-                    terminal_foi=terminal_foi,
                     graph=graph,
                     base_iri=base_iri,
                     site_id_geometry_map=site_id_geometry_map,
@@ -381,7 +370,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         self,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        terminal_foi: rdflib.URIRef,
         graph: rdflib.Graph,
         base_iri: Optional[rdflib.Namespace] = None,
         site_id_geometry_map: dict[str, str] | None = None,
@@ -392,7 +380,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         Args:
             row (frictionless.Row): Row to be processed in the dataset.
             dataset (rdflib.URIRef): Dataset uri this row is a part of.
-            terminal_foi (rdflib.URIRef): Terminal feature of interest.
             graph (rdflib.Graph): Graph to map row into.
             base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
                 to use for mapping.
@@ -410,8 +397,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Create URIs
         provider_provider_record_id_src = utils.rdf.uri(f"provider/{row['providerRecordIDSource']}", base_iri)
         provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
-        sample_field = utils.rdf.uri(f"sample/field/{row_num}", base_iri)
-        sampling_field = utils.rdf.uri(f"sampling/field/{row_num}", base_iri)
         sample_specimen = utils.rdf.uri(f"sample/specimen/{row_num}", base_iri)
         sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_num}", base_iri)
         text_scientific_name = utils.rdf.uri(f"scientificName/{row_num}", base_iri)
@@ -441,7 +426,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
         organism_quantity_observation = utils.rdf.uri(f"observation/organismQuantity/{row_num}", base_iri)
         organism_quantity_value = utils.rdf.uri(f"value/organismQuantity/{row_num}", base_iri)
-        site = dataset + f"/site/{urllib.parse.quote(row['siteID'], safe='')}" if row["siteID"] else None
 
         provider_record_id_source = row["providerRecordIDSource"]
         provider_record_id_datatype = utils.rdf.uri(
@@ -453,6 +437,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             internal_id=f"attribution/{provider_record_id_source}/resourceProvider",
             namespace=base_iri,
         )
+        provider_record_id = row["providerRecordID"]
+        provider_record_id_occurrence = utils.rdf.uri(f"occurrence/{provider_record_id}", base_iri)
+        provider_record_id_biodiversity_record = utils.rdf.uri(f"biodiversityRecord/{provider_record_id}", base_iri)
+
+        # Conditionally create uris dependent on siteID field
+        if site_id := row["siteID"]:
+            site = utils.rdf.uri("site/", base_iri) + urllib.parse.quote(site_id, safe="")
+        else:
+            site = None
 
         # Conditionally create uris dependant of dataGeneralizations field
         if data_generalizations := row["dataGeneralizations"]:
@@ -480,7 +473,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             basis_value = None
             basis_sample_collection = None
 
-        # Conditionally create uri's dependent on recordedBy field.
+        # Conditionally create uris dependent on recordedBy field.
         if recorded_by := row["recordedBy"]:
             record_number_datatype = utils.rdf.uri(f"datatype/recordNumber/{recorded_by}", base_iri)
             provider_recorded_by = utils.rdf.uri(f"provider/{recorded_by}", base_iri)
@@ -488,7 +481,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             record_number_datatype = None
             provider_recorded_by = None
 
-        # Conditionally create uri's dependent on habitat field.
+        # Conditionally create uris dependent on habitat field.
         if habitat := row["habitat"]:
             habitat_attribute = utils.rdf.uri(f"attribute/habitat/{habitat}", base_iri)
             habitat_value = utils.rdf.uri(f"value/habitat/{habitat}", base_iri)
@@ -610,12 +603,16 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Conditionally create uri dependent on surveyID field.
         if survey_id := row["surveyID"]:
+            # Create TERN.Survey subject IRI - Note this needs to match the iri construction of the
+            # survey metadata and site vist template mapping, ensuring they will resolve properly.
             survey = utils.rdf.uri("survey/", base_iri) + urllib.parse.quote(survey_id, safe="")
         else:
-            survey = None
+            survey = utils.rdf.uri("survey/1", base_iri)
 
         # Conditionally create uri dependent on siteVisitID field.
         if site_visit_id := row["siteVisitID"]:
+            # Create TERN.SiteVisit subjeect IRI - Note this needs to match the iri construction of the
+            # site visit template mapping, enrusing they will resolve properly.
             site_visit = utils.rdf.uri("visit/", base_iri) + urllib.parse.quote(site_visit_id, safe="")
         else:
             site_visit = None
@@ -631,20 +628,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         self.add_provider_recorded(
             uri=provider_recorded_by,
             row=row,
-            graph=graph,
-        )
-
-        # Add Sample Field
-        self.add_sample_field(
-            uri=sample_field,
-            row=row,
-            dataset=dataset,
-            feature_of_interest=terminal_foi,
-            sampling_field=sampling_field,
-            owner_record_id_datatype=owner_record_id_datatype,
-            other_catalog_numbers_datatype=other_catalog_numbers_datatype,
-            record_number_datatype=record_number_datatype,
-            site=site,
             graph=graph,
         )
 
@@ -686,23 +669,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add Sampling Field
-        self.add_sampling_field(
-            uri=sampling_field,
-            row=row,
-            dataset=dataset,
-            provider_record_id_source=provider_record_id_datatype,
-            provider=provider_recorded_by,
-            feature_of_interest=terminal_foi,
-            sample_field=sample_field,
-            site=site,
-            site_id_geometry_map=site_id_geometry_map,
-            survey=survey,
-            site_visit=site_visit,
-            site_visit_id_temporal_map=site_visit_id_temporal_map,
-            graph=graph,
-        )
-
         # Add provider record ID datatype
         self.add_record_id_datatype(
             uri=provider_record_id_datatype,
@@ -732,7 +698,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             sampling_specimen=sampling_specimen,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             catalog_number_datatype=catalog_number_datatype,
             graph=graph,
         )
@@ -772,7 +738,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=sampling_specimen,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             site_id_geometry_map=site_id_geometry_map,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
@@ -853,7 +819,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             provider=provider_identified,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             scientific_name=text_scientific_name,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
@@ -866,7 +832,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             provider=provider_identified,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             verbatim_id=text_verbatim_id,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
@@ -894,7 +860,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=data_generalizations_sample_collection,
             data_generalizations=data_generalizations,
             data_generalizations_attribute=data_generalizations_attribute,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             dataset=dataset,
             graph=graph,
         )
@@ -931,7 +897,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=individual_count_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             individual_count_value=individual_count_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
@@ -949,7 +915,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=organism_remarks_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             organism_remarks_value=organism_remarks_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
@@ -984,7 +950,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=habitat_sample_collection,
             habitat=habitat,
             habitat_attribute=habitat_attribute,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             dataset=dataset,
             graph=graph,
         )
@@ -1012,7 +978,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             basis_of_record=basis_of_record,
             basis_attribute=basis_attribute,
             sample_specimen=sample_specimen,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             row=row,
             dataset=dataset,
             graph=graph,
@@ -1037,7 +1003,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=occurrence_status_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             occurrence_status_value=occurrence_status_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
@@ -1083,7 +1049,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=establishment_means_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             establishment_means_value=establishment_means_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
@@ -1102,7 +1068,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=life_stage_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             life_stage_value=life_stage_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
@@ -1122,7 +1088,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=sex_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             sex_value=sex_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
@@ -1142,7 +1108,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=reproductive_condition_observation,
             row=row,
             dataset=dataset,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
             reproductive_condition_value=reproductive_condition_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
@@ -1255,7 +1221,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add organism quantity observation
         self.add_organism_quantity_observation(
             uri=organism_quantity_observation,
-            sample_field=sample_field,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             dataset=dataset,
             row=row,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
@@ -1275,7 +1241,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         self.add_site(
             uri=site,
             dataset=dataset,
-            terminal_foi=terminal_foi,
             graph=graph,
         )
 
@@ -1301,13 +1266,39 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=sensitivity_category_collection,
             sensitivity_category=sensitivity_category,
             sensitivity_category_attribute=sensitivity_category_attribute,
+            provider_record_id_biodiversity_record=provider_record_id_biodiversity_record,
             dataset=dataset,
+            graph=graph,
+        )
+
+        # Add biodiversity record
+        self.add_biodiversity_record(
+            uri=provider_record_id_biodiversity_record,
+            provider_record_id_datatype=provider_record_id_datatype,
+            provider_record_id_occurrence=provider_record_id_occurrence,
+            row=row,
+            graph=graph,
+        )
+
+        # Add occurrence
+        self.add_occurrence(
+            uri=provider_record_id_occurrence,
+            record_number_datatype=record_number_datatype,
+            owner_record_id_datatype=owner_record_id_datatype,
+            other_catalog_numbers_datatype=other_catalog_numbers_datatype,
+            provider_recorded_by=provider_recorded_by,
+            survey=survey,
+            site=site,
+            site_visit=site_visit,
+            dataset=dataset,
+            site_id_geometry_map=site_id_geometry_map,
+            row=row,
             graph=graph,
         )
 
         # Add extra fields JSON
         self.add_extra_fields_json(
-            subject_uri=sampling_field,
+            subject_uri=provider_record_id_occurrence,
             row=row,
             graph=graph,
         )
@@ -1432,7 +1423,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         provider: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
@@ -1445,7 +1436,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             provider (rdflib.URIRef): Provider associated with this node
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -1456,12 +1447,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to add to
         """
         # Get Timestamps
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
+        date_identified: types.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
         # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
+        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve vocab for field
         vocab = self.fields()["identificationMethod"].get_vocab()
@@ -1479,6 +1470,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
 
         # Check for date provided within given template
+        # Declare temporal entity
+        temporal_entity: rdflib.term.Node | None = None
         if date_identified is not None:
             temporal_entity = rdflib.BNode()
             graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
@@ -1499,8 +1492,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
@@ -1512,7 +1506,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         provider: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         verbatim_id: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
@@ -1525,7 +1519,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             provider (rdflib.URIRef): Provider associated with this node
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -1539,12 +1533,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
+        date_identified: types.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
         # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
+        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve vocab for field
         vocab = self.fields()["identificationMethod"].get_vocab()
@@ -1560,6 +1554,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, verbatim_id))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["verbatimIdentification"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
+
+        # Declare temporal entity allowing for correct type assignments
+        temporal_entity: rdflib.term.Node | None = None
         # Check to see if date provided from own template
         if date_identified is not None:
             temporal_entity = rdflib.BNode()
@@ -1581,8 +1578,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Check for identifiedBy
         if row["identifiedBy"]:
@@ -1689,151 +1687,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add name
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["ownerRecordIDSource"])))
-
-    def add_sampling_field(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        provider_record_id_source: rdflib.URIRef,
-        provider: rdflib.URIRef | None,
-        feature_of_interest: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
-        site: rdflib.URIRef | None,
-        site_id_geometry_map: dict[str, str] | None,
-        survey: rdflib.URIRef | None,
-        site_visit: rdflib.URIRef | None,
-        site_visit_id_temporal_map: dict[str, str] | None,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Sampling Field to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            provider_record_id_source (rdflib.URIRef): Provider record id source
-                associated with this node.
-            provider (rdflib.URIRef | None): Provider associated with this node
-            feature_of_interest (rdflib.URIRef): Feature of Interest associated
-                with this node.
-            sample_field (rdflib.URIRef): Sample Field associated with this
-                node
-            site (rdflib.URIRef | None): Site if one was provided else None.
-            site_id_geometry_map (dict[str, str] | None): Default geometry value to use
-                if none available for given site id.
-            survey (rdflib.URIRef | None): Survey if one was provided else None.
-            site_visit (rdflib.URIRef | None): Site visit if one was provided else None.
-            site_visit_id_temporal_map (dict[str, str] | None): Map containing default
-                site visit id to temporal entity rdf.
-            graph (rdflib.Graph): Graph to add to.
-        """
-        # Extract values
-        latitude = row["decimalLatitude"]
-        longitude = row["decimalLongitude"]
-        site_id = row["siteID"]
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
-
-        if latitude is not None and longitude is not None:
-            # Create geometry
-            geometry = types.spatial.Geometry(
-                raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
-                datum=row["geodeticDatum"],
-            )
-
-        elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
-            # Create geometry from literal
-            geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
-
-        else:
-            # Should not reach this as data is already validated included for completeness
-            return
-
-        # Retrieve vocab for field
-        vocab = self.fields()["samplingProtocol"].get_vocab()
-
-        # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["samplingProtocol"])
-
-        # Add to Graph
-        graph.add((uri, a, utils.namespaces.TERN.Sampling))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sampling")))
-
-        # Check eventDateStart provided
-        if event_date is not None:
-            temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-            graph.add((temporal_entity, a, rdflib.TIME.Instant))
-            graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
-            graph.add((uri, rdflib.SOSA.usedProcedure, term))
-        else:
-            # Use the default temporal entity map
-            temporal_entity = self.add_default_temporal_entity(
-                uri=uri,
-                site_visit_id_temporal_map=site_visit_id_temporal_map,
-                row=row,
-                graph=graph,
-            )
-            # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
-
-        # Add geometry
-        geometry_node = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
-        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
-
-        spatial_accuracy = row["coordinateUncertaintyInMeters"]
-        accuracy = None
-        if spatial_accuracy is not None:
-            accuracy = rdflib.Literal(spatial_accuracy, datatype=rdflib.XSD.double)
-            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
-
-        graph.add((uri, rdflib.SOSA.hasResult, sample_field))
-
-        # Conditionally add survey
-        if survey is not None:
-            graph.add((uri, rdflib.SDO.memberOf, survey))
-
-        # Conditionally add site visit
-        if site_visit is not None:
-            graph.add((uri, utils.namespaces.TERN.hasSiteVisit, site_visit))
-
-        self.add_geometry_supplied_as(
-            subj=uri,
-            pred=utils.namespaces.GEO.hasGeometry,
-            obj=geometry_node,
-            geom=geometry,
-            graph=graph,
-            spatial_accuracy=accuracy,
-        )
-
-        # Add site if one provided
-        if site is not None:
-            graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, site))
-        else:
-            graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
-
-        # Add Identifier
-        graph.add(
-            (
-                uri,
-                rdflib.SDO.identifier,
-                rdflib.Literal(row["providerRecordID"], datatype=provider_record_id_source),
-            )
-        )
-
-        # Check for recordedBy
-        if row["recordedBy"] and provider is not None:
-            # Add Associated Provider
-            graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
-
-        # Check for locality
-        if row["locality"]:
-            # Add Location Description
-            graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(row["locality"])))
 
     def add_provider_record_id_agent(
         self,
@@ -2161,7 +2014,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         site_id_geometry_map: dict[str, str] | None,
         site_visit_id_temporal_map: dict[str, str] | None,
@@ -2173,7 +2026,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -2193,6 +2046,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         geodetic_datum = row["geodeticDatum"]
         site_id = row["siteID"]
 
+        # Check to see if lat long provided
         if latitude is not None and longitude is not None:
             # Create geometry
             geometry = types.spatial.Geometry(
@@ -2200,6 +2054,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 datum=geodetic_datum,
             )
 
+        # If not then use default geometry map
         elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
             # Create geometry from geosparql wkt literal
             geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
@@ -2210,16 +2065,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        timestamp: types.temporal.Timestamp = row["preparedDate"] or row["eventDateStart"]
+        timestamp: types.temporal.Timestamp | None = row["preparedDate"] or row["eventDateStart"]
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
 
+        # Declare temporal entity allowing for correct assignment types
+        temporal_entity: rdflib.term.Node | None = None
         # Check to see date already found
         if timestamp is not None:
             temporal_entity = rdflib.BNode()
@@ -2240,8 +2097,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add geometry
         geometry_node = rdflib.BNode()
@@ -2288,94 +2146,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["verbatimIdentification"])))
-
-    def add_sample_field(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        feature_of_interest: rdflib.URIRef,
-        sampling_field: rdflib.URIRef,
-        owner_record_id_datatype: rdflib.URIRef | None,
-        other_catalog_numbers_datatype: rdflib.URIRef | None,
-        record_number_datatype: rdflib.URIRef | None,
-        site: rdflib.URIRef | None,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds Sample Field to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            feature_of_interest (rdflib.URIRef): Feature of Interest associated
-                with this node.
-            sampling_field (rdflib.URIRef): Sampling Field associated with this
-                node
-            owner_record_id_datatype (rdflib.URIRef | None): Source of owner ID
-                used as datatype.
-            other_catalog_numbers_datatype (rdflib.URIRef | None): Datatype to use
-                with other catalog numbers literals.
-            record_number_datatype (rdflib.URIRef | None): Datatype to  use
-                with record number literal.
-            site (rdflib.URIRef | None): Site associated with this node if
-                provided else None.
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Retrieve vocab for field (multiple exists for kingdom)
-        vocab = self.fields()["kingdom"].get_vocab("KINGDOM_OCCURRENCE")
-
-        # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["kingdom"])
-
-        # Add to Graph
-        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
-        graph.add((uri, a, utils.namespaces.TERN.Sample))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("field-sample")))
-        graph.add((uri, rdflib.SOSA.isResultOf, sampling_field))
-        graph.add((uri, utils.namespaces.TERN.featureType, term))
-
-        if site is not None:
-            graph.add((uri, rdflib.SOSA.isSampleOf, site))
-        else:
-            graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
-
-        # Check for recordNumber
-        if row["recordNumber"]:
-            # Determine which datatype to use for literal
-            dt = record_number_datatype or rdflib.XSD.string
-            # Add to Graph
-            graph.add((uri, utils.namespaces.DWC.recordNumber, rdflib.Literal(row["recordNumber"], datatype=dt)))
-
-        # Check for otherCatalogNumbers
-        if other_catalog_numbers := row["otherCatalogNumbers"]:
-            # Add to Graph
-            graph.add((uri, utils.namespaces.DWC.otherCatalogNumbers, rdflib.Literal(other_catalog_numbers)))
-
-        # Check for ownerRecordID
-        if (owner_record_id := row["ownerRecordID"]) and owner_record_id_datatype:
-            # Add to graph
-            graph.add(
-                (
-                    uri,
-                    rdflib.SDO.identifier,
-                    rdflib.Literal(owner_record_id, datatype=owner_record_id_datatype),
-                )
-            )
-
-        # Check for otherCatalogNumbers
-        if (other_catalog_numbers := row["otherCatalogNumbers"]) and other_catalog_numbers_datatype is not None:
-            # Iterate through the catalog numbers
-            for num in other_catalog_numbers:
-                # Add catalog number literal
-                graph.add(
-                    (
-                        uri,
-                        utils.namespaces.DWC.otherCatalogNumbers,
-                        rdflib.Literal(num, datatype=other_catalog_numbers_datatype),
-                    )
-                )
 
     def add_record_number_datatype(
         self,
@@ -2425,7 +2195,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         sampling_specimen: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         catalog_number_datatype: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
@@ -2437,7 +2207,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset this belongs to
             sampling_specimen (rdflib.URIRef): Sampling Specimen associated
                 with this node
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             catalog_number_datatype (rdflib.URIRef | None): Catalog number source
                 datatype.
@@ -2459,7 +2229,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
-        graph.add((uri, rdflib.SOSA.isSampleOf, sample_field))
+        graph.add((uri, rdflib.SOSA.isSampleOf, provider_record_id_occurrence))
         graph.add((uri, utils.namespaces.TERN.featureType, term))
 
         # Check for catalogNumber
@@ -2535,7 +2305,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         data_generalizations: str | None,
         data_generalizations_attribute: rdflib.URIRef | None,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2545,7 +2315,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri: The uri for the SampleCollection.
             data_generalizations: dataGeneralizations value from template.
             data_generalizations_attribute: The uri for the attribute node.
-            sample_field: The sample field node that should be a member of the collection.
+            provider_record_id_occurrence: Occurrence associated with this
+                node
             dataset: The uri for the dateset node.
             graph: The graph.
         """
@@ -2568,7 +2339,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to the sample field
-        graph.add((uri, rdflib.SDO.member, sample_field))
+        graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
         # Add link to attribute
         if data_generalizations_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, data_generalizations_attribute))
@@ -2685,7 +2456,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         individual_count_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
@@ -2696,7 +2467,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             individual_count_value (rdflib.URIRef): Individual Count Value
                 associated with this node
@@ -2709,7 +2480,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2718,12 +2489,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("individualCount-observation")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, individual_count_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["individualCount"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_INDIVIDUAL_COUNT))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
         # Check event date supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
@@ -2743,7 +2516,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Add comment to temporal entity
             comment = "Date unknown, site visit dates used as proxy."
 
-        graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+        # ASsert temporal_entity type and add
+        if temporal_entity is not None:
+            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -2777,7 +2552,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         organism_remarks_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
@@ -2788,7 +2563,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             organism_remarks_value (rdflib.URIRef): Organism Remarks Value
                 associated with this node
@@ -2801,7 +2576,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2810,12 +2585,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("organismRemarks-observation")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, organism_remarks_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["organismRemarks"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ORGANISM_REMARKS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
         # Check for eventDateStart
         if event_date is not None:
             temporal_entity = rdflib.BNode()
@@ -2834,8 +2611,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -2932,7 +2710,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         habitat: str | None,
         habitat_attribute: rdflib.URIRef | None,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -2942,7 +2720,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri: The uri for the SampleCollection.
             habitat: Habitat value from template.
             habitat_attribute: The uri for the attribute node.
-            sample_field: The sample field node that should be a member of the collection.
+            provider_record_id_occurrence: Occurrence associated with this
+                node
             dataset: The uri for the dateset node.
             graph: The graph.
         """
@@ -2957,7 +2736,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         # add link to the sample field
-        graph.add((uri, rdflib.SDO.member, sample_field))
+        graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
         # Add link to attribute
         if habitat_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, habitat_attribute))
@@ -3031,22 +2810,23 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         basis_of_record: str | None,
         basis_attribute: rdflib.URIRef | None,
         sample_specimen: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Add a basisOfRecord attribute Sample Collection to the graph
 
-        Either the sample_specimen node or the sample_field node should be a member
-        of this collection, depending on if the row has a specimen.
+        Either the sample_specimen node or the provider_record_id_occurrence node
+        should be a member of this collection, depending on if the row has a specimen.
 
         Args:
             uri: The uri for the SampleCollection.
             basis_of_record: basisOfRecord value from template.
             basis_attribute: The uri for the attribute node.
             sample_specimen: The sample specimen node.
-            sample_field: The sample field node that.
+            provider_record_id_occurrence: Occurrence associated with this
+                node
             row: The CSV row.
             dataset: The uri for the dateset node.
             graph: The graph.
@@ -3071,7 +2851,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if has_specimen(row):
             graph.add((uri, rdflib.SDO.member, sample_specimen))
         else:
-            graph.add((uri, rdflib.SDO.member, sample_field))
+            graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
         # Add link to attribute
         if basis_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis_attribute))
@@ -3121,7 +2901,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         occurrence_status_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
@@ -3132,7 +2912,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             occurrence_status_value (rdflib.URIRef): Occurrence Status Value
                 associated with this node
@@ -3145,7 +2925,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3154,12 +2934,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("occurrenceStatus-observation")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, occurrence_status_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["occurrenceStatus"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_OCCURRENCE_STATUS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
         # Check event date supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
@@ -3175,8 +2957,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -3322,7 +3105,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         establishment_means_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
@@ -3333,7 +3116,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             establishment_means_value (rdflib.URIRef): Establishment Means
                 Value associated with this node
@@ -3346,7 +3129,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3355,12 +3138,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("establishmentMeans-observation")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, establishment_means_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["establishmentMeans"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ESTABLISHMENT_MEANS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
         # Check eventDateStart supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
@@ -3379,8 +3164,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -3422,7 +3208,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         life_stage_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
@@ -3434,7 +3220,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -3449,12 +3235,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
         # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
+        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3469,6 +3255,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_LIFE_STAGE))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
         # Check eventDateStart supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
@@ -3488,8 +3276,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -3531,7 +3320,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         sex_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
@@ -3543,7 +3332,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -3557,12 +3346,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
         # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
+        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3577,6 +3366,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SEX))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
         # Check eventDateStart provided
         if event_date is not None:
             temporal_entity = rdflib.BNode()
@@ -3595,8 +3386,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -3638,7 +3430,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         reproductive_condition_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
@@ -3650,7 +3442,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            sample_field (rdflib.URIRef): Sample Field associated with this
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
@@ -3665,12 +3457,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
         # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else sample_field
+        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3685,6 +3477,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_REPRODUCTIVE_CONDITION))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
 
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
         # Check eventDateStart provided
         if event_date is not None:
             temporal_entity = rdflib.BNode()
@@ -3703,8 +3497,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add method comment to node
         method_comment = "Observation method unknown, 'human observation' used as proxy"
@@ -3770,7 +3565,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
+        date_identified: types.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
 
         # Accepted Name Usage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -3782,6 +3577,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_NAME_CHECK_METHOD))
 
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
         # Check date supplied within template
         if date_identified is not None:
             temporal_entity = rdflib.BNode()
@@ -3803,8 +3600,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_accepted_name_usage_value(
         self,
@@ -3870,7 +3668,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         longitude = row["decimalLongitude"]
         geodetic_datum = row["geodeticDatum"]
         site_id = row["siteID"]
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
 
         if latitude is not None and longitude is not None:
             # Create geometry
@@ -3901,7 +3699,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
 
-        # Determin eventDateStart supplied
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
+        # Determine eventDateStart supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
             graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
@@ -3920,8 +3720,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add geometry
         geometry_node = rdflib.BNode()
@@ -4048,7 +3849,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Get Timestamp
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDateStart` (fallback)
-        date_determined: types.temporal.Timestamp = (
+        date_determined: types.temporal.Timestamp | None = (
             row["threatStatusDateDetermined"] or row["dateIdentified"] or row["preparedDate"] or row["eventDateStart"]
         )
 
@@ -4068,6 +3869,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
         graph.add((uri, rdflib.SOSA.usedProcedure, term))
 
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
         # Check date provided within template
         if date_determined is not None:
             temporal_entity = rdflib.BNode()
@@ -4100,8 +3903,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
     def add_threat_status_value(
         self,
@@ -4246,7 +4050,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
-        sample_field: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         row: frictionless.Row,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
@@ -4256,14 +4060,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             dataset (rdflib.URIRef): Dataset which data belongs.
-            sample_field (rdflib.URIRef): URI for the sample field node.
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
+                node
             row (frictionless.Row): Row to retrieve data from.
             site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
                 id to default temporal entity as rdf.
             graph (rdflib.Graph): Graph to be modified.
         """
         # Extract values
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
         organism_qty = row["organismQuantity"]
         organism_qty_type = row["organismQuantityType"]
 
@@ -4272,7 +4077,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Attach node to sample field and dataset
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, sample_field))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
 
         # Add type
@@ -4280,6 +4085,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("organismQuantity-observation")))
         graph.add((uri, rdflib.SOSA.observedProperty, utils.namespaces.DWC.organismQuantity))
 
+        # Declare temporal entity to allow correct assignment typechecks
+        temporal_entity: rdflib.term.Node | None = None
         # Check eventDateStart provided
         if event_date is not None:
             temporal_entity = rdflib.BNode()
@@ -4303,8 +4110,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
             # Add comment to temporal entity
-            comment = "Date unknown, site visit dates used as proxy."
-            graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
+            if temporal_entity is not None:
+                comment = "Date unknown, site visit dates used as proxy."
+                graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add Human observation as proxy for observation method
         human_observation = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157")
@@ -4365,7 +4173,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
-        terminal_foi: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds site to the graph.
@@ -4373,7 +4180,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         Args:
             uri (rdflib.URIRef | None): URI to use if site provided else None.
             dataset (rdflib.URIRef): The dataset which the data belongs.
-            terminal_foi (rdflib.URIRef): Terminal feature of interest.
             graph (rdflib.URIRef): Graph to be modified.
         """
         # Check site uri exists
@@ -4385,7 +4191,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
-        graph.add((uri, rdflib.SOSA.isSampleOf, terminal_foi))
 
     def add_sensitivity_category_attribute(
         self,
@@ -4467,6 +4272,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         sensitivity_category: str | None,
         sensitivity_category_attribute: rdflib.URIRef | None,
+        provider_record_id_biodiversity_record: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -4476,6 +4282,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri: The uri for the Collection.
             sensitivity_category: sensitivityCategory value from template.
             sensitivity_category_attribute: The uri for the attribute node.
+            provider_record_id_biodiversity_record: The biodiversity record.
             dataset: The uri for the dateset node.
             graph: The graph.
         """
@@ -4498,8 +4305,178 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to attribute
         if sensitivity_category_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, sensitivity_category_attribute))
-        # TODO add link to the abis:BiodiversityRecord node once that is implemented
-        # graph.add((uri, rdflib.SDO.member, ...))
+        # Add link to the biodiversity record
+        graph.add((uri, rdflib.SDO.member, provider_record_id_biodiversity_record))
+
+    def add_biodiversity_record(
+        self,
+        uri: rdflib.URIRef,
+        provider_record_id_datatype: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds biodiversity record node to graph.
+
+        Args:
+            uri: Subject of the node.
+            provider_record_id_datatype: The datatype associated with
+                the provider record id.
+            provider_record_id_occurrence: Reference to the occurrence
+                of the row.
+            row: Raw data for row.
+            graph: Graph to be modified.
+        """
+        # Add class
+        graph.add((uri, a, utils.namespaces.ABIS.BiodiversityRecord))
+        # Add identifier value literal
+        graph.add(
+            (uri, rdflib.SDO.identifier, rdflib.Literal(row["providerRecordID"], datatype=provider_record_id_datatype))
+        )
+        # Add about property
+        graph.add((uri, rdflib.SDO.about, provider_record_id_occurrence))
+
+    def add_occurrence(
+        self,
+        uri: rdflib.URIRef,
+        record_number_datatype: rdflib.URIRef | None,
+        owner_record_id_datatype: rdflib.URIRef | None,
+        other_catalog_numbers_datatype: rdflib.URIRef | None,
+        provider_recorded_by: rdflib.URIRef | None,
+        survey: rdflib.URIRef,
+        site: rdflib.URIRef | None,
+        site_visit: rdflib.URIRef | None,
+        dataset: rdflib.URIRef,
+        site_id_geometry_map: dict[str, str] | None,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds occurrence node to the graph.
+
+        Args:
+            uri: Subject of the node.
+            record_number_datatype: Datatype associated with the recordNumber.
+            owner_record_id_datatype: Datatype associated with the owner recordID.
+            other_catalog_numbers_datatype: Datatype associated with other catalog numbers.
+            provider_recorded_by: Agent derived from the recordedBy field.
+            survey: Survey that the occurrence took place.
+            site: Designated site that occurrence happened.
+            site_visit: Visit associated with occurrence and site.
+            dataset: The uri for the dateset node.
+            site_id_geometry_map: Map for default geometry for a given siteID.
+            row: Raw data from the row.
+            graph: Graph to be modified.
+        """
+        # Create geometry
+        # Extract values
+        latitude = row["decimalLatitude"]
+        longitude = row["decimalLongitude"]
+        geodetic_datum = row["geodeticDatum"]
+        site_id = row["siteID"]
+
+        # Check to see if lat long provided
+        if latitude is not None and longitude is not None:
+            # Create geometry
+            geometry = types.spatial.Geometry(
+                raw=types.spatial.LatLong(latitude, longitude),
+                datum=geodetic_datum,
+            )
+
+        # If not then use default geometry map
+        elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
+            # Create geometry from geosparql wkt literal
+            geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
+
+        else:
+            # Should not reach here since validated data provided, however if
+            # it does come to it the corresponding node will be omitted
+            return
+
+        # Class
+        graph.add((uri, a, utils.namespaces.DWC.Occurrence))
+        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
+
+        # Add to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+
+        # Add identifiers
+        if record_number := row["recordNumber"]:
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(record_number, datatype=record_number_datatype)))
+        if owner_record_id := row["ownerRecordID"]:
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(owner_record_id, datatype=owner_record_id_datatype)))
+        for catalog_number in row["otherCatalogNumbers"] or []:
+            graph.add(
+                (uri, rdflib.SDO.identifier, rdflib.Literal(catalog_number, datatype=other_catalog_numbers_datatype))
+            )
+
+        # Add feature type from vocab
+        kingdom_vocab = self.fields()["kingdom"].get_vocab("KINGDOM_OCCURRENCE")
+        graph.add((uri, utils.namespaces.TERN.featureType, kingdom_vocab(graph=graph).get(row["kingdom"])))
+
+        # Add geometry
+        geometry_node = rdflib.BNode()
+        graph.add((uri, rdflib.SDO.spatial, geometry_node))
+        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+
+        # Check for coordinateUncertaintyInMeters
+        accuracy: rdflib.Literal | None = None
+        if coordinate_uncertainty := row["coordinateUncertaintyInMeters"]:
+            # Add Spatial Accuracy
+            accuracy = rdflib.Literal(coordinate_uncertainty, datatype=rdflib.XSD.double)
+            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+
+        # Add 'supplied as' geometry
+        self.add_geometry_supplied_as(
+            subj=uri,
+            pred=rdflib.SDO.spatial,
+            obj=geometry_node,
+            geom=geometry,
+            graph=graph,
+            spatial_accuracy=accuracy,
+        )
+
+        # Add temporal entity
+        event_date_start: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date_end: types.temporal.Timestamp | None = row["eventDateEnd"]
+        # Check any event dates provided
+        if event_date_start is not None or event_date_end is not None:
+            temporal_entity = rdflib.BNode()
+            graph.add((temporal_entity, a, rdflib.TIME.TemporalEntity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
+            if event_date_start is not None:
+                start_instant = rdflib.BNode()
+                graph.add((start_instant, a, rdflib.TIME.Instant))
+                graph.add((start_instant, event_date_start.rdf_in_xsd, event_date_start.to_rdf_literal()))
+                graph.add((temporal_entity, rdflib.TIME.hasBeginning, start_instant))
+            if event_date_end is not None:
+                end_instant = rdflib.BNode()
+                graph.add((end_instant, a, rdflib.TIME.Instant))
+                graph.add((end_instant, event_date_end.rdf_in_xsd, event_date_end.to_rdf_literal()))
+                graph.add((temporal_entity, rdflib.TIME.hasEnd, end_instant))
+
+        # Add procedure from vocab
+        protocol_vocab = self.fields()["samplingProtocol"].get_vocab()
+        graph.add((uri, rdflib.SOSA.usedProcedure, protocol_vocab(graph=graph).get(row["samplingProtocol"])))
+
+        # Add location description if provided
+        if locality := row["locality"]:
+            graph.add((uri, utils.namespaces.TERN.locationDescription, rdflib.Literal(locality)))
+
+        # Add associated with agents if provided
+        if provider_recorded_by is not None:
+            graph.add((uri, rdflib.PROV.wasAssociatedWith, provider_recorded_by))
+
+        # Add survey
+        graph.add((uri, rdflib.SDO.isPartOf, survey))
+
+        # Add site if provided
+        if site is not None:
+            graph.add((uri, utils.namespaces.TERN.hasSite, site))
+
+        # Add site visit if provided
+        if site_visit is not None:
+            graph.add((uri, utils.namespaces.TERN.hasSiteVisit, site_visit))
 
 
 # Helper Functions

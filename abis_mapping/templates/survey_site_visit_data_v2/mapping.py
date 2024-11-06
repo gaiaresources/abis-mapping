@@ -2,6 +2,7 @@
 
 # Standard
 import dataclasses
+import urllib.parse
 
 # Third-party
 import frictionless
@@ -341,16 +342,23 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # Part 1: Construct URIs from Row
 
-        # URIs for the Site Visit and the Site
-        uri_site_visit_activity = utils.rdf.extend_uri_quoted(dataset, "visit", row_site_visit_id)
-        uri_site = utils.rdf.extend_uri_quoted(dataset, "Site", row_site_id)
+        # Create TERN.SiteVisit subjeect IRI - Note this needs to match the iri construction of the
+        # survey occurrence template mapping, enrusing they will resolve properly.
+        uri_site_visit_activity = utils.rdf.uri("visit/", base_iri) + urllib.parse.quote(row_site_visit_id, safe="")
+
+        # TERN.Site subject IRI - Note this needs to match the iri construction of the
+        # survey site and occurrence template mapping, ensuring they will resolve properly.
+        uri_site = utils.rdf.uri("site/", base_iri) + urllib.parse.quote(row_site_id, safe="")
 
         # URI for the Survey
         row_survey_id: str | None = row["surveyID"]
         if row_survey_id:
-            uri_survey = utils.rdf.uri(f"survey/SSD-Survey/{row_survey_id}")
+            # Create TERN survey IRI - Note this needs to match the iri construction of the
+            # survey occurrence and metadata template mapping, ensuring they will resolve properly.
+            uri_survey = utils.rdf.uri("survey/", base_iri) + urllib.parse.quote(row_survey_id, safe="")
         else:
-            uri_survey = utils.rdf.uri("survey/SSD-Survey/1", base_iri)
+            # Default IRI
+            uri_survey = utils.rdf.uri("survey/1", base_iri)
 
         # URI for the Site Visit Plan
         uri_site_visit_plan = utils.rdf.extend_uri_quoted(dataset, "visit", "plan", row_site_visit_id)

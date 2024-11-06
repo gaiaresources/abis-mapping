@@ -3,12 +3,13 @@
     {
       "name": "providerRecordID",
       "title": "Provider Record ID",
-      "description": "The unique (within provider) identifier allocated to this record by the data provider e.g. when data is provided by an aggregator. It connects the record to the collection and storage of the specimens when these parts of the workflow may have been done by different parties.",
+      "description": "Unique (within provider) identifier for the record.",
       "example": "8022FSJMJ079c5cf",
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true
+        "required": true,
+        "unique": true
       }
     },
     {

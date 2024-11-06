@@ -29,6 +29,7 @@ REQUIRED_NAMESPACES = [
     ("tern", namespaces.TERN),
     ("dwc", namespaces.DWC),
     ("bdr", namespaces.BDR),
+    ("abis", namespaces.ABIS),
 ]
 
 

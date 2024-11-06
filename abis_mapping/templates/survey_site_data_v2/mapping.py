@@ -178,7 +178,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                         # Create string and add to map for site id
                         result[site_id] = str(
                             types.spatial.Geometry(
-                                raw=shapely.Point([longitude, latitude]),
+                                raw=shapely.Point([float(longitude), float(latitude)]),
                                 datum=datum,
                             ).to_rdf_literal()
                         )
@@ -251,25 +251,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
             yield graph
 
-    def get_site_uri(
-        self,
-        dataset: rdflib.URIRef,
-        raw_site_id: str,
-    ) -> rdflib.URIRef:
-        """Get the URI for a site
-
-        Args:
-            dataset: Dataset IRI this site is a part of.
-            raw_site_id: The raw site id from the CSV, e.g. "S1".
-
-        Returns:
-            The site URI.
-        """
-        # url-quote so the exact ID is preserved
-        quoted_site_id = urllib.parse.quote(raw_site_id, safe="")
-        site_uri = dataset + f"/Site/{quoted_site_id}"
-        return site_uri
-
     def apply_mapping_row(
         self,
         row: frictionless.Row,
@@ -286,7 +267,9 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             base_iri (Optional[rdflib.Namespace]): Optional base IRI
                 to use for mapping.
         """
-        site = self.get_site_uri(dataset=dataset, raw_site_id=row["siteID"])
+        # TERN.Site subject IRI - Note this needs to match the iri construction of the
+        # survey site visit and occurrence template mapping, ensuring they will resolve properly.
+        site = utils.rdf.uri("site/", base_iri) + urllib.parse.quote(row["siteID"], safe="")
 
         # Conditionally create uris dependent on siteIDSource
         if site_id_src := row["siteIDSource"]:
@@ -297,6 +280,18 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             site_id_datatype = None
             site_id_agent = None
             site_id_attribution = None
+
+        # Conditionally create uri dependent on relatedSiteID
+        if related_site_id := row["relatedSiteID"]:
+            # Determine related site URI based on related site string
+            if utils.rdf.uri_or_string_literal(related_site_id).datatype is None:
+                # related site URI is a site in this dataset
+                related_site = utils.rdf.uri("site/", base_iri) + urllib.parse.quote(row["siteID"], safe="")
+            else:
+                # related site URI is an external URI
+                related_site = rdflib.URIRef(related_site_id)
+        else:
+            related_site = None
 
         # Conditionally create uris dependent on dataGeneralizations
         if data_generalizations := row["dataGeneralizations"]:
@@ -334,6 +329,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             uri=site,
             dataset=dataset,
             site_id_datatype=site_id_datatype,
+            related_site=related_site,
             row=row,
             graph=graph,
         )
@@ -440,18 +436,20 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
         site_id_datatype: rdflib.URIRef | None,
+        related_site: rdflib.URIRef | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds site to the graph.
 
         Args:
-           uri (rdflib.URIRef): URI to use for this node.
-           dataset (rdflib.URIRef): Dataset to which data belongs.
-           site_id_datatype (rdflib.URIRef | None): Datatype to use for
+            uri: URI to use for this node.
+            dataset: Dataset to which data belongs.
+            site_id_datatype: Datatype to use for
                 the site id literal.
-           row (frictionless.Row): Row to retrieve data from.
-           graph (rdflib.Graph): Graph to be modified.
+            related_site:
+            row: Row to retrieve data from.
+            graph: Graph to be modified.
         """
         # Extract relevant values
         site_id = row["siteID"]
@@ -470,28 +468,15 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dt = site_id_datatype if site_id_datatype is not None else rdflib.XSD.string
         graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(site_id, datatype=dt)))
 
-        # Add related site if available
-        if (relationship_to_related_site := row["relationshipToRelatedSite"]) and (
-            related_site := row["relatedSiteID"]
-        ):
+        # Add related site if provided
+        if related_site is not None and (relationship_to_related_site := row["relationshipToRelatedSite"]):
             # Retrieve vocab for field
             relationship_to_related_site_vocab = self.fields()["relationshipToRelatedSite"].get_vocab()
-
             # Retrieve term
             relationship_to_related_site_term = relationship_to_related_site_vocab(graph=graph).get(
                 relationship_to_related_site
             )
-
-            # Determine related site URI based on related site string
-            if utils.rdf.uri_or_string_literal(related_site).datatype is None:
-                # related site URI is a site in this dataset
-                related_site_uri = self.get_site_uri(dataset=dataset, raw_site_id=related_site)
-            else:
-                # related site URI is an external URI
-                related_site_uri = rdflib.URIRef(related_site)
-
-            # Add related site triple
-            graph.add((uri, relationship_to_related_site_term, related_site_uri))
+            graph.add((uri, relationship_to_related_site_term, related_site))
 
         # Add site tern featuretype
         graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
