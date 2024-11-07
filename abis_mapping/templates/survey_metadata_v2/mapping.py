@@ -206,9 +206,11 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Conditionally create survey type attribute, value and collection IRIs
         row_survey_type: str | None = row["surveyType"]
         if row_survey_type:
-            survey_type_attribute = utils.rdf.extend_uri(dataset, "attribute", "surveyType", row_survey_type)
-            survey_type_value = utils.rdf.extend_uri(dataset, "value", "surveyType", row_survey_type)
-            survey_type_collection = utils.rdf.extend_uri(dataset, "SurveyCollection", "surveyType", row_survey_type)
+            survey_type_attribute = utils.iri_patterns.attribute_iri(base_iri, "surveyType", row_survey_type)
+            survey_type_value = utils.iri_patterns.attribute_value_iri(base_iri, "surveyType", row_survey_type)
+            survey_type_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "Survey", "surveyType", row_survey_type
+            )
         else:
             survey_type_attribute = None
             survey_type_value = None
@@ -221,10 +223,10 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 target_habitat_objects.append(
                     AttributeValue(
                         raw=target_habitat,
-                        attribute=utils.rdf.extend_uri(dataset, "attribute", "targetHabitatScope", target_habitat),
-                        value=utils.rdf.extend_uri(dataset, "value", "targetHabitatScope", target_habitat),
-                        collection=utils.rdf.extend_uri(
-                            dataset, "SurveyCollection", "targetHabitatScope", target_habitat
+                        attribute=utils.iri_patterns.attribute_iri(base_iri, "targetHabitatScope", target_habitat),
+                        value=utils.iri_patterns.attribute_value_iri(base_iri, "targetHabitatScope", target_habitat),
+                        collection=utils.iri_patterns.attribute_collection_iri(
+                            base_iri, "Survey", "targetHabitatScope", target_habitat
                         ),
                     ),
                 )
@@ -236,10 +238,10 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 target_taxonomic_objects.append(
                     AttributeValue(
                         raw=target_taxon,
-                        attribute=utils.rdf.extend_uri(dataset, "attribute", "targetTaxonomicScope", target_taxon),
-                        value=utils.rdf.extend_uri(dataset, "value", "targetTaxonomicScope", target_taxon),
-                        collection=utils.rdf.extend_uri(
-                            dataset, "SurveyCollection", "targetTaxonomicScope", target_taxon
+                        attribute=utils.iri_patterns.attribute_iri(base_iri, "targetTaxonomicScope", target_taxon),
+                        value=utils.iri_patterns.attribute_value_iri(base_iri, "targetTaxonomicScope", target_taxon),
+                        collection=utils.iri_patterns.attribute_collection_iri(
+                            base_iri, "Survey", "targetTaxonomicScope", target_taxon
                         ),
                     )
                 )

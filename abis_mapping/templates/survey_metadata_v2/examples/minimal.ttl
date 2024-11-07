@@ -10,29 +10,29 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/SurveyCollection/surveyType/Wet-pitfall-trapping> a schema:Collection ;
+<http://createme.org/SurveyCollection/surveyType/Wet-pitfall-trapping> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:identifier "Survey Collection - Survey Type - Wet pitfall trapping" ;
     schema:member <http://createme.org/Plan/COL1> ;
-    tern:hasAttribute <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/attribute/surveyType/Wet-pitfall-trapping> .
+    tern:hasAttribute <http://createme.org/attribute/surveyType/Wet-pitfall-trapping> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/SurveyCollection/targetHabitatScope/Woodland> a schema:Collection ;
+<http://createme.org/SurveyCollection/targetHabitatScope/Woodland> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:identifier "Survey Collection - Target Habitat Scope - Woodland" ;
     schema:member <http://createme.org/Plan/COL1> ;
-    tern:hasAttribute <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/attribute/targetHabitatScope/Woodland> .
+    tern:hasAttribute <http://createme.org/attribute/targetHabitatScope/Woodland> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/SurveyCollection/targetTaxonomicScope/Coleoptera> a schema:Collection ;
+<http://createme.org/SurveyCollection/targetTaxonomicScope/Coleoptera> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:identifier "Survey Collection - Target Taxonomic Scope - Coleoptera" ;
     schema:member <http://createme.org/Plan/COL1> ;
-    tern:hasAttribute <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/attribute/targetTaxonomicScope/Coleoptera> .
+    tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/Coleoptera> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/SurveyCollection/targetTaxonomicScope/Insecta> a schema:Collection ;
+<http://createme.org/SurveyCollection/targetTaxonomicScope/Insecta> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:identifier "Survey Collection - Target Taxonomic Scope - Insecta" ;
     schema:member <http://createme.org/Plan/COL1> ;
-    tern:hasAttribute <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/attribute/targetTaxonomicScope/Insecta> .
+    tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/Insecta> .
 
 <http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;
     skos:definition "An identifier for the dataset" ;
@@ -63,6 +63,30 @@
 <http://createme.org/agent/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
     schema:name "NSW Department of Planning, Industry and Environment" .
 
+<http://createme.org/attribute/surveyType/Wet-pitfall-trapping> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    tern:attribute <http://example.com/concept/surveyType> ;
+    tern:hasSimpleValue "Wet pitfall trapping" ;
+    tern:hasValue <http://createme.org/value/surveyType/Wet-pitfall-trapping> .
+
+<http://createme.org/attribute/targetHabitatScope/Woodland> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    tern:attribute <https://linked.data.gov.au/def/nrm/ae2c88be-63d5-44d3-95ac-54b14c4a4b28> ;
+    tern:hasSimpleValue "Woodland" ;
+    tern:hasValue <http://createme.org/value/targetHabitatScope/Woodland> .
+
+<http://createme.org/attribute/targetTaxonomicScope/Coleoptera> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    tern:hasSimpleValue "Coleoptera" ;
+    tern:hasValue <http://createme.org/value/targetTaxonomicScope/Coleoptera> .
+
+<http://createme.org/attribute/targetTaxonomicScope/Insecta> a tern:Attribute ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    tern:hasSimpleValue "Insecta" ;
+    tern:hasValue <http://createme.org/value/targetTaxonomicScope/Insecta> .
+
 <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     skos:definition "A type of targetTaxonomicScope" ;
@@ -77,46 +101,22 @@
     skos:prefLabel "Insecta" ;
     schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset"^^xsd:anyURI .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/attribute/surveyType/Wet-pitfall-trapping> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
-    tern:attribute <http://example.com/concept/surveyType> ;
-    tern:hasSimpleValue "Wet pitfall trapping" ;
-    tern:hasValue <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/value/surveyType/Wet-pitfall-trapping> .
-
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/attribute/targetHabitatScope/Woodland> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
-    tern:attribute <https://linked.data.gov.au/def/nrm/ae2c88be-63d5-44d3-95ac-54b14c4a4b28> ;
-    tern:hasSimpleValue "Woodland" ;
-    tern:hasValue <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/value/targetHabitatScope/Woodland> .
-
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/attribute/targetTaxonomicScope/Coleoptera> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
-    tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
-    tern:hasSimpleValue "Coleoptera" ;
-    tern:hasValue <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/value/targetTaxonomicScope/Coleoptera> .
-
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/attribute/targetTaxonomicScope/Insecta> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
-    tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
-    tern:hasSimpleValue "Insecta" ;
-    tern:hasValue <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/value/targetTaxonomicScope/Insecta> .
-
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/value/surveyType/Wet-pitfall-trapping> a tern:IRI,
+<http://createme.org/value/surveyType/Wet-pitfall-trapping> a tern:IRI,
         tern:Value ;
     rdfs:label "Wet pitfall trapping" ;
     rdf:value <https://linked.data.gov.au/def/nrm/054145e7-137d-50c5-a750-d85a47e81fad> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/value/targetHabitatScope/Woodland> a tern:IRI,
+<http://createme.org/value/targetHabitatScope/Woodland> a tern:IRI,
         tern:Value ;
     rdfs:label "Woodland" ;
     rdf:value <https://linked.data.gov.au/def/nrm/e2193542-9203-532b-99d3-853a4640114d> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/value/targetTaxonomicScope/Coleoptera> a tern:IRI,
+<http://createme.org/value/targetTaxonomicScope/Coleoptera> a tern:IRI,
         tern:Value ;
     rdfs:label "Coleoptera" ;
     rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset/value/targetTaxonomicScope/Insecta> a tern:IRI,
+<http://createme.org/value/targetTaxonomicScope/Insecta> a tern:IRI,
         tern:Value ;
     rdfs:label "Insecta" ;
     rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
