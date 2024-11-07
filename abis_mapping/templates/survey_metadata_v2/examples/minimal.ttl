@@ -39,29 +39,23 @@
     skos:prefLabel "Gaia Resources datasetID" ;
     prov:wasAttributedTo <http://createme.org/provider/Gaia-Resources> .
 
-<http://createme.org/datatype/surveyID/CSIRO> a rdfs:Datatype ;
-    skos:prefLabel "surveyID source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/agent/CSIRO> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/principalInvestigator> ] .
-
-<http://createme.org/datatype/surveyID/NSW-Department-of-Planning-Industry-and-Environment> a rdfs:Datatype ;
-    skos:prefLabel "surveyID source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <http://createme.org/agent/NSW-Department-of-Planning-Industry-and-Environment> ;
-            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/principalInvestigator> ] .
-
 <http://createme.org/project/SSD-Survey-Project/1> a bdr:Project ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:hasPart <http://createme.org/Survey/COL1> ;
     schema:identifier "COL1" ;
     schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
 
-<http://createme.org/agent/CSIRO> a prov:Agent ;
-    schema:name "CSIRO" .
+<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO> a rdfs:Datatype ;
+    skos:prefLabel "surveyID source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/principalInvestigator> ] .
 
-<http://createme.org/agent/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
-    schema:name "NSW Department of Planning, Industry and Environment" .
+<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> a rdfs:Datatype ;
+    skos:prefLabel "surveyID source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> ;
+            prov:hadRole <http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/principalInvestigator> ] .
 
 <http://createme.org/attribute/surveyType/Wet-pitfall-trapping> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
@@ -121,6 +115,12 @@
     rdfs:label "Insecta" ;
     rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
 
+<https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> a prov:Agent ;
+    schema:name "CSIRO" .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
+    schema:name "NSW Department of Planning, Industry and Environment" .
+
 <http://createme.org/Survey/COL1> a tern:Survey ;
     bdr:purpose "Summer sampling for peak insect diversity." ;
     bdr:target "Coleoptera",
@@ -132,8 +132,8 @@
             time:hasEnd [ a time:Instant ;
                     time:inXSDDate "2015-02-03"^^xsd:date ] ] ;
     prov:hadPlan <http://createme.org/Plan/COL1> ;
-    schema:identifier "COL1"^^<http://createme.org/datatype/surveyID/CSIRO>,
-        "COL1"^^<http://createme.org/datatype/surveyID/NSW-Department-of-Planning-Industry-and-Environment> ;
+    schema:identifier "COL1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO>,
+        "COL1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> ;
     schema:keywords "farmland",
         "ground beetle",
         "habitat",

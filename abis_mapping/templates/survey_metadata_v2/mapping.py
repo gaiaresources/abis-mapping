@@ -253,8 +253,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 survey_org_objects.append(
                     SurveyIDDatatype(
                         name=raw_org,
-                        datatype=utils.rdf.uri(f"datatype/surveyID/{raw_org}", base_iri),
-                        agent=utils.rdf.uri(f"agent/{raw_org}"),
+                        datatype=utils.iri_patterns.datatype_iri("surveyID", raw_org),
+                        agent=utils.iri_patterns.agent_iri(raw_org),
                     )
                 )
 

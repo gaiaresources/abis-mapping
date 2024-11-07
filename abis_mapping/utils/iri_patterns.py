@@ -96,3 +96,44 @@ def attribute_collection_iri(
         IRI for the schema:Collection node.
     """
     return utils.rdf.uri(f"{collection_type}Collection/{attribute}/{value}", namespace=base_iri)
+
+
+def datatype_iri(
+    identifier_type: str,
+    identifier_source: str,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a rdfs:Datatype node.
+
+    This node typically represents the source of an identifier.
+
+    Args:
+        identifier_type: What identifier the datatype is for. e.g. "surveyID", "catalogNumber"
+        identifier_source: The source of the identifier.
+            e.g. the value for the "surveyOrgs" or "catalogNumberSource" template fields.
+
+    Returns:
+        URIRef for the rdfs:Datatype node.
+    """
+    return utils.rdf.uri(
+        f"{identifier_type}/{identifier_source}",
+        namespace=utils.namespaces.BDR_DATATYPES,
+    )
+
+
+def agent_iri(
+    org: str,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a prov:Agent node.
+
+    Args:
+        org: The org this agent node represents.
+
+    Returns:
+        URIRef for the prov:Agent node.
+    """
+    return utils.rdf.uri(
+        f"{org}",
+        namespace=utils.namespaces.BDR_ORGS,
+    )
