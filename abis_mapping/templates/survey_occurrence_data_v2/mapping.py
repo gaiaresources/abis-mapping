@@ -601,13 +601,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sensitivity_category_value = None
             sensitivity_category_collection = None
 
-        # Conditionally create uri dependent on surveyID field.
-        if survey_id := row["surveyID"]:
-            # Create TERN.Survey subject IRI - Note this needs to match the iri construction of the
-            # survey metadata and site vist template mapping, ensuring they will resolve properly.
-            survey = utils.rdf.uri("survey/", base_iri) + urllib.parse.quote(survey_id, safe="")
-        else:
-            survey = utils.rdf.uri("survey/1", base_iri)
+        # Create TERN survey IRI from surveyID field
+        survey_id: str | None = row["surveyID"]
+        survey = utils.iri_patterns.survey_iri(base_iri, survey_id=survey_id)
 
         # Conditionally create uri dependent on siteVisitID field.
         if site_visit_id := row["siteVisitID"]:

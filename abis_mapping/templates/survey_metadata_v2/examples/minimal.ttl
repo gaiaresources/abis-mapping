@@ -53,7 +53,7 @@
 
 <http://createme.org/project/SSD-Survey-Project/1> a bdr:Project ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
-    schema:hasPart <http://createme.org/survey/COL1> ;
+    schema:hasPart <http://createme.org/Survey/COL1> ;
     schema:identifier "COL1" ;
     schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
 
@@ -121,7 +121,7 @@
     rdfs:label "Insecta" ;
     rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
 
-<http://createme.org/survey/COL1> a tern:Survey ;
+<http://createme.org/Survey/COL1> a tern:Survey ;
     bdr:purpose "Summer sampling for peak insect diversity." ;
     bdr:target "Coleoptera",
         "Insecta" ;
@@ -161,7 +161,7 @@
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral ] ;
     rdf:object _:N52d3d4f338b894a95032d27200000000 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/survey/COL1> ;
+    rdf:subject <http://createme.org/Survey/COL1> ;
     rdfs:comment "supplied as" .
 
 _:N52d3d4f338b894a95032d27200000000 a geo:Geometry ;

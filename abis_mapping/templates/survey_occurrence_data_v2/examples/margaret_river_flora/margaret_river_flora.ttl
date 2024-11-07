@@ -1634,7 +1634,7 @@
         tern:FeatureOfInterest ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000021 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1655,7 +1655,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000000 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1668,7 +1668,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f0000001b ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1681,7 +1681,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f0000001e ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1694,7 +1694,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000024 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1707,7 +1707,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000003 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1720,7 +1720,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000006 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1733,7 +1733,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000009 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1746,7 +1746,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f0000000c ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1759,7 +1759,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f0000000f ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1772,7 +1772,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000012 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1785,7 +1785,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000015 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1798,7 +1798,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000018 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1820,7 +1820,7 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <http://createme.org/provider/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000027 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1837,7 +1837,7 @@
         "M12378"^^<http://createme.org/datatype/catalogNumber/BHP>,
         "MR-456"^^<http://createme.org/datatype/recordID/Stream-Environment-and-Water-Pty-Ltd>,
         "PE:12:8832"^^<http://createme.org/datatype/recordNumber/Stream-Environment-and-Water-Pty-Ltd> ;
-    schema:isPartOf <http://createme.org/survey/MR-R1> ;
+    schema:isPartOf <http://createme.org/Survey/MR-R1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f0000002a ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -1856,7 +1856,7 @@
         "M12379"^^<http://createme.org/datatype/catalogNumber/BHP>,
         "MR-457"^^<http://createme.org/datatype/recordID/Stream-Environment-and-Water-Pty-Ltd>,
         "PE:12:8833"^^<http://createme.org/datatype/recordNumber/Stream-Environment-and-Water-Pty-Ltd> ;
-    schema:isPartOf <http://createme.org/survey/MR-R1> ;
+    schema:isPartOf <http://createme.org/Survey/MR-R1> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f0000002d ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
