@@ -71,6 +71,12 @@ def test_uri_quoted(
     * different length paths
     * with/without special chars
     * with/without replacement fields
+
+    Args:
+        namespace: The namespace for the uri_quoted function
+        path: The path for the uri_quoted function
+        fields: The fields to pass as kwargs to uri_quoted
+        expected: The expected return for the uri_quoted function
     """
     result = utils.rdf.uri_quoted(namespace, path, **fields)
     assert result == expected
