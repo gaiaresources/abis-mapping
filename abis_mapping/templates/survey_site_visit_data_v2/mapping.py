@@ -350,15 +350,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # survey site and occurrence template mapping, ensuring they will resolve properly.
         uri_site = utils.rdf.uri("site/", base_iri) + urllib.parse.quote(row_site_id, safe="")
 
-        # URI for the Survey
+        # Create TERN survey IRI from surveyID field
         row_survey_id: str | None = row["surveyID"]
-        if row_survey_id:
-            # Create TERN survey IRI - Note this needs to match the iri construction of the
-            # survey occurrence and metadata template mapping, ensuring they will resolve properly.
-            uri_survey = utils.rdf.uri("survey/", base_iri) + urllib.parse.quote(row_survey_id, safe="")
-        else:
-            # Default IRI
-            uri_survey = utils.rdf.uri("survey/1", base_iri)
+        uri_survey = utils.iri_patterns.survey_iri(base_iri, row_survey_id)
 
         # URI for the Site Visit Plan
         uri_site_visit_plan = utils.rdf.extend_uri_quoted(dataset, "visit", "plan", row_site_visit_id)

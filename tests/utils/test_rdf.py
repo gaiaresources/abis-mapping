@@ -42,6 +42,57 @@ def test_rdf_uri() -> None:
 
 
 @pytest.mark.parametrize(
+    ("namespace", "path", "fields", "expected"),
+    [
+        pytest.param(
+            rdflib.Namespace("https://test.com/foo/"),
+            "",
+            {},
+            rdflib.URIRef("https://test.com/foo/"),
+            id="empty path",
+        ),
+        pytest.param(
+            rdflib.Namespace("https://test.com/foo/"),
+            "bar",
+            {},
+            rdflib.URIRef("https://test.com/foo/bar"),
+            id="static path",
+        ),
+        pytest.param(
+            rdflib.Namespace("https://test.com/foo/"),
+            "bar/{v}",
+            {"v": "123"},
+            rdflib.URIRef("https://test.com/foo/bar/123"),
+            id="path with field to replace",
+        ),
+        pytest.param(
+            rdflib.Namespace("https://test.com/foo/"),
+            "bar/{v1}/cat/{v2}",
+            {"v1": "123", "v2": "A B C?!"},
+            rdflib.URIRef("https://test.com/foo/bar/123/cat/A%20B%20C%3F%21"),
+            id="path with fields to replace with special chars",
+        ),
+    ],
+)
+def test_uri_quoted(
+    namespace: rdflib.Namespace,
+    path: str,
+    fields: dict[str, str],
+    expected: rdflib.URIRef,
+) -> None:
+    """Test the uri_quoted function.
+
+    Args:
+        namespace: The namespace for the uri_quoted function
+        path: The path for the uri_quoted function
+        fields: The fields to pass as kwargs to uri_quoted
+        expected: The expected return for the uri_quoted function
+    """
+    result = utils.rdf.uri_quoted(namespace, path, **fields)
+    assert result == expected
+
+
+@pytest.mark.parametrize(
     ("base", "extension", "expected"),
     [
         (rdflib.URIRef("https://test.com/foo"), ["bar"], rdflib.URIRef("https://test.com/foo/bar")),

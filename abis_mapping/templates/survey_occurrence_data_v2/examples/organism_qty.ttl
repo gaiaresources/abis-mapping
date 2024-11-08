@@ -84,7 +84,7 @@
         tern:FeatureOfInterest ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1> ;
     schema:spatial _:Nbf8d3720a20d4c0a80c10b6800000000 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
