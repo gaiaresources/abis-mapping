@@ -137,8 +137,7 @@ class FieldTabler(tables.base.BaseTabler):
         """Getter for the table header."""
         # Get titles from model
         raw_hdr = (hdr.alias or hdr.title for hdr in FieldTableRow.model_computed_fields.values())
-        r = [hdr for hdr in raw_hdr if hdr is not None]
-        return r
+        return [hdr for hdr in raw_hdr if hdr is not None]
 
     @property
     def fields(self) -> list[types.schema.Field]:

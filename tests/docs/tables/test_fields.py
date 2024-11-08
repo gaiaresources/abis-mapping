@@ -223,7 +223,7 @@ def test_determine_checklist() -> None:
 @pytest.mark.parametrize(
     "tabler_class, expected",
     [
-        (
+        pytest.param(
             tables.fields.FieldTabler,
             (
                 "Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
@@ -233,8 +233,9 @@ def test_determine_checklist() -> None:
                 "123,Numbers,Conditionally mandatory with abc,String,Numbers EXAMPLE\r\n"
                 "threatStatus,The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.,Optional,String,VU\r\n\n"
             ),
+            id="FieldTabler",
         ),
-        (
+        pytest.param(
             tables.fields.OccurrenceFieldTabler,
             (
                 "Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
@@ -244,9 +245,9 @@ def test_determine_checklist() -> None:
                 "123,Numbers,Conditionally mandatory with abc,String,Numbers EXAMPLE\r\n"
                 "threatStatus,The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.,Optional,String,VU\r\n\n"
             ),
+            id="OccurrenceFieldTabler",
         ),
     ],
-    ids=["FieldTabler", "OccurrenceFieldTabler"],
 )
 def test_generate_table(
     tabler_class: Type[tables.fields.FieldTabler],
