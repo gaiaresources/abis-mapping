@@ -194,7 +194,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Create TERN survey IRI from surveyID field
         survey_id: str | None = row["surveyID"]
-        survey = utils.iri_patterns.survey_iri(base_iri, survey_id=survey_id)
+        survey = utils.iri_patterns.survey_iri(base_iri, survey_id)
 
         # Create survey plan IRI
         survey_plan = utils.rdf.uri_quoted(

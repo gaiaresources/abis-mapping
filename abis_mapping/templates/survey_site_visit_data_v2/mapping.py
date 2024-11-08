@@ -352,7 +352,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # Create TERN survey IRI from surveyID field
         row_survey_id: str | None = row["surveyID"]
-        uri_survey = utils.iri_patterns.survey_iri(base_iri, survey_id=row_survey_id)
+        uri_survey = utils.iri_patterns.survey_iri(base_iri, row_survey_id)
 
         # URI for the Site Visit Plan
         uri_site_visit_plan = utils.rdf.extend_uri_quoted(dataset, "visit", "plan", row_site_visit_id)

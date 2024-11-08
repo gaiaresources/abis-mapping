@@ -15,8 +15,8 @@ from typing import Literal
 
 def survey_iri(
     base_iri: rdflib.Namespace | None,
-    *,
     survey_id: str | None,
+    /,
 ) -> rdflib.URIRef:
     """Get the IRI for the tern:Survey node, constructed from the surveyID field.
 

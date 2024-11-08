@@ -603,7 +603,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Create TERN survey IRI from surveyID field
         survey_id: str | None = row["surveyID"]
-        survey = utils.iri_patterns.survey_iri(base_iri, survey_id=survey_id)
+        survey = utils.iri_patterns.survey_iri(base_iri, survey_id)
 
         # Conditionally create uri dependent on siteVisitID field.
         if site_visit_id := row["siteVisitID"]:
