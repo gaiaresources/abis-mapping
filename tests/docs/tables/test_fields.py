@@ -3,7 +3,6 @@
 # Standard
 import io
 import unittest.mock
-import re
 
 # Third-party
 import pytest
@@ -16,12 +15,12 @@ from abis_mapping import types
 from abis_mapping import plugins
 
 # Typing
-from typing import Any
+from typing import Any, Type
 
 
 @pytest.fixture
-def mocked_determine_checklist(mocker: pytest_mock.MockerFixture) -> unittest.mock.MagicMock:
-    """Mocked determine_checklist method.
+def mocked_checklist(mocker: pytest_mock.MockerFixture) -> unittest.mock.MagicMock:
+    """Mocked FieldTabler.checklist method.
 
     Args:
         mocker (pytest_mock.MockerFixture): Mocker fixture.
@@ -31,14 +30,91 @@ def mocked_determine_checklist(mocker: pytest_mock.MockerFixture) -> unittest.mo
     """
     # Create a checklist to return from the mocked method.
     checklist = frictionless.Checklist(
-        checks=[plugins.mutual_inclusion.MutuallyInclusive(field_names=["FieldA", "FieldB"])]
+        checks=[
+            plugins.mutual_inclusion.MutuallyInclusive(field_names=["FieldA", "FieldB"]),
+            plugins.mutual_inclusion.MutuallyInclusive(field_names=["abc", "123"]),
+            plugins.mutual_inclusion.MutuallyInclusive(field_names=["abc", "NotAField", "FakeField"]),
+        ]
     )
     # Patch and return mock
     return mocker.patch.object(
         target=tables.fields.FieldTabler,
-        attribute="determine_checklist",
+        attribute="checklist",
         return_value=checklist,
     )
+
+
+@pytest.fixture
+def mocked_mapper(
+    mocked_mapper: unittest.mock.MagicMock,
+) -> unittest.mock.MagicMock:
+    """Mocked mapper with more fields.
+
+    Args:
+        mocked_mapper: Mapper fixture.
+
+    Returns:
+        Modified mocked mapper.
+    """
+    new_fields = [
+        {
+            "name": "abc",
+            "title": "Abc",
+            "description": "Alphabet",
+            "example": "Alphabet EXAMPLE",
+            "type": "string",
+            "format": "default",
+            "url": "http://example.com/abc",
+            "constraints": {
+                "required": False,
+            },
+        },
+        {
+            "name": "123",
+            "title": "123",
+            "description": "Numbers",
+            "example": "Numbers EXAMPLE",
+            "type": "string",
+            "format": "default",
+            "url": "http://example.com/123",
+            "constraints": {
+                "required": False,
+            },
+        },
+        {
+            "name": "threatStatus",
+            "title": "Threat Status",
+            "description": "The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.",
+            "example": "VU",
+            "type": "string",
+            "format": "default",
+            "constraints": {"required": False},
+            "vocabularies": ["THREAT_STATUS"],
+        },
+    ]
+    # Schema
+    descriptor = {"fields": [*mocked_mapper().schema()["fields"], *new_fields]}
+    # Patch current schema with more fields
+    mocked_mapper.return_value.schema.return_value = descriptor
+
+    # Return
+    return mocked_mapper
+
+
+@pytest.fixture
+def mocked_vocab(mocked_vocab: unittest.mock.MagicMock) -> unittest.mock.MagicMock:
+    """Mocked vocab with details specific to this module.
+
+    Args:
+        mocked_vocab: Vocab fixture.
+
+    Returns:
+        Modified mocked vocab.
+    """
+    # Add threat status id since it is looked for by the occurrence tablers
+    mocked_vocab.return_value.vocab_id = "THREAT_STATUS"
+    # Return
+    return mocked_vocab
 
 
 @pytest.mark.parametrize(
@@ -77,6 +153,7 @@ def mocked_determine_checklist(mocker: pytest_mock.MockerFixture) -> unittest.mo
                 "example": "SOME EXAMPLE",
                 "type": "string",
                 "format": "default",
+                "checklist": frictionless.Checklist(),
                 "constraints": {
                     "required": True,
                     "enum": [
@@ -96,8 +173,8 @@ def mocked_determine_checklist(mocker: pytest_mock.MockerFixture) -> unittest.mo
         ),
     ],
 )
-def test_generate_row(field: dict[str, Any], expected: dict[str, Any]) -> None:
-    """Tests generate_row function
+def test_field_table_row(field: dict[str, Any], expected: dict[str, Any]) -> None:
+    """Tests FieldTableRow serialization.
 
     Args:
         field (dict[str, Any]): Field dictionary.
@@ -106,11 +183,28 @@ def test_generate_row(field: dict[str, Any], expected: dict[str, Any]) -> None:
     # Create field from input
     f = types.schema.Field.model_validate(field)
 
-    # Invoke function
-    result = tables.fields.FieldTabler.generate_row(f)
+    # Create field table row
+    ftr = tables.fields.FieldTableRow(field=f, checklist=None)
 
     # Assert
-    assert result.model_dump(by_alias=True) == expected
+    assert ftr.model_dump(by_alias=True) == expected
+
+
+def test_header(mocked_mapper: unittest.mock.MagicMock) -> None:
+    """Tests the FieldTabler.header property.
+
+    Args:
+        mocked_mapper: Mocked mapper fixture.
+    """
+    # Create tabler
+    tabler = tables.fields.FieldTabler("some_id")
+
+    # Assert
+    # Confirm mocks were of consequence
+    mocked_mapper.assert_called()
+
+    # Confirm expected output
+    assert tabler.header == ["Field Name", "Description", "Mandatory / Optional", "Datatype Format", "Examples"]
 
 
 def test_determine_checklist() -> None:
@@ -119,28 +213,62 @@ def test_determine_checklist() -> None:
     tabler = tables.fields.FieldTabler("incidental_occurrence_data-v2.0.0.csv")
 
     # Invoke function
-    checklist = tabler.determine_checklist()
+    checklist = tabler.checklist()
 
     # Assert
     assert checklist is not None
     assert len(checklist.checks) == 6
 
 
+@pytest.mark.parametrize(
+    "tabler_class, expected",
+    [
+        (
+            tables.fields.FieldTabler,
+            (
+                "Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
+                "someName,Some description,Mandatory,String,SOME EXAMPLE\r\n"
+                "anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n"
+                'abc,Alphabet,"Conditionally mandatory with 123, FakeField and NotAField",String,Alphabet EXAMPLE\r\n'
+                "123,Numbers,Conditionally mandatory with abc,String,Numbers EXAMPLE\r\n"
+                "threatStatus,The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.,Optional,String,VU\r\n\n"
+            ),
+        ),
+        (
+            tables.fields.OccurrenceFieldTabler,
+            (
+                "Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
+                "someName,Some description,Mandatory,String,SOME EXAMPLE\r\n"
+                "anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n"
+                'abc,Alphabet,"Conditionally mandatory with 123, FakeField and NotAField",String,Alphabet EXAMPLE\r\n'
+                "123,Numbers,Conditionally mandatory with abc,String,Numbers EXAMPLE\r\n"
+                "threatStatus,The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.,Optional,String,VU\r\n\n"
+            ),
+        ),
+    ],
+    ids=["FieldTabler", "OccurrenceFieldTabler"],
+)
 def test_generate_table(
+    tabler_class: Type[tables.fields.FieldTabler],
+    expected: str,
     mocked_mapper: unittest.mock.MagicMock,
     mocked_vocab: unittest.mock.MagicMock,
+    mocked_checklist: unittest.mock.MagicMock,
 ) -> None:
     """Tests generate_table method.
 
     Args:
-        mocked_mapper (unittest.mock.MagicMock): Mocked mapper fixture.
-        mocked_vocab (unittest.mock.MagicMock): Mocked vocab fixture.
+        table_class: The type of FieldTabler under test
+        expected: The expected generated output.
+        mocked_mapper: Mocked mapper fixture.
+        mocked_vocab: Mocked vocab fixture.
+        mocked_checklist: Mocked FieldTabler.checklist method.
     """
     # Create an in memory io
     dest = io.StringIO()
 
     # Create a tabler
-    tabler = tables.fields.FieldTabler("some_id")
+    tabler = tabler_class("some_id")
 
     # Invoke
     tabler.generate_table(
@@ -148,99 +276,75 @@ def test_generate_table(
     )
 
     # Assert
+    # Ensure the mocks were of consequence
     mocked_vocab.assert_called()
     mocked_mapper.assert_called()
-    assert dest.getvalue() == (
-        "Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
-        "someName,Some description,Mandatory,String,SOME EXAMPLE\r\n"
-        "anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n\n"
-    )
+    mocked_checklist.assert_called()
+
+    # Confirm expected value
+    assert dest.getvalue() == expected
 
 
+@pytest.mark.parametrize(
+    "tabler_class, expected",
+    [
+        pytest.param(
+            tables.fields.FieldTabler,
+            (
+                "|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n"
+                "|:---|:---|:---:|:---:|:---|\n"
+                '|<a name="someName-field"></a>someName|Some description|**<font color="Crimson">Mandatory</font>**|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
+                '|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|**<font color="Crimson">Mandatory</font>**|String|ANOTHER EXAMPLE|\n'
+                '|<a name="abc-field"></a>[abc](http://example.com/abc)|Alphabet|**<font color="DarkGoldenRod">Conditionally mandatory with 123, FakeField and NotAField</font>**|String|Alphabet EXAMPLE|\n'
+                '|<a name="123-field"></a>[123](http://example.com/123)|Numbers|**<font color="DarkGoldenRod">Conditionally mandatory with abc</font>**|String|Numbers EXAMPLE|\n'
+                '|<a name="threatStatus-field"></a>threatStatus|The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.|Optional|String|VU<br>([Vocabulary link](#threatStatus-vocabularies))|\n'
+            ),
+            id="FieldTabler",
+        ),
+        pytest.param(
+            tables.fields.OccurrenceFieldTabler,
+            (
+                "|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n"
+                "|:---|:---|:---:|:---:|:---|\n"
+                '|<a name="someName-field"></a>someName|Some description|**<font color="Crimson">Mandatory</font>**|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
+                '|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|**<font color="Crimson">Mandatory</font>**|String|ANOTHER EXAMPLE|\n'
+                '|<a name="abc-field"></a>[abc](http://example.com/abc)|Alphabet|**<font color="DarkGoldenRod">Conditionally mandatory with 123, FakeField and NotAField</font>**|String|Alphabet EXAMPLE|\n'
+                '|<a name="123-field"></a>[123](http://example.com/123)|Numbers|**<font color="DarkGoldenRod">Conditionally mandatory with abc</font>**|String|Numbers EXAMPLE|\n'
+                '|<a name="threatStatus-field"></a>threatStatus|The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.|Optional|String|VU<br>([Vocabulary link](#threatStatus-vocabularies))|\n'
+            ),
+            id="OccurrenceFieldTabler",
+        ),
+    ],
+)
 def test_generate_table_markdown(
+    tabler_class: Type[tables.fields.FieldTabler],
+    expected: str,
     mocked_mapper: unittest.mock.MagicMock,
     mocked_vocab: unittest.mock.MagicMock,
+    mocked_checklist: unittest.mock.MagicMock,
 ) -> None:
     """Tests generate_table method with markdown format.
 
     Args:
+        table_class: The type of FieldTabler under test
+        expected: The expected generated output.
         mocked_mapper (unittest.mock.MagicMock): Mocked mapper fixture.
         mocked_vocab (unittest.mock.MagicMock): Mocked vocab fixture.
     """
     # Create a tabler
-    tabler = tables.fields.FieldTabler("some_id", format="markdown")
+    tabler = tabler_class("some_id", format="markdown")
 
     # Invoke
     actual = tabler.generate_table()
 
     # Assert
+    # Ensure the mocks were of consequence
     mocked_mapper.assert_called()
     mocked_vocab.assert_called()
-    assert actual == (
-        "|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n"
-        "|:---|:---|:---:|:---:|:---|\n"
-        '|<a name="someName-field"></a>someName|Some description|**<font color="Crimson">Mandatory</font>**|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
-        '|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|**<font color="Crimson">Mandatory</font>**|String|ANOTHER EXAMPLE|\n'
-    )
+    mocked_checklist.assert_called()
 
-
-def test_mandatory_optional_text_conditional_with_single_field(
-    mocked_determine_checklist: unittest.mock.MagicMock,
-    mocked_mapper: unittest.mock.MagicMock,
-) -> None:
-    """Tests the mandatory_optional_text method with only one field mutually inclusive.
-
-    Args:
-        mocked_determine_checklist (unittest.mock.MagicMock): Mocked
-            determine_checklist method fixture.
-        mocked_mapper (unittest.mock.MagicMock): Mocked mapper fixture.
-    """
-    # Create tabler
-    tabler = tables.fields.FieldTabler("some id")
-
-    # Call method
-    actual, mandatory_type = tabler.mandatory_optional_text(required=False, field_name="FieldA")
-
-    # Assert
-    assert actual == "Conditionally mandatory with FieldB"
-    assert mandatory_type == tables.fields.MandatoryType.CONDITIONALLY_MANDATORY
-
-
-def test_mandatory_optional_text_conditional_with_multiple_fields(
-    mocked_determine_checklist: unittest.mock.MagicMock,
-    mocked_mapper: unittest.mock.MagicMock,
-) -> None:
-    """Tests the mandatory_optional_text method with only one field mutually inclusive.
-
-    Args:
-        mocked_determine_checklist (unittest.mock.MagicMock): Mocked
-            determine_checklist method fixture.
-        mocked_mapper (unittest.mock.MagicMock): Mocked mapper fixture.
-    """
-    # Modify mock return value
-    checklist = frictionless.Checklist(
-        checks=[
-            plugins.mutual_inclusion.MutuallyInclusive(field_names=["FieldA", "FieldB"]),
-            plugins.mutual_inclusion.MutuallyInclusive(field_names=["FieldA", "FieldC"]),
-            plugins.mutual_inclusion.MutuallyInclusive(
-                field_names=["FieldA", "FieldD"],
-            ),
-        ],
-    )
-    mocked_determine_checklist.return_value = checklist
-
-    # Create tabler
-    tabler = tables.fields.FieldTabler("some id")
-
-    # Call method
-    actual, mandatory_type = tabler.mandatory_optional_text(required=False, field_name="FieldA")
-
-    # Regex response
-    regex = re.compile(r"^Conditionally mandatory with Field[BCD]{1}, Field[BCD]{1} and Field[BCD]{1}$")
-
-    # Assert
-    assert regex.match(actual) is not None
-    assert mandatory_type == tables.fields.MandatoryType.CONDITIONALLY_MANDATORY
+    # Confirm expected value
+    assert actual == expected
 
 
 def test_mutual_inclusivity() -> None:
@@ -254,7 +358,7 @@ def test_mutual_inclusivity() -> None:
     )
 
     # Invoke function
-    fields = tables.fields.FieldTabler.mutual_inclusivity(field_name="fieldB", checklist=checklist)
+    fields = tables.fields.mutual_inclusivity(field_name="fieldB", checklist=checklist)
 
     # Assert
-    assert fields == {"fieldA", "fieldC"}
+    assert fields == ["fieldA", "fieldC"]

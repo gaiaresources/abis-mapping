@@ -2,7 +2,6 @@
 
 # Standard
 import argparse
-import enum
 import sys
 from unittest import mock
 
@@ -16,26 +15,116 @@ from abis_mapping import plugins
 from docs import tables
 
 # Typing
-from typing import IO
-
-
-class MandatoryType(enum.Enum):
-    OPTIONAL = enum.auto()
-    CONDITIONALLY_MANDATORY = enum.auto()
-    MANDATORY = enum.auto()
+from typing import IO, Annotated
 
 
 class FieldTableRow(pydantic.BaseModel):
-    """Field table row."""
+    """Standard Field table row."""
 
-    field_name: str = pydantic.Field(serialization_alias="Field Name")
-    description: str = pydantic.Field(serialization_alias="Description")
-    mandatory_optional: str = pydantic.Field(
-        serialization_alias="Mandatory / Optional",
-    )
-    mandatory_optional_type: MandatoryType = pydantic.Field(exclude=True)
-    datatype_format: str = pydantic.Field(serialization_alias="Datatype Format")
-    examples: str = pydantic.Field(serialization_alias="Examples")
+    field: Annotated[types.schema.Field, pydantic.Field(exclude=True)]
+    checklist: Annotated[frictionless.Checklist | None, pydantic.Field(exclude=True)]
+
+    @pydantic.computed_field(alias="Field Name")  # type: ignore[prop-decorator]
+    @property
+    def field_name(self) -> str:
+        """Derive from supplied field."""
+        return self.field.name
+
+    @pydantic.computed_field(alias="Description")  # type: ignore[prop-decorator]
+    @property
+    def description(self) -> str:
+        """Derive from supplied field."""
+        return self.field.description
+
+    @pydantic.computed_field(alias="Mandatory / Optional")  # type: ignore[prop-decorator]
+    @property
+    def mandatory_optional(self) -> str:
+        """Output text for mandatorinessness."""
+        # Create blank list
+        mi_fields: list[str] = []
+
+        # Check for any mutual inclusivity checks
+        if self.checklist is not None:
+            mi_fields = mutual_inclusivity(self.field.name, self.checklist)
+
+        # Conditionally return corresponding text
+        if self.field.constraints.required:
+            return "Mandatory"
+        elif len(mi_fields) == 1:
+            return f"Conditionally mandatory with {mi_fields.pop()}"
+        elif len(mi_fields) > 1:
+            last_field = mi_fields.pop()
+            return f"Conditionally mandatory with {', '.join(mi_fields)} and {last_field}"
+        return "Optional"
+
+    @pydantic.computed_field(alias="Datatype Format")  # type: ignore[prop-decorator]
+    @property
+    def datatype_format(self) -> str:
+        """Get datatype format type for field"""
+        return self.field.type.title() if self.field.type not in ["wkt"] else self.field.type.upper()
+
+    @pydantic.computed_field(alias="Examples")  # type: ignore[prop-decorator]
+    @property
+    def examples(self) -> str:
+        """Get the field example."""
+        return self.field.example or ""
+
+    model_config = {"arbitrary_types_allowed": True}
+
+
+class MarkdownFieldTableRow(FieldTableRow):
+    """Provides markdown specific serialization properties."""
+
+    @pydantic.computed_field(alias="Field Name")  # type: ignore[prop-decorator]
+    @property
+    def field_name(self) -> str:
+        """Return field's name."""
+        # Get field name
+        text = self.field.name
+        # If markdown add link to field names
+        if self.field.url:
+            text = f"[{text}]({self.field.url})"
+        # Prepend anchor and return
+        return f'<a name="{self.field.name}-field"></a>{text}'
+
+    @pydantic.computed_field(alias="Mandatory / Optional")  # type: ignore[prop-decorator]
+    @property
+    def mandatory_optional(self) -> str:
+        """Output text for mandatorinessness."""
+        # Create blank list
+        mi_fields: list[str] = []
+
+        # Check for any mutual inclusivity checks
+        if self.checklist is not None:
+            mi_fields = mutual_inclusivity(self.field.name, self.checklist)
+
+        # Conditionally return corresponding text
+        if self.field.constraints.required:
+            return '**<font color="Crimson">Mandatory</font>**'
+        elif len(mi_fields) == 1:
+            return f'**<font color="DarkGoldenRod">Conditionally mandatory with {mi_fields.pop()}</font>**'
+        elif len(mi_fields) > 1:
+            last_field = mi_fields.pop()
+            return (
+                '**<font color="DarkGoldenRod">'
+                f'Conditionally mandatory with {", ".join(mi_fields)} and {last_field}'
+                '</font>**'
+            )
+        return "Optional"
+
+    @pydantic.computed_field(alias="Examples")  # type: ignore[prop-decorator]
+    @property
+    def examples(self) -> str:
+        """Get the field example."""
+        # Copy field example
+        text = super().examples
+        # Add vocab link if part of the field.
+        if self.field.publishable_vocabularies:
+            text += f"<br>([Vocabulary link](#{self.field.name}-vocabularies))"
+        # If WKT field add link to WKT appendix
+        if self.field.name in ["spatialCoverageWKT", "footprintWKT"]:
+            text += "<br>([WKT notes](#appendix-ii-well-known-text-wkt))"
+        return text
 
 
 class FieldTabler(tables.base.BaseTabler):
@@ -47,8 +136,9 @@ class FieldTabler(tables.base.BaseTabler):
     def header(self) -> list[str]:
         """Getter for the table header."""
         # Get titles from model
-        raw_hdr = (hdr.serialization_alias or hdr.title for hdr in FieldTableRow.model_fields.values())
-        return [hdr for hdr in raw_hdr if hdr is not None]
+        raw_hdr = (hdr.alias or hdr.title for hdr in FieldTableRow.model_computed_fields.values())
+        r = [hdr for hdr in raw_hdr if hdr is not None]
+        return r
 
     @property
     def fields(self) -> list[types.schema.Field]:
@@ -79,42 +169,20 @@ class FieldTabler(tables.base.BaseTabler):
         # Write header
         self.writer.writeheader()
 
+        # Get checklist
+        checklist = self.checklist()
+
         # Iterate through fields and add to csv
         for field in self.fields:
-            # Perform basic mapping initially
-            field_table_row = self.generate_row(field)
-
-            # Modify mandatory_optional attribute
-            field_table_row.mandatory_optional, mandatory_optional_type = self.mandatory_optional_text(
-                required=field.constraints.required,
-                field_name=field.name,
-            )
-
-            # If markdown add link to vocabularies
-            if self.format == "markdown" and field.publishable_vocabularies:
-                field_table_row.examples += f"<br>([Vocabulary link](#{field.name}-vocabularies))"
-
-            # If markdown add link to field names
-            if self.format == "markdown" and field.url:
-                field_table_row.field_name = f"[{field_table_row.field_name}]({field.url})"
-
-            # If markdown add an anchor so each row can be linked to via url fragment. e.g. #name-field
+            # Create row
             if self.format == "markdown":
-                field_table_row.field_name = f'<a name="{field.name}-field"></a>{field_table_row.field_name}'
-
-            # If WKT field add link to WKT appendix
-            if self.format == "markdown" and field.name in ["spatialCoverageWKT", "footprintWKT"]:
-                field_table_row.examples += "<br>([WKT notes](#appendix-ii-well-known-text-wkt))"
-
-            # If markdown, and mandatory, wrap field name in colored font.
-            if self.format == "markdown" and mandatory_optional_type != MandatoryType.OPTIONAL:
-                color = "Crimson" if mandatory_optional_type == MandatoryType.MANDATORY else "DarkGoldenRod"
-                field_table_row.mandatory_optional = (
-                    f'**<font color="{color}">{field_table_row.mandatory_optional}</font>**'
-                )
+                field_table_row: FieldTableRow = MarkdownFieldTableRow(field=field, checklist=checklist)
+            else:
+                field_table_row = FieldTableRow(field=field, checklist=checklist)
 
             # Write row to csv
-            self.writer.writerow(field_table_row.model_dump(by_alias=True))
+            row_d = field_table_row.model_dump(by_alias=True)
+            self.writer.writerow(row_d)
 
         # Write to destination
         if dest is not None:
@@ -123,68 +191,7 @@ class FieldTabler(tables.base.BaseTabler):
         # Return
         return self.output.getvalue()
 
-    def mandatory_optional_text(self, required: bool, field_name: str) -> tuple[str, MandatoryType]:
-        """Determines text value to use for a mandatory / optional field.
-
-        Args:
-            required (bool): Whether the field is required.
-            field_name (str): Field name.
-
-        Returns:
-            str: Text to use for mandatory / optional field.
-            MandatoryType: what type of "mandatory-ness" the field has
-        """
-        # Get checklist
-        checklist = self.determine_checklist()
-
-        # Create blank set
-        fields = set()
-
-        # Check for any mutual inclusivity checks
-        if checklist is not None:
-            fields = self.mutual_inclusivity(field_name, checklist)
-
-        # Conditionally send corresponding text
-        if required:
-            return "Mandatory", MandatoryType.MANDATORY
-        elif len(fields) == 1:
-            return (
-                f"Conditionally mandatory with {fields.pop()}",
-                MandatoryType.CONDITIONALLY_MANDATORY,
-            )
-        elif len(fields) > 1:
-            last_field = fields.pop()
-            return (
-                f"Conditionally mandatory with {', '.join(fields)} and {last_field}",
-                MandatoryType.CONDITIONALLY_MANDATORY,
-            )
-
-        return "Optional", MandatoryType.OPTIONAL
-
-    @staticmethod
-    def generate_row(field: types.schema.Field) -> FieldTableRow:
-        """Takes a field object and generates a corresponding csv row object.
-
-        Args:
-            field (dict[str, Any]): Field from schema.
-
-        Returns:
-            FieldTableRow: To be written to a csv writer row.
-        """
-        # Perform mapping
-        row = FieldTableRow(
-            field_name=field.name,
-            description=field.description,
-            mandatory_optional="Mandatory" if field.constraints.required else "Optional",
-            mandatory_optional_type=(MandatoryType.MANDATORY if field.constraints.required else MandatoryType.OPTIONAL),
-            datatype_format=field.type.title() if field.type not in ["wkt"] else field.type.upper(),
-            examples=field.example or "",
-        )
-
-        # Return
-        return row
-
-    def determine_checklist(
+    def checklist(
         self,
         **kwargs: dict,
     ) -> frictionless.Checklist | None:
@@ -212,36 +219,6 @@ class FieldTabler(tables.base.BaseTabler):
 
             # Else
             return None
-
-    @staticmethod
-    def mutual_inclusivity(field_name: str, checklist: frictionless.Checklist) -> set[str]:
-        """Retrieves all fields that share a mutual inclusive check with supplied field name.
-
-        Args:
-            field_name (str): Field name to check for mutual inclusivity.
-            checklist (frictionless.Checklist): Checklist used within a template's
-                validation method.
-
-        Returns:
-            set[str]: Field's mutually inclusive with named field.
-        """
-        # Filter out mutually inclusive checks from the checklist
-        mutual_inclusive_checks: list[plugins.mutual_inclusion.MutuallyInclusive] = [
-            check for check in checklist.checks if isinstance(check, plugins.mutual_inclusion.MutuallyInclusive)
-        ]
-
-        # Empty set to hold results
-        fields: set[str] = set()
-
-        # Iterate through checks
-        for check in mutual_inclusive_checks:
-            # Check field name in check
-            if field_name in check.field_names:
-                fields = fields.union(check.field_names)
-                fields.remove(field_name)
-
-        # Return
-        return fields
 
 
 class OccurrenceField(types.schema.Field):
@@ -283,6 +260,36 @@ class OccurrenceFieldTabler(FieldTabler):
         # Get fields from schema and return
         dict_fields = self.mapper.schema()["fields"]
         return [OccurrenceField.model_validate(f) for f in dict_fields]
+
+
+def mutual_inclusivity(field_name: str, checklist: frictionless.Checklist) -> list[str]:
+    """Retrieves all fields that share a mutual inclusive check with supplied field name.
+
+    Args:
+        field_name (str): Field name to check for mutual inclusivity.
+        checklist (frictionless.Checklist): Checklist used within a template's
+            validation method.
+
+    Returns:
+        set[str]: Field's mutually inclusive with named field.
+    """
+    # Filter out mutually inclusive checks from the checklist
+    mutual_inclusive_checks: list[plugins.mutual_inclusion.MutuallyInclusive] = [
+        check for check in checklist.checks if isinstance(check, plugins.mutual_inclusion.MutuallyInclusive)
+    ]
+
+    # Empty set to hold results
+    fields: set[str] = set()
+
+    # Iterate through checks
+    for check in mutual_inclusive_checks:
+        # Check field name in check
+        if field_name in check.field_names:
+            fields = fields.union(check.field_names)
+            fields.remove(field_name)
+
+    # Return
+    return sorted(fields)
 
 
 if __name__ == "__main__":
