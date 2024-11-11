@@ -1401,7 +1401,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         top_node = next(temp_graph.subjects(a, rdflib.TIME.TemporalEntity))
 
         # Merge with main graph using addition assignment (modify inplace).
-        # Note: Be aware that BNode IDs are not modified or checked during this process
+        # NOTE: Be aware that BNode IDs are not modified or checked during this process
         # and there are risks of name collision during merging. If blank nodes are ever
         # assigned names manually in future, then that may impact this operation
         # Refer to https://rdflib.readthedocs.io/en/stable/merging.html for more information.

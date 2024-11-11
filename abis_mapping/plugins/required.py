@@ -14,7 +14,7 @@ class RequiredEnhanced(frictionless.Check):
     """Checks whether specified columns are all provided in a row-wise manner.
 
     It also allows the bypassing of the constraint through the provision
-    of whitelists. Note: This check is only effective when the original
+    of whitelists. This check is only effective when the original
     schema for each field is `required = False`, otherwise the check,
     does nothing.
 

@@ -166,7 +166,7 @@ class ABISMapper(abc.ABC):
         """Generates a blank csv for the template.
 
         It is based on the schema field names and writes it to a file within
-        the template mapper's root dir. Note: full schema validation is not applied,
+        the template mapper's root dir. NOTE: full schema validation is not applied,
         and metadata validation is.
         """
         # Retrieve Schema Filepath
