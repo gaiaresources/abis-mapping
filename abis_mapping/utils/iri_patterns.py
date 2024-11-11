@@ -137,3 +137,117 @@ def agent_iri(
         f"{org}",
         namespace=utils.namespaces.BDR_ORGS,
     )
+
+
+def observation_iri(
+    base_iri: rdflib.Namespace | None,
+    observation_type: str,
+    provider_record_id: str,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a tern:Observation node, when the observation is related to an Occurrence.
+
+    Args:
+        base_iri: Namespace to construct the IRI from.
+        observation_type: The observation type, e.g. "scientificName"
+        provider_record_id: The providerRecordID field from the template.
+
+    Returns:
+        The IRI for the tern:Observation node.
+    """
+    return utils.rdf.uri(f"observation/{observation_type}/{provider_record_id}", namespace=base_iri)
+
+
+def observation_value_iri(
+    base_iri: rdflib.Namespace | None,
+    observation_type: str,
+    observation_value: str | None,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a tern:Value node, that represent the "result" of an observation.
+
+    Args:
+        base_iri: Namespace to construct the IRI from.
+        observation_type: The observation type, e.g. "scientificName"
+        observation_value: The value of the observation from the template.
+
+    Returns:
+        The IRI for the tern:Value node.
+    """
+    return utils.rdf.uri(f"result/{observation_type}/{observation_value}", namespace=base_iri)
+
+
+def specimen_observation_iri(
+    base_iri: rdflib.Namespace | None,
+    observation_type: str,
+    provider_record_id: str,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a tern:Observation node, when the observation is related to a Specimen.
+
+    Args:
+        base_iri: Namespace to construct the IRI from.
+        observation_type: The observation type, e.g. "scientificName"
+        provider_record_id: The providerRecordID field from the template.
+
+    Returns:
+        The IRI for the tern:Observation node.
+    """
+    return utils.rdf.uri(f"observation/specimen/{observation_type}/{provider_record_id}", namespace=base_iri)
+
+
+def specimen_observation_value_iri(
+    base_iri: rdflib.Namespace | None,
+    observation_type: str,
+    observation_value: str | None,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a tern:Value node, that represent the "result" of a specimen observation.
+
+    Args:
+        base_iri: Namespace to construct the IRI from.
+        observation_type: The observation type, e.g. "scientificName"
+        observation_value: The value of the observation from the template.
+
+    Returns:
+        The IRI for the tern:Value node.
+    """
+    return utils.rdf.uri(f"result/specimen/{observation_type}/{observation_value}", namespace=base_iri)
+
+
+def sample_iri(
+    base_iri: rdflib.Namespace | None,
+    sample_type: str,
+    provider_record_id: str,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a tern:Sample node.
+
+    Args:
+        base_iri: Namespace to construct the IRI from.
+        sample_type: The sample type, e.g. "specimen"
+        provider_record_id: The providerRecordID field from the template.
+
+    Returns:
+        The IRI for the tern:Sample node.
+    """
+    return utils.rdf.uri(f"sample/{sample_type}/{provider_record_id}", namespace=base_iri)
+
+
+def sampling_iri(
+    base_iri: rdflib.Namespace | None,
+    sampling_type: str,
+    provider_record_id: str,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a tern:Sampling node.
+
+    Args:
+        base_iri: Namespace to construct the IRI from.
+        sampling_type: The sampling type, e.g. "specimen"
+        provider_record_id: The providerRecordID field from the template.
+
+    Returns:
+        The IRI for the tern:Sampling node.
+    """
+    return utils.rdf.uri(f"sampling/{sampling_type}/{provider_record_id}", namespace=base_iri)

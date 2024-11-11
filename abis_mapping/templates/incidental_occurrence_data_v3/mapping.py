@@ -251,58 +251,93 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         Returns:
             rdflib.Graph: Graph with row mapped into it.
         """
-        # Set the row number to relate to the data itself, excluding header
-        row_num = row.row_number - 1
+        # Get values from row
+        provider_record_id: str = row["providerRecordID"]
+        provider_record_id_source: str = row["providerRecordIDSource"]
 
         # Create URIs
-        provider_provider_record_id_src = utils.rdf.uri(f"provider/{row['providerRecordIDSource']}", base_iri)
-        provider_identified = utils.rdf.uri(f"provider/{row['identifiedBy']}", base_iri)
-        sample_specimen = utils.rdf.uri(f"sample/specimen/{row_num}", base_iri)
-        sampling_specimen = utils.rdf.uri(f"sampling/specimen/{row_num}", base_iri)
-        text_scientific_name = utils.rdf.uri(f"scientificName/{row_num}", base_iri)
-        text_verbatim_id = utils.rdf.uri(f"verbatimID/{row_num}", base_iri)
-        observation_scientific_name = utils.rdf.uri(f"observation/scientificName/{row_num}", base_iri)
-        observation_verbatim_id = utils.rdf.uri(f"observation/verbatimID/{row_num}", base_iri)
-        individual_count_observation = utils.rdf.uri(f"observation/individualCount/{row_num}", base_iri)
-        individual_count_value = utils.rdf.uri(f"value/individualCount/{row_num}", base_iri)
-        organism_remarks_observation = utils.rdf.uri(f"observation/organismRemarks/{row_num}", base_iri)
-        organism_remarks_value = utils.rdf.uri(f"value/organismRemarks/{row_num}", base_iri)
-        occurrence_status_observation = utils.rdf.uri(f"observation/occurrenceStatus/{row_num}", base_iri)
-        occurrence_status_value = utils.rdf.uri(f"value/occurrenceStatus/{row_num}", base_iri)
-        establishment_means_observation = utils.rdf.uri(f"observation/establishmentMeans/{row_num}", base_iri)
-        establishment_means_value = utils.rdf.uri(f"value/establishmentMeans/{row_num}", base_iri)
-        life_stage_observation = utils.rdf.uri(f"observation/lifeStage/{row_num}", base_iri)
-        life_stage_value = utils.rdf.uri(f"value/lifeStage/{row_num}", base_iri)
-        sex_observation = utils.rdf.uri(f"observation/sex/{row_num}", base_iri)
-        sex_value = utils.rdf.uri(f"value/sex/{row_num}", base_iri)
-        reproductive_condition_observation = utils.rdf.uri(f"observation/reproductiveCondition/{row_num}", base_iri)
-        reproductive_condition_value = utils.rdf.uri(f"value/reproductiveCondition/{row_num}", base_iri)
-        accepted_name_usage_observation = utils.rdf.uri(f"observation/acceptedNameUsage/{row_num}", base_iri)
-        accepted_name_usage_value = utils.rdf.uri(f"value/acceptedNameUsage/{row_num}", base_iri)
-        sampling_sequencing = utils.rdf.uri(f"sampling/sequencing/{row_num}", base_iri)
-        sample_sequence = utils.rdf.uri(f"sample/sequence/{row_num}", base_iri)
-        threat_status_observation = utils.rdf.uri(f"observation/threatStatus/{row_num}", base_iri)
-        threat_status_value = utils.rdf.uri(f"value/threatStatus/{row_num}", base_iri)
-        provider_determined_by = utils.rdf.uri(f"provider/{row['threatStatusDeterminedBy']}", base_iri)
+        provider_identified = utils.iri_patterns.agent_iri(row["identifiedBy"])
+        sample_specimen = utils.iri_patterns.sample_iri(base_iri, "specimen", provider_record_id)
+        sampling_specimen = utils.iri_patterns.sampling_iri(base_iri, "specimen", provider_record_id)
+        sample_sequence = utils.iri_patterns.sample_iri(base_iri, "sequence", provider_record_id)
+        sampling_sequencing = utils.iri_patterns.sampling_iri(base_iri, "sequencing", provider_record_id)
+        provider_determined_by = utils.iri_patterns.agent_iri(row["threatStatusDeterminedBy"])
 
-        provider_record_id_source = row["providerRecordIDSource"]
-        provider_record_id_datatype = utils.rdf.uri(
-            internal_id=f"datatype/recordID/{provider_record_id_source}",
-            namespace=base_iri,
-        )
-        provider_record_id_agent = utils.rdf.uri(f"agent/{provider_record_id_source}", base_iri)
+        provider_record_id_datatype = utils.iri_patterns.datatype_iri("recordID", provider_record_id_source)
+        provider_record_id_agent = utils.iri_patterns.agent_iri(provider_record_id_source)
         provider_record_id_attribution = utils.rdf.uri(
             internal_id=f"attribution/{provider_record_id_source}/resourceProvider",
             namespace=base_iri,
         )
-        provider_record_id = row["providerRecordID"]
         provider_record_id_occurrence = utils.rdf.uri(f"occurrence/{provider_record_id}", base_iri)
         provider_record_id_biodiversity_record = utils.rdf.uri(f"biodiversityRecord/{provider_record_id}", base_iri)
 
+        # Create URIs for Observations and Observation Values
+        observation_scientific_name = utils.iri_patterns.observation_iri(base_iri, "scientificName", provider_record_id)
+        text_scientific_name = utils.iri_patterns.observation_value_iri(
+            base_iri, "scientificName", row["scientificName"]
+        )
+        individual_count_observation = utils.iri_patterns.observation_iri(
+            base_iri, "individualCount", provider_record_id
+        )
+        individual_count_value = utils.iri_patterns.observation_value_iri(
+            base_iri, "individualCount", row["individualCount"]
+        )
+        organism_remarks_observation = utils.iri_patterns.observation_iri(
+            base_iri, "organismRemarks", provider_record_id
+        )
+        organism_remarks_value = utils.iri_patterns.observation_value_iri(
+            base_iri, "organismRemarks", row["organismRemarks"]
+        )
+        occurrence_status_observation = utils.iri_patterns.observation_iri(
+            base_iri, "occurrenceStatus", provider_record_id
+        )
+        occurrence_status_value = utils.iri_patterns.observation_value_iri(
+            base_iri, "occurrenceStatus", row["occurrenceStatus"]
+        )
+        establishment_means_observation = utils.iri_patterns.observation_iri(
+            base_iri, "establishmentMeans", provider_record_id
+        )
+        establishment_means_value = utils.iri_patterns.observation_value_iri(
+            base_iri, "establishmentMeans", row["establishmentMeans"]
+        )
+        accepted_name_usage_observation = utils.iri_patterns.observation_iri(
+            base_iri, "acceptedNameUsage", provider_record_id
+        )
+        accepted_name_usage_value = utils.iri_patterns.observation_value_iri(
+            base_iri, "acceptedNameUsage", row["acceptedNameUsage"]
+        )
+        threat_status_observation = utils.iri_patterns.observation_iri(base_iri, "threatStatus", provider_record_id)
+        threat_status_value = utils.iri_patterns.observation_value_iri(base_iri, "threatStatus", row["threatStatus"])
+
+        # Create URIs for Observations+Values that depend on if there is a specimen.
+        if has_specimen(row):
+            _specimen_dependant_observation_iri = utils.iri_patterns.specimen_observation_iri
+            _specimen_dependant_observation_value_iri = utils.iri_patterns.specimen_observation_value_iri
+        else:
+            _specimen_dependant_observation_iri = utils.iri_patterns.observation_iri
+            _specimen_dependant_observation_value_iri = utils.iri_patterns.observation_value_iri
+        observation_verbatim_id = _specimen_dependant_observation_iri(
+            base_iri, "verbatimIdentification", provider_record_id
+        )
+        text_verbatim_id = _specimen_dependant_observation_value_iri(
+            base_iri, "verbatimIdentification", row["verbatimIdentification"]
+        )
+        life_stage_observation = _specimen_dependant_observation_iri(base_iri, "lifeStage", provider_record_id)
+        life_stage_value = _specimen_dependant_observation_value_iri(base_iri, "lifeStage", row["lifeStage"])
+        sex_observation = _specimen_dependant_observation_iri(base_iri, "sex", provider_record_id)
+        sex_value = _specimen_dependant_observation_value_iri(base_iri, "sex", row["sex"])
+        reproductive_condition_observation = _specimen_dependant_observation_iri(
+            base_iri, "reproductiveCondition", provider_record_id
+        )
+        reproductive_condition_value = _specimen_dependant_observation_value_iri(
+            base_iri, "reproductiveCondition", row["reproductiveCondition"]
+        )
+
         # Conditionally create uris dependent on ownerRecordIDSource field
         if owner_record_id_source := row["ownerRecordIDSource"]:
-            owner_record_id_datatype = utils.rdf.uri(f"datatype/recordID/{owner_record_id_source}", base_iri)
-            owner_record_id_provider = utils.rdf.uri(f"provider/{owner_record_id_source}", base_iri)
+            owner_record_id_datatype = utils.iri_patterns.datatype_iri("recordID", owner_record_id_source)
+            owner_record_id_provider = utils.iri_patterns.agent_iri(owner_record_id_source)
             owner_record_id_attribution = utils.rdf.uri(f"attribution/{owner_record_id_source}/owner", base_iri)
         else:
             owner_record_id_datatype = None
@@ -311,86 +346,89 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Conditionally create uris dependant of dataGeneralizations field
         if data_generalizations := row["dataGeneralizations"]:
-            data_generalizations_attribute = utils.rdf.uri(
-                f"attribute/dataGeneralizations/{data_generalizations}", base_iri
+            data_generalizations_attribute = utils.iri_patterns.attribute_iri(
+                base_iri, "dataGeneralizations", data_generalizations
             )
-            data_generalizations_value = utils.rdf.uri(f"value/dataGeneralizations/{data_generalizations}", base_iri)
-            data_generalizations_sample_collection = utils.rdf.extend_uri(
-                dataset, "OccurrenceCollection", "dataGeneralizations", data_generalizations
+            data_generalizations_value = utils.iri_patterns.attribute_value_iri(
+                base_iri, "dataGeneralizations", data_generalizations
+            )
+            data_generalizations_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "Occurrence", "dataGeneralizations", data_generalizations
             )
         else:
             data_generalizations_attribute = None
             data_generalizations_value = None
-            data_generalizations_sample_collection = None
+            data_generalizations_collection = None
 
         # Conditionally create uris dependant of basisOfRecord field
         if basis_of_record := row["basisOfRecord"]:
-            basis_attribute = utils.rdf.uri(f"attribute/basisOfRecord/{basis_of_record}", base_iri)
-            basis_value = utils.rdf.uri(f"value/basisOfRecord/{basis_of_record}", base_iri)
-            basis_sample_collection = utils.rdf.extend_uri(
-                dataset, "OccurrenceCollection", "basisOfRecord", basis_of_record
+            basis_attribute = utils.iri_patterns.attribute_iri(base_iri, "basisOfRecord", basis_of_record)
+            basis_value = utils.iri_patterns.attribute_value_iri(base_iri, "basisOfRecord", basis_of_record)
+            basis_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "Occurrence", "basisOfRecord", basis_of_record
             )
         else:
             basis_attribute = None
             basis_value = None
-            basis_sample_collection = None
+            basis_collection = None
 
         # Conditionally create uri's dependent on recordedBy field.
         if recorded_by := row["recordedBy"]:
-            record_number_datatype = utils.rdf.uri(f"datatype/recordNumber/{recorded_by}", base_iri)
-            provider_recorded_by = utils.rdf.uri(f"provider/{recorded_by}", base_iri)
+            record_number_datatype = utils.iri_patterns.datatype_iri("recordNumber", recorded_by)
+            provider_recorded_by = utils.iri_patterns.agent_iri(recorded_by)
         else:
             record_number_datatype = None
             provider_recorded_by = None
 
         # Conditionally create uri's dependent on habitat field.
         if habitat := row["habitat"]:
-            habitat_attribute = utils.rdf.uri(f"attribute/habitat/{habitat}", base_iri)
-            habitat_value = utils.rdf.uri(f"value/habitat/{habitat}", base_iri)
-            habitat_sample_collection = utils.rdf.extend_uri(dataset, "OccurrenceCollection", "habitat", habitat)
+            habitat_attribute = utils.iri_patterns.attribute_iri(base_iri, "habitat", habitat)
+            habitat_value = utils.iri_patterns.attribute_value_iri(base_iri, "habitat", habitat)
+            habitat_collection = utils.iri_patterns.attribute_collection_iri(base_iri, "Occurrence", "habitat", habitat)
         else:
             habitat_attribute = None
             habitat_value = None
-            habitat_sample_collection = None
+            habitat_collection = None
 
         # Conditionally create uris dependent on catalogNumberSource field.
         if catalog_number_source := row["catalogNumberSource"]:
-            catalog_number_datatype = utils.rdf.uri(f"datatype/catalogNumber/{catalog_number_source}", base_iri)
-            catalog_number_provider = utils.rdf.uri(f"provider/{catalog_number_source}", base_iri)
+            catalog_number_datatype = utils.iri_patterns.datatype_iri("catalogNumber", catalog_number_source)
+            catalog_number_provider = utils.iri_patterns.agent_iri(catalog_number_source)
         else:
             catalog_number_datatype = None
             catalog_number_provider = None
 
         # Conditionally create uris dependent on otherCatalogNumbersSource field.
         if other_catalog_numbers_source := row["otherCatalogNumbersSource"]:
-            other_catalog_numbers_datatype = utils.rdf.uri(
-                internal_id=f"datatype/catalogNumber/{other_catalog_numbers_source}",
-                namespace=base_iri,
+            other_catalog_numbers_datatype = utils.iri_patterns.datatype_iri(
+                "catalogNumber", other_catalog_numbers_source
             )
-            other_catalog_numbers_provider = utils.rdf.uri(f"provider/{other_catalog_numbers_source}", base_iri)
+            other_catalog_numbers_provider = utils.iri_patterns.agent_iri(other_catalog_numbers_source)
         else:
             other_catalog_numbers_datatype = None
             other_catalog_numbers_provider = None
 
         # Conditionally create uris dependent on preparations field
         if preparations := row["preparations"]:
-            preparations_attribute = utils.rdf.uri(f"attribute/preparations/{preparations}", base_iri)
-            preparations_value = utils.rdf.uri(f"value/preparations/{preparations}", base_iri)
-            preparations_sample_collection = utils.rdf.extend_uri(
-                dataset, "OccurrenceCollection", "preparations", preparations
+            preparations_attribute = utils.iri_patterns.attribute_iri(base_iri, "preparations", preparations)
+            preparations_value = utils.iri_patterns.attribute_value_iri(base_iri, "preparations", preparations)
+            preparations_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "Occurrence", "preparations", preparations
             )
         else:
             preparations_attribute = None
             preparations_value = None
-            preparations_sample_collection = None
+            preparations_collection = None
 
         # Conditionally create IRIs for the identificationQualifier field
         id_qualifier: str | None = row["identificationQualifier"]
         if id_qualifier:
-            id_qualifier_attribute = utils.rdf.uri(f"attribute/identificationQualifier/{id_qualifier}", base_iri)
-            id_qualifier_value = utils.rdf.uri(f"value/identificationQualifier/{id_qualifier}", base_iri)
-            id_qualifier_collection = utils.rdf.extend_uri(
-                dataset, "OccurrenceCollection", "identificationQualifier", id_qualifier
+            id_qualifier_attribute = utils.iri_patterns.attribute_iri(base_iri, "identificationQualifier", id_qualifier)
+            id_qualifier_value = utils.iri_patterns.attribute_value_iri(
+                base_iri, "identificationQualifier", id_qualifier
+            )
+            id_qualifier_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "Occurrence", "identificationQualifier", id_qualifier
             )
         else:
             id_qualifier_attribute = None
@@ -400,10 +438,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Conditionally create IRIs for the identificationRemarks field
         id_remarks: str | None = row["identificationRemarks"]
         if id_remarks:
-            id_remarks_attribute = utils.rdf.uri(f"attribute/identificationRemarks/{id_remarks}", base_iri)
-            id_remarks_value = utils.rdf.uri(f"value/identificationRemarks/{id_remarks}", base_iri)
-            id_remarks_collection = utils.rdf.extend_uri(
-                dataset, "OccurrenceCollection", "identificationRemarks", id_remarks
+            id_remarks_attribute = utils.iri_patterns.attribute_iri(base_iri, "identificationRemarks", id_remarks)
+            id_remarks_value = utils.iri_patterns.attribute_value_iri(base_iri, "identificationRemarks", id_remarks)
+            id_remarks_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "Occurrence", "identificationRemarks", id_remarks
             )
         else:
             id_remarks_attribute = None
@@ -413,9 +451,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Conditionally create IRIs for the taxonRank field
         taxon_rank: str | None = row["taxonRank"]
         if taxon_rank:
-            taxon_rank_attribute = utils.rdf.uri(f"attribute/taxonRank/{taxon_rank}", base_iri)
-            taxon_rank_value = utils.rdf.uri(f"value/taxonRank/{taxon_rank}", base_iri)
-            taxon_rank_collection = utils.rdf.extend_uri(dataset, "OccurrenceCollection", "taxonRank", taxon_rank)
+            taxon_rank_attribute = utils.iri_patterns.attribute_iri(base_iri, "taxonRank", taxon_rank)
+            taxon_rank_value = utils.iri_patterns.attribute_value_iri(base_iri, "taxonRank", taxon_rank)
+            taxon_rank_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "Occurrence", "taxonRank", taxon_rank
+            )
         else:
             taxon_rank_attribute = None
             taxon_rank_value = None
@@ -424,14 +464,14 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Conditionally create IRIs for the conservationAuthority field
         conservation_authority: str | None = row["conservationAuthority"]
         if conservation_authority:
-            conservation_authority_attribute = utils.rdf.uri(
-                f"attribute/conservationAuthority/{conservation_authority}", base_iri
+            conservation_authority_attribute = utils.iri_patterns.attribute_iri(
+                base_iri, "conservationAuthority", conservation_authority
             )
-            conservation_authority_value = utils.rdf.uri(
-                f"value/conservationAuthority/{conservation_authority}", base_iri
+            conservation_authority_value = utils.iri_patterns.attribute_value_iri(
+                base_iri, "conservationAuthority", conservation_authority
             )
-            conservation_authority_collection = utils.rdf.extend_uri(
-                dataset, "OccurrenceCollection", "conservationAuthority", preparations
+            conservation_authority_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "Occurrence", "conservationAuthority", conservation_authority
             )
         else:
             conservation_authority_attribute = None
@@ -441,12 +481,14 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Conditionally create IRIs for the sensitivityCategory field
         sensitivity_category: str | None = row["sensitivityCategory"]
         if sensitivity_category:
-            sensitivity_category_attribute = utils.rdf.uri(
-                f"attribute/sensitivityCategory/{sensitivity_category}", base_iri
+            sensitivity_category_attribute = utils.iri_patterns.attribute_iri(
+                base_iri, "sensitivityCategory", sensitivity_category
             )
-            sensitivity_category_value = utils.rdf.uri(f"value/sensitivityCategory/{sensitivity_category}", base_iri)
-            sensitivity_category_collection = utils.rdf.extend_uri(
-                dataset, "OccurrenceCollection", "sensitivityCategory", sensitivity_category
+            sensitivity_category_value = utils.iri_patterns.attribute_value_iri(
+                base_iri, "sensitivityCategory", sensitivity_category
+            )
+            sensitivity_category_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "Occurrence", "sensitivityCategory", sensitivity_category
             )
         else:
             sensitivity_category_attribute = None
@@ -681,8 +723,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add Data Generalizations Sample Collection
-        self.add_data_generalizations_sample_collection(
-            uri=data_generalizations_sample_collection,
+        self.add_data_generalizations_collection(
+            uri=data_generalizations_collection,
             data_generalizations=data_generalizations,
             data_generalizations_attribute=data_generalizations_attribute,
             provider_record_id_occurrence=provider_record_id_occurrence,
@@ -769,8 +811,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add habitat attribute sample collection
-        self.add_habitat_sample_collection(
-            uri=habitat_sample_collection,
+        self.add_habitat_collection(
+            uri=habitat_collection,
             habitat=habitat,
             habitat_attribute=habitat_attribute,
             provider_record_id_occurrence=provider_record_id_occurrence,
@@ -796,8 +838,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add Basis of Record Sample Collection
-        self.add_basis_sample_collection(
-            uri=basis_sample_collection,
+        self.add_basis_collection(
+            uri=basis_collection,
             basis_of_record=basis_of_record,
             basis_attribute=basis_attribute,
             sample_specimen=sample_specimen,
@@ -810,13 +852,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add Owner Institution Provider
         self.add_owner_institution_provider(
             uri=owner_record_id_provider,
-            row=row,
-            graph=graph,
-        )
-
-        # Add provider record id provider
-        self.add_provider_record_id_provider(
-            uri=provider_provider_record_id_src,
             row=row,
             graph=graph,
         )
@@ -857,8 +892,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add Preparations attribute Sample Collection
-        self.add_preparations_sample_collection(
-            uri=preparations_sample_collection,
+        self.add_preparations_collection(
+            uri=preparations_collection,
             preparations=preparations,
             preparations_attribute=preparations_attribute,
             sample_specimen=sample_specimen,
@@ -1924,7 +1959,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(data_generalizations)))
 
-    def add_data_generalizations_sample_collection(
+    def add_data_generalizations_collection(
         self,
         uri: rdflib.URIRef | None,
         data_generalizations: str | None,
@@ -2290,7 +2325,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             # Add value
             graph.add((uri, rdflib.RDF.value, term))
 
-    def add_habitat_sample_collection(
+    def add_habitat_collection(
         self,
         uri: rdflib.URIRef | None,
         habitat: str | None,
@@ -2389,7 +2424,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             # Add value
             graph.add((uri, rdflib.RDF.value, term))
 
-    def add_basis_sample_collection(
+    def add_basis_collection(
         self,
         uri: rdflib.URIRef | None,
         basis_of_record: str | None,
@@ -2462,24 +2497,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Owner Institution Provider
         graph.add((uri, a, rdflib.PROV.Agent))
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["ownerRecordIDSource"])))
-
-    def add_provider_record_id_provider(
-        self,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds provider record id provider to the graph.
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node
-            row (frictionless.Row): Row to retrieve data from
-            graph (rdflib.Graph): Graph to add to
-        """
-        # TODO -> Retrieve this from a known list of institutions
-        # Institution Provider
-        graph.add((uri, a, rdflib.PROV.Agent))
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["providerRecordIDSource"])))
 
     def add_occurrence_status_observation(
         self,
@@ -2624,7 +2641,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             # Add value
             graph.add((uri, rdflib.RDF.value, term))
 
-    def add_preparations_sample_collection(
+    def add_preparations_collection(
         self,
         uri: rdflib.URIRef | None,
         preparations: str | None,
