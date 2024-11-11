@@ -14,19 +14,14 @@
 
 <http://createme.org/biodiversityRecord/A0010> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/A0010> ;
-    schema:identifier "A0010"^^<http://createme.org/datatype/recordID/Gaia-Resources> .
+    schema:identifier "A0010"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Gaia-Resources> .
 
 <http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;
     skos:definition "An identifier for the dataset" ;
     skos:prefLabel "Gaia Resources datasetID" ;
     prov:wasAttributedTo <http://createme.org/provider/Gaia-Resources> .
 
-<http://createme.org/datatype/recordID/Gaia-Resources> a rdfs:Datatype ;
-    skos:definition "An identifier for the record" ;
-    skos:prefLabel "Gaia Resources recordID" ;
-    prov:qualifiedAttribution <http://createme.org/attribution/Gaia-Resources/resourceProvider> .
-
-<http://createme.org/observation/organismQuantity/1> a tern:Observation ;
+<http://createme.org/observation/organismQuantity/A0010> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "organismQuantity-observation" ;
@@ -34,34 +29,39 @@
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/occurrence/A0010> ;
-    sosa:hasResult <http://createme.org/value/organismQuantity/1> ;
+    sosa:hasResult <http://createme.org/result/organismQuantity/0-05> ;
     sosa:hasSimpleResult "0.05 percentageCoverage" ;
     sosa:observedProperty dwc:organismQuantity ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
-<http://createme.org/observation/scientificName/1> a tern:Observation ;
+<http://createme.org/observation/scientificName/A0010> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <http://createme.org/occurrence/A0010> ;
-    sosa:hasResult <http://createme.org/scientificName/1> ;
+    sosa:hasResult <http://createme.org/result/scientificName/Calothamnus-lateralis-var-crassus> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
 
-<http://createme.org/agent/Gaia-Resources> a prov:Agent ;
-    schema:name "Gaia Resources" .
+<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Gaia-Resources> a rdfs:Datatype ;
+    skos:definition "An identifier for the record" ;
+    skos:prefLabel "Gaia Resources recordID" ;
+    prov:qualifiedAttribution <http://createme.org/attribution/Gaia-Resources/resourceProvider> .
 
 <http://createme.org/attribution/Gaia-Resources/resourceProvider> a prov:Attribution ;
-    prov:agent <http://createme.org/agent/Gaia-Resources> ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/Gaia-Resources> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
-<http://createme.org/provider/Gaia-Resources> a prov:Agent ;
-    schema:name "Gaia Resources" .
+<http://createme.org/result/organismQuantity/0-05> a tern:Float,
+        tern:Value ;
+    rdfs:label "organism-count" ;
+    rdf:value "0.05"^^xsd:float ;
+    tern:unit <http://rs.gbif.org/vocabulary/gbif/quantityType/percentageCoverage> .
 
-<http://createme.org/scientificName/1> a tern:FeatureOfInterest,
+<http://createme.org/result/scientificName/Calothamnus-lateralis-var-crassus> a tern:FeatureOfInterest,
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
@@ -74,11 +74,8 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
 
-<http://createme.org/value/organismQuantity/1> a tern:Float,
-        tern:Value ;
-    rdfs:label "organism-count" ;
-    rdf:value "0.05"^^xsd:float ;
-    tern:unit <http://rs.gbif.org/vocabulary/gbif/quantityType/percentageCoverage> .
+<https://linked.data.gov.au/dataset/bdr/orgs/Gaia-Resources> a prov:Agent ;
+    schema:name "Gaia Resources" .
 
 <http://createme.org/occurrence/A0010> a dwc:Occurrence,
         tern:FeatureOfInterest ;
