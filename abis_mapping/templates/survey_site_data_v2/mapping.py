@@ -3,7 +3,6 @@
 # Standard
 import dataclasses
 import decimal
-import urllib.parse
 
 # Third-party
 import rdflib
@@ -269,7 +268,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         """
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site visit and occurrence template mapping, ensuring they will resolve properly.
-        site = utils.rdf.uri("site/", base_iri) + urllib.parse.quote(row["siteID"], safe="")
+        site_id: str = row["siteID"]
+        site = utils.iri_patterns.site_iri(base_iri, site_id)
 
         # Conditionally create uris dependent on siteIDSource
         if site_id_src := row["siteIDSource"]:
@@ -282,11 +282,12 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             site_id_attribution = None
 
         # Conditionally create uri dependent on relatedSiteID
-        if related_site_id := row["relatedSiteID"]:
+        related_site_id: str | None = row["relatedSiteID"]
+        if related_site_id:
             # Determine related site URI based on related site string
             if utils.rdf.uri_or_string_literal(related_site_id).datatype is None:
                 # related site URI is a site in this dataset
-                related_site = utils.rdf.uri("site/", base_iri) + urllib.parse.quote(row["siteID"], safe="")
+                related_site = utils.iri_patterns.site_iri(base_iri, related_site_id)
             else:
                 # related site URI is an external URI
                 related_site = rdflib.URIRef(related_site_id)

@@ -1293,6 +1293,11 @@
 <https://linked.data.gov.au/dataset/bdr/orgs/WA-BIO> a prov:Agent ;
     schema:name "WA-BIO" .
 
+<http://createme.org/Site/MR-S1> a tern:FeatureOfInterest,
+        tern:Site ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
+
 <http://createme.org/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> a skos:Concept ;
     skos:broader <http://example.com/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
@@ -1401,11 +1406,6 @@
     sosa:hasFeatureOfInterest <http://createme.org/occurrence/ABC123> ;
     sosa:hasResult <http://createme.org/sample/specimen/ABC123> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> .
-
-<http://createme.org/site/MR-S1> a tern:FeatureOfInterest,
-        tern:Site ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/WAM> a prov:Agent ;
     schema:name "WAM" .
@@ -1688,8 +1688,8 @@
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
-    tern:hasSite <http://createme.org/site/MR-S1> ;
-    tern:hasSiteVisit <http://createme.org/visit/MR-R1-V1> ;
+    tern:hasSite <http://createme.org/Site/MR-S1> ;
+    tern:hasSiteVisit <http://createme.org/SiteVisit/MR-R1-V1> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/occurrence/ABC123> a dwc:Occurrence,
@@ -1707,7 +1707,7 @@
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
     tern:featureType <http://createme.org/bdr-cv/featureType/occurrence/kingdom/new-kingdom> ;
-    tern:hasSite <http://createme.org/site/MR-S1> ;
+    tern:hasSite <http://createme.org/Site/MR-S1> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/result/scientificName/Caladenia-excelsa> a tern:FeatureOfInterest,
