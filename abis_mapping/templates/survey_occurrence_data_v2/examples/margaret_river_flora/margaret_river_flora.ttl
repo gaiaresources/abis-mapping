@@ -1689,7 +1689,7 @@
                     time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:hasSite <http://createme.org/Site/MR-S1> ;
-    tern:hasSiteVisit <http://createme.org/visit/MR-R1-V1> ;
+    tern:hasSiteVisit <http://createme.org/SiteVisit/MR-R1-V1> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/occurrence/ABC123> a dwc:Occurrence,

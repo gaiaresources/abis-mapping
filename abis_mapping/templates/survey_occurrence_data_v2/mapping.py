@@ -1,8 +1,5 @@
 """Provides ABIS Mapper for `survey_occurrence_data.csv` Template v2"""
 
-# Standard
-import urllib.parse
-
 # Third-Party
 import frictionless
 import rdflib
@@ -655,10 +652,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site = None
 
         # Conditionally create uri dependent on siteVisitID field.
-        if site_visit_id := row["siteVisitID"]:
-            # Create TERN.SiteVisit subjeect IRI - Note this needs to match the iri construction of the
-            # site visit template mapping, enrusing they will resolve properly.
-            site_visit = utils.rdf.uri("visit/", base_iri) + urllib.parse.quote(site_visit_id, safe="")
+        site_visit_id: str | None = row["siteVisitID"]
+        if site_visit_id:
+            # Create TERN.SiteVisit subject IRI - Note this needs to match the iri construction of the
+            # site visit template mapping, ensuring they will resolve properly.
+            site_visit = utils.iri_patterns.site_visit_iri(base_iri, site_visit_id)
         else:
             site_visit = None
 

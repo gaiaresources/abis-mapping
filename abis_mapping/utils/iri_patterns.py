@@ -59,6 +59,26 @@ def site_iri(
     return utils.rdf.uri_quoted(base_iri, "Site/{site_id}", site_id=site_id)
 
 
+def site_visit_iri(
+    base_iri: rdflib.Namespace | None,
+    site_visit_id: str,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI for the tern:SiteVisit node, constructed from the siteVisitID field.
+
+    This IRI is used in mapping multiple Systematic Survey template,
+    and needs to be the same for all of them.
+
+    Args:
+        base_iri: The namespace to construct the IRI from.
+        site_visit_id: The siteVisitID field from the template.
+
+    Returns:
+        The IRI for the tern:Survey node.
+    """
+    return utils.rdf.uri_quoted(base_iri, "SiteVisit/{site_visit_id}", site_visit_id=site_visit_id)
+
+
 def attribute_iri(
     base_iri: rdflib.Namespace | None,
     attribute: str,

@@ -2,7 +2,6 @@
 
 # Standard
 import dataclasses
-import urllib.parse
 
 # Third-party
 import frictionless
@@ -342,9 +341,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # Part 1: Construct URIs from Row
 
-        # Create TERN.SiteVisit subjeect IRI - Note this needs to match the iri construction of the
-        # survey occurrence template mapping, enrusing they will resolve properly.
-        uri_site_visit_activity = utils.rdf.uri("visit/", base_iri) + urllib.parse.quote(row_site_visit_id, safe="")
+        # Create TERN.SiteVisit subject IRI - Note this needs to match the iri construction of the
+        # survey occurrence template mapping, ensuring they will resolve properly.
+        uri_site_visit_activity = utils.iri_patterns.site_visit_iri(base_iri, row_site_visit_id)
 
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site and occurrence template mapping, ensuring they will resolve properly.
