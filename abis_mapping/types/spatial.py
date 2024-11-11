@@ -95,7 +95,7 @@ class Geometry:
         return self._crs.name.replace(" ", "")
 
     @property
-    def original_datum_uri(self) -> rdflib.URIRef | None:
+    def original_datum_uri(self) -> rdflib.URIRef:
         """Getter for the original datum URI.
 
         Returns:
@@ -128,7 +128,7 @@ class Geometry:
         )
 
     @property
-    def transformer_datum_uri(self) -> rdflib.URIRef | None:
+    def transformer_datum_uri(self) -> rdflib.URIRef:
         """Getter for the transformed datum URI.
 
         Returns:
@@ -147,7 +147,7 @@ class Geometry:
             return vocab(graph=rdflib.Graph()).get(default_crs)
         except utils.vocabs.VocabularyError as exc:
             raise GeometryError(
-                f"Default CRS {default_crs} is " "not defined for the GEODETIC_DATUM fixed vocabulary."
+                f"Default CRS {default_crs} is not defined for the GEODETIC_DATUM fixed vocabulary."
             ) from exc
 
     @classmethod
@@ -268,7 +268,7 @@ def _swap_coordinates(original: shapely.Geometry) -> shapely.Geometry:
     return txd
 
 
-class GeometryError(BaseException):
+class GeometryError(Exception):
     """Exception class for the geometry type."""
 
     pass
