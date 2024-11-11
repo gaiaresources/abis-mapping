@@ -57,7 +57,7 @@ class TestField:
         with pytest.raises(pydantic.ValidationError) as exc:
             # Create field
             types.schema.Field.model_validate(field_d)
-        
+
         # Should have been raised through catching a ValueError only
         assert len(exc.value.errors()) == 1
         assert exc.value.errors()[0]["type"] == "value_error"

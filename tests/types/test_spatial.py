@@ -194,7 +194,7 @@ def test_geometry_transformer_datum_uri_invalid(temp_default_crs: Callable[[str]
     # Should raise exception on invalid CRS not in fixed datum vocabulary
     with pytest.raises(types.spatial.GeometryError, match=r"NOTADATUM .+ GEODETIC_DATUM") as exc:
         _ = geometry.transformer_datum_uri
-    
+
     # Should have been raised from VocabularyError
     assert exc.value.__cause__.__class__ is utils.vocabs.VocabularyError
 

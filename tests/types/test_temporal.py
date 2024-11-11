@@ -3,7 +3,6 @@
 # Standard
 import contextlib
 import datetime
-import re
 
 # Third-Party
 import pytest
@@ -180,8 +179,6 @@ def test_year_equality_invalid_other(other: Any) -> None:
     """Tests the equality of year against any other type."""
     # Should raise for every non Year type
     with pytest.raises(NotImplementedError, match="Unable to compare Year and "):
-
-
         _ = temporal.Year(2024) == other
 
 

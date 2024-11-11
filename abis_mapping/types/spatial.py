@@ -112,8 +112,7 @@ class Geometry:
             return vocab(graph=rdflib.Graph()).get(self.original_datum_name)
         except utils.vocabs.VocabularyError as exc:
             raise GeometryError(
-                f"CRS {self.original_datum_name} is "
-                "not defined for the GEODETIC_DATUM fixed vocabulary."
+                f"CRS {self.original_datum_name} is " "not defined for the GEODETIC_DATUM fixed vocabulary."
             ) from exc
 
     @property
@@ -142,14 +141,13 @@ class Geometry:
         # Retrieve vocab class
         vocab = utils.vocabs.get_vocab("GEODETIC_DATUM")
         default_crs = settings.Settings().DEFAULT_TARGET_CRS
-        
+
         try:
             # Init with dummy graph and return corresponding uri
             return vocab(graph=rdflib.Graph()).get(default_crs)
         except utils.vocabs.VocabularyError as exc:
             raise GeometryError(
-                f"Default CRS {default_crs} is "
-                "not defined for the GEODETIC_DATUM fixed vocabulary."
+                f"Default CRS {default_crs} is " "not defined for the GEODETIC_DATUM fixed vocabulary."
             ) from exc
 
     @classmethod
@@ -172,7 +170,7 @@ class Geometry:
         # Perform match
         match = regex.match(str(literal))
         if match is None:
-            # NOTE 11/11/2024 @jcrowleygaia: It is currently pretty impossible for a non-match to occur 
+            # NOTE 11/11/2024 @jcrowleygaia: It is currently pretty impossible for a non-match to occur
             # however it may be necessary to keep this check in case of a change to the above
             # compiled regex in the future.
             raise ValueError(f"supplied literal '{literal}' is not GeoSPARQL WKT format.")
