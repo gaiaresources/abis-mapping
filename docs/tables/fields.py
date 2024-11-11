@@ -253,7 +253,7 @@ class OccurrenceFieldTabler(FieldTabler):
         """Getter for the fields.
 
         Returns:
-            list[OccurrenceField]: List of all fields from schema. Note: this specifically
+            list[OccurrenceField]: List of all fields from schema. NOTE: this specifically
                 returns OccurrenceField object list
         """
         # Get fields from schema and return

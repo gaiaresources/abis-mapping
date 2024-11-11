@@ -6,6 +6,7 @@ import copy
 # Third-party
 import shapely
 import pytest
+import pytest_mock
 import rdflib
 
 # Local
@@ -15,7 +16,7 @@ from abis_mapping import utils
 from abis_mapping import vocabs
 
 # Typing
-from typing import Type
+from typing import Type, Callable, Iterator
 
 
 def test_geometry_init_wkt_string_valid() -> None:
@@ -107,7 +108,7 @@ def test_geometry_original_datum_uri(datum: str, uri: str) -> None:
     # Create geometry
     geometry = types.spatial.Geometry(
         raw="POINT(0 0)",
-        datum="WGS84",
+        datum=datum,
     )
 
     # Create expected output
@@ -130,6 +131,85 @@ def test_geometry_transformer_datum_uri() -> None:
     # Assert default datum
     assert vocab is not None
     assert geometry.transformer_datum_uri == vocab(graph=rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)
+
+
+@pytest.fixture
+def temp_default_crs(mocker: pytest_mock.MockerFixture) -> Iterator[Callable[[str], None]]:
+    """Provides a temporary value for Default CRS when called.
+
+    Args:
+        mocker: The mocker fixture
+
+    Yields:
+        Function to perform the change with new value as arg.
+    """
+    # Retain the original setting
+    original = settings.SETTINGS.DEFAULT_TARGET_CRS
+
+    # Define callable
+    def change_crs(value: str) -> None:
+        """Performs the change.
+
+        Args:
+            value: New default CRS name to use for the test.
+        """
+
+        # Create a stubbed settings model
+        class TempSettings(settings.Settings):
+            # Modified fields below
+            DEFAULT_TARGET_CRS: str = value
+
+        # Patch Settings
+        mocker.patch(
+            "abis_mapping.settings.Settings",
+            new=TempSettings,
+        )
+
+        # Change assigned variable
+        settings.SETTINGS.DEFAULT_TARGET_CRS = value
+
+    # Yield
+    yield change_crs
+
+    # Change setting back to original
+    settings.SETTINGS.DEFAULT_TARGET_CRS = original
+
+
+def test_geometry_transformer_datum_uri_invalid(temp_default_crs: Callable[[str], None]) -> None:
+    """Tests the transformer_datum_uri with unrecognised default crs.
+
+    Args:
+        temp_default_crs: Callable fixture allowing setting of the project's
+            default crs temporarily
+    """
+    # Create geometry
+    geometry = types.spatial.Geometry(
+        raw="POINT(0 0)",
+        datum="OSGB36",
+    )
+
+    # Set temp default crs
+    temp_default_crs("NOTADATUM")
+
+    # Should raise exception on invalid CRS not in fixed datum vocabulary
+    with pytest.raises(types.spatial.GeometryError, match=r"NOTADATUM .+ GEODETIC_DATUM") as exc:
+        _ = geometry.transformer_datum_uri
+
+    # Should have been raised from VocabularyError
+    assert exc.value.__cause__.__class__ is utils.vocabs.VocabularyError
+
+
+def test_geometry_original_datum_uri_invalid() -> None:
+    """Tests the transformer_datum_uri with unrecognised default crs."""
+    # Create geometry
+    geometry = types.spatial.Geometry(
+        raw="POINT(0 0)",
+        datum="OSGB36",
+    )
+
+    # Should raise exception on invalid CRS not in fixed datum vocabulary
+    with pytest.raises(types.spatial.GeometryError, match=r"OSGB36 .+ GEODETIC_DATUM"):
+        _ = geometry.original_datum_uri
 
 
 @pytest.mark.parametrize(

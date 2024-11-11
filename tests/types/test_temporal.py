@@ -1,12 +1,12 @@
 """Provides Unit Tests for the `abis_mapping.utils.timestamps` module"""
 
+# Standard
+import contextlib
+import datetime
+
 # Third-Party
 import pytest
 import rdflib
-
-# Standard
-import datetime
-import contextlib
 
 # Local
 from abis_mapping.types import temporal
@@ -67,6 +67,13 @@ def test_timestamp_parse_invalid(raw: Any) -> None:
     # Parse Invalid Timestamps
     with pytest.raises(ValueError):
         temporal.parse_timestamp(raw)
+
+
+def test_timestamp_le_invalid_other() -> None:
+    ts: temporal.Timestamp = temporal.Date(2024, 11, 11)
+
+    with pytest.raises(NotImplementedError, match=r"^Unable to compare .*temporal\.Date'> .*'int'>"):
+        _ = ts <= 1
 
 
 @pytest.mark.parametrize(
@@ -130,7 +137,7 @@ def test_max_date(
     expected: int,
     raise_error: contextlib.AbstractContextManager,
 ) -> None:
-    """Tests the functionality of the max_data function.
+    """Tests the functionality of the max_date property.
 
     Args:
         year (int): Year input
@@ -141,6 +148,38 @@ def test_max_date(
     """
     with raise_error:
         assert temporal.YearMonth(year, month).max_date == expected
+
+
+@pytest.mark.parametrize(
+    "other",
+    [
+        temporal.Year(2024),
+        temporal.Date(2024, 11, 11),
+        5,
+        "yearmonth",
+    ],
+)
+def test_year_month_equality_invalid_other(other: Any) -> None:
+    """Tests the equality of year month against any other type."""
+    # Should raise for every non YearMonth type
+    with pytest.raises(NotImplementedError, match="Unable to compare YearMonth and "):
+        _ = temporal.YearMonth(2024, 11) == other
+
+
+@pytest.mark.parametrize(
+    "other",
+    [
+        temporal.YearMonth(2024, 11),
+        temporal.Date(2024, 11, 11),
+        5,
+        "year",
+    ],
+)
+def test_year_equality_invalid_other(other: Any) -> None:
+    """Tests the equality of year against any other type."""
+    # Should raise for every non Year type
+    with pytest.raises(NotImplementedError, match="Unable to compare Year and "):
+        _ = temporal.Year(2024) == other
 
 
 class TestSharedParams:

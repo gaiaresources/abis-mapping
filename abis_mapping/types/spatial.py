@@ -51,7 +51,9 @@ class Geometry:
 
         Args:
             raw (LatLong | str | shapely.Geometry): Input geometry
-            datum (str | None): Geodetic datum corresponding to input.
+            datum (str | None): Geodetic datum corresponding to input. Datum is assumed
+                to be a lat-long coordinate system. This class should not be used
+                for long-lat datums.
 
         Raises:
             TypeError: If unsupported type for raw supplied.
@@ -59,11 +61,8 @@ class Geometry:
         """
         # Determine type of argument supplied and process.
         if isinstance(raw, LatLong):
-            # Attempt to make shapely geometry and catch errors
-            try:
-                self._geometry: shapely.Geometry = shapely.Point(raw.longitude, raw.latitude)
-            except shapely.errors.ShapelyError as exc:
-                raise GeometryError from exc
+            # Make shapely point
+            self._geometry: shapely.Geometry = shapely.Point(raw.longitude, raw.latitude)
         elif isinstance(raw, str):
             # Attempt to make shapely geometry and catch errors
             try:
@@ -96,18 +95,25 @@ class Geometry:
         return self._crs.name.replace(" ", "")
 
     @property
-    def original_datum_uri(self) -> rdflib.URIRef | None:
+    def original_datum_uri(self) -> rdflib.URIRef:
         """Getter for the original datum URI.
 
         Returns:
-            rdflib.URIRef: Uri corresponding to original datum if known, else None.
+            rdflib.URIRef: Uri corresponding to original datum.
+
+        Raises:
+            GeometryError: If the original datum name is not part
+                of the GEODETIC_DATUM fixed vocab.
         """
         # Retrieve vocab class
-        if (vocab := utils.vocabs.get_vocab("GEODETIC_DATUM")) is not None:
+        vocab = utils.vocabs.get_vocab("GEODETIC_DATUM")
+        try:
             # Init with dummy graph and return corresponding URI
             return vocab(graph=rdflib.Graph()).get(self.original_datum_name)
-        else:
-            return None
+        except utils.vocabs.VocabularyError as exc:
+            raise GeometryError(
+                f"CRS {self.original_datum_name} is " "not defined for the GEODETIC_DATUM fixed vocabulary."
+            ) from exc
 
     @property
     def _transformed_geometry(self) -> shapely.Geometry:
@@ -122,19 +128,27 @@ class Geometry:
         )
 
     @property
-    def transformer_datum_uri(self) -> rdflib.URIRef | None:
+    def transformer_datum_uri(self) -> rdflib.URIRef:
         """Getter for the transformed datum URI.
 
         Returns:
-            rdflib.URIRef: Uri corresponding to transformer datum if known, else None.
+            rdflib.URIRef: Uri corresponding to transformer datum.
+
+        Raises:
+            GeometryError: If the project default CRS is not a part
+                of the GEODETIC_DATUM fixed vocab.
         """
         # Retrieve vocab class
-        if (vocab := utils.vocabs.get_vocab("GEODETIC_DATUM")) is not None:
-            # Init with dummy graph and return corresponding uri
-            return vocab(graph=rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)
+        vocab = utils.vocabs.get_vocab("GEODETIC_DATUM")
+        default_crs = settings.Settings().DEFAULT_TARGET_CRS
 
-        # If vocab doesn't exist
-        return None
+        try:
+            # Init with dummy graph and return corresponding uri
+            return vocab(graph=rdflib.Graph()).get(default_crs)
+        except utils.vocabs.VocabularyError as exc:
+            raise GeometryError(
+                f"Default CRS {default_crs} is not defined for the GEODETIC_DATUM fixed vocabulary."
+            ) from exc
 
     @classmethod
     def from_geosparql_wkt_literal(cls, literal: rdflib.Literal | str) -> "Geometry":
@@ -156,6 +170,9 @@ class Geometry:
         # Perform match
         match = regex.match(str(literal))
         if match is None:
+            # NOTE 11/11/2024 @jcrowleygaia: It is currently pretty impossible for a non-match to occur
+            # however it may be necessary to keep this check in case of a change to the above
+            # compiled regex in the future.
             raise ValueError(f"supplied literal '{literal}' is not GeoSPARQL WKT format.")
 
         # Attempt to make shapely geometry and catch errors
@@ -167,7 +184,7 @@ class Geometry:
         # Check to see if datum provided
         if datum := match.group(1):
             # Flip the coordinates from lat-long to long-lat
-            # Note: Assumption is that the datum provided is of lat-long orientation.
+            # NOTE: Assumption is that the datum provided is of lat-long orientation.
             raw = _swap_coordinates(raw)
 
         # Create and return Geometry object
@@ -186,7 +203,7 @@ class Geometry:
         datum_string = f"<{self.original_datum_uri}> " if self.original_datum_uri is not None else ""
 
         # Manipulate geometry coordinates to suit datum string as per geosparql
-        # literal requirements. Note: It is assumed all geodetic datums supplied are of
+        # literal requirements. NOTE: It is assumed all geodetic datums supplied are of
         # the lat-long orientation and not the default WKT representation of long-lat.
         geometry = _swap_coordinates(self._geometry) if datum_string else self._geometry
 
@@ -211,7 +228,7 @@ class Geometry:
         datum_string = f"<{self.transformer_datum_uri}> " if self.transformer_datum_uri is not None else ""
 
         # Manipulate geometry coordinates to suit datum string as per geosparql
-        # literal requirements. Note: It is assumed all geodetic datums supplied are of
+        # literal requirements. NOTE: It is assumed all geodetic datums supplied are of
         # the lat-long orientation and not the default WKT representation of long-lat.
         geometry = _swap_coordinates(self._transformed_geometry) if datum_string else self._transformed_geometry
 
@@ -251,7 +268,7 @@ def _swap_coordinates(original: shapely.Geometry) -> shapely.Geometry:
     return txd
 
 
-class GeometryError(BaseException):
+class GeometryError(Exception):
     """Exception class for the geometry type."""
 
     pass

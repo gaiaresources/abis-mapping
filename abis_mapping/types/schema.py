@@ -125,12 +125,12 @@ class Field(pydantic.BaseModel):
             list[str]: The validated vocabulary ids.
 
         Raises:
-            KeyError: A provided vocabulary id does not exist.
+            ValueError: A provided vocabulary id does not exist.
         """
         # Check each provided name to see if it exists in the registry
         for name in values:
-            if utils.vocabs.get_vocab(name) is None:
-                raise ValueError(f"Vocabulary id {name} does not exist.")
+            # Will raise an error if the vocab doesn't exist
+            utils.vocabs.get_vocab(name)
 
         # Return list
         return values

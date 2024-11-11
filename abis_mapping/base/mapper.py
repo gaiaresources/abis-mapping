@@ -11,6 +11,7 @@ import pathlib
 # Third-Party
 import frictionless
 import rdflib
+import rdflib.term
 
 # Local
 from . import types as base_types
@@ -125,9 +126,9 @@ class ABISMapper(abc.ABC):
 
     def add_geometry_supplied_as(
         self,
-        subj: rdflib.graph.Node,
-        pred: rdflib.graph.Node,
-        obj: rdflib.graph.Node,
+        subj: rdflib.term.Node,
+        pred: rdflib.term.Node,
+        obj: rdflib.term.Node,
         geom: types.spatial.Geometry,
         graph: rdflib.Graph,
         spatial_accuracy: rdflib.Literal | None = None,
@@ -135,13 +136,13 @@ class ABISMapper(abc.ABC):
         """Add geometry supplied as originally to the graph.
 
         Args:
-            subj (rdflib.graph.Node): Subject identifying geometry use.
-            pred (rdflib.graph.Node): Predicate of where transformed
+            subj: Subject identifying geometry use.
+            pred: Predicate of where transformed
                 geometry used.
-            obj (rdflib.graph.Node): Object containing the transformed geometry.
-            geom (spatial.Geometry): Geometry object containing values.
-            graph (rdflib.Graph): Graph to be added to.
-            spatial_accuracy: Spatial accuracy of the supplied geometry.
+            obj: Object containing the transformed geometry.
+            geom: Geometry object containing values.
+            graph: Graph to be added to.
+            spatial_accuracy: Measurement tolerance of the supplied geometry.
         """
         # Create top blank node to hold statement
         top_node = rdflib.BNode()
@@ -166,7 +167,7 @@ class ABISMapper(abc.ABC):
         """Generates a blank csv for the template.
 
         It is based on the schema field names and writes it to a file within
-        the template mapper's root dir. Note: full schema validation is not applied,
+        the template mapper's root dir. NOTE: full schema validation is not applied,
         and metadata validation is.
         """
         # Retrieve Schema Filepath
