@@ -158,7 +158,7 @@
         <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/WAM> ;
     schema:identifier "TIS-24-03-P1-03" ;
     schema:isPartOf <http://createme.org/Survey/TIS-24-03> ;
-    tern:hasSite <http://createme.org/site/P1>,
+    tern:hasSite <http://createme.org/Site/P1>,
         "P1"^^<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/datatype/siteVisitID/WAM> .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/ORCID00001> a prov:Agent,
@@ -179,7 +179,7 @@
         <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/WAM> ;
     schema:identifier "TIS-24-03-P1-01" ;
     schema:isPartOf <http://createme.org/Survey/TIS-24-03> ;
-    tern:hasSite <http://createme.org/site/P1>,
+    tern:hasSite <http://createme.org/Site/P1>,
         "P1"^^<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/datatype/siteVisitID/WAM> ;
     tern:siteDescription "dry" .
 
@@ -193,7 +193,7 @@
         <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/agent/WAM> ;
     schema:identifier "TIS-24-03-P1-02" ;
     schema:isPartOf <http://createme.org/Survey/TIS-24-03> ;
-    tern:hasSite <http://createme.org/site/P1>,
+    tern:hasSite <http://createme.org/Site/P1>,
         "P1"^^<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset/datatype/siteVisitID/WAM> ;
     tern:siteDescription "moist leaf litter after recent rain" .
 

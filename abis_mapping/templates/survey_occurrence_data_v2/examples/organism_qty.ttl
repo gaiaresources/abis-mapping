@@ -51,6 +51,11 @@
     skos:prefLabel "Gaia Resources recordID" ;
     prov:qualifiedAttribution <http://createme.org/attribution/Gaia-Resources/resourceProvider> .
 
+<http://createme.org/Site/P1> a tern:FeatureOfInterest,
+        tern:Site ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
+
 <http://createme.org/attribution/Gaia-Resources/resourceProvider> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/Gaia-Resources> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
@@ -69,11 +74,6 @@
     rdf:value "Calothamnus lateralis var. crassus" ;
     tern:featureType <http://example.com/concept/scientificName> .
 
-<http://createme.org/site/P1> a tern:FeatureOfInterest,
-        tern:Site ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
-
 <https://linked.data.gov.au/dataset/bdr/orgs/Gaia-Resources> a prov:Agent ;
     schema:name "Gaia Resources" .
 
@@ -87,7 +87,7 @@
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2019-09-24"^^xsd:date ] ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
-    tern:hasSite <http://createme.org/site/P1> ;
+    tern:hasSite <http://createme.org/Site/P1> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> a tern:Dataset ;

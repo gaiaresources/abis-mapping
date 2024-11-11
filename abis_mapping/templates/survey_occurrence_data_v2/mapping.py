@@ -480,12 +480,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             base_iri, "reproductiveCondition", row["reproductiveCondition"]
         )
 
-        # Conditionally create uris dependent on siteID field
-        if site_id := row["siteID"]:
-            site = utils.rdf.uri("site/", base_iri) + urllib.parse.quote(site_id, safe="")
-        else:
-            site = None
-
         # Conditionally create uris dependant of dataGeneralizations field
         if data_generalizations := row["dataGeneralizations"]:
             data_generalizations_attribute = utils.iri_patterns.attribute_iri(
@@ -647,9 +641,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sensitivity_category_value = None
             sensitivity_category_collection = None
 
+        # Create URIs for Survey-related fields (i.e. fields not on the incidental template)
+
         # Create TERN survey IRI from surveyID field
         survey_id: str | None = row["surveyID"]
         survey = utils.iri_patterns.survey_iri(base_iri, survey_id)
+
+        # Create Tern Site IRI, depending on the siteID field
+        site_id: str | None = row["siteID"]
+        if site_id:
+            site = utils.iri_patterns.site_iri(base_iri, site_id)
+        else:
+            site = None
 
         # Conditionally create uri dependent on siteVisitID field.
         if site_visit_id := row["siteVisitID"]:
