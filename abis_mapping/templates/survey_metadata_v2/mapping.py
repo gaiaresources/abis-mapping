@@ -199,7 +199,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Create survey plan IRI
         survey_plan = utils.rdf.uri_quoted(
             base_iri,
-            "Plan/{survey_id}",
+            "survey/plan/{survey_id}",
             survey_id=(survey_id or str(row_num)),  # fallback to row number when surveyID not available.
         )
 
