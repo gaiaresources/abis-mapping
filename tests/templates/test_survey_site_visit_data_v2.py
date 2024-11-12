@@ -14,11 +14,11 @@ import pytest_mock
 import rdflib
 
 # Local
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping.templates.survey_site_visit_data_v2 import mapping
 
 # Typing
-from typing import Callable, Iterator
+from typing import Iterator
 
 
 @pytest.fixture
@@ -73,18 +73,15 @@ scenarios = [
     argvalues=scenarios,
     ids=[s.name for s in scenarios],
 )
-def test_add_temporal_coverage_node(
-    graph_comparer: Callable, scenario: Scenario, mapper: mapping.SurveySiteVisitMapper
-) -> None:
+def test_add_temporal_coverage_node(scenario: Scenario, mapper: mapping.SurveySiteVisitMapper) -> None:
     """Tests the graph output from add_temporal_coverage_node method.
 
     Args:
         scenario (Scenario): Data structure containing test parameters.
-        graph_comparer (Callable): Graph comparer fixture.
         mapper (SurveySiteVisitMapper): Site visit mapper instance fixture.
     """
     # Parse dates
-    date_fn = lambda x: types.temporal.parse_timestamp(x) if x is not None else None  # noqa: E731
+    date_fn = lambda x: models.temporal.parse_timestamp(x) if x is not None else None  # noqa: E731
     start_date = date_fn(scenario.start_date)
     end_date = date_fn(scenario.end_date)
 
@@ -174,8 +171,8 @@ class TestMapExtractors:
         for g, r in zip(graphs, expected_rows, strict=True):
             raw_start = r.get("siteVisitStart")
             raw_end = r.get("siteVisitEnd")
-            start = types.temporal.parse_timestamp(raw_start) if raw_start is not None else None
-            end = types.temporal.parse_timestamp(raw_end) if raw_end is not None else None
+            start = models.temporal.parse_timestamp(raw_start) if raw_start is not None else None
+            end = models.temporal.parse_timestamp(raw_end) if raw_end is not None else None
             mapper.add_temporal_coverage_bnode(g, start, end)
 
         # Construct expected map

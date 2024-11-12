@@ -9,7 +9,7 @@ import rdflib.term
 from abis_mapping import base
 from abis_mapping import utils
 from abis_mapping import plugins
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import vocabs
 
 # Typing
@@ -1504,7 +1504,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Get Timestamps
-        date_identified: types.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
+        date_identified: models.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -1592,7 +1592,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: types.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
+        date_identified: models.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2110,15 +2110,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check to see if lat long provided
         if latitude is not None and longitude is not None:
             # Create geometry
-            geometry = types.spatial.Geometry(
-                raw=types.spatial.LatLong(latitude, longitude),
+            geometry = models.spatial.Geometry(
+                raw=models.spatial.LatLong(latitude, longitude),
                 datum=geodetic_datum,
             )
 
         # If not then use default geometry map
         elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
             # Create geometry from geosparql wkt literal
-            geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
+            geometry = models.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
 
         else:
             # Should not reach here since validated data provided, however if
@@ -2126,7 +2126,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        timestamp: types.temporal.Timestamp | None = row["preparedDate"] or row["eventDateStart"]
+        timestamp: models.temporal.Timestamp | None = row["preparedDate"] or row["eventDateStart"]
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -2545,7 +2545,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2641,7 +2641,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2976,7 +2976,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3184,7 +3184,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -3292,7 +3292,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3405,7 +3405,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3518,7 +3518,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3628,7 +3628,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: types.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
+        date_identified: models.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
 
         # Accepted Name Usage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -3733,18 +3733,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         longitude = row["decimalLongitude"]
         geodetic_datum = row["geodeticDatum"]
         site_id = row["siteID"]
-        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
         if latitude is not None and longitude is not None:
             # Create geometry
-            geometry = types.spatial.Geometry(
-                raw=types.spatial.LatLong(latitude, longitude),
+            geometry = models.spatial.Geometry(
+                raw=models.spatial.LatLong(latitude, longitude),
                 datum=geodetic_datum,
             )
 
         elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
             # Create geometry from wkt literal
-            geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
+            geometry = models.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
 
         else:
             # Should not be able to reach here if validated data provided,
@@ -3916,7 +3916,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Get Timestamp
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDateStart` (fallback)
-        date_determined: types.temporal.Timestamp | None = (
+        date_determined: models.temporal.Timestamp | None = (
             row["threatStatusDateDetermined"] or row["dateIdentified"] or row["preparedDate"] or row["eventDateStart"]
         )
 
@@ -4139,7 +4139,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to be modified.
         """
         # Extract values
-        event_date: types.temporal.Timestamp | None = row["eventDateStart"]
+        event_date: models.temporal.Timestamp | None = row["eventDateStart"]
         organism_qty = row["organismQuantity"]
         organism_qty_type = row["organismQuantityType"]
 
@@ -4454,15 +4454,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check to see if lat long provided
         if latitude is not None and longitude is not None:
             # Create geometry
-            geometry = types.spatial.Geometry(
-                raw=types.spatial.LatLong(latitude, longitude),
+            geometry = models.spatial.Geometry(
+                raw=models.spatial.LatLong(latitude, longitude),
                 datum=geodetic_datum,
             )
 
         # If not then use default geometry map
         elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
             # Create geometry from geosparql wkt literal
-            geometry = types.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
+            geometry = models.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
 
         else:
             # Should not reach here since validated data provided, however if
@@ -4520,8 +4520,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add temporal entity
-        event_date_start: types.temporal.Timestamp | None = row["eventDateStart"]
-        event_date_end: types.temporal.Timestamp | None = row["eventDateEnd"]
+        event_date_start: models.temporal.Timestamp | None = row["eventDateStart"]
+        event_date_end: models.temporal.Timestamp | None = row["eventDateEnd"]
         # Check any event dates provided
         if event_date_start is not None or event_date_end is not None:
             temporal_entity = rdflib.BNode()

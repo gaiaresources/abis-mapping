@@ -8,18 +8,18 @@ import pytest
 
 # Local
 from abis_mapping import settings
-from abis_mapping import types
-from abis_mapping.types.metadata import TemplateMetadataLifecycleStatus
+from abis_mapping import models
+from abis_mapping.models.metadata import TemplateMetadataLifecycleStatus
 
 
 class TestTemplateMetadata:
     """Test suite for the TemplateMetadata model."""
 
     @pytest.fixture
-    def template_metadata(self) -> types.metadata.TemplateMetadata:
+    def template_metadata(self) -> models.metadata.TemplateMetadata:
         """Provides a template metadata model."""
         # Create and return
-        return types.metadata.TemplateMetadata(
+        return models.metadata.TemplateMetadata(
             name="someName",
             label="someLabel",
             version="someVersion",
@@ -35,12 +35,12 @@ class TestTemplateMetadata:
 
     def test_id(
         self,
-        template_metadata: types.metadata.TemplateMetadata,
+        template_metadata: models.metadata.TemplateMetadata,
     ) -> None:
         """Tests the id computed property.
 
         Args:
-            template_metadata (types.metadata.TemplateMetadata): TemplateMetadata model
+            template_metadata (models.metadata.TemplateMetadata): TemplateMetadata model
                 instance fixture.
         """
         # Expected id value
@@ -51,12 +51,12 @@ class TestTemplateMetadata:
 
     def test_instructions_url(
         self,
-        template_metadata: types.metadata.TemplateMetadata,
+        template_metadata: models.metadata.TemplateMetadata,
     ) -> None:
         """Tests the instructions url computed property.
 
         Args:
-              template_metadata (types.metadata.TemplateMetadata): TemplateMetadata model
+              template_metadata (models.metadata.TemplateMetadata): TemplateMetadata model
                 instance fixture.
         """
         # Expected instructions url
@@ -68,13 +68,13 @@ class TestTemplateMetadata:
 
     def test_serialization(
         self,
-        template_metadata: types.metadata.TemplateMetadata,
+        template_metadata: models.metadata.TemplateMetadata,
     ) -> None:
         """Tests the serialization method."""
         # pydantic dump json -> json decode
         python_val = json.loads(template_metadata.model_dump_json())
-        assert types.metadata.TemplateMetadata(**python_val) == template_metadata
+        assert models.metadata.TemplateMetadata(**python_val) == template_metadata
         # pydantic dump python -> json encode -> json decode
         python_val = json.loads(json.dumps(template_metadata.model_dump()))
         # compare pydantic models
-        assert types.metadata.TemplateMetadata(**python_val) == template_metadata
+        assert models.metadata.TemplateMetadata(**python_val) == template_metadata

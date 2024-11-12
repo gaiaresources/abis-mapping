@@ -14,7 +14,7 @@ import rdflib
 
 # Local
 from abis_mapping import base
-from abis_mapping import types
+from abis_mapping import models
 import abis_mapping.templates.survey_occurrence_data_v2.mapping
 from tests import conftest
 
@@ -290,8 +290,8 @@ class TestDefaultGeometryMap:
 
         # Make site id geo default map using values extracted previously
         val = str(
-            types.spatial.Geometry(
-                raw=types.spatial.LatLong(s_geo_vals["decimalLatitude"], s_geo_vals["decimalLongitude"]),
+            models.spatial.Geometry(
+                raw=models.spatial.LatLong(s_geo_vals["decimalLatitude"], s_geo_vals["decimalLongitude"]),
                 datum=s_geo_vals["geodeticDatum"],
             ).to_rdf_literal()
         )

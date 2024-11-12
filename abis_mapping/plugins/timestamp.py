@@ -5,7 +5,7 @@ import attrs
 import frictionless
 
 # Local
-from abis_mapping.types import temporal
+from abis_mapping.models import temporal
 
 # Typing
 from typing import Any, Optional, Type

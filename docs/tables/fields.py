@@ -10,7 +10,7 @@ import pydantic
 import frictionless
 
 # Local
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import plugins
 from docs import tables
 
@@ -21,7 +21,7 @@ from typing import IO, Annotated
 class FieldTableRow(pydantic.BaseModel):
     """Standard Field table row."""
 
-    field: Annotated[types.schema.Field, pydantic.Field(exclude=True)]
+    field: Annotated[models.schema.Field, pydantic.Field(exclude=True)]
     checklist: Annotated[frictionless.Checklist | None, pydantic.Field(exclude=True)]
 
     @pydantic.computed_field(alias="Field Name")  # type: ignore[prop-decorator]
@@ -140,15 +140,15 @@ class FieldTabler(tables.base.BaseTabler):
         return [hdr for hdr in raw_hdr if hdr is not None]
 
     @property
-    def fields(self) -> list[types.schema.Field]:
+    def fields(self) -> list[models.schema.Field]:
         """Getter for the fields.
 
         Returns:
-            list[types.schema.Field]: List of all fields from schema.
+            list[models.schema.Field]: List of all fields from schema.
         """
         # Get fields from schema and return
         dict_fields = self.mapper.schema()["fields"]
-        return [types.schema.Field.model_validate(f) for f in dict_fields]
+        return [models.schema.Field.model_validate(f) for f in dict_fields]
 
     def generate_table(
         self,
@@ -220,7 +220,7 @@ class FieldTabler(tables.base.BaseTabler):
             return None
 
 
-class OccurrenceField(types.schema.Field):
+class OccurrenceField(models.schema.Field):
     """Specific implementation of the field model.
 
     To be used only in the creation of survey and incidental occurrence field tables.
@@ -249,7 +249,7 @@ class OccurrenceFieldTabler(FieldTabler):
     """Specific implementation of the field tabler for survey and incidental occurrence templates."""
 
     @property
-    def fields(self) -> list[types.schema.Field]:
+    def fields(self) -> list[models.schema.Field]:
         """Getter for the fields.
 
         Returns:

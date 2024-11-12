@@ -5,7 +5,7 @@ import pydantic
 import pytest
 
 # Local
-from abis_mapping import types
+from abis_mapping import models
 
 # Typing
 from typing import Any
@@ -40,7 +40,7 @@ class TestField:
             field_d (dict[str, Any]): The field definition.
         """
         # Perform validation
-        field = types.schema.Field.model_validate(field_d)
+        field = models.schema.Field.model_validate(field_d)
 
         # Assert
         assert field.vocabularies == ["SEX"]
@@ -56,7 +56,7 @@ class TestField:
 
         with pytest.raises(pydantic.ValidationError) as exc:
             # Create field
-            types.schema.Field.model_validate(field_d)
+            models.schema.Field.model_validate(field_d)
 
         # Should have been raised through catching a ValueError only
         assert len(exc.value.errors()) == 1
@@ -69,7 +69,7 @@ class TestField:
             field_d dict[str, Any]: The field definition fixture.
         """
         # Create field
-        field = types.schema.Field.model_validate(field_d)
+        field = models.schema.Field.model_validate(field_d)
 
         # Invoke
         vocab = field.get_vocab()
@@ -84,7 +84,7 @@ class TestField:
             field_d (dict[str, Any]): The field definition fixture.
         """
         # Create field
-        field = types.schema.Field.model_validate(field_d)
+        field = models.schema.Field.model_validate(field_d)
 
         with pytest.raises(ValueError):
             # Invoke
@@ -100,7 +100,7 @@ class TestField:
         field_d["vocabularies"] = []
 
         # Create field
-        field = types.schema.Field.model_validate(field_d)
+        field = models.schema.Field.model_validate(field_d)
 
         # Should raise index error
         with pytest.raises(IndexError):

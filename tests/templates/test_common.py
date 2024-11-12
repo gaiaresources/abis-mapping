@@ -13,7 +13,7 @@ import pyproj
 # Local
 import abis_mapping
 import abis_mapping.base
-import abis_mapping.types
+import abis_mapping.models
 from tests.templates import conftest
 
 # Typing
@@ -151,7 +151,7 @@ class TestTemplateBasicSuite:
         descriptor = mapper().schema()
 
         # Overall schema check
-        valid_schema = abis_mapping.types.schema.Schema.model_validate(descriptor)
+        valid_schema = abis_mapping.models.schema.Schema.model_validate(descriptor)
         assert valid_schema
         # Should have no extra fields defined but if it does then needs to
         # be reviewed and decided to be added to model
@@ -159,7 +159,7 @@ class TestTemplateBasicSuite:
 
         # Iterate through fields and ensure they validate
         for field in descriptor["fields"]:
-            valid_field = abis_mapping.types.schema.Field.model_validate(field, strict=True)
+            valid_field = abis_mapping.models.schema.Field.model_validate(field, strict=True)
             assert valid_field
             # Should have no extra fields defined but if it does then needs to
             # be reviewed and decided to be added to model

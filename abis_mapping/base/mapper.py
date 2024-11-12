@@ -15,7 +15,7 @@ import rdflib.term
 
 # Local
 from . import types as base_types
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import utils
 
 
@@ -92,8 +92,8 @@ class ABISMapper(abc.ABC):
         graph.add((uri, a, utils.namespaces.TERN.Dataset))
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(self.DATASET_DEFAULT_NAME)))
         graph.add((uri, rdflib.SDO.description, rdflib.Literal(self.DATASET_DEFAULT_DESCRIPTION)))
-        graph.add((uri, rdflib.SDO.dateCreated, types.temporal.Date.today().to_rdf_literal()))
-        graph.add((uri, rdflib.SDO.dateIssued, types.temporal.Date.today().to_rdf_literal()))
+        graph.add((uri, rdflib.SDO.dateCreated, models.temporal.Date.today().to_rdf_literal()))
+        graph.add((uri, rdflib.SDO.dateIssued, models.temporal.Date.today().to_rdf_literal()))
 
         # Add default dataset datatype
         default_dataset_datatype = utils.rdf.uri(f"datatype/datasetID/{self.DATASET_DEFAULT_ORGANIZATION}")
@@ -129,7 +129,7 @@ class ABISMapper(abc.ABC):
         subj: rdflib.term.Node,
         pred: rdflib.term.Node,
         obj: rdflib.term.Node,
-        geom: types.spatial.Geometry,
+        geom: models.spatial.Geometry,
         graph: rdflib.Graph,
         spatial_accuracy: rdflib.Literal | None = None,
     ) -> None:
@@ -142,7 +142,7 @@ class ABISMapper(abc.ABC):
             obj: Object containing the transformed geometry.
             geom: Geometry object containing values.
             graph: Graph to be added to.
-            spatial_accuracy: Measurement tolerance of the supplied geometry.
+            spatial_accuracy: Tolerance of the supplied geometry.
         """
         # Create top blank node to hold statement
         top_node = rdflib.BNode()
@@ -334,7 +334,7 @@ class ABISMapper(abc.ABC):
 
         # Read Metadata and validate
         md_dict = json.loads(metadata_file.read_text())
-        md_class = types.metadata.TemplateMetadata.model_validate(md_dict, strict=False)
+        md_class = models.metadata.TemplateMetadata.model_validate(md_dict, strict=False)
 
         # Return
         return md_class.model_dump()
@@ -361,14 +361,14 @@ class ABISMapper(abc.ABC):
 
         # Read Schema and validate
         s_dict = json.loads(schema_file.read_text())
-        s_class = types.schema.Schema.model_validate(s_dict, strict=True)
+        s_class = models.schema.Schema.model_validate(s_dict, strict=True)
 
         # Dump pydantic class to return dict
         return s_class.model_dump(exclude_none=discard_optional)
 
     @final
     @classmethod
-    def fields(cls) -> dict[str, types.schema.Field]:
+    def fields(cls) -> dict[str, models.schema.Field]:
         """Indexed dictionary of all fields' metadata.
 
         Returns:
@@ -376,7 +376,7 @@ class ABISMapper(abc.ABC):
                 with name as key..
         """
         # Get schema
-        schema = types.schema.Schema.model_validate(cls.schema())
+        schema = models.schema.Schema.model_validate(cls.schema())
 
         # Return dictionary of fields
         return {f.name: f for f in schema.fields}

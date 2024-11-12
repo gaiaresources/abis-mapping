@@ -14,7 +14,7 @@ import shapely.geometry
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import utils
 from abis_mapping import vocabs
 
@@ -171,7 +171,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     if footprint_wkt is not None:
                         # Create string and add to map for site id
                         result[site_id] = str(
-                            types.spatial.Geometry(
+                            models.spatial.Geometry(
                                 raw=footprint_wkt.centroid,
                                 datum=datum,
                             ).to_rdf_literal()
@@ -182,12 +182,12 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     if longitude is not None and latitude is not None:
                         # Create string and add to map for site id
                         result[site_id] = str(
-                            types.spatial.Geometry(
+                            models.spatial.Geometry(
                                 raw=shapely.Point([longitude, latitude]),
                                 datum=datum,
                             ).to_rdf_literal()
                         )
-                except types.spatial.GeometryError:
+                except models.spatial.GeometryError:
                     continue
 
             return result
@@ -748,7 +748,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.DCTERMS.identifier, rdflib.Literal(site_visit_id)))
 
         # Add temporal information
-        site_visit_start: types.temporal.Timestamp = row["siteVisitStart"]
+        site_visit_start: models.temporal.Timestamp = row["siteVisitStart"]
         start_instant = rdflib.BNode()
         graph.add((start_instant, a, rdflib.TIME.Instant))
         graph.add((start_instant, site_visit_start.rdf_in_xsd, site_visit_start.to_rdf_literal()))
@@ -757,7 +757,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((temporal_entity, a, rdflib.TIME.TemporalEntity))
         graph.add((temporal_entity, rdflib.TIME.hasBeginning, start_instant))
 
-        site_visit_end: types.temporal.Timestamp | None = row["siteVisitEnd"]
+        site_visit_end: models.temporal.Timestamp | None = row["siteVisitEnd"]
         if site_visit_end is not None:
             end_instant = rdflib.BNode()
             graph.add((end_instant, a, rdflib.TIME.Instant))
@@ -853,7 +853,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_VEGETATION_CONDITION))
 
         # Add temporal information
-        site_visit_start: types.temporal.Timestamp = row["siteVisitStart"]
+        site_visit_start: models.temporal.Timestamp = row["siteVisitStart"]
         start_instant = rdflib.BNode()
         graph.add((start_instant, a, rdflib.TIME.Instant))
         graph.add((start_instant, site_visit_start.rdf_in_xsd, site_visit_start.to_rdf_literal()))
@@ -909,7 +909,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             return
 
         # Construct geometry
-        geometry = types.spatial.Geometry(
+        geometry = models.spatial.Geometry(
             raw=footprint_wkt,
             datum=geodetic_datum,
         )
@@ -951,8 +951,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             return
 
         # Construct geometry
-        geometry = types.spatial.Geometry(
-            raw=types.spatial.LatLong(decimal_latitude, decimal_longitude),
+        geometry = models.spatial.Geometry(
+            raw=models.spatial.LatLong(decimal_latitude, decimal_longitude),
             datum=geodetic_datum,
         )
 

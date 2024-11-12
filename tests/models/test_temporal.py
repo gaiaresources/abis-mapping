@@ -9,7 +9,7 @@ import pytest
 import rdflib
 
 # Local
-from abis_mapping.types import temporal
+from abis_mapping.models import temporal
 
 # Typing
 from typing import Any, Tuple

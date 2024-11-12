@@ -10,7 +10,7 @@ import rdflib
 
 # Local
 from docs import tables
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import utils
 
 # Typing
@@ -60,8 +60,8 @@ class VocabTabler(tables.base.BaseTabler):
 
         # Get all fields that have associated vocabularies.
         dict_fields = self.mapper.schema()["fields"]
-        fields: list[types.schema.Field] = [
-            types.schema.Field.model_validate(f) for f in dict_fields if f.get("vocabularies")
+        fields: list[models.schema.Field] = [
+            models.schema.Field.model_validate(f) for f in dict_fields if f.get("vocabularies")
         ]
         fields = sorted(fields, key=lambda f: f.name)
 
@@ -81,12 +81,12 @@ class VocabTabler(tables.base.BaseTabler):
 
     def generate_vocab_rows(
         self,
-        field: types.schema.Field,
+        field: models.schema.Field,
     ) -> Iterator[VocabTableRow]:
         """Generates a set of rows based on a field's vocabulary.
 
         Args:
-            field (types.schema.Field): Field the vocabulary is related to.
+            field (models.schema.Field): Field the vocabulary is related to.
             as_markdown (bool): True to generate a markdown table. Defaults to False, as csv.
 
         Yields:
@@ -132,13 +132,13 @@ class VocabTabler(tables.base.BaseTabler):
 
     @staticmethod
     def generate_row(
-        field: types.schema.Field,
+        field: models.schema.Field,
         term: utils.vocabs.Term,
     ) -> VocabTableRow:
         """Generates a single row for the table.
 
         Args:
-            field (types.schema.Field): Field the vocabulary is related to.
+            field (models.schema.Field): Field the vocabulary is related to.
             term (utils.vocabs.Term): Term corresponding to the vocab and field.
 
         Returns:
