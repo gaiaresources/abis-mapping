@@ -327,6 +327,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             row_survey_type=row_survey_type,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add survey type collection node
@@ -356,6 +357,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 dataset=dataset,
                 raw_value=th_obj.raw,
                 graph=graph,
+                base_iri=base_iri,
             )
 
             # Add target habitat scope collection
@@ -385,6 +387,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 dataset=dataset,
                 raw_value=tt_obj.raw,
                 graph=graph,
+                base_iri=base_iri,
             )
 
             # Add target taxonomic scope collection node
@@ -683,6 +686,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         row_survey_type: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds the survey type value node to graph.
 
@@ -691,6 +695,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             row_survey_type: Raw value from the template for surveyType
             dataset: Dataset raw data belongs.
             graph: Graph to be modified.
+            base_iri: Namespace used to construct IRIs
         """
         # Return no value IRI
         if uri is None:
@@ -708,7 +713,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             vocab = self.fields()["surveyType"].get_vocab()
 
             # Add value
-            term = vocab(graph=graph, source=dataset).get(row_survey_type)
+            term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row_survey_type)
             graph.add((uri, rdflib.RDF.value, term))
 
     def add_survey_type_collection(
@@ -790,6 +795,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         raw_value: str,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Add the target habitat scope value node.
 
@@ -798,6 +804,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset raw data belongs.
             raw_value (str): Raw data.
             graph (rdflib.Graph): Graph to be modified.
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Add types
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -810,7 +817,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         vocab = self.fields()["targetHabitatScope"].get_vocab()
 
         # Add value
-        term = vocab(graph=graph, source=dataset).get(raw_value)
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(raw_value)
         graph.add((uri, rdflib.RDF.value, term))
 
     def add_target_habitat_collection(
@@ -887,6 +894,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         raw_value: str,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds the target toxonomic scope value node.
 
@@ -895,6 +903,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset raw data belongs.
             raw_value (str): Raw data provided.
             graph (rdflib.Graph): Graph to be modified.
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Add types
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -907,7 +916,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         vocab = self.fields()["targetTaxonomicScope"].get_vocab()
 
         # Add value
-        term = vocab(graph=graph, source=dataset).get(raw_value)
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(raw_value)
         graph.add((uri, rdflib.RDF.value, term))
 
     def add_target_taxonomic_scope_collection(
