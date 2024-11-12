@@ -73,7 +73,7 @@ class Kingdom(utils.vocabs.FlexibleVocabulary):
 
     vocab_id = "KINGDOM"
     definition = rdflib.Literal("A type of kingdom.")
-    base = utils.rdf.uri("bdr-cv/attribute/kingdom/")
+    base = "bdr-cv/attribute/kingdom/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
     broader = utils.rdf.uri("bdr-cv/attribute/kingdom", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
     default = None  # No default, kingdom is required in the CSV
@@ -85,7 +85,7 @@ class KingdomOccurrence(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal(
         "The existence of the organism from this kingdom sampled at a particular place at a particular time."
     )
-    base = utils.rdf.uri("bdr-cv/featureType/occurrence/kingdom/")
+    base = "bdr-cv/featureType/occurrence/kingdom/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
     broader = None  # No broader, top level concept
     default = None  # No default, kingdom is required in the CSV
@@ -109,7 +109,7 @@ class KingdomOccurrence(utils.vocabs.FlexibleVocabulary):
 class KingdomSpecimen(utils.vocabs.FlexibleVocabulary):
     vocab_id = "KINGDOM_SPECIMEN"
     definition = rdflib.Literal("A specimen sampled from an organism of this kingdom.")
-    base = utils.rdf.uri("bdr-cv/featureType/specimen/kingdom/")
+    base = "bdr-cv/featureType/specimen/kingdom/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
     broader = None  # No broader, top level concept
     default = None  # No default, kingdom is required in the CSV

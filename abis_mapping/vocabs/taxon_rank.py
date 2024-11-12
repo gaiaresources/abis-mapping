@@ -235,7 +235,7 @@ VARIETY = utils.vocabs.Term(
 class TaxonRank(utils.vocabs.FlexibleVocabulary):
     vocab_id = "TAXON_RANK"
     definition = rdflib.Literal("A type of taxonRank.")
-    base = utils.rdf.uri("bdr-cv/attribute/taxonRank/")
+    base = "bdr-cv/attribute/taxonRank/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
     broader = utils.rdf.uri("bdr-cv/attribute/taxonRank", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
     default = None  # No default, ommitted if not provided

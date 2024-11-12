@@ -743,6 +743,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             provider_record_id_occurrence=provider_record_id_occurrence,
             catalog_number_datatype=catalog_number_datatype,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add catalog number datatype
@@ -810,6 +811,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             id_qualifier=id_qualifier,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Identification Qualifier Collection
@@ -866,6 +868,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             scientific_name=text_scientific_name,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Observation for Verbatim ID
@@ -879,6 +882,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             verbatim_id=text_verbatim_id,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Data Generalizations Attribute
@@ -922,6 +926,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             taxon_rank=taxon_rank,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Taxon Rank collection
@@ -985,6 +990,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             habitat=habitat,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add habitat attribute sample collection
@@ -1012,6 +1018,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             basis_of_record=basis_of_record,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Basis of Record Sample Collection
@@ -1050,6 +1057,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Preparations Attribute
@@ -1067,6 +1075,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             preparations=preparations,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Preparations attribute Sample Collection
@@ -1096,6 +1105,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Life Stage Observation
@@ -1116,6 +1126,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Sex Observation
@@ -1136,6 +1147,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Reproductive Condition Observation
@@ -1156,6 +1168,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Accepted Name Usage Observation
@@ -1187,6 +1200,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_id_geometry_map=site_id_geometry_map,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Sample Sequence
@@ -1217,6 +1231,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             determined_by=provider_determined_by,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Threat Status Value
@@ -1225,6 +1240,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Conservation Authority Attribute
@@ -1241,6 +1257,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=conservation_authority_value,
             conservation_authority=conservation_authority,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add conservation Authority Collection
@@ -1270,6 +1287,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             row=row,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add site
@@ -1294,6 +1312,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Sensitivity Category Collection
@@ -1329,6 +1348,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_id_geometry_map=site_id_geometry_map,
             row=row,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add extra fields JSON
@@ -1463,6 +1483,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         scientific_name: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Observation Scientific Name to the Graph
 
@@ -1480,6 +1501,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map (dict[str, str] | None): Map
                 of site visit ids to default temporal entity to use if requlred.
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Get Timestamps
         date_identified: types.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
@@ -1493,7 +1515,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["identificationMethod"].get_vocab()
 
         # Retrieve Vocab or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["identificationMethod"])
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["identificationMethod"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -1546,6 +1568,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         verbatim_id: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Observation Verbatim ID to the Graph
 
@@ -1562,6 +1585,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map (dict[str, str] | None): Map of site
                 visit ids to default temporal entity rdf.
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check for verbatimIdentification
         if not row["verbatimIdentification"]:
@@ -1579,7 +1603,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["identificationMethod"].get_vocab()
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["identificationMethod"])
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["identificationMethod"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -1779,6 +1803,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         id_qualifier: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Identification Qualifier Value to the Graph
 
@@ -1787,6 +1812,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             id_qualifier: identificationQualifier value from the template
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check node should be created
         if uri is None:
@@ -1802,7 +1828,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Retrieve vocab for field
             vocab = self.fields()["identificationQualifier"].get_vocab()
             # Retrieve term or Create on the Fly
-            term = vocab(graph=graph, source=dataset).get(id_qualifier)
+            term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(id_qualifier)
             # Identification Qualifier Value
             graph.add((uri, rdflib.RDF.value, term))
 
@@ -2233,6 +2259,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         provider_record_id_occurrence: rdflib.URIRef,
         catalog_number_datatype: rdflib.URIRef | None,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Sample Specimen to the Graph
 
@@ -2247,6 +2274,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             catalog_number_datatype (rdflib.URIRef | None): Catalog number source
                 datatype.
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check if Row has a Specimen
         if not has_specimen(row):
@@ -2256,7 +2284,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["kingdom"].get_vocab("KINGDOM_SPECIMEN")
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["kingdom"])
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["kingdom"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
@@ -2417,6 +2445,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         taxon_rank: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Taxon Rank Value to the Graph
 
@@ -2425,6 +2454,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             taxon_rank: taxonRank value from the template.
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -2440,7 +2470,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Retrieve vocab for field
             vocab = self.fields()["taxonRank"].get_vocab()
             # Retrieve term or Create on the Fly
-            term = vocab(graph=graph, source=dataset).get(taxon_rank)
+            term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(taxon_rank)
             # Taxon Rank Value
             graph.add((uri, rdflib.RDF.value, term))
 
@@ -2713,6 +2743,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         habitat: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Habitat Value to the Graph
 
@@ -2721,6 +2752,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             habitat: Habitat from the CSV
             dataset: Dataset this belongs to
             graph: Graph to add to
+            base_iri: Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -2736,7 +2768,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Retrieve vocab for field
             vocab = self.fields()["habitat"].get_vocab()
             # Retrieve term or Create on the Fly
-            term = vocab(graph=graph, source=dataset).get(habitat)
+            term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(habitat)
             # Add value
             graph.add((uri, rdflib.RDF.value, term))
 
@@ -2812,6 +2844,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         basis_of_record: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Basis of Record Value to the Graph
 
@@ -2820,6 +2853,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             basis_of_record: basisOfRecord value from the CSV
             dataset: Dataset this belongs to
             graph: Graph to add to
+            base_iri: Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -2835,7 +2869,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Retrieve vocab for field
             vocab = self.fields()["basisOfRecord"].get_vocab()
             # Retrieve term or Create on the Fly
-            term = vocab(graph=graph, source=dataset).get(basis_of_record)
+            term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(basis_of_record)
             # Add value
             graph.add((uri, rdflib.RDF.value, term))
 
@@ -2988,6 +3022,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Occurrence Status Value to the Graph
 
@@ -2996,6 +3031,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["occurrenceStatus"]:
@@ -3005,7 +3041,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["occurrenceStatus"].get_vocab()
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["occurrenceStatus"])
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["occurrenceStatus"])
 
         # Occurrence Status Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -3049,6 +3085,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         preparations: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Preparations Value to the Graph
 
@@ -3057,6 +3094,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             preparations: preparations value from the CSV
             dataset: Dataset this belongs to
             graph: Graph to add to
+            base_iri: Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -3072,7 +3110,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Retrieve vocab for field
             vocab = self.fields()["preparations"].get_vocab()
             # Retrieve term or Create on the Fly
-            term = vocab(graph=graph, source=dataset).get(preparations)
+            term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(preparations)
             # Add value
             graph.add((uri, rdflib.RDF.value, term))
 
@@ -3195,6 +3233,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Establishment Means Value to the Graph
 
@@ -3203,6 +3242,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["establishmentMeans"]:
@@ -3212,7 +3252,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["establishmentMeans"].get_vocab()
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["establishmentMeans"])
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["establishmentMeans"])
 
         # Establishment Means Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -3307,6 +3347,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Life Stage Value to the Graph
 
@@ -3315,6 +3356,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["lifeStage"]:
@@ -3324,7 +3366,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["lifeStage"].get_vocab()
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["lifeStage"])
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["lifeStage"])
 
         # Life Stage Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -3417,6 +3459,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Sex Value to the Graph
 
@@ -3425,6 +3468,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["sex"]:
@@ -3434,7 +3478,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["sex"].get_vocab()
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["sex"])
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["sex"])
 
         # Sex Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -3528,6 +3572,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Reproductive Condition Value to the Graph
 
@@ -3536,6 +3581,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["reproductiveCondition"]:
@@ -3545,7 +3591,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["reproductiveCondition"].get_vocab()
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["reproductiveCondition"])
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["reproductiveCondition"])
 
         # Reproductive Condition Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -3659,6 +3705,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_id_geometry_map: dict[str, str] | None,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Sampling Sequencing to the Graph
 
@@ -3675,6 +3722,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
                 id to default temporal entity rdf.
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["associatedSequences"]:
@@ -3707,7 +3755,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["sequencingMethod"].get_vocab()
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["sequencingMethod"])
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["sequencingMethod"])
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -3836,6 +3884,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         determined_by: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Threat Status Observation to the Graph
 
@@ -3854,6 +3903,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
                 id to default temporal entity as rdf.
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["threatStatus"]:
@@ -3874,7 +3924,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["threatStatusCheckProtocol"].get_vocab()
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(row["threatStatusCheckProtocol"])
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["threatStatusCheckProtocol"])
 
         # Threat Status Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -3930,6 +3980,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Threat Status Value to the Graph
 
@@ -3938,6 +3989,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["threatStatus"]:
@@ -3950,7 +4002,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["threatStatus"].get_vocab()
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset).get(value)
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(value)
 
         # Threat Status Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -3995,6 +4047,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         conservation_authority: str | None,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Conservation Authority Value to the Graph
 
@@ -4002,6 +4055,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri: URI to use for this node
             conservation_authority: conservationAuthority value from the CSV
             graph: Graph to add to
+            base_iri: Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -4017,7 +4071,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Retrieve vocab for field
             vocab = self.fields()["conservationAuthority"].get_vocab()
             # Retrieve term
-            term = vocab(graph=graph).get(conservation_authority)
+            term = vocab(graph=graph, base_iri=base_iri).get(conservation_authority)
             # Conservation Authority Value
             graph.add((uri, rdflib.RDF.value, term))
 
@@ -4154,6 +4208,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds organism quantity value to graph.
 
@@ -4163,6 +4218,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset this is a part of.
             row (frictionless.Row): Row to retrieve data from.
             graph (rdflib.Graph): Graph to be modified.
+            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
         # Extract values if any
         organism_qty = row["organismQuantity"]
@@ -4176,7 +4232,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         vocab = self.fields()["organismQuantityType"].get_vocab()
 
         # Get term or create on the fly
-        term = vocab(graph=graph, source=dataset).get(organism_qty_type)
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(organism_qty_type)
 
         # Add to graph
         graph.add((organism_qty_observation, rdflib.SOSA.hasResult, uri))
@@ -4246,6 +4302,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Sensitivity Category Value to the Graph
 
@@ -4254,6 +4311,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row: Row to retrieve data from
             dataset: Dataset this belongs to
             graph: Graph to add to
+            base_iri: Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -4261,7 +4319,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Retrieve vocab for field
         vocab = self.fields()["sensitivityCategory"].get_vocab()
-        vocab_instance = vocab(graph=graph, source=dataset)
+        vocab_instance = vocab(graph=graph, source=dataset, base_iri=base_iri)
 
         # Set the scope note to use if a new term is created on the fly.
         scope_note = f"Under the authority of {row['sensitivityAuthority']}"
@@ -4367,6 +4425,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_id_geometry_map: dict[str, str] | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds occurrence node to the graph.
 
@@ -4383,6 +4442,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_id_geometry_map: Map for default geometry for a given siteID.
             row: Raw data from the row.
             graph: Graph to be modified.
+            base_iri: Namespace used to construct IRIs
         """
         # Create geometry
         # Extract values
@@ -4428,7 +4488,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add feature type from vocab
         kingdom_vocab = self.fields()["kingdom"].get_vocab("KINGDOM_OCCURRENCE")
-        graph.add((uri, utils.namespaces.TERN.featureType, kingdom_vocab(graph=graph).get(row["kingdom"])))
+        graph.add(
+            (
+                uri,
+                utils.namespaces.TERN.featureType,
+                kingdom_vocab(graph=graph, base_iri=base_iri).get(row["kingdom"]),
+            )
+        )
 
         # Add geometry
         geometry_node = rdflib.BNode()
@@ -4474,7 +4540,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add procedure from vocab
         protocol_vocab = self.fields()["samplingProtocol"].get_vocab()
-        graph.add((uri, rdflib.SOSA.usedProcedure, protocol_vocab(graph=graph).get(row["samplingProtocol"])))
+        graph.add(
+            (
+                uri,
+                rdflib.SOSA.usedProcedure,
+                protocol_vocab(graph=graph, base_iri=base_iri).get(row["samplingProtocol"]),
+            )
+        )
 
         # Add location description if provided
         if locality := row["locality"]:

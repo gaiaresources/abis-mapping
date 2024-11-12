@@ -58,7 +58,7 @@ UNDETERMINED = utils.vocabs.Term(
 class Sex(utils.vocabs.FlexibleVocabulary):
     vocab_id = "SEX"
     definition = rdflib.Literal("A type of sex.")
-    base = utils.rdf.uri("bdr-cv/parameter/sex/")
+    base = "bdr-cv/parameter/sex/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e")
     broader = utils.rdf.uri("bdr-cv/parameter/sex", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
     default = None  # No default, ommitted if not provided
