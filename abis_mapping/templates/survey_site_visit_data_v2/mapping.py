@@ -354,16 +354,18 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         uri_survey = utils.iri_patterns.survey_iri(base_iri, row_survey_id)
 
         # URI for the Site Visit Plan
-        uri_site_visit_plan = utils.rdf.extend_uri_quoted(dataset, "visit", "plan", row_site_visit_id)
+        uri_site_visit_plan = utils.rdf.uri_quoted(
+            base_iri, "visit/plan/{site_visit_id}", site_visit_id=row_site_visit_id
+        )
 
         # URIs based on the siteIDSource
         row_site_id_source: str | None = row["siteIDSource"]
         if row_site_id_source:
-            uri_site_id_datatype = utils.rdf.extend_uri_quoted(dataset, "datatype", "siteVisitID", row_site_id_source)
-            uri_site_id_datatype_attribution = utils.rdf.extend_uri_quoted(
-                dataset, "attribution", row_site_id_source, "resourceProvider"
+            uri_site_id_datatype = utils.iri_patterns.datatype_iri("siteID", row_site_id_source)
+            uri_site_id_datatype_attribution = utils.rdf.uri(
+                f"attribution/{row_site_id_source}/resourceProvider", base_iri
             )
-            uri_site_id_datatype_agent = utils.rdf.extend_uri_quoted(dataset, "agent", row_site_id_source)
+            uri_site_id_datatype_agent = utils.iri_patterns.agent_iri(row_site_id_source)
         else:
             uri_site_id_datatype = None
             uri_site_id_datatype_attribution = None
@@ -376,7 +378,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             visit_org_agents = [
                 Agent(
                     row_value=visit_org,
-                    uri=utils.rdf.extend_uri(dataset, "agent", visit_org),
+                    uri=utils.iri_patterns.agent_iri(visit_org),
                 )
                 for visit_org in row_visit_orgs
             ]
@@ -390,7 +392,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             visit_observer_agents = [
                 Agent(
                     row_value=visit_observer,
-                    uri=utils.rdf.extend_uri(dataset, "agent", visit_observer),
+                    uri=utils.iri_patterns.agent_iri(visit_observer),
                 )
                 for visit_observer in row_visit_observers
             ]
@@ -400,14 +402,14 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Conditionally create Attribute and Value for targetTaxonomicScope
         row_target_taxonomic_scope: str | None = row["targetTaxonomicScope"]
         if row_target_taxonomic_scope:
-            uri_target_taxonomic_scope_attribute = utils.rdf.extend_uri(
-                dataset, "attribute", "targetTaxonomicScope", row_target_taxonomic_scope
+            uri_target_taxonomic_scope_attribute = utils.iri_patterns.attribute_iri(
+                base_iri, "targetTaxonomicScope", row_target_taxonomic_scope
             )
-            uri_target_taxonomic_scope_value = utils.rdf.extend_uri(
-                dataset, "value", "targetTaxonomicScope", row_target_taxonomic_scope
+            uri_target_taxonomic_scope_value = utils.iri_patterns.attribute_value_iri(
+                base_iri, "targetTaxonomicScope", row_target_taxonomic_scope
             )
-            uri_target_taxonomic_scope_collection = utils.rdf.extend_uri(
-                dataset, "collection", "targetTaxonomicScope", row_target_taxonomic_scope
+            uri_target_taxonomic_scope_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "SiteVisit", "targetTaxonomicScope", row_target_taxonomic_scope
             )
         else:
             uri_target_taxonomic_scope_attribute = None
@@ -419,12 +421,14 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_sampling_effort_unit: str | None = row["samplingEffortUnit"]
         if row_sampling_effort_value and row_sampling_effort_unit:
             row_sampling_effort = f"{row_sampling_effort_value} {row_sampling_effort_unit}"
-            uri_sampling_effort_attribute = utils.rdf.extend_uri(
-                dataset, "attribute", "samplingEffort", row_sampling_effort
+            uri_sampling_effort_attribute = utils.iri_patterns.attribute_iri(
+                base_iri, "samplingEffort", row_sampling_effort
             )
-            uri_sampling_effort_value = utils.rdf.extend_uri(dataset, "value", "samplingEffort", row_sampling_effort)
-            uri_sampling_effort_collection = utils.rdf.extend_uri(
-                dataset, "collection", "samplingEffort", row_sampling_effort
+            uri_sampling_effort_value = utils.iri_patterns.attribute_value_iri(
+                base_iri, "samplingEffort", row_sampling_effort
+            )
+            uri_sampling_effort_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "SiteVisit", "samplingEffort", row_sampling_effort
             )
         else:
             row_sampling_effort = None
