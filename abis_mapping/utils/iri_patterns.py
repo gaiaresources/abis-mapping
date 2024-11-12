@@ -291,3 +291,46 @@ def sampling_iri(
         The IRI for the tern:Sampling node.
     """
     return utils.rdf.uri(f"sampling/{sampling_type}/{provider_record_id}", namespace=base_iri)
+
+
+def plan_iri(
+    base_iri: rdflib.Namespace | None,
+    plan_type: Literal["survey", "visit"],
+    plan_type_id: str,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a prov:Plan node.
+
+    These are associated with a Survey or a Site Visit.
+
+    Args:
+        base_iri: The Namespace to construct the IRI from.
+        plan_type: Either "survey" or "visit"
+        plan_type_id: The id to put at the end of the IRI
+
+    Returns:
+        The IRI for the prov:Plan node.
+    """
+    return utils.rdf.uri_quoted(
+        base_iri,
+        "{plan_type}/plan/{plan_type_id}",
+        plan_type=plan_type,
+        plan_type_id=plan_type_id,
+    )
+
+
+def attribution_iri(
+    base_iri: rdflib.Namespace | None,
+    role: Literal["resourceProvider", "owner"],
+    source: str,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a prov:Attribution node.
+
+    Args:
+        base_iri: The Namespace to construct the IRI from.
+        role: Corresponds to the Object of the PROV:hadRole predicate on the prov:Attribution node.
+        source: Who the attribution is for, e.g. "providerRecordIDSource" value.
+
+    Returns:
+        The IRI for the prov:Attribution node.
+    """
+    return utils.rdf.uri(f"attribution/{source}/{role}", namespace=base_iri)

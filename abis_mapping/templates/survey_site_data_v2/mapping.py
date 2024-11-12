@@ -32,12 +32,12 @@ LOCATION_AUSTRALIA = utils.rdf.uri("/location/Australia")
 # Dataclasses used in mapping
 @dataclasses.dataclass
 class AttributeValue:
-    """Contains data items to enable producing attribute, value and sample collection nodes"""
+    """Contains data items to enable producing attribute, value and collection nodes"""
 
     raw: str
     attribute: rdflib.URIRef
     value: rdflib.URIRef
-    sample_collection: rdflib.URIRef
+    collection: rdflib.URIRef
 
 
 @dataclasses.dataclass
@@ -272,10 +272,11 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         site = utils.iri_patterns.site_iri(base_iri, site_id)
 
         # Conditionally create uris dependent on siteIDSource
-        if site_id_src := row["siteIDSource"]:
-            site_id_datatype = utils.rdf.uri(f"datatype/siteID/{site_id_src}", base_iri)
-            site_id_agent = utils.rdf.uri(f"agent/{site_id_src}", base_iri)
-            site_id_attribution = utils.rdf.uri(f"attribution/{site_id_src}/resourceProvider", base_iri)
+        site_id_src: str | None = row["siteIDSource"]
+        if site_id_src:
+            site_id_datatype = utils.iri_patterns.datatype_iri("siteID", site_id_src)
+            site_id_agent = utils.iri_patterns.agent_iri(site_id_src)
+            site_id_attribution = utils.iri_patterns.attribution_iri(base_iri, "resourceProvider", site_id_src)
         else:
             site_id_datatype = None
             site_id_agent = None
@@ -295,22 +296,21 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             related_site = None
 
         # Conditionally create uris dependent on dataGeneralizations
-        if data_generalizations := row["dataGeneralizations"]:
-            data_generalizations_attribute = utils.rdf.uri(
-                f"attribute/dataGeneralizations/{data_generalizations}",
-                base_iri,
+        data_generalizations: str | None = row["dataGeneralizations"]
+        if data_generalizations:
+            data_generalizations_attribute = utils.iri_patterns.attribute_iri(
+                base_iri, "dataGeneralizations", data_generalizations
             )
-            data_generalizations_value = utils.rdf.uri(
-                f"value/dataGeneralizations/{data_generalizations}",
-                base_iri,
+            data_generalizations_value = utils.iri_patterns.attribute_value_iri(
+                base_iri, "dataGeneralizations", data_generalizations
             )
-            data_generalizations_sample_collection = utils.rdf.extend_uri(
-                dataset, "SiteCollection", "dataGeneralizations", data_generalizations
+            data_generalizations_collection = utils.iri_patterns.attribute_collection_iri(
+                base_iri, "Site", "dataGeneralizations", data_generalizations
             )
         else:
             data_generalizations_attribute = None
             data_generalizations_value = None
-            data_generalizations_sample_collection = None
+            data_generalizations_collection = None
 
         # Create habitat attribute and value objects
         habitat_objects: list[AttributeValue] = []
@@ -319,9 +319,9 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 habitat_objects.append(
                     AttributeValue(
                         raw=habitat,
-                        attribute=utils.rdf.uri(f"attribute/habitat/{habitat}", base_iri),
-                        value=utils.rdf.uri(f"value/habitat/{habitat}", base_iri),
-                        sample_collection=utils.rdf.extend_uri(dataset, "SiteCollection", "habitat", habitat),
+                        attribute=utils.iri_patterns.attribute_iri(base_iri, "habitat", habitat),
+                        value=utils.iri_patterns.attribute_value_iri(base_iri, "habitat", habitat),
+                        collection=utils.iri_patterns.attribute_collection_iri(base_iri, "Site", "habitat", habitat),
                     )
                 )
 
@@ -376,9 +376,9 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 graph=graph,
             )
 
-            # Add habitat attribute Sample Collection
-            self.add_habitat_sample_collection(
-                uri=habitat_object.sample_collection,
+            # Add habitat attribute Collection
+            self.add_habitat_collection(
+                uri=habitat_object.collection,
                 raw_habitat_value=habitat_object.raw,
                 attribute=habitat_object.attribute,
                 site=site,
@@ -402,9 +402,9 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
-        # Add data generalizations attribute Sample Collection
-        self.add_data_generalizations_sample_collection(
-            uri=data_generalizations_sample_collection,
+        # Add data generalizations attribute Collection
+        self.add_data_generalizations_collection(
+            uri=data_generalizations_collection,
             raw_data_generalizations_value=data_generalizations,
             attribute=data_generalizations_attribute,
             site=site,
@@ -645,7 +645,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         term = vocab(graph=graph, source=dataset).get(raw)
         graph.add((uri, rdflib.RDF.value, term))
 
-    def add_habitat_sample_collection(
+    def add_habitat_collection(
         self,
         uri: rdflib.URIRef,
         raw_habitat_value: str,
@@ -654,10 +654,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
-        """Add a habitat attribute Sample Collection to the graph
+        """Add a habitat attribute Collection to the graph
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             raw_habitat_value: Habitat value from template.
             attribute: The uri for the attribute node.
             site: The uri for the site node.
@@ -732,7 +732,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add raw value
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["dataGeneralizations"])))
 
-    def add_data_generalizations_sample_collection(
+    def add_data_generalizations_collection(
         self,
         uri: rdflib.URIRef | None,
         raw_data_generalizations_value: str | None,
@@ -741,10 +741,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
-        """Add a Data Generalizations attribute Sample Collection to the graph
+        """Add a Data Generalizations attribute Collection to the graph
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             raw_data_generalizations_value: DataGeneralizations value from template.
             attribute: The uri for the attribute node.
             site: The uri for the site node.
