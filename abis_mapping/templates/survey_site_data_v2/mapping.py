@@ -276,7 +276,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         if site_id_src:
             site_id_datatype = utils.iri_patterns.datatype_iri("siteID", site_id_src)
             site_id_agent = utils.iri_patterns.agent_iri(site_id_src)
-            site_id_attribution = utils.rdf.uri(f"attribution/{site_id_src}/resourceProvider", base_iri)
+            site_id_attribution = utils.iri_patterns.attribution_iri(base_iri, "resourceProvider", site_id_src)
         else:
             site_id_datatype = None
             site_id_agent = None

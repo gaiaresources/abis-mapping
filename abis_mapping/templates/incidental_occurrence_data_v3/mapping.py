@@ -265,9 +265,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         provider_record_id_datatype = utils.iri_patterns.datatype_iri("recordID", provider_record_id_source)
         provider_record_id_agent = utils.iri_patterns.agent_iri(provider_record_id_source)
-        provider_record_id_attribution = utils.rdf.uri(
-            internal_id=f"attribution/{provider_record_id_source}/resourceProvider",
-            namespace=base_iri,
+        provider_record_id_attribution = utils.iri_patterns.attribution_iri(
+            base_iri, "resourceProvider", provider_record_id_source
         )
         provider_record_id_occurrence = utils.rdf.uri(f"occurrence/{provider_record_id}", base_iri)
         provider_record_id_biodiversity_record = utils.rdf.uri(f"biodiversityRecord/{provider_record_id}", base_iri)
@@ -338,7 +337,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if owner_record_id_source := row["ownerRecordIDSource"]:
             owner_record_id_datatype = utils.iri_patterns.datatype_iri("recordID", owner_record_id_source)
             owner_record_id_provider = utils.iri_patterns.agent_iri(owner_record_id_source)
-            owner_record_id_attribution = utils.rdf.uri(f"attribution/{owner_record_id_source}/owner", base_iri)
+            owner_record_id_attribution = utils.iri_patterns.attribution_iri(base_iri, "owner", owner_record_id_source)
         else:
             owner_record_id_datatype = None
             owner_record_id_provider = None

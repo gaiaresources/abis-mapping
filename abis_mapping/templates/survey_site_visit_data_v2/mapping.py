@@ -360,8 +360,8 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_site_id_source: str | None = row["siteIDSource"]
         if row_site_id_source:
             uri_site_id_datatype = utils.iri_patterns.datatype_iri("siteID", row_site_id_source)
-            uri_site_id_datatype_attribution = utils.rdf.uri(
-                f"attribution/{row_site_id_source}/resourceProvider", base_iri
+            uri_site_id_datatype_attribution = utils.iri_patterns.attribution_iri(
+                base_iri, "resourceProvider", row_site_id_source
             )
             uri_site_id_datatype_agent = utils.iri_patterns.agent_iri(row_site_id_source)
         else:
