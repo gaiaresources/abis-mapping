@@ -100,20 +100,22 @@ class Vocabulary(abc.ABC):
 
     def __init__(
         self,
+        *,
         graph: rdflib.Graph,
         source: Optional[rdflib.URIRef] = None,
+        base_iri: Optional[rdflib.Namespace] = None,
     ):
         """Vocabulary constructor.
 
         Args:
-            graph (rdflib.Graph): Graph to reference
-                within vocabulary
-            source (Optional[rdflib.URIRef]): Optional source URI to attribute
-                a new vocabulary term to.
+            graph: Graph to reference within vocabulary
+            source: Optional source URI to attribute a new vocabulary term to.
+            base_iri: Optional namespace to use when creating the IRI for a new vocabulary term.
         """
         # Assign instance variables
         self.graph = graph
         self.source: Optional[rdflib.URIRef] = source
+        self.base_iri = base_iri
 
         # Generate Dictionary Mapping from Terms
         self._mapping: dict[str | None, rdflib.URIRef | None] = {}
@@ -191,7 +193,7 @@ class FlexibleVocabulary(Vocabulary):
     Attributes:
         definition (rdflib.Literal): Definition to use when creating a new
             vocabulary term 'on the fly'.
-        base_ns (rdflib.URIRef): Base IRI namespace to use when creating a new
+        base (str): Base of the path to use when creating a new
             vocabulary term 'on the fly'.
         scheme (rdflib.URIRef): Scheme IRI to use when creating a new
             vocabulary term 'on the fly'.
@@ -207,7 +209,7 @@ class FlexibleVocabulary(Vocabulary):
 
     # Declare attributes applicable to a flexible vocab
     definition: rdflib.Literal
-    base: rdflib.URIRef
+    base: str
     scheme: rdflib.URIRef
     broader: Optional[rdflib.URIRef]
     scope_note: Optional[rdflib.Literal] = None
@@ -215,22 +217,20 @@ class FlexibleVocabulary(Vocabulary):
 
     def __init__(
         self,
+        *,
         graph: rdflib.Graph,
         source: Optional[rdflib.URIRef] = None,
+        base_iri: Optional[rdflib.Namespace] = None,
     ):
         """Flexible Vocabulary constructor.
 
         Args:
-            graph (rdflib.Graph): Graph to reference
-                within vocabulary
-            source (Optional[rdflib.URIRef]): Optional source URI to attribute
-                a new vocabulary term to.
+            graph: Graph to reference within vocabulary
+            source: Optional source URI to attribute a new vocabulary term to.
+            base_iri: Optional namespace to use when creating the IRI for a new vocabulary term.
         """
         # Call parent constructor
-        super().__init__(graph=graph, source=source)
-
-        # Set Instance Variables
-        self.base_ns = rdflib.Namespace(self.base)  # Cast to a Namespace
+        super().__init__(graph=graph, source=source, base_iri=base_iri)
 
         # Add Default mapping if Applicable
         if self.default:
@@ -291,7 +291,7 @@ class FlexibleVocabulary(Vocabulary):
             raise VocabularyError("Value not supplied for vocabulary with no default")
 
         # Create our Own Concept IRI
-        iri = rdf.uri(value, namespace=self.base_ns)
+        iri = rdf.uri(self.base + value, namespace=self.base_iri)
 
         # Add to Graph
         self.graph.add((iri, a, rdflib.SKOS.Concept))

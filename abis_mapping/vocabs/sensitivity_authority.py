@@ -12,7 +12,7 @@ from abis_mapping import utils
 class SensitivityAuthority(utils.vocabs.FlexibleVocabulary):
     vocab_id = "SENSITIVITY_AUTHORITY"
     definition = rdflib.Literal("A type of sensitivityAuthority.")
-    base = utils.rdf.uri("bdr-cv/attribute/sensitivityAuthority/")
+    base = "bdr-cv/attribute/sensitivityAuthority/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
     broader = utils.rdf.uri("bdr-cv/attribute/sensitivityAuthority", utils.namespaces.EXAMPLE)
     default = None  # No default, omitted if not provided

@@ -19,7 +19,7 @@ UNDEFINED = utils.vocabs.Term(
 class SequencingMethod(utils.vocabs.FlexibleVocabulary):
     vocab_id = "SEQUENCING_METHOD"
     definition = rdflib.Literal("A type of sequencingMethod.")
-    base = utils.rdf.uri("bdr-cv/methods/sequencingMethod/")
+    base = "bdr-cv/methods/sequencingMethod/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c")
     broader = utils.rdf.uri("bdr-cv/methods/sequencingMethod", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
     default = UNDEFINED

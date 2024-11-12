@@ -67,7 +67,7 @@ class SamplingEffortUnit(utils.vocabs.FlexibleVocabulary):
             "gives an indication of the effort applied to the specified protocol."
         ),
     )
-    base = utils.rdf.uri("bdr-cv/attribute/samplingEffortUnit/")
+    base = "bdr-cv/attribute/samplingEffortUnit/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
     broader = None
     default = None

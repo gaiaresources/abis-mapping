@@ -8,6 +8,7 @@ import pytest
 import rdflib
 
 # Local
+import abis_mapping.utils.namespaces
 import abis_mapping.utils.vocabs
 
 
@@ -76,7 +77,7 @@ def test_vocabs_flexible_vocab() -> None:
     class Vocab(abis_mapping.utils.vocabs.FlexibleVocabulary):
         vocab_id = "TEST_FLEX"
         definition = rdflib.Literal("definition")
-        base = rdflib.URIRef("base/")
+        base = "base/"
         scheme = rdflib.URIRef("scheme")
         broader = rdflib.URIRef("broader")
         default = None
@@ -97,7 +98,7 @@ def test_vocabs_flexible_vocab() -> None:
     graph = rdflib.Graph()
 
     # Initialize vocab
-    vocab = Vocab(graph=graph)
+    vocab = Vocab(graph=graph, base_iri=abis_mapping.utils.namespaces.EXAMPLE)
 
     # Assert Existing Values
     assert vocab.get("a") == rdflib.URIRef("A")
@@ -107,7 +108,7 @@ def test_vocabs_flexible_vocab() -> None:
 
     # Assert New Values
     vocab.source = rdflib.URIRef("D")
-    assert vocab.get("C") == rdflib.URIRef("base/C")
+    assert vocab.get("C") == rdflib.URIRef("http://example.com/base/C")
     assert (
         graph.serialize(format="ttl").strip()
         == textwrap.dedent(
@@ -116,7 +117,7 @@ def test_vocabs_flexible_vocab() -> None:
         @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
         @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-        <base/C> a skos:Concept ;
+        <http://example.com/base/C> a skos:Concept ;
             skos:broader <broader> ;
             skos:definition "definition" ;
             skos:inScheme <scheme> ;

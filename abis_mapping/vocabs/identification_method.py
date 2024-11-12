@@ -19,7 +19,7 @@ UNDEFINED = utils.vocabs.Term(
 class IdentificationMethod(utils.vocabs.FlexibleVocabulary):
     vocab_id = "IDENTIFICATION_METHOD"
     definition = rdflib.Literal("A type of identificationMethod.")
-    base = utils.rdf.uri("bdr-cv/methods/identificationMethod/")
+    base = "bdr-cv/methods/identificationMethod/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c")
     broader = utils.rdf.uri("bdr-cv/methods/identificationMethod", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
     default = UNDEFINED

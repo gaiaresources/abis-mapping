@@ -278,12 +278,12 @@ def test_geometry_to_rdf_literal() -> None:
         (
             "POINT (571666.4475041276 5539109.815175673)",
             "EPSG:26917",
-            f"<{vocabs.geodetic_datum.GeodeticDatum(rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> POINT (50 -80)",
+            f"<{vocabs.geodetic_datum.GeodeticDatum(graph=rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> POINT (50 -80)",
         ),
         (
             "LINESTRING (1 2, 3 4)",
             "WGS84",
-            f"<{vocabs.geodetic_datum.GeodeticDatum(rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> LINESTRING (2 1, 4 3)",
+            f"<{vocabs.geodetic_datum.GeodeticDatum(graph=rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> LINESTRING (2 1, 4 3)",
         ),
     ],
 )

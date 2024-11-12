@@ -230,7 +230,7 @@ SUBSPECIES = utils.vocabs.Term(
 class IdentificationQualifier(utils.vocabs.FlexibleVocabulary):
     vocab_id = "IDENTIFICATION_QUALIFIER"
     definition = rdflib.Literal("A type of identificationQualifier.")
-    base = utils.rdf.uri("bdr-cv/attribute/identificationQualifier/")
+    base = "bdr-cv/attribute/identificationQualifier/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
     broader = utils.rdf.uri(
         "bdr-cv/attribute/identificationQualifier", utils.namespaces.EXAMPLE
