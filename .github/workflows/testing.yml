@@ -17,12 +17,11 @@ jobs:
     steps:
       # Setup steps
       - uses: actions/checkout@v4
-      - name: Install Poetry
-        shell: bash
-        run: pipx install poetry==${{ env.POETRY_VERSION }} 
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install Poetry
+        run: pipx install poetry==${{ env.POETRY_VERSION }} --python=${{ env.PYTHON_VERSION }}
       # Do checks
       - run: poetry check
       - run: poetry check --lock
@@ -31,17 +30,19 @@ jobs:
       - name: Check resolving dependencies did not change the lock file
         run: |
           echo "Checking if locking dependencies has created any diff in the lock file..."
-          set +e
-          git diff --exit-code -- poetry.lock > /dev/null
-          if [ $? -ne 0 ] ; then
+          if 
+            git diff --exit-code -- poetry.lock 
+          then
+            echo "No changes to poetry.lock detected"
+          else
             echo "Changes to poetry.lock detected!"
             echo "You probably should run 'poetry lock --no-update' and add the result to your PR"
-            set -e
             exit 1
           fi
 
   model-docs:
     # Job to check that update to models' documentation is not required
+    needs: [poetry-lock]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -53,17 +54,18 @@ jobs:
       - name: Check model changes left undocumented
         run: |
           echo "Checking if model changes left undocumented"
-          set +e
-          git diff --exit-code -- docs/* > /dev/null
-          if [ $? -ne 0 ] ; then
+          if 
+            git diff --exit-code -- docs/* > /dev/null 
+          then
+            echo "No model changes detected"
+          else
             echo "There was an undocumented change in models detected"
             echo "Make necessary changes and commit them (e.g. run 'poe generate-model-docs')"
-            set -e
             exit 1
           fi
-    needs: [poetry-lock]
 
   format:
+    needs: [poetry-lock]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -72,9 +74,9 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           poetry-version: ${{ env.POETRY_VERSION }}
       - run: poetry run poe format-check
-    needs: [poetry-lock]
 
   lint:
+    needs: [poetry-lock]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -83,9 +85,9 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           poetry-version: ${{ env.POETRY_VERSION }}
       - run: poetry run poe lint
-    needs: [poetry-lock]
 
   mypy:
+    needs: [poetry-lock]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -94,9 +96,9 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           poetry-version: ${{ env.POETRY_VERSION }}
       - run: poetry run poe typecheck
-    needs: [poetry-lock]
 
   pytest:
+    needs: [poetry-lock]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -108,4 +110,3 @@ jobs:
           python-version: ${{ matrix.python-version }}
           poetry-version: ${{ env.POETRY_VERSION }}
       - run: poetry run poe test
-    needs: [poetry-lock]
