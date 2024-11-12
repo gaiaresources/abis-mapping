@@ -31,6 +31,7 @@ jobs:
       - uses: ./.github/actions/setup-python-and-dependencies
         with:
           python-version: "3.11"
+          poetry-version: "1.8.4"
 
       - name: Generate markdown
         run: poetry run poe generate-instructions
