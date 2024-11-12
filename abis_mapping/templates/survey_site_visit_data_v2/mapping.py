@@ -354,9 +354,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         uri_survey = utils.iri_patterns.survey_iri(base_iri, row_survey_id)
 
         # URI for the Site Visit Plan
-        uri_site_visit_plan = utils.rdf.uri_quoted(
-            base_iri, "visit/plan/{site_visit_id}", site_visit_id=row_site_visit_id
-        )
+        uri_site_visit_plan = utils.iri_patterns.plan_iri(base_iri, "visit", row_site_visit_id)
 
         # URIs based on the siteIDSource
         row_site_id_source: str | None = row["siteIDSource"]
