@@ -3,12 +3,15 @@ inputs:
   python-version:
     required: true
     description: Version of Python to use
+  poetry-version:
+    required: true
+    description: Version of poetry to use
 runs:
   using: composite
   steps:
     - name: Install Poetry
       shell: bash
-      run: pipx install poetry==1.8.4
+      run: pipx install poetry==${{ inputs.poetry-version }} 
 
     - uses: actions/setup-python@v5
       with:
