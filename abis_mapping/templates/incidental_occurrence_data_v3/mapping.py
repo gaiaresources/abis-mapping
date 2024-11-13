@@ -1130,6 +1130,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             row=row,
             graph=graph,
+            base_iri=base_iri,
         )
 
         # Add extra fields JSON
@@ -3686,6 +3687,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds occurrence node to the graph.
 
@@ -3698,6 +3700,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             dataset: The uri for the dateset node.
             row: Raw data from the row.
             graph: Graph to be modified.
+            base_iri: Optional mapping base IRI.
         """
         # Class
         graph.add((uri, a, utils.namespaces.DWC.Occurrence))
@@ -3718,7 +3721,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add feature type from vocab
         kingdom_vocab = self.fields()["kingdom"].get_vocab("KINGDOM_OCCURRENCE")
-        graph.add((uri, utils.namespaces.TERN.featureType, kingdom_vocab(graph=graph).get(row["kingdom"])))
+        kingdom_term = kingdom_vocab(graph=graph, base_iri=base_iri).get(row["kingdom"])
+        graph.add((uri, utils.namespaces.TERN.featureType, kingdom_term))
 
         # Create geometry
         geometry = models.spatial.Geometry(
@@ -3770,7 +3774,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add procedure from vocab
         protocol_vocab = self.fields()["samplingProtocol"].get_vocab()
-        graph.add((uri, rdflib.SOSA.usedProcedure, protocol_vocab(graph=graph).get(row["samplingProtocol"])))
+        protocol_term = protocol_vocab(graph=graph, base_iri=base_iri).get(row["samplingProtocol"])
+        graph.add((uri, rdflib.SOSA.usedProcedure, protocol_term))
 
         # Add location description if provided
         if locality := row["locality"]:
