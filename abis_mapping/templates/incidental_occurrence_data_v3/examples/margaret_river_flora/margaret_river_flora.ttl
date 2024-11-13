@@ -301,6 +301,19 @@
     sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
+<http://createme.org/observation/organismQuantity/14> a tern:Observation ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "organismQuantity-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <http://createme.org/occurrence/14> ;
+    sosa:hasResult <http://createme.org/result/organismQuantity/5> ;
+    sosa:hasSimpleResult "5 individuals" ;
+    sosa:observedProperty dwc:organismQuantity ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
+
 <http://createme.org/observation/organismRemarks/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
@@ -1109,6 +1122,12 @@
         tern:Value ;
     rdfs:label "occurrenceStatus = present" ;
     rdf:value <http://example.com/occurrenceStatus/present> .
+
+<http://createme.org/result/organismQuantity/5> a tern:Float,
+        tern:Value ;
+    rdfs:label "organism-count" ;
+    rdf:value "5"^^xsd:float ;
+    tern:unit <http://rs.gbif.org/vocabulary/gbif/quantityType/individuals> .
 
 <http://createme.org/result/organismRemarks/Dried-out-leaf-tips> a tern:Text,
         tern:Value ;
