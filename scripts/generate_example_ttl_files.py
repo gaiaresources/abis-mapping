@@ -17,7 +17,7 @@ import rdflib
 
 # local
 import abis_mapping
-import abis_mapping.types.temporal
+import abis_mapping.models.temporal
 import tests.templates.conftest
 
 # Global vars
@@ -60,9 +60,9 @@ def main() -> None:
     # 2. second override:
     # Mock "Date.today()" function to always give the same result
     unittest.mock.patch.object(
-        abis_mapping.types.temporal.Date,
+        abis_mapping.models.temporal.Date,
         "today",
-        new=lambda: abis_mapping.types.temporal.Date(2020, 1, 1),
+        new=lambda: abis_mapping.models.temporal.Date(2020, 1, 1),
     ).start()
 
     # Finished overrides.

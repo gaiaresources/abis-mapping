@@ -11,7 +11,7 @@ import rdflib
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import utils
 
 # Typing
@@ -514,7 +514,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             return
 
         # Construct geometry
-        geometry = types.spatial.Geometry(
+        geometry = models.spatial.Geometry(
             raw=sc_geometry,
             datum=datum,
         )
@@ -547,8 +547,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph (rdflib.Graph): Graph to be modified
         """
         # Determine if any dates are present in the row
-        start_date: types.temporal.Timestamp = row["surveyStart"]
-        end_date: types.temporal.Timestamp = row["surveyEnd"]
+        start_date: models.temporal.Timestamp = row["surveyStart"]
+        end_date: models.temporal.Timestamp = row["surveyEnd"]
         if not start_date and not end_date:
             return
 

@@ -8,7 +8,7 @@ import rdflib
 from abis_mapping import base
 from abis_mapping import utils
 from abis_mapping import plugins
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import vocabs
 
 # Typing
@@ -1192,7 +1192,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
         """
         # Get Timestamp
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
+        date_identified: models.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -1261,7 +1261,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
+        date_identified: models.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -1757,13 +1757,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Create geometry
-        geometry = types.spatial.Geometry(
-            raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+        geometry = models.spatial.Geometry(
+            raw=models.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
             datum=row["geodeticDatum"],
         )
 
         # Get Timestamp
-        timestamp: types.temporal.Timestamp = row["preparedDate"] or row["eventDateStart"]
+        timestamp: models.temporal.Timestamp = row["preparedDate"] or row["eventDateStart"]
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
@@ -2163,7 +2163,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: models.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2239,7 +2239,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: models.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2555,7 +2555,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: models.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2743,7 +2743,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: models.temporal.Timestamp = row["eventDateStart"]
 
         # Retrieve Vocab or Create on the Fly
         vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
@@ -2832,7 +2832,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: models.temporal.Timestamp = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -2925,7 +2925,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: models.temporal.Timestamp = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3019,7 +3019,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: models.temporal.Timestamp = row["eventDateStart"]
 
         # Choose Feature of Interest
         # The Feature of Interest is the Specimen Sample if it is determined
@@ -3110,7 +3110,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Get Timestamp
-        date_identified: types.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
+        date_identified: models.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
 
         # Accepted Name Usage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -3184,15 +3184,15 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
         """
         # Extract values from row
-        event_date: types.temporal.Timestamp = row["eventDateStart"]
+        event_date: models.temporal.Timestamp = row["eventDateStart"]
 
         # Check Existence
         if not row["associatedSequences"]:
             return
 
         # Create geometry
-        geometry = types.spatial.Geometry(
-            raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+        geometry = models.spatial.Geometry(
+            raw=models.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
             datum=row["geodeticDatum"],
         )
 
@@ -3343,7 +3343,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Get Timestamp
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDateStart` (fallback)
-        date_determined: types.temporal.Timestamp = (
+        date_determined: models.temporal.Timestamp = (
             row["threatStatusDateDetermined"] or row["dateIdentified"] or row["preparedDate"] or row["eventDateStart"]
         )
 
@@ -3721,8 +3721,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.featureType, kingdom_vocab(graph=graph).get(row["kingdom"])))
 
         # Create geometry
-        geometry = types.spatial.Geometry(
-            raw=types.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
+        geometry = models.spatial.Geometry(
+            raw=models.spatial.LatLong(row["decimalLatitude"], row["decimalLongitude"]),
             datum=row["geodeticDatum"],
         )
 
@@ -3750,8 +3750,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add temporal entity
-        event_date_start: types.temporal.Timestamp | None = row["eventDateStart"]
-        event_date_end: types.temporal.Timestamp | None = row["eventDateEnd"]
+        event_date_start: models.temporal.Timestamp | None = row["eventDateStart"]
+        event_date_end: models.temporal.Timestamp | None = row["eventDateEnd"]
         # Check any event dates provided
         if event_date_start is not None or event_date_end is not None:
             temporal_entity = rdflib.BNode()

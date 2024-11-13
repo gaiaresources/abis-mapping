@@ -10,7 +10,7 @@ import rdflib
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import utils
 
 # Typing
@@ -172,8 +172,8 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             for row in r.row_stream:
                 # Extract values and
                 # Determine if any dates are present in the row
-                start_date: types.temporal.Timestamp = row["siteVisitStart"]
-                end_date: types.temporal.Timestamp = row["siteVisitEnd"]
+                start_date: models.temporal.Timestamp = row["siteVisitStart"]
+                end_date: models.temporal.Timestamp = row["siteVisitEnd"]
                 site_visit_id: str | None = row["siteVisitID"]
 
                 # Check for siteVisitID, even though siteVisitID is a mandatory field, it can be missing here
@@ -203,8 +203,8 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
     def add_temporal_coverage_bnode(
         self,
         graph: rdflib.Graph,
-        start_date: types.temporal.Timestamp | None = None,
-        end_date: types.temporal.Timestamp | None = None,
+        start_date: models.temporal.Timestamp | None = None,
+        end_date: models.temporal.Timestamp | None = None,
     ) -> None:
         """Creates and adds to graph, temporal coverage blank node.
 
@@ -578,8 +578,8 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.TemporalEntity))
-        row_site_visit_start: types.temporal.Timestamp | None = row["siteVisitStart"]
-        row_site_visit_end: types.temporal.Timestamp | None = row["siteVisitEnd"]
+        row_site_visit_start: models.temporal.Timestamp | None = row["siteVisitStart"]
+        row_site_visit_end: models.temporal.Timestamp | None = row["siteVisitEnd"]
         if row_site_visit_start:
             start_instant = rdflib.BNode()
             graph.add((start_instant, a, rdflib.TIME.Instant))

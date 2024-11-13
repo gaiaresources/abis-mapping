@@ -11,7 +11,7 @@ import pytest_mock
 
 # Local
 from docs import tables
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import plugins
 
 # Typing
@@ -181,7 +181,7 @@ def test_field_table_row(field: dict[str, Any], expected: dict[str, Any]) -> Non
         expected (dict[str, Any]): Expected dictionary.
     """
     # Create field from input
-    f = types.schema.Field.model_validate(field)
+    f = models.schema.Field.model_validate(field)
 
     # Create field table row
     ftr = tables.fields.FieldTableRow(field=f, checklist=None)

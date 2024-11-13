@@ -13,8 +13,7 @@ import pathlib
 
 # Local
 from abis_mapping import base
-from abis_mapping import templates
-from abis_mapping import types
+from abis_mapping import models
 import abis_mapping.templates.survey_occurrence_data.mapping
 from tests import conftest
 
@@ -163,7 +162,7 @@ class TestDefaultMap:
         all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in scenario.raws]
 
         # Get mapper
-        mapper = templates.survey_occurrence_data.mapping.SurveyOccurrenceMapper
+        mapper = abis_mapping.templates.survey_occurrence_data.mapping.SurveyOccurrenceMapper
         assert mapper is not None
 
         # Modify schema to only fields required for test
@@ -217,7 +216,7 @@ class TestDefaultMap:
             csv_data = output.getvalue().encode("utf-8")
 
         # Get mapper
-        mapper = templates.survey_occurrence_data.mapping.SurveyOccurrenceMapper
+        mapper = abis_mapping.templates.survey_occurrence_data.mapping.SurveyOccurrenceMapper
         assert mapper is not None
 
         expected = pathlib.Path("abis_mapping/templates/survey_occurrence_data/examples/organism_qty.ttl").read_text()
@@ -229,8 +228,8 @@ class TestDefaultMap:
 
         # Make site id geo default map using values extracted previously
         val = str(
-            types.spatial.Geometry(
-                raw=types.spatial.LatLong(s_geo_vals["decimalLatitude"], s_geo_vals["decimalLongitude"]),
+            models.spatial.Geometry(
+                raw=models.spatial.LatLong(s_geo_vals["decimalLatitude"], s_geo_vals["decimalLongitude"]),
                 datum=s_geo_vals["geodeticDatum"],
             ).to_rdf_literal()
         )

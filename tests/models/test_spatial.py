@@ -11,7 +11,7 @@ import rdflib
 
 # Local
 from abis_mapping import settings
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import utils
 from abis_mapping import vocabs
 
@@ -22,7 +22,7 @@ from typing import Type, Callable, Iterator
 def test_geometry_init_wkt_string_valid() -> None:
     """Tests the creation of a Geometry object from a WKT string."""
     # Create geometry
-    geometry = types.spatial.Geometry(
+    geometry = models.spatial.Geometry(
         raw="POINT(1 1)",
         datum="WGS84",
     )
@@ -37,7 +37,7 @@ def test_geometry_init_shapely_geometry() -> None:
     s_geom = shapely.Polygon(((0, 0), (0, 1), (1, 1), (1, 0), (0, 0)))
 
     # Create geometry
-    geometry = types.spatial.Geometry(raw=s_geom, datum="WGS84")
+    geometry = models.spatial.Geometry(raw=s_geom, datum="WGS84")
 
     # Assert geometry created
     assert geometry is not None
@@ -46,10 +46,10 @@ def test_geometry_init_shapely_geometry() -> None:
 def test_geometry_init_latlong() -> None:
     """Tests the creation of a Geometry object from a LatLong."""
     # Create latlong
-    lat_long = types.spatial.LatLong(0, 0)
+    lat_long = models.spatial.LatLong(0, 0)
 
     # Create geometry
-    geometry = types.spatial.Geometry(
+    geometry = models.spatial.Geometry(
         raw=lat_long,
         datum="WGS84",
     )
@@ -61,13 +61,13 @@ def test_geometry_init_latlong() -> None:
 def test_geometry_init_type_invalid() -> None:
     """Tests that Geometry object raises TypeError on invalid types."""
     with pytest.raises(TypeError):
-        types.spatial.Geometry(raw=123, datum="WGS84")
+        models.spatial.Geometry(raw=123, datum="WGS84")
 
 
 def test_geometry_init_wkt_string_invalid() -> None:
     """Tests that Geometry object raises error on invalid WKT string."""
-    with pytest.raises(types.spatial.GeometryError):
-        types.spatial.Geometry(
+    with pytest.raises(models.spatial.GeometryError):
+        models.spatial.Geometry(
             raw="not wkt",
             datum="WGS84",
         )
@@ -75,8 +75,8 @@ def test_geometry_init_wkt_string_invalid() -> None:
 
 def test_geometry_init_datum_invalid() -> None:
     """Tests that Geometry raises error on invalid datum."""
-    with pytest.raises(types.spatial.GeometryError):
-        types.spatial.Geometry(raw="POINT(0 0)", datum="NOTADATUM000")
+    with pytest.raises(models.spatial.GeometryError):
+        models.spatial.Geometry(raw="POINT(0 0)", datum="NOTADATUM000")
 
 
 @pytest.mark.parametrize(
@@ -89,7 +89,7 @@ def test_geometry_init_datum_invalid() -> None:
 )
 def test_geometry_original_datum_name(datum_in: str, datum_out: str) -> None:
     """Tests the original_datum_name property."""
-    geometry = types.spatial.Geometry(
+    geometry = models.spatial.Geometry(
         raw="POINT(0 0)",
         datum=datum_in,
     )
@@ -106,7 +106,7 @@ def test_geometry_original_datum_name(datum_in: str, datum_out: str) -> None:
 def test_geometry_original_datum_uri(datum: str, uri: str) -> None:
     """Tests the original_datum_uri property."""
     # Create geometry
-    geometry = types.spatial.Geometry(
+    geometry = models.spatial.Geometry(
         raw="POINT(0 0)",
         datum=datum,
     )
@@ -121,7 +121,7 @@ def test_geometry_original_datum_uri(datum: str, uri: str) -> None:
 def test_geometry_transformer_datum_uri() -> None:
     """Tests the transformer_datum_uri property."""
     # Create geometry
-    geometry = types.spatial.Geometry(
+    geometry = models.spatial.Geometry(
         raw="POINT(0 0)",
         datum="AGD66",
     )
@@ -183,7 +183,7 @@ def test_geometry_transformer_datum_uri_invalid(temp_default_crs: Callable[[str]
             default crs temporarily
     """
     # Create geometry
-    geometry = types.spatial.Geometry(
+    geometry = models.spatial.Geometry(
         raw="POINT(0 0)",
         datum="OSGB36",
     )
@@ -192,7 +192,7 @@ def test_geometry_transformer_datum_uri_invalid(temp_default_crs: Callable[[str]
     temp_default_crs("NOTADATUM")
 
     # Should raise exception on invalid CRS not in fixed datum vocabulary
-    with pytest.raises(types.spatial.GeometryError, match=r"NOTADATUM .+ GEODETIC_DATUM") as exc:
+    with pytest.raises(models.spatial.GeometryError, match=r"NOTADATUM .+ GEODETIC_DATUM") as exc:
         _ = geometry.transformer_datum_uri
 
     # Should have been raised from VocabularyError
@@ -202,13 +202,13 @@ def test_geometry_transformer_datum_uri_invalid(temp_default_crs: Callable[[str]
 def test_geometry_original_datum_uri_invalid() -> None:
     """Tests the transformer_datum_uri with unrecognised default crs."""
     # Create geometry
-    geometry = types.spatial.Geometry(
+    geometry = models.spatial.Geometry(
         raw="POINT(0 0)",
         datum="OSGB36",
     )
 
     # Should raise exception on invalid CRS not in fixed datum vocabulary
-    with pytest.raises(types.spatial.GeometryError, match=r"OSGB36 .+ GEODETIC_DATUM"):
+    with pytest.raises(models.spatial.GeometryError, match=r"OSGB36 .+ GEODETIC_DATUM"):
         _ = geometry.original_datum_uri
 
 
@@ -234,7 +234,7 @@ def test_geometry_from_geosparql_wkt_literal_valid(
 ) -> None:
     """Tests the geometry from_geosparql_wkt_literal method."""
     # Create geometry
-    geometry = types.spatial.Geometry.from_geosparql_wkt_literal(literal_in)
+    geometry = models.spatial.Geometry.from_geosparql_wkt_literal(literal_in)
 
     # Assert
     assert geometry.original_datum_name == expected_name
@@ -244,8 +244,8 @@ def test_geometry_from_geosparql_wkt_literal_valid(
 @pytest.mark.parametrize(
     "literal_in, expected_error",
     [
-        ("<http://www.opengis.net/def/crs/EPSG/0/NOTADATUM> POINT(0 0)", types.spatial.GeometryError),
-        ("<http://www.opengis.net/def/crs/EPSG/0/7844> NOTAGEOMETRY(0 0)", types.spatial.GeometryError),
+        ("<http://www.opengis.net/def/crs/EPSG/0/NOTADATUM> POINT(0 0)", models.spatial.GeometryError),
+        ("<http://www.opengis.net/def/crs/EPSG/0/7844> NOTAGEOMETRY(0 0)", models.spatial.GeometryError),
     ],
 )
 def test_geometry_from_geosparql_wkt_literal_invalid(
@@ -254,13 +254,13 @@ def test_geometry_from_geosparql_wkt_literal_invalid(
 ) -> None:
     """Tests the geometry from_geosparql_wkt_literal method."""
     with pytest.raises(expected_error):
-        types.spatial.Geometry.from_geosparql_wkt_literal(literal_in)
+        models.spatial.Geometry.from_geosparql_wkt_literal(literal_in)
 
 
 def test_geometry_to_rdf_literal() -> None:
     """Tests the Geometry to_rdf_literal method."""
     # Create geometry
-    geometry = types.spatial.Geometry(raw=types.spatial.LatLong(0, 0), datum="GDA2020")
+    geometry = models.spatial.Geometry(raw=models.spatial.LatLong(0, 0), datum="GDA2020")
 
     # Expected output
     expected = rdflib.Literal(
@@ -290,7 +290,7 @@ def test_geometry_to_rdf_literal() -> None:
 def test_geometry_to_tranformed_crs_rdf_literal(raw: str, datum: str, expected_str: str) -> None:
     """Tests the Geometry to_transformed_crs_rdf_literal method."""
     # Create geometry
-    geometry = types.spatial.Geometry(
+    geometry = models.spatial.Geometry(
         raw=raw,
         datum=datum,
     )
@@ -327,7 +327,7 @@ def test_swap_coordinates(geometry: shapely.Geometry, expected: shapely.Geometry
     original = copy.deepcopy(geometry)
 
     # Invoke and assert
-    assert types.spatial._swap_coordinates(geometry) == expected
+    assert models.spatial._swap_coordinates(geometry) == expected
 
     # Ensure no changing in place
     assert geometry == original
@@ -339,5 +339,5 @@ def test_swap_coordinates_3d() -> None:
     geometry = shapely.LineString([(2, 3, 4), (5, 6, 7)])
 
     # Should raise GeometryError
-    with pytest.raises(types.spatial.GeometryError):
-        types.spatial._swap_coordinates(geometry)
+    with pytest.raises(models.spatial.GeometryError):
+        models.spatial._swap_coordinates(geometry)

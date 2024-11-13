@@ -13,7 +13,7 @@ import shapely.geometry
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
-from abis_mapping import types
+from abis_mapping import models
 from abis_mapping import utils
 from abis_mapping import vocabs
 
@@ -165,7 +165,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     if footprint_wkt is not None:
                         # Create string and add to map for site id
                         result[site_id] = str(
-                            types.spatial.Geometry(
+                            models.spatial.Geometry(
                                 raw=footprint_wkt.centroid,
                                 datum=datum,
                             ).to_rdf_literal()
@@ -176,12 +176,12 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     if longitude is not None and latitude is not None:
                         # Create string and add to map for site id
                         result[site_id] = str(
-                            types.spatial.Geometry(
+                            models.spatial.Geometry(
                                 raw=shapely.Point([float(longitude), float(latitude)]),
                                 datum=datum,
                             ).to_rdf_literal()
                         )
-                except types.spatial.GeometryError:
+                except models.spatial.GeometryError:
                     continue
 
             return result
@@ -801,7 +801,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             return
 
         # Construct geometry
-        geometry = types.spatial.Geometry(
+        geometry = models.spatial.Geometry(
             raw=footprint_wkt,
             datum=geodetic_datum,
         )
@@ -852,8 +852,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             return
 
         # Construct geometry
-        geometry = types.spatial.Geometry(
-            raw=types.spatial.LatLong(decimal_latitude, decimal_longitude),
+        geometry = models.spatial.Geometry(
+            raw=models.spatial.LatLong(decimal_latitude, decimal_longitude),
             datum=geodetic_datum,
         )
 
