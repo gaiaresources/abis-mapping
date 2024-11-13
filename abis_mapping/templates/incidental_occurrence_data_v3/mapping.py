@@ -1,5 +1,8 @@
 """Mapper implementation for the incidental occurrence data v3 template."""
 
+# Standard library
+import decimal
+
 # Third-Party
 import frictionless
 import rdflib
@@ -132,6 +135,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["threatStatus", "conservationAuthority"],
+                    ),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=["organismQuantity", "organismQuantityType"],
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["catalogNumber", "catalogNumberSource"],
@@ -287,6 +293,12 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
         organism_remarks_value = utils.iri_patterns.observation_value_iri(
             base_iri, "organismRemarks", row["organismRemarks"]
+        )
+        organism_quantity_observation = utils.iri_patterns.observation_iri(
+            base_iri, "organismQuantity", provider_record_id
+        )
+        organism_quantity_value = utils.iri_patterns.observation_value_iri(
+            base_iri, "organismQuantity", row["organismQuantity"]
         )
         occurrence_status_observation = utils.iri_patterns.observation_iri(
             base_iri, "occurrenceStatus", provider_record_id
@@ -795,6 +807,25 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=organism_remarks_value,
             row=row,
             graph=graph,
+        )
+
+        # Add organism quantity observation
+        self.add_organism_quantity_observation(
+            uri=organism_quantity_observation,
+            provider_record_id_occurrence=provider_record_id_occurrence,
+            dataset=dataset,
+            row=row,
+            graph=graph,
+        )
+
+        # Add organism quantity value
+        self.add_organism_quantity_value(
+            uri=organism_quantity_value,
+            organism_qty_observation=organism_quantity_observation,
+            dataset=dataset,
+            row=row,
+            graph=graph,
+            base_iri=base_iri,
         )
 
         # Add Habitat Attribute
@@ -2288,6 +2319,111 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("organism-remarks")))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["organismRemarks"])))
+
+    def add_organism_quantity_observation(
+        self,
+        uri: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds observation organism quantity to the graph.
+
+        Args:
+            uri: URI to use for this node.
+            dataset: Dataset which data belongs.
+            provider_record_id_occurrence: Occurrence associated with this node
+            row: Row to retrieve data from.
+            graph: Graph to be modified.
+        """
+        # Extract values
+        event_date: models.temporal.Timestamp = row["eventDateStart"]
+        organism_qty: decimal.Decimal | None = row["organismQuantity"]
+        organism_qty_type: str | None = row["organismQuantityType"]
+
+        # Check if organism quantity values were provided
+        if organism_qty is None or not organism_qty_type:
+            return
+
+        # Attach node to sample field and dataset
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.Observation))
+        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("organismQuantity-observation")))
+        graph.add((uri, rdflib.SOSA.observedProperty, utils.namespaces.DWC.organismQuantity))
+
+        temporal_entity = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((temporal_entity, a, rdflib.TIME.Instant))
+        graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
+        # Add comment to temporal entity
+        graph.add(
+            (
+                temporal_entity,
+                rdflib.RDFS.comment,
+                rdflib.Literal("Date unknown, template eventDateStart used as proxy"),
+            )
+        )
+
+        # Add Human observation as proxy for observation method
+        human_observation = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157")
+        graph.add((uri, rdflib.SOSA.usedProcedure, human_observation))
+
+        # Add organism quantity and type values
+        graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(f"{organism_qty} {organism_qty_type}")))
+
+        # Add method comment to node
+        graph.add(
+            (
+                uri,
+                rdflib.RDFS.comment,
+                rdflib.Literal("Observation method unknown, 'human observation' used as proxy"),
+            )
+        )
+
+    def add_organism_quantity_value(
+        self,
+        uri: rdflib.URIRef,
+        organism_qty_observation: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+        base_iri: rdflib.Namespace | None,
+    ) -> None:
+        """Adds organism quantity value to graph.
+
+        Args:
+            uri: URI to use for this node.
+            organism_qty_observation: Observation URI.
+            dataset: Dataset this is a part of.
+            row: Row to retrieve data from.
+            graph: Graph to be modified.
+            base_iri: Namespace used to construct IRIs
+        """
+        # Extract values if any
+        organism_qty: decimal.Decimal | None = row["organismQuantity"]
+        organism_qty_type: str | None = row["organismQuantityType"]
+
+        # Check for values
+        if organism_qty is None or not organism_qty_type:
+            return
+
+        # Retrieve vocab for field
+        vocab = self.fields()["organismQuantityType"].get_vocab()
+
+        # Get term or create on the fly
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(organism_qty_type)
+
+        # Add to graph
+        graph.add((organism_qty_observation, rdflib.SOSA.hasResult, uri))
+        graph.add((uri, a, utils.namespaces.TERN.Value))
+        graph.add((uri, a, utils.namespaces.TERN.Float))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("organism-count")))
+        graph.add((uri, utils.namespaces.TERN.unit, term))
+        graph.add((uri, rdflib.RDF.value, rdflib.Literal(organism_qty, datatype=rdflib.XSD.float)))
 
     def add_habitat_attribute(
         self,

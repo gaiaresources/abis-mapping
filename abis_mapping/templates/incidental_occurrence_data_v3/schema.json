@@ -283,7 +283,10 @@
       "url": "https://dwc.tdwg.org/list/#dwc_organismQuantityType",
       "constraints": {
         "required": false
-      }
+      },
+      "vocabularies": [
+        "ORGANISM_QUANTITY_TYPE"
+      ]
     },
     {
       "name": "lifeStage",
