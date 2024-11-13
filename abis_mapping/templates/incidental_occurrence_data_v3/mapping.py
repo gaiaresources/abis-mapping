@@ -690,7 +690,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             provider=provider_identified,
             provider_record_id_occurrence=provider_record_id_occurrence,
-            sample_specimen=sample_specimen,
             scientific_name=text_scientific_name,
             graph=graph,
             base_iri=base_iri,
@@ -1039,8 +1038,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri=threat_status_observation,
             row=row,
             dataset=dataset,
-            accepted_name_usage=accepted_name_usage_value,
-            scientific_name=text_scientific_name,
+            provider_record_id_occurrence=provider_record_id_occurrence,
             threat_status_value=threat_status_value,
             determined_by=provider_determined_by,
             graph=graph,
@@ -1170,7 +1168,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         provider: rdflib.URIRef,
         provider_record_id_occurrence: rdflib.URIRef,
-        sample_specimen: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace | None,
@@ -1184,8 +1181,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             provider (rdflib.URIRef): Provider associated with this node
             provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
-            sample_specimen (rdflib.URIRef): Sample Specimen associated with
-                this node
             scientific_name (rdflib.URIRef): Scientific Name associated with
                 this node
             graph (rdflib.Graph): Graph to add to
@@ -1193,11 +1188,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         """
         # Get Timestamp
         date_identified: models.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
-
-        # Choose Feature of Interest
-        # The Feature of Interest is the Specimen Sample if it is determined
-        # that this row has a specimen, otherwise it is Field Sample
-        foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve vocab for field
         vocab = self.fields()["identificationMethod"].get_vocab()
@@ -1209,7 +1199,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("scientificName-observation")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, scientific_name))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["scientificName"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
@@ -3308,8 +3298,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        accepted_name_usage: rdflib.URIRef,
-        scientific_name: rdflib.URIRef,
+        provider_record_id_occurrence: rdflib.URIRef,
         threat_status_value: rdflib.URIRef,
         determined_by: rdflib.URIRef,
         graph: rdflib.Graph,
@@ -3321,10 +3310,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            accepted_name_usage (rdflib.URIRef): Accepted Name Usage associated
-                with this node
-            scientific_name (rdflib.URIRef): Scientific Name associated with
-                this node
+            provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this node
             threat_status_value (rdflib.URIRef): Threat Status Value associated
                 with this node
             determined_by (rdflib.URIRef): Determined By Provider associated
@@ -3335,11 +3321,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Check Existence
         if not row["threatStatus"]:
             return
-
-        # Choose Feature of Interest
-        # Feature of Interest is the Accepted Name Usage Value if it exists,
-        # otherwise it is the Scientific Name Text
-        foi = accepted_name_usage if row["acceptedNameUsage"] else scientific_name
 
         # Get Timestamp
         # Prefer `threatStatusDateDetermined` > `dateIdentified` > `eventDateStart` (fallback)
@@ -3357,7 +3338,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("threatStatus-observation")))
-        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
+        graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, threat_status_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["threatStatus"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
