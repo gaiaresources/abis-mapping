@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "Checking if locking dependencies has created any diff in the lock file..."
           if 
-            git diff --exit-code -- poetry.lock 
+            git diff --exit-code -- poetry.lock
           then
             echo "No changes to poetry.lock detected"
           else
