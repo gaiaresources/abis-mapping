@@ -26,7 +26,6 @@ a = rdflib.RDF.type
 HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99")
 CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri("concept/data-generalizations", utils.namespaces.EXAMPLE)
 DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/resourceProvider")
-LOCATION_AUSTRALIA = utils.rdf.uri("/location/Australia")
 
 
 # Dataclasses used in mapping
@@ -502,9 +501,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add site description if available
         if site_description:
             graph.add((uri, rdflib.SDO.description, rdflib.Literal(site_description)))
-
-        # Add sample of
-        graph.add((uri, rdflib.SOSA.isSampleOf, LOCATION_AUSTRALIA))
 
         # Add locality as location description
         if locality:
