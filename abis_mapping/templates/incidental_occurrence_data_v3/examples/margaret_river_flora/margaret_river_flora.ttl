@@ -385,7 +385,7 @@
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/13> ;
+    sosa:hasFeatureOfInterest <http://createme.org/occurrence/13> ;
     sosa:hasResult <http://createme.org/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
@@ -1075,7 +1075,7 @@
             rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/WA-BIO> ;
-    sosa:hasFeatureOfInterest <http://createme.org/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> ;
+    sosa:hasFeatureOfInterest <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <http://createme.org/result/threatStatus/VU> ;
     sosa:hasSimpleResult "VU" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6> ;
@@ -1087,7 +1087,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
-    sosa:hasFeatureOfInterest <http://createme.org/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> ;
+    sosa:hasFeatureOfInterest <http://createme.org/occurrence/ABC123> ;
     sosa:hasResult <http://createme.org/result/threatStatus/new-threat-status> ;
     sosa:hasSimpleResult "new threat status" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6> ;
@@ -1345,11 +1345,28 @@
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/14> ;
+    sosa:hasFeatureOfInterest <http://createme.org/occurrence/14> ;
     sosa:hasResult <http://createme.org/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
+
+<http://createme.org/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "acceptedNameUsage-value" ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
+    rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
+    tern:featureType <http://example.com/concept/acceptedNameUsage> .
+
+<http://createme.org/sample/specimen/13> a tern:FeatureOfInterest,
+        tern:Sample ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
+    dwc:catalogNumber "CC123"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
+    rdfs:comment "specimen-sample" ;
+    sosa:isResultOf <http://createme.org/sampling/specimen/13> ;
+    sosa:isSampleOf <http://createme.org/occurrence/13> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
 
 <http://createme.org/sampling/sequencing/8022FSJMJ079c5cf> a tern:Sampling ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
@@ -1429,7 +1446,7 @@
     time:hasTime [ a time:Instant ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/8022FSJMJ079c5cf> ;
+    sosa:hasFeatureOfInterest <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <http://createme.org/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
@@ -1441,7 +1458,7 @@
     time:hasTime [ a time:Instant ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:hasFeatureOfInterest <http://createme.org/sample/specimen/ABC123> ;
+    sosa:hasFeatureOfInterest <http://createme.org/occurrence/ABC123> ;
     sosa:hasResult <http://createme.org/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
@@ -1478,13 +1495,13 @@
     rdf:value "Caladenia ?excelsa",
         "Caladenia excelsa" .
 
-<http://createme.org/sample/specimen/13> a tern:FeatureOfInterest,
+<http://createme.org/sample/specimen/14> a tern:FeatureOfInterest,
         tern:Sample ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    dwc:catalogNumber "CC123"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
+    dwc:catalogNumber "CC456"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
     rdfs:comment "specimen-sample" ;
-    sosa:isResultOf <http://createme.org/sampling/specimen/13> ;
-    sosa:isSampleOf <http://createme.org/occurrence/13> ;
+    sosa:isResultOf <http://createme.org/sampling/specimen/14> ;
+    sosa:isSampleOf <http://createme.org/occurrence/14> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
 
 <http://createme.org/occurrence/1> a dwc:Occurrence,
@@ -1517,18 +1534,6 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:spatial _:N489292b7f1191795326ddd220000001e ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
-    tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/occurrence/13> a dwc:Occurrence,
-        tern:FeatureOfInterest ;
-    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000024 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
@@ -1631,14 +1636,6 @@
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<http://createme.org/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> a tern:FeatureOfInterest,
-        tern:Text,
-        tern:Value ;
-    rdfs:label "acceptedNameUsage-value" ;
-    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
-    tern:featureType <http://example.com/concept/acceptedNameUsage> .
-
 <http://createme.org/result/scientificName/Banksia-sessilis-var-cordata> a tern:FeatureOfInterest,
         tern:Text,
         tern:Value ;
@@ -1651,14 +1648,17 @@
         tern:Value ;
     rdf:value "Banksia sessilis var. cordata" .
 
-<http://createme.org/sample/specimen/14> a tern:FeatureOfInterest,
-        tern:Sample ;
+<http://createme.org/occurrence/13> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
     void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    dwc:catalogNumber "CC456"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
-    rdfs:comment "specimen-sample" ;
-    sosa:isResultOf <http://createme.org/sampling/specimen/14> ;
-    sosa:isSampleOf <http://createme.org/occurrence/14> ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:spatial _:N489292b7f1191795326ddd2200000024 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/occurrence/14> a dwc:Occurrence,
         tern:FeatureOfInterest ;
@@ -1671,6 +1671,34 @@
                     time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
+
+<http://createme.org/sample/specimen/8022FSJMJ079c5cf> a tern:FeatureOfInterest,
+        tern:Sample ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
+    dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
+    dwc:collectionCode "32237" ;
+    rdfs:comment "specimen-sample" ;
+    sosa:isResultOf <http://createme.org/sampling/specimen/8022FSJMJ079c5cf> ;
+    sosa:isSampleOf <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
+
+<http://createme.org/sample/specimen/ABC123> a tern:FeatureOfInterest,
+        tern:Sample ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
+    dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
+    dwc:collectionCode "32238" ;
+    rdfs:comment "specimen-sample" ;
+    sosa:isResultOf <http://createme.org/sampling/specimen/ABC123> ;
+    sosa:isSampleOf <http://createme.org/occurrence/ABC123> ;
+    tern:featureType <http://createme.org/bdr-cv/featureType/specimen/kingdom/new-kingdom> .
+
+<http://createme.org/result/scientificName/Caladenia-excelsa> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
+    rdf:value "Caladenia excelsa" ;
+    tern:featureType <http://example.com/concept/scientificName> .
 
 <http://createme.org/occurrence/8022FSJMJ079c5cf> a dwc:Occurrence,
         tern:FeatureOfInterest ;
@@ -1703,34 +1731,6 @@
                     time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
     tern:featureType <http://createme.org/bdr-cv/featureType/occurrence/kingdom/new-kingdom> ;
     tern:locationDescription "Cowaramup Bay Road" .
-
-<http://createme.org/result/scientificName/Caladenia-excelsa> a tern:FeatureOfInterest,
-        tern:Text,
-        tern:Value ;
-    rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    rdf:value "Caladenia excelsa" ;
-    tern:featureType <http://example.com/concept/scientificName> .
-
-<http://createme.org/sample/specimen/8022FSJMJ079c5cf> a tern:FeatureOfInterest,
-        tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
-    dwc:collectionCode "32237" ;
-    rdfs:comment "specimen-sample" ;
-    sosa:isResultOf <http://createme.org/sampling/specimen/8022FSJMJ079c5cf> ;
-    sosa:isSampleOf <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
-
-<http://createme.org/sample/specimen/ABC123> a tern:FeatureOfInterest,
-        tern:Sample ;
-    void:inDataset <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
-    dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
-    dwc:collectionCode "32238" ;
-    rdfs:comment "specimen-sample" ;
-    sosa:isResultOf <http://createme.org/sampling/specimen/ABC123> ;
-    sosa:isSampleOf <http://createme.org/occurrence/ABC123> ;
-    tern:featureType <http://createme.org/bdr-cv/featureType/specimen/kingdom/new-kingdom> .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
     schema:name "Stream Environment and Water Pty Ltd" .
