@@ -52,15 +52,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             data (base.types.ReadableType): Raw data to be validated.
             **kwargs (Any): Additional keyword arguments.
 
-        Keyword Args:
-            site_visit_id_map (dict[str, bool]): Site visit ids present in the occurrence template.
-
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
-        # Extract keyword arguments
-        site_visit_id_map: dict[str, bool] = kwargs.get("site_visit_id_map", {})
-
         # Construct schema
         schema = self.extra_fields_schema(data=data, full_schema=True)
 
@@ -79,28 +73,10 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             plugins.chronological.ChronologicalOrder(
                 field_names=["siteVisitStart", "siteVisitEnd"],
             ),
-            plugins.logical_or.LogicalOr(
-                field_names=["siteVisitStart", "siteVisitEnd"],
-            ),
             plugins.mutual_inclusion.MutuallyInclusive(
                 field_names=["samplingEffortValue", "samplingEffortUnit"],
             ),
         ]
-
-        # Check to see if site visit id map was provided or was empty
-        if site_visit_id_map:
-            # Construct foreign key map
-            fk_map = {"siteVisitID": set(site_visit_id_map)}
-
-            # Add custom check for temporal flexibility with whitelists. Here deferring
-            # the check on any ids found in the occurrence template, to when validaation
-            # occurs on it in line with temporal flexibility rules.
-            checks += [
-                plugins.required.RequiredEnhanced(
-                    field_names=["siteVisitStart"],
-                    whitelists=fk_map,
-                )
-            ]
 
         # Validate the site visit resource
         report: frictionless.Report = resource_site_visit_data.validate(
@@ -170,10 +146,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Context manager for row streaming
         with resource.open() as r:
             for row in r.row_stream:
-                # Extract values and
-                # Determine if any dates are present in the row
-                start_date: models.temporal.Timestamp = row["siteVisitStart"]
-                end_date: models.temporal.Timestamp = row["siteVisitEnd"]
+                # Extract values from row.
+                start_date: models.temporal.Timestamp | None = row["siteVisitStart"]
+                end_date: models.temporal.Timestamp | None = row["siteVisitEnd"]
                 site_visit_id: str | None = row["siteVisitID"]
 
                 # Check for siteVisitID, even though siteVisitID is a mandatory field, it can be missing here
@@ -181,8 +156,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
                 if not site_visit_id:
                     continue
 
-                # Temporal flexibility is dependent upon a start_date being
-                # present only.
+                # Temporal flexibility is dependent upon a start_date being present only.
+                # Again, even though siteVisitStart is a mandatory field, it can be None here
+                # because this method is called for cross-validation, regardless of if this template is valid.
                 if not start_date:
                     continue
 
@@ -202,29 +178,25 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
     def add_temporal_coverage_bnode(
         self,
+        *,
         graph: rdflib.Graph,
-        start_date: models.temporal.Timestamp | None = None,
-        end_date: models.temporal.Timestamp | None = None,
+        start_date: models.temporal.Timestamp,
+        end_date: models.temporal.Timestamp | None,
     ) -> None:
         """Creates and adds to graph, temporal coverage blank node.
 
         Args:
-            start_date (types.temporal.Timestamp | None): Optional start date.
-            end_date (types.temporal.Timestamp | None): Optional end date. At least
-                one of either start_date or end_date (or both) must be supplied.
-            graph (rdflib.Graph): Graph to add to.
+            start_date: start date.
+            end_date: Optional end date.
+            graph: Graph to add to.
         """
-        # Ensure date was supplied
-        if start_date is None and end_date is None:
-            return
         # Create temporal coverage node
         temporal_coverage = rdflib.BNode()
         graph.add((temporal_coverage, a, rdflib.TIME.TemporalEntity))
-        if start_date is not None:
-            begin = rdflib.BNode()
-            graph.add((temporal_coverage, rdflib.TIME.hasBeginning, begin))
-            graph.add((begin, a, rdflib.TIME.Instant))
-            graph.add((begin, start_date.rdf_in_xsd, start_date.to_rdf_literal()))
+        begin = rdflib.BNode()
+        graph.add((temporal_coverage, rdflib.TIME.hasBeginning, begin))
+        graph.add((begin, a, rdflib.TIME.Instant))
+        graph.add((begin, start_date.rdf_in_xsd, start_date.to_rdf_literal()))
         if end_date is not None:
             end = rdflib.BNode()
             graph.add((temporal_coverage, rdflib.TIME.hasEnd, end))
@@ -578,13 +550,12 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.TemporalEntity))
-        row_site_visit_start: models.temporal.Timestamp | None = row["siteVisitStart"]
+        row_site_visit_start: models.temporal.Timestamp = row["siteVisitStart"]
         row_site_visit_end: models.temporal.Timestamp | None = row["siteVisitEnd"]
-        if row_site_visit_start:
-            start_instant = rdflib.BNode()
-            graph.add((start_instant, a, rdflib.TIME.Instant))
-            graph.add((start_instant, row_site_visit_start.rdf_in_xsd, row_site_visit_start.to_rdf_literal()))
-            graph.add((temporal_entity, rdflib.TIME.hasBeginning, start_instant))
+        start_instant = rdflib.BNode()
+        graph.add((start_instant, a, rdflib.TIME.Instant))
+        graph.add((start_instant, row_site_visit_start.rdf_in_xsd, row_site_visit_start.to_rdf_literal()))
+        graph.add((temporal_entity, rdflib.TIME.hasBeginning, start_instant))
         if row_site_visit_end:
             end_instant = rdflib.BNode()
             graph.add((end_instant, a, rdflib.TIME.Instant))

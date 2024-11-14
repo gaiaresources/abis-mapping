@@ -182,6 +182,8 @@
 <http://createme.org/SiteVisit/TIS-24-03-P1-02> a tern:SiteVisit ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     time:hasTime [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2024-03-12"^^xsd:date ] ;
             time:hasEnd [ a time:Instant ;
                     time:inXSDDate "2024-03-12"^^xsd:date ] ] ;
     prov:hadPlan <http://createme.org/visit/plan/TIS-24-03-P1-02> ;
