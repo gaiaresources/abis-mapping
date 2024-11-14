@@ -10,6 +10,7 @@ import pathlib
 
 # Third-Party
 import frictionless
+import frictionless.errors
 import rdflib
 import rdflib.term
 
@@ -237,21 +238,22 @@ class ABISMapper(abc.ABC):
         """Creates a schema with all extra fields found in data.
 
         The fields of data are expected to be the same or a superset of the template's
-        official schema. It is expected that validation has occurred prior to calling.
+        official schema.
 
         Args:
-            data (frictionless.Row | types.ReadableType): Row or data expected to
+            data: Row or data expected to
                 contain more columns than included in the template's schema.
-            full_schema (bool): Flag to indicate whether full schema for row or data
+            full_schema: Flag to indicate whether full schema for row or data
                 should be returned or just the difference.
 
         Returns:
-            frictionless.Schema: A schema object, the fields of which are only
-                the extra fields not a part of a template's official schema if full_schema = False
-                else the schema will be the concatenation of the official schema fields and the
-                extra fields.
+            A schema object, the fields of which are only the extra fields not a part of a
+                template's official schema if full_schema = False else the schema will be the
+                concatenation of the official schema fields and the extra fields. Extra fields
+                are deemed to be any fields not named within the existing schema, as well as
+                any fields that are duplicated within the labels of the supplied data.
         """
-        # Construct official schema
+        # Construct schema
         existing_schema: frictionless.Schema = frictionless.Schema.from_descriptor(cls.schema())
 
         if isinstance(data, frictionless.Row):
@@ -272,10 +274,17 @@ class ABISMapper(abc.ABC):
 
         # Find list of extra fieldnames
         existing_fieldnames = existing_schema.field_names
-        if len(actual_fieldnames) > len(existing_fieldnames):
-            extra_fieldnames = actual_fieldnames[len(existing_fieldnames) :]
-        else:
-            extra_fieldnames = []
+
+        # Collection for unseen fieldnames, allowing for duplicates to be created.
+        unseen_existing = [*existing_fieldnames]
+
+        # Get extra fieldnames
+        extra_fieldnames: list[str] = []
+        for fn in actual_fieldnames:
+            if fn not in unseen_existing:
+                extra_fieldnames.append(fn)
+            if fn in unseen_existing:
+                unseen_existing.remove(fn)
 
         # Construct list of extra Fields with type of string
         extra_fields = [
@@ -283,11 +292,15 @@ class ABISMapper(abc.ABC):
         ]
 
         if full_schema:
-            # Append the extra fields onto the official schema and return
+            # Append the extra fields onto the official schema
             for field in extra_fields:
                 existing_schema.add_field(field)
 
-            return existing_schema
+            extra_fields_descriptor = existing_schema.to_descriptor()
+            # extra_fields_descriptor["originalDescriptor"] = cls.schema()
+            extra_fields_schema = frictionless.Schema.from_descriptor(extra_fields_descriptor)
+
+            return extra_fields_schema
 
         # Create difference schema and return
         return frictionless.Schema(fields=extra_fields)
