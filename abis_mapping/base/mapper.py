@@ -296,11 +296,8 @@ class ABISMapper(abc.ABC):
             for field in extra_fields:
                 existing_schema.add_field(field)
 
-            extra_fields_descriptor = existing_schema.to_descriptor()
-            # extra_fields_descriptor["originalDescriptor"] = cls.schema()
-            extra_fields_schema = frictionless.Schema.from_descriptor(extra_fields_descriptor)
-
-            return extra_fields_schema
+            # Return
+            return existing_schema
 
         # Create difference schema and return
         return frictionless.Schema(fields=extra_fields)
