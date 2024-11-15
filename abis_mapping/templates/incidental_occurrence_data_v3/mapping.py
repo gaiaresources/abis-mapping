@@ -66,24 +66,6 @@ CONCEPT_SENSITIVITY_CATEGORY = utils.rdf.uri(
 )  # TODO Need real URI
 
 # Roles
-CI_ROLECODE_ORIGINATOR = rdflib.URIRef(
-    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/originator"
-)
-CI_ROLECODE_RIGHTS_HOLDER = rdflib.URIRef(
-    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/rightsHolder"
-)
-CI_ROLECODE_RESOURCE_PROVIDER = rdflib.URIRef(
-    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/resourceProvider"
-)
-CI_ROLECODE_CUSTODIAN = rdflib.URIRef(
-    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/custodian"
-)
-CI_ROLECODE_STAKEHOLDER = rdflib.URIRef(
-    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/stakeholder"
-)
-CI_ROLECODE_OWNER = rdflib.URIRef(
-    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/code/CI_RoleCode/owner"
-)
 DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/resourceProvider")
 DATA_ROLE_OWNER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/owner")
 
