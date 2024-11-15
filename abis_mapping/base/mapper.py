@@ -176,7 +176,7 @@ class ABISMapper(abc.ABC):
         schema_file = directory / "schema.json"
 
         # Get raw schema
-        fields: list[dict] = json.loads(schema_file.read_text())["fields"]
+        fields: list[dict[str, object]] = json.loads(schema_file.read_text())["fields"]
         out_path = directory / f"{cls.metadata()['name']}.{cls.metadata()['file_type'].lower()}"
         with out_path.open("w") as f:
             csv_writer = csv.DictWriter(f, [field["name"] for field in fields])

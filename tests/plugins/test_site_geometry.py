@@ -17,9 +17,9 @@ class Parameters:
     """Parameters for the test cases"""
 
     header: list[str]
-    cases: list[tuple]
+    cases: list[tuple[str, str, str, str, set[str], bool]]
 
-    def compiled(self) -> Iterator[tuple]:
+    def compiled(self) -> Iterator[tuple[dict[str, str], set[str], bool]]:
         """Compiles all the parameters for the test cases.
 
         Yields:

@@ -28,7 +28,7 @@ def test_checks_vlookup_match() -> None:
         ],
     )
 
-    lookup_map: dict[str, str] = {"A": "B", "A1": "B1"}
+    lookup_map: dict[object, str] = {"A": "B", "A1": "B1"}
 
     # Validate
     report: frictionless.Report = resource.validate(

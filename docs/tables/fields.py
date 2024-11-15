@@ -15,7 +15,7 @@ from abis_mapping import plugins
 from docs import tables
 
 # Typing
-from typing import IO, Annotated
+from typing import IO, Annotated, Any
 
 
 class FieldTableRow(pydantic.BaseModel):
@@ -162,7 +162,7 @@ class FieldTabler(tables.base.BaseTabler):
 
     def generate_table(
         self,
-        dest: IO | None = None,
+        dest: IO[str] | None = None,
     ) -> str:
         """Compile fields table from the given template.
 
@@ -202,13 +202,12 @@ class FieldTabler(tables.base.BaseTabler):
 
     def checklist(
         self,
-        **kwargs: dict,
+        **kwargs: Any,
     ) -> frictionless.Checklist | None:
         """Determines frictionless checklist being performed as part of a template's validation.
 
         Args:
-            **kwargs (dict): Keyword arguments that may be provided to the
-                validation method.
+            **kwargs: Keyword arguments that may be provided to the validation method.
 
         Returns:
             frictionless.Checklist: Instance used in template validation.

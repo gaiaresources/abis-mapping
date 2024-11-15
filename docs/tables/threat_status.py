@@ -71,7 +71,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
 
     def generate_table(
         self,
-        dest: IO | None = None,
+        dest: IO[str] | None = None,
     ) -> str:
         """Generates threat status conservation authority table.
 

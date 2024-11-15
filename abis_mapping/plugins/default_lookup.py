@@ -1,5 +1,8 @@
 """Provides extra frictionless default lookup checks for the package."""
 
+# Standard Library
+from collections.abc import Mapping
+
 # Third-party
 import attrs
 import frictionless
@@ -23,7 +26,7 @@ class DefaultLookup(frictionless.Check):
     # Name of field which default map value corresponds
     value_field: str
     # Default map consisting of keys from key_field and values for value_field
-    default_map: dict
+    default_map: Mapping[object, object]
 
     def validate_row(self, row: frictionless.Row) -> Iterator[frictionless.Error]:
         """Called to validate given row (on every row)

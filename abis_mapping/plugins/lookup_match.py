@@ -29,7 +29,7 @@ class VLookupMatch(frictionless.Check):
     # Attributes specific to this check
     key_field: str
     value_field: str
-    lu_map: Mapping
+    lu_map: Mapping[object, object]
 
     def validate_row(self, row: frictionless.Row) -> Iterator[frictionless.Error]:
         """Called to validate the given row (on every row).

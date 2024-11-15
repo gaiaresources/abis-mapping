@@ -15,7 +15,7 @@ class BNodeAlwaysUUID4(rdflib.BNode):
     def __new__(
         cls,
         value: str | None = None,
-        _sn_gen: Callable[[], str] | Generator | None = None,
+        _sn_gen: Callable[[], str] | Generator[str, None, None] | None = None,
         _prefix: str = "N",
     ) -> "BNodeAlwaysUUID4":
         """This overrides the base implementation.
