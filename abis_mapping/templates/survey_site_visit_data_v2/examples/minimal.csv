@@ -1,4 +1,4 @@
 surveyID,siteID,siteIDSource,siteVisitID,siteVisitStart,siteVisitEnd,visitOrgs,visitObservers,condition,targetTaxonomicScope,protocolName,protocolDescription,samplingEffortValue,samplingEffortUnit
 TIS-24-03,P1,WAM,TIS-24-03-P1-01,2024-03-12,2024-04-04,WAM | DBCA,ORCID00001 | ORCID00002,dry,new_taxon,wet pitfall trap,10 x square buckets of size 20 x 20 x 15 cm. Propylene glycol.,240,trap nights
-TIS-24-03,P1,WAM,TIS-24-03-P1-02,,2024-03-12,WAM,ORCID00001,moist leaf litter after recent rain,invertebrate,litter sifting,50 cm diameter sifter with 5 mm mesh. Litter samles taken ~1 metre from each pitfall trap,10,sifts
+TIS-24-03,P1,WAM,TIS-24-03-P1-02,2024-03-12,2024-03-12,WAM,ORCID00001,moist leaf litter after recent rain,invertebrate,litter sifting,50 cm diameter sifter with 5 mm mesh. Litter samles taken ~1 metre from each pitfall trap,10,sifts
 TIS-24-03,P1,WAM,TIS-24-03-P1-03,2024-03-12,,WAM,ORCID00003,,bird,human observation,,,

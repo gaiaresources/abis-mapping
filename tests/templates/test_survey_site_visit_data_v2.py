@@ -7,7 +7,6 @@ import io
 import pathlib
 
 # Third-party
-import pandas as pd
 import pyshacl
 import pytest
 import pytest_mock
@@ -44,15 +43,11 @@ def mapper() -> Iterator[mapping.SurveySiteVisitMapper]:
 @dataclasses.dataclass
 class Scenario:
     name: str
-    start_date: str | None = None
+    start_date: str
     end_date: str | None = None
 
 
 scenarios = [
-    Scenario(
-        name="end_date_only",
-        end_date="2025-10-11",
-    ),
     Scenario(
         name="start_date_only",
         start_date="2024-10-11",
@@ -61,9 +56,6 @@ scenarios = [
         name="both_dates",
         start_date="2024-10-11",
         end_date="2025-10-11",
-    ),
-    Scenario(
-        name="no_dates",
     ),
 ]
 
@@ -81,9 +73,8 @@ def test_add_temporal_coverage_node(scenario: Scenario, mapper: mapping.SurveySi
         mapper (SurveySiteVisitMapper): Site visit mapper instance fixture.
     """
     # Parse dates
-    date_fn = lambda x: models.temporal.parse_timestamp(x) if x is not None else None  # noqa: E731
-    start_date = date_fn(scenario.start_date)
-    end_date = date_fn(scenario.end_date)
+    start_date = models.temporal.parse_timestamp(scenario.start_date)
+    end_date = None if scenario.end_date is None else models.temporal.parse_timestamp(scenario.end_date)
 
     # Create graph
     graph = rdflib.Graph()
@@ -169,11 +160,11 @@ class TestMapExtractors:
         # Build elements for expected map
         graphs = [rdflib.Graph() for _ in range(2)]
         for g, r in zip(graphs, expected_rows, strict=True):
-            raw_start = r.get("siteVisitStart")
-            raw_end = r.get("siteVisitEnd")
-            start = models.temporal.parse_timestamp(raw_start) if raw_start is not None else None
+            raw_start: str = r["siteVisitStart"]
+            raw_end: str | None = r.get("siteVisitEnd")
+            start = models.temporal.parse_timestamp(raw_start)
             end = models.temporal.parse_timestamp(raw_end) if raw_end is not None else None
-            mapper.add_temporal_coverage_bnode(g, start, end)
+            mapper.add_temporal_coverage_bnode(graph=g, start_date=start, end_date=end)
 
         # Construct expected map
         expected = {r["siteVisitID"]: g.serialize(format="turtle") for g, r in zip(graphs, expected_rows, strict=True)}
@@ -270,94 +261,3 @@ class TestMapExtractors:
         # Assert
         assert actual == expected
         mocked_schema.assert_called_once()
-
-
-class TestApplyValidation:
-    @pytest.fixture(scope="class")
-    def data(self) -> bytes:
-        """Takes an existing csv path and returns it unmodified.
-
-        The csv returned is expected to have both start and end dates plus site visit id
-        included for all rows.
-        """
-        # Create path object and return contents
-        return pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal-1-row.csv").read_bytes()
-
-    def _nullify_columns(self, columns: list[str], data: bytes) -> bytes:
-        """Replaces any values in specified csv colunms with null.
-
-        Args:
-            columns (list[str]): Field names in supplied csv
-                to make null values.
-            data (bytes): Original csv data to modify.
-
-        Returns:
-            bytes: Modified csv.
-        """
-        # Create dataframe from existing csv
-        df = pd.read_csv(io.BytesIO(data))
-        # Set all values for columns to null
-        for col in columns:
-            df[col].values[:] = pd.NA
-        # Return csv
-        result: bytes = df.to_csv(index=False).encode("utf-8")
-        return result
-
-    @pytest.fixture(scope="class")
-    def data_no_start_date(self, data: bytes) -> bytes:
-        """Modifies existing csv and sets all start dates to null.
-
-        Args:
-            data (bytes): The original data fixture
-
-        Returns:
-            bytes: Modified csv.
-        """
-        return self._nullify_columns(["siteVisitStart"], data)
-
-    @pytest.fixture(scope="class")
-    def data_no_end_date(self, data: bytes) -> bytes:
-        """Modifies existing csv and sets all end dates to null.
-
-        Args:
-            data (bytes): The original csv data fixture.
-
-        Returns:
-            bytes: Modified csv.
-        """
-        return self._nullify_columns(["siteVisitEnd"], data)
-
-    def test_with_site_visit_id_map(self, mapper: mapping.SurveySiteVisitMapper, data_no_start_date: bytes) -> None:
-        """Tests the apply_validation method with site_visit_id map supplied and no start date.
-
-        Args:
-            mapper (SurveySiteVisitMapper): Site visit mapper instance fixture.
-            data_no_start_date (bytes): Csv with no start dates.
-        """
-        # Construct map
-        svid_map = {"VA-99": True, "FAKEID": True}
-
-        # Invoke
-        report = mapper.apply_validation(data_no_start_date, site_visit_id_map=svid_map)
-
-        # Assert
-        assert report.valid
-
-    def test_with_site_visit_id_map_invalid(
-        self, mapper: mapping.SurveySiteVisitMapper, data_no_start_date: bytes
-    ) -> None:
-        """Tests the apply_validation method with site_visit_id_map supplied and no corresponding id in map.
-
-        Args:
-            mapper (mapping.SurveySiteVisitMapper): Site visit mapper instances fixture.
-            data_no_start_date (bytes): Csv with no start dates.
-        """
-        # Construct map
-        svid_map = {"FAKEID": True}
-
-        # Invoke
-        report = mapper.apply_validation(data_no_start_date, site_visit_id_map=svid_map)
-
-        # Assert and check errors
-        assert not report.valid
-        assert report.flatten(["type"]) == [["row-constraint"]]

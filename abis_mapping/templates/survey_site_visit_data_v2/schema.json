@@ -53,7 +53,7 @@
             "type": "timestamp",
             "format": "default",
             "constraints": {
-                "required": false
+                "required": true
             }
         },
         {

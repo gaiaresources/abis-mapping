@@ -283,13 +283,13 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
                 expected=pathlib.Path("abis_mapping/templates/survey_site_visit_data_v2/examples/minimal.ttl"),
             ),
             MappingParameters(
-                scenario_name="missing_start_or_end_date",
+                scenario_name="missing_start_date",
                 data=pathlib.Path(
                     "abis_mapping/templates/survey_site_visit_data_v2/examples/minimal-error-no-dates.csv"
                 ),
                 expected=None,
                 should_validate=False,
-                expected_error_codes={"row-constraint"},
+                expected_error_codes={"constraint-error"},
             ),
             MappingParameters(
                 scenario_name="dates_in_wrong_order",
