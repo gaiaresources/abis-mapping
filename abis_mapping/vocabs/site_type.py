@@ -45,7 +45,7 @@ class SiteType(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of site.")
     base = "bdr-cv/concept/siteType/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74aa68d3-28fd-468d-8ff5-7e791d9f7159")
-    broader = utils.rdf.uri("bdr-cv/concept/siteType", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+    broader = None
     default = None
     terms = (
         SITE,
