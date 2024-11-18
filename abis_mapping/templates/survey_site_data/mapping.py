@@ -525,11 +525,14 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add site tern featuretype
         graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
 
-        # Retrieve vocab for field
-        site_type_vocab = self.fields()["siteType"].get_vocab()
+        if site_type:
+            # Retrieve vocab for field
+            site_type_vocab = self.fields()["siteType"].get_vocab()
 
-        # Retrieve term or create on the fly
-        site_type_term = site_type_vocab(graph=graph, source=dataset).get(site_type)
+            # Retrieve term or create on the fly
+            site_type_term = site_type_vocab(graph=graph, source=dataset).get(site_type)
+        else:
+            site_type_term = vocabs.site_type.SITE.iri
 
         # Add to site type graph
         graph.add((uri, rdflib.DCTERMS.type, site_type_term))
