@@ -87,7 +87,6 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     geo:hasGeometry _:N2d5e0873e8e72e68e4a9793300000001,
         _:N53dd57c04e35e4aa3188c0b800000002 ;
-    sosa:isSampleOf <http://createme.org//location/Australia> ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:identifier "P2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
