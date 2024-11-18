@@ -11,14 +11,16 @@
 <http://createme.org/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:identifier "Site Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
-    schema:member <http://createme.org/Site/P1> ;
+    schema:member <http://createme.org/Site/P1>,
+        <http://createme.org/Site/P2> ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
 <http://createme.org/SiteCollection/habitat/Closed-forest> a schema:Collection ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:identifier "Site Collection - Habitat - Closed forest" ;
     schema:member <http://createme.org/Site/P0>,
-        <http://createme.org/Site/P1> ;
+        <http://createme.org/Site/P1>,
+        <http://createme.org/Site/P2> ;
     tern:hasAttribute <http://createme.org/attribute/habitat/Closed-forest> .
 
 <http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;
@@ -81,6 +83,19 @@
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
+<http://createme.org/Site/P2> a tern:Site ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+    geo:hasGeometry _:N2d5e0873e8e72e68e4a9793300000001,
+        _:N53dd57c04e35e4aa3188c0b800000002 ;
+    sosa:isSampleOf <http://createme.org//location/Australia> ;
+    schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
+    schema:description "Fine woody debris." ;
+    schema:identifier "P2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    schema:name "Plot 2" ;
+    schema:sameAs <http://example.com/sites/S0> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
 <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> a tern:Dataset ;
     schema:dateCreated "2020-01-01"^^xsd:date ;
     schema:dateIssued "2020-01-01"^^xsd:date ;
@@ -107,6 +122,15 @@
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] ;
+    rdf:object _:N53dd57c04e35e4aa3188c0b800000002 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/Site/P2> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.85 114.99)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N2d5e0873e8e72e68e4a9793300000000 ;
@@ -114,7 +138,20 @@
     rdf:subject <http://createme.org/Site/P1> ;
     rdfs:comment "supplied as" .
 
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] ;
+    rdf:object _:N2d5e0873e8e72e68e4a9793300000001 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <http://createme.org/Site/P2> ;
+    rdfs:comment "supplied as" .
+
 _:N2d5e0873e8e72e68e4a9793300000000 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N2d5e0873e8e72e68e4a9793300000001 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
@@ -123,6 +160,10 @@ _:N53dd57c04e35e4aa3188c0b800000000 a geo:Geometry ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
 _:N53dd57c04e35e4aa3188c0b800000001 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N53dd57c04e35e4aa3188c0b800000002 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 

@@ -283,9 +283,14 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Conditionally create uri dependent on relatedSiteID
         related_site_id: str | None = row["relatedSiteID"]
+        relationship_to_related_site: str | None = row["relationshipToRelatedSite"]
+        relationship_to_related_site_vocab = self.fields()["relationshipToRelatedSite"].get_vocab()
         if related_site_id:
-            # Determine related site URI based on related site string
-            if utils.rdf.uri_or_string_literal(related_site_id).datatype is None:
+            # Determine related site URI based on relationship to related site vocab
+            if (
+                relationship_to_related_site_vocab(graph=rdflib.Graph()).get(relationship_to_related_site)
+                == rdflib.SDO.isPartOf
+            ):
                 # related site URI is a site in this dataset
                 related_site = utils.iri_patterns.site_iri(base_iri, related_site_id)
             else:
@@ -450,7 +455,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             dataset: Dataset to which data belongs.
             site_id_datatype: Datatype to use for
                 the site id literal.
-            related_site:
+            related_site: Related site uri.
             row: Row to retrieve data from.
             graph: Graph to be modified.
             base_iri: Namespace used to construct IRIs
