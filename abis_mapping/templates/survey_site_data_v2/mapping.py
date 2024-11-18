@@ -211,6 +211,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             data=data,
             full_schema=True,
         )
+        extra_schema = self.extra_fields_schema(
+            data=data,
+            full_schema=False,
+        )
 
         # Construct Resource
         resource = frictionless.Resource(
@@ -244,6 +248,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     row=row,
                     dataset=dataset_iri,
                     graph=graph,
+                    extra_schema=extra_schema,
                     base_iri=base_iri,
                 )
 
@@ -254,6 +259,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        extra_schema: frictionless.Schema,
         base_iri: Optional[rdflib.Namespace],
     ) -> None:
         """Applies mapping for a row in the `survey_site_data.csv` template.
@@ -262,6 +268,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to be processed in the dataset.
             dataset (rdflib.URIRef): Dataset IRI this row is a part of.
             graph (rdflib.URIRef): Graph to map row into.
+            extra_schema (frictionless.Schema): Schema of extra fields.
             base_iri (Optional[rdflib.Namespace]): Optional base IRI
                 to use for mapping.
         """
@@ -431,6 +438,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             subject_uri=site,
             row=row,
             graph=graph,
+            extra_schema=extra_schema,
         )
 
     def add_site(
