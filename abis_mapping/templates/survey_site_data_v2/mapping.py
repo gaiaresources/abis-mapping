@@ -485,14 +485,15 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add site tern featuretype
         graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
 
-        # Retrieve vocab for field
-        site_type_vocab = self.fields()["siteType"].get_vocab()
+        if site_type:
+            # Retrieve vocab for field
+            site_type_vocab = self.fields()["siteType"].get_vocab()
 
-        # Retrieve term or create on the fly
-        site_type_term = site_type_vocab(graph=graph, source=dataset, base_iri=base_iri).get(site_type)
+            # Retrieve term or create on the fly
+            site_type_term = site_type_vocab(graph=graph, source=dataset, base_iri=base_iri).get(site_type)
 
-        # Add to site type graph
-        graph.add((uri, rdflib.SDO.additionalType, site_type_term))
+            # Add to site type graph
+            graph.add((uri, rdflib.SDO.additionalType, site_type_term))
 
         # Add site name if available
         if site_name:
