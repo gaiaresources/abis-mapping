@@ -20,10 +20,7 @@ from typing import Optional, Iterator, Any
 
 # Constants / shortcuts
 a = rdflib.RDF.type
-PRINCIPAL_INVESTIGATOR = rdflib.URIRef(
-    "http://def.isotc211.org/iso19115/-1/2018/CitationAndResponsiblePartyInformation/"
-    "code/CI_RoleCode/principalInvestigator"
-)
+PRINCIPAL_INVESTIGATOR = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/principalInvestigator")
 CONCEPT_SURVEY_TYPE = utils.rdf.uri("concept/surveyType", utils.namespaces.EXAMPLE)
 CONCEPT_TARGET_HABITAT_SCOPE = rdflib.URIRef("https://linked.data.gov.au/def/nrm/ae2c88be-63d5-44d3-95ac-54b14c4a4b28")
 CONCEPT_TARGET_TAXONOMIC_SCOPE = rdflib.URIRef(
