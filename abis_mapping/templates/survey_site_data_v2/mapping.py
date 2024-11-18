@@ -283,14 +283,17 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Conditionally create uri dependent on relatedSiteID
         related_site_id: str | None = row["relatedSiteID"]
-        if related_site_id:
-            # Determine related site URI based on related site string
-            if utils.rdf.uri_or_string_literal(related_site_id).datatype is None:
-                # related site URI is a site in this dataset
+        relationship_to_related_site: str | None = row["relationshipToRelatedSite"]
+        related_site: rdflib.URIRef | rdflib.Literal | None
+        if related_site_id and relationship_to_related_site:
+            # Get vocab to conditionally create related site
+            rtor_site_vocab = self.fields()["relationshipToRelatedSite"].get_vocab()
+            if rtor_site_vocab(graph=rdflib.Graph()).get(relationship_to_related_site) == rdflib.SDO.isPartOf:
+                # Related site is defined internal to the dataset
                 related_site = utils.iri_patterns.site_iri(base_iri, related_site_id)
             else:
-                # related site URI is an external URI
-                related_site = rdflib.URIRef(related_site_id)
+                # Related site is defined outside the dataset
+                related_site = utils.rdf.uri_or_string_literal(related_site_id)
         else:
             related_site = None
 
@@ -438,7 +441,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
         site_id_datatype: rdflib.URIRef | None,
-        related_site: rdflib.URIRef | None,
+        related_site: rdflib.URIRef | rdflib.Literal | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace | None,
@@ -450,7 +453,9 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             dataset: Dataset to which data belongs.
             site_id_datatype: Datatype to use for
                 the site id literal.
-            related_site:
+            related_site: Either the internal site uri that
+                this site relates to or a literal representation
+                from outside the dataset
             row: Row to retrieve data from.
             graph: Graph to be modified.
             base_iri: Namespace used to construct IRIs
