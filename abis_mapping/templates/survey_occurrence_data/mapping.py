@@ -239,6 +239,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             data=data,
             full_schema=True,
         )
+        extra_schema = self.extra_fields_schema(
+            data=data,
+            full_schema=False,
+        )
 
         # Construct Resource
         resource = frictionless.Resource(
@@ -283,6 +287,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                     dataset=dataset_iri,
                     terminal_foi=terminal_foi,
                     graph=graph,
+                    extra_schema=extra_schema,
                     base_iri=base_iri,
                     site_id_geometry_map=site_id_geometry_map,
                 )
@@ -306,6 +311,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         terminal_foi: rdflib.URIRef,
         graph: rdflib.Graph,
+        extra_schema: frictionless.Schema,
         base_iri: Optional[rdflib.Namespace] = None,
         site_id_geometry_map: dict[str, str] | None = None,
     ) -> rdflib.Graph:
@@ -316,6 +322,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset uri this row is a part of.
             terminal_foi (rdflib.URIRef): Terminal feature of interest.
             graph (rdflib.Graph): Graph to map row into.
+            extra_schema (frictionless.Schema): Schema of extra fields.
             base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
                 to use for mapping.
             site_id_geometry_map (dict[str, str] | None): Optional site id to geometry
@@ -973,6 +980,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             subject_uri=sampling_field,
             row=row,
             graph=graph,
+            extra_schema=extra_schema,
         )
 
         # Return

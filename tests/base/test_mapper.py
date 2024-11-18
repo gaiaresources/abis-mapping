@@ -291,6 +291,8 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
 
     # Construct schema (includes extra fields)
     schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=True)
+    # construct schema just for extra fields
+    extra_schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=False)
 
     # Construct resource
     resource = frictionless.Resource(
@@ -304,7 +306,7 @@ def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
     with resource.open() as r:
         # Iterate over rows and expected outputs for validation.
         for row, expected in zip(r.row_stream, overall_expected, strict=True):
-            assert base.mapper.ABISMapper.extract_extra_fields(row) == expected
+            assert base.mapper.ABISMapper.extract_extra_fields(row, extra_schema) == expected
 
 
 def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
@@ -331,6 +333,9 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
     # Mock out the schema method to return the above descriptor
     mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
+    # construct schema just for extra fields
+    extra_schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=False)
+
     # Expected json as dictionary
     expected_json = {"extraInformation2": "some more info", "extraInformation1": "some additional info"}
 
@@ -354,6 +359,7 @@ def test_add_extra_fields_json(mocker: pytest_mock.MockerFixture) -> None:
         subject_uri=base_uri,
         row=row,
         graph=graph,
+        extra_schema=extra_schema,
     )
 
     # Assert
@@ -384,6 +390,9 @@ def test_add_extra_fields_json_no_data(mocker: pytest_mock.MockerFixture) -> Non
     # Mock out the schema method to return the above descriptor
     mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
+    # construct schema just for extra fields
+    extra_schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=False)
+
     # Create resource from raw data with derived schema
     resource = frictionless.Resource(
         source=csv_data,
@@ -404,6 +413,7 @@ def test_add_extra_fields_json_no_data(mocker: pytest_mock.MockerFixture) -> Non
         subject_uri=base_uri,
         row=row,
         graph=graph,
+        extra_schema=extra_schema,
     )
 
     # Should have no triples

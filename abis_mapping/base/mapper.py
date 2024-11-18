@@ -187,16 +187,18 @@ class ABISMapper(abc.ABC):
         subject_uri: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
+        extra_schema: frictionless.Schema,
     ) -> None:
         """Adds additional fields data to graph as JSON if values exist.
 
         Args:
-            subject_uri (rdflib.URIRef): Node for the JSON data to be attached.
-            row (frictionless.Row): Row containing all data including extras.
-            graph (rdflib.Graph): Graph to be modified.
+            subject_uri: Node for the JSON data to be attached.
+            row: Row containing all data including extras.
+            graph: Graph to be modified.
+            extra_schema: Schema of extra fields. From calling extra_fields_schema(..., full_schema=False).
         """
         # Extract fields and determine if any values
-        extra_fields = cls.extract_extra_fields(row)
+        extra_fields = cls.extract_extra_fields(row, extra_schema)
         if extra_fields == {}:
             return
 
@@ -212,18 +214,17 @@ class ABISMapper(abc.ABC):
     def extract_extra_fields(
         cls,
         row: frictionless.Row,
+        extra_schema: frictionless.Schema,
     ) -> dict[str, Any]:
         """Extracts extra values from a row not in template schema.
 
         Args:
-            row (frictionless.Row): Row of data including extra rows.
+            row: Row of data including extra rows.
+            extra_schema: Schema of extra fields. From calling extra_fields_schema(..., full_schema=False).
 
         Returns:
             dict[str, Any]: Dictionary containing extra values, if any.
         """
-        # Get schema consisting of extra fields
-        extra_schema = cls.extra_fields_schema(row)
-
         # Create dictionary consisting row data from extra fields only
         return {field: row[field] for field in extra_schema.field_names if row[field] is not None}
 
