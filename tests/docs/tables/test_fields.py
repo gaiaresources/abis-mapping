@@ -138,7 +138,8 @@ def mocked_vocab(mocked_vocab: unittest.mock.MagicMock) -> unittest.mock.MagicMo
                 },
             },
             {
-                "Field Name": "someName",
+                "Field #": "1",
+                "Name": "someName",
                 "Description": "Some description",
                 "Mandatory / Optional": "Optional",
                 "Datatype Format": "String",
@@ -164,7 +165,8 @@ def mocked_vocab(mocked_vocab: unittest.mock.MagicMock) -> unittest.mock.MagicMo
                 },
             },
             {
-                "Field Name": "someName",
+                "Field #": "1",
+                "Name": "someName",
                 "Description": "Some description",
                 "Mandatory / Optional": "Mandatory",
                 "Datatype Format": "String",
@@ -184,7 +186,7 @@ def test_field_table_row(field: dict[str, Any], expected: dict[str, Any]) -> Non
     f = models.schema.Field.model_validate(field)
 
     # Create field table row
-    ftr = tables.fields.FieldTableRow(field=f, checklist=None)
+    ftr = tables.fields.FieldTableRow(field=f, checklist=None, field_no=1)
 
     # Assert
     assert ftr.model_dump(by_alias=True) == expected
@@ -204,7 +206,7 @@ def test_header(mocked_mapper: unittest.mock.MagicMock) -> None:
     mocked_mapper.assert_called()
 
     # Confirm expected output
-    assert tabler.header == ["Field Name", "Description", "Mandatory / Optional", "Datatype Format", "Examples"]
+    assert tabler.header == ["Field #", "Name", "Description", "Mandatory / Optional", "Datatype Format", "Examples"]
 
 
 def test_determine_checklist() -> None:
@@ -226,24 +228,24 @@ def test_determine_checklist() -> None:
         pytest.param(
             tables.fields.FieldTabler,
             (
-                "Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
-                "someName,Some description,Mandatory,String,SOME EXAMPLE\r\n"
-                "anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n"
-                'abc,Alphabet,"Conditionally mandatory with 123, FakeField and NotAField",String,Alphabet EXAMPLE\r\n'
-                "123,Numbers,Conditionally mandatory with abc,String,Numbers EXAMPLE\r\n"
-                "threatStatus,The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.,Optional,String,VU\r\n\n"
+                "Field #,Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
+                "1,someName,Some description,Mandatory,String,SOME EXAMPLE\r\n"
+                "2,anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n"
+                '3,abc,Alphabet,"Conditionally mandatory with 123, FakeField and NotAField",String,Alphabet EXAMPLE\r\n'
+                "4,123,Numbers,Conditionally mandatory with abc,String,Numbers EXAMPLE\r\n"
+                "5,threatStatus,The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.,Optional,String,VU\r\n\n"
             ),
             id="FieldTabler",
         ),
         pytest.param(
             tables.fields.OccurrenceFieldTabler,
             (
-                "Field Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
-                "someName,Some description,Mandatory,String,SOME EXAMPLE\r\n"
-                "anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n"
-                'abc,Alphabet,"Conditionally mandatory with 123, FakeField and NotAField",String,Alphabet EXAMPLE\r\n'
-                "123,Numbers,Conditionally mandatory with abc,String,Numbers EXAMPLE\r\n"
-                "threatStatus,The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.,Optional,String,VU\r\n\n"
+                "Field #,Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
+                "1,someName,Some description,Mandatory,String,SOME EXAMPLE\r\n"
+                "2,anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n"
+                '3,abc,Alphabet,"Conditionally mandatory with 123, FakeField and NotAField",String,Alphabet EXAMPLE\r\n'
+                "4,123,Numbers,Conditionally mandatory with abc,String,Numbers EXAMPLE\r\n"
+                "5,threatStatus,The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.,Optional,String,VU\r\n\n"
             ),
             id="OccurrenceFieldTabler",
         ),
@@ -292,26 +294,26 @@ def test_generate_table(
         pytest.param(
             tables.fields.FieldTabler,
             (
-                "|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n"
-                "|:---|:---|:---:|:---:|:---|\n"
-                '|<a name="someName-field"></a>someName|Some description|**<font color="Crimson">Mandatory</font>**|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
-                '|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|**<font color="Crimson">Mandatory</font>**|String|ANOTHER EXAMPLE|\n'
-                '|<a name="abc-field"></a>[abc](http://example.com/abc)|Alphabet|**<font color="DarkGoldenRod">Conditionally mandatory with 123, FakeField and NotAField</font>**|String|Alphabet EXAMPLE|\n'
-                '|<a name="123-field"></a>[123](http://example.com/123)|Numbers|**<font color="DarkGoldenRod">Conditionally mandatory with abc</font>**|String|Numbers EXAMPLE|\n'
-                '|<a name="threatStatus-field"></a>threatStatus|The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.|Optional|String|VU<br>([Vocabulary link](#threatStatus-vocabularies))|\n'
+                "|Field #|Name|Description|Mandatory / Optional|Datatype Format|Examples|\n"
+                "|:---:|:---|:---|:---:|:---:|:---|\n"
+                '|1|<a name="someName-field"></a>someName|Some description|**<font color="Crimson">Mandatory</font>**|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
+                '|2|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|**<font color="Crimson">Mandatory</font>**|String|ANOTHER EXAMPLE|\n'
+                '|3|<a name="abc-field"></a>[abc](http://example.com/abc)|Alphabet|**<font color="DarkGoldenRod">Conditionally mandatory with 123, FakeField and NotAField</font>**|String|Alphabet EXAMPLE|\n'
+                '|4|<a name="123-field"></a>[123](http://example.com/123)|Numbers|**<font color="DarkGoldenRod">Conditionally mandatory with abc</font>**|String|Numbers EXAMPLE|\n'
+                '|5|<a name="threatStatus-field"></a>threatStatus|The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.|Optional|String|VU<br>([Vocabulary link](#threatStatus-vocabularies))|\n'
             ),
             id="FieldTabler",
         ),
         pytest.param(
             tables.fields.OccurrenceFieldTabler,
             (
-                "|Field Name|Description|Mandatory / Optional|Datatype Format|Examples|\n"
-                "|:---|:---|:---:|:---:|:---|\n"
-                '|<a name="someName-field"></a>someName|Some description|**<font color="Crimson">Mandatory</font>**|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
-                '|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|**<font color="Crimson">Mandatory</font>**|String|ANOTHER EXAMPLE|\n'
-                '|<a name="abc-field"></a>[abc](http://example.com/abc)|Alphabet|**<font color="DarkGoldenRod">Conditionally mandatory with 123, FakeField and NotAField</font>**|String|Alphabet EXAMPLE|\n'
-                '|<a name="123-field"></a>[123](http://example.com/123)|Numbers|**<font color="DarkGoldenRod">Conditionally mandatory with abc</font>**|String|Numbers EXAMPLE|\n'
-                '|<a name="threatStatus-field"></a>threatStatus|The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.|Optional|String|VU<br>([Vocabulary link](#threatStatus-vocabularies))|\n'
+                "|Field #|Name|Description|Mandatory / Optional|Datatype Format|Examples|\n"
+                "|:---:|:---|:---|:---:|:---:|:---|\n"
+                '|1|<a name="someName-field"></a>someName|Some description|**<font color="Crimson">Mandatory</font>**|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
+                '|2|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|**<font color="Crimson">Mandatory</font>**|String|ANOTHER EXAMPLE|\n'
+                '|3|<a name="abc-field"></a>[abc](http://example.com/abc)|Alphabet|**<font color="DarkGoldenRod">Conditionally mandatory with 123, FakeField and NotAField</font>**|String|Alphabet EXAMPLE|\n'
+                '|4|<a name="123-field"></a>[123](http://example.com/123)|Numbers|**<font color="DarkGoldenRod">Conditionally mandatory with abc</font>**|String|Numbers EXAMPLE|\n'
+                '|5|<a name="threatStatus-field"></a>threatStatus|The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.|Optional|String|VU<br>([Vocabulary link](#threatStatus-vocabularies))|\n'
             ),
             id="OccurrenceFieldTabler",
         ),
