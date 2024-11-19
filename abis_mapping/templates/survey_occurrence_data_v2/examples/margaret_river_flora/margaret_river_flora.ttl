@@ -1705,6 +1705,7 @@
         tern:FeatureOfInterest ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:isSampleOf <http://createme.org/Site/MR-S1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:identifier "BHP2012-7521"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
         "M12378"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
@@ -1716,7 +1717,6 @@
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
-    tern:hasSite <http://createme.org/Site/MR-S1> ;
     tern:hasSiteVisit <http://createme.org/SiteVisit/MR-R1-V1> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1724,6 +1724,7 @@
         tern:FeatureOfInterest ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:isSampleOf <http://createme.org/Site/MR-S1> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/methods/samplingProtocol/new-sampling-protocol> ;
     schema:identifier "BHP2012-7522"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
         "M12379"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
@@ -1735,7 +1736,6 @@
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
     tern:featureType <http://createme.org/bdr-cv/featureType/occurrence/kingdom/new-kingdom> ;
-    tern:hasSite <http://createme.org/Site/MR-S1> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
