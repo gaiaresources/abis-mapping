@@ -188,8 +188,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph = utils.rdf.create_graph()
 
         # Check if Dataset IRI Supplied
-        if not dataset_iri:
-            # Create Dataset IRI
+        if dataset_iri:
+            # If supplied, add just the dataset type.
+            graph.add((dataset_iri, a, utils.namespaces.TERN.Dataset))
+        else:
+            # If not supplied, create example "default" Dataset IRI
             dataset_iri = utils.rdf.uri(f"dataset/{self.DATASET_DEFAULT_NAME}", base_iri)
 
             # Add Example Default Dataset if not Supplied
@@ -221,6 +224,8 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
                     # Initialise New Graph
                     graph = utils.rdf.create_graph()
+                    # Every chunk should have this node
+                    graph.add((dataset_iri, a, utils.namespaces.TERN.Dataset))
 
             # Yield
             yield graph
