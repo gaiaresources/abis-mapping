@@ -762,6 +762,9 @@
     skos:prefLabel "Stream Environment and Water Pty Ltd recordNumber" ;
     prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> .
 
+<http://createme.org/SiteVisit/MR-R1-V1> a tern:SiteVisit ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
+
 <http://createme.org/attribute/basisOfRecord/HumanObservation> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     tern:attribute <http://example.com/concept/basisOfRecord> ;
