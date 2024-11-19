@@ -422,6 +422,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
+        # Add site
         self.add_site(
             uri=uri_site,
             uri_site_id_datatype=uri_site_id_datatype,
