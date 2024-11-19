@@ -138,14 +138,17 @@
     rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/new-taxon> .
 
 <http://createme.org/visit/plan/TIS-24-03-P1-01> a prov:Plan ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/4caf0cde-9ffb-56c2-bdc6-17c4c2a7275a> ;
     schema:description "10 x square buckets of size 20 x 20 x 15 cm. Propylene glycol." .
 
 <http://createme.org/visit/plan/TIS-24-03-P1-02> a prov:Plan ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     sosa:usedProcedure <http://createme.org/bdr-cv/attribute/protocolName/litter-sifting> ;
     schema:description "50 cm diameter sifter with 5 mm mesh. Litter samles taken ~1 metre from each pitfall trap" .
 
 <http://createme.org/visit/plan/TIS-24-03-P1-03> a prov:Plan ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/DBCA> a prov:Agent,

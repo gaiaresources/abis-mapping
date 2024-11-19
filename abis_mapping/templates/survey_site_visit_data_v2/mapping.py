@@ -748,6 +748,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Add subject type
         graph.add((uri, a, rdflib.PROV.Plan))
 
+        # add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
+
         # Add description
         row_protocol_description: str | None = row["protocolDescription"]
         if row_protocol_description:
