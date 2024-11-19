@@ -316,6 +316,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         self.add_plan(
             uri=survey_plan,
             row=row,
+            dataset=dataset,
             graph=graph,
         )
 
@@ -626,6 +627,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
+        dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds plan to graph.
@@ -633,10 +635,14 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         Args:
             uri: Plan reference.
             row: Raw data row.
+            dataset: URI for the dataset node.
             graph: Graph to be modified.
         """
         # Add type
         graph.add((uri, a, rdflib.PROV.Plan))
+
+        # add link to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
 
         # Add citation(s)
         if citations := row["surveyMethodCitation"]:
