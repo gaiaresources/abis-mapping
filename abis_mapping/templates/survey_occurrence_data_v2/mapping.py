@@ -1343,6 +1343,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             base_iri=base_iri,
         )
 
+        # Add site visit
+        self.add_site_visit(
+            uri=site_visit,
+            dataset=dataset,
+            graph=graph,
+        )
+
         # Add extra fields JSON
         self.add_extra_fields_json(
             subject_uri=provider_record_id_occurrence,
@@ -4543,6 +4550,31 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add site visit if provided
         if site_visit is not None:
             graph.add((uri, utils.namespaces.TERN.hasSiteVisit, site_visit))
+
+    def add_site_visit(
+        self,
+        uri: rdflib.URIRef | None,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds the basics of the SiteVisit node to the graph.
+
+        Only applicable when the occurrence has a siteVisitID.
+        The other properties for the node come from the site visit template.
+
+        Args:
+            uri: The URI for the Site visit node
+            dataset: The dataset URI
+            graph: The graph to update
+        """
+        # Check site visit exists
+        if uri is None:
+            return
+
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.SiteVisit))
+        # Add dataset link
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
 
 
 # Helper Functions
