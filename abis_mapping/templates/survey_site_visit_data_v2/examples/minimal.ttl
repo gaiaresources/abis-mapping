@@ -203,6 +203,9 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> .
 
+<http://createme.org/Survey/TIS-24-03> a tern:Survey ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> .
+
 <https://linked.data.gov.au/dataset/bdr/orgs/WAM> a prov:Agent,
         prov:Organization ;
     schema:name "WAM" .

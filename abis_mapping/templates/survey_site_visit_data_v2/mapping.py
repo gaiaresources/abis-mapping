@@ -427,6 +427,13 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
+        # Add survey
+        self.add_survey(
+            uri=uri_survey,
+            dataset=dataset,
+            graph=graph,
+        )
+
         # Add site
         self.add_site(
             uri=uri_site,
@@ -585,6 +592,26 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # Add link to Site Visit Plan
         graph.add((uri, rdflib.PROV.hadPlan, uri_site_visit_plan))
+
+    def add_survey(
+        self,
+        uri: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds the basics of the Survey node to the graph.
+
+        The other properties for the node come from the survey metadata.
+
+        Args:
+            uri: The URI for the Survey node
+            dataset: The dataset URI
+            graph: The graph to update
+        """
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.Survey))
+        # Add dataset link
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
 
     def add_site(
         self,
