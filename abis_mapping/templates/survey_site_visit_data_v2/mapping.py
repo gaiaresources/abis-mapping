@@ -412,15 +412,22 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         self.add_site_visit_activity(
             uri=uri_site_visit_activity,
             row_site_visit_id=row_site_visit_id,
-            row_site_id=row_site_id,
             uri_survey=uri_survey,
             uri_site=uri_site,
             uri_site_visit_plan=uri_site_visit_plan,
-            uri_site_id_datatype=uri_site_id_datatype,
             visit_org_agents=visit_org_agents,
             visit_observer_agents=visit_observer_agents,
             row=row,
             dataset=dataset,
+            graph=graph,
+        )
+
+        # Add site
+        self.add_site(
+            uri=uri_site,
+            uri_site_id_datatype=uri_site_id_datatype,
+            dataset=dataset,
+            row=row,
             graph=graph,
         )
 
@@ -521,11 +528,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         *,
         uri: rdflib.URIRef,
         row_site_visit_id: str,
-        row_site_id: str,
         uri_survey: rdflib.URIRef,
         uri_site: rdflib.URIRef,
         uri_site_visit_plan: rdflib.URIRef,
-        uri_site_id_datatype: rdflib.URIRef | None,
         visit_org_agents: list[Agent],
         visit_observer_agents: list[Agent],
         row: frictionless.Row,
@@ -540,8 +545,6 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SDO.isPartOf, uri_survey))
         # Add site link
         graph.add((uri, utils.namespaces.TERN.hasSite, uri_site))
-        if uri_site_id_datatype and row_site_id:
-            graph.add((uri, utils.namespaces.TERN.hasSite, rdflib.Literal(row_site_id, datatype=uri_site_id_datatype)))
 
         # Add identifier
         graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(row_site_visit_id)))
@@ -577,6 +580,34 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # Add link to Site Visit Plan
         graph.add((uri, rdflib.PROV.hadPlan, uri_site_visit_plan))
+
+    def add_site(
+        self,
+        *,
+        uri: rdflib.URIRef,
+        uri_site_id_datatype: rdflib.URIRef | None,
+        dataset: rdflib.URIRef,
+        row: frictionless.Row,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds site to the graph.
+
+        Args:
+            uri: Subject of the node.
+            uri_site_id_datatype: Datatype of the site
+                id source.
+            row: Raw data for row.
+            graph: Graph to be modified.
+        """
+        # Add class
+        graph.add((uri, a, utils.namespaces.TERN.Site))
+
+        # Add siteID literal
+        dt = uri_site_id_datatype or rdflib.XSD.string
+        graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(row["siteID"], datatype=dt)))
+
+        # Add to dataset
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
 
     def add_site_id_datatype(
         self,

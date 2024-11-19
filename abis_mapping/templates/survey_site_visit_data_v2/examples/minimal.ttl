@@ -59,8 +59,7 @@
         <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
     schema:identifier "TIS-24-03-P1-03" ;
     schema:isPartOf <http://createme.org/Survey/TIS-24-03> ;
-    tern:hasSite <http://createme.org/Site/P1>,
-        "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> .
+    tern:hasSite <http://createme.org/Site/P1> .
 
 <http://createme.org/attribute/samplingEffort/10-sifts> a tern:Attribute ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
@@ -175,8 +174,7 @@
         <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
     schema:identifier "TIS-24-03-P1-01" ;
     schema:isPartOf <http://createme.org/Survey/TIS-24-03> ;
-    tern:hasSite <http://createme.org/Site/P1>,
-        "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    tern:hasSite <http://createme.org/Site/P1> ;
     tern:siteDescription "dry" .
 
 <http://createme.org/SiteVisit/TIS-24-03-P1-02> a tern:SiteVisit ;
@@ -191,13 +189,16 @@
         <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
     schema:identifier "TIS-24-03-P1-02" ;
     schema:isPartOf <http://createme.org/Survey/TIS-24-03> ;
-    tern:hasSite <http://createme.org/Site/P1>,
-        "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    tern:hasSite <http://createme.org/Site/P1> ;
     tern:siteDescription "moist leaf litter after recent rain" .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/ORCID00001> a prov:Agent,
         prov:Person ;
     schema:name "ORCID00001" .
+
+<http://createme.org/Site/P1> a tern:Site ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
+    schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/WAM> a prov:Agent,
         prov:Organization ;
