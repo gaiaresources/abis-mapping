@@ -1317,6 +1317,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
         )
 
+        # Add Survey
+        self.add_survey(
+            uri=survey,
+            dataset=dataset,
+            graph=graph,
+        )
+
         # Add biodiversity record
         self.add_biodiversity_record(
             uri=provider_record_id_biodiversity_record,
@@ -4366,6 +4373,26 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.TERN.hasAttribute, sensitivity_category_attribute))
         # Add link to the biodiversity record
         graph.add((uri, rdflib.SDO.member, provider_record_id_biodiversity_record))
+
+    def add_survey(
+        self,
+        uri: rdflib.URIRef,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds the basics of the Survey node to the graph.
+
+        The other properties for the node come from the survey metadata.
+
+        Args:
+            uri: The URI for the Survey node
+            dataset: The dataset URI
+            graph: The graph to update
+        """
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.Survey))
+        # Add dataset link
+        graph.add((uri, rdflib.VOID.inDataset, dataset))
 
     def add_biodiversity_record(
         self,

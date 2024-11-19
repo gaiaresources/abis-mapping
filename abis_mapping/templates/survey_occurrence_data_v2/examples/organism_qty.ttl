@@ -56,6 +56,9 @@
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
 
+<http://createme.org/Survey/1> a tern:Survey ;
+    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
+
 <http://createme.org/attribution/Gaia-Resources/resourceProvider> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/Gaia-Resources> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
