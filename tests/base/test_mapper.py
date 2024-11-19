@@ -238,7 +238,6 @@ def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None
 
     # Get mapper
     mapper = base.mapper.ABISMapper
-    assert mapper is not None
 
     # Get data
     csv_data = data_to_csv(data)
@@ -261,6 +260,104 @@ def test_extra_fields_schema_raw_data(mocker: pytest_mock.MockerFixture) -> None
     for field in diff_schema.fields:
         assert field.type == "string"
     assert set(full_schema.field_names) == set(existing_schema.field_names) | expected_extra_fieldnames
+
+
+def test_extra_fields_schema_inserted_fields_midway(mocker: pytest_mock.MockerFixture) -> None:
+    """Tests extra_fields_schema validation fails correctly for extra columns entered midway.
+
+    Args:
+        mocker: The mocker fixture.
+    """
+    # Construct dataset
+    data = [
+        {"A": 123, "C": 321.6546454654654, "D": True, "E": "something", "B": 321},
+        {"A": 321, "C": 6.54654e-15, "D": False, "E": "another thing", "B": 123},
+    ]
+
+    # Construct base schema descriptor
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+
+    # Construct csv with extra fields between "A" and "B"
+    csv_data = data_to_csv(data)
+
+    # Patch schema method and return descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+
+    # Construct schema (includes extra fields)
+    schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=True)
+
+    # Construct resource
+    resource = frictionless.Resource(
+        source=csv_data,
+        format="csv",
+        schema=schema,
+        encoding="utf-8",
+    )
+
+    # Schema may look nonsensical but the method appends extra
+    # fields (i.e any fields not named originally within the defined schema and any duplicate names)
+    # to the end of the original schema and the subsequent label checks on the data will
+    # reveal the issue. This is the same behaviour as inserting new columns into raw data
+    # with a defined schema for a frictionless resource in any case.
+    assert [f.name for f in schema.fields] == ["A", "B", "C", "D", "E"]
+
+    # Validate
+    report = resource.validate()
+
+    # Confirm error types
+    errors = report.flatten(["type"])
+    assert set([e for err in errors for e in err]) == {"incorrect-label", "type-error"}
+
+
+def test_extra_fields_schema_inserted_fields_duplicate_original(mocker: pytest_mock.MockerFixture) -> None:
+    """Tests extra_fields_schema fails correctly for extra columns that are duplicates of original fields.
+
+    Args:
+        mocker: The mocker fixture.
+    """
+    # Create dataset
+    data = [
+        "A,B,C,B",
+        "123,321,321.654654654,333",
+        "321,123,6.545454,111",
+    ]
+
+    # Create bytes object
+    csv_data = "\n".join(data).encode("utf-8")
+
+    # Construct base schema descriptor
+    descriptor = {"fields": [{"name": "A", "type": "integer"}, {"name": "B", "type": "integer"}]}
+
+    # Patch schema method and return descriptor
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+
+    # Construct schema with extra fields
+    schema = base.mapper.ABISMapper.extra_fields_schema(csv_data, full_schema=True)
+
+    # Schema should have duplicate B field
+    assert [(f.name, f.type) for f in schema.fields] == [
+        ("A", "integer"),
+        ("B", "integer"),
+        ("C", "string"),
+        # Frictionless automatically appends '2' to avoid duplication.
+        # However the csv_data labels will still raise validation errors.
+        ("B2", "string"),
+    ]
+
+    # Construct resource
+    resource = frictionless.Resource(
+        source=csv_data,
+        format="csv",
+        schema=schema,
+        encoding="utf-8",
+    )
+
+    # Validate
+    report = resource.validate()
+
+    # Confirm error types
+    errors = report.flatten(["type"])
+    assert set([e for err in errors for e in err]) == {"duplicate-label"}
 
 
 def test_extract_extra_fields(mocker: pytest_mock.MockerFixture) -> None:
