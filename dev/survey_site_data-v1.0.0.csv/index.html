@@ -694,7 +694,8 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Field Name</th>
+<th style="text-align: center;">Field #</th>
+<th style="text-align: left;">Name</th>
 <th style="text-align: left;">Description</th>
 <th style="text-align: center;">Mandatory / Optional</th>
 <th style="text-align: center;">Datatype Format</th>
@@ -703,6 +704,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 </thead>
 <tbody>
 <tr>
+<td style="text-align: center;">1</td>
 <td style="text-align: left;"><a name="siteID-field"></a>siteID</td>
 <td style="text-align: left;">A unique within dataset string identifier for the site. Valid values include strings that are used specifically for this survey or URIs from BDR Sites that have been established in previous surveys.</td>
 <td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
@@ -710,6 +712,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">P1</td>
 </tr>
 <tr>
+<td style="text-align: center;">2</td>
 <td style="text-align: left;"><a name="siteIDSource-field"></a>siteIDSource</td>
 <td style="text-align: left;">The organisation that assigned the SiteID to this Site</td>
 <td style="text-align: center;">Optional</td>
@@ -717,6 +720,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">TERN</td>
 </tr>
 <tr>
+<td style="text-align: center;">3</td>
 <td style="text-align: left;"><a name="siteType-field"></a>siteType</td>
 <td style="text-align: left;">The type of site that relates to its sampling type and/or dimensions.</td>
 <td style="text-align: center;">Optional</td>
@@ -724,6 +728,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Plot<br>(<a href="#siteType-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">4</td>
 <td style="text-align: left;"><a name="siteName-field"></a>siteName</td>
 <td style="text-align: left;">A name for the site that may be more descriptive than the siteID.</td>
 <td style="text-align: center;">Optional</td>
@@ -731,6 +736,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Plot 1</td>
 </tr>
 <tr>
+<td style="text-align: center;">5</td>
 <td style="text-align: left;"><a name="siteDescription-field"></a>siteDescription</td>
 <td style="text-align: left;">The site (plot) description covers important aspects of the site (generally of the land surface). Some overlap in collected information does occur due to the modular nature of the survey processes. The description provides significant background information to gain an appreciation of the plot history, topography, position in the landscape and for understanding the likely relationship between the soils, vegetation and fauna.</td>
 <td style="text-align: center;">Optional</td>
@@ -738,6 +744,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Fine woody debris.</td>
 </tr>
 <tr>
+<td style="text-align: center;">6</td>
 <td style="text-align: left;"><a name="habitat-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:habitat">habitat</a></td>
 <td style="text-align: left;">A collection of habitat types representing the dominant vegetation structural formation class adopted by the National Vegetation Information System (NVIS).</td>
 <td style="text-align: center;">Optional</td>
@@ -745,6 +752,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Chenopod Shrubland | Closed Fernland<br>(<a href="#habitat-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">7</td>
 <td style="text-align: left;"><a name="relatedSiteID-field"></a>relatedSiteID</td>
 <td style="text-align: left;">Identifier of a related site to the specified site e.g. parent site, same site with different identifier.</td>
 <td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with relationshipToRelatedSite</font></strong></td>
@@ -752,6 +760,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Same as within dataset or existing URI</td>
 </tr>
 <tr>
+<td style="text-align: center;">8</td>
 <td style="text-align: left;"><a name="relationshipToRelatedSite-field"></a>relationshipToRelatedSite</td>
 <td style="text-align: left;">Relationship between the site and the related site. This field can be used to record Site identifiers for the same site from different custodians through the use of URIs.</td>
 <td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with relatedSiteID</font></strong></td>
@@ -759,6 +768,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Same as within dataset or existing URI<br>(<a href="#relationshipToRelatedSite-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">9</td>
 <td style="text-align: left;"><a name="decimalLatitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLatitude">decimalLatitude</a></td>
 <td style="text-align: left;">The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are north of the Equator, negative values are south of it. Legal values lie between -90 and 0, inclusive for Southern hemisphere.</td>
 <td style="text-align: center;">Optional</td>
@@ -766,6 +776,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">-34.036</td>
 </tr>
 <tr>
+<td style="text-align: center;">10</td>
 <td style="text-align: left;"><a name="decimalLongitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLongitude">decimalLongitude</a></td>
 <td style="text-align: left;">The geographic longitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are east of the Greenwich Meridian, negative values are west of it. Legal values lie between 0 and 180, inclusive for the BDR use case.</td>
 <td style="text-align: center;">Optional</td>
@@ -773,6 +784,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">146.363</td>
 </tr>
 <tr>
+<td style="text-align: center;">11</td>
 <td style="text-align: left;"><a name="footprintWKT-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:footprintWKT">footprintWKT</a></td>
 <td style="text-align: left;">A Well-Known Text (WKT) representation of the shape (footprint, geometry) that defines the Site. A Site may have both a point-radius representation and a footprint representation, and they may differ from each other.</td>
 <td style="text-align: center;">Optional</td>
@@ -780,6 +792,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">LINESTRING (146.363 -34.036, 146.363 -34.037)<br>(<a href="#appendix-ii-well-known-text-wkt">WKT notes</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">12</td>
 <td style="text-align: left;"><a name="geodeticDatum-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
 <td style="text-align: left;">The geodetic datum, or spatial reference system (SRS) upon which the geographic coordinates given for the Site are based.</td>
 <td style="text-align: center;">Optional</td>
@@ -787,6 +800,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">WGS84<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">13</td>
 <td style="text-align: left;"><a name="coordinateUncertaintyInMeters-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:coordinateUncertaintyInMeters">coordinateUncertaintyInMeters</a></td>
 <td style="text-align: left;">The horizontal distance (in metres) from the given decimalLatitude and decimalLongitude describing the smallest circle containing the whole of the Site. Leave the value empty if the uncertainty is unknown, cannot be estimated, or is not applicable (because there are no coordinates). Zero is not a valid value for this term.</td>
 <td style="text-align: center;">Optional</td>
@@ -794,6 +808,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">50</td>
 </tr>
 <tr>
+<td style="text-align: center;">14</td>
 <td style="text-align: left;"><a name="dataGeneralizations-field"></a>dataGeneralizations</td>
 <td style="text-align: left;">Actions taken to make the shared data less specific or complete than in its original form.</td>
 <td style="text-align: center;">Optional</td>
@@ -801,6 +816,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Coordinates given in decimalLatitude, decimalLongitude, easting and northing have been rounded to 0.1 DEG. The observer name has been changed to a unique User ID.</td>
 </tr>
 <tr>
+<td style="text-align: center;">15</td>
 <td style="text-align: left;"><a name="surveyID-field"></a>surveyID</td>
 <td style="text-align: left;">The identifier of the Survey that the Site is related to in this dataset.</td>
 <td style="text-align: center;">Optional</td>
@@ -808,6 +824,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">AR220-01</td>
 </tr>
 <tr>
+<td style="text-align: center;">16</td>
 <td style="text-align: left;"><a name="siteVisitID-field"></a>siteVisitID</td>
 <td style="text-align: left;">The unique key assigned to a visit. A visit is a time distinct assessment conducted within a survey at a designated site.</td>
 <td style="text-align: center;">Optional</td>
@@ -815,6 +832,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">CPXEI0000001</td>
 </tr>
 <tr>
+<td style="text-align: center;">17</td>
 <td style="text-align: left;"><a name="siteVisitStart-field"></a>siteVisitStart</td>
 <td style="text-align: left;">The temporal start of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.</td>
 <td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
@@ -822,6 +840,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">2016-02-28</td>
 </tr>
 <tr>
+<td style="text-align: center;">18</td>
 <td style="text-align: left;"><a name="siteVisitEnd-field"></a>siteVisitEnd</td>
 <td style="text-align: left;">The temporal end of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.</td>
 <td style="text-align: center;">Optional</td>
@@ -829,6 +848,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">2016-02-28</td>
 </tr>
 <tr>
+<td style="text-align: center;">19</td>
 <td style="text-align: left;"><a name="visitOrgs-field"></a>visitOrgs</td>
 <td style="text-align: left;">The names of the organisations responsible for recording the original Occurrence.</td>
 <td style="text-align: center;">Optional</td>
@@ -836,6 +856,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">NSW Dept of Planning, Industry and Environment.</td>
 </tr>
 <tr>
+<td style="text-align: center;">20</td>
 <td style="text-align: left;"><a name="visitObservers-field"></a>visitObservers</td>
 <td style="text-align: left;">A list (concatenated and separated using |) of names of people, groups, or organisations responsible for recording the original Occurrence.</td>
 <td style="text-align: center;">Optional</td>
@@ -843,6 +864,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Oliver P. Pearson | Anita K. Pearson</td>
 </tr>
 <tr>
+<td style="text-align: center;">21</td>
 <td style="text-align: left;"><a name="condition-field"></a>condition</td>
 <td style="text-align: left;">The state of a patch of vegetation at the time of sampling relative to some specified standard or benchmark (where available).</td>
 <td style="text-align: center;">Optional</td>

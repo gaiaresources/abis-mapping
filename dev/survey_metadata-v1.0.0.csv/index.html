@@ -693,7 +693,8 @@ datatype format, and examples.</ins></p>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Field Name</th>
+<th style="text-align: center;">Field #</th>
+<th style="text-align: left;">Name</th>
 <th style="text-align: left;">Description</th>
 <th style="text-align: center;">Mandatory / Optional</th>
 <th style="text-align: center;">Datatype Format</th>
@@ -702,6 +703,7 @@ datatype format, and examples.</ins></p>
 </thead>
 <tbody>
 <tr>
+<td style="text-align: center;">1</td>
 <td style="text-align: left;"><a name="surveyID-field"></a>surveyID</td>
 <td style="text-align: left;">The identifier for the survey. Important if more there is more than one survey a the project.</td>
 <td style="text-align: center;">Optional</td>
@@ -709,6 +711,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">COL1</td>
 </tr>
 <tr>
+<td style="text-align: center;">2</td>
 <td style="text-align: left;"><a name="surveyName-field"></a>surveyName</td>
 <td style="text-align: left;">Brief title for the survey.</td>
 <td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
@@ -716,6 +719,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer</td>
 </tr>
 <tr>
+<td style="text-align: center;">3</td>
 <td style="text-align: left;"><a name="surveyPurpose-field"></a>surveyPurpose</td>
 <td style="text-align: left;">A description of the survey objective</td>
 <td style="text-align: center;">Optional</td>
@@ -723,6 +727,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Summer sampling for peak insect diversity.</td>
 </tr>
 <tr>
+<td style="text-align: center;">4</td>
 <td style="text-align: left;"><a name="surveyType-field"></a>surveyType</td>
 <td style="text-align: left;">Description of type of survey conducted</td>
 <td style="text-align: center;">Optional</td>
@@ -730,6 +735,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Wet pitfall trapping<br>(<a href="#surveyType-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">5</td>
 <td style="text-align: left;"><a name="surveyStart-field"></a>surveyStart</td>
 <td style="text-align: left;">The date data collection commenced.</td>
 <td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
@@ -737,6 +743,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">21/09/2020</td>
 </tr>
 <tr>
+<td style="text-align: center;">6</td>
 <td style="text-align: left;"><a name="surveyEnd-field"></a>surveyEnd</td>
 <td style="text-align: left;">The date data collection was completed.</td>
 <td style="text-align: center;">Optional</td>
@@ -744,6 +751,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">23/09/2020</td>
 </tr>
 <tr>
+<td style="text-align: center;">7</td>
 <td style="text-align: left;"><a name="targetTaxonomicScope-field"></a>targetTaxonomicScope</td>
 <td style="text-align: left;">The range of biological taxa covered by the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |</td>
 <td style="text-align: center;">Optional</td>
@@ -751,6 +759,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Coleoptera | Formicidae<br>(<a href="#targetTaxonomicScope-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">8</td>
 <td style="text-align: left;"><a name="targetHabitatScope-field"></a>targetHabitatScope</td>
 <td style="text-align: left;">The habitats targeted for sampling during the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |</td>
 <td style="text-align: center;">Optional</td>
@@ -758,6 +767,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Woodland<br>(<a href="#targetHabitatScope-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">9</td>
 <td style="text-align: left;"><a name="spatialCoverageWKT-field"></a>spatialCoverageWKT</td>
 <td style="text-align: left;">Well Known Text (WKT) expression of the geographic coordinates that describe the survey's spatial extent.</td>
 <td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with geodeticDatum</font></strong></td>
@@ -765,6 +775,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))<br>(<a href="#appendix-ii-well-known-text-wkt">WKT notes</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">10</td>
 <td style="text-align: left;"><a name="geodeticDatum-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
 <td style="text-align: left;">The geodetic datum upon which the geographic coordinates in the Spatial coverage (WKT) are based.</td>
 <td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with spatialCoverageWKT</font></strong></td>
@@ -772,6 +783,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">GDA2020<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">11</td>
 <td style="text-align: left;"><a name="surveyOrgs-field"></a>surveyOrgs</td>
 <td style="text-align: left;">Name of organisations or individuals for whom Survey is being conducted. Multiple terms are allowed, separated by a vertical bar aka pipe |</td>
 <td style="text-align: center;">Optional</td>
@@ -779,6 +791,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">NSW Department of Planning, Industry and Environment | CSIRO</td>
 </tr>
 <tr>
+<td style="text-align: center;">12</td>
 <td style="text-align: left;"><a name="samplingPerformedBy-field"></a>samplingPerformedBy</td>
 <td style="text-align: left;">Similar to eco:samplingPerformedBy. Individual/s that carried out the survey. These can be represented by identifiers. Multiple values allare allowed, separated by a vertical bar aka pipe |</td>
 <td style="text-align: center;">Optional</td>
@@ -786,6 +799,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">https://orcid.org/0000-0003-1092-9705 | https://orcid.org/0009-0004-5278-4238</td>
 </tr>
 <tr>
+<td style="text-align: center;">13</td>
 <td style="text-align: left;"><a name="surveyMethodCitation-field"></a>surveyMethodCitation</td>
 <td style="text-align: left;">A citation or reference to the survey methods used.</td>
 <td style="text-align: center;">Optional</td>
@@ -793,6 +807,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9</td>
 </tr>
 <tr>
+<td style="text-align: center;">14</td>
 <td style="text-align: left;"><a name="surveyMethodDescription-field"></a>surveyMethodDescription</td>
 <td style="text-align: left;">Free text description of the survey method used.</td>
 <td style="text-align: center;">Optional</td>
@@ -800,6 +815,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location.</td>
 </tr>
 <tr>
+<td style="text-align: center;">15</td>
 <td style="text-align: left;"><a name="surveyMethodURL-field"></a>surveyMethodURL</td>
 <td style="text-align: left;">A DOI or link to the reference about the survey method, if available.</td>
 <td style="text-align: center;">Optional</td>
@@ -807,6 +823,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf | https://doi.org/10.1002/9781118945568.ch11</td>
 </tr>
 <tr>
+<td style="text-align: center;">16</td>
 <td style="text-align: left;"><a name="samplingEffortValue-field"></a>samplingEffortValue</td>
 <td style="text-align: left;">Similar to eco:samplingEffortValue. The total sampling effort value. A samplingEffortValue must have a corresponding samplingEffortUnit</td>
 <td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with samplingEffortUnit</font></strong></td>
@@ -814,6 +831,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">20 x 12</td>
 </tr>
 <tr>
+<td style="text-align: center;">17</td>
 <td style="text-align: left;"><a name="samplingEffortUnit-field"></a>samplingEffortUnit</td>
 <td style="text-align: left;">Similar to eco:samplingEffortUnit. The units associated with samplingEffortValue.</td>
 <td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with samplingEffortValue</font></strong></td>
@@ -821,6 +839,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: left;">trapDays<br>(<a href="#samplingEffortUnit-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
+<td style="text-align: center;">18</td>
 <td style="text-align: left;"><a name="keywords-field"></a>keywords</td>
 <td style="text-align: left;">Terms, phrases or descriptors that highlight the key attributes of the study. Multiple terms are allowed, separated by a vertical bar aka pipe |</td>
 <td style="text-align: center;">Optional</td>
