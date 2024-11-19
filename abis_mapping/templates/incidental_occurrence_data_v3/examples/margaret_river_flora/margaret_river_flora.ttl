@@ -1125,7 +1125,7 @@
 
 <http://createme.org/result/organismQuantity/5> a tern:Float,
         tern:Value ;
-    rdfs:label "organism-count" ;
+    rdfs:label "organism-quantity" ;
     rdf:value "5"^^xsd:float ;
     tern:unit <http://rs.gbif.org/vocabulary/gbif/quantityType/individuals> .
 

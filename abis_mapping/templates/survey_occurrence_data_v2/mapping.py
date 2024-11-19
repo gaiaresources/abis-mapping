@@ -4210,7 +4210,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((organism_qty_observation, rdflib.SOSA.hasResult, uri))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, a, utils.namespaces.TERN.Float))
-        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("organism-count")))
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("organism-quantity")))
         graph.add((uri, utils.namespaces.TERN.unit, term))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(organism_qty, datatype=rdflib.XSD.float)))
 
