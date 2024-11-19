@@ -249,8 +249,11 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         graph_has_data: bool = False
 
         # Check if Dataset IRI Supplied
-        if not dataset_iri:
-            # Create Dataset IRI
+        if dataset_iri:
+            # If supplied, add just the dataset type.
+            graph.add((dataset_iri, a, utils.namespaces.TERN.Dataset))
+        else:
+            # If not supplied, create example "default" Dataset IRI
             dataset_iri = utils.rdf.uri(f"dataset/{self.DATASET_DEFAULT_NAME}", base_iri)
 
             # Add the default dataset
@@ -280,6 +283,8 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
                     # Initialise New Graph for next chunk
                     graph = utils.rdf.create_graph()
                     graph_has_data = False
+                    # Every chunk should have this node
+                    graph.add((dataset_iri, a, utils.namespaces.TERN.Dataset))
 
             # yield final chunk, or whole graph if not chunking.
             if chunk_size is None or graph_has_data:
