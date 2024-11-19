@@ -24,7 +24,16 @@ class FieldTableRow(pydantic.BaseModel):
     field: Annotated[models.schema.Field, pydantic.Field(exclude=True)]
     checklist: Annotated[frictionless.Checklist | None, pydantic.Field(exclude=True)]
 
-    @pydantic.computed_field(alias="Field Name")  # type: ignore[prop-decorator]
+    # Where the field appears in the schema and template columns beginning at 1
+    field_no: Annotated[int, pydantic.Field(exclude=True)]
+
+    @pydantic.computed_field(alias="Field #")  # type: ignore[prop-decorator]
+    @property
+    def field_number(self) -> str:
+        """A dummy property to assist with serialization of the field_no field."""
+        return str(self.field_no)
+
+    @pydantic.computed_field(alias="Name")  # type: ignore[prop-decorator]
     @property
     def field_name(self) -> str:
         """Derive from supplied field."""
@@ -75,7 +84,7 @@ class FieldTableRow(pydantic.BaseModel):
 class MarkdownFieldTableRow(FieldTableRow):
     """Provides markdown specific serialization properties."""
 
-    @pydantic.computed_field(alias="Field Name")  # type: ignore[prop-decorator]
+    @pydantic.computed_field(alias="Name")  # type: ignore[prop-decorator]
     @property
     def field_name(self) -> str:
         """Return field's name."""
@@ -130,13 +139,14 @@ class MarkdownFieldTableRow(FieldTableRow):
 class FieldTabler(tables.base.BaseTabler):
     """Tabler class for creating fields tables."""
 
-    alignment = ["l", "l", "c", "c", "l"]
+    alignment = ["c", "l", "l", "c", "c", "l"]
 
     @property
     def header(self) -> list[str]:
         """Getter for the table header."""
         # Get titles from model
-        raw_hdr = (hdr.alias or hdr.title for hdr in FieldTableRow.model_computed_fields.values())
+        ftrow = MarkdownFieldTableRow if self.format == "markdown" else FieldTableRow
+        raw_hdr = (hdr.alias or hdr.title for hdr in ftrow.model_computed_fields.values())
         return [hdr for hdr in raw_hdr if hdr is not None]
 
     @property
@@ -172,12 +182,12 @@ class FieldTabler(tables.base.BaseTabler):
         checklist = self.checklist()
 
         # Iterate through fields and add to csv
-        for field in self.fields:
+        for i, field in enumerate(self.fields, start=1):
             # Create row
             if self.format == "markdown":
-                field_table_row: FieldTableRow = MarkdownFieldTableRow(field=field, checklist=checklist)
+                field_table_row: FieldTableRow = MarkdownFieldTableRow(field=field, checklist=checklist, field_no=i)
             else:
-                field_table_row = FieldTableRow(field=field, checklist=checklist)
+                field_table_row = FieldTableRow(field=field, checklist=checklist, field_no=i)
 
             # Write row to csv
             row_d = field_table_row.model_dump(by_alias=True)
