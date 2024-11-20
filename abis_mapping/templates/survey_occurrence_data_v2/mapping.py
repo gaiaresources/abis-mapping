@@ -735,7 +735,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             sampling_specimen=sampling_specimen,
             provider_record_id_occurrence=provider_record_id_occurrence,
-            catalog_number_datatype=catalog_number_datatype,
             graph=graph,
             base_iri=base_iri,
         )
@@ -1339,6 +1338,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             record_number_datatype=record_number_datatype,
             owner_record_id_datatype=owner_record_id_datatype,
             other_catalog_numbers_datatype=other_catalog_numbers_datatype,
+            catalog_number_datatype=catalog_number_datatype,
             provider_recorded_by=provider_recorded_by,
             survey=survey,
             site=site,
@@ -2256,7 +2256,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sampling_specimen: rdflib.URIRef,
         provider_record_id_occurrence: rdflib.URIRef,
-        catalog_number_datatype: rdflib.URIRef | None,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace | None,
     ) -> None:
@@ -2270,8 +2269,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 with this node
             provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
-            catalog_number_datatype (rdflib.URIRef | None): Catalog number source
-                datatype.
             graph (rdflib.Graph): Graph to add to
             base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
         """
@@ -2293,22 +2290,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
         graph.add((uri, rdflib.SOSA.isSampleOf, provider_record_id_occurrence))
         graph.add((uri, utils.namespaces.TERN.featureType, term))
-
-        # Check for catalogNumber
-        if row["catalogNumber"]:
-            # Add to Graph
-            graph.add(
-                (
-                    uri,
-                    utils.namespaces.DWC.catalogNumber,
-                    rdflib.Literal(row["catalogNumber"], datatype=catalog_number_datatype),
-                )
-            )
-
-        # Check for collectionCode
-        if row["collectionCode"]:
-            # Add to Graph
-            graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
     def add_data_generalizations_attribute(
         self,
@@ -4428,6 +4409,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         record_number_datatype: rdflib.URIRef | None,
         owner_record_id_datatype: rdflib.URIRef | None,
         other_catalog_numbers_datatype: rdflib.URIRef | None,
+        catalog_number_datatype: rdflib.URIRef | None,
         provider_recorded_by: rdflib.URIRef | None,
         survey: rdflib.URIRef,
         site: rdflib.URIRef | None,
@@ -4445,6 +4427,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             record_number_datatype: Datatype associated with the recordNumber.
             owner_record_id_datatype: Datatype associated with the owner recordID.
             other_catalog_numbers_datatype: Datatype associated with other catalog numbers.
+            catalog_number_datatype: Catalog number source datatype.
             provider_recorded_by: Agent derived from the recordedBy field.
             survey: Survey that the occurrence took place.
             site: Designated site that occurrence happened.
@@ -4567,6 +4550,22 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if provider_recorded_by is not None:
             graph.add((uri, rdflib.PROV.wasAssociatedWith, provider_recorded_by))
 
+        # Check for catalogNumber
+        if row["catalogNumber"]:
+            # Add to Graph
+            graph.add(
+                (
+                    uri,
+                    utils.namespaces.DWC.catalogNumber,
+                    rdflib.Literal(row["catalogNumber"], datatype=catalog_number_datatype),
+                )
+            )
+
+        # Check for collectionCode
+        if row["collectionCode"]:
+            # Add to Graph
+            graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
+
         # Add survey
         graph.add((uri, rdflib.SDO.isPartOf, survey))
 
@@ -4620,8 +4619,8 @@ def has_specimen(row: frictionless.Row) -> bool:
         bool: Whether this row has a specimen associated with it.
     """
     # Check Specimen Rules
-    if row["preparations"] or row["catalogNumber"] or row["associatedSequences"]:
-        # If any of `preparations`, `catalogNumber` or `associatedSequences`
+    if row["preparations"] or row["associatedSequences"]:
+        # If either of `preparations` or `associatedSequences`
         # are provided, regardless of the value of `basisOfRecord` we can infer
         # that there is a specimen associated with the row.
         specimen = True
@@ -4631,14 +4630,14 @@ def has_specimen(row: frictionless.Row) -> bool:
         or vocabs.basis_of_record.HUMAN_OBSERVATION.match(row["basisOfRecord"])  # HumanObservation
         or vocabs.basis_of_record.OCCURRENCE.match(row["basisOfRecord"])  # Occurrence
     ):
-        # Otherwise, if none of `preparations`, `catalogNumber` or
+        # Otherwise, if neither of `preparations` or
         # `associatedSequences` were provided, and the `basisOfRecord` is
         # either blank or one of "HumanObservation" or "Occurrence", then we
         # cannot infer that there is a specimen associated with the row.
         specimen = False
 
     else:
-        # Finally, none of `preparations`, `catalogNumber` or
+        # Finally, neither of `preparations` or
         # `associatedSequences` were provided, but the `basisOfRecord` is a
         # value that implies that there is a specimen associated with the row.
         specimen = True
