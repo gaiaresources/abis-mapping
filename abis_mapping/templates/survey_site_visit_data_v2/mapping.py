@@ -235,6 +235,10 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             data=data,
             full_schema=True,
         )
+        extra_schema = self.extra_fields_schema(
+            data=data,
+            full_schema=False,
+        )
 
         # Construct Resource
         resource = frictionless.Resource(
@@ -273,6 +277,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
                     row=row,
                     dataset=dataset_iri,
                     graph=graph,
+                    extra_schema=extra_schema,
                     base_iri=base_iri,
                 )
                 graph_has_data = True
@@ -295,6 +300,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        extra_schema: frictionless.Schema,
         base_iri: rdflib.Namespace | None,
     ) -> None:
         """Applies mapping for a row in the Survey Site Visit Data template.
@@ -303,6 +309,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row: Row to be processed in the dataset.
             dataset: Dataset IRI this row is a part of.
             graph: Graph to map row into.
+            extra_schema: Schema of extra fields.
             base_iri: Optional base IRI to use for mapping.
         """
         # variables starting with row_ are values from the row.
@@ -533,6 +540,14 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             uri_site_visit_activity=uri_site_visit_activity,
             dataset=dataset,
             graph=graph,
+        )
+
+        # Add extra fields
+        self.add_extra_fields_json(
+            subject_uri=uri_site_visit_activity,
+            row=row,
+            graph=graph,
+            extra_schema=extra_schema,
         )
 
     def add_site_visit_activity(
