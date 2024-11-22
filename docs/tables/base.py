@@ -57,9 +57,10 @@ class BaseTabler(abc.ABC):
         self.output: Final[io.StringIO] = io.StringIO()
 
         # Create writer
+        self.writer: csv.DictWriter[str]
         if format == "markdown":
             # MarkdownDictWriter is a subclass of DictWriter hence the type hint.
-            self.writer: csv.DictWriter = MarkdownDictWriter(
+            self.writer = MarkdownDictWriter(
                 f=self.output,
                 fieldnames=self.header,
                 alignment=self.alignment,
@@ -75,7 +76,7 @@ class BaseTabler(abc.ABC):
     @abc.abstractmethod
     def generate_table(
         self,
-        dest: IO | None = None,
+        dest: IO[str] | None = None,
     ) -> str:
         """Called by tables to generate a table.
 
@@ -119,12 +120,12 @@ class MarkdownDialect(csv.excel):
 csv.register_dialect("markdown", MarkdownDialect)
 
 
-class MarkdownDictWriter(csv.DictWriter):
+class MarkdownDictWriter(csv.DictWriter):  # type: ignore[type-arg]
     """Custom CSV writer that produces"""
 
     def __init__(
         self,
-        f: IO,
+        f: IO[str],
         fieldnames: list[str],
         restval: str = "",
         extrasaction: Literal["raise", "ignore"] = "raise",

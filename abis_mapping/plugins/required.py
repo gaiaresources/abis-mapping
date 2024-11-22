@@ -1,5 +1,8 @@
 """Provides extra frictionless bypassable row-wise required checks for the package"""
 
+# Standard library
+from collections.abc import Mapping, Set
+
 # Third-Party
 import frictionless
 import frictionless.errors
@@ -33,7 +36,7 @@ class RequiredEnhanced(frictionless.Check):
 
     # Attributes specific to this check
     field_names: list[str]
-    whitelists: dict[str, set] = {}
+    whitelists: Mapping[str, Set[object]] = {}
 
     def validate_start(self) -> Iterable[frictionless.Error]:
         """Called to validate the resource after opening

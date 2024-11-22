@@ -45,7 +45,7 @@ class VocabTabler(tables.base.BaseTabler):
 
     def generate_table(
         self,
-        dest: IO | None = None,
+        dest: IO[str] | None = None,
     ) -> str:
         """Generates vocabulary table.
 

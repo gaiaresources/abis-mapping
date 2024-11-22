@@ -135,7 +135,7 @@ def test_max_date(
     year: int,
     month: int,
     expected: int,
-    raise_error: contextlib.AbstractContextManager,
+    raise_error: contextlib.AbstractContextManager[object],
 ) -> None:
     """Tests the functionality of the max_date property.
 

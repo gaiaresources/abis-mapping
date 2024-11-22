@@ -10,7 +10,7 @@ from abis_mapping import plugins
 def test_default_lookup() -> None:
     """Tests that the default lookup check plugin."""
     # Default map
-    default_map = {
+    default_map: dict[object, str] = {
         "A": "B",
         "AA": "B",
     }
