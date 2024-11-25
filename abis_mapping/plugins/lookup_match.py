@@ -11,7 +11,7 @@ from typing import Iterator, Mapping
 
 @attrs.define(kw_only=True, repr=False)
 class VLookupMatch(frictionless.Check):
-    """Takes the as a key, the value of one column to perform a VLOOKUP style check.
+    """Takes as a key, the value of one column to perform a VLOOKUP style check.
 
     Validation fails if the cell value for `key_field` does not match any keys of the provided
     map. If a null value for key is encountered then check is bypassed.

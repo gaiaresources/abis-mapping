@@ -12,6 +12,7 @@ from . import lookup_match
 from . import mutual_exclusion
 from . import mutual_inclusion
 from . import required
+from . import row_constraint
 from . import sites_geometry
 from . import tabular
 from . import timestamp
