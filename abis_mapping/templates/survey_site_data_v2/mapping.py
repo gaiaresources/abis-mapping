@@ -7,6 +7,7 @@ import decimal
 # Third-party
 import rdflib
 import frictionless
+import frictionless.checks
 import shapely
 import shapely.geometry
 
@@ -18,7 +19,7 @@ from abis_mapping import utils
 from abis_mapping import vocabs
 
 # Typing
-from typing import Any, Optional, Iterator
+from typing import Any, Optional, Iterator, Literal
 
 
 # Constants and shortcuts
@@ -101,12 +102,50 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["relatedSiteID", "relationshipToRelatedSite"],
                     ),
+                    # When relationshipToRelatedSite is 'partOf'
+                    # then the relatedSiteID must exist as a siteID in the same template.
+                    plugins.row_constraint.RowConstraintSideInput(
+                        side_inputs={"allSiteIDs": self.extract_site_ids(data).keys()},
+                        original_schema=frictionless.Schema.from_descriptor(self.schema()),
+                        formula=(
+                            "relatedSiteID in allSiteIDs "
+                            "if relatedSiteID and relationshipToRelatedSite.lower().replace(' ', '')=='partof' "
+                            "else True"
+                        ),
+                    ),
                 ],
             )
         )
 
         # Return validation report
         return report
+
+    def extract_site_ids(
+        self,
+        data: base.types.ReadableType,
+    ) -> dict[str, Literal[True]]:
+        """Constructs a key mapped 'set' of all ids.
+
+        Args:
+            data: Raw data to be mapped
+        """
+        # Construct schema
+        schema = frictionless.Schema.from_descriptor(self.schema())
+
+        # Construct resource
+        resource = frictionless.Resource(source=data, format="csv", schema=schema, encoding="utf-8")
+
+        with resource.open() as r:
+            # Create empty dictionary to hold mapping values
+            result: dict[str, Literal[True]] = {}
+            for row in r.row_stream:
+                # Extract value
+                site_id: str | None = row["siteID"]
+
+                if site_id:
+                    result[site_id] = True
+
+            return result
 
     def extract_geometry_defaults(
         self,
@@ -150,10 +189,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 if not site_id:
                     continue
 
-                footprint_wkt: shapely.geometry.base.BaseGeometry = row["footprintWKT"]
-                longitude: decimal.Decimal = row["decimalLongitude"]
-                latitude: decimal.Decimal = row["decimalLatitude"]
-                datum: str = row["geodeticDatum"]
+                footprint_wkt: shapely.geometry.base.BaseGeometry | None = row["footprintWKT"]
+                longitude: decimal.Decimal | None = row["decimalLongitude"]
+                latitude: decimal.Decimal | None = row["decimalLatitude"]
+                datum: str | None = row["geodeticDatum"]
 
                 # if no valid datum for row then don't add to map.
                 if datum is None:
