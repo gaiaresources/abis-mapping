@@ -31,7 +31,7 @@
     sosa:hasFeatureOfInterest <http://createme.org/occurrence/A0010> ;
     sosa:hasResult <http://createme.org/result/organismQuantity/0-05> ;
     sosa:hasSimpleResult "0.05 percentageCoverage" ;
-    sosa:observedProperty dwc:organismQuantity ;
+    sosa:observedProperty <http://example.com/concept/organismQuantity> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/scientificName/A0010> a tern:Observation ;

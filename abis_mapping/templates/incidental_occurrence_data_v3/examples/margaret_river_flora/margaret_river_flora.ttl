@@ -311,7 +311,7 @@
     sosa:hasFeatureOfInterest <http://createme.org/occurrence/14> ;
     sosa:hasResult <http://createme.org/result/organismQuantity/5> ;
     sosa:hasSimpleResult "5 individuals" ;
-    sosa:observedProperty dwc:organismQuantity ;
+    sosa:observedProperty <http://example.com/concept/organismQuantity> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
 
 <http://createme.org/observation/organismRemarks/8022FSJMJ079c5cf> a tern:Observation ;

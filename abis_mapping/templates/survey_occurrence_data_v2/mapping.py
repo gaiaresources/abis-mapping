@@ -62,6 +62,7 @@ CONCEPT_CONSERVATION_AUTHORITY = rdflib.URIRef(
 CONCEPT_SENSITIVITY_CATEGORY = utils.rdf.uri(
     "concept/sensitiveCategory", utils.namespaces.EXAMPLE
 )  # TODO Need real URI
+CONCEPT_ORGANISM_QUANTITY = utils.rdf.uri("concept/organismQuantity", utils.namespaces.EXAMPLE)  # TODO Need real URI
 
 # Roles
 DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/resourceProvider")
@@ -4126,7 +4127,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("organismQuantity-observation")))
-        graph.add((uri, rdflib.SOSA.observedProperty, utils.namespaces.DWC.organismQuantity))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ORGANISM_QUANTITY))
 
         # Declare temporal entity to allow correct assignment typechecks
         temporal_entity: rdflib.term.Node | None = None
