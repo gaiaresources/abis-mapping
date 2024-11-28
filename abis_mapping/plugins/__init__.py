@@ -14,6 +14,7 @@ from . import mutual_inclusion
 from . import related_site_id_part_of_lookup
 from . import required
 from . import sites_geometry
+from . import string_customized
 from . import tabular
 from . import timestamp
 from . import wkt

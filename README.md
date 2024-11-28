@@ -92,3 +92,15 @@ python docs/tables/vocabs.py <template_id> [-o] <output_file>
 where `output_file` (optional) corresponds to a location to store the resulting csv. 
 Default output is standard out
 if no `output_file` argument provided.
+
+## Frictionless
+
+The project uses the [Frictionless Framework](https://framework.frictionlessdata.io/) to validate and read the
+template CSV files.
+We have a number of plugins defined in the [`/abis_mapping/plugins`](/abis_mapping/plugins) directory which
+customize and extend how Frictionless works.
+
+### Overridden String Field Class
+
+In particular, we have the [`abis_mapping/plugins/string_customized.py`](/abis_mapping/plugins/string_customized.py)
+plugin which overrides the default Frictionless string field to use our custom class.
