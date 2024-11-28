@@ -13,6 +13,7 @@ from . import mutual_exclusion
 from . import mutual_inclusion
 from . import required
 from . import sites_geometry
+from . import string_customized
 from . import tabular
 from . import timestamp
 from . import wkt
