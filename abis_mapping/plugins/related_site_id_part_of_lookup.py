@@ -32,7 +32,9 @@ class RelatedSiteIDPartOfLookup(frictionless.Check):
         """
         check = (
             row["relatedSiteID"] in self.site_ids
-            if row["relatedSiteID"] and row["relationshipToRelatedSite"].lower().replace(" ", "") == "partof"
+            if row["relatedSiteID"]
+            and row["relationshipToRelatedSite"]
+            and row["relationshipToRelatedSite"].lower().replace(" ", "") == "partof"
             else True
         )
         if not check:
