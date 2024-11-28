@@ -104,14 +104,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     ),
                     # When relationshipToRelatedSite is 'partOf'
                     # then the relatedSiteID must exist as a siteID in the same template.
-                    plugins.row_constraint.RowConstraintSideInput(
-                        side_inputs={"allSiteIDs": self.extract_site_ids(data).keys()},
-                        original_schema=frictionless.Schema.from_descriptor(self.schema()),
-                        formula=(
-                            "relatedSiteID in allSiteIDs "
-                            "if relatedSiteID and relationshipToRelatedSite.lower().replace(' ', '')=='partof' "
-                            "else True"
-                        ),
+                    plugins.related_site_id_part_of_lookup.RelatedSiteIDPartOfLookup(
+                        site_ids=set(self.extract_site_ids(data))
                     ),
                 ],
             )
