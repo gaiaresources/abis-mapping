@@ -5,20 +5,19 @@
 @prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
-@prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://createme.org/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:identifier "Site Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:member <http://createme.org/Site/P1>,
         <http://createme.org/Site/P2>,
         <http://createme.org/Site/P3> ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
 <http://createme.org/SiteCollection/habitat/Closed-forest> a schema:Collection ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:identifier "Site Collection - Habitat - Closed forest" ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:member <http://createme.org/Site/P0>,
         <http://createme.org/Site/P1>,
         <http://createme.org/Site/P2>,
@@ -36,13 +35,13 @@
     prov:qualifiedAttribution <http://createme.org/attribution/WAM/resourceProvider> .
 
 <http://createme.org/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     tern:attribute <http://example.com/concept/data-generalizations> ;
     tern:hasSimpleValue "Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasValue <http://createme.org/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
 <http://createme.org/attribute/habitat/Closed-forest> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99> ;
     tern:hasSimpleValue "Closed forest" ;
     tern:hasValue <http://createme.org/value/habitat/Closed-forest> .
@@ -64,46 +63,46 @@
     schema:name "WAM" .
 
 <http://createme.org/Site/P0> a tern:Site ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     geo:hasGeometry _:N53dd57c04e35e4aa3188c0b800000000 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     schema:description "Footprint of study area" ;
     schema:identifier "P0"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:name "ParentSite" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/Site/P1> a tern:Site ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     geo:hasGeometry _:N2d5e0873e8e72e68e4a9793300000000,
         _:N53dd57c04e35e4aa3188c0b800000001 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <http://createme.org/Site/P0> ;
+    schema:isPartOf <http://createme.org/Site/P0>,
+        <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:name "Plot 1" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/Site/P2> a tern:Site ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     geo:hasGeometry _:N2d5e0873e8e72e68e4a9793300000001,
         _:N53dd57c04e35e4aa3188c0b800000002 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:identifier "P2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:name "Plot 2" ;
     schema:sameAs "S0" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
 <http://createme.org/Site/P3> a tern:Site ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     geo:hasGeometry _:N2d5e0873e8e72e68e4a9793300000002,
         _:N53dd57c04e35e4aa3188c0b800000003 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:identifier "P3"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:name "Plot 3" ;
     schema:sameAs "http://example.com/site/S0"^^xsd:anyURI ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;

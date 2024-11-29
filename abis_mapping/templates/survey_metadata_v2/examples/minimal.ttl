@@ -8,30 +8,29 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
 @prefix time: <http://www.w3.org/2006/time#> .
-@prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://createme.org/SurveyCollection/surveyType/Wet-pitfall-trapping> a schema:Collection ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:identifier "Survey Collection - Survey Type - Wet pitfall trapping" ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:member <http://createme.org/survey/plan/COL1> ;
     tern:hasAttribute <http://createme.org/attribute/surveyType/Wet-pitfall-trapping> .
 
 <http://createme.org/SurveyCollection/targetHabitatScope/Woodland> a schema:Collection ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:identifier "Survey Collection - Target Habitat Scope - Woodland" ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:member <http://createme.org/survey/plan/COL1> ;
     tern:hasAttribute <http://createme.org/attribute/targetHabitatScope/Woodland> .
 
 <http://createme.org/SurveyCollection/targetTaxonomicScope/Coleoptera> a schema:Collection ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:identifier "Survey Collection - Target Taxonomic Scope - Coleoptera" ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:member <http://createme.org/survey/plan/COL1> ;
     tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/Coleoptera> .
 
 <http://createme.org/SurveyCollection/targetTaxonomicScope/Insecta> a schema:Collection ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:identifier "Survey Collection - Target Taxonomic Scope - Insecta" ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:member <http://createme.org/survey/plan/COL1> ;
     tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/Insecta> .
 
@@ -41,9 +40,9 @@
     prov:wasAttributedTo <http://createme.org/provider/Gaia-Resources> .
 
 <http://createme.org/project/SSD-Survey-Project/1> a abis:Project ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:hasPart <http://createme.org/Survey/COL1> ;
     schema:identifier "COL1" ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO> a rdfs:Datatype ;
@@ -59,25 +58,25 @@
             prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ] .
 
 <http://createme.org/attribute/surveyType/Wet-pitfall-trapping> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     tern:attribute <http://example.com/concept/surveyType> ;
     tern:hasSimpleValue "Wet pitfall trapping" ;
     tern:hasValue <http://createme.org/value/surveyType/Wet-pitfall-trapping> .
 
 <http://createme.org/attribute/targetHabitatScope/Woodland> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     tern:attribute <https://linked.data.gov.au/def/nrm/ae2c88be-63d5-44d3-95ac-54b14c4a4b28> ;
     tern:hasSimpleValue "Woodland" ;
     tern:hasValue <http://createme.org/value/targetHabitatScope/Woodland> .
 
 <http://createme.org/attribute/targetTaxonomicScope/Coleoptera> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     tern:hasSimpleValue "Coleoptera" ;
     tern:hasValue <http://createme.org/value/targetTaxonomicScope/Coleoptera> .
 
 <http://createme.org/attribute/targetTaxonomicScope/Insecta> a tern:Attribute ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     tern:hasSimpleValue "Insecta" ;
     tern:hasValue <http://createme.org/value/targetTaxonomicScope/Insecta> .
@@ -146,9 +145,9 @@
     schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
 
 <http://createme.org/survey/plan/COL1> a prov:Plan ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:citation "Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9\"" ;
     schema:description "Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location." ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:url "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf"^^xsd:anyURI,
         "https://doi.org/10.1002/9781118945568.ch11"^^xsd:anyURI .
 
