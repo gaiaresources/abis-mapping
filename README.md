@@ -20,6 +20,7 @@ A template is defined through a set of key files
 * A `mapping.py` file, containing the logic for the validation of input CSV data and performing CSV-to-RDF mapping (**required**).
 * An `examples/` directory, containing example input CSV data and resulting output serialised RDF files (*optional*).
 * A `validators/` directory, containing serialised RDF files defining shapes used in the template's mapping, using SHACL (*optional*).
+* A `templates/` directory, containing Jinja templates used for the production of user documentation e.g. `templates/instructions.md` (*optional*).
 
 ### `schema.json`
 
