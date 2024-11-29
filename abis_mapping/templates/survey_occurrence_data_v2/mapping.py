@@ -1370,30 +1370,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Return
         return graph
 
-    def add_terminal_feature_of_interest(
-        self,
-        uri: rdflib.URIRef,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds the Terminal Feature of Interest to the Graph
-
-        Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            dataset (rdflib.URIRef): Dataset this belongs to
-            graph (rdflib.Graph): Graph to add to
-        """
-        # Add Terminal Feature of Interest to Graph
-        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
-        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SITE))
-
-        # Add Geometry
-        geometry = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry))
-        graph.add((geometry, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry, utils.namespaces.GEO.sfWithin, CONCEPT_AUSTRALIA))
-
     def add_provider_identified(
         self,
         uri: rdflib.URIRef,
