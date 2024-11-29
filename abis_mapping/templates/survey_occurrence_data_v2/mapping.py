@@ -1329,6 +1329,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=provider_record_id_biodiversity_record,
             provider_record_id_datatype=provider_record_id_datatype,
             provider_record_id_occurrence=provider_record_id_occurrence,
+            dataset=dataset,
             row=row,
             graph=graph,
         )
@@ -4381,6 +4382,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         provider_record_id_datatype: rdflib.URIRef,
         provider_record_id_occurrence: rdflib.URIRef,
+        dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
@@ -4392,6 +4394,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 the provider record id.
             provider_record_id_occurrence: Reference to the occurrence
                 of the row.
+            dataset: The uri for the dateset node.
             row: Raw data for row.
             graph: Graph to be modified.
         """
@@ -4403,6 +4406,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
         # Add about property
         graph.add((uri, rdflib.SDO.about, provider_record_id_occurrence))
+        # Add link to dataset
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
     def add_occurrence(
         self,

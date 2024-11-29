@@ -14,7 +14,8 @@
 
 <http://createme.org/biodiversityRecord/A0010> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/A0010> ;
-    schema:identifier "A0010"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Gaia-Resources> .
+    schema:identifier "A0010"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Gaia-Resources> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;
     skos:definition "An identifier for the dataset" ;

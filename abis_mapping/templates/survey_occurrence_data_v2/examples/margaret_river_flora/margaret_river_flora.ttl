@@ -139,59 +139,73 @@
 
 <http://createme.org/biodiversityRecord/1> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/1> ;
-    schema:identifier "1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/10> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/10> ;
-    schema:identifier "10"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "10"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/11> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/11> ;
-    schema:identifier "11"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "11"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/12> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/12> ;
-    schema:identifier "12"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "12"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/13> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/13> ;
-    schema:identifier "13"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "13"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/14> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/14> ;
-    schema:identifier "14"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "14"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/2> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/2> ;
-    schema:identifier "2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/3> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/3> ;
-    schema:identifier "3"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "3"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/4> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/4> ;
-    schema:identifier "4"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "4"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/5> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/5> ;
-    schema:identifier "5"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "5"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/6> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/6> ;
-    schema:identifier "6"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "6"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/7> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/7> ;
-    schema:identifier "7"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "7"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/8> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/8> ;
-    schema:identifier "8"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "8"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/9> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/9> ;
-    schema:identifier "9"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "9"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;
     skos:definition "An identifier for the dataset" ;
@@ -1053,11 +1067,13 @@
 
 <http://createme.org/biodiversityRecord/8022FSJMJ079c5cf> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
-    schema:identifier "8022FSJMJ079c5cf"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "8022FSJMJ079c5cf"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/biodiversityRecord/ABC123> a abis:BiodiversityRecord ;
     schema:about <http://createme.org/occurrence/ABC123> ;
-    schema:identifier "ABC123"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> .
+    schema:identifier "ABC123"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/observation/threatStatus/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
