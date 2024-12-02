@@ -30,3 +30,4 @@ SETTINGS = _Settings(
     _env_prefix="ABIS_MAPPING_",
     _env_file="abis_mapping.env",
 )
+# NOTE environment variables and .env files are ignored when running the test suite.
