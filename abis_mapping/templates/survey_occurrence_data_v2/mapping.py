@@ -1839,7 +1839,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Occurrence Collection - Identification Qualifier - {id_qualifier}"),
                 )
             )
@@ -1935,7 +1935,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Occurrence Collection - Identification Remarks - {id_remarks}"),
                 )
             )
@@ -2355,7 +2355,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(
                         f"Occurrence Collection - Data Generalizations - {data_generalizations}",
                     ),
@@ -2466,7 +2466,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Occurrence Collection - Taxon Rank - {taxon_rank}"),
                 )
             )
@@ -2761,7 +2761,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
         if habitat:
-            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(f"Occurrence Collection - Habitat - {habitat}")))
+            graph.add((uri, rdflib.SDO.name, rdflib.Literal(f"Occurrence Collection - Habitat - {habitat}")))
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the sample field
@@ -2872,7 +2872,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Occurrence Collection - Basis Of Record - {basis_of_record}"),
                 )
             )
@@ -3105,7 +3105,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Occurrence Collection - Preparations - {preparations}"),
                 )
             )
@@ -4059,7 +4059,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Occurrence Collection - Conservation Authority - {conservation_authority}"),
                 )
             )
@@ -4325,7 +4325,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Occurrence Collection - Sensitivity Category - {sensitivity_category}"),
                 )
             )

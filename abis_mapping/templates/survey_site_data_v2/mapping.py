@@ -719,7 +719,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
         # Add identifier
-        graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(f"Site Collection - Habitat - {raw_habitat_value}")))
+        graph.add((uri, rdflib.SDO.name, rdflib.Literal(f"Site Collection - Habitat - {raw_habitat_value}")))
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to this site
@@ -813,7 +813,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Site Collection - Data Generalizations - {raw_data_generalizations_value}"),
                 )
             )

@@ -914,7 +914,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Site Visit Collection - Target Taxonomic Scope - {row_target_taxonomic_scope}"),
                 )
             )
@@ -1032,7 +1032,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Site Visit Collection - Sampling Effort - {row_sampling_effort}"),
                 )
             )

@@ -9,33 +9,33 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://createme.org/SiteVisitCollection/samplingEffort/10-sifts> a schema:Collection ;
-    schema:identifier "Site Visit Collection - Sampling Effort - 10 sifts" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:member <http://createme.org/SiteVisit/TIS-24-03-P1-02> ;
+    schema:name "Site Visit Collection - Sampling Effort - 10 sifts" ;
     tern:hasAttribute <http://createme.org/attribute/samplingEffort/10-sifts> .
 
 <http://createme.org/SiteVisitCollection/samplingEffort/240-trap-nights> a schema:Collection ;
-    schema:identifier "Site Visit Collection - Sampling Effort - 240 trap nights" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:member <http://createme.org/SiteVisit/TIS-24-03-P1-01> ;
+    schema:name "Site Visit Collection - Sampling Effort - 240 trap nights" ;
     tern:hasAttribute <http://createme.org/attribute/samplingEffort/240-trap-nights> .
 
 <http://createme.org/SiteVisitCollection/targetTaxonomicScope/bird> a schema:Collection ;
-    schema:identifier "Site Visit Collection - Target Taxonomic Scope - bird" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:member <http://createme.org/SiteVisit/TIS-24-03-P1-03> ;
+    schema:name "Site Visit Collection - Target Taxonomic Scope - bird" ;
     tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/bird> .
 
 <http://createme.org/SiteVisitCollection/targetTaxonomicScope/invertebrate> a schema:Collection ;
-    schema:identifier "Site Visit Collection - Target Taxonomic Scope - invertebrate" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:member <http://createme.org/SiteVisit/TIS-24-03-P1-02> ;
+    schema:name "Site Visit Collection - Target Taxonomic Scope - invertebrate" ;
     tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/invertebrate> .
 
 <http://createme.org/SiteVisitCollection/targetTaxonomicScope/new-taxon> a schema:Collection ;
-    schema:identifier "Site Visit Collection - Target Taxonomic Scope - new_taxon" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
     schema:member <http://createme.org/SiteVisit/TIS-24-03-P1-01> ;
+    schema:name "Site Visit Collection - Target Taxonomic Scope - new_taxon" ;
     tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/new-taxon> .
 
 <http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;

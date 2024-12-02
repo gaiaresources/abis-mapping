@@ -11,27 +11,27 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://createme.org/SurveyCollection/surveyType/Wet-pitfall-trapping> a schema:Collection ;
-    schema:identifier "Survey Collection - Survey Type - Wet pitfall trapping" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:member <http://createme.org/survey/plan/COL1> ;
+    schema:name "Survey Collection - Survey Type - Wet pitfall trapping" ;
     tern:hasAttribute <http://createme.org/attribute/surveyType/Wet-pitfall-trapping> .
 
 <http://createme.org/SurveyCollection/targetHabitatScope/Woodland> a schema:Collection ;
-    schema:identifier "Survey Collection - Target Habitat Scope - Woodland" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:member <http://createme.org/survey/plan/COL1> ;
+    schema:name "Survey Collection - Target Habitat Scope - Woodland" ;
     tern:hasAttribute <http://createme.org/attribute/targetHabitatScope/Woodland> .
 
 <http://createme.org/SurveyCollection/targetTaxonomicScope/Coleoptera> a schema:Collection ;
-    schema:identifier "Survey Collection - Target Taxonomic Scope - Coleoptera" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:member <http://createme.org/survey/plan/COL1> ;
+    schema:name "Survey Collection - Target Taxonomic Scope - Coleoptera" ;
     tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/Coleoptera> .
 
 <http://createme.org/SurveyCollection/targetTaxonomicScope/Insecta> a schema:Collection ;
-    schema:identifier "Survey Collection - Target Taxonomic Scope - Insecta" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:member <http://createme.org/survey/plan/COL1> ;
+    schema:name "Survey Collection - Target Taxonomic Scope - Insecta" ;
     tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/Insecta> .
 
 <http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;

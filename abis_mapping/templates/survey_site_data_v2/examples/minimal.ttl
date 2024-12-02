@@ -8,20 +8,20 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://createme.org/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
-    schema:identifier "Site Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:member <http://createme.org/Site/P1>,
         <http://createme.org/Site/P2>,
         <http://createme.org/Site/P3> ;
+    schema:name "Site Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
 <http://createme.org/SiteCollection/habitat/Closed-forest> a schema:Collection ;
-    schema:identifier "Site Collection - Habitat - Closed forest" ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
     schema:member <http://createme.org/Site/P0>,
         <http://createme.org/Site/P1>,
         <http://createme.org/Site/P2>,
         <http://createme.org/Site/P3> ;
+    schema:name "Site Collection - Habitat - Closed forest" ;
     tern:hasAttribute <http://createme.org/attribute/habitat/Closed-forest> .
 
 <http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;
