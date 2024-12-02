@@ -1,8 +1,5 @@
 """All non-sensitive project-wide configuration parameters"""
 
-# Standard
-import importlib.metadata
-
 # Third-party
 import pydantic_settings
 
@@ -21,9 +18,6 @@ class Settings(pydantic_settings.BaseSettings):
 
     # The version of the documents to be selected
     INSTRUCTIONS_VERSION: str = "dev"
-
-    # Version parts
-    MAJOR_VERSION: int = int(importlib.metadata.version("abis-mapping").split(".", 1)[0])
 
     # If changing via environment variable prefix name with 'ABIS_MAPPING_'
     model_config = pydantic_settings.SettingsConfigDict(env_prefix="ABIS_MAPPING_")
