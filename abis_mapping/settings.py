@@ -20,5 +20,8 @@ class _Settings(pydantic_settings.BaseSettings):
     INSTRUCTIONS_VERSION: str = "dev"
 
 
-# If changing via environment variable prefix name with 'ABIS_MAPPING_'
-SETTINGS = _Settings(_env_prefix="ABIS_MAPPING_")
+# If changing via environment variable or .env file prefix name with 'ABIS_MAPPING_'
+SETTINGS = _Settings(
+    _env_prefix="ABIS_MAPPING_",
+    _env_file="abis_mapping.env",
+)

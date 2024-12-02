@@ -105,3 +105,9 @@ customize and extend how Frictionless works.
 
 In particular, we have the [`abis_mapping/plugins/string_customized.py`](/abis_mapping/plugins/string_customized.py)
 plugin which overrides the default Frictionless string field to use our custom class.
+
+## Settings
+
+There are some settings that can be changed via environment variables or in a `abis_mapping.env` file.
+In either case all settings names are prefixed with `ABIS_MAPPING_`.
+See [`/abis_mapping/settings.py`](/abis_mapping/settings.py) for details of the settings.

@@ -90,3 +90,5 @@ site/
 !/docs/pages/index.md
 /docs/pages/index.html
 
+# dotenv settings file
+abis_mapping.env
