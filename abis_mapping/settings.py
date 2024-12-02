@@ -4,7 +4,7 @@
 import pydantic_settings
 
 
-class Settings(pydantic_settings.BaseSettings):
+class _Settings(pydantic_settings.BaseSettings):
     """Model for defining default project-wide settings."""
 
     # Default precision for rounding WKT coordinates when serializing.
@@ -19,8 +19,6 @@ class Settings(pydantic_settings.BaseSettings):
     # The version of the documents to be selected
     INSTRUCTIONS_VERSION: str = "dev"
 
-    # If changing via environment variable prefix name with 'ABIS_MAPPING_'
-    model_config = pydantic_settings.SettingsConfigDict(env_prefix="ABIS_MAPPING_")
 
-
-SETTINGS = Settings()
+# If changing via environment variable prefix name with 'ABIS_MAPPING_'
+SETTINGS = _Settings(_env_prefix="ABIS_MAPPING_")

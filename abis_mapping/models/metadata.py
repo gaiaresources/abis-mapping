@@ -54,8 +54,8 @@ class TemplateMetadata(pydantic.BaseModel):
         """
         # Create string representation
         str_url = urllib.parse.urljoin(
-            base=str(settings.Settings().INSTRUCTIONS_BASE_URL),
-            url="/".join([settings.Settings().INSTRUCTIONS_VERSION, self.id]),
+            base=settings.SETTINGS.INSTRUCTIONS_BASE_URL,
+            url="/".join([settings.SETTINGS.INSTRUCTIONS_VERSION, self.id]),
         )
         # Perform validation
         pydantic.AnyUrl(str_url)

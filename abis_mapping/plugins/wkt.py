@@ -93,7 +93,7 @@ class WKTField(frictionless.Field):
             # Serialize to wkt format
             wkt_str = shapely.to_wkt(
                 geometry=cell,
-                rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION,
+                rounding_precision=settings.SETTINGS.DEFAULT_WKT_ROUNDING_PRECISION,
             )
 
             # Type checking due to no types provided by the shapely package

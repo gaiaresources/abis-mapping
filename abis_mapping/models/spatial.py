@@ -140,7 +140,7 @@ class Geometry:
         """
         # Retrieve vocab class
         vocab = utils.vocabs.get_vocab("GEODETIC_DATUM")
-        default_crs = settings.Settings().DEFAULT_TARGET_CRS
+        default_crs = settings.SETTINGS.DEFAULT_TARGET_CRS
 
         try:
             # Init with dummy graph and return corresponding uri
@@ -210,7 +210,7 @@ class Geometry:
         # Construct  and return rdf literal
         wkt_string = shapely.to_wkt(
             geometry=geometry,
-            rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION,
+            rounding_precision=settings.SETTINGS.DEFAULT_WKT_ROUNDING_PRECISION,
         )
 
         return rdflib.Literal(
@@ -235,7 +235,7 @@ class Geometry:
         # Construct and return rdf literal
         wkt_string = shapely.to_wkt(
             geometry=geometry,
-            rounding_precision=settings.Settings().DEFAULT_WKT_ROUNDING_PRECISION,
+            rounding_precision=settings.SETTINGS.DEFAULT_WKT_ROUNDING_PRECISION,
         )
         return rdflib.Literal(
             lexical_or_value=datum_string + wkt_string,
