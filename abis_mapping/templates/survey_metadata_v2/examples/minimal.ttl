@@ -1,3 +1,4 @@
+@prefix abis: <https://linked.data.gov.au/def/abis/> .
 @prefix bdr: <http://example.com/bdr-schema/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -39,7 +40,7 @@
     skos:prefLabel "Gaia Resources datasetID" ;
     prov:wasAttributedTo <http://createme.org/provider/Gaia-Resources> .
 
-<http://createme.org/project/SSD-Survey-Project/1> a bdr:Project ;
+<http://createme.org/project/SSD-Survey-Project/1> a abis:Project ;
     void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Metadata-Dataset> ;
     schema:hasPart <http://createme.org/Survey/COL1> ;
     schema:identifier "COL1" ;

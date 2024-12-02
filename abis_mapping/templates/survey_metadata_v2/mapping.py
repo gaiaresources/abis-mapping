@@ -424,7 +424,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         row: frictionless.Row,
     ) -> None:
-        """Adds the BDR project to the graph
+        """Adds the ABIS project to the graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
@@ -438,7 +438,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         project_name = row["surveyName"]
 
         # Add type and attach to dataset
-        graph.add((uri, a, utils.namespaces.BDR.Project))
+        graph.add((uri, a, utils.namespaces.ABIS.Project))
         graph.add((uri, rdflib.VOID.inDataset, dataset))
 
         # Add (required) project name, id (not required) and purpose (not required).
