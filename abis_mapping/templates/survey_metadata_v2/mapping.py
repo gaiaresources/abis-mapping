@@ -761,7 +761,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph.add(
                 (
                     uri,
-                    rdflib.SDO.identifier,
+                    rdflib.SDO.name,
                     rdflib.Literal(f"Survey Collection - Survey Type - {row_survey_type}"),
                 )
             )
@@ -860,7 +860,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add(
             (
                 uri,
-                rdflib.SDO.identifier,
+                rdflib.SDO.name,
                 rdflib.Literal(f"Survey Collection - Target Habitat Scope - {raw_value}"),
             )
         )
@@ -959,7 +959,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add(
             (
                 uri,
-                rdflib.SDO.identifier,
+                rdflib.SDO.name,
                 rdflib.Literal(f"Survey Collection - Target Taxonomic Scope - {raw_value}"),
             )
         )

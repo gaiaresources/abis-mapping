@@ -143,7 +143,7 @@ bdrsh:GeneralCollectionShape
 		sh:class tern:Dataset ;
 	] ;
 	sh:property [
-		sh:path schema:identifier ;
+		sh:path schema:name ;
 		sh:nodeKind sh:Literal ;
 		sh:pattern "^Occurrence Collection - (?:Identification Qualifier|Identification Remarks|Data Generalizations|Taxon Rank|Habitat|Basis Of Record|Preparations|Conservation Authority) - " ;
 		sh:datatype xsd:string ;
@@ -169,7 +169,7 @@ bdrsh:SensitivityCategoryCollectionShape
 		sh:class tern:Dataset ;
 	] ;
 	sh:property [
-		sh:path schema:identifier ;
+		sh:path schema:name ;
 		sh:nodeKind sh:Literal ;
 		sh:pattern "^Occurrence Collection - Sensitivity Category - " ;
 		sh:datatype xsd:string ;

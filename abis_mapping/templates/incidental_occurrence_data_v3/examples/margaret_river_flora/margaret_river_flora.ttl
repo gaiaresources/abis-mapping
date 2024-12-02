@@ -12,127 +12,127 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://createme.org/OccurrenceCollection/basisOfRecord/HumanObservation> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Basis Of Record - HumanObservation" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/occurrence/14> ;
+    schema:name "Occurrence Collection - Basis Of Record - HumanObservation" ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/HumanObservation> .
 
 <http://createme.org/OccurrenceCollection/basisOfRecord/PreservedSpecimen> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Basis Of Record - PreservedSpecimen" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/sample/specimen/13>,
         <http://createme.org/sample/specimen/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Basis Of Record - PreservedSpecimen" ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/PreservedSpecimen> .
 
 <http://createme.org/OccurrenceCollection/basisOfRecord/new-basis-of-record> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Basis Of Record - new basis of record" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/sample/specimen/ABC123> ;
+    schema:name "Occurrence Collection - Basis Of Record - new basis of record" ;
     tern:hasAttribute <http://createme.org/attribute/basisOfRecord/new-basis-of-record> .
 
 <http://createme.org/OccurrenceCollection/conservationAuthority/WA> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Conservation Authority - WA" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/observation/threatStatus/8022FSJMJ079c5cf>,
         <http://createme.org/observation/threatStatus/ABC123> ;
+    schema:name "Occurrence Collection - Conservation Authority - WA" ;
     tern:hasAttribute <http://createme.org/attribute/conservationAuthority/WA> .
 
 <http://createme.org/OccurrenceCollection/dataGeneralizations/Coordinates-generalised> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Data Generalizations - Coordinates generalised" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/occurrence/ABC123> ;
+    schema:name "Occurrence Collection - Data Generalizations - Coordinates generalised" ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/Coordinates-generalised> .
 
 <http://createme.org/OccurrenceCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/occurrence/14>,
         <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
 <http://createme.org/OccurrenceCollection/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Habitat - Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/occurrence/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Habitat - Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
     tern:hasAttribute <http://createme.org/attribute/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> .
 
 <http://createme.org/OccurrenceCollection/habitat/new-habitat> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Habitat - new habitat" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/occurrence/ABC123> ;
+    schema:name "Occurrence Collection - Habitat - new habitat" ;
     tern:hasAttribute <http://createme.org/attribute/habitat/new-habitat> .
 
 <http://createme.org/OccurrenceCollection/identificationQualifier/> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Identification Qualifier - ?" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/observation/scientificName/11>,
         <http://createme.org/observation/scientificName/14> ;
+    schema:name "Occurrence Collection - Identification Qualifier - ?" ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/> .
 
 <http://createme.org/OccurrenceCollection/identificationQualifier/new-identification-qualifier> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Identification Qualifier - new identification qualifier" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/observation/scientificName/ABC123> ;
+    schema:name "Occurrence Collection - Identification Qualifier - new identification qualifier" ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/new-identification-qualifier> .
 
 <http://createme.org/OccurrenceCollection/identificationQualifier/species-incerta> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Identification Qualifier - species incerta" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/observation/scientificName/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Identification Qualifier - species incerta" ;
     tern:hasAttribute <http://createme.org/attribute/identificationQualifier/species-incerta> .
 
 <http://createme.org/OccurrenceCollection/identificationRemarks/Could-not-confirm-the-ID-due-to-damaged-flower> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Identification Remarks - Could not confirm the ID due to damaged flower" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/observation/scientificName/14> ;
+    schema:name "Occurrence Collection - Identification Remarks - Could not confirm the ID due to damaged flower" ;
     tern:hasAttribute <http://createme.org/attribute/identificationRemarks/Could-not-confirm-the-ID-due-to-damaged-flower> .
 
 <http://createme.org/OccurrenceCollection/identificationRemarks/One-unopened-flower-when-recorded-and-one-leaf-only-ID-not-confirmed> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Identification Remarks - One unopened flower when recorded and one leaf only. ID not confirmed" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/observation/scientificName/11> ;
+    schema:name "Occurrence Collection - Identification Remarks - One unopened flower when recorded and one leaf only. ID not confirmed" ;
     tern:hasAttribute <http://createme.org/attribute/identificationRemarks/One-unopened-flower-when-recorded-and-one-leaf-only-ID-not-confirmed> .
 
 <http://createme.org/OccurrenceCollection/identificationRemarks/new-remarks> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Identification Remarks - new remarks" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/observation/scientificName/ABC123> ;
+    schema:name "Occurrence Collection - Identification Remarks - new remarks" ;
     tern:hasAttribute <http://createme.org/attribute/identificationRemarks/new-remarks> .
 
 <http://createme.org/OccurrenceCollection/identificationRemarks/no-flowers-present> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Identification Remarks - no flowers present" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/observation/scientificName/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Identification Remarks - no flowers present" ;
     tern:hasAttribute <http://createme.org/attribute/identificationRemarks/no-flowers-present> .
 
 <http://createme.org/OccurrenceCollection/preparations/Wet-in-ethanol-or-some-other-preservative> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Preparations - Wet (in ethanol or some other preservative)" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/sample/specimen/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Preparations - Wet (in ethanol or some other preservative)" ;
     tern:hasAttribute <http://createme.org/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> .
 
 <http://createme.org/OccurrenceCollection/preparations/new-preparations> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Preparations - new preparations" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/sample/specimen/ABC123> ;
+    schema:name "Occurrence Collection - Preparations - new preparations" ;
     tern:hasAttribute <http://createme.org/attribute/preparations/new-preparations> .
 
 <http://createme.org/OccurrenceCollection/sensitivityCategory/Category-1> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Sensitivity Category - Category 1" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/biodiversityRecord/ABC123> ;
+    schema:name "Occurrence Collection - Sensitivity Category - Category 1" ;
     tern:hasAttribute <http://createme.org/attribute/sensitivityCategory/Category-1> .
 
 <http://createme.org/OccurrenceCollection/taxonRank/new-taxon-rank> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Taxon Rank - new taxon rank" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/observation/scientificName/ABC123> ;
+    schema:name "Occurrence Collection - Taxon Rank - new taxon rank" ;
     tern:hasAttribute <http://createme.org/attribute/taxonRank/new-taxon-rank> .
 
 <http://createme.org/OccurrenceCollection/taxonRank/species> a schema:Collection ;
-    schema:identifier "Occurrence Collection - Taxon Rank - species" ;
     schema:isPartOf <http://createme.org/dataset/Example-Incidental-Occurrence-Dataset> ;
     schema:member <http://createme.org/observation/scientificName/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Taxon Rank - species" ;
     tern:hasAttribute <http://createme.org/attribute/taxonRank/species> .
 
 <http://createme.org/biodiversityRecord/1> a abis:BiodiversityRecord ;
