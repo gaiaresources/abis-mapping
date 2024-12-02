@@ -1226,7 +1226,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("scientificName-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, scientific_name))
@@ -1295,7 +1295,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("verbatimID-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
         graph.add((uri, rdflib.SOSA.hasResult, verbatim_id))
@@ -1466,7 +1466,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Identification Qualifier Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_ID_UNCERTAINTY))
         if id_qualifier:
             graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(id_qualifier)))
@@ -1544,7 +1544,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 )
             )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the scientific name observation node
         graph.add((uri, rdflib.SDO.member, observation_scientific_name))
         # Add link to attribute
@@ -1575,7 +1575,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Identification Remarks Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_ID_REMARKS))
         if id_remarks:
             graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(id_remarks)))
@@ -1640,7 +1640,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 )
             )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the scientific name observation node
         graph.add((uri, rdflib.SDO.member, observation_scientific_name))
         # Add link to attribute
@@ -1667,7 +1667,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("scientificName")))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["scientificName"])))
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SCIENTIFIC_NAME))
 
@@ -1786,7 +1786,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
@@ -1926,7 +1926,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, a, utils.namespaces.TERN.Sample))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_specimen))
         graph.add((uri, rdflib.SOSA.isSampleOf, provider_record_id_occurrence))
@@ -1955,7 +1955,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Data Generalizations Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_DATA_GENERALIZATIONS))
         if data_generalizations:
             graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(data_generalizations)))
@@ -2021,7 +2021,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 )
             )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the sample field
         graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
         # Add link to attribute
@@ -2052,7 +2052,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Taxon Rank Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_TAXON_RANK))
         if taxon_rank:
             graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(taxon_rank)))
@@ -2130,7 +2130,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 )
             )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the scientific name observation node
         graph.add((uri, rdflib.SDO.member, observation_scientific_name))
         # Add link to attribute
@@ -2170,7 +2170,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Individual Count Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("individualCount-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, individual_count_value))
@@ -2246,7 +2246,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Organism Remarks Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("organismRemarks-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, organism_remarks_value))
@@ -2317,7 +2317,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Attach node to sample field and dataset
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Observation))
@@ -2417,7 +2417,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Habitat Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_HABITAT))
         if habitat:
             graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(habitat)))
@@ -2488,7 +2488,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if habitat:
             graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(f"Occurrence Collection - Habitat - {habitat}")))
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the sample field
         graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
         # Add link to attribute
@@ -2518,7 +2518,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Basis of Record Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_BASIS_OF_RECORD))
         if basis_of_record:
             graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(basis_of_record)))
@@ -2602,7 +2602,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 )
             )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the appropriate sample node
         if has_specimen(row):
             graph.add((uri, rdflib.SDO.member, sample_specimen))
@@ -2667,7 +2667,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Occurrence Status Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("occurrenceStatus-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, occurrence_status_value))
@@ -2739,7 +2739,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Preparations Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_PREPARATIONS))
         if preparations:
             graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(preparations)))
@@ -2815,7 +2815,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 )
             )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the sample_specimen node
         graph.add((uri, rdflib.SDO.member, sample_specimen))
         # Add link to attribute
@@ -2855,7 +2855,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Establishment Means Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("establishmentMeans-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, establishment_means_value))
@@ -2949,7 +2949,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Life Stage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("lifeStage-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
         graph.add((uri, rdflib.SOSA.hasResult, life_stage_value))
@@ -3042,7 +3042,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Sex Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sex-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
         graph.add((uri, rdflib.SOSA.hasResult, sex_value))
@@ -3136,7 +3136,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Reproductive Condition Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("reproductiveCondition-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, foi))
         graph.add((uri, rdflib.SOSA.hasResult, reproductive_condition_value))
@@ -3219,7 +3219,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Accepted Name Usage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("acceptedNameUsage-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, scientific_name))
         graph.add((uri, rdflib.SOSA.hasResult, accepted_name_usage_value))
@@ -3261,7 +3261,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("acceptedNameUsage-value")))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["acceptedNameUsage"])))
         graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_ACCEPTED_NAME_USAGE))
 
@@ -3309,7 +3309,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequencing-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
@@ -3376,7 +3376,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
         graph.add((uri, a, utils.namespaces.TERN.Sample))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequence-sample")))
         graph.add((uri, rdflib.SOSA.isResultOf, sampling_sequencing))
         graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
@@ -3451,7 +3451,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Threat Status Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("threatStatus-observation")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, threat_status_value))
@@ -3543,7 +3543,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Conservation Authority Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_CONSERVATION_AUTHORITY))
         if conservation_authority:
             graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(conservation_authority)))
@@ -3619,7 +3619,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 )
             )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the threat status observation node
         graph.add((uri, rdflib.SDO.member, threat_status_observation))
         # Add link to attribute
@@ -3651,7 +3651,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Sensitivity Category Attribute
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_SENSITIVITY_CATEGORY))
         graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(simple_value)))
         if sensitivity_category_value:
@@ -3737,7 +3737,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 )
             )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # Add link to attribute
         if sensitivity_category_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, sensitivity_category_attribute))
@@ -3808,7 +3808,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
 
         # Add to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
         # Add identifiers
         if record_number := row["recordNumber"]:

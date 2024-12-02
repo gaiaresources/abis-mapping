@@ -439,7 +439,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Add type and attach to dataset
         graph.add((uri, a, utils.namespaces.ABIS.Project))
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
         # Add (required) project name, id (not required) and purpose (not required).
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(project_name)))
@@ -642,7 +642,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.PROV.Plan))
 
         # add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
         # Add citation(s)
         if citations := row["surveyMethodCitation"]:
@@ -683,7 +683,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
 
         # Add dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
         # Add attribute
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_SURVEY_TYPE))
@@ -766,7 +766,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 )
             )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # Add link to attribute
         if survey_type_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, survey_type_attribute))
@@ -794,7 +794,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
 
         # Add dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
         # Add attribute concept
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_TARGET_HABITAT_SCOPE))
@@ -865,7 +865,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             )
         )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # Add link to attribute
         graph.add((uri, utils.namespaces.TERN.hasAttribute, target_habitat_attribute))
         # add link to the Survey Plan node
@@ -893,7 +893,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
 
         # Add dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
         # Add attribute concept
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_TARGET_TAXONOMIC_SCOPE))
@@ -964,7 +964,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             )
         )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # Add link to attribute
         graph.add((uri, utils.namespaces.TERN.hasAttribute, target_taxon_attribute))
         # add link to the Survey Plan node

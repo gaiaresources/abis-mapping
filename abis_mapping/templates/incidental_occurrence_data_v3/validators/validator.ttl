@@ -10,7 +10,6 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
 @prefix time: <http://www.w3.org/2006/time#> .
-@prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 bdrsh:DatatypeShape
@@ -137,7 +136,7 @@ bdrsh:GeneralCollectionShape
 	a sh:NodeShape ;
 	sh:class schema:Collection ;
 	sh:property [
-		sh:path void:inDataset ;
+		sh:path schema:isPartOf ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:nodeKind sh:IRI ;
@@ -163,7 +162,7 @@ bdrsh:SensitivityCategoryCollectionShape
 	a sh:NodeShape ;
 	sh:class schema:Collection ;
 	sh:property [
-		sh:path void:inDataset ;
+		sh:path schema:isPartOf ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:nodeKind sh:IRI ;
@@ -196,7 +195,7 @@ bdrsh:IncidentalOccurrenceShape
 	sh:class tern:FeatureOfInterest,
 		dwc:Occurrence ;
 	sh:property [
-		sh:path void:inDataset ;
+		sh:path schema:isPartOf ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:nodeKind sh:IRI ;
@@ -244,12 +243,8 @@ bdrsh:IncidentalOccurrenceShape
 		sh:maxCount 1 ;
 		sh:class prov:Agent ;
 	] ;
-	# The next three properties are defined to protect against
+	# The next two properties are defined to protect against
 	# potential copy paste issues with survey occurrence templates
-	sh:property [
-		sh:path schema:isPartOf ;
-		sh:maxCount 0 ;
-	] ;
 	sh:property [
 		sh:path tern:hasSite ;
 		sh:maxCount 0 ;

@@ -515,7 +515,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Site))
 
         # Add dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
         # Add siteID
         dt = site_id_datatype if site_id_datatype is not None else rdflib.XSD.string
@@ -659,7 +659,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
 
         # Add dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
         # Add tern values
         graph.add((uri, utils.namespaces.TERN.attribute, HABITAT))
@@ -721,7 +721,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add identifier
         graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(f"Site Collection - Habitat - {raw_habitat_value}")))
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to this site
         graph.add((uri, rdflib.SDO.member, site))
         # Add link to attribute
@@ -752,7 +752,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
 
         # Add dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
         # Add tern values
         graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_DATA_GENERALIZATIONS))
@@ -818,7 +818,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 )
             )
         # Add link to dataset
-        graph.add((uri, rdflib.VOID.inDataset, dataset))
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to this site
         graph.add((uri, rdflib.SDO.member, site))
         # Add link to attribute

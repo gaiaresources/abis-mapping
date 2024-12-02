@@ -10,7 +10,6 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
 @prefix time: <http://www.w3.org/2006/time#> .
-@prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 bdrsh:DatatypeShape
@@ -137,7 +136,7 @@ bdrsh:GeneralCollectionShape
 	a sh:NodeShape ;
 	sh:class schema:Collection ;
 	sh:property [
-		sh:path void:inDataset ;
+		sh:path schema:isPartOf ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:nodeKind sh:IRI ;
@@ -163,7 +162,7 @@ bdrsh:SensitivityCategoryCollectionShape
 	a sh:NodeShape ;
 	sh:class schema:Collection ;
 	sh:property [
-		sh:path void:inDataset ;
+		sh:path schema:isPartOf ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:nodeKind sh:IRI ;
@@ -195,13 +194,6 @@ bdrsh:SurveyOccurrenceShape
 	sh:targetClass dwc:Occurrence ;
 	sh:class tern:FeatureOfInterest,
 		dwc:Occurrence ;
-	sh:property [
-		sh:path void:inDataset ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		sh:nodeKind sh:IRI ;
-		sh:class tern:Dataset ;
-	] ;
 	sh:property [
 		sh:path schema:identifier ;
 		sh:nodeKind sh:Literal ;
@@ -244,16 +236,30 @@ bdrsh:SurveyOccurrenceShape
 		sh:maxCount 1 ;
 		sh:class prov:Agent ;
 	] ;
+	# dwc:Occurrence has 2 schema:isPartOf triples, one for the tern:Survey and one for the tern:Dataset:
 	sh:property [
 		sh:path schema:isPartOf ;
 		sh:nodeKind sh:IRI ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		# This node is defined on the survey metadata template
-		# which means the class path cannot be traversed unless
-		# the separate graphs are merged. Uncomment this if that 
-		# happens. 
-		#sh:class tern:Survey ;
+		sh:minCount 2 ;
+		sh:maxCount 2 ;
+	] ;
+	sh:property [
+		sh:path schema:isPartOf ;
+		sh:qualifiedValueShape [
+		    sh:nodeKind sh:IRI ;
+		    sh:class tern:Survey ;
+		] ;
+		sh:qualifiedMinCount 1 ;
+		sh:qualifiedMaxCount 1 ;
+	] ;
+	sh:property [
+		sh:path schema:isPartOf ;
+		sh:qualifiedValueShape [
+		    sh:nodeKind sh:IRI ;
+		    sh:class tern:Dataset ;
+		] ;
+		sh:qualifiedMinCount 1 ;
+		sh:qualifiedMaxCount 1 ;
 	] ;
 	sh:property [
 		sh:path tern:hasSite ;
@@ -265,9 +271,5 @@ bdrsh:SurveyOccurrenceShape
 		sh:path tern:hasSiteVisit ;
 		sh:nodeKind sh:IRI ;
 		sh:maxCount 1 ;
-		# This node is defined on the survey site visit template
-		# which means the class path cannot be traversed unless
-		# the separate graphs are merged. Uncomment this if that 
-		# happens. 
-		#sh:class tern:SiteVisit ;
+		sh:class tern:SiteVisit ;
 	] .

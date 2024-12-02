@@ -9,7 +9,6 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
 @prefix time: <http://www.w3.org/2006/time#> .
-@prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://createme.org/biodiversityRecord/A0010> a abis:BiodiversityRecord ;
@@ -23,7 +22,6 @@
     prov:wasAttributedTo <http://createme.org/provider/Gaia-Resources> .
 
 <http://createme.org/observation/organismQuantity/A0010> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "organismQuantity-observation" ;
     time:hasTime [ a time:Instant ;
@@ -33,10 +31,10 @@
     sosa:hasResult <http://createme.org/result/organismQuantity/0-05> ;
     sosa:hasSimpleResult "0.05 percentageCoverage" ;
     sosa:observedProperty <http://example.com/concept/organismQuantity> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/observation/scientificName/A0010> a tern:Observation ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
@@ -45,7 +43,8 @@
     sosa:hasResult <http://createme.org/result/scientificName/Calothamnus-lateralis-var-crassus> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> .
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Gaia-Resources> a rdfs:Datatype ;
     skos:definition "An identifier for the record" ;
@@ -54,11 +53,11 @@
 
 <http://createme.org/Site/P1> a tern:FeatureOfInterest,
         tern:Site ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
 
 <http://createme.org/Survey/1> a tern:Survey ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
 <http://createme.org/attribution/Gaia-Resources/resourceProvider> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/Gaia-Resources> ;
@@ -74,8 +73,8 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     rdf:value "Calothamnus lateralis var. crassus" ;
+    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     tern:featureType <http://example.com/concept/scientificName> .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/Gaia-Resources> a prov:Agent ;
@@ -83,10 +82,10 @@
 
 <http://createme.org/occurrence/A0010> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    void:inDataset <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     sosa:isSampleOf <http://createme.org/Site/P1> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
-    schema:isPartOf <http://createme.org/Survey/1> ;
+    schema:isPartOf <http://createme.org/Survey/1>,
+        <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     schema:spatial _:Nbf8d3720a20d4c0a80c10b6800000000 ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
