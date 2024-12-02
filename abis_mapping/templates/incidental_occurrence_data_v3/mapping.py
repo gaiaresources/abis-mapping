@@ -512,7 +512,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         self.add_record_number_datatype(
             uri=record_number_datatype,
             provider=provider_recorded_by,
-            value=recorded_by,
+            row=row,
             graph=graph,
         )
 
@@ -1851,7 +1851,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef | None,
         provider: rdflib.URIRef | None,
-        value: str | None,
+        row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds record number datatype to the graph.
@@ -1861,19 +1861,23 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 or None if uri wasn't created.
             provider (rdflib.URIRef | None): The corresponding
                 provider uri.
-            value (str | None): Raw value provided in row.
+            row (frictionless.Row): Row from the template.
             graph (rdflib.Graph): Graph to be modified.
         """
         # Check subject provided
         if uri is None:
             return
 
+        # if no recordNumber, don't create this datatype because it would be unused.
+        if not row["recordNumber"]:
+            return
+
         # Add type
         graph.add((uri, a, rdflib.RDFS.Datatype))
 
         # Add label
-        if value is not None:
-            graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{value} recordNumber")))
+        if recorded_by := row["recordedBy"]:
+            graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{recorded_by} recordNumber")))
 
         # Add definition
         graph.add(

@@ -775,11 +775,6 @@
     skos:prefLabel "Stream Environment and Water Pty Ltd recordNumber" ;
     prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> .
 
-<https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Test-Pty-Ltd> a rdfs:Datatype ;
-    skos:definition "The record number of the original observation from the original observer of the organism" ;
-    skos:prefLabel "Test Pty Ltd recordNumber" ;
-    prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/orgs/Test-Pty-Ltd> .
-
 <http://createme.org/SiteVisit/MR-R1-V1> a tern:SiteVisit ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
@@ -1313,6 +1308,9 @@
 <https://linked.data.gov.au/dataset/bdr/orgs/BHP> a prov:Agent ;
     schema:name "BHP" .
 
+<https://linked.data.gov.au/dataset/bdr/orgs/Test-Pty-Ltd> a prov:Agent ;
+    schema:name "Test Pty Ltd" .
+
 <https://linked.data.gov.au/dataset/bdr/orgs/WA-BIO> a prov:Agent ;
     schema:name "WA-BIO" .
 
@@ -1440,9 +1438,6 @@
     sosa:hasResult <http://createme.org/sample/specimen/ABC123> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
-
-<https://linked.data.gov.au/dataset/bdr/orgs/Test-Pty-Ltd> a prov:Agent ;
-    schema:name "Test Pty Ltd" .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/WAM> a prov:Agent ;
     schema:name "WAM" .
