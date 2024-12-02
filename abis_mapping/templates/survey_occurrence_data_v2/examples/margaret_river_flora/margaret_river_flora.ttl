@@ -775,6 +775,11 @@
     skos:prefLabel "Stream Environment and Water Pty Ltd recordNumber" ;
     prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> .
 
+<https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Test-Pty-Ltd> a rdfs:Datatype ;
+    skos:definition "The record number of the original observation from the original observer of the organism" ;
+    skos:prefLabel "Test Pty Ltd recordNumber" ;
+    prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/orgs/Test-Pty-Ltd> .
+
 <http://createme.org/SiteVisit/MR-R1-V1> a tern:SiteVisit ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
@@ -1436,6 +1441,9 @@
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> .
 
+<https://linked.data.gov.au/dataset/bdr/orgs/Test-Pty-Ltd> a prov:Agent ;
+    schema:name "Test Pty Ltd" .
+
 <https://linked.data.gov.au/dataset/bdr/orgs/WAM> a prov:Agent ;
     schema:name "WAM" .
 
@@ -1527,8 +1535,8 @@
 
 <http://createme.org/occurrence/2> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:identifier "PE:12:8831" ;
     schema:isPartOf <http://createme.org/Survey/1>,
         <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000003 ;
@@ -1540,7 +1548,7 @@
 
 <http://createme.org/occurrence/3> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Test-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <http://createme.org/Survey/1>,
         <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
