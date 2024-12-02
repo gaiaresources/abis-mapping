@@ -1308,6 +1308,9 @@
 <https://linked.data.gov.au/dataset/bdr/orgs/BHP> a prov:Agent ;
     schema:name "BHP" .
 
+<https://linked.data.gov.au/dataset/bdr/orgs/Test-Pty-Ltd> a prov:Agent ;
+    schema:name "Test Pty Ltd" .
+
 <https://linked.data.gov.au/dataset/bdr/orgs/WA-BIO> a prov:Agent ;
     schema:name "WA-BIO" .
 
@@ -1527,8 +1530,8 @@
 
 <http://createme.org/occurrence/2> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:identifier "PE:12:8831" ;
     schema:isPartOf <http://createme.org/Survey/1>,
         <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
     schema:spatial _:N1dddcc66c58fa593aae7f72f00000003 ;
@@ -1540,7 +1543,7 @@
 
 <http://createme.org/occurrence/3> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Test-Pty-Ltd> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <http://createme.org/Survey/1>,
         <http://createme.org/dataset/Example-Systematic-Survey-Occurrence-Dataset> ;
