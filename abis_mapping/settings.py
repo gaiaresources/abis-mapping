@@ -7,6 +7,11 @@ import pydantic_settings
 class _Settings(pydantic_settings.BaseSettings):
     """Model for defining default project-wide settings."""
 
+    model_config = pydantic_settings.SettingsConfigDict(
+        # Don't let settings object be mutated, since it is stored globally on the module
+        frozen=True,
+    )
+
     # Default precision for rounding WKT coordinates when serializing.
     DEFAULT_WKT_ROUNDING_PRECISION: int = 8
 

@@ -6,7 +6,6 @@ import copy
 # Third-party
 import shapely
 import pytest
-import pytest_mock
 import rdflib
 
 # Local
@@ -14,6 +13,7 @@ from abis_mapping import settings
 from abis_mapping import models
 from abis_mapping import utils
 from abis_mapping import vocabs
+from tests import helpers
 
 
 def test_geometry_init_wkt_string_valid() -> None:
@@ -130,14 +130,8 @@ def test_geometry_transformer_datum_uri() -> None:
     assert geometry.transformer_datum_uri == vocab(graph=rdflib.Graph()).get(settings.SETTINGS.DEFAULT_TARGET_CRS)
 
 
-def test_geometry_transformer_datum_uri_invalid(
-    mocker: pytest_mock.MockerFixture,
-) -> None:
-    """Tests the transformer_datum_uri with unrecognised default crs.
-
-    Args:
-        mocker: Mocker fixture
-    """
+def test_geometry_transformer_datum_uri_invalid() -> None:
+    """Tests the transformer_datum_uri with unrecognised default crs."""
     # Create geometry
     geometry = models.spatial.Geometry(
         raw="POINT(0 0)",
@@ -145,15 +139,10 @@ def test_geometry_transformer_datum_uri_invalid(
     )
 
     # Set temp default crs
-    mocker.patch.object(
-        settings.SETTINGS,
-        attribute="DEFAULT_TARGET_CRS",
-        new="NOTADATUM",
-    )
-
-    # Should raise exception on invalid CRS not in fixed datum vocabulary
-    with pytest.raises(models.spatial.GeometryError, match=r"NOTADATUM .+ GEODETIC_DATUM") as exc:
-        _ = geometry.transformer_datum_uri
+    with helpers.override_settings(DEFAULT_TARGET_CRS="NOTADATUM"):
+        # Should raise exception on invalid CRS not in fixed datum vocabulary
+        with pytest.raises(models.spatial.GeometryError, match=r"NOTADATUM .+ GEODETIC_DATUM") as exc:
+            _ = geometry.transformer_datum_uri
 
     # Should have been raised from VocabularyError
     assert exc.value.__cause__.__class__ is utils.vocabs.VocabularyError
