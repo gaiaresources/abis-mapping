@@ -35,7 +35,25 @@ is not assumed and values will be encoded as strings).
   otherwise it will not pass the csv validation step upon upload.
 - **Do not include empty rows**.
 
-#### FILE SIZE
+### FILE NAME
+
+When making a manual submission to the Biodiversity Data Repository,
+the file name must include the version number
+of this biodiversity data template (`v{{ metadata.version }}`).
+The following format is an example of a valid file name:
+
+`data_descripion-v{{ metadata.version }}-additional_description.csv`
+
+Where:
+
+* `data_description`: A short description of the data (e.g. `survey_site_visits`, `test_data`).
+* `v{{ metadata.version }}`: The version number of this template.
+* `additional_description`: (Optional) Additional description of the data, if needed (e.g. `test_data`).
+* `.csv`: Ensure the file name ends with `.csv`.
+
+For example, `survey_site_visits-v{{ metadata.version }}-test_data.csv` or `test_data-v{{ metadata.version }}.csv`
+
+### FILE SIZE
 MS Excel imposes a limit of 1,048,576 rows on a spreadsheet, limiting a CSV file to the
 header row followed by 1,048,575 occurrences. Furthermore, MS Excel has a 32,767 character
 limit on individual cells in a spreadsheet. These limits may be overcome by using or
