@@ -425,8 +425,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="FILE FORMAT">
-      <ul class="md-nav__list">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FILE NAME
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#file-size" class="md-nav__link">
@@ -434,11 +442,6 @@
       FILE SIZE
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -658,7 +661,21 @@ is not assumed and values will be encoded as strings).</p>
   otherwise it will not pass the csv validation step upon upload.</li>
 <li><strong>Do not include empty rows</strong>.</li>
 </ul>
-<h4 id="file-size">FILE SIZE</h4>
+<h3 id="file-name">FILE NAME</h3>
+<p>When making a manual submission to the Biodiversity Data Repository,
+the file name must include the version number
+of this biodiversity data template (<code>v2.0.0</code>).
+The following format is an example of a valid file name:</p>
+<p><code>data_descripion-v2.0.0-additional_description.csv</code></p>
+<p>Where:</p>
+<ul>
+<li><code>data_description</code>: A short description of the data (e.g. <code>survey_site_visits</code>, <code>test_data</code>).</li>
+<li><code>v2.0.0</code>: The version number of this template.</li>
+<li><code>additional_description</code>: (Optional) Additional description of the data, if needed (e.g. <code>test_data</code>).</li>
+<li><code>.csv</code>: Ensure the file name ends with <code>.csv</code>.</li>
+</ul>
+<p>For example, <code>survey_site_visits-v2.0.0-test_data.csv</code> or <code>test_data-v2.0.0.csv</code></p>
+<h3 id="file-size">FILE SIZE</h3>
 <p>MS Excel imposes a limit of 1,048,576 rows on a spreadsheet, limiting a CSV file to the
 header row followed by 1,048,575 occurrences. Furthermore, MS Excel has a 32,767 character
 limit on individual cells in a spreadsheet. These limits may be overcome by using or
