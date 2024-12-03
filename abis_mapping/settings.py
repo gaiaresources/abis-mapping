@@ -1,14 +1,16 @@
 """All non-sensitive project-wide configuration parameters"""
 
-# Standard
-import importlib.metadata
-
 # Third-party
 import pydantic_settings
 
 
-class Settings(pydantic_settings.BaseSettings):
+class _Settings(pydantic_settings.BaseSettings):
     """Model for defining default project-wide settings."""
+
+    model_config = pydantic_settings.SettingsConfigDict(
+        # Don't let settings object be mutated, since it is stored globally on the module
+        frozen=True,
+    )
 
     # Default precision for rounding WKT coordinates when serializing.
     DEFAULT_WKT_ROUNDING_PRECISION: int = 8
@@ -22,11 +24,10 @@ class Settings(pydantic_settings.BaseSettings):
     # The version of the documents to be selected
     INSTRUCTIONS_VERSION: str = "dev"
 
-    # Version parts
-    MAJOR_VERSION: int = int(importlib.metadata.version("abis-mapping").split(".", 1)[0])
 
-    # If changing via environment variable prefix name with 'ABIS_MAPPING_'
-    model_config = pydantic_settings.SettingsConfigDict(env_prefix="ABIS_MAPPING_")
-
-
-SETTINGS = Settings()
+# If changing via environment variable or .env file prefix name with 'ABIS_MAPPING_'
+SETTINGS = _Settings(
+    _env_prefix="ABIS_MAPPING_",
+    _env_file="abis_mapping.env",
+)
+# NOTE environment variables and .env files are ignored when running the test suite.

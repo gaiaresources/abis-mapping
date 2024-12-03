@@ -6,7 +6,6 @@ import copy
 # Third-party
 import shapely
 import pytest
-import pytest_mock
 import rdflib
 
 # Local
@@ -14,9 +13,7 @@ from abis_mapping import settings
 from abis_mapping import models
 from abis_mapping import utils
 from abis_mapping import vocabs
-
-# Typing
-from typing import Type, Callable, Iterator
+from tests import helpers
 
 
 def test_geometry_init_wkt_string_valid() -> None:
@@ -130,58 +127,11 @@ def test_geometry_transformer_datum_uri() -> None:
 
     # Assert default datum
     assert vocab is not None
-    assert geometry.transformer_datum_uri == vocab(graph=rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)
+    assert geometry.transformer_datum_uri == vocab(graph=rdflib.Graph()).get(settings.SETTINGS.DEFAULT_TARGET_CRS)
 
 
-@pytest.fixture
-def temp_default_crs(mocker: pytest_mock.MockerFixture) -> Iterator[Callable[[str], None]]:
-    """Provides a temporary value for Default CRS when called.
-
-    Args:
-        mocker: The mocker fixture
-
-    Yields:
-        Function to perform the change with new value as arg.
-    """
-    # Retain the original setting
-    original = settings.SETTINGS.DEFAULT_TARGET_CRS
-
-    # Define callable
-    def change_crs(value: str) -> None:
-        """Performs the change.
-
-        Args:
-            value: New default CRS name to use for the test.
-        """
-
-        # Create a stubbed settings model
-        class TempSettings(settings.Settings):
-            # Modified fields below
-            DEFAULT_TARGET_CRS: str = value
-
-        # Patch Settings
-        mocker.patch(
-            "abis_mapping.settings.Settings",
-            new=TempSettings,
-        )
-
-        # Change assigned variable
-        settings.SETTINGS.DEFAULT_TARGET_CRS = value
-
-    # Yield
-    yield change_crs
-
-    # Change setting back to original
-    settings.SETTINGS.DEFAULT_TARGET_CRS = original
-
-
-def test_geometry_transformer_datum_uri_invalid(temp_default_crs: Callable[[str], None]) -> None:
-    """Tests the transformer_datum_uri with unrecognised default crs.
-
-    Args:
-        temp_default_crs: Callable fixture allowing setting of the project's
-            default crs temporarily
-    """
+def test_geometry_transformer_datum_uri_invalid() -> None:
+    """Tests the transformer_datum_uri with unrecognised default crs."""
     # Create geometry
     geometry = models.spatial.Geometry(
         raw="POINT(0 0)",
@@ -189,11 +139,10 @@ def test_geometry_transformer_datum_uri_invalid(temp_default_crs: Callable[[str]
     )
 
     # Set temp default crs
-    temp_default_crs("NOTADATUM")
-
-    # Should raise exception on invalid CRS not in fixed datum vocabulary
-    with pytest.raises(models.spatial.GeometryError, match=r"NOTADATUM .+ GEODETIC_DATUM") as exc:
-        _ = geometry.transformer_datum_uri
+    with helpers.override_settings(DEFAULT_TARGET_CRS="NOTADATUM"):
+        # Should raise exception on invalid CRS not in fixed datum vocabulary
+        with pytest.raises(models.spatial.GeometryError, match=r"NOTADATUM .+ GEODETIC_DATUM") as exc:
+            _ = geometry.transformer_datum_uri
 
     # Should have been raised from VocabularyError
     assert exc.value.__cause__.__class__ is utils.vocabs.VocabularyError
@@ -250,7 +199,7 @@ def test_geometry_from_geosparql_wkt_literal_valid(
 )
 def test_geometry_from_geosparql_wkt_literal_invalid(
     literal_in: str | rdflib.Literal,
-    expected_error: Type[Exception],
+    expected_error: type[Exception],
 ) -> None:
     """Tests the geometry from_geosparql_wkt_literal method."""
     with pytest.raises(expected_error):
@@ -278,12 +227,12 @@ def test_geometry_to_rdf_literal() -> None:
         (
             "POINT (571666.4475041276 5539109.815175673)",
             "EPSG:26917",
-            f"<{vocabs.geodetic_datum.GeodeticDatum(graph=rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> POINT (50 -80)",
+            f"<{vocabs.geodetic_datum.GDA2020.iri}> POINT (50 -80)",
         ),
         (
             "LINESTRING (1 2, 3 4)",
             "WGS84",
-            f"<{vocabs.geodetic_datum.GeodeticDatum(graph=rdflib.Graph()).get(settings.Settings().DEFAULT_TARGET_CRS)}> LINESTRING (2 1, 4 3)",
+            f"<{vocabs.geodetic_datum.GDA2020.iri}> LINESTRING (2 1, 4 3)",
         ),
     ],
 )

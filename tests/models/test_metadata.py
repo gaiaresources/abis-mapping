@@ -60,7 +60,9 @@ class TestTemplateMetadata:
                 instance fixture.
         """
         # Expected instructions url
-        expected = f"{settings.Settings().INSTRUCTIONS_BASE_URL}{settings.Settings().INSTRUCTIONS_VERSION}/{template_metadata.id}"
+        expected = (
+            f"{settings.SETTINGS.INSTRUCTIONS_BASE_URL}{settings.SETTINGS.INSTRUCTIONS_VERSION}/{template_metadata.id}"
+        )
 
         # Assert as expected
         assert template_metadata.instructions_url == expected

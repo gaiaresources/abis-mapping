@@ -11,10 +11,18 @@ import rdflib
 import rdflib.compare
 
 # Local
+from abis_mapping import settings
 from abis_mapping import utils
+from tests import helpers
 
 # Typing
 from typing import Union, Callable
+
+
+@pytest.fixture(scope="session", autouse=True)
+def setup_test_settings() -> None:
+    """Autouse fixture to replace the settings with the test suite version."""
+    settings.SETTINGS = helpers.TestSettings()
 
 
 @pytest.fixture
