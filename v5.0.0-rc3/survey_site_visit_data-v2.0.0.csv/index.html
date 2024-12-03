@@ -1,0 +1,1331 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://gaiaresources.github.io/abis-mappping/latest/survey_site_visit_data-v2.0.0.csv/">
+      
+      
+        <link rel="prev" href="../survey_site_data-v2.0.0.csv/">
+      
+      
+        <link rel="next" href="../archived_templates/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Systematic Survey Site Visit Data Template - v2.0.0
+- Beta - BDR ABIS Mapping</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#systematic-survey-site-visit-data-template-instructions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BDR ABIS Mapping" class="md-header__button md-logo" aria-label="BDR ABIS Mapping" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BDR ABIS Mapping
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Systematic Survey Site Visit Data Template - v2.0.0
+- Beta
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gaiaresources/abis-mapping/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    gaiaresources/abis-mapping
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BDR ABIS Mapping" class="md-nav__button md-logo" aria-label="BDR ABIS Mapping" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BDR ABIS Mapping
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gaiaresources/abis-mapping/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    gaiaresources/abis-mapping
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incidental_occurrence_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Data Template - v2.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incidental_occurrence_data-v3.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Data Template - v3.0.0
+- Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_metadata-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Metadata Template - v1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_metadata-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Metadata Template - v2.0.0
+- Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_occurrence_data-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Occurrence Data Template - v1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_occurrence_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Occurrence Data Template - v2.0.0
+- Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_site_data-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Data Template - v1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_site_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Data Template - v2.0.0
+- Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Visit Data Template - v2.0.0
+- Beta
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Visit Data Template - v2.0.0
+- Beta
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intended-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intended Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-validation-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Validation Requirements:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Validation Requirements:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      FILE FORMAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FILE NAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      FILE SIZE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEMPLATE FIELDS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TEMPLATE FIELDS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADDITIONAL FIELDS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDICES
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="APPENDICES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#appendix-i-vocabulary-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDIX-I: Vocabulary List
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-ii-timestamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDIX-II: Timestamp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-iii-utf-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDIX-III: UTF-8
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../archived_templates/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Archived templates
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Archived templates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/incidental_occurrence_data-v1.0.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Data v1.0.0 - ARCHIVED
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<p><small>
+<strong>abis-mapping</strong> v5.0.0rc3 &emsp; <strong>survey_site_visit_data</strong> v2.0.0
+</small></p>
+<div class="admonition warning">
+<p class="admonition-title">Template In Beta</p>
+<p>This Template is in Beta, and may not be ready for use.
+Changes to the Template may be made before it is ready for use.</p>
+</div>
+<h1 id="systematic-survey-site-visit-data-template-instructions">SYSTEMATIC SURVEY SITE VISIT DATA TEMPLATE INSTRUCTIONS</h1>
+<h2 id="intended-usage">Intended Usage</h2>
+<p>This Systematic Survey Site Visit Data template should be used to record data related
+to the visit made to the Site area during a systematic survey.</p>
+<p>This Systematic Survey Site Visit template <strong>must be used in combination</strong> with the 
+Systematic Survey Site Data template.</p>
+<p>Templates have been provided to facilitate integration of data into the Biodiversity Data
+Repository (BDR) database. Not all types of data have been catered for in the available
+templates at this stage - if you are unable to find a suitable template, please
+contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
+<h2 id="data-validation-requirements">Data Validation Requirements:</h2>
+<p>For data validation, you will need your data file to:
+- be the correct <strong>file format</strong>,
+- have <strong>fields that match the template downloaded</strong> (do not remove, or change the order of fields),
+- have extant values for <strong>mandatory fields</strong> (see Table 1), and
+- comply with all <strong>data value constraints</strong>,
+- align with existing controlled <a href="#appendix-i-vocabulary-list">vocabularies</a> wherever possible, but 
+new terms may be submitted for consideration and will not cause a validation error.</p>
+<p>Additional fields may be added <strong>after the templated fields</strong> (noting that the data type 
+is not assumed and values will be encoded as strings).</p>
+<h3 id="file-format">FILE FORMAT</h3>
+<ul>
+<li>The systematic survey site visit data template is a <a href="#appendix-iii-utf-8">UTF-8</a> encoded csv (not Microsoft
+  Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
+  otherwise it will not pass the csv validation step upon upload.
+  <br><code>[MS Excel: Save As &gt; More options &gt; Tools &gt; Web options &gt; Save this document as &gt;
+  Unicode (UTF-8)]</code><br>
+  otherwise it will not pass the csv validation step upon upload.</li>
+<li><strong>Do not include empty rows</strong>.</li>
+</ul>
+<h3 id="file-name">FILE NAME</h3>
+<p>When making a manual submission to the Biodiversity Data Repository,
+the file name must include the version number
+of this biodiversity data template (<code>v2.0.0</code>).
+The following format is an example of a valid file name:</p>
+<p><code>data_descripion-v2.0.0-additional_description.csv</code></p>
+<p>Where:</p>
+<ul>
+<li><code>data_description</code>: A short description of the data (e.g. <code>survey_site_visits</code>, <code>test_data</code>).</li>
+<li><code>v2.0.0</code>: The version number of this template.</li>
+<li><code>additional_description</code>: (Optional) Additional description of the data, if needed (e.g. <code>test_data</code>).</li>
+<li><code>.csv</code>: Ensure the file name ends with <code>.csv</code>.</li>
+</ul>
+<p>For example, <code>survey_site_visits-v2.0.0-test_data.csv</code> or <code>test_data-v2.0.0.csv</code></p>
+<h3 id="file-size">FILE SIZE</h3>
+<p>MS Excel imposes a limit of 1,048,576 rows on a spreadsheet, limiting a CSV file to the
+header row followed by 1,048,575 occurrences. Furthermore, MS Excel has a 32,767 character
+limit on individual cells in a spreadsheet. These limits may be overcome by using or
+editing CSV files with other software.</p>
+<p>Larger datasets may be more readily ingested using the API interface. Please contact
+<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
+<h2 id="template-fields">TEMPLATE FIELDS</h2>
+<p>The template contains the field names in the top row. Table 1 will assist you in transferring
+your data to the template indicating:</p>
+<ul>
+<li><strong>Field name</strong> in the template (and an external link to the <a href="https://linkeddata.tern.org.au/">Data standard</a>
+  for that field where relevant);</li>
+<li><strong>Description</strong> of the field;</li>
+<li><strong>Required</strong> i.e. whether the field is <strong><font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional</strong>;</li>
+<li><strong>Format</strong> (datatype) required for the data values for example text (string), number
+  (integer, float), or date;</li>
+<li><strong>Example</strong> of an entry or entries for that field; and</li>
+<li><strong><a href="#appendix-i-vocabulary-list">Vocabulary links</a></strong> within this document (for example pick list values) where
+  relevant. The fields that have suggested values options for the fields in Table 1 are
+  listed in Table 2 in alphabetical order of the field name.</li>
+</ul>
+<h3 id="additional-fields">ADDITIONAL FIELDS</h3>
+<p>Data that does not match the existing template fields may be added as additional columns in
+the CSV files after the templated fields.
+For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <code>weatherConditions</code>.</p>
+<p><ins>Table 1: Systematic Survey Site Visit data template fields with descriptions, conditions, datatype format, and examples.</ins></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Field #</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: center;">Mandatory / Optional</th>
+<th style="text-align: center;">Datatype Format</th>
+<th style="text-align: left;">Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><a name="surveyID-field"></a>surveyID</td>
+<td style="text-align: left;">The identifier of the Survey that the Site is related to in this dataset.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">AR220-01</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><a name="siteID-field"></a>siteID</td>
+<td style="text-align: left;">A unique within dataset string identifier for the site. Valid values include strings that are used specifically for this survey or URIs from BDR Sites that have been established in previous surveys.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">P1</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><a name="siteIDSource-field"></a>siteIDSource</td>
+<td style="text-align: left;">The organisation that assigned the SiteID to this Site</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">TERN</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><a name="siteVisitID-field"></a>siteVisitID</td>
+<td style="text-align: left;">The unique key assigned to a visit. A visit is a time distinct assessment conducted within a survey at a designated site.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">CPXEI0000001</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><a name="siteVisitStart-field"></a>siteVisitStart</td>
+<td style="text-align: left;">The temporal start of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;">Timestamp</td>
+<td style="text-align: left;">2016-02-28</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><a name="siteVisitEnd-field"></a>siteVisitEnd</td>
+<td style="text-align: left;">The temporal end of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Timestamp</td>
+<td style="text-align: left;">2016-02-28</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><a name="visitOrgs-field"></a>visitOrgs</td>
+<td style="text-align: left;">The names of the organisations responsible for recording the original Occurrence.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">List</td>
+<td style="text-align: left;">NSW Dept of Planning, Industry and Environment.</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;"><a name="visitObservers-field"></a>visitObservers</td>
+<td style="text-align: left;">A list (concatenated and separated using |) of names of people, groups, or organisations responsible for recording the original Occurrence.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">List</td>
+<td style="text-align: left;">Oliver P. Pearson | Anita K. Pearson</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td style="text-align: left;"><a name="condition-field"></a>condition</td>
+<td style="text-align: left;">The state of a patch of vegetation at the time of sampling relative to some specified standard or benchmark (where available).</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Burnt</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><a name="targetTaxonomicScope-field"></a>targetTaxonomicScope</td>
+<td style="text-align: left;">The taxonomic group targeted for sampling during the Site Visit</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Coleoptera<br>(<a href="#targetTaxonomicScope-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td style="text-align: left;"><a name="protocolName-field"></a>protocolName</td>
+<td style="text-align: left;">Categorical descriptive name for the method used during the Site Visit.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">HARD TRAP<br>(<a href="#protocolName-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td style="text-align: left;"><a name="protocolDescription-field"></a>protocolDescription</td>
+<td style="text-align: left;">A detailed description of the method used during the Site Visit. The description may include deviations from a protocol referred to in eco:protocolReferences. Recommended good practice is to provide information about instruments used, calibration, etc.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Three conventional harp traps (3.2m ht x 2.2m w) were established in flight path zones for a period of 4 hrs at dawn and dusk for a total of 10 trap nights. Traps were visited on an hourly basis during each deployment period and the trap catch recorded for species, size, weight, sex, age and maternal status.</td>
+</tr>
+<tr>
+<td style="text-align: center;">13</td>
+<td style="text-align: left;"><a name="samplingEffortValue-field"></a>samplingEffortValue</td>
+<td style="text-align: left;">Similar to eco:samplingEffortValue. The total sampling effort value. A samplingEffortValue must have a corresponding samplingEffortUnit</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with samplingEffortUnit</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">20 x 12</td>
+</tr>
+<tr>
+<td style="text-align: center;">14</td>
+<td style="text-align: left;"><a name="samplingEffortUnit-field"></a>samplingEffortUnit</td>
+<td style="text-align: left;">Similar to eco:samplingEffortUnit. The units associated with samplingEffortValue.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with samplingEffortValue</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">trapDays<br>(<a href="#samplingEffortUnit-vocabularies">Vocabulary link</a>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendices">APPENDICES</h2>
+<h3 id="appendix-i-vocabulary-list">APPENDIX-I: Vocabulary List</h3>
+<p>Data validation does not require adherence to the vocabularies for the various vocabularied fields.
+These vocabularies are merely provided as a means of assistance in developing consistent language
+within the database. New terms may be added to more appropriately describe your data that goes 
+beyond the current list.</p>
+<p><ins>Table 2: Suggested values for controlled vocabulary fields in the template. Each term has a preferred label with a definition to aid understanding
+of its meaning. For some terms, alternative
+labels with similar semantics are provided. </ins></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Template field name</th>
+<th style="text-align: left;">Preferred label</th>
+<th style="text-align: left;">Definition</th>
+<th style="text-align: left;">Alternate label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a name="protocolName-vocabularies"></a>protocolName</td>
+<td style="text-align: left;">ACOUSTIC RECORDING</td>
+<td style="text-align: left;">An acoustic recorder is a device that emits a soundwave at a range of frequencies, and are used to detect and monitor biodiversity in a given area.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">ANIMAL PELLET</td>
+<td style="text-align: left;">Pellets are fecal droppings of animals such as goat, rats, rabbits, wombats, etc., and are often used as a sign/evidence of the presence of the species in the environment.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">ANIMAL TRACKING (STATELLITE)</td>
+<td style="text-align: left;">A method of tracking the movements of fauna species facilitated by the assistance from satellite (i.e., imagery for example).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">ANIMAL TRACKS</td>
+<td style="text-align: left;">Animal tracks are signs in the form of marks or imprints left behind on soil, ground or any related surface indicating the presence of a fauna species., Refers to the fauna observation method, i.e., any signs of a fauna detected from observations of tracks.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">BURROW</td>
+<td style="text-align: left;">A burrow is a hole or tunnel excavated into the ground by an animal to create a space suitable for habitation, temporary refuge, or as a byproduct of locomotion., Burrow is a small tunnel or a hole made by certain ground-dwelling mammals as a place of refuge., Refers to the microhabitat where the targeted fauna was observed. A burrow is a hole or tunnel excavated into the ground by an animal to create a space suitable for habitation, temporary refuge, or as a byproduct of locomotion.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">CAGE TRAP</td>
+<td style="text-align: left;">A cage trap is a trap made of metal or galvanised mesh, normally used for trapping mammals., The equipment/method used during a passive, 'targeted fauna survey'. A cage trap is a trap made of metal or galvanised mesh and used in trapping mammals.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">EDNA</td>
+<td style="text-align: left;">Environment DNA (eDNA) are the DNA that contains genetic information of living organisms representing a specific environmental and is usually sourced from soil, water, etc. , Refers to the method of identification of Vertebrate fauna. Taxon is identified using DNA sequencing techniques from environmental samples (eDNA).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">ELLIOTT TRAP</td>
+<td style="text-align: left;">The equipment/method used during a passive, 'fauna survey'. Elliott trapping is a technique used to trap small to medium sized mammals. The are usually hinged design that allows trapping to be conducted by folding into a compact panel and easy transport to field locations and storage., The equipment/method used during a passive, 'targeted fauna survey'. Elliott trapping is a technique used to trap small to medium sized mammals. The are usually hinged design that allows trapping to be conducted by folding into a compact panel and easy transport to field locations and storage.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">FOSSIL/SUBFOSSIL</td>
+<td style="text-align: left;">Fossils are preserved remains of animal or plant parts, usually of a prehistoric origin. Whereas, a sub-fossil are remains (usually skeletal) of animals that are not ancient enough to qualify as a fossil.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">FUNNEL TRAP</td>
+<td style="text-align: left;">The equipment/method used in a 'fauna survey'. Funnel trap is a trapping method used in trapping insects/invertebrates. Funnel traps are made of nested black funnels (up to as many as 12). Insects fall through the funnels to a cup that is filled with a preservative., The equipment/method used in a 'targeted fauna survey'. Funnel trap is a trapping method used in trapping insects/invertebrates. Funnel traps are made of nested black funnels (up to as many as 12). Insects fall through the funnels to a cup that is filled with a preservative.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">GPS TRACKING</td>
+<td style="text-align: left;">Geospatial tracking devices are portable units designed to monitor and track location. They use satellite navigation to determine movement and establish geographic positions.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">HAIR TUBE</td>
+<td style="text-align: left;">Hair Tubes are short sections of PVC pipe lined with pieces of double-sided sticky-tape and useful to obtain hair/fur samples of animals., Refers to the targeted fauna observation method, i.e., any observations on a fauna made using 'Hair Tubes', which are short sections of PVC pipe lined with pieces of double-sided sticky-tape.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">HARP TRAP</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any observations made on a fauna captured in a 'Harp trap' (especially designed for bats). They are particularly useful in situations where bats in flight can be channeled through a natural funnel such as above a water course, a cave or mine entrance or a clear area within a forest.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">HEARD</td>
+<td style="text-align: left;">The method of bird sighting in the form of calls, or acoustic signals., The method of fauna sighting in the form of calls, or acoustic signals.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">HUMAN OBSERVATION</td>
+<td style="text-align: left;">An observation performed by a human.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">LIGHT TRAP</td>
+<td style="text-align: left;">Light trapping is designed for collecting flying insects attracted to ultra violet light and is useful for sampling insect populations., The equipment/method used during a passive, 'targeted fauna survey'. Light trapping is designed for collecting flying insects attracted to ultra violet light and is useful for sampling insect populations.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">MALAISE TRAP</td>
+<td style="text-align: left;">A Malaise trap is a type of insect trap primarily used to capture invertebrates. They are large, tent-like structure effective in capturing flying insects (e.g., members of Hymenoptera and Diptera)., Refers to the targeted fauna observation method, i.e., any observations on a fauna captured using a malaise trap. A Malaise trap is a type of insect trap primarily used to capture invertebrates. They are large, tent-like structure effective in capturing flying insects (e.g., members of Hymenoptera and Diptera).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">MIST NET</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any observations on a fauna captured using mist nets. The net is made of a very fine diameter cord, which is almost invisible when set up and is often used to capture birds, because they fail to see it, and fly straight into it., Refers to the targeted fauna observation method, i.e., any observations on a fauna captured using mist nets. The net is made of a very fine diameter cord, which is almost invisible when set up and is often used to capture birds, because they fail to see it, and fly straight into it.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">NEST</td>
+<td style="text-align: left;">A nest is a place of refuge to hold an animal's eggs or provide a place to live or raise offspring.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">NO STATED METHOD</td>
+<td style="text-align: left;">Refers to NO recognised method of observation stated for a target fauna.</td>
+<td style="text-align: left;">UNSPECIFIED</td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">NONE</td>
+<td style="text-align: left;">Refers to No observation method of a target fauna., Refers to the targeted fauna observation method, i.e., 'No' standard observation methods were applied.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">OBSERVATION METHOD - AFTER CALL PLAYBACK</td>
+<td style="text-align: left;">After call playback, is a method used for fauna observations (usually birds) and involves pre-recorded call playback to detect the presence of a target species in the survey area.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">OBSERVATION METHOD - ANIMAL DEN</td>
+<td style="text-align: left;">A den is a place of refuge for many mammals and are usually either buried deep underground or built by the animal to create a secret shelter., Refers to the microhabitat where the fauna was observed. A den is a place of refuge for many mammals and are usually either buried deep underground or built by the animal to create a secret shelter.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">OBSERVATION METHOD - ANIMAL ODOUR</td>
+<td style="text-align: left;">Animal odour or pheromones are distinct secretions of animals, often used as a sign/evidence of their presence in its habitat., Refers to the type of fauna observation method, which involves detection of a fauna species via its odour or pheromones.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">PAN TRAP</td>
+<td style="text-align: left;">A pan trap is a type of insect trap primarily used to capture small invertebrates (e.g., members of Hymenoptera) and often used to sample the abundance and diversity of insects., Refers to the targeted fauna observation method, i.e., any observations made from fauna captures in a pan trap. A pan trap is a type of insect trap primarily used to capture small invertebrates (e.g., members of Hymenoptera) and often used to sample the abundance and diversity of insects., The type/method of invertebrate fauna sampling implemented. Pan trapping consists of small, coloured bowls placed on the ground, either filled with water and a small amount of dishwashing liquid for sampling over one day, or propylene glycol for sampling over a longer duration.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">PELLET (WITHIN)</td>
+<td style="text-align: left;">Pellets are fecal droppings of animals such as goat, rats, rabbits, wombats, etc., and are often used as a sign/evidence of the presence of the species in the environment. 'Within pellet' here represents an observation method (tier-2) that involves searching for any signs/evidence of a fauna species within a scat.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">PITFALL TRAP</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any observations made from fauna captures in a pitfall trap. A pitfall trap is a simple device used to catch small animals , particularly insects and other invertebrates , that spend most of their time on the ground., Refers to the targeted fauna observation method, i.e., any observations made from fauna captures in a pitfall trap. A pitfall trap is a simple device used to catch small animals , particularly insects and other invertebrates , that spend most of their time on the ground.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">RADIO TRACKING</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any signs of a fauna with the assistance of radio tracking device/s.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">REMOTE CAMERA DEVICE</td>
+<td style="text-align: left;">Remote camera device are special devices that can be programmed to capture media (picture, videos) in places where humans cannot be physically present, and can be controlled remotely over a wireless network.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">SCATS</td>
+<td style="text-align: left;">Faeces/faecal pellets/dung/droppings of animals. Often individual or scattered pellets (e.g. rabbit), or clumped pellet groups (e.g. deer). Their deposition will be influenced by diet (wet diet often causes clumping of pellets) and their size can reflect age (adult/juvenile). Scat surveys provide an estimate of relative abundances suitable for both herbivores and predators.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">SCATS (WITHIN)</td>
+<td style="text-align: left;">Scats are fecal droppings of animals and are often represented by most to mark their territory. 'Within scats' here represents an observation method (tier-2) that involves searching for any signs/evidence of a fauna species within a scat.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">SCENT PAD</td>
+<td style="text-align: left;">Scent pads are specific pads that are used as lures duing fauna observations.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">SCRATCHINGS (ARBOREAL)</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any signs of a fauna detected from observations of scratchings on a tree.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">SCRATCHINGS (GROUND)</td>
+<td style="text-align: left;">Scratchings are common traits of certain mammals leaving scars on trees, rocks etc.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">SHELL</td>
+<td style="text-align: left;">A shell is a hard, rigid outer layer, which has evolved in a very wide variety of different animals, including molluscs, crustaceans, turtles and tortoises.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">SIGHTING</td>
+<td style="text-align: left;">An observation method made by direct sighting of fauna in its habitat.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">SPOTLIGHTING</td>
+<td style="text-align: left;">Spotlighting technique is a method used for fauna observations during the night and assists surveyors target nocturnal animals, using off-road vehicles and high-powered lights, spotlights, lamps or flashlights.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">SWEEP NET</td>
+<td style="text-align: left;">Sweep nets are usually used for capturing insects using a number of sweeps. The net is made of fine diameter mesh fitted to a metal handle to trap invertebrates in air., The equipment/method used during a passive, 'targeted fauna survey'. Sweep nets are usually used for capturing insects using a number of sweeps. The net is made of fine diameter mesh fitted to a metal handle to trap invertebrates in air.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">TRACKING PAD</td>
+<td style="text-align: left;">A tracking pad is an artificial pad made of loose material (such as sand for example) that are used to study and observe animal tracks. These pads are often designed to be delpoyed in habitats where animal activity/movements are high., Refers to the type of substrate used for fauna signs-based observation. A tracking pad is an artificial pad made of loose material (such as sand for example) that are used to study animal tracks in a fauna survey.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">ULTRASONIC RECORDING DEVICE</td>
+<td style="text-align: left;">Ultrasound recorders are devices that send high-frequency sound waves in the environment to create images or detect objects and movements within various mediums, such as a mammalian body or other environments. They are popular for wildlife monitoring, biodiversity surveys, habitat assessments and echolocation studies (e.g., bats).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">UNKNOWN</td>
+<td style="text-align: left;">Refers to the fire history of the plot, unknown., Unknown (unable to be determined)., Unknown capture status., Unknown position., Unknown- unable to be determined., Unknown/unable to be determined.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">UNKNOWN TRAP TYPE</td>
+<td style="text-align: left;">Refers to the fire history of the plot, unknown., Unknown (unable to be determined)., Unknown capture status., Unknown position., Unknown, unable to be determined., Unknown/unable to be determined.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">WATER SAMPLE</td>
+<td style="text-align: left;">Water samples are representative samples of a given habitat that serve as a source to study the chemical composition and detect the presence of fauna species (DNA).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">protocolName</td>
+<td style="text-align: left;">WET PITFALL TRAP</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any observations made from fauna captures using a wet pitfall trap.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="samplingEffortUnit-vocabularies"></a>samplingEffortUnit</td>
+<td style="text-align: left;">Hectares</td>
+<td style="text-align: left;">The total area surveyed or sampled, measured in hectares.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingEffortUnit</td>
+<td style="text-align: left;">Hours</td>
+<td style="text-align: left;">The total time spent actively surveying using the specified protocol, expressed in hours.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingEffortUnit</td>
+<td style="text-align: left;">Metre Hours</td>
+<td style="text-align: left;">The distance (metres) and time (hours) of specific survey activities such as walking or transect surveys (measure of effort across both space and time).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingEffortUnit</td>
+<td style="text-align: left;">Metres</td>
+<td style="text-align: left;">A measure of linear distance, to describe the length of transects or areas covered.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingEffortUnit</td>
+<td style="text-align: left;">Minutes</td>
+<td style="text-align: left;">The total time spent actively surveying using the specified protocol, expressed in minutes.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingEffortUnit</td>
+<td style="text-align: left;">Person Hours</td>
+<td style="text-align: left;">The cumulative amount of time spent by individuals conducting the survey using the specified protocol. For example, if two people survey for 2 hours each, the total would be 4 person-hours.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingEffortUnit</td>
+<td style="text-align: left;">Trap Nights</td>
+<td style="text-align: left;">The total number of nights traps are left in the field. One trap night refers to one trap set for one night.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingEffortUnit</td>
+<td style="text-align: left;">kHz</td>
+<td style="text-align: left;">The frequency of sound is measured in kilohertz, for acoustic monitoring.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="targetTaxonomicScope-vocabularies"></a>targetTaxonomicScope</td>
+<td style="text-align: left;">AMPHIBIAN</td>
+<td style="text-align: left;">Refers to the target taxa studied in a fauna survey. Amphibians are vertebrates belonging to the class amphibia such as frogs, toads, newts and salamanders that live in a semi-aquatic environment.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">targetTaxonomicScope</td>
+<td style="text-align: left;">BIRD</td>
+<td style="text-align: left;">Refers to the target taxa studied in a fauna survey.Warm-blooded vertebrates possessing feather and belonging to the class Aves.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">targetTaxonomicScope</td>
+<td style="text-align: left;">INVERTEBRATE</td>
+<td style="text-align: left;">Refers to the target taxa studied in a fauna survey.Animals that have no spinal column (e.g., insects, molluscs, spiders).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">targetTaxonomicScope</td>
+<td style="text-align: left;">MAMMALS</td>
+<td style="text-align: left;">Refers to the target taxa studied in a fauna survey. Warm-blooded vertebrate animals belonging to the class Mammalia, including all that possess hair and suckle their young. Warm-blooded vertebrate animals belonging to the class Mammalia, including all that possess hair and suckle their young.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">targetTaxonomicScope</td>
+<td style="text-align: left;">NON-VASCULAR PLANT</td>
+<td style="text-align: left;">Refers to the target taxa studied in a fauna survey. Non-vascular plants are plants that do not possess a true vascular tissue (such as xylem-water conducting, phloem-sugar transport). Instead, they may possess simpler tissues that have specialized functions for the internal transport of food and water. They are members of bryophytes for example.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">targetTaxonomicScope</td>
+<td style="text-align: left;">REPTILE</td>
+<td style="text-align: left;">Refers to the target taxa studied in a fauna survey.Cold-blooded, air-breathing Vertebrates belonging to the class Reptilia, usually covered with external scales or bony plates.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">targetTaxonomicScope</td>
+<td style="text-align: left;">VASCULAR PLANT</td>
+<td style="text-align: left;">Refers to the target taxa studied in a fauna survey. Vascular plants are plants that possess a true vascular tissue (such as xylem-water conducting, phloem-sugar transport). Examples include some members mosses, such as club moss, horsetails, and pteridophytes such as ferns an fern-allies, gymnosperms (including conifers), and angiosperms (flowering plants).</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="appendix-ii-timestamp">APPENDIX-II: Timestamp</h3>
+<p>Following date and date-time formats are acceptable within the timestamp:</p>
+<table>
+<thead>
+<tr>
+<th>TYPE</th>
+<th>FORMAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>xsd:dateTimeStamp with timezone</strong></td>
+<td>yyyy-mm-ddThh:mm:ss.sTZD (eg 1997-07-16T19:20:30.45+01:00) OR <br/> yyyy-mm-ddThh:mm:ssTZD (eg 1997-07-16T19:20:30+01:00) OR <br/>  yyyy-mm-ddThh:mmTZD (eg 1997-07-16T19:20+01:00)</td>
+</tr>
+<tr>
+<td><strong>xsd:dateTime</strong></td>
+<td>yyyy-mm-ddThh:mm:ss.s (eg 1997-07-16T19:20:30.45) OR<br/> yyyy-mm-ddThh:mm:ss (eg 1997-07-16T19:20:30) OR<br/> yyyy-mm-ddThh:mm (eg 1997-07-16T19:20)</td>
+</tr>
+<tr>
+<td><strong>xsd:Date</strong></td>
+<td>dd/mm/yyyy OR<br/> d/m/yyyy OR<br/> yyyy-mm-dd OR<br/> yyyy-m-d</td>
+</tr>
+<tr>
+<td><strong>xsd:gYearMonth</strong></td>
+<td>mm/yyyy OR<br/> m/yyyy OR<br/> yyyy-mm</td>
+</tr>
+<tr>
+<td><strong>xsd:gYear</strong></td>
+<td>yyyy</td>
+</tr>
+</tbody>
+</table>
+<p>Where:<br/>
+&emsp; <code>yyyy</code>: four-digit year <br/>
+&emsp; <code>mm</code>: two-digit month (01=January, etc.) <br/>
+&emsp; <code>dd</code>: two-digit day of month (01 through 31) <br/>
+&emsp; <code>hh</code>: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
+&emsp; <code>mm</code>: two digits of minute (00 through 59) <br/>
+&emsp; <code>ss</code>: two digits of second (00 through 59) <br/>
+&emsp; <code>s</code>: one or more digits representing a decimal fraction of a second
+&emsp; <code>TZD</code>: time zone designator (Z or +hh:mm or -hh:mm)</p>
+<h3 id="appendix-iii-utf-8">APPENDIX-III: UTF-8</h3>
+<p>UTF-8 encoding is considered a best practice for handling character encoding, especially in
+the context of web development, data exchange, and modern software systems. UTF-8
+(Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
+encoding all possible characters (code points) in Unicode.<br/>
+Here are some reasons why UTF-8 is recommended:
+- <strong>Universal Character Support:</strong> UTF-8 can represent almost all characters from all writing 
+  systems in use today. This includes characters from various languages, mathematical symbols, 
+  and other special characters.
+- <strong>Backward Compatibility:</strong> UTF-8 is backward compatible with ASCII (American
+  Standard Code for Information Interchange). The first 128 characters in UTF-8 are
+  identical to ASCII, making it easy to work with systems that use ASCII.
+- <strong>Efficiency:</strong> UTF-8 is space-efficient for Latin-script characters (common in English
+  and many other languages). It uses one byte for ASCII characters and up to four
+  bytes for other characters. This variable-length encoding minimises storage and
+  bandwidth requirements.
+- <strong>Web Standards:</strong> UTF-8 is the dominant character encoding for web content. It is
+  widely supported by browsers, servers, and web-related technologies.
+- <strong>Globalisation:</strong> As software applications become more globalised, supporting a wide
+  range of languages and scripts becomes crucial. UTF-8 is well-suited for
+  internationalisation and multilingual support.
+- <strong>Compatibility with Modern Systems:</strong> UTF-8 is the default encoding for many
+  programming languages, databases, and operating systems. Choosing UTF-8 helps
+  ensure compatibility across different platforms and technologies.</p>
+<p>When working with text data, UTF-8 encoding is recommended to avoid issues related to character
+representation and ensure that a diverse set of characters and languages is supported.</p>
+<p>For assistance, please contact: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate", "navigation.indexes"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
