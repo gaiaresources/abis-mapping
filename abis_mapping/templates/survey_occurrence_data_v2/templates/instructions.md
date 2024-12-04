@@ -51,7 +51,7 @@ The following format is an example of a valid file name:
 
 `data_descripion-v{{ metadata.version }}-additional_description.csv`
 
-Where:
+where:
 
 * `data_description`: A short description of the data (e.g. `survey_occ`, `test_data`).
 * `v{{ metadata.version }}`: The version number of this template.
