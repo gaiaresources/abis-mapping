@@ -127,7 +127,7 @@ class ThreatStatusTabler(tables.base.BaseTabler):
         row = self.row_model(
             conservation_authority=splt_preferred[0],
             threat_status=splt_preferred[1],
-            threat_status_alt_labels=", ".join(threat_stat_alt),
+            threat_status_alt_labels=", ".join(sorted(threat_stat_alt)),
         )
 
         # Return

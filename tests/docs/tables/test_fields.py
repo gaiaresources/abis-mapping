@@ -212,14 +212,14 @@ def test_header(mocked_mapper: unittest.mock.MagicMock) -> None:
 def test_determine_checklist() -> None:
     """Tests the determine_checklist method."""
     # Create tabler
-    tabler = tables.fields.FieldTabler("incidental_occurrence_data-v2.0.0.csv")
+    tabler = tables.fields.FieldTabler("incidental_occurrence_data-v3.0.0.csv")
 
     # Invoke function
     checklist = tabler.checklist()
 
     # Assert
     assert checklist is not None
-    assert len(checklist.checks) == 6
+    assert len(checklist.checks) == 9
 
 
 @pytest.mark.parametrize(
