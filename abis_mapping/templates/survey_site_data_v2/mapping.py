@@ -841,7 +841,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Extract values
         geodetic_datum = row["geodeticDatum"]
         footprint_wkt = row["footprintWKT"]
-        coordinate_uncertainty = row["coordinateUncertaintyInMeters"]
 
         if footprint_wkt is None or geodetic_datum is None:
             return
@@ -859,6 +858,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
 
         # Add coordinate uncertainty if available
+        coordinate_uncertainty = row["coordinateUncertaintyInMeters"]
         if coordinate_uncertainty:
             spatial_accuracy = rdflib.Literal(coordinate_uncertainty, datatype=rdflib.XSD.double)
             graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, spatial_accuracy))
@@ -892,7 +892,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         decimal_latitude = row["decimalLatitude"]
         decimal_longitude = row["decimalLongitude"]
         geodetic_datum = row["geodeticDatum"]
-        coordinate_uncertainty = row["coordinateUncertaintyInMeters"]
 
         if decimal_latitude is None or decimal_longitude is None or geodetic_datum is None:
             return
@@ -910,6 +909,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
 
         # Add coordinate uncertainty if available
+        coordinate_uncertainty = row["coordinateUncertaintyInMeters"]
         if coordinate_uncertainty:
             spatial_accuracy = rdflib.Literal(coordinate_uncertainty, datatype=rdflib.XSD.double)
             graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, spatial_accuracy))
