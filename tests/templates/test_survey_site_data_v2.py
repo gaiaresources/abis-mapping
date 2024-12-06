@@ -13,7 +13,6 @@ import rdflib
 
 # Local
 from abis_mapping import base
-import abis_mapping.templates.survey_site_data.mapping
 import abis_mapping.templates.survey_site_data_v2.mapping
 
 # Typing
@@ -23,10 +22,6 @@ from typing import Any
 @pytest.mark.parametrize(
     ("mapper_class",),
     [
-        pytest.param(
-            abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper,
-            id="survey_site_mapper_v1",
-        ),
         pytest.param(
             abis_mapping.templates.survey_site_data_v2.mapping.SurveySiteMapper,
             id="survey_site_mapper_v2",
@@ -158,7 +153,7 @@ class TestSiteIDForeignKeys:
         all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in scenario.raws]
 
         # Get mapper
-        mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
+        mapper = abis_mapping.templates.survey_site_data_v2.mapping.SurveySiteMapper()
 
         # Modify schema to only fields required for test
         descriptor = {"fields": [field for field in mapper.schema()["fields"] if field["name"] in rawh]}
@@ -218,7 +213,7 @@ def test_add_footprint_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
     uri = rdflib.URIRef("http://example.com/abis-mapping/test")
 
     # Get mapper
-    mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
+    mapper = abis_mapping.templates.survey_site_data_v2.mapping.SurveySiteMapper()
 
     # Call method
     mapper.add_footprint_geometry(
@@ -263,7 +258,7 @@ def test_add_point_geometry_no_geometry(row_dict: dict[str, Any]) -> None:
     uri = rdflib.URIRef("http://example.com/abis-mapping/test")
 
     # Get mapper
-    mapper = abis_mapping.templates.survey_site_data.mapping.SurveySiteMapper()
+    mapper = abis_mapping.templates.survey_site_data_v2.mapping.SurveySiteMapper()
 
     # Call method
     mapper.add_point_geometry(
