@@ -514,3 +514,44 @@ class TestSiteVisitIDSiteIDMap:
         if not report.valid:
             error_codes = [code for codes in report.flatten(["type"]) for code in codes]
             assert set(error_codes) == scenario.expected_error_codes
+
+
+def test_extract_site_id_keys(
+    mocker: pytest_mock.MockerFixture,
+    mapper: Mapper,
+) -> None:
+    """Test the extract_site_id_keys method.
+
+    Args:
+        mocker (pytest_mock.MockerFixture): The mocker fixture.
+    """
+    # Construct a raw data set only using fields relevant to method.
+    rawh = ["siteID"]
+    raws = [["site1"], [""], ["site2"], ["site3"], ["site3"]]
+
+    # Amalgamate into a list of dicts
+    all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in raws]
+
+    # Modify schema to only include the necessary fields
+    descriptor = {"fields": [{"name": "siteID", "type": "string"}]}
+    mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
+
+    # Create raw data csv string
+    output = io.StringIO()
+    csv_writer = csv.DictWriter(output, fieldnames=rawh)
+    csv_writer.writeheader()
+    for row in all_raw:
+        csv_writer.writerow(row)
+    csv_data = output.getvalue().encode("utf-8")
+
+    expected = {
+        "site1": True,
+        "site2": True,
+        "site3": True,
+    }
+
+    # Invoke method
+    actual = mapper.extract_site_id_keys(csv_data)
+
+    # Validate
+    assert actual == expected
