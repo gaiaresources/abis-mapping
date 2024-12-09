@@ -15,7 +15,7 @@ from abis_mapping import models
 from abis_mapping import vocabs
 
 # Typing
-from typing import Iterator, Optional, Any
+from typing import Any
 
 
 # Constants and Shortcuts
@@ -141,104 +141,16 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Return Validation Report
         return report
 
-    def apply_mapping(
-        self,
-        data: base.types.ReadableType,
-        dataset_iri: Optional[rdflib.URIRef] = None,
-        base_iri: Optional[rdflib.Namespace] = None,
-        **kwargs: Any,
-    ) -> Iterator[rdflib.Graph]:
-        """Applies Mapping for the `incidental_occurrence_data.csv` Template
-
-        Args:
-            data (base.types.ReadableType): Valid raw data to be mapped.
-            dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
-            base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
-
-        Keyword Args:
-            chunk_size (Optional[int]): How many rows of the original data to
-                ingest before yielding a graph. `None` will ingest all rows.
-
-        Yields:
-            rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
-        """
-        # Extract keyword arguments
-        chunk_size = kwargs.get("chunk_size")
-        if not isinstance(chunk_size, int) or chunk_size < 1:
-            chunk_size = None
-
-        # Construct Schema
-        schema = self.extra_fields_schema(
-            data=data,
-            full_schema=True,
-        )
-        extra_schema = self.extra_fields_schema(
-            data=data,
-            full_schema=False,
-        )
-
-        # Construct Resource
-        resource = frictionless.Resource(
-            source=data,
-            format="csv",  # TODO -> Hardcoded to csv for now
-            schema=schema,
-            encoding="utf-8",
-        )
-
-        # Initialise Graph
-        graph = utils.rdf.create_graph()
-
-        # Check if Dataset IRI Supplied
-        if dataset_iri:
-            # If supplied, add just the dataset type.
-            graph.add((dataset_iri, a, utils.namespaces.TERN.Dataset))
-        else:
-            # If not supplied, create example "default" Dataset IRI
-            dataset_iri = utils.rdf.uri(f"dataset/{self.DATASET_DEFAULT_NAME}", base_iri)
-
-            # Add Example Default Dataset if not Supplied
-            self.add_default_dataset(
-                uri=dataset_iri,
-                base_iri=base_iri,
-                graph=graph,
-            )
-
-        # Open the Resource to allow row streaming
-        with resource.open() as r:
-            # Loop through Rows
-            for row in r.row_stream:
-                # Map Row
-                self.apply_mapping_row(
-                    row=row,
-                    dataset=dataset_iri,
-                    graph=graph,
-                    extra_schema=extra_schema,
-                    base_iri=base_iri,
-                )
-
-                # Check Whether to Yield a Chunk
-                # The row_number needs to be reduced by one as the numbering of rows
-                # in a Resource includes the header
-                if chunk_size is not None and (row.row_number - 1) % chunk_size == 0:
-                    # Yield Chunk
-                    yield graph
-
-                    # Initialise New Graph
-                    graph = utils.rdf.create_graph()
-                    # Every chunk should have this node
-                    graph.add((dataset_iri, a, utils.namespaces.TERN.Dataset))
-
-            # Yield
-            yield graph
-
     def apply_mapping_row(
         self,
+        *,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: Optional[rdflib.Namespace] = None,
-    ) -> rdflib.Graph:
+        base_iri: rdflib.Namespace | None,
+        **kwargs: Any,
+    ) -> None:
         """Applies Mapping for a Row in the `incidental_occurrence_data.csv` Template
 
         Args:
@@ -1165,9 +1077,6 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph=graph,
             extra_schema=extra_schema,
         )
-
-        # Return
-        return graph
 
     def add_provider_identified(
         self,
