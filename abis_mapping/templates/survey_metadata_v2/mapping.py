@@ -15,7 +15,7 @@ from abis_mapping import models
 from abis_mapping import utils
 
 # Typing
-from typing import Optional, Iterator, Any
+from typing import Any
 
 
 # Constants / shortcuts
@@ -106,82 +106,15 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Return validation report
         return report
 
-    def apply_mapping(
-        self,
-        data: base.types.ReadableType,
-        dataset_iri: Optional[rdflib.URIRef] = None,
-        base_iri: Optional[rdflib.Namespace] = None,
-        **kwargs: Any,
-    ) -> Iterator[rdflib.Graph]:
-        """Applies mapping for the `survey_metadata.csv` template.
-
-        Args:
-            data (base.types.ReadableType): Valid raw data to be mapped.
-            dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
-            base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
-            **kwargs (Any): Additional keyword arguments.
-
-        Yields:
-            rdflib.Graph: ABIS conformant RDF sub-graph from raw data chunk.
-        """
-        # Construct Schema
-        schema = self.extra_fields_schema(
-            data=data,
-            full_schema=True,
-        )
-        extra_schema = self.extra_fields_schema(
-            data=data,
-            full_schema=False,
-        )
-
-        # Construct Resource
-        resource = frictionless.Resource(
-            source=data,
-            format="csv",  # TODO -> Hardcoded to csv for now
-            schema=schema,
-            encoding="utf-8",
-        )
-
-        # Initialise Graph
-        graph = utils.rdf.create_graph()
-
-        # Check if Dataset IRI Supplied
-        if dataset_iri:
-            # If supplied, add just the dataset type.
-            graph.add((dataset_iri, a, utils.namespaces.TERN.Dataset))
-        else:
-            # If not supplied, create example "default" Dataset IRI
-            dataset_iri = utils.rdf.uri(f"dataset/{self.DATASET_DEFAULT_NAME}", base_iri)
-
-            # Add the default dataset
-            self.add_default_dataset(
-                uri=dataset_iri,
-                base_iri=base_iri,
-                graph=graph,
-            )
-
-        # Open the Resource to allow row streaming
-        with resource.open() as r:
-            # Loop through rows
-            for row in r.row_stream:
-                # Map row
-                self.apply_mapping_row(
-                    row=row,
-                    dataset=dataset_iri,
-                    graph=graph,
-                    extra_schema=extra_schema,
-                    base_iri=base_iri,
-                )
-
-            yield graph
-
     def apply_mapping_row(
         self,
+        *,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: Optional[rdflib.Namespace] = None,
+        base_iri: rdflib.Namespace | None,
+        **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the `survey_metadata.csv` template.
 

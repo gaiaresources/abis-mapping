@@ -55,24 +55,132 @@ class ABISMapper(abc.ABC):
             frictionless.Report: Validation report for the data.
         """
 
-    @abc.abstractmethod
     def apply_mapping(
         self,
+        *,
         data: base_types.ReadableType,
-        dataset_iri: Optional[rdflib.URIRef] = None,
-        base_iri: Optional[rdflib.Namespace] = None,
+        chunk_size: int | None,
+        dataset_iri: rdflib.URIRef | None = None,
+        base_iri: rdflib.Namespace | None = None,
         **kwargs: Any,
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping from Raw Data to ABIS conformant RDF.
 
         Args:
-            data (ReadableType): Readable raw data.
-            dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
-            base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
-            **kwargs (Any): Additional keyword arguments.
+            data: Readable raw data.
+            chunk_size: Size of chunks to split raw data into. None to disabled chunking.
+            dataset_iri: Optional dataset IRI.
+            base_iri: Optional mapping base IRI.
+            **kwargs: Additional keyword arguments.
 
         Yields:
             rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
+        """
+        # Check chunk size
+        if chunk_size is not None and chunk_size <= 0:
+            raise ValueError("chunk_size must be greater than zero")
+
+        # Construct Schema and extra fields schema
+        schema = self.extra_fields_schema(
+            data=data,
+            full_schema=True,
+        )
+        extra_schema = self.extra_fields_schema(
+            data=data,
+            full_schema=False,
+        )
+
+        # Construct Resource
+        resource = frictionless.Resource(
+            source=data,
+            format="csv",  # TODO -> Hardcoded to csv for now
+            schema=schema,
+            encoding="utf-8",
+        )
+
+        # Initialise Graph
+        graph = utils.rdf.create_graph()
+        graph_has_rows: bool = False
+
+        # Check if Dataset IRI Supplied
+        if not dataset_iri:
+            # If not supplied, create example "default" Dataset IRI
+            dataset_iri = utils.rdf.uri(f"dataset/{self.DATASET_DEFAULT_NAME}", base_iri)
+
+            # Add the default dataset
+            self.add_default_dataset(
+                uri=dataset_iri,
+                base_iri=base_iri,
+                graph=graph,
+            )
+
+        # Add per-chunk mapping for first chunk
+        self.apply_mapping_chunk(dataset=dataset_iri, graph=graph)
+
+        # Open the Resource to allow row streaming
+        with resource.open() as r:
+            # Loop through rows
+            for row_num, row in enumerate(r.row_stream, start=1):
+                # Map row
+                self.apply_mapping_row(
+                    row=row,
+                    dataset=dataset_iri,
+                    graph=graph,
+                    extra_schema=extra_schema,
+                    base_iri=base_iri,
+                    **kwargs,
+                )
+                graph_has_rows = True
+
+                # yield chunk if required
+                if chunk_size is not None and row_num % chunk_size == 0:
+                    yield graph
+                    # Initialise New Graph for next chunk
+                    graph = utils.rdf.create_graph()
+                    graph_has_rows = False
+                    self.apply_mapping_chunk(dataset=dataset_iri, graph=graph)
+
+            # yield final chunk, or whole graph if not chunking.
+            if graph_has_rows or chunk_size is None:
+                yield graph
+
+    def apply_mapping_chunk(
+        self,
+        *,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Applies mapping for RDF that should be present in every chunk.
+
+        This method can be extended by subclasses, remember to call super()!
+
+        Args:
+            dataset: The Dataset URI
+            graph: The graph for the chunk to add the mapping to.
+        """
+        # This should be in every chunk, so the type of the dataset can be resolved.
+        graph.add((dataset, a, utils.namespaces.TERN.Dataset))
+
+    @abc.abstractmethod
+    def apply_mapping_row(
+        self,
+        *,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+        extra_schema: frictionless.Schema,
+        base_iri: rdflib.Namespace | None,
+        **kwargs: Any,
+    ) -> None:
+        """Applies Mapping for a Row in the template by mutating the passed Graph.
+
+        Args:
+            row: Row from the template to be processed.
+            dataset: Dataset URI.
+            graph: Graph to map row into.
+            extra_schema: Template schema including any extra fields.
+            base_iri: Optional base IRI namespace to use for mapping.
+            kwargs: Additional keyword arguments.
         """
 
     def add_default_dataset(

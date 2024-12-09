@@ -18,7 +18,7 @@ from abis_mapping import base
 from abis_mapping import utils
 
 # Typing
-from typing import Any, Optional, Iterator
+from typing import Any
 
 from abis_mapping.base import types as base_types
 
@@ -35,14 +35,17 @@ class ContextualStringIO(io.StringIO):
 
 
 class StubMapper(base.mapper.ABISMapper):
-    def apply_mapping(
+    def apply_mapping_row(
         self,
-        data: base_types.ReadableType,
-        dataset_iri: Optional[rdflib.URIRef] = None,
-        base_iri: Optional[rdflib.Namespace] = None,
+        *,
+        row: frictionless.Row,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+        extra_schema: frictionless.Schema,
+        base_iri: rdflib.Namespace | None,
         **kwargs: Any,
-    ) -> Iterator[rdflib.Graph]:
-        yield from []
+    ) -> None:
+        pass
 
     def apply_validation(  # type: ignore[empty-body]
         self, data: base_types.ReadableType, **kwargs: Any

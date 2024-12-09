@@ -14,7 +14,7 @@ from abis_mapping import models
 from abis_mapping import utils
 
 # Typing
-from typing import Any, Iterator
+from typing import Any
 
 
 # Constants / shortcuts
@@ -203,105 +203,15 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             graph.add((end, a, rdflib.TIME.Instant))
             graph.add((end, end_date.rdf_in_xsd, end_date.to_rdf_literal()))
 
-    def apply_mapping(
-        self,
-        data: base.types.ReadableType,
-        dataset_iri: rdflib.URIRef | None = None,
-        base_iri: rdflib.Namespace | None = None,
-        **kwargs: Any,
-    ) -> Iterator[rdflib.Graph]:
-        """Applies Mapping from Raw Data to ABIS conformant RDF.
-
-        Args:
-            data (ReadableType): Readable raw data.
-            dataset_iri (Optional[rdflib.URIRef]): Optional dataset IRI.
-            base_iri (Optional[rdflib.Namespace]): Optional mapping base IRI.
-            **kwargs (Any): Additional keyword arguments.
-
-        Keyword Args:
-            chunk_size (Optional[int]): How many rows of the original data to
-                ingest before yielding a graph. `None` will ingest all rows.
-
-        Yields:
-            rdflib.Graph: ABIS Conformant RDF Sub-Graph from Raw Data Chunk.
-        """
-        # Extract keyword arguments
-        chunk_size: int | None = kwargs.get("chunk_size")
-        if not isinstance(chunk_size, int) or chunk_size <= 0:
-            chunk_size = None
-
-        # Construct Schema
-        schema = self.extra_fields_schema(
-            data=data,
-            full_schema=True,
-        )
-        extra_schema = self.extra_fields_schema(
-            data=data,
-            full_schema=False,
-        )
-
-        # Construct Resource
-        resource = frictionless.Resource(
-            source=data,
-            format="csv",  # TODO -> Hardcoded to csv for now
-            schema=schema,
-            encoding="utf-8",
-        )
-
-        # Initialise Graph
-        graph = utils.rdf.create_graph()
-        graph_has_data: bool = False
-
-        # Check if Dataset IRI Supplied
-        if dataset_iri:
-            # If supplied, add just the dataset type.
-            graph.add((dataset_iri, a, utils.namespaces.TERN.Dataset))
-        else:
-            # If not supplied, create example "default" Dataset IRI
-            dataset_iri = utils.rdf.uri(f"dataset/{self.DATASET_DEFAULT_NAME}", base_iri)
-
-            # Add the default dataset
-            self.add_default_dataset(
-                uri=dataset_iri,
-                base_iri=base_iri,
-                graph=graph,
-            )
-            graph_has_data = True
-
-        # Open the Resource to allow row streaming
-        with resource.open() as r:
-            # Loop through rows
-            for i, row in enumerate(r.row_stream, start=1):
-                # Map row
-                self.apply_mapping_row(
-                    row=row,
-                    dataset=dataset_iri,
-                    graph=graph,
-                    extra_schema=extra_schema,
-                    base_iri=base_iri,
-                )
-                graph_has_data = True
-
-                # yield chunk if required
-                if chunk_size is not None and i % chunk_size == 0:
-                    yield graph
-                    # Initialise New Graph for next chunk
-                    graph = utils.rdf.create_graph()
-                    graph_has_data = False
-                    # Every chunk should have this node
-                    graph.add((dataset_iri, a, utils.namespaces.TERN.Dataset))
-
-            # yield final chunk, or whole graph if not chunking.
-            if chunk_size is None or graph_has_data:
-                yield graph
-
     def apply_mapping_row(
         self,
+        *,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
         base_iri: rdflib.Namespace | None,
+        **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the Survey Site Visit Data template.
 

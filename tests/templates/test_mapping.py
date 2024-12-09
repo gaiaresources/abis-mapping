@@ -34,7 +34,7 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     assert mapper
 
     # Map
-    graphs = list(mapper().apply_mapping(data))
+    graphs = list(mapper().apply_mapping(data=data, chunk_size=None))
 
     # Assert
     assert len(graphs) == 1
@@ -81,7 +81,7 @@ def test_against_shacl(template_id: str, test_params: conftest.MappingParameters
     assert mapper
 
     # Map
-    graphs = list(mapper().apply_mapping(data))
+    graphs = list(mapper().apply_mapping(data=data, chunk_size=None))
 
     # Assert
     assert len(graphs) == 1
@@ -120,7 +120,7 @@ def test_apply_mapping_chunking(template_id: str, test_params: conftest.Chunking
     assert mapper
 
     # Map
-    graphs = list(mapper().apply_mapping(data, chunk_size=test_params.chunk_size))
+    graphs = list(mapper().apply_mapping(data=data, chunk_size=test_params.chunk_size))
 
     # Assert
     assert len(graphs) == test_params.yield_count
