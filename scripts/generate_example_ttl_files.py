@@ -80,7 +80,7 @@ def main() -> None:
             raise RuntimeError(f"Mapper not found for {template_id}")
         # Map data
         data = input_csv_file_path.read_bytes()
-        graphs = list(mapper().apply_mapping(data))
+        graphs = list(mapper().apply_mapping(data=data, chunk_size=None))
         if len(graphs) != 1:
             raise RuntimeError("apply_mapping did not produce exactly 1 graph")
         # Write to output file
