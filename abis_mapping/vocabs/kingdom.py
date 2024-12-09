@@ -131,6 +131,6 @@ class KingdomSpecimen(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(Kingdom)
-utils.vocabs.Vocabulary.register(KingdomOccurrence)
-utils.vocabs.Vocabulary.register(KingdomSpecimen)
+utils.vocabs.register(Kingdom)
+utils.vocabs.register(KingdomOccurrence)
+utils.vocabs.register(KingdomSpecimen)

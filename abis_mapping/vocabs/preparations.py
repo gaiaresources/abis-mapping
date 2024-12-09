@@ -107,4 +107,4 @@ class Preparations(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(Preparations)
+utils.vocabs.register(Preparations)

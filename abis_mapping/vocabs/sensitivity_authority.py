@@ -21,4 +21,4 @@ class SensitivityAuthority(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(SensitivityAuthority)
+utils.vocabs.register(SensitivityAuthority)

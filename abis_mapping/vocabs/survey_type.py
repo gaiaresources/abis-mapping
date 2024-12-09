@@ -32,4 +32,4 @@ class SurveyType(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(SurveyType)
+utils.vocabs.register(SurveyType)

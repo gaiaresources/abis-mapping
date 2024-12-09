@@ -20,4 +20,4 @@ class ReproductiveCondition(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(ReproductiveCondition)
+utils.vocabs.register(ReproductiveCondition)

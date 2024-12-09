@@ -278,4 +278,4 @@ class TaxonRank(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(TaxonRank)
+utils.vocabs.register(TaxonRank)

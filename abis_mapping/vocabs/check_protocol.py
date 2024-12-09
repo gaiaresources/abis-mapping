@@ -30,4 +30,4 @@ class CheckProtocol(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(CheckProtocol)
+utils.vocabs.register(CheckProtocol)

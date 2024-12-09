@@ -99,4 +99,4 @@ class TargetTaxonomicScope(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(TargetTaxonomicScope)
+utils.vocabs.register(TargetTaxonomicScope)

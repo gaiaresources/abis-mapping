@@ -71,4 +71,4 @@ class BasisOfRecord(utils.vocabs.FlexibleVocabulary):
 
 
 # Register vocabulary
-utils.vocabs.Vocabulary.register(BasisOfRecord)
+utils.vocabs.register(BasisOfRecord)

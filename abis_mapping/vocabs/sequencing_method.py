@@ -28,4 +28,4 @@ class SequencingMethod(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(SequencingMethod)
+utils.vocabs.register(SequencingMethod)

@@ -232,4 +232,4 @@ class LifeStage(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(LifeStage)
+utils.vocabs.register(LifeStage)

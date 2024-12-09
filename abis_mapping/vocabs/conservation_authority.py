@@ -63,4 +63,4 @@ class ConservationAuthority(utils.vocabs.RestrictedVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(ConservationAuthority)
+utils.vocabs.register(ConservationAuthority)

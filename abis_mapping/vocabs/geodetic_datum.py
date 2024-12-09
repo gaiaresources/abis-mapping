@@ -42,4 +42,4 @@ class GeodeticDatum(utils.vocabs.RestrictedVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(GeodeticDatum)
+utils.vocabs.register(GeodeticDatum)

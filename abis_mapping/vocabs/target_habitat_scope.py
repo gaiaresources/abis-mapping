@@ -1112,4 +1112,4 @@ class TargetHabitatScope(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(TargetHabitatScope)
+utils.vocabs.register(TargetHabitatScope)

@@ -134,7 +134,7 @@ def test_vocabs_flexible_vocab() -> None:
 
 def test_vocab_register_id() -> None:
     """Tests that vocabs get registered at import."""
-    assert len(abis_mapping.utils.vocabs.Vocabulary.id_registry) > 0
+    assert len(abis_mapping.utils.vocabs._id_registry) > 0
 
 
 def test_get_vocab() -> None:

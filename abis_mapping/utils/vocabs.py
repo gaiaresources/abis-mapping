@@ -11,7 +11,7 @@ from abis_mapping.utils import rdf
 from abis_mapping.utils import strings
 
 # Typing
-from typing import Optional, Iterable, final, Final, Type
+from typing import Optional, Iterable, Final, Type
 
 
 # Constants
@@ -82,16 +82,11 @@ class Vocabulary(abc.ABC):
     """Base Vocabulary class.
 
     Attributes:
-        id_registry (dict[str, Vocabulary]): Dictionary to hold all vocabs for
-            mapping by their id.
         vocab_id (str): ID to assign vocabulary.
         terms (Iterable[Term]): Terms to add to the vocabulary.
         publish (bool, optional): Whether to publish vocabulary
             in documentation. Defaults to True.
     """
-
-    # Dictionary to hold all vocabs for mapping by their id.
-    id_registry: dict[str, Type["Vocabulary"]] = {}
 
     # Attributes assigned per vocabulary
     vocab_id: str
@@ -133,25 +128,6 @@ class Vocabulary(abc.ABC):
         Returns:
             rdflib.URIRef: Matching vocabulary IRI.
         """
-
-    @final
-    @classmethod
-    def register(
-        cls,
-        vocab: Type["Vocabulary"],
-    ) -> None:
-        """Register a Vocabulary within the centralise vocabulary id registry.
-
-        Args:
-            vocab (Vocabulary): Corresponding Vocabulary.
-
-        Raises:
-            KeyError: The Vocabulary ID is already registered.
-        """
-        if vocab.vocab_id in cls.id_registry:
-            raise KeyError(f"Vocabulary ID {vocab.vocab_id} already registered.")
-
-        cls.id_registry[vocab.vocab_id] = vocab
 
 
 class RestrictedVocabulary(Vocabulary):
@@ -323,6 +299,25 @@ class VocabularyError(Exception):
     """Error Raised in Vocabulary Handling"""
 
 
+# Dictionary to hold all vocabs for mapping by their id.
+_id_registry: Final[dict[str, Type[Vocabulary]]] = {}
+
+
+def register(vocab: Type[Vocabulary]) -> None:
+    """Register a Vocabulary within the centralised vocabulary id registry.
+
+    Args:
+        vocab: Corresponding Vocabulary.
+
+    Raises:
+        KeyError: The Vocabulary ID is already registered.
+    """
+    if vocab.vocab_id in _id_registry:
+        raise KeyError(f"Vocabulary ID {vocab.vocab_id} already registered.")
+
+    _id_registry[vocab.vocab_id] = vocab
+
+
 def get_vocab(key: str) -> Type[Vocabulary]:
     """Retrieves vocab object for given key.
 
@@ -337,7 +332,7 @@ def get_vocab(key: str) -> Type[Vocabulary]:
         ValueError: If supplied key doesn't exist within the registry.
     """
     try:
-        return Vocabulary.id_registry[key]
+        return _id_registry[key]
     except KeyError:
         # Transform to ValueError, to assist with validation libraries.
         raise ValueError(f"Key {key} not found in registry.") from None

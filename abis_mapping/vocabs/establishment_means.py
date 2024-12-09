@@ -76,4 +76,4 @@ class EstablishmentMeans(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(EstablishmentMeans)
+utils.vocabs.register(EstablishmentMeans)
