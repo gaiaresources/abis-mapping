@@ -16,9 +16,6 @@ import abis_mapping.base
 import abis_mapping.models
 from tests.templates import conftest
 
-# Typing
-from typing import Type
-
 
 @pytest.fixture(scope="module")
 def case_template_ids() -> list[str]:
@@ -28,7 +25,7 @@ def case_template_ids() -> list[str]:
 
 @pytest.mark.parametrize(
     argnames="mapper_id",
-    argvalues=[mapper_id for mapper_id in abis_mapping.get_mappers()],
+    argvalues=sorted(abis_mapping.registered_ids()),
 )
 def test_registered_has_test_case(mapper_id: str, case_template_ids: list[str]) -> None:
     """Tests all registered mapper has a corresponding test case."""
@@ -41,16 +38,12 @@ def test_registered_has_test_case(mapper_id: str, case_template_ids: list[str]) 
     ids=[tc.template_id for tc in conftest.TEST_CASES],
 )
 class TestTemplateBasicSuite:
-    @pytest.fixture(scope="class")
-    def mappers(self) -> dict[str, Type[abis_mapping.base.mapper.ABISMapper]]:
-        """Test fixture that retrieves all mappers"""
-        return abis_mapping.get_mappers()
-
     def test_template_registered(
-        self, mappers: dict[str, abis_mapping.base.mapper.ABISMapper], test_params: conftest.TemplateTestParameters
+        self,
+        test_params: conftest.TemplateTestParameters,
     ) -> None:
         """Tests that the supplied template id is registered."""
-        assert test_params.template_id in mappers
+        assert test_params.template_id in abis_mapping.registered_ids()
 
     def test_get_mapper(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests that we can retrieve a mapper based on its template ID"""

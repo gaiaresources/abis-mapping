@@ -905,4 +905,4 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)
+base.mapper.register_mapper(SurveyMetadataMapper)

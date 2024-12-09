@@ -858,4 +858,4 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(SurveySiteMapper)
+base.mapper.register_mapper(SurveySiteMapper)

@@ -3860,4 +3860,4 @@ def has_specimen(row: frictionless.Row) -> bool:
 
 
 # Register mapper
-base.mapper.ABISMapper.register_mapper(IncidentalOccurrenceMapper)
+base.mapper.register_mapper(IncidentalOccurrenceMapper)

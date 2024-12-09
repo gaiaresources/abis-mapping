@@ -21,7 +21,8 @@ from abis_mapping import utils
 
 
 # Typing
-from typing import Any, Iterator, Optional, final
+from collections.abc import Iterator, Set
+from typing import Any, Final, Optional, final
 
 
 # Constants
@@ -30,9 +31,6 @@ a = rdflib.RDF.type
 
 class ABISMapper(abc.ABC):
     """ABIS Mapper Base Class"""
-
-    # ABIS Mapper Registry
-    registry: dict[str, type["ABISMapper"]] = {}
 
     # Default Dataset Metadata
     DATASET_DEFAULT_NAME = "Example Dataset"
@@ -501,21 +499,6 @@ class ABISMapper(abc.ABC):
         return {f.name: f for f in schema.fields}
 
     @final
-    @classmethod
-    def register_mapper(
-        cls,
-        mapper: type["ABISMapper"],
-    ) -> None:
-        """Registers a concrete ABIS Mapper with the Base Class
-
-        Args:
-            mapper (type[ABISMapper]): Mapper to be registered.
-        """
-        # Register the mapper with its template id
-        template_id = mapper.metadata()["id"]
-        cls.registry[template_id] = mapper
-
-    @final
     def root_dir(self) -> pathlib.Path:
         """Returns the root directory for this Template.
 
@@ -529,25 +512,40 @@ class ABISMapper(abc.ABC):
         return pathlib.Path(file_path).parent
 
 
+# Registry for ABIS Mappers.
+_registry: Final[dict[str, type[ABISMapper]]] = {}
+
+
+def register_mapper(mapper: type[ABISMapper]) -> None:
+    """Registers a concrete ABIS Mapper
+
+    Args:
+        mapper: Mapper class to be registered.
+    """
+    # Register the mapper with its template id
+    template_id = mapper.metadata()["id"]
+    _registry[template_id] = mapper
+
+
 def get_mapper(template_id: str) -> Optional[type[ABISMapper]]:
     """Retrieves ABIS Mapper class for the specified template ID.
 
     Args:
-        template_id (str): Template ID to retrieve the mapper for.
+        template_id: Template ID to retrieve the mapper for.
 
     Returns:
-        Optional[type[ABISMapper]]: ABIS mapper class associated with the
-            specified template ID if found, otherwise `None`.
+        ABIS mapper class associated with the specified template ID if found, otherwise `None`.
     """
     # Retrieve and return the mapper
-    return ABISMapper.registry.get(template_id)
+    return _registry.get(template_id)
 
 
-def get_mappers() -> dict[str, type[ABISMapper]]:
-    """Retrieves the full registry of ABIS Mappers.
+def registered_ids() -> Set[str]:
+    """Retrieves a set of the registered ABIS Mappers' template IDs.
 
     Returns:
-        dict[str, type[ABISMapper]]: Dictionary of template ID to ABIS Mapper.
+        Set of the template IDs there are registered ABIS Mappers for.
     """
-    # Retrieve and return the mappers
-    return ABISMapper.registry
+    # Return the set of template IDs.
+    # Do not return the _registry dict itself to reduce chance it is mutated outside this module.
+    return _registry.keys()

@@ -956,4 +956,4 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(SurveySiteVisitMapper)
+base.mapper.register_mapper(SurveySiteVisitMapper)
