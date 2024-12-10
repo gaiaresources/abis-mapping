@@ -7,9 +7,11 @@ on:
   push:
     branches:
       - main
+      - 'release/**'
   pull_request:
     branches:
       - main
+      - 'release/**'
 permissions:
   contents: write
 env:
@@ -40,7 +42,7 @@ jobs:
         run: poetry run poe generate-instructions
 
       - name: Build and deploy dev documentation
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
         run: poetry run mike deploy --push --branch=${{ env.DOCS_BRANCH }} dev
 
       - name: Build and deploy published tag documentation
