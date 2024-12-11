@@ -9,6 +9,7 @@ import rdflib
 from tests.templates import conftest
 import abis_mapping
 import tests.conftest
+import tests.helpers
 
 
 @pytest.mark.parametrize(
@@ -34,7 +35,14 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     assert mapper
 
     # Map
-    graphs = list(mapper().apply_mapping(data=data, chunk_size=None))
+    graphs = list(
+        mapper().apply_mapping(
+            data=data,
+            chunk_size=None,
+            dataset_iri=tests.helpers.TEST_DATASET_IRI,
+            base_iri=tests.helpers.TEST_BASE_NAMESPACE,
+        )
+    )
 
     # Assert
     assert len(graphs) == 1
@@ -81,7 +89,14 @@ def test_against_shacl(template_id: str, test_params: conftest.MappingParameters
     assert mapper
 
     # Map
-    graphs = list(mapper().apply_mapping(data=data, chunk_size=None))
+    graphs = list(
+        mapper().apply_mapping(
+            data=data,
+            chunk_size=None,
+            dataset_iri=tests.helpers.TEST_DATASET_IRI,
+            base_iri=tests.helpers.TEST_BASE_NAMESPACE,
+        )
+    )
 
     # Assert
     assert len(graphs) == 1
@@ -120,7 +135,14 @@ def test_apply_mapping_chunking(template_id: str, test_params: conftest.Chunking
     assert mapper
 
     # Map
-    graphs = list(mapper().apply_mapping(data=data, chunk_size=test_params.chunk_size))
+    graphs = list(
+        mapper().apply_mapping(
+            data=data,
+            chunk_size=test_params.chunk_size,
+            dataset_iri=tests.helpers.TEST_DATASET_IRI,
+            base_iri=tests.helpers.TEST_BASE_NAMESPACE,
+        )
+    )
 
     # Assert
     assert len(graphs) == test_params.yield_count

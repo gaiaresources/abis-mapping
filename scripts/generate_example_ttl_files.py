@@ -18,6 +18,7 @@ import rdflib
 # local
 import abis_mapping
 import abis_mapping.models.temporal
+import tests.helpers
 import tests.templates.conftest
 
 # Global vars
@@ -80,7 +81,14 @@ def main() -> None:
             raise RuntimeError(f"Mapper not found for {template_id}")
         # Map data
         data = input_csv_file_path.read_bytes()
-        graphs = list(mapper().apply_mapping(data=data, chunk_size=None))
+        graphs = list(
+            mapper().apply_mapping(
+                data=data,
+                chunk_size=None,
+                dataset_iri=tests.helpers.TEST_DATASET_IRI,
+                base_iri=tests.helpers.TEST_BASE_NAMESPACE,
+            )
+        )
         if len(graphs) != 1:
             raise RuntimeError("apply_mapping did not produce exactly 1 graph")
         # Write to output file

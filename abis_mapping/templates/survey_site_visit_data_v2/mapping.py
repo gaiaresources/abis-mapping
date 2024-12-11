@@ -210,7 +210,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the Survey Site Visit Data template.
@@ -220,7 +220,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             dataset: Dataset IRI this row is a part of.
             graph: Graph to map row into.
             extra_schema: Schema of extra fields.
-            base_iri: Optional base IRI to use for mapping.
+            base_iri: Base IRI to use for mapping.
         """
         # variables starting with row_ are values from the row.
         # variables starting with uri_ are constructed URIs.

@@ -264,7 +264,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         **kwargs: Any,
     ) -> None:
         """Applies Mapping for a Row in the `survey_occurrence_data.csv` Template
@@ -274,8 +274,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset uri this row is a part of.
             graph (rdflib.Graph): Graph to map row into.
             extra_schema (frictionless.Schema): Schema of extra fields.
-            base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
-                to use for mapping.
+            base_iri (rdflib.Namespace): Optional base IRI namespace to use for mapping.
+
+        Keyword Args:
             site_id_geometry_map (dict[str, str] | None): Optional site id to geometry
                 default map.
             site_visit_id_temporal_map (dict[str, str] | None): Optional site visit id

@@ -8,147 +8,142 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://createme.org/SiteVisitCollection/samplingEffort/10-sifts> a schema:Collection ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
-    schema:member <http://createme.org/SiteVisit/TIS-24-03-P1-02> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisitCollection/samplingEffort/10-sifts> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-02> ;
     schema:name "Site Visit Collection - Sampling Effort - 10 sifts" ;
-    tern:hasAttribute <http://createme.org/attribute/samplingEffort/10-sifts> .
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/samplingEffort/10-sifts> .
 
-<http://createme.org/SiteVisitCollection/samplingEffort/240-trap-nights> a schema:Collection ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
-    schema:member <http://createme.org/SiteVisit/TIS-24-03-P1-01> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisitCollection/samplingEffort/240-trap-nights> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-01> ;
     schema:name "Site Visit Collection - Sampling Effort - 240 trap nights" ;
-    tern:hasAttribute <http://createme.org/attribute/samplingEffort/240-trap-nights> .
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/samplingEffort/240-trap-nights> .
 
-<http://createme.org/SiteVisitCollection/targetTaxonomicScope/bird> a schema:Collection ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
-    schema:member <http://createme.org/SiteVisit/TIS-24-03-P1-03> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisitCollection/targetTaxonomicScope/bird> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-03> ;
     schema:name "Site Visit Collection - Target Taxonomic Scope - bird" ;
-    tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/bird> .
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/bird> .
 
-<http://createme.org/SiteVisitCollection/targetTaxonomicScope/invertebrate> a schema:Collection ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
-    schema:member <http://createme.org/SiteVisit/TIS-24-03-P1-02> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisitCollection/targetTaxonomicScope/invertebrate> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-02> ;
     schema:name "Site Visit Collection - Target Taxonomic Scope - invertebrate" ;
-    tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/invertebrate> .
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/invertebrate> .
 
-<http://createme.org/SiteVisitCollection/targetTaxonomicScope/new-taxon> a schema:Collection ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
-    schema:member <http://createme.org/SiteVisit/TIS-24-03-P1-01> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisitCollection/targetTaxonomicScope/new-taxon> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-01> ;
     schema:name "Site Visit Collection - Target Taxonomic Scope - new_taxon" ;
-    tern:hasAttribute <http://createme.org/attribute/targetTaxonomicScope/new-taxon> .
-
-<http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;
-    skos:definition "An identifier for the dataset" ;
-    skos:prefLabel "Gaia Resources datasetID" ;
-    prov:wasAttributedTo <http://createme.org/provider/Gaia-Resources> .
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/new-taxon> .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> a rdfs:Datatype ;
     skos:definition "An identifier for the site" ;
     skos:prefLabel "WAM Site ID" ;
-    prov:qualifiedAttribution <http://createme.org/attribution/WAM/resourceProvider> .
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> .
 
-<http://createme.org/SiteVisit/TIS-24-03-P1-03> a tern:SiteVisit ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-03> a tern:SiteVisit ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2024-03-12"^^xsd:date ] ] ;
-    prov:hadPlan <http://createme.org/visit/plan/TIS-24-03-P1-03> ;
+    prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-03> ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/ORCID00003>,
         <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
     schema:identifier "TIS-24-03-P1-03" ;
-    schema:isPartOf <http://createme.org/Survey/TIS-24-03>,
-        <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
-    tern:hasSite <http://createme.org/Site/P1> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> ;
+    tern:hasSite <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> .
 
-<http://createme.org/attribute/samplingEffort/10-sifts> a tern:Attribute ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/samplingEffort/10-sifts> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:attribute <http://example.com/concept/samplingEffort> ;
     tern:hasSimpleValue "10 sifts" ;
-    tern:hasValue <http://createme.org/value/samplingEffort/10-sifts> .
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/samplingEffort/10-sifts> .
 
-<http://createme.org/attribute/samplingEffort/240-trap-nights> a tern:Attribute ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/samplingEffort/240-trap-nights> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:attribute <http://example.com/concept/samplingEffort> ;
     tern:hasSimpleValue "240 trap nights" ;
-    tern:hasValue <http://createme.org/value/samplingEffort/240-trap-nights> .
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/samplingEffort/240-trap-nights> .
 
-<http://createme.org/attribute/targetTaxonomicScope/bird> a tern:Attribute ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/bird> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     tern:hasSimpleValue "bird" ;
-    tern:hasValue <http://createme.org/value/targetTaxonomicScope/bird> .
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/bird> .
 
-<http://createme.org/attribute/targetTaxonomicScope/invertebrate> a tern:Attribute ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/invertebrate> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     tern:hasSimpleValue "invertebrate" ;
-    tern:hasValue <http://createme.org/value/targetTaxonomicScope/invertebrate> .
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/invertebrate> .
 
-<http://createme.org/attribute/targetTaxonomicScope/new-taxon> a tern:Attribute ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/new-taxon> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     tern:hasSimpleValue "new_taxon" ;
-    tern:hasValue <http://createme.org/value/targetTaxonomicScope/new-taxon> .
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/new-taxon> .
 
-<http://createme.org/attribution/WAM/resourceProvider> a prov:Attribution ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
-<http://createme.org/bdr-cv/attribute/protocolName/litter-sifting> a skos:Concept ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/protocolName/litter-sifting> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766> ;
     skos:definition "A type of protocolName" ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
     skos:prefLabel "litter sifting" ;
-    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
-<http://createme.org/bdr-cv/attribute/samplingEffortUnit/sifts> a skos:Concept ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/samplingEffortUnit/sifts> a skos:Concept ;
     skos:definition "In conjunction with the sampling effort value, the sampling effort unit gives an indication of the effort applied to the specified protocol." ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "sifts" ;
-    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
-<http://createme.org/bdr-cv/attribute/targetTaxonomicScope/new-taxon> a skos:Concept ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/new-taxon> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     skos:definition "A type of targetTaxonomicScope" ;
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "new_taxon" ;
-    schema:citation "http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset"^^xsd:anyURI .
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
-<http://createme.org/value/samplingEffort/10-sifts> a tern:Float,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/samplingEffort/10-sifts> a tern:Float,
         tern:Value ;
     rdf:value "10.0"^^xsd:float ;
-    tern:unit <http://createme.org/bdr-cv/attribute/samplingEffortUnit/sifts> .
+    tern:unit <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/samplingEffortUnit/sifts> .
 
-<http://createme.org/value/samplingEffort/240-trap-nights> a tern:Float,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/samplingEffort/240-trap-nights> a tern:Float,
         tern:Value ;
     rdf:value "240.0"^^xsd:float ;
     tern:unit <http://example.com/sampling-effort/trap-nights> .
 
-<http://createme.org/value/targetTaxonomicScope/bird> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/bird> a tern:IRI,
         tern:Value ;
     rdf:value <https://linked.data.gov.au/def/nrm/f9874c91-f61d-5b74-90d1-aa71d3805b45> .
 
-<http://createme.org/value/targetTaxonomicScope/invertebrate> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/invertebrate> a tern:IRI,
         tern:Value ;
     rdf:value <https://linked.data.gov.au/def/nrm/f03ce044-9c2c-52ec-adf9-5aa4960d58a8> .
 
-<http://createme.org/value/targetTaxonomicScope/new-taxon> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/new-taxon> a tern:IRI,
         tern:Value ;
-    rdf:value <http://createme.org/bdr-cv/attribute/targetTaxonomicScope/new-taxon> .
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/new-taxon> .
 
-<http://createme.org/visit/plan/TIS-24-03-P1-01> a prov:Plan ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-01> a prov:Plan ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/4caf0cde-9ffb-56c2-bdc6-17c4c2a7275a> ;
     schema:description "10 x square buckets of size 20 x 20 x 15 cm. Propylene glycol." ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
-<http://createme.org/visit/plan/TIS-24-03-P1-02> a prov:Plan ;
-    sosa:usedProcedure <http://createme.org/bdr-cv/attribute/protocolName/litter-sifting> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-02> a prov:Plan ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/protocolName/litter-sifting> ;
     schema:description "50 cm diameter sifter with 5 mm mesh. Litter samles taken ~1 metre from each pitfall trap" ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
-<http://createme.org/visit/plan/TIS-24-03-P1-03> a prov:Plan ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-03> a prov:Plan ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/DBCA> a prov:Agent,
         prov:Organization ;
@@ -162,56 +157,52 @@
         prov:Person ;
     schema:name "ORCID00003" .
 
-<http://createme.org/SiteVisit/TIS-24-03-P1-01> a tern:SiteVisit ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-01> a tern:SiteVisit ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2024-03-12"^^xsd:date ] ;
             time:hasEnd [ a time:Instant ;
                     time:inXSDDate "2024-04-04"^^xsd:date ] ] ;
-    prov:hadPlan <http://createme.org/visit/plan/TIS-24-03-P1-01> ;
+    prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-01> ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/DBCA>,
         <https://linked.data.gov.au/dataset/bdr/orgs/ORCID00001>,
         <https://linked.data.gov.au/dataset/bdr/orgs/ORCID00002>,
         <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
     schema:identifier "TIS-24-03-P1-01" ;
-    schema:isPartOf <http://createme.org/Survey/TIS-24-03>,
-        <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
-    tern:hasSite <http://createme.org/Site/P1> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> ;
+    tern:hasSite <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
     tern:siteDescription "dry" .
 
-<http://createme.org/SiteVisit/TIS-24-03-P1-02> a tern:SiteVisit ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-02> a tern:SiteVisit ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2024-03-12"^^xsd:date ] ;
             time:hasEnd [ a time:Instant ;
                     time:inXSDDate "2024-03-12"^^xsd:date ] ] ;
-    prov:hadPlan <http://createme.org/visit/plan/TIS-24-03-P1-02> ;
+    prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-02> ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/ORCID00001>,
         <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
     schema:identifier "TIS-24-03-P1-02" ;
-    schema:isPartOf <http://createme.org/Survey/TIS-24-03>,
-        <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> ;
-    tern:hasSite <http://createme.org/Site/P1> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> ;
+    tern:hasSite <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
     tern:siteDescription "moist leaf litter after recent rain" .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/ORCID00001> a prov:Agent,
         prov:Person ;
     schema:name "ORCID00001" .
 
-<http://createme.org/Site/P1> a tern:Site ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> a tern:Site ;
     schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
-<http://createme.org/Survey/TIS-24-03> a tern:Survey ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> .
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> a tern:Survey ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
 <https://linked.data.gov.au/dataset/bdr/orgs/WAM> a prov:Agent,
         prov:Organization ;
     schema:name "WAM" .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Site-Visit-Dataset> a tern:Dataset ;
-    schema:dateCreated "2020-01-01"^^xsd:date ;
-    schema:dateIssued "2020-01-01"^^xsd:date ;
-    schema:description "Example Systematic Survey Site Visit Dataset by Gaia Resources" ;
-    schema:name "Example Systematic Survey Site Visit Dataset" .
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a tern:Dataset .
 

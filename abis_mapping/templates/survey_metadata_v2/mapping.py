@@ -113,7 +113,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the `survey_metadata.csv` template.
@@ -123,8 +123,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset IRI this row is a part of.
             graph (rdflib.URIRef): Graph to map row into.
             extra_schema (frictionless.Schema): Schema of extra fields.
-            base_iri (Optional[rdflib.Namespace]): Optional base IRI
-                to use for mapping.
+            base_iri (rdflib.Namespace): Base IRI to use for mapping.
         """
         # Set the row number to start from the data, excluding header
         row_num = row.row_number - 1

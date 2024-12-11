@@ -58,8 +58,8 @@ class ABISMapper(abc.ABC):
         *,
         data: base_types.ReadableType,
         chunk_size: int | None,
-        dataset_iri: rdflib.URIRef | None = None,
-        base_iri: rdflib.Namespace | None = None,
+        dataset_iri: rdflib.URIRef,
+        base_iri: rdflib.Namespace,
         **kwargs: Any,
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping from Raw Data to ABIS conformant RDF.
@@ -67,8 +67,8 @@ class ABISMapper(abc.ABC):
         Args:
             data: Readable raw data.
             chunk_size: Size of chunks to split raw data into. None to disabled chunking.
-            dataset_iri: Optional dataset IRI.
-            base_iri: Optional mapping base IRI.
+            dataset_iri: IRI of the Dataset this raw data is part of.
+            base_iri: Namespace to use when generating new IRIs as part of this mapping.
             **kwargs: Additional keyword arguments.
 
         Yields:
@@ -167,7 +167,7 @@ class ABISMapper(abc.ABC):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         **kwargs: Any,
     ) -> None:
         """Applies Mapping for a Row in the template by mutating the passed Graph.
@@ -177,7 +177,7 @@ class ABISMapper(abc.ABC):
             dataset: Dataset URI.
             graph: Graph to map row into.
             extra_schema: Template schema including any extra fields.
-            base_iri: Optional base IRI namespace to use for mapping.
+            base_iri: Base IRI namespace to use for mapping.
             kwargs: Additional keyword arguments.
         """
 

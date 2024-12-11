@@ -225,7 +225,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the `survey_site_data.csv` template.
@@ -235,8 +235,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset IRI this row is a part of.
             graph (rdflib.URIRef): Graph to map row into.
             extra_schema (frictionless.Schema): Schema of extra fields.
-            base_iri (Optional[rdflib.Namespace]): Optional base IRI
-                to use for mapping.
+            base_iri (rdflib.Namespace): Optional base IRI to use for mapping.
         """
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site visit and occurrence template mapping, ensuring they will resolve properly.

@@ -148,7 +148,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         **kwargs: Any,
     ) -> None:
         """Applies Mapping for a Row in the `incidental_occurrence_data.csv` Template
@@ -158,8 +158,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset uri this row is apart of.
             graph (rdflib.Graph): Graph to map row into.
             extra_schema (frictionless.Schema): Schema of extra fields.
-            base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
-                to use for mapping.
+            base_iri (rdflib.Namespace): Base IRI namespace to use for mapping.
 
         Returns:
             rdflib.Graph: Graph with row mapped into it.
