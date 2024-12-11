@@ -1153,7 +1153,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=conservation_authority_value,
             conservation_authority=conservation_authority,
             graph=graph,
-            base_iri=base_iri,
         )
 
         # Add conservation Authority Collection
@@ -1390,7 +1389,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         date_identified: models.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
 
         # Retrieve vocab for field
-        vocab = self.fields()["identificationMethod"].get_vocab()
+        vocab = self.fields()["identificationMethod"].get_flexible_vocab()
 
         # Retrieve Vocab or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["identificationMethod"])
@@ -1478,7 +1477,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
         # Retrieve vocab for field
-        vocab = self.fields()["identificationMethod"].get_vocab()
+        vocab = self.fields()["identificationMethod"].get_flexible_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["identificationMethod"])
@@ -1704,7 +1703,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.RDFS.label, rdflib.Literal(id_qualifier)))
 
             # Retrieve vocab for field
-            vocab = self.fields()["identificationQualifier"].get_vocab()
+            vocab = self.fields()["identificationQualifier"].get_flexible_vocab()
             # Retrieve term or Create on the Fly
             term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(id_qualifier)
             # Identification Qualifier Value
@@ -2160,7 +2159,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field (multiple exists for kingdom)
-        vocab = self.fields()["kingdom"].get_vocab("KINGDOM_SPECIMEN")
+        vocab = self.fields()["kingdom"].get_flexible_vocab("KINGDOM_SPECIMEN")
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["kingdom"])
@@ -2331,7 +2330,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.RDFS.label, rdflib.Literal(taxon_rank)))
 
             # Retrieve vocab for field
-            vocab = self.fields()["taxonRank"].get_vocab()
+            vocab = self.fields()["taxonRank"].get_flexible_vocab()
             # Retrieve term or Create on the Fly
             term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(taxon_rank)
             # Taxon Rank Value
@@ -2629,7 +2628,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.RDFS.label, rdflib.Literal(habitat)))
 
             # Retrieve vocab for field
-            vocab = self.fields()["habitat"].get_vocab()
+            vocab = self.fields()["habitat"].get_flexible_vocab()
             # Retrieve term or Create on the Fly
             term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(habitat)
             # Add value
@@ -2730,7 +2729,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.RDFS.label, rdflib.Literal(basis_of_record)))
 
             # Retrieve vocab for field
-            vocab = self.fields()["basisOfRecord"].get_vocab()
+            vocab = self.fields()["basisOfRecord"].get_flexible_vocab()
             # Retrieve term or Create on the Fly
             term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(basis_of_record)
             # Add value
@@ -2901,7 +2900,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields()["occurrenceStatus"].get_vocab()
+        vocab = self.fields()["occurrenceStatus"].get_flexible_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["occurrenceStatus"])
@@ -2971,7 +2970,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.RDFS.label, rdflib.Literal(preparations)))
 
             # Retrieve vocab for field
-            vocab = self.fields()["preparations"].get_vocab()
+            vocab = self.fields()["preparations"].get_flexible_vocab()
             # Retrieve term or Create on the Fly
             term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(preparations)
             # Add value
@@ -3112,7 +3111,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields()["establishmentMeans"].get_vocab()
+        vocab = self.fields()["establishmentMeans"].get_flexible_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["establishmentMeans"])
@@ -3226,7 +3225,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields()["lifeStage"].get_vocab()
+        vocab = self.fields()["lifeStage"].get_flexible_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["lifeStage"])
@@ -3338,7 +3337,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields()["sex"].get_vocab()
+        vocab = self.fields()["sex"].get_flexible_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["sex"])
@@ -3451,7 +3450,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields()["reproductiveCondition"].get_vocab()
+        vocab = self.fields()["reproductiveCondition"].get_flexible_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["reproductiveCondition"])
@@ -3615,7 +3614,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields()["sequencingMethod"].get_vocab()
+        vocab = self.fields()["sequencingMethod"].get_flexible_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["sequencingMethod"])
@@ -3776,7 +3775,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Retrieve vocab for field
-        vocab = self.fields()["threatStatusCheckProtocol"].get_vocab()
+        vocab = self.fields()["threatStatusCheckProtocol"].get_flexible_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row["threatStatusCheckProtocol"])
@@ -3854,7 +3853,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         value = f"{row['conservationAuthority']}/{row['threatStatus']}"
 
         # Retrieve vocab for field
-        vocab = self.fields()["threatStatus"].get_vocab()
+        vocab = self.fields()["threatStatus"].get_flexible_vocab()
 
         # Retrieve term or Create on the Fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(value)
@@ -3902,7 +3901,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         conservation_authority: str | None,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
     ) -> None:
         """Adds Conservation Authority Value to the Graph
 
@@ -3926,7 +3924,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Retrieve vocab for field
             vocab = self.fields()["conservationAuthority"].get_vocab()
             # Retrieve term
-            term = vocab(graph=graph, base_iri=base_iri).get(conservation_authority)
+            term = vocab().get(conservation_authority)
             # Conservation Authority Value
             graph.add((uri, rdflib.RDF.value, term))
 
@@ -4084,7 +4082,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields()["organismQuantityType"].get_vocab()
+        vocab = self.fields()["organismQuantityType"].get_flexible_vocab()
 
         # Get term or create on the fly
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(organism_qty_type)
@@ -4173,7 +4171,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Retrieve vocab for field
-        vocab = self.fields()["sensitivityCategory"].get_vocab()
+        vocab = self.fields()["sensitivityCategory"].get_flexible_vocab()
         vocab_instance = vocab(graph=graph, source=dataset, base_iri=base_iri)
 
         # Set the scope note to use if a new term is created on the fly.
@@ -4368,7 +4366,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             )
 
         # Add feature type from vocab
-        kingdom_vocab = self.fields()["kingdom"].get_vocab("KINGDOM_OCCURRENCE")
+        kingdom_vocab = self.fields()["kingdom"].get_flexible_vocab("KINGDOM_OCCURRENCE")
         graph.add(
             (
                 uri,
@@ -4420,7 +4418,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph.add((temporal_entity, rdflib.TIME.hasEnd, end_instant))
 
         # Add procedure from vocab
-        protocol_vocab = self.fields()["samplingProtocol"].get_vocab()
+        protocol_vocab = self.fields()["samplingProtocol"].get_flexible_vocab()
         graph.add(
             (
                 uri,

@@ -93,24 +93,8 @@ class Vocabulary(abc.ABC):
     terms: Iterable[Term]
     publish: bool = True
 
-    def __init__(
-        self,
-        *,
-        graph: rdflib.Graph,
-        source: Optional[rdflib.URIRef] = None,
-        base_iri: Optional[rdflib.Namespace] = None,
-    ):
-        """Vocabulary constructor.
-
-        Args:
-            graph: Graph to reference within vocabulary
-            source: Optional source URI to attribute a new vocabulary term to.
-            base_iri: Optional namespace to use when creating the IRI for a new vocabulary term.
-        """
-        # Assign instance variables
-        self.graph = graph
-        self.source: Optional[rdflib.URIRef] = source
-        self.base_iri = base_iri
+    def __init__(self) -> None:
+        """Vocabulary constructor."""
 
         # Generate Dictionary Mapping from Terms
         self._mapping: dict[str | None, rdflib.URIRef | None] = {}
@@ -201,12 +185,17 @@ class FlexibleVocabulary(Vocabulary):
         """Flexible Vocabulary constructor.
 
         Args:
-            graph: Graph to reference within vocabulary
+            graph: Graph to add a new vocabulary term to.
             source: Optional source URI to attribute a new vocabulary term to.
             base_iri: Optional namespace to use when creating the IRI for a new vocabulary term.
         """
         # Call parent constructor
-        super().__init__(graph=graph, source=source, base_iri=base_iri)
+        super().__init__()
+
+        # Assign instance variables
+        self.graph = graph
+        self.source: Optional[rdflib.URIRef] = source
+        self.base_iri = base_iri
 
         # Add Default mapping if Applicable
         if self.default:
@@ -322,11 +311,10 @@ def get_vocab(key: str) -> Type[Vocabulary]:
     """Retrieves vocab object for given key.
 
     Args:
-        key (str): Key to retrieve vocab for.
+        key: Key to retrieve vocab for.
 
     Returns:
-        Type[Vocabulary] | None: Corresponding vocabulary class
-            for given key or None.
+        Corresponding vocabulary class for given key.
 
     Raises:
         ValueError: If supplied key doesn't exist within the registry.
@@ -336,3 +324,22 @@ def get_vocab(key: str) -> Type[Vocabulary]:
     except KeyError:
         # Transform to ValueError, to assist with validation libraries.
         raise ValueError(f"Key {key} not found in registry.") from None
+
+
+def get_flexible_vocab(key: str) -> Type[FlexibleVocabulary]:
+    """Retrieves FlexibleVocabulary class for given key.
+
+    Args:
+        key: Key to retrieve vocab for.
+
+    Returns:
+        Corresponding FlexibleVocabulary class for given key.
+
+    Raises:
+        ValueError: If supplied key doesn't exist within the registry,
+            or isn't a FlexibleVocabulary subclass.
+    """
+    vocab_class = get_vocab(key)
+    if not issubclass(vocab_class, FlexibleVocabulary):
+        raise ValueError(f"Key {key} is not a subclass of FlexibleVocabulary.")
+    return vocab_class

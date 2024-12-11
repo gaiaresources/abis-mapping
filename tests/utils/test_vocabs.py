@@ -11,6 +11,9 @@ import rdflib
 import abis_mapping.utils.namespaces
 import abis_mapping.utils.vocabs
 
+# Typing
+from typing import assert_type
+
 
 def test_vocabs_term() -> None:
     """Tests the Term Class"""
@@ -57,7 +60,7 @@ def test_vocabs_restricted_vocab() -> None:
             ),
         )
 
-    vocab = Vocab(graph=rdflib.Graph())
+    vocab = Vocab()
 
     # Assert Existing Values
     assert vocab.get("a") == rdflib.URIRef("A")
@@ -140,11 +143,11 @@ def test_vocab_register_id() -> None:
 def test_get_vocab() -> None:
     """Tests get_vocab function."""
     # Retrieve vocab
-    v1 = abis_mapping.utils.vocabs.get_vocab("SEX")
+    datum = abis_mapping.utils.vocabs.get_vocab("GEODETIC_DATUM")
 
     # Assert exists
-    assert v1 is not None
-    assert issubclass(v1, abis_mapping.utils.vocabs.FlexibleVocabulary)
+    assert datum is not None
+    assert issubclass(datum, abis_mapping.utils.vocabs.Vocabulary)
 
 
 def test_get_vocab_invalid() -> None:
@@ -152,3 +155,35 @@ def test_get_vocab_invalid() -> None:
     # Should raise key error
     with pytest.raises(ValueError):
         abis_mapping.utils.vocabs.get_vocab("NOT_A_VOCAB")
+
+
+def test_get_flexible_vocab() -> None:
+    """Tests get_flexible_vocab function."""
+    # Retrieve vocab
+    habitat = abis_mapping.utils.vocabs.get_flexible_vocab("TARGET_HABITAT_SCOPE")
+
+    # Assert exists
+    assert habitat is not None
+    assert issubclass(habitat, abis_mapping.utils.vocabs.FlexibleVocabulary)
+    # Check mypy sees the right return type
+    assert_type(habitat, type[abis_mapping.utils.vocabs.FlexibleVocabulary])
+
+
+def test_get_flexible_vocab_with_fixed_vocab() -> None:
+    """Tests get_flexible_vocab function with a non-flexible vocab."""
+    # Retrieve vocab
+    with pytest.raises(
+        ValueError,
+        match=r"Key GEODETIC_DATUM is not a subclass of FlexibleVocabulary.",
+    ):
+        abis_mapping.utils.vocabs.get_flexible_vocab("GEODETIC_DATUM")
+
+
+def test_get_flexible_vocab_with_unknown_vocab() -> None:
+    """Tests get_flexible_vocab function with an unknown vocab."""
+    # Retrieve vocab
+    with pytest.raises(
+        ValueError,
+        match=r"Key UNKNOWN not found in registry.",
+    ):
+        abis_mapping.utils.vocabs.get_flexible_vocab("UNKNOWN")
