@@ -284,7 +284,7 @@ class TestDefaultGeometryMap:
         ).read_text()
 
         # Resulting graph doesn't match expected when no lat/long provided
-        graphs = list(mapper.apply_mapping(csv_data))
+        graphs = list(mapper.apply_mapping(data=csv_data, chunk_size=None))
         assert len(graphs) == 1
         assert not conftest.compare_graphs(graphs[0], expected)
 
@@ -301,6 +301,7 @@ class TestDefaultGeometryMap:
         graphs = list(
             mapper.apply_mapping(
                 data=csv_data,
+                chunk_size=None,
                 site_id_geometry_map=default_map,
             )
         )
@@ -422,6 +423,7 @@ class TestDefaultTemporalMap:
         # Invoke
         graphs = mapper.apply_mapping(
             data=df.to_csv(index=False).encode("utf-8"),
+            chunk_size=None,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
         )
         res_g = next(graphs)
