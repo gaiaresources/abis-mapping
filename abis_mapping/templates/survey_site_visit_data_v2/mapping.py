@@ -37,10 +37,6 @@ class Agent:
 class SurveySiteVisitMapper(base.mapper.ABISMapper):
     """ABIS mapper for the v2 survey site visit data csv template."""
 
-    # Default Dataset Metadata
-    DATASET_DEFAULT_NAME = "Example Systematic Survey Site Visit Dataset"
-    DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Site Visit Dataset by Gaia Resources"
-
     def apply_validation(
         self,
         data: base.types.ReadableType,
@@ -210,7 +206,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the Survey Site Visit Data template.
@@ -220,7 +216,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             dataset: Dataset IRI this row is a part of.
             graph: Graph to map row into.
             extra_schema: Schema of extra fields.
-            base_iri: Optional base IRI to use for mapping.
+            base_iri: Base IRI to use for mapping.
         """
         # variables starting with row_ are values from the row.
         # variables starting with uri_ are constructed URIs.
@@ -691,7 +687,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Add a site visit prov:Plan node to the graph.
 
@@ -767,7 +763,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_target_taxonomic_scope: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds the target taxonomic scope Attribute Value node.
 
@@ -881,7 +877,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_sampling_effort_unit: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds sampling effort Attribute Value node.
 
@@ -891,7 +887,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row_sampling_effort_unit: Value from the samplingEffortUnit field.
             dataset (rdflib.URIRef): URI of the dataset this belongs to.
             graph (rdflib.Graph): Graph to be modified.
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         if uri is None:
             return

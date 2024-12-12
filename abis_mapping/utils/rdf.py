@@ -1,7 +1,6 @@
 """Provides rdf utilities for the package"""
 
 # Standard
-import uuid
 import urllib.parse
 
 # Third-Party
@@ -10,9 +9,6 @@ import slugify
 
 # Local
 from . import namespaces
-
-# Typing
-from typing import Optional
 
 # The required set of namespaces for the create_graph utility function
 REQUIRED_NAMESPACES = [
@@ -52,31 +48,20 @@ def create_graph() -> rdflib.Graph:
 
 
 def uri(
-    internal_id: Optional[str] = None,
-    namespace: Optional[rdflib.Namespace] = None,
+    internal_id: str,
+    namespace: rdflib.Namespace,
 ) -> rdflib.URIRef:
     """Generates an rdflib.URIRef using the supplied namespace
 
-    The internal id is sanitised (slugified), or if not a provided a uuidv4 is
-    generated instead.
+    The internal id is sanitised (slugified).
 
     Args:
-        internal_id (Optional[str]): Optional human readable id.
-        namespace (Optional[rdflib.Namespace]): Optional namespace for the uri.
+        internal_id: ID to add to the namespace.
+        namespace: Namespace for the uri.
 
     Returns:
         rdflib.URIRef: Generated URI for internal usage.
     """
-    # Check for Internal ID
-    if internal_id is None:
-        # Generate a UUID
-        internal_id = str(uuid.uuid4())
-
-    # Check for namespace
-    if namespace is None:
-        # Set Default Namespace
-        namespace = namespaces.CREATEME
-
     # Slugify
     # We split and re-join on the `/`, as forward-slashes are valid for our
     # internal URIs, but python-slugify removes them. This is the recommended
@@ -88,7 +73,7 @@ def uri(
 
 
 def uri_quoted(
-    namespace: Optional[rdflib.Namespace],
+    namespace: rdflib.Namespace,
     path: str,
     /,
     **kwargs: str,
@@ -123,11 +108,6 @@ def uri_quoted(
     Raises:
         KeyError: When the path string contains a field not specified in kwargs.
     """
-    # Check for namespace
-    if namespace is None:
-        # Set Default Namespace
-        namespace = namespaces.CREATEME
-
     # fill in any {field} names in path with url-quoted kwargs.
     path = path.format_map({field: urllib.parse.quote(value, safe="") for field, value in kwargs.items()})
 

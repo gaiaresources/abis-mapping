@@ -28,17 +28,12 @@ def test_rdf_uri() -> None:
     # Create Fake Namespace
     namespace = rdflib.Namespace("http://hello.org/")
 
-    # Create URIs
-    a = utils.rdf.uri()
-    b = utils.rdf.uri(internal_id="hello")
-    c = utils.rdf.uri(namespace=namespace)
-    d = utils.rdf.uri(internal_id="world", namespace=namespace)
+    # Create URI
+    result = utils.rdf.uri(internal_id="world", namespace=namespace)
 
     # Asserts
-    assert isinstance(a, rdflib.URIRef)
-    assert isinstance(b, rdflib.URIRef)
-    assert isinstance(c, rdflib.URIRef)
-    assert isinstance(d, rdflib.URIRef)
+    assert isinstance(result, rdflib.URIRef)
+    assert result == rdflib.URIRef("http://hello.org/world")
 
 
 @pytest.mark.parametrize(

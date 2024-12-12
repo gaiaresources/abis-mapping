@@ -7,54 +7,49 @@
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://createme.org/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
-    schema:member <http://createme.org/Site/P1>,
-        <http://createme.org/Site/P2>,
-        <http://createme.org/Site/P3> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
     schema:name "Site Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
-    tern:hasAttribute <http://createme.org/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
-<http://createme.org/SiteCollection/habitat/Closed-forest> a schema:Collection ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
-    schema:member <http://createme.org/Site/P0>,
-        <http://createme.org/Site/P1>,
-        <http://createme.org/Site/P2>,
-        <http://createme.org/Site/P3> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteCollection/habitat/Closed-forest> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
     schema:name "Site Collection - Habitat - Closed forest" ;
-    tern:hasAttribute <http://createme.org/attribute/habitat/Closed-forest> .
-
-<http://createme.org/datatype/datasetID/Gaia-Resources> a rdfs:Datatype ;
-    skos:definition "An identifier for the dataset" ;
-    skos:prefLabel "Gaia Resources datasetID" ;
-    prov:wasAttributedTo <http://createme.org/provider/Gaia-Resources> .
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/Closed-forest> .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> a rdfs:Datatype ;
     skos:definition "An identifier for the site" ;
     skos:prefLabel "WAM Site ID" ;
-    prov:qualifiedAttribution <http://createme.org/attribution/WAM/resourceProvider> .
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> .
 
-<http://createme.org/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Attribute ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:attribute <http://example.com/concept/data-generalizations> ;
     tern:hasSimpleValue "Coordinates rounded to the nearest 10 km for conservation concern" ;
-    tern:hasValue <http://createme.org/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
-<http://createme.org/attribute/habitat/Closed-forest> a tern:Attribute ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/Closed-forest> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:attribute <http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99> ;
     tern:hasSimpleValue "Closed forest" ;
-    tern:hasValue <http://createme.org/value/habitat/Closed-forest> .
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/Closed-forest> .
 
-<http://createme.org/attribution/WAM/resourceProvider> a prov:Attribution ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
-<http://createme.org/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Text,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Text,
         tern:Value ;
     rdf:value "Coordinates rounded to the nearest 10 km for conservation concern" .
 
-<http://createme.org/value/habitat/Closed-forest> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/Closed-forest> a tern:IRI,
         tern:Value ;
     rdfs:label "Closed forest" ;
     rdf:value <https://linked.data.gov.au/def/nrm/ac2238c8-b7bc-5a89-8cc3-774bc3a53064> .
@@ -62,57 +57,53 @@
 <https://linked.data.gov.au/dataset/bdr/orgs/WAM> a prov:Agent ;
     schema:name "WAM" .
 
-<http://createme.org/Site/P0> a tern:Site ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> a tern:Site ;
     geo:hasGeometry _:N53dd57c04e35e4aa3188c0b800000000 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     schema:description "Footprint of study area" ;
     schema:identifier "P0"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "ParentSite" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<http://createme.org/Site/P1> a tern:Site ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> a tern:Site ;
     geo:hasGeometry _:N2d5e0873e8e72e68e4a9793300000000,
         _:N53dd57c04e35e4aa3188c0b800000001 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <http://createme.org/Site/P0>,
-        <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> ;
     schema:name "Plot 1" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<http://createme.org/Site/P2> a tern:Site ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2> a tern:Site ;
     geo:hasGeometry _:N2d5e0873e8e72e68e4a9793300000001,
         _:N53dd57c04e35e4aa3188c0b800000002 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:identifier "P2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Plot 2" ;
     schema:sameAs "S0" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<http://createme.org/Site/P3> a tern:Site ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> a tern:Site ;
     geo:hasGeometry _:N2d5e0873e8e72e68e4a9793300000002,
         _:N53dd57c04e35e4aa3188c0b800000003 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:identifier "P3"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Plot 3" ;
     schema:sameAs "http://example.com/site/S0"^^xsd:anyURI ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<http://createme.org/dataset/Example-Systematic-Survey-Site-Dataset> a tern:Dataset ;
-    schema:dateCreated "2020-01-01"^^xsd:date ;
-    schema:dateIssued "2020-01-01"^^xsd:date ;
-    schema:description "Example Systematic Survey Site Dataset by Gaia Resources" ;
-    schema:name "Example Systematic Survey Site Dataset" .
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a tern:Dataset .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
@@ -120,7 +111,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N53dd57c04e35e4aa3188c0b800000000 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/Site/P0> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -129,7 +120,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N53dd57c04e35e4aa3188c0b800000001 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/Site/P1> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -138,7 +129,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N53dd57c04e35e4aa3188c0b800000002 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/Site/P2> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -147,7 +138,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N53dd57c04e35e4aa3188c0b800000003 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/Site/P3> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -156,7 +147,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N2d5e0873e8e72e68e4a9793300000000 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/Site/P1> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -165,7 +156,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N2d5e0873e8e72e68e4a9793300000001 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/Site/P2> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -174,7 +165,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N2d5e0873e8e72e68e4a9793300000002 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <http://createme.org/Site/P3> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
     rdfs:comment "supplied as" .
 
 _:N2d5e0873e8e72e68e4a9793300000000 a geo:Geometry ;

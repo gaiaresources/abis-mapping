@@ -179,15 +179,15 @@ class FlexibleVocabulary(Vocabulary):
         self,
         *,
         graph: rdflib.Graph,
+        base_iri: rdflib.Namespace,
         source: Optional[rdflib.URIRef] = None,
-        base_iri: Optional[rdflib.Namespace] = None,
     ):
         """Flexible Vocabulary constructor.
 
         Args:
             graph: Graph to add a new vocabulary term to.
+            base_iri: Namespace to use when creating the IRI for a new vocabulary term.
             source: Optional source URI to attribute a new vocabulary term to.
-            base_iri: Optional namespace to use when creating the IRI for a new vocabulary term.
         """
         # Call parent constructor
         super().__init__()

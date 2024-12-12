@@ -51,10 +51,6 @@ class Agent:
 class SurveySiteMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `survey_site_data.csv` v2"""
 
-    # Default Dataset Metadata
-    DATASET_DEFAULT_NAME = "Example Systematic Survey Site Dataset"
-    DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Site Dataset by Gaia Resources"
-
     def apply_validation(
         self,
         data: base.types.ReadableType,
@@ -225,7 +221,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the `survey_site_data.csv` template.
@@ -235,8 +231,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset IRI this row is a part of.
             graph (rdflib.URIRef): Graph to map row into.
             extra_schema (frictionless.Schema): Schema of extra fields.
-            base_iri (Optional[rdflib.Namespace]): Optional base IRI
-                to use for mapping.
+            base_iri (rdflib.Namespace): Optional base IRI to use for mapping.
         """
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site visit and occurrence template mapping, ensuring they will resolve properly.
@@ -418,7 +413,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         related_site: rdflib.URIRef | rdflib.Literal | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds site to the graph.
 
@@ -600,7 +595,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         raw: str,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Add a habitat value node to graph.
 
@@ -609,7 +604,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset data belongs.
             raw (str): Raw data provided.
             graph (rdflib.Graph): Graph to be modified.
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.IRI))

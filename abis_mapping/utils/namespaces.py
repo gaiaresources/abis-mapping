@@ -5,7 +5,6 @@ import rdflib
 
 
 # Default Base IRI Namespace
-CREATEME = rdflib.Namespace("http://createme.org/")
 EXAMPLE = rdflib.Namespace("http://example.com/")
 
 # Namespaces

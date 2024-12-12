@@ -72,10 +72,6 @@ DATA_ROLE_OWNER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/owner
 class SurveyOccurrenceMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `survey_occurrence_data.csv` v2"""
 
-    # Default Dataset Metadata
-    DATASET_DEFAULT_NAME = "Example Systematic Survey Occurrence Dataset"
-    DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Occurrence Dataset by Gaia Resources"
-
     def apply_validation(self, data: base.types.ReadableType, **kwargs: Any) -> frictionless.Report:
         """Applies Frictionless Validation for the `survey_occurrence_data.csv` Template
 
@@ -264,7 +260,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         **kwargs: Any,
     ) -> None:
         """Applies Mapping for a Row in the `survey_occurrence_data.csv` Template
@@ -274,8 +270,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset uri this row is a part of.
             graph (rdflib.Graph): Graph to map row into.
             extra_schema (frictionless.Schema): Schema of extra fields.
-            base_iri (Optional[rdflib.Namespace]): Optional base IRI namespace
-                to use for mapping.
+            base_iri (rdflib.Namespace): Optional base IRI namespace to use for mapping.
+
+        Keyword Args:
             site_id_geometry_map (dict[str, str] | None): Optional site id to geometry
                 default map.
             site_visit_id_temporal_map (dict[str, str] | None): Optional site visit id
@@ -1367,7 +1364,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         scientific_name: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Observation Scientific Name to the Graph
 
@@ -1383,7 +1380,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map (dict[str, str] | None): Map
                 of site visit ids to default temporal entity to use if requlred.
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Get Timestamps
         date_identified: models.temporal.Timestamp | None = row["dateIdentified"] or row["eventDateStart"]
@@ -1445,7 +1442,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         verbatim_id: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Observation Verbatim ID to the Graph
 
@@ -1462,7 +1459,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map (dict[str, str] | None): Map of site
                 visit ids to default temporal entity rdf.
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check for verbatimIdentification
         if not row["verbatimIdentification"]:
@@ -1680,7 +1677,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         id_qualifier: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Identification Qualifier Value to the Graph
 
@@ -1689,7 +1686,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             id_qualifier: identificationQualifier value from the template
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check node should be created
         if uri is None:
@@ -2139,7 +2136,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         sampling_specimen: rdflib.URIRef,
         provider_record_id_occurrence: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Sample Specimen to the Graph
 
@@ -2152,7 +2149,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check if Row has a Specimen
         if not has_specimen(row):
@@ -2307,7 +2304,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         taxon_rank: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Taxon Rank Value to the Graph
 
@@ -2316,7 +2313,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             taxon_rank: taxonRank value from the template.
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -2605,7 +2602,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         habitat: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Habitat Value to the Graph
 
@@ -2706,7 +2703,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         basis_of_record: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Basis of Record Value to the Graph
 
@@ -2884,7 +2881,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Occurrence Status Value to the Graph
 
@@ -2893,7 +2890,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["occurrenceStatus"]:
@@ -2947,7 +2944,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         preparations: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Preparations Value to the Graph
 
@@ -3095,7 +3092,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Establishment Means Value to the Graph
 
@@ -3104,7 +3101,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["establishmentMeans"]:
@@ -3209,7 +3206,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Life Stage Value to the Graph
 
@@ -3218,7 +3215,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["lifeStage"]:
@@ -3321,7 +3318,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Sex Value to the Graph
 
@@ -3330,7 +3327,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["sex"]:
@@ -3434,7 +3431,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Reproductive Condition Value to the Graph
 
@@ -3443,7 +3440,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["reproductiveCondition"]:
@@ -3567,7 +3564,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_id_geometry_map: dict[str, str] | None,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Sampling Sequencing to the Graph
 
@@ -3584,7 +3581,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
                 id to default temporal entity rdf.
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["associatedSequences"]:
@@ -3745,7 +3742,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         determined_by: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Threat Status Observation to the Graph
 
@@ -3762,7 +3759,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
                 id to default temporal entity as rdf.
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["threatStatus"]:
@@ -3834,7 +3831,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Threat Status Value to the Graph
 
@@ -3843,7 +3840,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["threatStatus"]:
@@ -4061,7 +4058,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds organism quantity value to graph.
 
@@ -4071,7 +4068,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset this is a part of.
             row (frictionless.Row): Row to retrieve data from.
             graph (rdflib.Graph): Graph to be modified.
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Extract values if any
         organism_qty = row["organismQuantity"]
@@ -4155,7 +4152,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Sensitivity Category Value to the Graph
 
@@ -4303,7 +4300,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_id_geometry_map: dict[str, str] | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds occurrence node to the graph.
 
