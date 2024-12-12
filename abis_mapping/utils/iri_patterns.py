@@ -35,6 +35,8 @@ def survey_iri(
         "Survey/{survey_id}",
         # surveyID is an optional field. When missing fallback to the row number.
         # (which is always 1 for a Survey, since metadata template must have 1 row)
+        # TODO remove this fallback once SSD v2 templates are removed,
+        # since surveyID is a required field from v3+
         survey_id=(survey_id or "1"),
     )
 

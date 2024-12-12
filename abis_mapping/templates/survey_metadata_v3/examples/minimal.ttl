@@ -12,25 +12,29 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/surveyType/Wet-pitfall-trapping> a schema:Collection ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
     schema:name "Survey Collection - Survey Type - Wet pitfall trapping" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/surveyType/Wet-pitfall-trapping> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/targetHabitatScope/Woodland> a schema:Collection ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
     schema:name "Survey Collection - Target Habitat Scope - Woodland" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetHabitatScope/Woodland> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/targetTaxonomicScope/Coleoptera> a schema:Collection ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
     schema:name "Survey Collection - Target Taxonomic Scope - Coleoptera" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/Coleoptera> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/targetTaxonomicScope/Insecta> a schema:Collection ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
     schema:name "Survey Collection - Target Taxonomic Scope - Insecta" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/Insecta> .
 
@@ -40,15 +44,27 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
 
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/project/SSD-Survey-Project/2> a abis:Project ;
+    schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL2> ;
+    schema:identifier "COL2" ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Winter" .
+
 <https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO> a rdfs:Datatype ;
     skos:prefLabel "surveyID source" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> ;
+            prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ],
+        [ a prov:Attribution ;
             prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> ;
             prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ] .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> a rdfs:Datatype ;
     skos:prefLabel "surveyID source" ;
     prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> ;
+            prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ],
+        [ a prov:Attribution ;
             prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> ;
             prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ] .
 
@@ -110,12 +126,6 @@
     rdfs:label "Insecta" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
 
-<https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> a prov:Agent ;
-    schema:name "CSIRO" .
-
-<https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
-    schema:name "NSW Department of Planning, Industry and Environment" .
-
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> a tern:Survey ;
     bdr:purpose "Summer sampling for peak insect diversity." ;
     bdr:target "Coleoptera",
@@ -139,7 +149,43 @@
         "woodland" ;
     schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
 
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL2> a tern:Survey ;
+    bdr:purpose "Winter sampling for peak insect diversity." ;
+    bdr:target "Coleoptera",
+        "Insecta" ;
+    geo:hasGeometry _:N27fdbd9c9077333e51ac0d0600000001 ;
+    time:hasTime [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2015-06-21"^^xsd:date ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDDate "2015-07-03"^^xsd:date ] ] ;
+    prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
+    schema:identifier "COL2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO>,
+        "COL2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> ;
+    schema:keywords "farmland",
+        "ground beetle",
+        "habitat",
+        "morphology",
+        "remnant vegetation",
+        "split-plot study",
+        "traits",
+        "woodland" ;
+    schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Winter" .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> a prov:Agent ;
+    schema:name "CSIRO" .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
+    schema:name "NSW Department of Planning, Industry and Environment" .
+
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> a prov:Plan ;
+    schema:citation "Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9\"" ;
+    schema:description "Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location." ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:url "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf"^^xsd:anyURI,
+        "https://doi.org/10.1002/9781118945568.ch11"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> a prov:Plan ;
     schema:citation "Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9\"" ;
     schema:description "Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location." ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
@@ -156,6 +202,17 @@
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> ;
     rdfs:comment "supplied as" .
 
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral ] ;
+    rdf:object _:N27fdbd9c9077333e51ac0d0600000001 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL2> ;
+    rdfs:comment "supplied as" .
+
 _:N27fdbd9c9077333e51ac0d0600000000 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral .
+
+_:N27fdbd9c9077333e51ac0d0600000001 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral .
 

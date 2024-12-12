@@ -243,13 +243,6 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
                 expected=None,
             ),
             MappingParameters(
-                scenario_name="too_many_rows",
-                should_validate=False,
-                expected_error_codes={"table-dimensions"},
-                data=pathlib.Path("abis_mapping/templates/survey_metadata_v3/examples/minimal_error_too_many_rows.csv"),
-                expected=None,
-            ),
-            MappingParameters(
                 scenario_name="mutually-inclusive-field-missing",
                 should_validate=False,
                 expected_error_codes={"row-constraint"},

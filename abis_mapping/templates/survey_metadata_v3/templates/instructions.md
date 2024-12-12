@@ -24,8 +24,6 @@ For data validation, you will need your data file to:
 - comply with all **data value constraints**; for example the geographic coordinates are
   consistent with a [geodeticDatum](#geodeticDatum-vocabularies) type of the ***{{values.geodetic_datum_count}}*** available
   options.
-- only **one row of metadata** should be included and only the first row of metadata will be accepted
-  (this symbolises one Survey per dataset submission).
 
 Additional fields may be added **after the templated fields** (noting that the data type 
 is not assumed and values will be encoded as strings).
@@ -94,7 +92,14 @@ datatype format, and examples.</ins>
 
 ## CHANGELOG
 
-No changes from Systematic Survey Metadata Template v2.0.0
+Changes from Systematic Survey Metadata Template v2.0.0
+
+* This template now accepts multiple rows of data, to represent multiple Surveys in a Dataset.
+
+### CHANGED FIELDS
+
+* Because multiple rows are now allowed, [`surveyID`](#surveyID-field) is now a **mandatory** field,
+  and each row must have a **unique** value within the template, in order to identify each row.
 
 ## APPENDICES
 ### APPENDIX-I: Vocabulary List

@@ -79,10 +79,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         report: frictionless.Report = resource.validate(
             checklist=frictionless.Checklist(
                 checks=[
-                    # Enforces non-empty and maximum row count.
-                    frictionless.checks.table_dimensions(max_rows=1, min_rows=1),
                     # Extra Custom Checks
                     plugins.tabular.IsTabular(),
+                    plugins.empty.NotEmpty(),
                     plugins.chronological.ChronologicalOrder(
                         field_names=[
                             "surveyStart",
@@ -128,14 +127,14 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         project = utils.rdf.uri(f"project/SSD-Survey-Project/{row_num}", base_iri)
 
         # Create TERN survey IRI from surveyID field
-        survey_id: str | None = row["surveyID"]
+        survey_id: str = row["surveyID"]
         survey = utils.iri_patterns.survey_iri(base_iri, survey_id)
 
         # Create survey plan IRI
         survey_plan = utils.iri_patterns.plan_iri(
             base_iri,
             "survey",
-            (survey_id or str(row_num)),  # fallback to row number when surveyID not available.
+            survey_id,
         )
 
         # Conditionally create survey type attribute, value and collection IRIs
@@ -362,7 +361,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to be processed in dataset.
         """
         # Extract relevant values from row
-        project_id = row["surveyID"]
+        project_id: str = row["surveyID"]
         project_name = row["surveyName"]
 
         # Add type and attach to dataset
@@ -371,8 +370,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Add (required) project name, id (not required) and purpose (not required).
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(project_name)))
-        if project_id:
-            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(project_id)))
+        graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(project_id)))
 
         # Attach survey
         graph.add((uri, rdflib.SDO.hasPart, survey))
@@ -402,16 +400,16 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(row["surveyName"])))
 
         # Add survey ID
-        if (survey_id := row["surveyID"]) is not None:
-            # Add survey id literals per organisation
-            for survey_org in survey_org_objects:
-                id_literal = rdflib.Literal(lexical_or_value=survey_id, datatype=survey_org.datatype)
-                graph.add((uri, rdflib.SDO.identifier, id_literal))
+        survey_id: str = row["surveyID"]
+        # Add survey id literals per organisation
+        for survey_org in survey_org_objects:
+            id_literal = rdflib.Literal(lexical_or_value=survey_id, datatype=survey_org.datatype)
+            graph.add((uri, rdflib.SDO.identifier, id_literal))
 
-            # Add survey id as type string if no organisation provided
-            if len(survey_org_objects) == 0:
-                id_literal = rdflib.Literal(survey_id)
-                graph.add((uri, rdflib.SDO.identifier, id_literal))
+        # Add survey id as type string if no organisation provided
+        if len(survey_org_objects) == 0:
+            id_literal = rdflib.Literal(survey_id)
+            graph.add((uri, rdflib.SDO.identifier, id_literal))
 
         # Add taxonomic coverage
         if taxonomic_coverage := row["targetTaxonomicScope"]:

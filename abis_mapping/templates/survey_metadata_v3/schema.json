@@ -3,12 +3,13 @@
     {
       "name": "surveyID",
       "title": "Survey ID",
-      "description": "The identifier for the survey. Important if more there is more than one survey a the project.",
+      "description": "The identifier for the survey. Important if more there is more than one survey in the project.",
       "example": "COL1",
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": false
+        "required": true,
+        "unique": true
       }
     },
     {
