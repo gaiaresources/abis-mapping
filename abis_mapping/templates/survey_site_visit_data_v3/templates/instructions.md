@@ -87,6 +87,10 @@ For example, `instrumentType`, `instrumentIdentifier`, `weatherConditions`.
 
 {{tables.fields}}
 
+## CHANGELOG
+
+No changes from Systematic Survey Site Visit Data Template v2.0.0
+
 ## APPENDICES
 ### APPENDIX-I: Vocabulary List
 Data validation does not require adherence to the vocabularies for the various vocabularied fields.

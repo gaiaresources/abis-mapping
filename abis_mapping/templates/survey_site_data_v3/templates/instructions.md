@@ -93,13 +93,7 @@ For example, `fieldNotes`, `continent`, `country`, `countryCode`, `stateProvince
 
 ## CHANGELOG
 
-Changes from Systematic Survey Site Data Template v1.0.0
-
-### CHANGED FIELDS
-
-* Add field `locality`. Type is string, can be blank.
-* Moved fields `surveyID`, `siteVisitID`, `siteVisitStart`, `siteVisitEnd`, `visitOrgs`, `visitObservers`, `condition` 
-to the new Systematic Survey Site Visit Data Template.
+No changes from Systematic Survey Site Data Template v2.0.0
 
 ## APPENDICES
 ### APPENDIX-I: Vocabulary List

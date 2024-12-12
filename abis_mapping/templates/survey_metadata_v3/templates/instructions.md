@@ -94,13 +94,7 @@ datatype format, and examples.</ins>
 
 ## CHANGELOG
 
-Changes from Systematic Survey Metadata Template v1.0.0
-
-### CHANGED FIELDS
-
-* `samplingPerformedBy` is removed.
-* `samplingEffortValue` was moved to the Systematic Survey Site Visit Data Template.
-* `samplingEffortUnit` was moved to the Systematic Survey Site Visit Data Template.
+No changes from Systematic Survey Metadata Template v2.0.0
 
 ## APPENDICES
 ### APPENDIX-I: Vocabulary List
