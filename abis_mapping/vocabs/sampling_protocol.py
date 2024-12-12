@@ -362,4 +362,4 @@ class SamplingProtocol(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(SamplingProtocol)
+utils.vocabs.register(SamplingProtocol)

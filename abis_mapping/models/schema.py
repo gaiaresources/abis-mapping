@@ -158,6 +158,34 @@ class Field(pydantic.BaseModel):
 
         return utils.vocabs.get_vocab(self.vocabularies[0])
 
+    def get_flexible_vocab(
+        self,
+        name: str | None = None,
+    ) -> Type[utils.vocabs.FlexibleVocabulary]:
+        """Retrieves the flexible vocab for the field.
+
+        Args:
+            name: The name of the vocab to retrieve. Will return first flexible vocab if not provided.
+
+        Returns:
+            Returns FlexibleVocabulary for the field.
+
+        Raises:
+            ValueError: If name is not within the vocabularies field,
+                or if the field has no flexible vocabs.
+        """
+        all_vocabs = (utils.vocabs.get_vocab(name) for name in self.vocabularies)
+        try:
+            return next(
+                vocab_class
+                for vocab_class in all_vocabs
+                if issubclass(vocab_class, utils.vocabs.FlexibleVocabulary)
+                and (name is None or vocab_class.vocab_id == name)
+            )
+        except StopIteration:
+            name_note = "" if name is None else f" '{name}'"
+            raise ValueError(f"Flexible vocab{name_note} not found for field {self.name}") from None
+
     @property
     def publishable_vocabularies(self) -> list[str]:
         """Returns a list of only those vocabularies that are publishable.

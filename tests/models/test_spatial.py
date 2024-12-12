@@ -127,7 +127,7 @@ def test_geometry_transformer_datum_uri() -> None:
 
     # Assert default datum
     assert vocab is not None
-    assert geometry.transformer_datum_uri == vocab(graph=rdflib.Graph()).get(settings.SETTINGS.DEFAULT_TARGET_CRS)
+    assert geometry.transformer_datum_uri == vocab().get(settings.SETTINGS.DEFAULT_TARGET_CRS)
 
 
 def test_geometry_transformer_datum_uri_invalid() -> None:

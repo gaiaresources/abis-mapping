@@ -57,4 +57,4 @@ class SiteType(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(SiteType)
+utils.vocabs.register(SiteType)

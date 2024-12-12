@@ -261,7 +261,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         if related_site_id and relationship_to_related_site:
             # Get vocab to conditionally create related site
             rtor_site_vocab = self.fields()["relationshipToRelatedSite"].get_vocab()
-            if rtor_site_vocab(graph=rdflib.Graph()).get(relationship_to_related_site) == rdflib.SDO.isPartOf:
+            if rtor_site_vocab().get(relationship_to_related_site) == rdflib.SDO.isPartOf:
                 # Related site is defined internal to the dataset
                 related_site = utils.iri_patterns.site_iri(base_iri, related_site_id)
             else:
@@ -456,9 +456,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             # Retrieve vocab for field
             relationship_to_related_site_vocab = self.fields()["relationshipToRelatedSite"].get_vocab()
             # Retrieve term
-            relationship_to_related_site_term = relationship_to_related_site_vocab(graph=graph, base_iri=base_iri).get(
-                relationship_to_related_site
-            )
+            relationship_to_related_site_term = relationship_to_related_site_vocab().get(relationship_to_related_site)
             graph.add((uri, relationship_to_related_site_term, related_site))
 
         # Add site tern featuretype
@@ -466,7 +464,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         if site_type:
             # Retrieve vocab for field
-            site_type_vocab = self.fields()["siteType"].get_vocab()
+            site_type_vocab = self.fields()["siteType"].get_flexible_vocab()
 
             # Retrieve term or create on the fly
             site_type_term = site_type_vocab(graph=graph, source=dataset, base_iri=base_iri).get(site_type)
@@ -621,7 +619,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(raw)))
 
         # Retrieve vocab for field
-        vocab = self.fields()["habitat"].get_vocab()
+        vocab = self.fields()["habitat"].get_flexible_vocab()
 
         # Add flexible vocab term
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(raw)
@@ -858,4 +856,4 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(SurveySiteMapper)
+base.mapper.register_mapper(SurveySiteMapper)

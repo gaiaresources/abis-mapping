@@ -11,7 +11,7 @@ from abis_mapping.utils import rdf
 from abis_mapping.utils import strings
 
 # Typing
-from typing import Optional, Iterable, final, Final, Type
+from typing import Optional, Iterable, Final, Type
 
 
 # Constants
@@ -82,40 +82,19 @@ class Vocabulary(abc.ABC):
     """Base Vocabulary class.
 
     Attributes:
-        id_registry (dict[str, Vocabulary]): Dictionary to hold all vocabs for
-            mapping by their id.
         vocab_id (str): ID to assign vocabulary.
         terms (Iterable[Term]): Terms to add to the vocabulary.
         publish (bool, optional): Whether to publish vocabulary
             in documentation. Defaults to True.
     """
 
-    # Dictionary to hold all vocabs for mapping by their id.
-    id_registry: dict[str, Type["Vocabulary"]] = {}
-
     # Attributes assigned per vocabulary
     vocab_id: str
     terms: Iterable[Term]
     publish: bool = True
 
-    def __init__(
-        self,
-        *,
-        graph: rdflib.Graph,
-        source: Optional[rdflib.URIRef] = None,
-        base_iri: Optional[rdflib.Namespace] = None,
-    ):
-        """Vocabulary constructor.
-
-        Args:
-            graph: Graph to reference within vocabulary
-            source: Optional source URI to attribute a new vocabulary term to.
-            base_iri: Optional namespace to use when creating the IRI for a new vocabulary term.
-        """
-        # Assign instance variables
-        self.graph = graph
-        self.source: Optional[rdflib.URIRef] = source
-        self.base_iri = base_iri
+    def __init__(self) -> None:
+        """Vocabulary constructor."""
 
         # Generate Dictionary Mapping from Terms
         self._mapping: dict[str | None, rdflib.URIRef | None] = {}
@@ -133,25 +112,6 @@ class Vocabulary(abc.ABC):
         Returns:
             rdflib.URIRef: Matching vocabulary IRI.
         """
-
-    @final
-    @classmethod
-    def register(
-        cls,
-        vocab: Type["Vocabulary"],
-    ) -> None:
-        """Register a Vocabulary within the centralise vocabulary id registry.
-
-        Args:
-            vocab (Vocabulary): Corresponding Vocabulary.
-
-        Raises:
-            KeyError: The Vocabulary ID is already registered.
-        """
-        if vocab.vocab_id in cls.id_registry:
-            raise KeyError(f"Vocabulary ID {vocab.vocab_id} already registered.")
-
-        cls.id_registry[vocab.vocab_id] = vocab
 
 
 class RestrictedVocabulary(Vocabulary):
@@ -225,12 +185,17 @@ class FlexibleVocabulary(Vocabulary):
         """Flexible Vocabulary constructor.
 
         Args:
-            graph: Graph to reference within vocabulary
+            graph: Graph to add a new vocabulary term to.
             source: Optional source URI to attribute a new vocabulary term to.
             base_iri: Optional namespace to use when creating the IRI for a new vocabulary term.
         """
         # Call parent constructor
-        super().__init__(graph=graph, source=source, base_iri=base_iri)
+        super().__init__()
+
+        # Assign instance variables
+        self.graph = graph
+        self.source: Optional[rdflib.URIRef] = source
+        self.base_iri = base_iri
 
         # Add Default mapping if Applicable
         if self.default:
@@ -323,21 +288,58 @@ class VocabularyError(Exception):
     """Error Raised in Vocabulary Handling"""
 
 
+# Dictionary to hold all vocabs for mapping by their id.
+_id_registry: Final[dict[str, Type[Vocabulary]]] = {}
+
+
+def register(vocab: Type[Vocabulary]) -> None:
+    """Register a Vocabulary within the centralised vocabulary id registry.
+
+    Args:
+        vocab: Corresponding Vocabulary.
+
+    Raises:
+        KeyError: The Vocabulary ID is already registered.
+    """
+    if vocab.vocab_id in _id_registry:
+        raise KeyError(f"Vocabulary ID {vocab.vocab_id} already registered.")
+
+    _id_registry[vocab.vocab_id] = vocab
+
+
 def get_vocab(key: str) -> Type[Vocabulary]:
     """Retrieves vocab object for given key.
 
     Args:
-        key (str): Key to retrieve vocab for.
+        key: Key to retrieve vocab for.
 
     Returns:
-        Type[Vocabulary] | None: Corresponding vocabulary class
-            for given key or None.
+        Corresponding vocabulary class for given key.
 
     Raises:
         ValueError: If supplied key doesn't exist within the registry.
     """
     try:
-        return Vocabulary.id_registry[key]
+        return _id_registry[key]
     except KeyError:
         # Transform to ValueError, to assist with validation libraries.
         raise ValueError(f"Key {key} not found in registry.") from None
+
+
+def get_flexible_vocab(key: str) -> Type[FlexibleVocabulary]:
+    """Retrieves FlexibleVocabulary class for given key.
+
+    Args:
+        key: Key to retrieve vocab for.
+
+    Returns:
+        Corresponding FlexibleVocabulary class for given key.
+
+    Raises:
+        ValueError: If supplied key doesn't exist within the registry,
+            or isn't a FlexibleVocabulary subclass.
+    """
+    vocab_class = get_vocab(key)
+    if not issubclass(vocab_class, FlexibleVocabulary):
+        raise ValueError(f"Key {key} is not a subclass of FlexibleVocabulary.")
+    return vocab_class

@@ -12,7 +12,7 @@ from docs import tables
 mapper = abis_mapping.templates.survey_metadata_v2.mapping.SurveyMetadataMapper
 mapper_id = mapper().template_id
 
-if mapper_id in base.mapper.get_mappers():
+if mapper_id in base.mapper.registered_ids():
     # Create context
     _ctx = {
         "tables": {

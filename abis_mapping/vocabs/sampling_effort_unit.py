@@ -84,4 +84,4 @@ class SamplingEffortUnit(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(SamplingEffortUnit)
+utils.vocabs.register(SamplingEffortUnit)

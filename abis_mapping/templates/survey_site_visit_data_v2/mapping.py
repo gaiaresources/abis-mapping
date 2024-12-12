@@ -717,7 +717,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_protocol_name: str | None = row["protocolName"]
         if row_protocol_name:
             # Retrieve vocab for field
-            vocab = self.fields()["protocolName"].get_vocab()
+            vocab = self.fields()["protocolName"].get_flexible_vocab()
             # get or create term IRI
             term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row_protocol_name)
             # Add link to term
@@ -788,7 +788,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         if row_target_taxonomic_scope:
             # Retrieve vocab for field
-            vocab = self.fields()["targetTaxonomicScope"].get_vocab()
+            vocab = self.fields()["targetTaxonomicScope"].get_flexible_vocab()
 
             # Add value
             term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row_target_taxonomic_scope)
@@ -907,7 +907,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Add Unit
         if row_sampling_effort_unit:
             # Retrieve vocab for field
-            vocab = self.fields()["samplingEffortUnit"].get_vocab()
+            vocab = self.fields()["samplingEffortUnit"].get_flexible_vocab()
             # Add value
             term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row_sampling_effort_unit)
             graph.add((uri, utils.namespaces.TERN.unit, term))
@@ -956,4 +956,4 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(SurveySiteVisitMapper)
+base.mapper.register_mapper(SurveySiteVisitMapper)

@@ -290,4 +290,4 @@ class VisitProtocolName(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(VisitProtocolName)
+utils.vocabs.register(VisitProtocolName)

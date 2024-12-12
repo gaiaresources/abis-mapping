@@ -109,7 +109,7 @@ class Geometry:
         vocab = utils.vocabs.get_vocab("GEODETIC_DATUM")
         try:
             # Init with dummy graph and return corresponding URI
-            return vocab(graph=rdflib.Graph()).get(self.original_datum_name)
+            return vocab().get(self.original_datum_name)
         except utils.vocabs.VocabularyError as exc:
             raise GeometryError(
                 f"CRS {self.original_datum_name} is " "not defined for the GEODETIC_DATUM fixed vocabulary."
@@ -144,7 +144,7 @@ class Geometry:
 
         try:
             # Init with dummy graph and return corresponding uri
-            return vocab(graph=rdflib.Graph()).get(default_crs)
+            return vocab().get(default_crs)
         except utils.vocabs.VocabularyError as exc:
             raise GeometryError(
                 f"Default CRS {default_crs} is not defined for the GEODETIC_DATUM fixed vocabulary."

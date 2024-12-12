@@ -166,4 +166,4 @@ class OrganismQuantityType(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(OrganismQuantityType)
+utils.vocabs.register(OrganismQuantityType)

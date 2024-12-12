@@ -21,4 +21,4 @@ class RelationshipToRelatedSite(utils.vocabs.RestrictedVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(RelationshipToRelatedSite)
+utils.vocabs.register(RelationshipToRelatedSite)

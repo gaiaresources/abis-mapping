@@ -66,4 +66,4 @@ class Sex(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(Sex)
+utils.vocabs.register(Sex)

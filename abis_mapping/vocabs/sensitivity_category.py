@@ -21,4 +21,4 @@ class SensitivityCategory(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(SensitivityCategory)
+utils.vocabs.register(SensitivityCategory)

@@ -384,7 +384,7 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
 ]
 
 # Filter out only those templates that are registered
-TEST_CASES = [tc for tc in TEST_CASES_ALL if tc.template_id in base.mapper.get_mappers()]
+TEST_CASES = [tc for tc in TEST_CASES_ALL if tc.template_id in base.mapper.registered_ids()]
 
 
 def mapping_test_args() -> Iterable[tuple[str, str, MappingParameters]]:

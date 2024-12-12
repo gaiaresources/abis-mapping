@@ -28,4 +28,4 @@ class IdentificationMethod(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(IdentificationMethod)
+utils.vocabs.register(IdentificationMethod)

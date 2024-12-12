@@ -13,7 +13,7 @@ def test_get_percentage_biomass() -> None:
     graph = rdflib.Graph()
 
     # Get vocab
-    vocab = utils.vocabs.get_vocab("ORGANISM_QUANTITY_TYPE")
+    vocab = utils.vocabs.get_flexible_vocab("ORGANISM_QUANTITY_TYPE")
     assert vocab is not None
     iri = vocab(graph=graph).get("% of biomass")
 

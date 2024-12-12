@@ -657,7 +657,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.RDFS.label, rdflib.Literal(row_survey_type)))
 
             # Retrieve vocab for field
-            vocab = self.fields()["surveyType"].get_vocab()
+            vocab = self.fields()["surveyType"].get_flexible_vocab()
 
             # Add value
             term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row_survey_type)
@@ -761,7 +761,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(raw_value)))
 
         # Retrieve vocab for field
-        vocab = self.fields()["targetHabitatScope"].get_vocab()
+        vocab = self.fields()["targetHabitatScope"].get_flexible_vocab()
 
         # Add value
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(raw_value)
@@ -860,7 +860,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal(raw_value)))
 
         # Retrieve vocab for field
-        vocab = self.fields()["targetTaxonomicScope"].get_vocab()
+        vocab = self.fields()["targetTaxonomicScope"].get_flexible_vocab()
 
         # Add value
         term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(raw_value)
@@ -905,4 +905,4 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
 
 # Register Mapper
-base.mapper.ABISMapper.register_mapper(SurveyMetadataMapper)
+base.mapper.register_mapper(SurveyMetadataMapper)

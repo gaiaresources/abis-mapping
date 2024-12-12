@@ -36,5 +36,5 @@ def _ctx() -> dict[str, Any]:
 
 
 # Register once the mapper is also registered
-if mapper_id in base.mapper.get_mappers():
+if mapper_id in base.mapper.registered_ids():
     contexts.base.register(mapper_id, _ctx())

@@ -256,4 +256,4 @@ class IdentificationQualifier(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.Vocabulary.register(IdentificationQualifier)
+utils.vocabs.register(IdentificationQualifier)
