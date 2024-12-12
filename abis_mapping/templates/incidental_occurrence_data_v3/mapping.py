@@ -74,10 +74,6 @@ DATA_ROLE_OWNER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/owner
 class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `incidental_occurrence_data.csv` - version 3"""
 
-    # Default Dataset Metadata
-    DATASET_DEFAULT_NAME = "Example Incidental Occurrence Dataset"
-    DATASET_DEFAULT_DESCRIPTION = "Example Incidental Occurrence Dataset by Gaia Resources"
-
     def apply_validation(
         self,
         data: base.types.ReadableType,

@@ -51,10 +51,6 @@ class AttributeValue:
 class SurveyMetadataMapper(base.mapper.ABISMapper):
     """ABIS mapper for `survey_metadata.csv` v2"""
 
-    # Default Dataset Metadata
-    DATASET_DEFAULT_NAME = "Example Systematic Survey Metadata Dataset"
-    DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Metadata Dataset by Gaia Resources"
-
     def apply_validation(self, data: base.types.ReadableType, **kwargs: Any) -> frictionless.Report:
         """Applies Frictionless validation for the 'survey_metadata.csv' template
 

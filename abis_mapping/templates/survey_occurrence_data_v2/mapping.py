@@ -72,10 +72,6 @@ DATA_ROLE_OWNER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/owner
 class SurveyOccurrenceMapper(base.mapper.ABISMapper):
     """ABIS Mapper for `survey_occurrence_data.csv` v2"""
 
-    # Default Dataset Metadata
-    DATASET_DEFAULT_NAME = "Example Systematic Survey Occurrence Dataset"
-    DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Occurrence Dataset by Gaia Resources"
-
     def apply_validation(self, data: base.types.ReadableType, **kwargs: Any) -> frictionless.Report:
         """Applies Frictionless Validation for the `survey_occurrence_data.csv` Template
 

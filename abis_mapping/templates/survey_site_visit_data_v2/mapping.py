@@ -37,10 +37,6 @@ class Agent:
 class SurveySiteVisitMapper(base.mapper.ABISMapper):
     """ABIS mapper for the v2 survey site visit data csv template."""
 
-    # Default Dataset Metadata
-    DATASET_DEFAULT_NAME = "Example Systematic Survey Site Visit Dataset"
-    DATASET_DEFAULT_DESCRIPTION = "Example Systematic Survey Site Visit Dataset by Gaia Resources"
-
     def apply_validation(
         self,
         data: base.types.ReadableType,
