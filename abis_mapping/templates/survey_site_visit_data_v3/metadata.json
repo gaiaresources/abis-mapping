@@ -1,0 +1,13 @@
+{
+	"name": "survey_site_visit_data",
+	"label": "Systematic Survey Site Visit Data Template",
+	"version": "3.0.0",
+	"description": "A template for systematic survey site visit data",
+	"biodiversity_type": "Systematic Survey Site Visit Data",
+	"spatial_type": "Point, line, polygon",
+	"file_type": "CSV",
+	"sampling_type": "systematic survey",
+	"template_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/survey_site_visit_data_v3/survey_site_visit_data.csv",
+	"schema_url": "https://raw.githubusercontent.com/gaiaresources/abis-mapping/main/abis_mapping/templates/survey_site_visit_data_v3/schema.json",
+	"template_lifecycle_status": "beta"
+}
