@@ -15,15 +15,16 @@ import pytest
 )
 def test_apply_validation(template_id: str, test_params: conftest.MappingParameters) -> None:
     """Tests the validation for the template"""
-    # Load Data
-    data = test_params.data.read_bytes()
-
     # Get Mapper
     mapper = abis_mapping.get_mapper(template_id)
     assert mapper
 
-    # Validate
-    report = mapper().apply_validation(data)
+    # Load Data
+    with open(test_params.data, "rb") as data:
+        # Validate
+        report = mapper().apply_validation(data)
+
+    # Assert validation result
     assert report.valid == test_params.should_validate
     # Validate errors if invalid expected (and supplied).
     if not report.valid:
