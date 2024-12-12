@@ -1,0 +1,161 @@
+@prefix abis: <https://linked.data.gov.au/def/abis/> .
+@prefix bdr: <http://example.com/bdr-schema/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix tern: <https://w3id.org/tern/ontologies/tern/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/surveyType/Wet-pitfall-trapping> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    schema:name "Survey Collection - Survey Type - Wet pitfall trapping" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/surveyType/Wet-pitfall-trapping> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/targetHabitatScope/Woodland> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    schema:name "Survey Collection - Target Habitat Scope - Woodland" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetHabitatScope/Woodland> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/targetTaxonomicScope/Coleoptera> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    schema:name "Survey Collection - Target Taxonomic Scope - Coleoptera" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/Coleoptera> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/targetTaxonomicScope/Insecta> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    schema:name "Survey Collection - Target Taxonomic Scope - Insecta" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/Insecta> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/project/SSD-Survey-Project/1> a abis:Project ;
+    schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> ;
+    schema:identifier "COL1" ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
+
+<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO> a rdfs:Datatype ;
+    skos:prefLabel "surveyID source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> ;
+            prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ] .
+
+<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> a rdfs:Datatype ;
+    skos:prefLabel "surveyID source" ;
+    prov:qualifiedAttribution [ a prov:Attribution ;
+            prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> ;
+            prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ] .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/surveyType/Wet-pitfall-trapping> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/surveyType> ;
+    tern:hasSimpleValue "Wet pitfall trapping" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/surveyType/Wet-pitfall-trapping> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetHabitatScope/Woodland> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <https://linked.data.gov.au/def/nrm/ae2c88be-63d5-44d3-95ac-54b14c4a4b28> ;
+    tern:hasSimpleValue "Woodland" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetHabitatScope/Woodland> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/Coleoptera> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    tern:hasSimpleValue "Coleoptera" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/Coleoptera> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/Insecta> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    tern:hasSimpleValue "Insecta" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/Insecta> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
+    skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    skos:definition "A type of targetTaxonomicScope" ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "Coleoptera" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Insecta> a skos:Concept ;
+    skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    skos:definition "A type of targetTaxonomicScope" ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "Insecta" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/surveyType/Wet-pitfall-trapping> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Wet pitfall trapping" ;
+    rdf:value <https://linked.data.gov.au/def/nrm/054145e7-137d-50c5-a750-d85a47e81fad> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetHabitatScope/Woodland> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Woodland" ;
+    rdf:value <https://linked.data.gov.au/def/nrm/e2193542-9203-532b-99d3-853a4640114d> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/Coleoptera> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Coleoptera" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/Insecta> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Insecta" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> a prov:Agent ;
+    schema:name "CSIRO" .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
+    schema:name "NSW Department of Planning, Industry and Environment" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> a tern:Survey ;
+    bdr:purpose "Summer sampling for peak insect diversity." ;
+    bdr:target "Coleoptera",
+        "Insecta" ;
+    geo:hasGeometry _:N27fdbd9c9077333e51ac0d0600000000 ;
+    time:hasTime [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2015-01-21"^^xsd:date ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDDate "2015-02-03"^^xsd:date ] ] ;
+    prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    schema:identifier "COL1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO>,
+        "COL1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> ;
+    schema:keywords "farmland",
+        "ground beetle",
+        "habitat",
+        "morphology",
+        "remnant vegetation",
+        "split-plot study",
+        "traits",
+        "woodland" ;
+    schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> a prov:Plan ;
+    schema:citation "Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9\"" ;
+    schema:description "Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location." ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:url "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf"^^xsd:anyURI,
+        "https://doi.org/10.1002/9781118945568.ch11"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a tern:Dataset .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral ] ;
+    rdf:object _:N27fdbd9c9077333e51ac0d0600000000 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> ;
+    rdfs:comment "supplied as" .
+
+_:N27fdbd9c9077333e51ac0d0600000000 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral .
+

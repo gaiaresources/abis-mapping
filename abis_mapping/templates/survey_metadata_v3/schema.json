@@ -1,0 +1,194 @@
+{
+  "fields": [
+    {
+      "name": "surveyID",
+      "title": "Survey ID",
+      "description": "The identifier for the survey. Important if more there is more than one survey a the project.",
+      "example": "COL1",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "surveyName",
+      "title": "Survey Name",
+      "description": "Brief title for the survey.",
+      "type": "string",
+      "format": "default",
+      "example": "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "surveyPurpose",
+      "title": "Survey Purpose",
+      "description": "A description of the survey objective",
+      "type": "string",
+      "format": "default",
+      "example": "Summer sampling for peak insect diversity.",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "surveyType",
+      "title": "Survey Type",
+      "description": "Description of type of survey conducted",
+      "example": "Wet pitfall trapping",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      },
+      "vocabularies": [
+        "SURVEY_TYPE"
+      ]
+    },
+    {
+      "name": "surveyStart",
+      "title": "Survey Start",
+      "description": "The date data collection commenced.",
+      "example": "21/09/2020",
+      "type": "timestamp",
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "surveyEnd",
+      "title": "Survey End",
+      "description": "The date data collection was completed.",
+      "example": "23/09/2020",
+      "type": "timestamp",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "targetTaxonomicScope",
+      "title": "Target Taxonomic Scope",
+      "description": "The range of biological taxa covered by the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |",
+      "example": "Coleoptera | Formicidae",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      },
+      "vocabularies": [
+        "TARGET_TAXONOMIC_SCOPE"
+      ]
+    },
+    {
+      "name": "targetHabitatScope",
+      "title": "Target Habitat Scope",
+      "description": "The habitats targeted for sampling during the survey. Multiple terms are allowed, separated by a vertical bar aka pipe |",
+      "example": "Woodland",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      },
+      "vocabularies": [
+        "TARGET_HABITAT_SCOPE"
+      ]
+    },
+    {
+      "name": "spatialCoverageWKT",
+      "title": "Spatial Coverage (WKT)",
+      "description": "Well Known Text (WKT) expression of the geographic coordinates that describe the survey's spatial extent. Ensure the coordinates are arranged in 'longitude latitude' order and do not include the CRS in the WKT expression (it comes from the geodeticDatum field).",
+      "example": "POLYGON ((146.363 -33.826, 148.499 -33.826, 148.499 -34.411, 146.363 -33.826))",
+      "type": "wkt",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "geodeticDatum",
+      "title": "Spatial Coverage (Geodetic Datum)",
+      "description": "The geodetic datum upon which the geographic coordinates in the Spatial coverage (WKT) are based.",
+      "example": "GDA2020",
+      "type": "string",
+      "format": "default",
+      "url": "https://dwc.tdwg.org/terms/#dwc:geodeticDatum",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "AGD66",
+          "EPSG:4202",
+          "AGD84",
+          "EPSG:4203",
+          "GDA2020",
+          "EPSG:7844",
+          "GDA94",
+          "EPSG:4283",
+          "WGS84",
+          "EPSG:4326"
+        ]
+      },
+      "vocabularies": [
+        "GEODETIC_DATUM"
+      ]
+    },
+    {
+      "name": "surveyOrgs",
+      "title": "Survey Orgs",
+      "description": "Name of organisations or individuals for whom Survey is being conducted. Multiple terms are allowed, separated by a vertical bar aka pipe |",
+      "example": "NSW Department of Planning, Industry and Environment | CSIRO",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "surveyMethodCitation",
+      "title": "Survey Method Citation",
+      "description": "A citation or reference to the survey methods used.",
+      "example": "Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "surveyMethodDescription",
+      "title": "Survey Method Description",
+      "description": "Free text description of the survey method used.",
+      "example": "Our experimental design consisted of four 400 m transects running from inside each woodland patch out into four adjoining farmland uses (crop, rested, woody debris application, revegetation plantings). To quantify potential edge efects on beetle species traits, we sampled beetles at five locations along each transect: 200 and 20 m inside woodlands, 200 and 20 m inside farmlands, and at the woodland–farmland edge (0 m). Each sampling location comprised a pair of wet invertebrate pitfall traps.  separated by a drift fence (60 cm long x 10 cm high) to help direct arthropods into traps. We opened a total of 220 pairs of traps for 14 days during spring (Oct–Nov 2014), and repeated sampling during summer (January–February 2015). Beetle samples from each pitfall trap pair, and across the two time periods, were pooled to provide one sample per sampling location.",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "surveyMethodURL",
+      "title": "Survey Method URL",
+      "description": "A DOI or link to the reference about the survey method, if available.",
+      "example": "https://biocollect.ala.org.au/document/download/2022-01/202201%20CBR%20Flora%20and%20Vegetation%20report_draftv1.pdf | https://doi.org/10.1002/9781118945568.ch11",
+      "type": "list",
+      "format": "uri",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "keywords",
+      "title": "Keywords",
+      "description": "Terms, phrases or descriptors that highlight the key attributes of the study. Multiple terms are allowed, separated by a vertical bar aka pipe |",
+      "example": "ground beetle | habitat | morphology | traits | farmland | woodland | remnant vegetation | split-plot study",
+      "type": "list",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    }
+  ]
+}
