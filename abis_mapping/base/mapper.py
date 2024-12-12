@@ -184,7 +184,7 @@ class ABISMapper(abc.ABC):
     def add_default_dataset(
         self,
         uri: rdflib.URIRef,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Default Example Dataset to the Graph
@@ -203,13 +203,13 @@ class ABISMapper(abc.ABC):
         graph.add((uri, rdflib.SDO.dateIssued, models.temporal.Date.today().to_rdf_literal()))
 
         # Add default dataset datatype
-        default_dataset_datatype = utils.rdf.uri(f"datatype/datasetID/{self.DATASET_DEFAULT_ORGANIZATION}")
+        default_dataset_datatype = utils.rdf.uri(f"datatype/datasetID/{self.DATASET_DEFAULT_ORGANIZATION}", base_iri)
         self._add_default_dataset_datatype(default_dataset_datatype, base_iri, graph)
 
     def _add_default_dataset_datatype(
         self,
         uri: rdflib.URIRef,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
         graph: rdflib.Graph,
     ) -> None:
         """Adds default example dataset datatype to the graph.

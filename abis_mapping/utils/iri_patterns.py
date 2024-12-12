@@ -14,7 +14,7 @@ from typing import Literal
 
 
 def survey_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     survey_id: str | None,
     /,
 ) -> rdflib.URIRef:
@@ -40,7 +40,7 @@ def survey_iri(
 
 
 def site_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     site_id: str,
     /,
 ) -> rdflib.URIRef:
@@ -60,7 +60,7 @@ def site_iri(
 
 
 def site_visit_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     site_visit_id: str,
     /,
 ) -> rdflib.URIRef:
@@ -80,7 +80,7 @@ def site_visit_iri(
 
 
 def attribute_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     attribute: str,
     value: str,
     /,
@@ -99,7 +99,7 @@ def attribute_iri(
 
 
 def attribute_value_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     attribute: str,
     value: str,
     /,
@@ -118,7 +118,7 @@ def attribute_value_iri(
 
 
 def attribute_collection_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     collection_type: Literal["Survey", "Occurrence", "Site", "SiteVisit"],
     attribute: str,
     value: str,
@@ -180,7 +180,7 @@ def agent_iri(
 
 
 def observation_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     observation_type: str,
     provider_record_id: str,
     /,
@@ -199,7 +199,7 @@ def observation_iri(
 
 
 def observation_value_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     observation_type: str,
     observation_value: str | None,
     /,
@@ -218,7 +218,7 @@ def observation_value_iri(
 
 
 def specimen_observation_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     observation_type: str,
     provider_record_id: str,
     /,
@@ -237,7 +237,7 @@ def specimen_observation_iri(
 
 
 def specimen_observation_value_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     observation_type: str,
     observation_value: str | None,
     /,
@@ -256,7 +256,7 @@ def specimen_observation_value_iri(
 
 
 def sample_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     sample_type: str,
     provider_record_id: str,
     /,
@@ -275,7 +275,7 @@ def sample_iri(
 
 
 def sampling_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     sampling_type: str,
     provider_record_id: str,
     /,
@@ -294,7 +294,7 @@ def sampling_iri(
 
 
 def plan_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     plan_type: Literal["survey", "visit"],
     plan_type_id: str,
 ) -> rdflib.URIRef:
@@ -319,7 +319,7 @@ def plan_iri(
 
 
 def attribution_iri(
-    base_iri: rdflib.Namespace | None,
+    base_iri: rdflib.Namespace,
     role: Literal["resourceProvider", "owner", "rightsHolder", "creator"],
     source: str,
 ) -> rdflib.URIRef:

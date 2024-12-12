@@ -1106,7 +1106,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         provider_record_id_occurrence: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Observation Scientific Name to the Graph
 
@@ -1120,7 +1120,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             scientific_name (rdflib.URIRef): Scientific Name associated with
                 this node
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Get Timestamp
         date_identified: models.temporal.Timestamp = row["dateIdentified"] or row["eventDateStart"]
@@ -1165,7 +1165,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         sample_specimen: rdflib.URIRef,
         verbatim_id: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Observation Verbatim ID to the Graph
 
@@ -1180,7 +1180,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
                 this node
             verbatim_id (rdflib.URIRef): Verbatim ID associated with this node
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check for verbatimIdentification
         if not row["verbatimIdentification"]:
@@ -1387,7 +1387,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         id_qualifier: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Identification Qualifier Value to the Graph
 
@@ -1396,7 +1396,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             id_qualifier: identificationQualifier value from the template
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check node should be created
         if uri is None:
@@ -1809,7 +1809,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         sampling_specimen: rdflib.URIRef,
         provider_record_id_occurrence: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Sample Specimen to the Graph
 
@@ -1822,7 +1822,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check if Row has a Specimen
         if not has_specimen(row):
@@ -1977,7 +1977,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         taxon_rank: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Taxon Rank Value to the Graph
 
@@ -1986,7 +1986,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             taxon_rank: taxonRank value from the template.
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -2271,7 +2271,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds organism quantity value to graph.
 
@@ -2341,7 +2341,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         habitat: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Habitat Value to the Graph
 
@@ -2350,7 +2350,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             habitat: Habitat from the CSV
             dataset: Dataset this belongs to
             graph: Graph to add to
-            base_iri: Namespace used to construct IRIs)
+            base_iri: Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -2442,7 +2442,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         basis_of_record: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Basis of Record Value to the Graph
 
@@ -2451,7 +2451,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             basis_of_record: basisOfRecord value from the CSV
             dataset: Dataset this belongs to
             graph: Graph to add to
-            base_iri: Namespace used to construct IRIs)
+            base_iri: Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -2600,7 +2600,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Occurrence Status Value to the Graph
 
@@ -2609,7 +2609,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["occurrenceStatus"]:
@@ -2663,7 +2663,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         preparations: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Preparations Value to the Graph
 
@@ -2672,7 +2672,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             preparations: preparations value from the CSV
             dataset: Dataset this belongs to
             graph: Graph to add to
-            base_iri: Namespace used to construct IRIs)
+            base_iri: Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -2792,7 +2792,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Establishment Means Value to the Graph
 
@@ -2801,7 +2801,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["establishmentMeans"]:
@@ -2886,7 +2886,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Life Stage Value to the Graph
 
@@ -2895,7 +2895,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["lifeStage"]:
@@ -2979,7 +2979,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Sex Value to the Graph
 
@@ -2988,7 +2988,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["sex"]:
@@ -3073,7 +3073,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Reproductive Condition Value to the Graph
 
@@ -3082,7 +3082,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["reproductiveCondition"]:
@@ -3184,7 +3184,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         feature_of_interest: rdflib.URIRef,
         sample_sequence: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Sampling Sequencing to the Graph
 
@@ -3197,7 +3197,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             sample_sequence (rdflib.URIRef): Sample Sequence associated with
                 this node
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Extract values from row
         event_date: models.temporal.Timestamp = row["eventDateStart"]
@@ -3328,7 +3328,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         threat_status_value: rdflib.URIRef,
         determined_by: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Threat Status Observation to the Graph
 
@@ -3342,7 +3342,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             determined_by (rdflib.URIRef): Determined By Provider associated
                 with this node
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["threatStatus"]:
@@ -3400,7 +3400,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Threat Status Value to the Graph
 
@@ -3409,7 +3409,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
             graph (rdflib.Graph): Graph to add to
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs)
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Check Existence
         if not row["threatStatus"]:
@@ -3572,7 +3572,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds Sensitivity Category Value to the Graph
 
@@ -3581,7 +3581,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row: Row to retrieve data from
             dataset: Dataset this belongs to
             graph: Graph to add to
-            base_iri: Namespace used to construct IRIs)
+            base_iri: Namespace used to construct IRIs
         """
         # Check Existence
         if uri is None:
@@ -3696,7 +3696,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds occurrence node to the graph.
 

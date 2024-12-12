@@ -417,7 +417,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         related_site: rdflib.URIRef | rdflib.Literal | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds site to the graph.
 
@@ -599,7 +599,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         raw: str,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Add a habitat value node to graph.
 
@@ -608,7 +608,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset data belongs.
             raw (str): Raw data provided.
             graph (rdflib.Graph): Graph to be modified.
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.IRI))

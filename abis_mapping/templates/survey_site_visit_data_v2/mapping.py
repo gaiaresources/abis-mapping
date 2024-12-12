@@ -691,7 +691,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Add a site visit prov:Plan node to the graph.
 
@@ -767,7 +767,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_target_taxonomic_scope: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds the target taxonomic scope Attribute Value node.
 
@@ -881,7 +881,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_sampling_effort_unit: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds sampling effort Attribute Value node.
 
@@ -891,7 +891,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row_sampling_effort_unit: Value from the samplingEffortUnit field.
             dataset (rdflib.URIRef): URI of the dataset this belongs to.
             graph (rdflib.Graph): Graph to be modified.
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         if uri is None:
             return

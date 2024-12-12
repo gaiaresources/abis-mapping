@@ -632,7 +632,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         row_survey_type: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds the survey type value node to graph.
 
@@ -741,7 +741,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         raw_value: str,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Add the target habitat scope value node.
 
@@ -750,7 +750,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset raw data belongs.
             raw_value (str): Raw data.
             graph (rdflib.Graph): Graph to be modified.
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Add types
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -840,7 +840,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         raw_value: str,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace | None,
+        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds the target toxonomic scope value node.
 
@@ -849,7 +849,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset raw data belongs.
             raw_value (str): Raw data provided.
             graph (rdflib.Graph): Graph to be modified.
-            base_iri (rdflib.Namespace | None): Namespace used to construct IRIs
+            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Add types
         graph.add((uri, a, utils.namespaces.TERN.IRI))
