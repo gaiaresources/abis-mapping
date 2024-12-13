@@ -291,6 +291,7 @@ the context of web development, data exchange, and modern software systems. UTF-
 (Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
 encoding all possible characters (code points) in Unicode.<br/>
 Here are some reasons why UTF-8 is recommended:
+
 - **Universal Character Support:** UTF-8 can represent almost all characters from all writing 
   systems in use today. This includes characters from various languages, mathematical symbols, 
   and other special characters.
