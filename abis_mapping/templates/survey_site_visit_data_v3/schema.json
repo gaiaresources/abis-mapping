@@ -3,12 +3,12 @@
         {
             "name": "surveyID",
             "title": "SurveyID",
-            "description": "The identifier of the Survey that the Site is related to in this dataset.",
+            "description": "The identifier of the Survey that the Site Visit is related to in this dataset.",
             "example": "AR220-01",
             "type": "string",
             "format": "default",
             "constraints": {
-                "required": false
+                "required": true
             }
         },
         {
@@ -163,6 +163,15 @@
             "vocabularies": [
                 "SAMPLING_EFFORT_UNIT"
             ]
+        }
+    ],
+    "foreignKeys": [
+        {
+            "fields": "surveyID",
+            "reference": {
+                "resource": "survey_metadata",
+                "fields": "surveyID"
+            }
         }
     ]
 }

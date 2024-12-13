@@ -271,3 +271,40 @@ class TestMapExtractors:
         # Assert
         assert actual == expected
         mocked_schema.assert_called_once()
+
+
+def test_validation_with_survey_id_set_valid(
+    mapper: mapping.SurveySiteVisitMapper,
+) -> None:
+    """Test surveyID cross-validation when the file is valid."""
+    example_file = pathlib.Path("abis_mapping/templates/survey_site_visit_data_v3/examples/minimal.csv")
+
+    with example_file.open("rb") as data:
+        report = mapper.apply_validation(
+            data,
+            # provide surveyIDs in the file, to make it valid
+            survey_id_set={"TIS-24-03": True},
+        )
+
+    assert report.valid
+
+
+def test_validation_with_survey_id_set_invalid(
+    mapper: mapping.SurveySiteVisitMapper,
+) -> None:
+    """Test surveyID cross-validation when the file is invalid."""
+    example_file = pathlib.Path("abis_mapping/templates/survey_site_visit_data_v3/examples/minimal.csv")
+
+    with example_file.open("rb") as data:
+        report = mapper.apply_validation(
+            data,
+            # Don't provide surveyIDs in the file, to make it invalid
+            survey_id_set={"SOME_OTHER_ID": True},
+        )
+
+    assert not report.valid
+    assert len(report.tasks) == 1
+    assert len(report.tasks[0].errors) == 3
+    assert report.tasks[0].errors[0].note == "surveyID must match a surveyID in the survey_metadata template"
+    assert report.tasks[0].errors[1].note == "surveyID must match a surveyID in the survey_metadata template"
+    assert report.tasks[0].errors[2].note == "surveyID must match a surveyID in the survey_metadata template"
