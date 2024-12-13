@@ -323,7 +323,7 @@ class ABISMapper(abc.ABC):
 
     @final
     @classmethod
-    @functools.lru_cache
+    @functools.cache
     def template(cls) -> pathlib.Path:
         """Retrieves and Caches the Template Filepath
 
@@ -349,8 +349,9 @@ class ABISMapper(abc.ABC):
         """
         return self.metadata()["id"]
 
+    @final
     @classmethod
-    @functools.lru_cache
+    @functools.cache
     def metadata(cls) -> dict[str, str]:
         """Retrieves and Caches the Template Metadata for this Template
 
@@ -370,7 +371,7 @@ class ABISMapper(abc.ABC):
 
     @final
     @classmethod
-    @functools.lru_cache
+    @functools.cache
     def schema(
         cls,
         discard_optional: bool = True,
