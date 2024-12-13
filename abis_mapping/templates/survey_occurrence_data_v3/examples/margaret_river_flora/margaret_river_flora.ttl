@@ -1,0 +1,1991 @@
+@prefix abis: <https://linked.data.gov.au/def/abis/> .
+@prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix tern: <https://w3id.org/tern/ontologies/tern/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/basisOfRecord/HumanObservation> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
+    schema:name "Occurrence Collection - Basis Of Record - HumanObservation" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/HumanObservation> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/basisOfRecord/PreservedSpecimen> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/13>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Basis Of Record - PreservedSpecimen" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/PreservedSpecimen> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/basisOfRecord/new-basis-of-record> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
+    schema:name "Occurrence Collection - Basis Of Record - new basis of record" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/new-basis-of-record> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/conservationAuthority/WA> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/8022FSJMJ079c5cf>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/ABC123> ;
+    schema:name "Occurrence Collection - Conservation Authority - WA" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/conservationAuthority/WA> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/dataGeneralizations/Coordinates-generalised> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    schema:name "Occurrence Collection - Data Generalizations - Coordinates generalised" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-generalised> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Habitat - Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/habitat/new-habitat> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    schema:name "Occurrence Collection - Habitat - new habitat" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/new-habitat> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationQualifier/> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/11>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/14> ;
+    schema:name "Occurrence Collection - Identification Qualifier - ?" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationQualifier/new-identification-qualifier> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/ABC123> ;
+    schema:name "Occurrence Collection - Identification Qualifier - new identification qualifier" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/new-identification-qualifier> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationQualifier/species-incerta> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Identification Qualifier - species incerta" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/species-incerta> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationRemarks/Could-not-confirm-the-ID-due-to-damaged-flower> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/14> ;
+    schema:name "Occurrence Collection - Identification Remarks - Could not confirm the ID due to damaged flower" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/Could-not-confirm-the-ID-due-to-damaged-flower> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationRemarks/One-unopened-flower-when-recorded-and-one-leaf-only-ID-not-confirmed> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/11> ;
+    schema:name "Occurrence Collection - Identification Remarks - One unopened flower when recorded and one leaf only. ID not confirmed" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/One-unopened-flower-when-recorded-and-one-leaf-only-ID-not-confirmed> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationRemarks/new-remarks> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/ABC123> ;
+    schema:name "Occurrence Collection - Identification Remarks - new remarks" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/new-remarks> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationRemarks/no-flowers-present> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Identification Remarks - no flowers present" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/no-flowers-present> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/preparations/Wet-in-ethanol-or-some-other-preservative> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Preparations - Wet (in ethanol or some other preservative)" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/preparations/new-preparations> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
+    schema:name "Occurrence Collection - Preparations - new preparations" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/preparations/new-preparations> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/sensitivityCategory/Category-1> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/8022FSJMJ079c5cf>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/ABC123> ;
+    schema:name "Occurrence Collection - Sensitivity Category - Category 1" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/sensitivityCategory/Category-1> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/taxonRank/new-taxon-rank> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/ABC123> ;
+    schema:name "Occurrence Collection - Taxon Rank - new taxon rank" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/taxonRank/new-taxon-rank> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/taxonRank/species> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8022FSJMJ079c5cf> ;
+    schema:name "Occurrence Collection - Taxon Rank - species" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/taxonRank/species> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/1> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
+    schema:identifier "1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/10> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
+    schema:identifier "10"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/11> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
+    schema:identifier "11"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/12> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/12> ;
+    schema:identifier "12"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/13> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
+    schema:identifier "13"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/14> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
+    schema:identifier "14"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/2> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
+    schema:identifier "2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/3> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
+    schema:identifier "3"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/4> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
+    schema:identifier "4"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/5> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
+    schema:identifier "5"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/6> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
+    schema:identifier "6"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/7> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
+    schema:identifier "7"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/8> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
+    schema:identifier "8"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/9> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
+    schema:identifier "9"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/acceptedNameUsage/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "acceptedNameUsage-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> ;
+    sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://example.com/methods/name-check-method> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/acceptedNameUsage/ABC123> a tern:Observation ;
+    rdfs:comment "acceptedNameUsage-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> ;
+    sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://example.com/methods/name-check-method> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/establishmentMeans/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "establishmentMeans-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/native> ;
+    sosa:hasSimpleResult "native" ;
+    sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/establishmentMeans/ABC123> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "establishmentMeans-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/new-establishment-means> ;
+    sosa:hasSimpleResult "new establishment means" ;
+    sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/individualCount/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "individualCount-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/2> ;
+    sosa:hasSimpleResult 2 ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/individualCount/ABC123> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "individualCount-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/6> ;
+    sosa:hasSimpleResult 6 ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/occurrenceStatus/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "occurrenceStatus-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/present> ;
+    sosa:hasSimpleResult "present" ;
+    sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/occurrenceStatus/ABC123> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "occurrenceStatus-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/new-occurrence-status> ;
+    sosa:hasSimpleResult "new occurrence status" ;
+    sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/organismRemarks/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "organismRemarks-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Dried-out-leaf-tips> ;
+    sosa:hasSimpleResult "Dried out leaf tips" ;
+    sosa:observedProperty <http://example.com/concept/organismRemarks> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/organismRemarks/ABC123> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "organismRemarks-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Leaves-brown> ;
+    sosa:hasSimpleResult "Leaves brown" ;
+    sosa:observedProperty <http://example.com/concept/organismRemarks> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/1> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Calothamnus-lateralis-var-crassus> ;
+    sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/10> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/12> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/12> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/13> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/2> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> ;
+    sosa:hasSimpleResult "Boronia anceps" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/3> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> ;
+    sosa:hasSimpleResult "Boronia anceps" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/4> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> ;
+    sosa:hasSimpleResult "Boronia anceps" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/5> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
+    sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/6> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
+    sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/7> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
+    sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
+    sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/9> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/lifeStage/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "lifeStage-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/adult> ;
+    sosa:hasSimpleResult "adult" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/lifeStage/ABC123> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "lifeStage-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/new-life-stage> ;
+    sosa:hasSimpleResult "new life stage" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/reproductiveCondition/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "reproductiveCondition-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/No-breeding-evident> ;
+    sosa:hasSimpleResult "No breeding evident" ;
+    sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/reproductiveCondition/ABC123> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "reproductiveCondition-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/new-reproductiveCondition> ;
+    sosa:hasSimpleResult "new reproductiveCondition" ;
+    sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/sex/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "sex-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/male> ;
+    sosa:hasSimpleResult "male" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/sex/ABC123> a tern:Observation ;
+    rdfs:comment "Observation method unknown, 'human observation' used as proxy",
+        "sex-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/new-sex> ;
+    sosa:hasSimpleResult "new sex" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/verbatimIdentification/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia ?excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/verbatimIdentification/ABC123> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia ?excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/identificationMethod/new-identification-method> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/1> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Calothamnus-lateralis-var-crassus> ;
+    sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/10> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/11> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia ?excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/14> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia ?excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/2> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia-anceps> ;
+    sosa:hasSimpleResult "Boronia anceps" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/3> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia-anceps> ;
+    sosa:hasSimpleResult "Boronia anceps" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/4> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia-anceps> ;
+    sosa:hasSimpleResult "Boronia anceps" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/5> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
+    sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/6> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
+    sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/7> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
+    sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/8> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
+    sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/9> a tern:Observation ;
+    rdfs:comment "verbatimID-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP> a rdfs:Datatype ;
+    skos:definition "A catalog number for the sample" ;
+    skos:prefLabel "BHP catalogNumber" ;
+    prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/orgs/BHP> .
+
+<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> a rdfs:Datatype ;
+    skos:definition "A catalog number for the sample" ;
+    skos:prefLabel "WAM catalogNumber" ;
+    prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/orgs/WAM> .
+
+<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Stream-Environment-and-Water-Pty-Ltd> a rdfs:Datatype ;
+    skos:definition "An identifier for the record" ;
+    skos:prefLabel "Stream Environment and Water Pty Ltd recordID" ;
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Stream-Environment-and-Water-Pty-Ltd/owner> .
+
+<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> a rdfs:Datatype ;
+    skos:definition "An identifier for the record" ;
+    skos:prefLabel "WAM recordID" ;
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> .
+
+<https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Stream-Environment-and-Water-Pty-Ltd> a rdfs:Datatype ;
+    skos:definition "The record number of the original observation from the original observer of the organism" ;
+    skos:prefLabel "Stream Environment and Water Pty Ltd recordNumber" ;
+    prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/MR-R1-V1> a tern:SiteVisit ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/HumanObservation> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/basisOfRecord> ;
+    tern:hasSimpleValue "HumanObservation" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/HumanObservation> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/PreservedSpecimen> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/basisOfRecord> ;
+    tern:hasSimpleValue "PreservedSpecimen" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/PreservedSpecimen> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/new-basis-of-record> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/basisOfRecord> ;
+    tern:hasSimpleValue "new basis of record" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/new-basis-of-record> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/conservationAuthority/WA> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7> ;
+    tern:hasSimpleValue "WA" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/conservationAuthority/WA> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-generalised> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/data-generalizations> ;
+    tern:hasSimpleValue "Coordinates generalised" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-generalised> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/data-generalizations> ;
+    tern:hasSimpleValue "Coordinates rounded to the nearest 10 km for conservation concern" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99> ;
+    tern:hasSimpleValue "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/new-habitat> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99> ;
+    tern:hasSimpleValue "new habitat" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/new-habitat> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7> ;
+    tern:hasSimpleValue "?" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/new-identification-qualifier> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7> ;
+    tern:hasSimpleValue "new identification qualifier" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/new-identification-qualifier> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/species-incerta> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7> ;
+    tern:hasSimpleValue "species incerta" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/species-incerta> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/Could-not-confirm-the-ID-due-to-damaged-flower> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140> ;
+    tern:hasSimpleValue "Could not confirm the ID due to damaged flower" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationRemarks/Could-not-confirm-the-ID-due-to-damaged-flower> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/One-unopened-flower-when-recorded-and-one-leaf-only-ID-not-confirmed> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140> ;
+    tern:hasSimpleValue "One unopened flower when recorded and one leaf only. ID not confirmed" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationRemarks/One-unopened-flower-when-recorded-and-one-leaf-only-ID-not-confirmed> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/new-remarks> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140> ;
+    tern:hasSimpleValue "new remarks" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationRemarks/new-remarks> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/no-flowers-present> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140> ;
+    tern:hasSimpleValue "no flowers present" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationRemarks/no-flowers-present> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/preparations> ;
+    tern:hasSimpleValue "Wet (in ethanol or some other preservative)" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/preparations/Wet-in-ethanol-or-some-other-preservative> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/preparations/new-preparations> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/preparations> ;
+    tern:hasSimpleValue "new preparations" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/preparations/new-preparations> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/sensitivityCategory/Category-1> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/sensitiveCategory> ;
+    tern:hasSimpleValue "Category 1 - Department of Biodiversity and Conservation" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/sensitivityCategory/Category-1> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/taxonRank/new-taxon-rank> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/taxonRank> ;
+    tern:hasSimpleValue "new taxon rank" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/taxonRank/new-taxon-rank> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/taxonRank/species> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/taxonRank> ;
+    tern:hasSimpleValue "species" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/taxonRank/species> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Stream-Environment-and-Water-Pty-Ltd/owner> a prov:Attribution ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:hadRole <https://linked.data.gov.au/def/data-roles/owner> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> a prov:Attribution ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
+    prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/basisOfRecord/new-basis-of-record> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/attribute/basisOfRecord> ;
+    skos:definition "A type of basisOfRecord." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "new basis of record" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/identificationQualifier/> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/attribute/identificationQualifier> ;
+    skos:definition "A type of identificationQualifier." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "?" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/identificationQualifier/new-identification-qualifier> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/attribute/identificationQualifier> ;
+    skos:definition "A type of identificationQualifier." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "new identification qualifier" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/attribute/preparations> ;
+    skos:definition "A type of preparations." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "Wet (in ethanol or some other preservative)" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/preparations/new-preparations> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/attribute/preparations> ;
+    skos:definition "A type of preparations." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "new preparations" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/sensitivityCategory/Category-1> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/attribute/sensitivityCategory> ;
+    skos:definition "A type of sensitivityCategory." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "Category 1" ;
+    skos:scopeNote "Under the authority of Department of Biodiversity and Conservation" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetHabitatScope/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a skos:Concept ;
+    skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
+    skos:definition "A type of targetHabitatScope" ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetHabitatScope/new-habitat> a skos:Concept ;
+    skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
+    skos:definition "A type of targetHabitatScope" ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "new habitat" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/taxonRank/new-taxon-rank> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/attribute/taxonRank> ;
+    skos:definition "A type of taxonRank." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "new taxon rank" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/featureType/occurrence/kingdom/new-kingdom> a skos:Concept ;
+    skos:definition "The existence of the organism from this kingdom sampled at a particular place at a particular time." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d> ;
+    skos:prefLabel "new kingdom occurrence" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/featureType/specimen/kingdom/new-kingdom> a skos:Concept ;
+    skos:definition "A specimen sampled from an organism of this kingdom." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d> ;
+    skos:prefLabel "new kingdom specimen" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/samplingProtocol/new-sampling-protocol> a skos:Concept ;
+    skos:broader <https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766> ;
+    skos:definition "A type of samplingProtocol." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:prefLabel "new sampling protocol" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/methods/sequencingMethod> ;
+    skos:definition "A type of sequencingMethod." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:prefLabel "Sanger dideoxy sequencing" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/sequencingMethod/new-sequencing-method> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/methods/sequencingMethod> ;
+    skos:definition "A type of sequencingMethod." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:prefLabel "new sequencing method" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https//www-dpaw-wa-gov-au/plants-and-animals/threatened-species-and-communities/threatened-animals-Last-updated-13-June-2022> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/methods/threatStatusCheckProtocol> ;
+    skos:definition "A type of threatStatusCheckProtocol." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:prefLabel "Check against Threatened and Priority Fauna List WA available from https://www.dpaw.wa.gov.au/plants-and-animals/threatened-species-and-communities/threatened-animals. Last updated 13 June 2022" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/methods/threatStatusCheckProtocol> ;
+    skos:definition "A type of threatStatusCheckProtocol." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:prefLabel "a random selection" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/establishmentMeans/new-establishment-means> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/parameter/establishmentMeans> ;
+    skos:definition "A type of establishmentMeans." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:prefLabel "new establishment means" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/lifeStage/new-life-stage> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/parameter/lifeStage> ;
+    skos:definition "A type of lifeStage." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:prefLabel "new life stage" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/occurrenceStatus/new-occurrence-status> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/parameter/occurrenceStatus> ;
+    skos:definition "A type of occurrenceStatus." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:prefLabel "new occurrence status" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/reproductiveCondition/No-breeding-evident> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/parameter/reproductiveCondition> ;
+    skos:definition "A type of reproductiveCondition." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:prefLabel "No breeding evident" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/reproductiveCondition/new-reproductiveCondition> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/parameter/reproductiveCondition> ;
+    skos:definition "A type of reproductiveCondition." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:prefLabel "new reproductiveCondition" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/sex/new-sex> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/parameter/sex> ;
+    skos:definition "A type of sex." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:prefLabel "new sex" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/threatStatus/WA/new-threat-status> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/parameter/threatStatus> ;
+    skos:definition "A type of threatStatus." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:prefLabel "WA/new threat status" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/8022FSJMJ079c5cf> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    schema:identifier "8022FSJMJ079c5cf"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/ABC123> a abis:BiodiversityRecord ;
+    schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    schema:identifier "ABC123"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "threatStatus-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/WA-BIO> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU> ;
+    sosa:hasSimpleResult "VU" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https//www-dpaw-wa-gov-au/plants-and-animals/threatened-species-and-communities/threatened-animals-Last-updated-13-June-2022> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/ABC123> a tern:Observation ;
+    rdfs:comment "threatStatus-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/new-threat-status> ;
+    sosa:hasSimpleResult "new threat status" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/native> a tern:IRI,
+        tern:Value ;
+    rdfs:label "establishmentMeans-value" ;
+    rdf:value <http://example.com/establishmentMeans/native> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/new-establishment-means> a tern:IRI,
+        tern:Value ;
+    rdfs:label "establishmentMeans-value" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/establishmentMeans/new-establishment-means> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/2> a tern:Integer,
+        tern:Value ;
+    rdfs:label "individual-count" ;
+    rdf:value 2 .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/6> a tern:Integer,
+        tern:Value ;
+    rdfs:label "individual-count" ;
+    rdf:value 6 .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/new-occurrence-status> a tern:IRI,
+        tern:Value ;
+    rdfs:label "occurrenceStatus = new occurrence status" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/occurrenceStatus/new-occurrence-status> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/present> a tern:IRI,
+        tern:Value ;
+    rdfs:label "occurrenceStatus = present" ;
+    rdf:value <http://example.com/occurrenceStatus/present> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Dried-out-leaf-tips> a tern:Text,
+        tern:Value ;
+    rdfs:label "organism-remarks" ;
+    rdf:value "Dried out leaf tips" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Leaves-brown> a tern:Text,
+        tern:Value ;
+    rdfs:label "organism-remarks" ;
+    rdf:value "Leaves brown" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Calothamnus-lateralis-var-crassus> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    rdf:value "Calothamnus lateralis var. crassus" ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <http://example.com/concept/scientificName> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/adult> a tern:IRI,
+        tern:Value ;
+    rdfs:label "lifeStage-value" ;
+    rdf:value <http://example.com/lifeStage/adult> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/new-life-stage> a tern:IRI,
+        tern:Value ;
+    rdfs:label "lifeStage-value" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/lifeStage/new-life-stage> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/No-breeding-evident> a tern:IRI,
+        tern:Value ;
+    rdfs:label "reproductiveCondition-value" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/reproductiveCondition/No-breeding-evident> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/new-reproductiveCondition> a tern:IRI,
+        tern:Value ;
+    rdfs:label "reproductiveCondition-value" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/reproductiveCondition/new-reproductiveCondition> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/male> a tern:IRI,
+        tern:Value ;
+    rdfs:label "sex-value" ;
+    rdf:value <http://example.com/sex/male> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/new-sex> a tern:IRI,
+        tern:Value ;
+    rdfs:label "sex-value" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/sex/new-sex> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Conservation status = VU" ;
+    rdf:value <http://example.com/threatStatus/WA/vulnerable-species> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/new-threat-status> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Conservation status = new threat status" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/parameter/threatStatus/WA/new-threat-status> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Calothamnus-lateralis-var-crassus> a tern:Text,
+        tern:Value ;
+    rdf:value "Calothamnus lateralis var. crassus" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/sequence/8022FSJMJ079c5cf> a tern:FeatureOfInterest,
+        tern:Sample ;
+    rdfs:comment "sequence-sample" ;
+    sosa:isResultOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/8022FSJMJ079c5cf> ;
+    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
+    schema:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
+        "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <http://example.com/concept/sequence> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/sequence/ABC123> a tern:FeatureOfInterest,
+        tern:Sample ;
+    rdfs:comment "sequence-sample" ;
+    sosa:isResultOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> ;
+    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
+    schema:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
+        "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <http://example.com/concept/sequence> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/HumanObservation> a tern:IRI,
+        tern:Value ;
+    rdfs:label "HumanObservation" ;
+    rdf:value <http://example.com/basisOfRecord/HumanObservation> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/PreservedSpecimen> a tern:IRI,
+        tern:Value ;
+    rdfs:label "PreservedSpecimen" ;
+    rdf:value <http://example.com/basisOfRecord/PreservedSpecimen> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/new-basis-of-record> a tern:IRI,
+        tern:Value ;
+    rdfs:label "new basis of record" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/basisOfRecord/new-basis-of-record> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/conservationAuthority/WA> a tern:IRI,
+        tern:Value ;
+    rdfs:label "WA" ;
+    rdf:value <https://sws.geonames.org/2058645/> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-generalised> a tern:Text,
+        tern:Value ;
+    rdf:value "Coordinates generalised" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Text,
+        tern:Value ;
+    rdf:value "Coordinates rounded to the nearest 10 km for conservation concern" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetHabitatScope/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/new-habitat> a tern:IRI,
+        tern:Value ;
+    rdfs:label "new habitat" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetHabitatScope/new-habitat> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/> a tern:IRI,
+        tern:Value ;
+    rdfs:label "?" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/identificationQualifier/> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/new-identification-qualifier> a tern:IRI,
+        tern:Value ;
+    rdfs:label "new identification qualifier" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/identificationQualifier/new-identification-qualifier> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/species-incerta> a tern:IRI,
+        tern:Value ;
+    rdfs:label "species incerta" ;
+    rdf:value <http://example.com/identificationQualifier/species-incerta> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationRemarks/Could-not-confirm-the-ID-due-to-damaged-flower> a tern:Text,
+        tern:Value ;
+    rdf:value "Could not confirm the ID due to damaged flower" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationRemarks/One-unopened-flower-when-recorded-and-one-leaf-only-ID-not-confirmed> a tern:Text,
+        tern:Value ;
+    rdf:value "One unopened flower when recorded and one leaf only. ID not confirmed" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationRemarks/new-remarks> a tern:Text,
+        tern:Value ;
+    rdf:value "new remarks" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationRemarks/no-flowers-present> a tern:Text,
+        tern:Value ;
+    rdf:value "no flowers present" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/preparations/Wet-in-ethanol-or-some-other-preservative> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Wet (in ethanol or some other preservative)" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/preparations/new-preparations> a tern:IRI,
+        tern:Value ;
+    rdfs:label "new preparations" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/preparations/new-preparations> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/sensitivityCategory/Category-1> a tern:IRI,
+        tern:Value ;
+    rdfs:label "sensitivity category = Category 1" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/sensitivityCategory/Category-1> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/taxonRank/new-taxon-rank> a tern:IRI,
+        tern:Value ;
+    rdfs:label "new taxon rank" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/taxonRank/new-taxon-rank> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/taxonRank/species> a tern:IRI,
+        tern:Value ;
+    rdfs:label "species" ;
+    rdf:value <http://example.com/species> .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/BHP> a prov:Agent ;
+    schema:name "BHP" .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/Test-Pty-Ltd> a prov:Agent ;
+    schema:name "Test Pty Ltd" .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/WA-BIO> a prov:Agent ;
+    schema:name "WA-BIO" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/MR-S1> a tern:FeatureOfInterest,
+        tern:Site ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/MR-R1> a tern:Survey ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/methods/identificationMethod> ;
+    skos:definition "A type of identificationMethod." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:prefLabel "Visually identified in the field (sighting)" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/identificationMethod/new-identification-method> a skos:Concept ;
+    skos:broader <http://example.com/bdr-cv/methods/identificationMethod> ;
+    skos:definition "A type of identificationMethod." ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:prefLabel "new identification method" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/11> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/14> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "acceptedNameUsage-value" ;
+    rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <http://example.com/concept/acceptedNameUsage> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia-excelsa> a tern:Text,
+        tern:Value ;
+    rdf:value "Caladenia ?excelsa" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/13> a tern:FeatureOfInterest,
+        tern:Sample ;
+    rdfs:comment "specimen-sample" ;
+    sosa:isResultOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/13> ;
+    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/8022FSJMJ079c5cf> a tern:Sampling ;
+    geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000001 ;
+    geo:hasMetricSpatialAccuracy 5e+01 ;
+    rdfs:comment "sequencing-sampling" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/sequence/8022FSJMJ079c5cf> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> a tern:Sampling ;
+    geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000003 ;
+    geo:hasMetricSpatialAccuracy 3e+01 ;
+    rdfs:comment "sequencing-sampling" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/sequence/ABC123> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/13> a tern:Sampling ;
+    geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000001 ;
+    rdfs:comment "specimen-sampling" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/13> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/8022FSJMJ079c5cf> a tern:Sampling ;
+    geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000003 ;
+    geo:hasMetricSpatialAccuracy 5e+01 ;
+    rdfs:comment "specimen-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/ABC123> a tern:Sampling ;
+    geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000005 ;
+    geo:hasMetricSpatialAccuracy 3e+01 ;
+    rdfs:comment "specimen-sampling" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDate "2019-09-27"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/WAM> a prov:Agent ;
+    schema:name "WAM" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8022FSJMJ079c5cf> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/ABC123> a tern:Observation ;
+    rdfs:comment "scientificName-observation" ;
+    time:hasTime [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
+    sosa:hasSimpleResult "Caladenia excelsa" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/identificationMethod/new-identification-method> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/12> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc575500000021 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    rdf:value "Boronia anceps" ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <http://example.com/concept/scientificName> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia-anceps> a tern:Text,
+        tern:Value ;
+    rdf:value "Boronia anceps" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc575500000000 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc57550000001b ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc57550000001e ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:identifier "PE:12:8831" ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc575500000003 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Test-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc575500000006 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc575500000009 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc57550000000c ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc57550000000f ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc575500000012 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc575500000015 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc575500000018 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    rdf:value "Banksia sessilis var. cordata" ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <http://example.com/concept/scientificName> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> a tern:Text,
+        tern:Value ;
+    rdf:value "Banksia sessilis var. cordata" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> a tern:Text,
+        tern:Value ;
+    rdf:value "Caladenia ?excelsa",
+        "Caladenia excelsa" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    dwc:catalogNumber "CC123"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
+    dwc:collectionCode "C01" ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc575500000024 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    dwc:catalogNumber "CC456"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
+    dwc:collectionCode "C01" ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc575500000027 ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> a tern:FeatureOfInterest,
+        tern:Sample ;
+    rdfs:comment "specimen-sample" ;
+    sosa:isResultOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/8022FSJMJ079c5cf> ;
+    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> a tern:FeatureOfInterest,
+        tern:Sample ;
+    rdfs:comment "specimen-sample" ;
+    sosa:isResultOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/ABC123> ;
+    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/featureType/specimen/kingdom/new-kingdom> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> a tern:FeatureOfInterest,
+        tern:Text,
+        tern:Value ;
+    rdfs:label "scientificName" ;
+    rdf:value "Caladenia excelsa" ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:featureType <http://example.com/concept/scientificName> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
+    dwc:collectionCode "32237" ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/MR-S1> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
+    schema:identifier "BHP2012-7521"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
+        "M12378"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
+        "MR-456"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Stream-Environment-and-Water-Pty-Ltd>,
+        "PE:12:8832"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Stream-Environment-and-Water-Pty-Ltd> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/MR-R1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc57550000002a ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:hasSiteVisit <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/MR-R1-V1> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> a dwc:Occurrence,
+        tern:FeatureOfInterest ;
+    dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
+    dwc:collectionCode "32238" ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> ;
+    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/MR-S1> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/samplingProtocol/new-sampling-protocol> ;
+    schema:identifier "BHP2012-7522"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
+        "M12379"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
+        "MR-457"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Stream-Environment-and-Water-Pty-Ltd>,
+        "PE:12:8833"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Stream-Environment-and-Water-Pty-Ltd> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/MR-R1> ;
+    schema:spatial _:N7bfc9936b099cf9353fc57550000002d ;
+    schema:temporal [ a time:TemporalEntity ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    tern:featureType <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/featureType/occurrence/kingdom/new-kingdom> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> a tern:Survey ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
+    schema:name "Stream Environment and Water Pty Ltd" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a tern:Dataset .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
+    rdf:object _:Nbaf38917362852ca9a9a0d2500000001 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/8022FSJMJ079c5cf> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
+    rdf:object _:Nbaf38917362852ca9a9a0d2500000003 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc575500000000 ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc575500000003 ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc575500000006 ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc575500000009 ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc57550000000c ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc57550000000f ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc575500000012 ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc575500000015 ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc575500000018 ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc57550000001b ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc57550000001e ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc575500000021 ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/12> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
+    rdf:object _:N7bfc9936b099cf9353fc575500000024 ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 2e+01 ] ;
+    rdf:object _:N7bfc9936b099cf9353fc575500000027 ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] ;
+    rdf:object _:N7bfc9936b099cf9353fc57550000002a ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 3e+01 ] ;
+    rdf:object _:N7bfc9936b099cf9353fc57550000002d ;
+    rdf:predicate schema:spatial ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
+    rdf:object _:Nfcd8f1042640aeab2a686b1700000001 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/13> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
+    rdf:object _:Nfcd8f1042640aeab2a686b1700000003 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/8022FSJMJ079c5cf> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
+    rdf:object _:Nfcd8f1042640aeab2a686b1700000005 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/ABC123> ;
+    rdfs:comment "supplied as" .
+
+_:N7bfc9936b099cf9353fc575500000000 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc575500000003 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.01)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc575500000006 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.01)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc575500000009 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.01)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc57550000000c a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc57550000000f a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc575500000012 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc575500000015 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc575500000018 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc57550000001b a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc57550000001e a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc575500000021 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc575500000024 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
+
+_:N7bfc9936b099cf9353fc575500000027 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 2e+01 .
+
+_:N7bfc9936b099cf9353fc57550000002a a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N7bfc9936b099cf9353fc57550000002d a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 3e+01 .
+
+_:Nbaf38917362852ca9a9a0d2500000001 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
+
+_:Nbaf38917362852ca9a9a0d2500000003 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
+
+_:Nfcd8f1042640aeab2a686b1700000001 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
+
+_:Nfcd8f1042640aeab2a686b1700000003 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
+
+_:Nfcd8f1042640aeab2a686b1700000005 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
+    rdfs:comment "Location unknown, location of field sampling used as proxy" .
+

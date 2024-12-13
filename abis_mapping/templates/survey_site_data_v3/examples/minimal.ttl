@@ -1,0 +1,198 @@
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix tern: <https://w3id.org/tern/ontologies/tern/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
+    schema:name "Site Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteCollection/habitat/Closed-forest> a schema:Collection ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
+    schema:name "Site Collection - Habitat - Closed forest" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/Closed-forest> .
+
+<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> a rdfs:Datatype ;
+    skos:definition "An identifier for the site" ;
+    skos:prefLabel "WAM Site ID" ;
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://example.com/concept/data-generalizations> ;
+    tern:hasSimpleValue "Coordinates rounded to the nearest 10 km for conservation concern" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/Closed-forest> a tern:Attribute ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99> ;
+    tern:hasSimpleValue "Closed forest" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/Closed-forest> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> a prov:Attribution ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
+    prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Text,
+        tern:Value ;
+    rdf:value "Coordinates rounded to the nearest 10 km for conservation concern" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/Closed-forest> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Closed forest" ;
+    rdf:value <https://linked.data.gov.au/def/nrm/ac2238c8-b7bc-5a89-8cc3-774bc3a53064> .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/WAM> a prov:Agent ;
+    schema:name "WAM" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> a tern:Site ;
+    geo:hasGeometry _:N9466fd6e9e4c9aa92b83d28000000000 ;
+    schema:additionalType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
+    schema:description "Footprint of study area" ;
+    schema:identifier "P0"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:name "ParentSite" ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> a tern:Site ;
+    geo:hasGeometry _:N3bba75fe5be4a400a5af80dd00000000,
+        _:N9466fd6e9e4c9aa92b83d28000000001 ;
+    schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
+    schema:description "Fine woody debris." ;
+    schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> ;
+    schema:name "Plot 1" ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2> a tern:Site ;
+    geo:hasGeometry _:N3bba75fe5be4a400a5af80dd00000001,
+        _:N9466fd6e9e4c9aa92b83d28000000002 ;
+    schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
+    schema:description "Fine woody debris." ;
+    schema:identifier "P2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:name "Plot 2" ;
+    schema:sameAs "S0" ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> a tern:Site ;
+    geo:hasGeometry _:N3bba75fe5be4a400a5af80dd00000002,
+        _:N9466fd6e9e4c9aa92b83d28000000003 ;
+    schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
+    schema:description "Fine woody debris." ;
+    schema:identifier "P3"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:name "Plot 3" ;
+    schema:sameAs "http://example.com/site/S0"^^xsd:anyURI ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
+    tern:locationDescription "Cowaramup Bay Road" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a tern:Dataset .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON ((-33.85 114.98, -33.85 115.01, -33.87 115.01, -33.87 114.98, -33.85 114.98))"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] ;
+    rdf:object _:N9466fd6e9e4c9aa92b83d28000000000 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] ;
+    rdf:object _:N9466fd6e9e4c9aa92b83d28000000001 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] ;
+    rdf:object _:N9466fd6e9e4c9aa92b83d28000000002 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] ;
+    rdf:object _:N9466fd6e9e4c9aa92b83d28000000003 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] ;
+    rdf:object _:N3bba75fe5be4a400a5af80dd00000000 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] ;
+    rdf:object _:N3bba75fe5be4a400a5af80dd00000001 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] ;
+    rdf:object _:N3bba75fe5be4a400a5af80dd00000002 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
+    rdfs:comment "supplied as" .
+
+_:N3bba75fe5be4a400a5af80dd00000000 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N3bba75fe5be4a400a5af80dd00000001 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N3bba75fe5be4a400a5af80dd00000002 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N9466fd6e9e4c9aa92b83d28000000000 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.85 114.98, -33.85 115.01, -33.87 115.01, -33.87 114.98, -33.85 114.98))"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N9466fd6e9e4c9aa92b83d28000000001 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N9466fd6e9e4c9aa92b83d28000000002 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N9466fd6e9e4c9aa92b83d28000000003 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
