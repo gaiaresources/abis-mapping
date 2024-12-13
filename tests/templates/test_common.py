@@ -67,7 +67,7 @@ class TestTemplateBasicSuite:
         real_mapper = abis_mapping.base.mapper.get_mapper(test_params.template_id)
         assert real_mapper is not None
         metadata = real_mapper.metadata()
-        assert isinstance(metadata, dict)
+        assert isinstance(metadata, abis_mapping.models.metadata.TemplateMetadata)
 
     def test_metadata_id_match(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests the metadata id matches the mapper id"""
@@ -77,7 +77,7 @@ class TestTemplateBasicSuite:
 
         # Retrieve metadata
         metadata = real_mapper.metadata()
-        assert metadata.get("id") == real_mapper().template_id
+        assert metadata.id == real_mapper().template_id
 
     def test_get_schema(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests able to retrieve template schema."""
@@ -117,7 +117,7 @@ class TestTemplateBasicSuite:
         metadata = mapper().metadata()
 
         # Confirm field set correctly
-        assert metadata.get("sampling_type") == test_params.metadata_sampling_type
+        assert metadata.sampling_type == test_params.metadata_sampling_type
 
     def test_schema_is_valid(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests that the schema.json is a valid frictionless schema."""

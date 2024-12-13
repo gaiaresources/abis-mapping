@@ -335,7 +335,7 @@ class ABISMapper(abc.ABC):
 
         # Template File is the name and filetype as extension from metadata
         md = cls.metadata()
-        template_file = directory / f"{md['name']}.{md['file_type'].lower()}"
+        template_file = directory / f"{md.name}.{md.file_type.lower()}"
 
         # Return
         return template_file
@@ -347,27 +347,27 @@ class ABISMapper(abc.ABC):
         Returns:
             str: template id from metadata
         """
-        return self.metadata()["id"]
+        return self.metadata().id
 
     @final
     @classmethod
     @functools.cache
-    def metadata(cls) -> dict[str, str]:
+    def metadata(cls) -> models.metadata.TemplateMetadata:
         """Retrieves and Caches the Template Metadata for this Template
 
         Returns:
-            dict[str, Any]: Template Metadata for this Template
+            Template Metadata for this Template
         """
         # Retrieve Metadata Filepath
         directory = pathlib.Path(inspect.getfile(cls)).parent
         metadata_file = directory / "metadata.json"
 
         # Read Metadata and validate
-        md_dict = json.loads(metadata_file.read_text())
-        md_class = models.metadata.TemplateMetadata.model_validate(md_dict, strict=False)
+        md_content = metadata_file.read_bytes()
+        md_class = models.metadata.TemplateMetadata.model_validate_json(md_content)
 
         # Return
-        return md_class.model_dump()
+        return md_class
 
     @final
     @classmethod
@@ -436,7 +436,7 @@ def register_mapper(mapper: type[ABISMapper]) -> None:
         mapper: Mapper class to be registered.
     """
     # Register the mapper with its template id
-    template_id = mapper.metadata()["id"]
+    template_id = mapper.metadata().id
     _registry[template_id] = mapper
 
 
