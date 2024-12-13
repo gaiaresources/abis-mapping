@@ -155,10 +155,11 @@ UTF-8 encoding is considered a best practice for handling character encoding, es
 the context of web development, data exchange, and modern software systems. UTF-8
 (Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
 encoding all possible characters (code points) in Unicode.<br/>
-Here are some reasons why UTF-8 is recommended:**Universal Character Support:** UTF-8
-can represent almost all characters from all writing systems in use today. This includes
-characters from various languages, mathematical symbols, and other special characters.
+Here are some reasons why UTF-8 is recommended:
 
+- **Universal Character Support:** UTF-8 can represent almost all characters from all writing 
+  systems in use today. This includes characters from various languages, mathematical symbols, 
+  and other special characters.
 - **Backward Compatibility:** UTF-8 is backward compatible with ASCII (American
 Standard Code for Information Interchange). The first 128 characters in UTF-8 are
 identical to ASCII, making it easy to work with systems that use ASCII.
