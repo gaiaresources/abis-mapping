@@ -544,9 +544,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Create URIs for Survey-related fields (i.e. fields not on the incidental template)
 
-        # Create TERN survey IRI from surveyID field
+        # Create TERN survey IRI from surveyID field, only when it is provided
         survey_id: str | None = row["surveyID"]
-        survey = utils.iri_patterns.survey_iri(base_iri, survey_id)
+        if survey_id:
+            survey = utils.iri_patterns.survey_iri(base_iri, survey_id)
+        else:
+            survey = None
 
         # Create Tern Site IRI, depending on the siteID field
         site_id: str | None = row["siteID"]
@@ -4244,7 +4247,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
     def add_survey(
         self,
-        uri: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
@@ -4257,6 +4260,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset: The dataset URI
             graph: The graph to update
         """
+        if uri is None:
+            return
+
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Survey))
         # Add dataset link
@@ -4302,7 +4308,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         other_catalog_numbers_datatype: rdflib.URIRef | None,
         catalog_number_datatype: rdflib.URIRef | None,
         provider_recorded_by: rdflib.URIRef | None,
-        survey: rdflib.URIRef,
+        survey: rdflib.URIRef | None,
         site: rdflib.URIRef | None,
         site_visit: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
@@ -4457,8 +4463,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Add to Graph
             graph.add((uri, utils.namespaces.DWC.collectionCode, rdflib.Literal(row["collectionCode"])))
 
-        # Add survey
-        graph.add((uri, rdflib.SDO.isPartOf, survey))
+        # Add survey, if provided
+        if survey:
+            graph.add((uri, rdflib.SDO.isPartOf, survey))
 
         # Add site if provided
         if site is not None:

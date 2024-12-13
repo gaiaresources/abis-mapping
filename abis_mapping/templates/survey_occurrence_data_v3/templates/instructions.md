@@ -103,6 +103,7 @@ Changes from Systematic Survey Occurrence Data Template v2.0.0
 
 * When [`surveyID`](#surveyID-field) is provided, it must have a value that matches a `surveyID`
   in the Systematic Survey Metadata template to indicate which Survey the Occurrence belongs to.
+  When [`surveyID`](#surveyID-field) is blank, the Occurrence will be treated as incidental.
 
 ## APPENDICES
 ### APPENDIX-I: Vocabulary List

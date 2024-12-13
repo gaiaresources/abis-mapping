@@ -720,7 +720,7 @@
     {
       "name": "surveyID",
       "title": "Survey ID",
-      "description": "The identifier of the Survey that the occurrence comes from. This field should be completed if it is ambiguous as to which survey the occurrence belongs to.",
+      "description": "The identifier of the Survey that the Occurrence comes from. If this field is left blank, the Occurrence will be treated as incidental.",
       "example": "AR220-01",
       "type": "string",
       "format": "default",
