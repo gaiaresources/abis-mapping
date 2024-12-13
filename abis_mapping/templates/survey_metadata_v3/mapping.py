@@ -15,7 +15,7 @@ from abis_mapping import models
 from abis_mapping import utils
 
 # Typing
-from typing import Any
+from typing import Any, Literal
 
 
 # Constants / shortcuts
@@ -100,6 +100,40 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Return validation report
         return report
+
+    def extract_survey_id_set(
+        self,
+        data: base.types.ReadableType,
+    ) -> dict[str, Literal[True]]:
+        """Extract surveyID values from the template
+
+        Args:
+            data (base.types.ReadableType): Raw data.
+
+        Returns:
+            The set of surveyID values, as a dict.
+        """
+        # Construct schema
+        schema = frictionless.Schema.from_descriptor(self.schema())
+
+        # Construct resource
+        resource = frictionless.Resource(
+            source=data,
+            format="csv",
+            schema=schema,
+            encoding="utf-8",
+        )
+
+        survey_ids: dict[str, Literal[True]] = {}
+
+        # Iterate over rows to extract values
+        with resource.open() as r:
+            for row in r.row_stream:
+                survey_id: str | None = row["surveyID"]
+                if survey_id:
+                    survey_ids[survey_id] = True
+
+        return survey_ids
 
     def apply_mapping_row(
         self,
