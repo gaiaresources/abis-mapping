@@ -145,41 +145,6 @@ def test_schema(mocker: pytest_mock.MockerFixture) -> None:
     assert actual == expected
 
 
-def test_generate_blank_template(mocker: pytest_mock.MockerFixture) -> None:
-    """Tests the generate_blank_template method.
-
-    Args:
-        mocker (pytest_mock.MockerFixture): The mocker fixture.
-    """
-    # Create and assign mock for pathlib.Path.read_text method
-    return_value = {
-        "fields": [
-            {
-                "name": "col1",
-            },
-            {
-                "name": "col2",
-            },
-        ],
-    }
-    mocked_read_text = mocker.patch.object(pathlib.Path, "read_text")
-    mocked_read_text.return_value = json.dumps(return_value)
-
-    # Create and assign mock for pathlib.Path.open method
-    mocked_open = mocker.patch.object(pathlib.Path, "open")
-    output_stream = ContextualStringIO()
-    mocked_open.return_value = output_stream
-
-    # Patch the metadata method
-    mocker.patch.object(base.mapper.ABISMapper, "metadata", return_value={"name": "some_template", "file_type": "CSV"})
-
-    # Invoke
-    base.mapper.ABISMapper.generate_blank_template()
-
-    # Confirm result
-    assert output_stream.final_buffer == "col1,col2\r\n"
-
-
 def test_base_get_mapper_fake() -> None:
     """Tests that we can't retrieve a mapper with an invalid ID"""
     # Test Fake Template ID

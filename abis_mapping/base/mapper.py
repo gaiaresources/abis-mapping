@@ -2,7 +2,6 @@
 
 # Standard
 import abc
-import csv
 import functools
 import inspect
 import json
@@ -200,25 +199,6 @@ class ABISMapper(abc.ABC):
         if spatial_accuracy is not None:
             graph.add((supplied_as, utils.namespaces.GEO.hasMetricSpatialAccuracy, spatial_accuracy))
         graph.add((top_node, utils.namespaces.GEO.hasGeometry, supplied_as))
-
-    @classmethod
-    def generate_blank_template(cls) -> None:
-        """Generates a blank csv for the template.
-
-        It is based on the schema field names and writes it to a file within
-        the template mapper's root dir. NOTE: full schema validation is not applied,
-        and metadata validation is.
-        """
-        # Retrieve Schema Filepath
-        directory = pathlib.Path(inspect.getfile(cls)).parent
-        schema_file = directory / "schema.json"
-
-        # Get raw schema
-        fields: list[dict[str, object]] = json.loads(schema_file.read_text())["fields"]
-        out_path = directory / f"{cls.metadata()['name']}.{cls.metadata()['file_type'].lower()}"
-        with out_path.open("w") as f:
-            csv_writer = csv.DictWriter(f, [field["name"] for field in fields])
-            csv_writer.writeheader()
 
     @classmethod
     def add_extra_fields_json(
