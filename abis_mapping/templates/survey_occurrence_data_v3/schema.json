@@ -753,6 +753,13 @@
   ],
   "foreignKeys": [
     {
+      "fields": "surveyID",
+      "reference": {
+        "resource": "survey_metadata",
+        "fields": "surveyID"
+      }
+    },
+    {
       "fields": "siteID",
       "reference": {
         "resource": "survey_site_data",

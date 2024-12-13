@@ -563,3 +563,43 @@ def test_extract_site_id_keys(
 
     # Validate
     assert actual == expected
+
+
+def test_validation_with_survey_id_set_valid(
+    mapper: Mapper,
+) -> None:
+    """Test surveyID cross-validation when the file is valid."""
+    example_file = pathlib.Path(
+        "abis_mapping/templates/survey_occurrence_data_v3/examples/margaret_river_flora/margaret_river_flora.csv"
+    )
+
+    with example_file.open("rb") as data:
+        report = mapper.apply_validation(
+            data,
+            # provide surveyIDs in the file, to make it valid
+            survey_id_set={"MR-R1": True},
+        )
+
+    assert report.valid
+
+
+def test_validation_with_survey_id_set_invalid(
+    mapper: Mapper,
+) -> None:
+    """Test surveyID cross-validation when the file is invalid."""
+    example_file = pathlib.Path(
+        "abis_mapping/templates/survey_occurrence_data_v3/examples/margaret_river_flora/margaret_river_flora.csv"
+    )
+
+    with example_file.open("rb") as data:
+        report = mapper.apply_validation(
+            data,
+            # Don't provide surveyIDs in the file, to make it invalid
+            survey_id_set={"SOME_OTHER_ID": True},
+        )
+
+    assert not report.valid
+    assert len(report.tasks) == 1
+    assert len(report.tasks[0].errors) == 2
+    assert report.tasks[0].errors[0].note == "surveyID must match a surveyID in the survey_metadata template"
+    assert report.tasks[0].errors[1].note == "surveyID must match a surveyID in the survey_metadata template"

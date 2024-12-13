@@ -80,6 +80,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             **kwargs (Any): Additional keyword arguments.
 
         Keyword Args:
+            survey_id_set (Set[str]): Set of surveyIDs from the metadata template.
             site_id_geometry_map (dict[str, str]): Default values to use for geometry
                 for given siteID.
             site_visit_id_temporal_map (dict[str, str]): Default RDF (serialized as turtle)
@@ -90,6 +91,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             frictionless.Report: Validation report for the specified data.
         """
         # Extract kwargs
+        survey_id_set = kwargs.get("survey_id_set")
         site_id_geometry_map = kwargs.get("site_id_geometry_map")
         site_visit_id_temporal_map = kwargs.get("site_visit_id_temporal_map")
         site_visit_id_site_id_map = kwargs.get("site_visit_id_site_id_map")
@@ -132,6 +134,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 ),
             ],
         )
+
+        if survey_id_set is not None:
+            checklist.add_check(
+                plugins.survey_id_validation.SurveyIDValidation(
+                    valid_survey_ids=survey_id_set,
+                )
+            )
 
         # Modify checklist in the event site visit id to site id map provided
         if site_visit_id_site_id_map is not None:
