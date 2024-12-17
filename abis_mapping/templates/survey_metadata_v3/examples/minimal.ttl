@@ -52,21 +52,11 @@
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO> a rdfs:Datatype ;
     skos:prefLabel "surveyID source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> ;
-            prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ],
-        [ a prov:Attribution ;
-            prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> ;
-            prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ] .
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/CSIRO/principalInvestigator> .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> a rdfs:Datatype ;
     skos:prefLabel "surveyID source" ;
-    prov:qualifiedAttribution [ a prov:Attribution ;
-            prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> ;
-            prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ],
-        [ a prov:Attribution ;
-            prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> ;
-            prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ] .
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/NSW-Department-of-Planning-Industry-and-Environment/principalInvestigator> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/surveyType/Wet-pitfall-trapping> a tern:Attribute ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
@@ -91,6 +81,14 @@
     tern:attribute <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     tern:hasSimpleValue "Insecta" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/Insecta> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/CSIRO/principalInvestigator> a prov:Attribution ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> ;
+    prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/NSW-Department-of-Planning-Industry-and-Environment/principalInvestigator> a prov:Attribution ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> ;
+    prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
@@ -125,6 +123,12 @@
         tern:Value ;
     rdfs:label "Insecta" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> a prov:Agent ;
+    schema:name "CSIRO" .
+
+<https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
+    schema:name "NSW Department of Planning, Industry and Environment" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> a tern:Survey ;
     bdr:purpose "Summer sampling for peak insect diversity." ;
@@ -171,12 +175,6 @@
         "traits",
         "woodland" ;
     schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Winter" .
-
-<https://linked.data.gov.au/dataset/bdr/orgs/CSIRO> a prov:Agent ;
-    schema:name "CSIRO" .
-
-<https://linked.data.gov.au/dataset/bdr/orgs/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
-    schema:name "NSW Department of Planning, Industry and Environment" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> a prov:Plan ;
     schema:citation "Ng, K., Barton, P.S., Blanchard, W. et al. Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits. Oecologia 188, 645–657 (2018). https://doi.org/10.1007/s00442-018-4180-9\"" ;

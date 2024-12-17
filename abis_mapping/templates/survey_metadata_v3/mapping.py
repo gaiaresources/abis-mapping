@@ -35,6 +35,7 @@ class SurveyIDDatatype:
 
     name: str
     datatype: rdflib.URIRef
+    attribution: rdflib.URIRef
     agent: rdflib.URIRef
 
 
@@ -222,6 +223,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                     SurveyIDDatatype(
                         name=raw_org,
                         datatype=utils.iri_patterns.datatype_iri("surveyID", raw_org),
+                        attribution=utils.iri_patterns.attribution_iri(base_iri, "principalInvestigator", raw_org),
                         agent=utils.iri_patterns.agent_iri(raw_org),
                     )
                 )
@@ -262,7 +264,15 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             # Add survey ID source datatype nodes
             self.add_survey_id_source_datatypes(
                 uri=so_obj.datatype,
+                attribution=so_obj.attribution,
+                graph=graph,
+            )
+
+            # Add attribution
+            self.add_attribution(
+                uri=so_obj.attribution,
                 agent=so_obj.agent,
+                role=PRINCIPAL_INVESTIGATOR,
                 graph=graph,
             )
 
@@ -541,14 +551,14 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
     def add_survey_id_source_datatypes(
         self,
         uri: rdflib.URIRef,
-        agent: rdflib.URIRef,
+        attribution: rdflib.URIRef,
         graph: rdflib.Graph,
     ) -> None:
         """Adds the source datatype nodes to graph.
 
         Args:
             uri (rdflib.URIRef): The reference uri.
-            agent (rdflib.URIRef): Agent uri.
+            attribution (rdflib.URIRef): Attribution uri.
             graph (rdflib.Graph): Graph to be modified.
         """
         # Add type
@@ -556,13 +566,21 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Add label
         graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal("surveyID source")))
-
         # Add attribution
-        attribution = rdflib.BNode()
-        graph.add((attribution, a, rdflib.PROV.Attribution))
-        graph.add((attribution, rdflib.PROV.agent, agent))
-        graph.add((attribution, rdflib.PROV.hadRole, PRINCIPAL_INVESTIGATOR))
         graph.add((uri, rdflib.PROV.qualifiedAttribution, attribution))
+
+    def add_attribution(
+        self,
+        uri: rdflib.URIRef,
+        agent: rdflib.URIRef,
+        role: rdflib.URIRef,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Add the prov:Attribution nodes to the graph."""
+        # Add attribution
+        graph.add((uri, a, rdflib.PROV.Attribution))
+        graph.add((uri, rdflib.PROV.agent, agent))
+        graph.add((uri, rdflib.PROV.hadRole, role))
 
     def add_agent(
         self,
