@@ -89,7 +89,12 @@ For example, `instrumentType`, `instrumentIdentifier`, `weatherConditions`.
 
 ## CHANGELOG
 
-No changes from Systematic Survey Site Visit Data Template v2.0.0
+Changes from Systematic Survey Site Visit Data Template v2.0.0
+
+### CHANGED FIELDS
+
+* [`surveyID`](#surveyID-field) Is now a **mandatory** field, and every row must have a value that matches a `surveyID`
+  in the Systematic Survey Metadata template to indicate which Survey the Site Visit is related to.
 
 ## APPENDICES
 ### APPENDIX-I: Vocabulary List

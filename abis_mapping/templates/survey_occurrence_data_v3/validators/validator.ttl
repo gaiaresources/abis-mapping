@@ -236,11 +236,12 @@ bdrsh:SurveyOccurrenceShape
 		sh:maxCount 1 ;
 		sh:class prov:Agent ;
 	] ;
-	# dwc:Occurrence has 2 schema:isPartOf triples, one for the tern:Survey and one for the tern:Dataset:
+	# dwc:Occurrence always has 1 schema:isPartOf triple for the tern:Dataset,
+	# and optionally a second one for the tern:Survey.
 	sh:property [
 		sh:path schema:isPartOf ;
 		sh:nodeKind sh:IRI ;
-		sh:minCount 2 ;
+		sh:minCount 1 ;
 		sh:maxCount 2 ;
 	] ;
 	sh:property [
@@ -249,7 +250,7 @@ bdrsh:SurveyOccurrenceShape
 		    sh:nodeKind sh:IRI ;
 		    sh:class tern:Survey ;
 		] ;
-		sh:qualifiedMinCount 1 ;
+		sh:qualifiedMinCount 0 ;
 		sh:qualifiedMaxCount 1 ;
 	] ;
 	sh:property [

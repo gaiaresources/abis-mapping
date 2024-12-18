@@ -48,6 +48,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             data (base.types.ReadableType): Raw data to be validated.
             **kwargs (Any): Additional keyword arguments.
 
+        Keyword Args:
+            survey_id_set (Set[str]): Set of surveyIDs from the metadata template.
+
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
@@ -73,6 +76,13 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
                 field_names=["samplingEffortValue", "samplingEffortUnit"],
             ),
         ]
+
+        if "survey_id_set" in kwargs:
+            checks.append(
+                plugins.survey_id_validation.SurveyIDValidation(
+                    valid_survey_ids=kwargs["survey_id_set"],
+                )
+            )
 
         # Validate the site visit resource
         report: frictionless.Report = resource_site_visit_data.validate(
@@ -240,7 +250,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         uri_site = utils.iri_patterns.site_iri(base_iri, row_site_id)
 
         # Create TERN survey IRI from surveyID field
-        row_survey_id: str | None = row["surveyID"]
+        row_survey_id: str = row["surveyID"]
         uri_survey = utils.iri_patterns.survey_iri(base_iri, row_survey_id)
 
         # URI for the Site Visit Plan
