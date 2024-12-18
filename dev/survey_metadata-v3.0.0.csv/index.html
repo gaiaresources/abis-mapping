@@ -357,6 +357,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="CHANGELOG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGED FIELDS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -760,8 +775,6 @@ contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&
 <li>comply with all <strong>data value constraints</strong>; for example the geographic coordinates are
   consistent with a <a href="#geodeticDatum-vocabularies">geodeticDatum</a> type of the <strong><em>5</em></strong> available
   options.</li>
-<li>only <strong>one row of metadata</strong> should be included and only the first row of metadata will be accepted
-  (this symbolises one Survey per dataset submission).</li>
 </ul>
 <p>Additional fields may be added <strong>after the templated fields</strong> (noting that the data type 
 is not assumed and values will be encoded as strings).</p>
@@ -833,8 +846,8 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: center;">1</td>
 <td style="text-align: left;"><a name="surveyID-field"></a>surveyID</td>
-<td style="text-align: left;">The identifier for the survey. Important if more there is more than one survey a the project.</td>
-<td style="text-align: center;">Optional</td>
+<td style="text-align: left;">The identifier for the survey. Important if more there is more than one survey in the project.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">COL1</td>
 </tr>
@@ -953,7 +966,15 @@ datatype format, and examples.</ins></p>
 </tbody>
 </table>
 <h2 id="changelog">CHANGELOG</h2>
-<p>No changes from Systematic Survey Metadata Template v2.0.0</p>
+<p>Changes from Systematic Survey Metadata Template v2.0.0</p>
+<ul>
+<li>This template now accepts multiple rows of data, to represent multiple Surveys in a Dataset.</li>
+</ul>
+<h3 id="changed-fields">CHANGED FIELDS</h3>
+<ul>
+<li>Because multiple rows are now allowed, <a href="#surveyID-field"><code>surveyID</code></a> is now a <strong>mandatory</strong> field,
+  and each row must have a <strong>unique</strong> value within the template, in order to identify each row.</li>
+</ul>
 <h2 id="appendices">APPENDICES</h2>
 <h3 id="appendix-i-vocabulary-list">APPENDIX-I: Vocabulary List</h3>
 <p>With the exception of <code>geodeticDatum</code>, data validation

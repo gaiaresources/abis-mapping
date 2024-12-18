@@ -480,6 +480,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="CHANGELOG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGED FIELDS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +833,8 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <tr>
 <td style="text-align: center;">1</td>
 <td style="text-align: left;"><a name="surveyID-field"></a>surveyID</td>
-<td style="text-align: left;">The identifier of the Survey that the Site is related to in this dataset.</td>
-<td style="text-align: center;">Optional</td>
+<td style="text-align: left;">The identifier of the Survey that the Site Visit is related to in this dataset.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">AR220-01</td>
 </tr>
@@ -930,7 +945,12 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 </tbody>
 </table>
 <h2 id="changelog">CHANGELOG</h2>
-<p>No changes from Systematic Survey Site Visit Data Template v2.0.0</p>
+<p>Changes from Systematic Survey Site Visit Data Template v2.0.0</p>
+<h3 id="changed-fields">CHANGED FIELDS</h3>
+<ul>
+<li><a href="#surveyID-field"><code>surveyID</code></a> Is now a <strong>mandatory</strong> field, and every row must have a value that matches a <code>surveyID</code>
+  in the Systematic Survey Metadata template to indicate which Survey the Site Visit is related to.</li>
+</ul>
 <h2 id="appendices">APPENDICES</h2>
 <h3 id="appendix-i-vocabulary-list">APPENDIX-I: Vocabulary List</h3>
 <p>Data validation does not require adherence to the vocabularies for the various vocabularied fields.

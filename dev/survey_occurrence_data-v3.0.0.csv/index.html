@@ -398,6 +398,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="CHANGELOG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGED FIELDS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1243,7 +1258,7 @@ datatype format, and examples.</ins></p>
 <tr>
 <td style="text-align: center;">53</td>
 <td style="text-align: left;"><a name="surveyID-field"></a>surveyID</td>
-<td style="text-align: left;">The identifier of the Survey that the occurrence comes from. This field should be completed if it is ambiguous as to which survey the occurrence belongs to.</td>
+<td style="text-align: left;">The identifier of the Survey that the Occurrence comes from. If this field is left blank, the Occurrence will be treated as incidental.</td>
 <td style="text-align: center;">Optional</td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">AR220-01</td>
@@ -1267,7 +1282,13 @@ datatype format, and examples.</ins></p>
 </tbody>
 </table>
 <h2 id="changelog">CHANGELOG</h2>
-<p>No changes from Systematic Survey Occurrence Data Template v2.0.0</p>
+<p>Changes from Systematic Survey Occurrence Data Template v2.0.0</p>
+<h3 id="changed-fields">CHANGED FIELDS</h3>
+<ul>
+<li>When <a href="#surveyID-field"><code>surveyID</code></a> is provided, it must have a value that matches a <code>surveyID</code>
+  in the Systematic Survey Metadata template to indicate which Survey the Occurrence belongs to.
+  When <a href="#surveyID-field"><code>surveyID</code></a> is blank, the Occurrence will be treated as incidental.</li>
+</ul>
 <h2 id="appendices">APPENDICES</h2>
 <h3 id="appendix-i-vocabulary-list">APPENDIX-I: Vocabulary List</h3>
 <p>With the exception of <code>geodeticDatum</code>, data validation does not require fields to adhere to the
