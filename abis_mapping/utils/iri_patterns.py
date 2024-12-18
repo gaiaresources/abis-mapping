@@ -322,7 +322,7 @@ def plan_iri(
 
 def attribution_iri(
     base_iri: rdflib.Namespace,
-    role: Literal["resourceProvider", "owner", "rightsHolder", "creator"],
+    role: Literal["resourceProvider", "owner", "rightsHolder", "creator", "principalInvestigator"],
     source: str,
 ) -> rdflib.URIRef:
     """Get the IRI to use for a prov:Attribution node.
