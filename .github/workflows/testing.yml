@@ -10,7 +10,7 @@ on:
       - 'release/**'
 env:
   PYTHON_VERSION: "3.11"
-  POETRY_VERSION: "1.8.4"
+  POETRY_VERSION: "1.8.5"
 jobs:
   poetry-lock:
     # Job to check poetry lock file is present, up-to-date with pyproject.toml,
