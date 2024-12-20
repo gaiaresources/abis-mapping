@@ -55,7 +55,7 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Gaia-Resources/resourceProvider> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/Gaia-Resources> ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/org/Gaia-Resources> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismQuantity/0-05> a tern:Float,
@@ -72,7 +72,7 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://example.com/concept/scientificName> .
 
-<https://linked.data.gov.au/dataset/bdr/orgs/Gaia-Resources> a prov:Agent ;
+<https://linked.data.gov.au/dataset/bdr/org/Gaia-Resources> a prov:Agent ;
     schema:name "Gaia Resources" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/A0010> a dwc:Occurrence,

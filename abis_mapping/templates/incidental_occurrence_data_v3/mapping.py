@@ -164,15 +164,15 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         provider_record_id_source: str = row["providerRecordIDSource"]
 
         # Create URIs
-        provider_identified = utils.iri_patterns.agent_iri(row["identifiedBy"])
+        provider_identified = utils.iri_patterns.agent_iri("org", row["identifiedBy"])
         sample_specimen = utils.iri_patterns.sample_iri(base_iri, "specimen", provider_record_id)
         sampling_specimen = utils.iri_patterns.sampling_iri(base_iri, "specimen", provider_record_id)
         sample_sequence = utils.iri_patterns.sample_iri(base_iri, "sequence", provider_record_id)
         sampling_sequencing = utils.iri_patterns.sampling_iri(base_iri, "sequencing", provider_record_id)
-        provider_determined_by = utils.iri_patterns.agent_iri(row["threatStatusDeterminedBy"])
+        provider_determined_by = utils.iri_patterns.agent_iri("org", row["threatStatusDeterminedBy"])
 
         provider_record_id_datatype = utils.iri_patterns.datatype_iri("recordID", provider_record_id_source)
-        provider_record_id_agent = utils.iri_patterns.agent_iri(provider_record_id_source)
+        provider_record_id_agent = utils.iri_patterns.agent_iri("org", provider_record_id_source)
         provider_record_id_attribution = utils.iri_patterns.attribution_iri(
             base_iri, "resourceProvider", provider_record_id_source
         )
@@ -250,7 +250,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Conditionally create uris dependent on ownerRecordIDSource field
         if owner_record_id_source := row["ownerRecordIDSource"]:
             owner_record_id_datatype = utils.iri_patterns.datatype_iri("recordID", owner_record_id_source)
-            owner_record_id_provider = utils.iri_patterns.agent_iri(owner_record_id_source)
+            owner_record_id_provider = utils.iri_patterns.agent_iri("org", owner_record_id_source)
             owner_record_id_attribution = utils.iri_patterns.attribution_iri(base_iri, "owner", owner_record_id_source)
         else:
             owner_record_id_datatype = None
@@ -288,7 +288,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Conditionally create uri's dependent on recordedBy field.
         if recorded_by := row["recordedBy"]:
             record_number_datatype = utils.iri_patterns.datatype_iri("recordNumber", recorded_by)
-            provider_recorded_by = utils.iri_patterns.agent_iri(recorded_by)
+            provider_recorded_by = utils.iri_patterns.agent_iri("org", recorded_by)
         else:
             record_number_datatype = None
             provider_recorded_by = None
@@ -306,7 +306,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Conditionally create uris dependent on catalogNumberSource field.
         if catalog_number_source := row["catalogNumberSource"]:
             catalog_number_datatype = utils.iri_patterns.datatype_iri("catalogNumber", catalog_number_source)
-            catalog_number_provider = utils.iri_patterns.agent_iri(catalog_number_source)
+            catalog_number_provider = utils.iri_patterns.agent_iri("org", catalog_number_source)
         else:
             catalog_number_datatype = None
             catalog_number_provider = None
@@ -316,7 +316,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             other_catalog_numbers_datatype = utils.iri_patterns.datatype_iri(
                 "catalogNumber", other_catalog_numbers_source
             )
-            other_catalog_numbers_provider = utils.iri_patterns.agent_iri(other_catalog_numbers_source)
+            other_catalog_numbers_provider = utils.iri_patterns.agent_iri("org", other_catalog_numbers_source)
         else:
             other_catalog_numbers_datatype = None
             other_catalog_numbers_provider = None

@@ -224,7 +224,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                         name=raw_org,
                         datatype=utils.iri_patterns.datatype_iri("surveyID", raw_org),
                         attribution=utils.iri_patterns.attribution_iri(base_iri, "principalInvestigator", raw_org),
-                        agent=utils.iri_patterns.agent_iri(raw_org),
+                        agent=utils.iri_patterns.agent_iri("org", raw_org),
                     )
                 )
 
