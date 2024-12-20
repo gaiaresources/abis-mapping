@@ -42,7 +42,7 @@
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/Closed-forest> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/orgs/WAM> ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/org/WAM> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Text,
@@ -54,7 +54,7 @@
     rdfs:label "Closed forest" ;
     rdf:value <https://linked.data.gov.au/def/nrm/ac2238c8-b7bc-5a89-8cc3-774bc3a53064> .
 
-<https://linked.data.gov.au/dataset/bdr/orgs/WAM> a prov:Agent ;
+<https://linked.data.gov.au/dataset/bdr/org/WAM> a prov:Agent ;
     schema:name "WAM" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> a tern:Site ;

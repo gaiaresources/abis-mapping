@@ -263,7 +263,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             uri_site_id_datatype_attribution = utils.iri_patterns.attribution_iri(
                 base_iri, "resourceProvider", row_site_id_source
             )
-            uri_site_id_datatype_agent = utils.iri_patterns.agent_iri(row_site_id_source)
+            uri_site_id_datatype_agent = utils.iri_patterns.agent_iri("org", row_site_id_source)
         else:
             uri_site_id_datatype = None
             uri_site_id_datatype_attribution = None
@@ -276,7 +276,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             visit_org_agents = [
                 Agent(
                     row_value=visit_org,
-                    uri=utils.iri_patterns.agent_iri(visit_org),
+                    uri=utils.iri_patterns.agent_iri("org", visit_org),
                 )
                 for visit_org in row_visit_orgs
             ]
@@ -290,7 +290,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             visit_observer_agents = [
                 Agent(
                     row_value=visit_observer,
-                    uri=utils.iri_patterns.agent_iri(visit_observer),
+                    uri=utils.iri_patterns.agent_iri("person", visit_observer),
                 )
                 for visit_observer in row_visit_observers
             ]

@@ -164,20 +164,22 @@ def datatype_iri(
 
 
 def agent_iri(
-    org: str,
+    agent_type: Literal["org", "person"],
+    agent: str,
     /,
 ) -> rdflib.URIRef:
     """Get the IRI to use for a prov:Agent node.
 
     Args:
-        org: The org this agent node represents.
+        agent_type: What type of agent this is.
+        agent: The organization or person this agent node represents.
 
     Returns:
         URIRef for the prov:Agent node.
     """
     return utils.rdf.uri(
-        f"{org}",
-        namespace=utils.namespaces.BDR_ORGS,
+        f"{agent_type}/{agent}",
+        namespace=utils.namespaces.DATASET_BDR,
     )
 
 
