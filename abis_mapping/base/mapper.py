@@ -2,7 +2,6 @@
 
 # Standard
 import abc
-import csv
 import functools
 import inspect
 import json
@@ -202,25 +201,6 @@ class ABISMapper(abc.ABC):
         graph.add((top_node, utils.namespaces.GEO.hasGeometry, supplied_as))
 
     @classmethod
-    def generate_blank_template(cls) -> None:
-        """Generates a blank csv for the template.
-
-        It is based on the schema field names and writes it to a file within
-        the template mapper's root dir. NOTE: full schema validation is not applied,
-        and metadata validation is.
-        """
-        # Retrieve Schema Filepath
-        directory = pathlib.Path(inspect.getfile(cls)).parent
-        schema_file = directory / "schema.json"
-
-        # Get raw schema
-        fields: list[dict[str, object]] = json.loads(schema_file.read_text())["fields"]
-        out_path = directory / f"{cls.metadata()['name']}.{cls.metadata()['file_type'].lower()}"
-        with out_path.open("w") as f:
-            csv_writer = csv.DictWriter(f, [field["name"] for field in fields])
-            csv_writer.writeheader()
-
-    @classmethod
     def add_extra_fields_json(
         cls,
         subject_uri: rdflib.URIRef,
@@ -343,7 +323,7 @@ class ABISMapper(abc.ABC):
 
     @final
     @classmethod
-    @functools.lru_cache
+    @functools.cache
     def template(cls) -> pathlib.Path:
         """Retrieves and Caches the Template Filepath
 
@@ -355,7 +335,7 @@ class ABISMapper(abc.ABC):
 
         # Template File is the name and filetype as extension from metadata
         md = cls.metadata()
-        template_file = directory / f"{md['name']}.{md['file_type'].lower()}"
+        template_file = directory / f"{md.name}.{md.file_type.lower()}"
 
         # Return
         return template_file
@@ -367,30 +347,31 @@ class ABISMapper(abc.ABC):
         Returns:
             str: template id from metadata
         """
-        return self.metadata()["id"]
+        return self.metadata().id
 
+    @final
     @classmethod
-    @functools.lru_cache
-    def metadata(cls) -> dict[str, str]:
+    @functools.cache
+    def metadata(cls) -> models.metadata.TemplateMetadata:
         """Retrieves and Caches the Template Metadata for this Template
 
         Returns:
-            dict[str, Any]: Template Metadata for this Template
+            Template Metadata for this Template
         """
         # Retrieve Metadata Filepath
         directory = pathlib.Path(inspect.getfile(cls)).parent
         metadata_file = directory / "metadata.json"
 
         # Read Metadata and validate
-        md_dict = json.loads(metadata_file.read_text())
-        md_class = models.metadata.TemplateMetadata.model_validate(md_dict, strict=False)
+        md_content = metadata_file.read_bytes()
+        md_class = models.metadata.TemplateMetadata.model_validate_json(md_content)
 
         # Return
-        return md_class.model_dump()
+        return md_class
 
     @final
     @classmethod
-    @functools.lru_cache
+    @functools.cache
     def schema(
         cls,
         discard_optional: bool = True,
@@ -455,7 +436,7 @@ def register_mapper(mapper: type[ABISMapper]) -> None:
         mapper: Mapper class to be registered.
     """
     # Register the mapper with its template id
-    template_id = mapper.metadata()["id"]
+    template_id = mapper.metadata().id
     _registry[template_id] = mapper
 
 

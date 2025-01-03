@@ -22,6 +22,11 @@ class TemplateMetadataLifecycleStatus(enum.StrEnum):
 class TemplateMetadata(pydantic.BaseModel):
     """Model for the template `metadata.json` file."""
 
+    model_config = pydantic.ConfigDict(
+        # Frozen because this class is returned by the cached ABISMapper.metadata() method
+        frozen=True,
+    )
+
     name: str
     label: str
     version: str
