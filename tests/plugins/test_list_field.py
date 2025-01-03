@@ -71,7 +71,7 @@ def test_list_type_read(
         expected (Optional[list[str]]): Expected outcome of reading the value.
     """
     # Instantiate the field
-    field = plugins.list.ListField(
+    field = plugins.list_field.ListField(
         name="testField",
         format=format,
         delimiter=delimiter,
@@ -118,7 +118,7 @@ def test_list_type_write(
         expected (str): Expected outcome of writing the value.
     """
     # Instantiate the Field
-    field = plugins.list.ListField(
+    field = plugins.list_field.ListField(
         name="testField",
         format=format,
         delimiter=delimiter,
