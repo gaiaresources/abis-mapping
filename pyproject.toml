@@ -36,6 +36,7 @@ jsonschema-markdown = "^0.3.18"
 [tool.poe.tasks]
 lint = "ruff check"
 lint-fix = "ruff check --fix-only"
+lint-imports = "lint-imports"
 format = "ruff format"
 format-check = "ruff format --check --diff"
 typecheck = "mypy tests/ abis_mapping/ docs/ scripts/"

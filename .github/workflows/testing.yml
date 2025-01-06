@@ -88,6 +88,17 @@ jobs:
           poetry-version: ${{ env.POETRY_VERSION }}
       - run: poetry run poe lint
 
+  lint-imports:
+    needs: [ poetry-lock ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-python-and-dependencies
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          poetry-version: ${{ env.POETRY_VERSION }}
+      - run: poetry run poe lint-imports
+
   mypy:
     needs: [poetry-lock]
     runs-on: ubuntu-latest
