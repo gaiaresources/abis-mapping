@@ -73,3 +73,61 @@ select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.importlinter]
+# Import linter is a tool to enfore structure in a python program.
+# See https://import-linter.readthedocs.io/en/stable/readme.html.
+root_packages = [
+    "abis_mapping",
+    "docs",
+    "scripts",
+    "tests",
+]
+
+[[tool.importlinter.contracts]]
+# The abis_mapping module must not depend on tests/scripts/docs modules.
+name = "abis_mapping module independence"
+type = "forbidden"
+source_modules = ["abis_mapping"]
+forbidden_modules = ["tests", "scripts", "docs"]
+
+[[tool.importlinter.contracts]]
+# The docs module must not depend on tests/scripts modules.
+name = "docs module independence"
+type = "forbidden"
+source_modules = ["docs"]
+forbidden_modules = ["tests", "scripts"]
+
+[[tool.importlinter.contracts]]
+# Enfore a layered structure in the "abis_mapping" module. Helps prevent circular imports.
+# Modules in each layer can only import from modules in a lower layer.
+# "foo | bar" means foo and bar are considered one layer, and must not import each other.
+name = "abis_mapping structure"
+type = "layers"
+exhaustive = true
+containers = ["abis_mapping"]
+layers = [
+    # top-level modules
+    "templates",
+    # mid-level modules
+    "base | plugins | vocabs",
+    "models",
+    # low-level modules
+    "utils",
+    "settings",
+]
+
+[[tool.importlinter.contracts]]
+# Enforce a layered structure in the "tests" module.
+name = "test structure"
+type = "layers"
+exhaustive = true
+containers = ["tests"]
+layers = [
+    # conftest is the top layer, fixtures declared here should be injected by pytest, not imported by tests.
+    "conftest",
+    # test modules are independant, should not import each other.
+    "base | docs | models | plugins | templates | utils | vocabs",
+    # low-level helpers.
+    "helpers",
+]
