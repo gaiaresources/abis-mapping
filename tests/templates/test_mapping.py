@@ -8,7 +8,6 @@ import rdflib
 # Local
 from tests.templates import conftest
 import abis_mapping
-import tests.conftest
 import tests.helpers
 
 
@@ -48,7 +47,7 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
     assert len(graphs) == 1
 
     # Compare Graphs
-    assert tests.conftest.compare_graphs(
+    assert tests.helpers.compare_graphs(
         graph1=graphs[0],
         graph2=expected,
     ), (
