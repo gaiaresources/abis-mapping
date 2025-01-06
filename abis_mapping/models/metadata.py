@@ -35,8 +35,6 @@ class TemplateMetadata(pydantic.BaseModel):
     spatial_type: str
     file_type: str
     sampling_type: str
-    template_url: str
-    schema_url: str
     template_lifecycle_status: TemplateMetadataLifecycleStatus
 
     @pydantic.computed_field  # type: ignore[prop-decorator]
