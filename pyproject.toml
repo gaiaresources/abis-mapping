@@ -61,6 +61,7 @@ select = [
     "S",  # bandit
     "G",  # logging-format
     "RUF100", # unused suppressions
+    "INP001",  # no namespace packages
 ]
 
 [tool.ruff.lint.per-file-ignores]
