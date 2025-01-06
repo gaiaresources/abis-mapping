@@ -24,6 +24,7 @@ pytest-mock = "^3.14.0"
 mypy = "==1.14.1"
 types-python-dateutil = "==2.9.0.20241003"  # keep version synced with actual library
 ruff = "==0.8.4"
+import-linter = "^2.1"
 pandas = "^2.2.3"
 pyshacl = "^0.29.1"
 jinja2 = "^3.1.4"
@@ -35,6 +36,7 @@ jsonschema-markdown = "^0.3.18"
 [tool.poe.tasks]
 lint = "ruff check"
 lint-fix = "ruff check --fix-only"
+lint-imports = "lint-imports"
 format = "ruff format"
 format-check = "ruff format --check --diff"
 typecheck = "mypy tests/ abis_mapping/ docs/ scripts/"
@@ -61,6 +63,7 @@ select = [
     "S",  # bandit
     "G",  # logging-format
     "RUF100", # unused suppressions
+    "INP001",  # no namespace packages
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -71,3 +74,61 @@ select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.importlinter]
+# Import linter is a tool to enfore structure in a python program.
+# See https://import-linter.readthedocs.io/en/stable/readme.html.
+root_packages = [
+    "abis_mapping",
+    "docs",
+    "scripts",
+    "tests",
+]
+
+[[tool.importlinter.contracts]]
+# The abis_mapping module must not depend on tests/scripts/docs modules.
+name = "abis_mapping module independence"
+type = "forbidden"
+source_modules = ["abis_mapping"]
+forbidden_modules = ["tests", "scripts", "docs"]
+
+[[tool.importlinter.contracts]]
+# The docs module must not depend on tests/scripts modules.
+name = "docs module independence"
+type = "forbidden"
+source_modules = ["docs"]
+forbidden_modules = ["tests", "scripts"]
+
+[[tool.importlinter.contracts]]
+# Enfore a layered structure in the "abis_mapping" module. Helps prevent circular imports.
+# Modules in each layer can only import from modules in a lower layer.
+# "foo | bar" means foo and bar are considered one layer, and must not import each other.
+name = "abis_mapping structure"
+type = "layers"
+exhaustive = true
+containers = ["abis_mapping"]
+layers = [
+    # top-level modules
+    "templates",
+    # mid-level modules
+    "base | plugins | vocabs",
+    "models",
+    # low-level modules
+    "utils",
+    "settings",
+]
+
+[[tool.importlinter.contracts]]
+# Enforce a layered structure in the "tests" module.
+name = "test structure"
+type = "layers"
+exhaustive = true
+containers = ["tests"]
+layers = [
+    # conftest is the top layer, fixtures declared here should be injected by pytest, not imported by tests.
+    "conftest",
+    # test modules are independant, should not import each other.
+    "base | docs | models | plugins | templates | utils | vocabs",
+    # low-level helpers.
+    "helpers",
+]

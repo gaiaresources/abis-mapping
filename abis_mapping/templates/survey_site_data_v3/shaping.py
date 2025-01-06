@@ -1,5 +1,8 @@
 """Generates a SHACL shape graph for the survey_site_data template v3."""
 
+# Standard Library
+import pathlib
+
 # Third-party
 import rdflib
 import rdflib.term
@@ -22,6 +25,8 @@ TEMPORAL_DATATYPES = [
     (rdflib.TIME.inXSDgYear, rdflib.XSD.gYear),
 ]
 
+TEMPLATE_DIR = pathlib.Path(__file__).parent
+
 
 def main() -> None:
     """Implementation of the SHACL generation."""
@@ -36,7 +41,7 @@ def main() -> None:
     add_site_visit_shape(g, dataset_shape)
 
     # Perform a validation
-    d = rdflib.Graph().parse(source="abis_mapping/templates/survey_site_data_v3/examples/minimal.ttl")
+    d = rdflib.Graph().parse(source=TEMPLATE_DIR / "examples" / "minimal.ttl")
     s = rdflib.Graph().parse(data=g.serialize())
     valid, rgraph, rtext = pyshacl.validate(data_graph=d, shacl_graph=s)
 
@@ -48,7 +53,7 @@ def main() -> None:
         raise AssertionError("not valid")
 
     # Write out to file
-    g.serialize("abis_mapping/templates/survey_site_data_v3/validators/validator.ttl")
+    g.serialize(TEMPLATE_DIR / "validators" / "validator.ttl")
 
 
 def add_site_visit_shape(graph: rdflib.Graph, dataset_shape: rdflib.term.Node) -> rdflib.term.Node:

@@ -16,7 +16,6 @@ import rdflib
 from abis_mapping import base
 from abis_mapping import models
 import abis_mapping.templates.survey_occurrence_data_v3.mapping
-from tests import conftest
 import tests.helpers
 
 # Typing
@@ -292,7 +291,7 @@ class TestDefaultGeometryMap:
             )
         )
         assert len(graphs) == 1
-        assert not conftest.compare_graphs(graphs[0], expected)
+        assert not tests.helpers.compare_graphs(graphs[0], expected)
 
         # Make site id geo default map using values extracted previously
         val = str(
@@ -316,7 +315,7 @@ class TestDefaultGeometryMap:
         assert len(graphs) == 1
 
         # Now with the provided default map values the graph should match.
-        assert conftest.compare_graphs(graphs[0], expected)
+        assert tests.helpers.compare_graphs(graphs[0], expected)
         assert "None" not in graphs[0].serialize(format="ttl")
 
 
