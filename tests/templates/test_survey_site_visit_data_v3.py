@@ -119,6 +119,7 @@ class TestMapExtractors:
         descriptor = {
             **original_descriptor,
             "fields": [f for f in original_descriptor["fields"] if f["name"] in fieldnames],
+            "foreignKeys": [],  # remove FKs that reference fields not included
         }
 
         # Patch schema
@@ -211,6 +212,7 @@ class TestMapExtractors:
         descriptor = {
             **original_descriptor,
             "fields": [f for f in original_descriptor["fields"] if f["name"] in fieldnames],
+            "foreignKeys": [],  # remove FKs that reference fields not included
         }
 
         # Patch schema

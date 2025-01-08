@@ -69,6 +69,10 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         checks = [
             plugins.tabular.IsTabular(),
             plugins.empty.NotEmpty(),
+            plugins.mutual_inclusion.MutuallyInclusive(
+                field_names=["siteID", "siteIDSource"],
+            ),
+            plugins.site_id_or_iri_validation.SiteIdentifierCheck(),
             plugins.chronological.ChronologicalOrder(
                 field_names=["siteVisitStart", "siteVisitEnd"],
             ),
