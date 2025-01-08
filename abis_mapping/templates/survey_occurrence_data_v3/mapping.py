@@ -129,8 +129,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 plugins.mutual_inclusion.MutuallyInclusive(
                     field_names=["sensitivityCategory", "sensitivityAuthority"],
                 ),
-                plugins.chained_inclusion.ChainedInclusion(
-                    field_names=["siteVisitID", "siteID"],
+                plugins.mutual_inclusion.MutuallyInclusive(
+                    field_names=["siteID", "siteIDSource"],
+                ),
+                plugins.site_id_or_iri_validation.SiteIdentifierCheck(
+                    skip_when_missing="siteVisitID",
                 ),
             ],
         )
