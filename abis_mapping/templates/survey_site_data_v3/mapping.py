@@ -92,6 +92,20 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     # Extra custom checks
                     plugins.tabular.IsTabular(),
                     plugins.empty.NotEmpty(),
+                    # Valid of the ID-related fields
+                    plugins.site_id_or_iri_validation.SiteIdentifierCheck(),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=["siteID", "siteIDSource"],
+                    ),
+                    plugins.unique_together.UniqueTogether(
+                        fields=["siteID", "siteIDSource"],
+                        null_handling="skip",
+                        error_message_template=(
+                            "siteID and siteIDSource must be unique for each Row. "
+                            '[{values}] have already been used in the row at position "{first_seen_row_number}"'
+                        ),
+                    ),
+                    # Other fields' validation
                     plugins.sites_geometry.SitesGeometry(
                         occurrence_site_ids=set(site_id_map),
                     ),
@@ -235,8 +249,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         """
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site visit and occurrence template mapping, ensuring they will resolve properly.
-        site_id: str = row["siteID"]
-        site = utils.iri_patterns.site_iri(base_iri, site_id)
+        site_id: str | None = row["siteID"]
+        site = utils.iri_patterns.site_iri(base_iri, site_id)  # type: ignore[arg-type]  # TODO fix when doing mapping
 
         # Conditionally create uris dependent on siteIDSource
         site_id_src: str | None = row["siteIDSource"]
@@ -430,7 +444,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             base_iri: Namespace used to construct IRIs
         """
         # Extract relevant values
-        site_id = row["siteID"]
+        site_id: str | None = row["siteID"]
         site_name = row["siteName"]
         site_type = row["siteType"]
         site_description = row["siteDescription"]

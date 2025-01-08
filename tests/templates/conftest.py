@@ -327,7 +327,7 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
                 ),
                 expected=None,
                 should_validate=False,
-                expected_error_codes={"unique-error", "primary-key"},
+                expected_error_codes={"unique-together"},
             ),
         ],
         metadata_sampling_type="systematic survey",

@@ -3,13 +3,12 @@
     {
       "name": "siteID",
       "title": "Site ID",
-      "description": "A unique within dataset string identifier for the site. Valid values include strings that are used specifically for this survey or URIs from BDR Sites that have been established in previous surveys.",
+      "description": "An identifier for the site. Within the dataset, should be unique per siteIDSource",
       "example": "P1",
       "type": "string",
       "format": "default",
       "constraints": {
-        "required": true,
-        "unique": true
+        "required": false
       }
     },
     {
@@ -21,6 +20,18 @@
       "format": "default",
       "constraints": {
         "required": false
+      }
+    },
+    {
+      "name": "existingBDRSiteIRI",
+      "title": "Existing BDR Site IRI",
+      "description": "Verbatim IRI of an existing Site in the BDR that new information is being added to. The IRI will typically start with https://linked.data.gov.au/dataset/bdr/. This field can be supplied as an alternative, or in addition, to siteID + siteIDSource when a Site already exists in the BDR.",
+      "example": "https://linked.data.gov.au/dataset/bdr/site/TERN/P1",
+      "type": "string",
+      "format": "uri",
+      "constraints": {
+        "required": false,
+        "unique": true
       }
     },
     {
@@ -211,7 +222,6 @@
         "required": false
       }
     }
-  ],
-  "primaryKey": "siteID"
+  ]
 }
 

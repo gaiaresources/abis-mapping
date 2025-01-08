@@ -93,7 +93,23 @@ For example, `fieldNotes`, `continent`, `country`, `countryCode`, `stateProvince
 
 ## CHANGELOG
 
-No changes from Systematic Survey Site Data Template v2.0.0
+Changes from Systematic Survey Site Data Template v2.0.0
+
+### CHANGED FIELDS
+
+* Add field [`existingBDRSiteIRI`](#existingBDRSiteIRI-field). Type is URI, can be blank.
+Rows with values must be unique within a template.
+
+### CHANGED VALIDATION
+
+* [`siteID`](#siteID-field) is no longer required and unique on its own, instead;
+* [`siteID`](#siteID-field) and [`siteIDSource`](#siteIDSource-field) are conditionally mandatory.
+Must be provided together, or neither provided.
+* [`siteID`](#siteID-field) and [`siteIDSource`](#siteIDSource-field) are unique together,
+i.e. each row with these fields must have a unique combination.
+* Either [`siteID`](#siteID-field) and [`siteIDSource`](#siteIDSource-field),
+or [`existingBDRSiteIRI`](#existingBDRSiteIRI-field),
+or both, must be provided in each row.
 
 ## APPENDICES
 ### APPENDIX-I: Vocabulary List
