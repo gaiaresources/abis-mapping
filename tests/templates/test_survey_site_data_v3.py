@@ -118,35 +118,38 @@ class TestSiteIDForeignKeys:
 
         name: str
         raws: list[list[str]]
-        site_id_map: dict[str, bool]
-        expected_error_codes: set[str] = set()
+        site_id_map: dict[models.identifier.SiteIdentifier, bool]
+        expected_error_codes: list[str] | None
 
     scenarios: list[Scenario] = [
         Scenario(
             name="valid_with_site_id_map",
             raws=[
-                ["site1", "-38.94", "115.21", "POINT(30 10)", "WGS84"],
-                ["site2", "-38.94", "115.21", "", "GDA2020"],
-                ["site3", "", "", "LINESTRING(30 10, 10 30, 40 40)", "GDA94"],
-                ["site4", "", "", "", ""],
-                # Following shows that non-url safe siteIDs get endcoded when mapping.
-                ["site a", "-38.94", "115.21", "", "GDA2020"],
-                ["site/b", "-38.94", "115.21", "", "GDA2020"],
-                [r"site\c", "-38.94", "115.21", "", "GDA2020"],
-                ["site\nd", "-38.94", "115.21", "", "GDA2020"],
+                # has geometry
+                ["site1", "ORG", "", "-38.94", "115.21", "POINT(30 10)", "WGS84"],
+                ["site2", "ORG", "", "-38.94", "115.21", "", "GDA2020"],
+                ["site3", "ORG", "", "", "", "LINESTRING(30 10, 10 30, 40 40)", "GDA94"],
+                # missing geometry, but has a Site in the map.
+                ["site4", "ORG", "", "", "", "", ""],
+                ["", "", "https://example.com/EXISTING-SITE-IRI", "", "", "", ""],
             ],
             site_id_map={
-                "site4": True,
-                "siteNone": True,
+                models.identifier.SiteIdentifier(
+                    site_id="site4", site_id_source="ORG", existing_bdr_site_iri=None
+                ): True,
+                models.identifier.SiteIdentifier(
+                    site_id=None, site_id_source=None, existing_bdr_site_iri="https://example.com/EXISTING-SITE-IRI"
+                ): True,
             },
+            expected_error_codes=None,
         ),
         Scenario(
             name="invalid_missing_geometry_and_not_in_map",
             raws=[
-                ["site1", "", "", "", ""],
+                ["site1", "ORG", "", "", "", "", ""],
             ],
-            site_id_map={"site2": True},
-            expected_error_codes={"row-constraint"},
+            site_id_map={},
+            expected_error_codes=["row-constraint"],
         ),
     ]
 
@@ -163,7 +166,15 @@ class TestSiteIDForeignKeys:
             mocker (pytest_mock.MockerFixture): The mocker fixture.
         """
         # Construct fake data
-        rawh = ["siteID", "decimalLatitude", "decimalLongitude", "footprintWKT", "geodeticDatum"]
+        rawh = [
+            "siteID",
+            "siteIDSource",
+            "existingBDRSiteIRI",
+            "decimalLatitude",
+            "decimalLongitude",
+            "footprintWKT",
+            "geodeticDatum",
+        ]
         all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in scenario.raws]
 
         # Get mapper
@@ -191,10 +202,13 @@ class TestSiteIDForeignKeys:
         )
 
         # Assert
-        assert report.valid == (scenario.expected_error_codes == set())
-        if not report.valid:
-            error_codes = [code for codes in report.flatten(["type"]) for code in codes]
-            assert set(error_codes) == scenario.expected_error_codes
+        if scenario.expected_error_codes is None:
+            assert report.valid
+        else:
+            assert not report.valid
+            assert len(report.tasks) == 1
+            error_codes = [error.type for error in report.tasks[0].errors]
+            assert error_codes == scenario.expected_error_codes
 
 
 @pytest.mark.parametrize(

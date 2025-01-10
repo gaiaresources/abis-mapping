@@ -213,14 +213,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
     def extract_site_id_keys(
         self,
         data: base.types.ReadableType,
-    ) -> dict[str, bool]:
+    ) -> dict[models.identifier.SiteIdentifier, bool]:
         """Extract site id key values from the data.
 
         Args:
             data (base.types.ReadableType): Raw data to be mapped.
 
         Returns:
-            dict[str, bool]: Keys are the site id values encountered
+            dict[models.identifier.SiteIdentifier, bool]: Keys are the site id values encountered
                 in the data, values are all 'True',
         """
         # Construct schema
@@ -234,10 +234,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             encoding="utf-8",
         )
 
+        result: dict[models.identifier.SiteIdentifier, bool] = {}
         # Iterate over rows to extract values
         with resource.open() as r:
-            # Construct dictionary and return
-            return {row["siteID"]: True for row in r.row_stream if row["siteID"] is not None}
+            for row in r.row_stream:
+                site_identifier = models.identifier.SiteIdentifier.from_row(row)
+                if site_identifier:
+                    result[site_identifier] = True
+        return result
 
     def extract_site_visit_id_keys(
         self,

@@ -63,13 +63,15 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             **kwargs (Any): Additional keyword arguments.
 
         Keyword Args:
-            site_id_map (dict[str, bool]): Site ids present in the occurrence template.
+            site_id_map (dict[models.identifier.SiteIdentifier, bool]): Site ids present in the occurrence template.
 
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
         # Extract keyword arguments
-        site_id_map: dict[str, bool] = kwargs.get("site_id_map", {})
+        site_id_map: dict[models.identifier.SiteIdentifier, bool] = kwargs.get("site_id_map", {})
+        if site_id_map is None:
+            raise ValueError("If provided, site_id_map must not be None")
 
         # Construct schema
         schema = self.extra_fields_schema(
@@ -107,7 +109,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     ),
                     # Other fields' validation
                     plugins.sites_geometry.SitesGeometry(
-                        occurrence_site_ids=set(site_id_map),
+                        occurrence_site_identifiers=site_id_map,
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["relatedSiteID", "relationshipToRelatedSite"],

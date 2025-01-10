@@ -580,14 +580,26 @@ def test_extract_site_id_keys(
         mocker (pytest_mock.MockerFixture): The mocker fixture.
     """
     # Construct a raw data set only using fields relevant to method.
-    rawh = ["siteID"]
-    raws = [["site1"], [""], ["site2"], ["site3"], ["site3"]]
+    rawh = ["siteID", "siteIDSource", "existingBDRSiteIRI"]
+    raws = [
+        ["site1", "ORG", ""],
+        ["", "", ""],
+        ["site2", "ORG", ""],
+        ["site2", "ORG", ""],
+        ["", "", "SITE-IRI"],
+    ]
 
     # Amalgamate into a list of dicts
     all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in raws]
 
     # Modify schema to only include the necessary fields
-    descriptor = {"fields": [{"name": "siteID", "type": "string"}]}
+    descriptor = {
+        "fields": [
+            {"name": "siteID", "type": "string"},
+            {"name": "siteIDSource", "type": "string"},
+            {"name": "existingBDRSiteIRI", "type": "string"},
+        ]
+    }
     mocker.patch.object(base.mapper.ABISMapper, "schema").return_value = descriptor
 
     # Create raw data csv string
@@ -599,9 +611,9 @@ def test_extract_site_id_keys(
     csv_data = output.getvalue().encode("utf-8")
 
     expected = {
-        "site1": True,
-        "site2": True,
-        "site3": True,
+        models.identifier.SiteIdentifier(site_id="site1", site_id_source="ORG", existing_bdr_site_iri=None): True,
+        models.identifier.SiteIdentifier(site_id="site2", site_id_source="ORG", existing_bdr_site_iri=None): True,
+        models.identifier.SiteIdentifier(site_id=None, site_id_source=None, existing_bdr_site_iri="SITE-IRI"): True,
     }
 
     # Invoke method
