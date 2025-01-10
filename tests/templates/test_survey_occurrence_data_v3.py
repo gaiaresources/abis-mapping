@@ -86,114 +86,132 @@ class TestDefaultGeometryMap:
 
         name: str
         raws: list[list[str]]
-        expected_error_codes: set[str] = set()
-        default_map: dict[str, str]
+        expected_error_codes: list[str] | None
+        default_map: dict[models.identifier.SiteIdentifier, str]
 
     # List of scenarios for the apply_validation method tests
     scenarios: list[Scenario] = [
         Scenario(
             name="valid_with_default_map",
             raws=[
-                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["site1", "", "", "", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["site3", "-38.94", "115.21", "AGD66", "", "", "", ""],
-                ["site4", "-38.94", "115.21", "EPSG:4202", "", "", "", ""],
+                ["R1", "site1", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R2", "site1", "ORG", "", "", "", ""],
+                ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R4", "site3", "ORG", "", "-38.94", "115.21", "AGD66"],
+                ["R5", "site4", "ORG", "", "-38.94", "115.21", "EPSG:4202"],
             ],
-            default_map={"site1": "something"},
+            default_map={
+                (
+                    models.identifier.SiteIdentifier(site_id="site1", site_id_source="ORG", existing_bdr_site_iri=None)
+                ): "something",
+            },
+            expected_error_codes=None,
         ),
         Scenario(
             name="invalid_missing_from_default_map",
             raws=[
-                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["site1", "", "", "", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["R1", "site1", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R2", "site1", "ORG", "", "", "", ""],
+                ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
-            default_map={"site3": "something"},
-            expected_error_codes={"row-constraint"},
+            default_map={},
+            expected_error_codes=["row-constraint"],
         ),
         Scenario(
             name="invalid_survey_occurrence_requires_latlong",
             raws=[
-                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["", "", "", "", "", "", "VU", "VIC"],
-                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["R1", "site1", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R2", "", "", "", "", "", ""],
+                ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
             default_map={},
-            expected_error_codes={"row-constraint"},
+            expected_error_codes=["row-constraint"],
         ),
         Scenario(
             name="valid_survey_occurrence_requires_latlong",
             raws=[
-                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["", "-38.94", "115.21", "WGS84", "", "", "VU", "VIC"],
-                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["R1", "site1", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R2", "", "", "", "-38.94", "115.21", "WGS84"],
+                ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
                 # The following show that non-url safe characters get encoded during mapping.
-                ["site a", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["site/b", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["site%20c", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["R4", "site a", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R5", "site/b", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R6", "site%20c", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
             default_map={},
+            expected_error_codes=None,
         ),
         Scenario(
             name="invalid_missing_long",
             raws=[
-                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["site1", "-38.94", "", "WGS84", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["R1", "site1", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R2", "site1", "ORG", "", "-38.94", "", "WGS84"],
+                ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
-            default_map={"site1": "something"},
-            expected_error_codes={"row-constraint"},
+            default_map={
+                (
+                    models.identifier.SiteIdentifier(site_id="site1", site_id_source="ORG", existing_bdr_site_iri=None)
+                ): "something",
+            },
+            expected_error_codes=["row-constraint"],
         ),
         Scenario(
             name="invalid_missing_lat",
             raws=[
-                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["site1", "", "115.21", "WGS84", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["R1", "site1", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R2", "site1", "ORG", "", "", "115.21", "WGS84"],
+                ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
-            default_map={"site1": "something"},
-            expected_error_codes={"row-constraint"},
+            default_map={
+                (
+                    models.identifier.SiteIdentifier(site_id="site1", site_id_source="ORG", existing_bdr_site_iri=None)
+                ): "something",
+            },
+            expected_error_codes=["row-constraint"],
         ),
         Scenario(
             name="invalid_survey_occurrence_missing_lat",
             raws=[
-                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["", "", "115.21", "WGS84", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["R1", "site1", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R2", "", "", "", "", "115.21", "WGS84"],
+                ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
             default_map={},
-            expected_error_codes={"row-constraint"},
+            expected_error_codes=["row-constraint", "row-constraint"],
         ),
         Scenario(
             name="invalid_survey_occurrence_missing_long",
             raws=[
-                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["", "-38.94", "", "WGS84", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["R1", "site1", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R2", "", "", "", "-38.94", "", "WGS84"],
+                ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
             default_map={},
-            expected_error_codes={"row-constraint"},
+            expected_error_codes=["row-constraint"],
         ),
         Scenario(
             name="invalid_missing_geodetic_datum",
             raws=[
-                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["site1", "-38.94", "115.21", "", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["R1", "site1", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R2", "site1", "ORG", "", "-38.94", "115.21", ""],
+                ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
-            default_map={"site1": "something"},
-            expected_error_codes={"row-constraint"},
+            default_map={
+                (
+                    models.identifier.SiteIdentifier(site_id="site1", site_id_source="ORG", existing_bdr_site_iri=None)
+                ): "something",
+            },
+            expected_error_codes=["row-constraint"],
         ),
         Scenario(
             name="invalid_survey_occurrence_missing_geodetic_datum",
             raws=[
-                ["site1", "-38.94", "115.21", "WGS84", "", "", "", ""],
-                ["", "-38.94", "115.21", "", "", "", "", ""],
-                ["site2", "-38.94", "115.21", "WGS84", "", "", "", ""],
+                ["R1", "site1", "ORG", "", "-38.94", "115.21", "WGS84"],
+                ["R2", "", "", "", "-38.94", "115.21", ""],
+                ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
             default_map={},
-            expected_error_codes={"row-constraint"},
+            expected_error_codes=["row-constraint"],
         ),
     ]
 
@@ -212,14 +230,13 @@ class TestDefaultGeometryMap:
         """
         # Construct fake data
         rawh = [
+            "providerRecordID",
             "siteID",
+            "siteIDSource",
+            "existingBDRSiteIRI",
             "decimalLatitude",
             "decimalLongitude",
             "geodeticDatum",
-            "organismQuantity",
-            "organismQuantityType",
-            "threatStatus",
-            "conservationAuthority",
         ]
         all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in scenario.raws]
 
@@ -247,10 +264,13 @@ class TestDefaultGeometryMap:
         )
 
         # Assert
-        assert report.valid == (scenario.expected_error_codes == set())
-        if not report.valid:
-            error_codes = [code for codes in report.flatten(["type"]) for code in codes]
-            assert set(error_codes) == scenario.expected_error_codes
+        if scenario.expected_error_codes is None:
+            assert report.valid
+        else:
+            assert not report.valid
+            assert len(report.tasks) == 1
+            error_codes = [error.type for error in report.tasks[0].errors]
+            assert error_codes == scenario.expected_error_codes
 
     def test_apply_mapping(self, mapper: Mapper) -> None:
         """Tests apply_mapping method with default geometry map.

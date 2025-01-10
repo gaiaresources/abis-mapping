@@ -154,7 +154,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
     def extract_geometry_defaults(
         self,
         data: base.types.ReadableType,
-    ) -> dict[str, str]:
+    ) -> dict[models.identifier.SiteIdentifier, str]:
         """Constructs a dictionary mapping site id to default WKT.
 
         The resulting string WKT returned can then be used as the missing
@@ -164,10 +164,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             data (base.types.ReadableType): Raw data to be mapped.
 
         Returns:
-            dict[str, str]: Keys are the site id; values are the
-                appropriate point WKT serialized string. If none then
-                there is no siteID key created. Values include the geodetic
-                datum uri.
+            Mapping with SiteIdentifier as the keys; values are the
+            appropriate point WKT serialized string. If none then
+            there is no siteID key created. Values include the geodetic
+            datum uri.
         """
         # Construct schema
         schema = frictionless.Schema.from_descriptor(self.schema())
@@ -183,14 +183,14 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Context manager for row streaming
         with resource.open() as r:
             # Create empty dictionary to hold mapping values
-            result: dict[str, str] = {}
+            result: dict[models.identifier.SiteIdentifier, str] = {}
             for row in r.row_stream:
                 # Extract values
-                site_id: str | None = row["siteID"]
+                site_identifier = models.identifier.SiteIdentifier.from_row(row)
 
-                # Check for siteID, even though siteID is a mandatory field, it can be missing here
+                # Check there is an identifier, even though it is mandatory field, it can be missing here
                 # because this method is called for cross-validation, regardless of if this template is valid.
-                if not site_id:
+                if not site_identifier:
                     continue
 
                 footprint_wkt: shapely.geometry.base.BaseGeometry | None = row["footprintWKT"]
@@ -206,7 +206,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     # Default to using the footprint wkt + geodetic datum
                     if footprint_wkt is not None:
                         # Create string and add to map for site id
-                        result[site_id] = str(
+                        result[site_identifier] = str(
                             models.spatial.Geometry(
                                 raw=footprint_wkt.centroid,
                                 datum=datum,
@@ -217,7 +217,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     # If not footprint then we revert to using supplied longitude & latitude
                     if longitude is not None and latitude is not None:
                         # Create string and add to map for site id
-                        result[site_id] = str(
+                        result[site_identifier] = str(
                             models.spatial.Geometry(
                                 raw=shapely.Point([float(longitude), float(latitude)]),
                                 datum=datum,

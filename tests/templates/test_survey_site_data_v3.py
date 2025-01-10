@@ -13,6 +13,7 @@ import rdflib
 
 # Local
 from abis_mapping import base
+from abis_mapping import models
 import abis_mapping.templates.survey_site_data_v3.mapping
 
 # Typing
@@ -28,20 +29,31 @@ def test_extract_geometry_defaults(
         mocker: The mocker fixture.
     """
     # Construct a dummy raw data set using only the fields that matter to the method.
-    rawh = ["siteID", "footprintWKT", "decimalLongitude", "decimalLatitude", "geodeticDatum"]
+    rawh = [
+        "siteID",
+        "siteIDSource",
+        "existingBDRSiteIRI",
+        "footprintWKT",
+        "decimalLongitude",
+        "decimalLatitude",
+        "geodeticDatum",
+    ]
     raws = [
-        ["site1", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", "WGS84"],
-        ["site2", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "10.0", "20.0", "WGS84"],
-        ["site3", "", "10.0", "20.0", "WGS84"],
-        ["site4", "", "", "", ""],
-        ["site5", "", "10.0", "20.0", ""],
-        ["site6", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", ""],
-        ["site7", "", "10.0", "20.0", "AGD66"],
-        ["site8", "", "11.0", "21.0", "EPSG:4202"],
-        ["site9", "", "12.0", "22.0", "GRS20"],
-        # rows with missing siteID should not be included in map
-        ["", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", "WGS84"],
-        ["", "", "10.0", "20.0", "WGS84"],
+        ["site1", "ORG", "", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", "WGS84"],
+        ["site2", "ORG", "", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "10.0", "20.0", "WGS84"],
+        ["site3", "ORG", "", "", "10.0", "20.0", "WGS84"],
+        ["site4", "ORG", "", "", "10.0", "20.0", "AGD66"],
+        ["site5", "ORG", "", "", "11.0", "21.0", "EPSG:4202"],
+        ["", "", "SITE-IRI", "", "15.0", "25.0", "WGS84"],
+        # rows with no datum will be omitted from map
+        ["site7", "ORG", "", "", "", "", ""],
+        ["site8", "ORG", "", "", "10.0", "20.0", ""],
+        ["site9", "ORG", "", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", ""],
+        # Row with invalid datum will be omitted from map
+        ["site10", "ORG", "", "", "12.0", "22.0", "GRS20"],
+        # rows with missing site identifier should not be included in map
+        ["", "", "", "POLYGON((0 0, 0 5, 5 5, 5 0, 0 0))", "", "", "WGS84"],
+        ["", "", "", "", "10.0", "20.0", "WGS84"],
     ]
     # Amalgamate into a list of dicts
     all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in raws]
@@ -53,6 +65,8 @@ def test_extract_geometry_defaults(
     descriptor = {
         "fields": [
             {"name": "siteID", "type": "string"},
+            {"name": "siteIDSource", "type": "string"},
+            {"name": "existingBDRSiteIRI", "type": "string"},
             {"name": "footprintWKT", "type": "wkt"},
             {"name": "decimalLongitude", "type": "number"},
             {"name": "decimalLatitude", "type": "number"},
@@ -70,11 +84,24 @@ def test_extract_geometry_defaults(
     csv_data = output.getvalue().encode("utf-8")
 
     expected = {
-        "site1": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (2.5 2.5)",
-        "site2": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (2.5 2.5)",
-        "site3": "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (20 10)",
-        "site7": "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (20 10)",
-        "site8": "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (21 11)",
+        (
+            models.identifier.SiteIdentifier(site_id="site1", site_id_source="ORG", existing_bdr_site_iri=None)
+        ): "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (2.5 2.5)",
+        (
+            models.identifier.SiteIdentifier(site_id="site2", site_id_source="ORG", existing_bdr_site_iri=None)
+        ): "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (2.5 2.5)",
+        (
+            models.identifier.SiteIdentifier(site_id="site3", site_id_source="ORG", existing_bdr_site_iri=None)
+        ): "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (20 10)",
+        (
+            models.identifier.SiteIdentifier(site_id="site4", site_id_source="ORG", existing_bdr_site_iri=None)
+        ): "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (20 10)",
+        (
+            models.identifier.SiteIdentifier(site_id="site5", site_id_source="ORG", existing_bdr_site_iri=None)
+        ): "<http://www.opengis.net/def/crs/EPSG/0/4202> POINT (21 11)",
+        (
+            models.identifier.SiteIdentifier(site_id=None, site_id_source=None, existing_bdr_site_iri="SITE-IRI")
+        ): "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (25 15)",
     }
     # Invoke method
     assert hasattr(mapper, "extract_geometry_defaults")

@@ -81,8 +81,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         Keyword Args:
             survey_id_set (Set[str]): Set of surveyIDs from the metadata template.
-            site_id_geometry_map (dict[str, str]): Default values to use for geometry
-                for given siteID.
+            site_id_geometry_map (dict[models.identifier.SiteIdentifier, str]): Default values to use for geometry
+                for given site identifier.
             site_visit_id_temporal_map (dict[str, str]): Default RDF (serialized as turtle)
                 to use for temporal entity for given siteVisitID.
             site_visit_id_site_id_map (dict[str, models.identifier.SiteIdentifier | None]): Valid SiteIdentifier for a given site visit ID.
@@ -179,9 +179,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Perform a default lookup check based on passed in map.
             checklist.add_check(
                 plugins.default_lookup.DefaultLookup(
-                    key_field="siteID",
+                    key_field=models.identifier.SiteIdentifier.from_row,
                     value_field="decimalLatitude",
                     default_map=site_id_geometry_map,
+                    no_key_error_template=(
+                        "decimalLatitude, decimalLongitude and geodeticDatum must be provided, "
+                        "or siteID and siteIDSource, or existingBDRSiteIRI, must be provided to use the geometry of a Site."
+                    ),
+                    no_default_error_template="Could not find a Site with {key_value} to use for geometry.",
                 )
             )
             # Mutual inclusion check to close out the possibility of one missing.

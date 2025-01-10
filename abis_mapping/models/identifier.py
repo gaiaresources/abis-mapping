@@ -59,3 +59,10 @@ class SiteIdentifier:
 
         # Otherwise return None.
         return None
+
+    def __format__(self, format_spec: str) -> str:
+        """Format the SiteIdentifier how it should be represented in error messages."""
+        if self.existing_bdr_site_iri:
+            return f'existingBDRSiteIRI "{self.existing_bdr_site_iri}"'
+        else:
+            return f'siteID "{self.site_id}" and siteIDSource "{self.site_id_source}"'
