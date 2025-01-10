@@ -101,14 +101,15 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
     def extract_site_visit_id_to_site_id_map(
         self,
         data: base.types.ReadableType,
-    ) -> dict[str, str]:
-        """Constructs a dictionary mapping site visit id to site id.
+    ) -> dict[str, models.identifier.SiteIdentifier | None]:
+        """Constructs a dictionary mapping site visit id to SiteIdentifier.
 
         Args:
             data: Raw data to be mapped.
 
         Returns:
-            Map with site visit id for keys and site id for values.
+            Map with site visit id for keys and SiteIdentifier for values,
+            or None for value if there is no identifier.
         """
         # Construct schema
         schema = frictionless.Schema.from_descriptor(self.schema())
@@ -117,14 +118,20 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         resource = frictionless.Resource(source=data, format="csv", schema=schema, encoding="utf-8")
 
         # Declare result reference
-        result: dict[str, str] = {}
+        result: dict[str, models.identifier.SiteIdentifier | None] = {}
 
         # Context manager for row streaming
         with resource.open() as r:
             for row in r.row_stream:
                 # Check that the cells have values and add to map
-                if (svid := row["siteVisitID"]) is not None and (sid := row["siteID"]) is not None:
-                    result[svid] = sid
+                site_visit_id: str | None = row["siteVisitID"]
+                site_identifier = models.identifier.SiteIdentifier.from_row(row)
+                # Put siteVisitID in the map, even when site_identifier is None,
+                # So the other templates have access to all the provided siteVisitIDs.
+                # This lets other templates differentiate between 'a siteVisitID not in this template',
+                # and 'a siteVisitID in this template but with no Site identifier'.
+                if site_visit_id:
+                    result[site_visit_id] = site_identifier
 
         # Return
         return result

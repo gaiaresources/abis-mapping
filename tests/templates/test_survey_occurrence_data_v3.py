@@ -447,32 +447,53 @@ class TestSiteVisitIDSiteIDMap:
         """Dataclass to hold the scenario parameters."""
 
         name: str
-        raws: list[list[str]]
-        expected_error_codes: set[str] = set()
-        lookup_map: dict[str, str]
+        raws: list[list[str | None]]
+        expected_error_codes: list[str] | None
+        lookup_map: dict[str, models.identifier.SiteIdentifier | None]
 
     scenarios: list[Scenario] = [
         Scenario(
             name="valid_with_default_map",
             raws=[
-                ["SV1", "S1"],
-                ["SV2", "S1"],
-                ["SV3", "S1"],
-                ["SV4", "S1"],
-                ["", "S1"],
+                ["SV1", "S1", "ORG", None],
+                ["SV2", "S2", "ORG", None],
+                ["SV3", None, None, "https://linked.data.gov.au/dataset/bdr/site/ORG/S3"],
             ],
-            lookup_map={"SV1": "S1", "SV2": "S1", "SV3": "S1", "SV4": "S1"},
+            lookup_map={
+                "SV1": None,
+                "SV2": models.identifier.SiteIdentifier(
+                    site_id="S2",
+                    site_id_source="ORG",
+                    existing_bdr_site_iri=None,
+                ),
+                "SV3": models.identifier.SiteIdentifier(
+                    site_id=None,
+                    site_id_source=None,
+                    existing_bdr_site_iri="https://linked.data.gov.au/dataset/bdr/site/ORG/S3",
+                ),
+            },
+            expected_error_codes=None,
         ),
         Scenario(
             name="invalid_with_default_map",
             raws=[
-                ["SV1", "S1"],
-                ["SV2", "S1"],
-                ["SV3", "S1"],
-                ["SV4", "S1"],
+                ["SV1", "S1", "ORG", None],
+                ["SV2", "S1", "ORG", None],
+                ["SV3", None, None, "https://linked.data.gov.au/dataset/bdr/site/ORG/S1"],
             ],
-            lookup_map={"SV2": "S2"},
-            expected_error_codes={"row-constraint"},
+            lookup_map={
+                "SV2": models.identifier.SiteIdentifier(
+                    site_id="S2",
+                    site_id_source="ORG",
+                    existing_bdr_site_iri=None,
+                ),
+                "SV3": models.identifier.SiteIdentifier(
+                    site_id=None,
+                    site_id_source=None,
+                    existing_bdr_site_iri="https://linked.data.gov.au/dataset/bdr/site/ORG/S3",
+                ),
+            },
+            expected_error_codes=["constraint-error", "row-constraint", "row-constraint"],
         ),
     ]
 
@@ -493,6 +514,8 @@ class TestSiteVisitIDSiteIDMap:
         rawh = [
             "siteVisitID",
             "siteID",
+            "siteIDSource",
+            "existingBDRSiteIRI",
         ]
         all_raw = [{hname: val for hname, val in zip(rawh, ln, strict=True)} for ln in scenario.raws]
 
@@ -518,10 +541,13 @@ class TestSiteVisitIDSiteIDMap:
         )
 
         # Assert
-        assert report.valid == (scenario.expected_error_codes == set())
-        if not report.valid:
-            error_codes = [code for codes in report.flatten(["type"]) for code in codes]
-            assert set(error_codes) == scenario.expected_error_codes
+        if scenario.expected_error_codes is None:
+            assert report.valid
+        else:
+            assert not report.valid
+            assert len(report.tasks) == 1
+            error_codes = [error.type for error in report.tasks[0].errors]
+            assert error_codes == scenario.expected_error_codes
 
 
 def test_extract_site_id_keys(
