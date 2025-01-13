@@ -41,12 +41,15 @@ def survey_iri(
     )
 
 
-def site_iri(
+# TODO: Remove once SSD v2 is removed.
+def legacy_site_iri(
     base_iri: rdflib.Namespace,
     site_id: str,
     /,
 ) -> rdflib.URIRef:
     """Get the IRI for the tern:Site node, constructed from the siteID field.
+
+    # NOTE this pattern is deprecated, is no longer used from SSD v3 onwards.
 
     This IRI is used in mapping multiple Systematic Survey template,
     and needs to be the same for all of them.

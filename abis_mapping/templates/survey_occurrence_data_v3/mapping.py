@@ -564,7 +564,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Create Tern Site IRI, depending on the siteID field
         site_id: str | None = row["siteID"]
         if site_id:
-            site = utils.iri_patterns.site_iri(base_iri, site_id)
+            site = utils.iri_patterns.legacy_site_iri(base_iri, site_id)
         else:
             site = None
 
