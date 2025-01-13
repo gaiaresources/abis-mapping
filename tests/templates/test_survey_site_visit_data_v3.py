@@ -119,6 +119,7 @@ class TestMapExtractors:
         descriptor = {
             **original_descriptor,
             "fields": [f for f in original_descriptor["fields"] if f["name"] in fieldnames],
+            "foreignKeys": [],  # remove FKs that reference fields not included
         }
 
         # Patch schema
@@ -205,7 +206,7 @@ class TestMapExtractors:
         original_descriptor = mapping.SurveySiteVisitMapper.schema()
 
         # Define fields of relevance for tests
-        fieldnames = ["surveyID", "siteID", "siteVisitID"]
+        fieldnames = ["surveyID", "siteID", "siteIDSource", "existingBDRSiteIRI", "siteVisitID"]
 
         # Make descriptor only include these fields
         descriptor = {
@@ -217,29 +218,34 @@ class TestMapExtractors:
         mocked_schema = mocker.patch.object(mapping.SurveySiteVisitMapper, "schema", return_value=descriptor)
 
         # Declare some raw data
-        expected_rows: list[dict[str, str | None]] = [
+        rows: list[dict[str, str | None]] = [
+            # rows included in the map:
             {
                 "surveyID": "A",
                 "siteID": "S1",
+                "siteIDSource": "ORG",
+                "existingBDRSiteIRI": None,
                 "siteVisitID": "SV1",
             },
             {
                 "surveyID": "A",
-                "siteID": "S1",
+                "siteID": None,
+                "siteIDSource": None,
+                "existingBDRSiteIRI": "https://linked.data.gov.au/dataset/bdr/site/ORG/S2",
                 "siteVisitID": "SV2",
             },
-        ]
-        excluded_rows: list[dict[str, str | None]] = [
-            # The map should exclude these since there are no
-            # values for siteID
             {
                 "surveyID": "A",
-                "siteID": "",
+                "siteID": "S3",
+                "siteIDSource": "ORG",
+                "existingBDRSiteIRI": "https://linked.data.gov.au/dataset/bdr/site/ORG/S3",
                 "siteVisitID": "SV3",
             },
             {
                 "surveyID": "A",
                 "siteID": None,
+                "siteIDSource": None,
+                "existingBDRSiteIRI": None,
                 "siteVisitID": "SV4",
             },
             # map should exclude these because there is no siteVisitID
@@ -255,13 +261,30 @@ class TestMapExtractors:
             },
         ]
         # Construct expected map
-        expected = {r["siteVisitID"]: r["siteID"] for r in expected_rows}
+        expected: dict[str, models.identifier.SiteIdentifier | None] = {
+            "SV1": models.identifier.SiteIdentifier(
+                site_id="S1",
+                site_id_source="ORG",
+                existing_bdr_site_iri=None,
+            ),
+            "SV2": models.identifier.SiteIdentifier(
+                site_id=None,
+                site_id_source=None,
+                existing_bdr_site_iri="https://linked.data.gov.au/dataset/bdr/site/ORG/S2",
+            ),
+            "SV3": models.identifier.SiteIdentifier(
+                site_id=None,
+                site_id_source=None,
+                existing_bdr_site_iri="https://linked.data.gov.au/dataset/bdr/site/ORG/S3",
+            ),
+            "SV4": None,
+        }
 
         # Create raw data csv string
         output = io.StringIO()
-        csv_writer = csv.DictWriter(output, fieldnames=expected_rows[0].keys())
+        csv_writer = csv.DictWriter(output, fieldnames=fieldnames)
         csv_writer.writeheader()
-        for row in expected_rows + excluded_rows:
+        for row in rows:
             csv_writer.writerow(row)
         csv_data = output.getvalue().encode("utf-8")
 

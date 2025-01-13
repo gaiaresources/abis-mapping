@@ -63,13 +63,15 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             **kwargs (Any): Additional keyword arguments.
 
         Keyword Args:
-            site_id_map (dict[str, bool]): Site ids present in the occurrence template.
+            site_id_map (dict[models.identifier.SiteIdentifier, bool]): Site ids present in the occurrence template.
 
         Returns:
             frictionless.Report: Validation report for the specified data.
         """
         # Extract keyword arguments
-        site_id_map: dict[str, bool] = kwargs.get("site_id_map", {})
+        site_id_map: dict[models.identifier.SiteIdentifier, bool] = kwargs.get("site_id_map", {})
+        if site_id_map is None:
+            raise ValueError("If provided, site_id_map must not be None")
 
         # Construct schema
         schema = self.extra_fields_schema(
@@ -92,8 +94,22 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     # Extra custom checks
                     plugins.tabular.IsTabular(),
                     plugins.empty.NotEmpty(),
+                    # Valid of the ID-related fields
+                    plugins.site_id_or_iri_validation.SiteIdentifierCheck(),
+                    plugins.mutual_inclusion.MutuallyInclusive(
+                        field_names=["siteID", "siteIDSource"],
+                    ),
+                    plugins.unique_together.UniqueTogether(
+                        fields=["siteID", "siteIDSource"],
+                        null_handling="skip",
+                        error_message_template=(
+                            "siteID and siteIDSource must be unique for each Row. "
+                            '[{values}] have already been used in the row at position "{first_seen_row_number}"'
+                        ),
+                    ),
+                    # Other fields' validation
                     plugins.sites_geometry.SitesGeometry(
-                        occurrence_site_ids=set(site_id_map),
+                        occurrence_site_identifiers=site_id_map,
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
                         field_names=["relatedSiteID", "relationshipToRelatedSite"],
@@ -140,7 +156,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
     def extract_geometry_defaults(
         self,
         data: base.types.ReadableType,
-    ) -> dict[str, str]:
+    ) -> dict[models.identifier.SiteIdentifier, str]:
         """Constructs a dictionary mapping site id to default WKT.
 
         The resulting string WKT returned can then be used as the missing
@@ -150,10 +166,10 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             data (base.types.ReadableType): Raw data to be mapped.
 
         Returns:
-            dict[str, str]: Keys are the site id; values are the
-                appropriate point WKT serialized string. If none then
-                there is no siteID key created. Values include the geodetic
-                datum uri.
+            Mapping with SiteIdentifier as the keys; values are the
+            appropriate point WKT serialized string. If none then
+            there is no siteID key created. Values include the geodetic
+            datum uri.
         """
         # Construct schema
         schema = frictionless.Schema.from_descriptor(self.schema())
@@ -169,14 +185,14 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Context manager for row streaming
         with resource.open() as r:
             # Create empty dictionary to hold mapping values
-            result: dict[str, str] = {}
+            result: dict[models.identifier.SiteIdentifier, str] = {}
             for row in r.row_stream:
                 # Extract values
-                site_id: str | None = row["siteID"]
+                site_identifier = models.identifier.SiteIdentifier.from_row(row)
 
-                # Check for siteID, even though siteID is a mandatory field, it can be missing here
+                # Check there is an identifier, even though it is mandatory field, it can be missing here
                 # because this method is called for cross-validation, regardless of if this template is valid.
-                if not site_id:
+                if not site_identifier:
                     continue
 
                 footprint_wkt: shapely.geometry.base.BaseGeometry | None = row["footprintWKT"]
@@ -192,7 +208,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     # Default to using the footprint wkt + geodetic datum
                     if footprint_wkt is not None:
                         # Create string and add to map for site id
-                        result[site_id] = str(
+                        result[site_identifier] = str(
                             models.spatial.Geometry(
                                 raw=footprint_wkt.centroid,
                                 datum=datum,
@@ -203,7 +219,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     # If not footprint then we revert to using supplied longitude & latitude
                     if longitude is not None and latitude is not None:
                         # Create string and add to map for site id
-                        result[site_id] = str(
+                        result[site_identifier] = str(
                             models.spatial.Geometry(
                                 raw=shapely.Point([float(longitude), float(latitude)]),
                                 datum=datum,
@@ -235,8 +251,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         """
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site visit and occurrence template mapping, ensuring they will resolve properly.
-        site_id: str = row["siteID"]
-        site = utils.iri_patterns.site_iri(base_iri, site_id)
+        site_id: str | None = row["siteID"]
+        site = utils.iri_patterns.site_iri(base_iri, site_id)  # type: ignore[arg-type]  # TODO fix when doing mapping
 
         # Conditionally create uris dependent on siteIDSource
         site_id_src: str | None = row["siteIDSource"]
@@ -430,7 +446,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             base_iri: Namespace used to construct IRIs
         """
         # Extract relevant values
-        site_id = row["siteID"]
+        site_id: str | None = row["siteID"]
         site_name = row["siteName"]
         site_type = row["siteType"]
         site_description = row["siteDescription"]

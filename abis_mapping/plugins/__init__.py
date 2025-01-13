@@ -13,9 +13,12 @@ from . import mutual_exclusion
 from . import mutual_inclusion
 from . import related_site_id_part_of_lookup
 from . import required
+from . import site_id_or_iri_validation
+from . import site_identifier_match
 from . import sites_geometry
 from . import string_customized
 from . import survey_id_validation
 from . import tabular
 from . import timestamp
+from . import unique_together
 from . import wkt

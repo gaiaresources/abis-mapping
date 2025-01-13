@@ -740,6 +740,28 @@
       }
     },
     {
+      "name": "siteIDSource",
+      "title": "Site ID Source",
+      "description": "The organisation that assigned the SiteID to this Site",
+      "example": "TERN",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "existingBDRSiteIRI",
+      "title": "Existing BDR Site IRI",
+      "description": "Corresponds to a unique site IRI, provided within accompanying survey_site_data.csv template.",
+      "example": "https://linked.data.gov.au/dataset/bdr/site/TERN/P1",
+      "type": "string",
+      "format": "uri",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
       "name": "siteVisitID",
       "title": "Site Visit ID",
       "description": "The identifier of the site visit that the occurrence comes from. This field should be completed if actions taken during a site visit resulted in this occurrence record.",
@@ -760,10 +782,17 @@
       }
     },
     {
-      "fields": "siteID",
+      "fields": ["siteID", "siteIDSource"],
       "reference": {
         "resource": "survey_site_data",
-        "fields": "siteID"
+        "fields": ["siteID", "siteIDSource"]
+      }
+    },
+    {
+      "fields": "existingBDRSiteIRI",
+      "reference": {
+        "resource": "survey_site_data",
+        "fields": "existingBDRSiteIRI"
       }
     },
     {

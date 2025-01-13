@@ -93,8 +93,18 @@ Changes from Systematic Survey Site Visit Data Template v2.0.0
 
 ### CHANGED FIELDS
 
+* Add field [`existingBDRSiteIRI`](#existingBDRSiteIRI-field).
+
+### CHANGED VALIDATION
+
 * [`surveyID`](#surveyID-field) Is now a **mandatory** field, and every row must have a value that matches a `surveyID`
   in the Systematic Survey Metadata template to indicate which Survey the Site Visit is related to.
+* [`siteID`](#siteID-field) is no longer required on its own, instead;
+* [`siteID`](#siteID-field) and [`siteIDSource`](#siteIDSource-field) are conditionally mandatory.
+Must be provided together, or neither provided.
+* Either [`siteID`](#siteID-field) and [`siteIDSource`](#siteIDSource-field),
+or [`existingBDRSiteIRI`](#existingBDRSiteIRI-field),
+or both, must be provided in each row.
 
 ## APPENDICES
 ### APPENDIX-I: Vocabulary List

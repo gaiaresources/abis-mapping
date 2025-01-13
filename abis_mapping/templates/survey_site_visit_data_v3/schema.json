@@ -14,12 +14,12 @@
         {
             "name": "siteID",
             "title": "Site ID",
-            "description": "A unique within dataset string identifier for the site. Valid values include strings that are used specifically for this survey or URIs from BDR Sites that have been established in previous surveys.",
+            "description": "Corresponds to a unique site identifier, provided within accompanying survey_site_data.csv template.",
             "example": "P1",
             "type": "string",
             "format": "default",
             "constraints": {
-                "required": true
+                "required": false
             }
         },
         {
@@ -29,6 +29,17 @@
             "example": "TERN",
             "type": "string",
             "format": "default",
+            "constraints": {
+                "required": false
+            }
+        },
+        {
+            "name": "existingBDRSiteIRI",
+            "title": "Existing BDR Site IRI",
+            "description": "Corresponds to a unique site IRI, provided within accompanying survey_site_data.csv template.",
+            "example": "https://linked.data.gov.au/dataset/bdr/site/TERN/P1",
+            "type": "string",
+            "format": "uri",
             "constraints": {
                 "required": false
             }
@@ -171,6 +182,20 @@
             "reference": {
                 "resource": "survey_metadata",
                 "fields": "surveyID"
+            }
+        },
+        {
+            "fields": ["siteID", "siteIDSource"],
+            "reference": {
+                "resource": "survey_site_data",
+                "fields": ["siteID", "siteIDSource"]
+            }
+        },
+        {
+            "fields": "existingBDRSiteIRI",
+            "reference": {
+                "resource": "survey_site_data",
+                "fields": "existingBDRSiteIRI"
             }
         }
     ]

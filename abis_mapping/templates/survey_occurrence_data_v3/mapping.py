@@ -81,11 +81,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         Keyword Args:
             survey_id_set (Set[str]): Set of surveyIDs from the metadata template.
-            site_id_geometry_map (dict[str, str]): Default values to use for geometry
-                for given siteID.
+            site_id_geometry_map (dict[models.identifier.SiteIdentifier, str]): Default values to use for geometry
+                for given site identifier.
             site_visit_id_temporal_map (dict[str, str]): Default RDF (serialized as turtle)
                 to use for temporal entity for given siteVisitID.
-            site_visit_id_site_id_map (dict[str, str]): Valid site ID for a given site visit ID.
+            site_visit_id_site_id_map (dict[str, models.identifier.SiteIdentifier | None]): Valid SiteIdentifier for a given site visit ID.
 
         Returns:
             frictionless.Report: Validation report for the specified data.
@@ -129,8 +129,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 plugins.mutual_inclusion.MutuallyInclusive(
                     field_names=["sensitivityCategory", "sensitivityAuthority"],
                 ),
-                plugins.chained_inclusion.ChainedInclusion(
-                    field_names=["siteVisitID", "siteID"],
+                plugins.mutual_inclusion.MutuallyInclusive(
+                    field_names=["siteID", "siteIDSource"],
+                ),
+                plugins.site_id_or_iri_validation.SiteIdentifierCheck(
+                    skip_when_missing="siteVisitID",
                 ),
             ],
         )
@@ -144,12 +147,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Modify checklist in the event site visit id to site id map provided
         if site_visit_id_site_id_map is not None:
-            # Add lookup match check
+            # Add check that siteVisitID->Site in this template agrees with site visit template.
             checklist.add_check(
-                plugins.lookup_match.VLookupMatch(
-                    key_field="siteVisitID",
-                    value_field="siteID",
-                    lu_map=site_visit_id_site_id_map,
+                plugins.site_identifier_match.SiteIdentifierMatches(
+                    site_visit_id_site_id_map=site_visit_id_site_id_map,
                 )
             )
 
@@ -178,9 +179,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Perform a default lookup check based on passed in map.
             checklist.add_check(
                 plugins.default_lookup.DefaultLookup(
-                    key_field="siteID",
+                    key_field=models.identifier.SiteIdentifier.from_row,
                     value_field="decimalLatitude",
                     default_map=site_id_geometry_map,
+                    no_key_error_template=(
+                        "decimalLatitude, decimalLongitude and geodeticDatum must be provided, "
+                        "or siteID and siteIDSource, or existingBDRSiteIRI, must be provided to use the geometry of a Site."
+                    ),
+                    no_default_error_template="Could not find a Site with {key_value} to use for geometry.",
                 )
             )
             # Mutual inclusion check to close out the possibility of one missing.
@@ -207,14 +213,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
     def extract_site_id_keys(
         self,
         data: base.types.ReadableType,
-    ) -> dict[str, bool]:
+    ) -> dict[models.identifier.SiteIdentifier, bool]:
         """Extract site id key values from the data.
 
         Args:
             data (base.types.ReadableType): Raw data to be mapped.
 
         Returns:
-            dict[str, bool]: Keys are the site id values encountered
+            dict[models.identifier.SiteIdentifier, bool]: Keys are the site id values encountered
                 in the data, values are all 'True',
         """
         # Construct schema
@@ -228,10 +234,14 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             encoding="utf-8",
         )
 
+        result: dict[models.identifier.SiteIdentifier, bool] = {}
         # Iterate over rows to extract values
         with resource.open() as r:
-            # Construct dictionary and return
-            return {row["siteID"]: True for row in r.row_stream if row["siteID"] is not None}
+            for row in r.row_stream:
+                site_identifier = models.identifier.SiteIdentifier.from_row(row)
+                if site_identifier:
+                    result[site_identifier] = True
+        return result
 
     def extract_site_visit_id_keys(
         self,

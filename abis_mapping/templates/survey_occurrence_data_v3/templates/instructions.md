@@ -101,9 +101,20 @@ Changes from Systematic Survey Occurrence Data Template v2.0.0
 
 ### CHANGED FIELDS
 
+* Add field [`siteIDSource`](#siteIDSource-field).
+* Add field [`existingBDRSiteIRI`](#existingBDRSiteIRI-field).
+
+### CHANGED VALIDATION
+
 * When [`surveyID`](#surveyID-field) is provided, it must have a value that matches a `surveyID`
   in the Systematic Survey Metadata template to indicate which Survey the Occurrence belongs to.
   When [`surveyID`](#surveyID-field) is blank, the Occurrence will be treated as incidental.
+* [`siteID`](#siteID-field) and the new field [`siteIDSource`](#siteIDSource-field) are conditionally mandatory.
+Must be provided together, or neither provided.
+* When [`siteVisitID`](#siteVisitID-field) is provided, 
+either [`siteID`](#siteID-field) and  [`siteIDSource`](#siteIDSource-field),
+or [`existingBDRSiteIRI`](#existingBDRSiteIRI-field),
+or both, must be provided.
 
 ## APPENDICES
 ### APPENDIX-I: Vocabulary List
