@@ -492,6 +492,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#changed-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGED VALIDATION
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -841,8 +850,8 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <tr>
 <td style="text-align: center;">2</td>
 <td style="text-align: left;"><a name="siteID-field"></a>siteID</td>
-<td style="text-align: left;">A unique within dataset string identifier for the site. Valid values include strings that are used specifically for this survey or URIs from BDR Sites that have been established in previous surveys.</td>
-<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: left;">Corresponds to a unique site identifier, provided within accompanying survey_site_data.csv template.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with siteIDSource</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">P1</td>
 </tr>
@@ -850,12 +859,20 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: center;">3</td>
 <td style="text-align: left;"><a name="siteIDSource-field"></a>siteIDSource</td>
 <td style="text-align: left;">The organisation that assigned the SiteID to this Site</td>
-<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with siteID</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">TERN</td>
 </tr>
 <tr>
 <td style="text-align: center;">4</td>
+<td style="text-align: left;"><a name="existingBDRSiteIRI-field"></a>existingBDRSiteIRI</td>
+<td style="text-align: left;">Corresponds to a unique site IRI, provided within accompanying survey_site_data.csv template.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">https://linked.data.gov.au/dataset/bdr/site/TERN/P1</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
 <td style="text-align: left;"><a name="siteVisitID-field"></a>siteVisitID</td>
 <td style="text-align: left;">The unique key assigned to a visit. A visit is a time distinct assessment conducted within a survey at a designated site.</td>
 <td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
@@ -863,7 +880,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: left;">CPXEI0000001</td>
 </tr>
 <tr>
-<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
 <td style="text-align: left;"><a name="siteVisitStart-field"></a>siteVisitStart</td>
 <td style="text-align: left;">The temporal start of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.</td>
 <td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
@@ -871,7 +888,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: left;">2016-02-28</td>
 </tr>
 <tr>
-<td style="text-align: center;">6</td>
+<td style="text-align: center;">7</td>
 <td style="text-align: left;"><a name="siteVisitEnd-field"></a>siteVisitEnd</td>
 <td style="text-align: left;">The temporal end of when the Site was being used to collect data for the survey. Expected values include date, dateTime, dateTimeStamp.</td>
 <td style="text-align: center;">Optional</td>
@@ -879,7 +896,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: left;">2016-02-28</td>
 </tr>
 <tr>
-<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
 <td style="text-align: left;"><a name="visitOrgs-field"></a>visitOrgs</td>
 <td style="text-align: left;">The names of the organisations responsible for recording the original Occurrence.</td>
 <td style="text-align: center;">Optional</td>
@@ -887,7 +904,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: left;">NSW Dept of Planning, Industry and Environment.</td>
 </tr>
 <tr>
-<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
 <td style="text-align: left;"><a name="visitObservers-field"></a>visitObservers</td>
 <td style="text-align: left;">A list (concatenated and separated using |) of names of people, groups, or organisations responsible for recording the original Occurrence.</td>
 <td style="text-align: center;">Optional</td>
@@ -895,7 +912,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: left;">Oliver P. Pearson | Anita K. Pearson</td>
 </tr>
 <tr>
-<td style="text-align: center;">9</td>
+<td style="text-align: center;">10</td>
 <td style="text-align: left;"><a name="condition-field"></a>condition</td>
 <td style="text-align: left;">The state of a patch of vegetation at the time of sampling relative to some specified standard or benchmark (where available).</td>
 <td style="text-align: center;">Optional</td>
@@ -903,7 +920,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: left;">Burnt</td>
 </tr>
 <tr>
-<td style="text-align: center;">10</td>
+<td style="text-align: center;">11</td>
 <td style="text-align: left;"><a name="targetTaxonomicScope-field"></a>targetTaxonomicScope</td>
 <td style="text-align: left;">The taxonomic group targeted for sampling during the Site Visit</td>
 <td style="text-align: center;">Optional</td>
@@ -911,7 +928,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: left;">Coleoptera<br>(<a href="#targetTaxonomicScope-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: center;">11</td>
+<td style="text-align: center;">12</td>
 <td style="text-align: left;"><a name="protocolName-field"></a>protocolName</td>
 <td style="text-align: left;">Categorical descriptive name for the method used during the Site Visit.</td>
 <td style="text-align: center;">Optional</td>
@@ -919,7 +936,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: left;">HARD TRAP<br>(<a href="#protocolName-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: center;">12</td>
+<td style="text-align: center;">13</td>
 <td style="text-align: left;"><a name="protocolDescription-field"></a>protocolDescription</td>
 <td style="text-align: left;">A detailed description of the method used during the Site Visit. The description may include deviations from a protocol referred to in eco:protocolReferences. Recommended good practice is to provide information about instruments used, calibration, etc.</td>
 <td style="text-align: center;">Optional</td>
@@ -927,7 +944,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: left;">Three conventional harp traps (3.2m ht x 2.2m w) were established in flight path zones for a period of 4 hrs at dawn and dusk for a total of 10 trap nights. Traps were visited on an hourly basis during each deployment period and the trap catch recorded for species, size, weight, sex, age and maternal status.</td>
 </tr>
 <tr>
-<td style="text-align: center;">13</td>
+<td style="text-align: center;">14</td>
 <td style="text-align: left;"><a name="samplingEffortValue-field"></a>samplingEffortValue</td>
 <td style="text-align: left;">Similar to eco:samplingEffortValue. The total sampling effort value. A samplingEffortValue must have a corresponding samplingEffortUnit</td>
 <td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with samplingEffortUnit</font></strong></td>
@@ -935,7 +952,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: left;">20 x 12</td>
 </tr>
 <tr>
-<td style="text-align: center;">14</td>
+<td style="text-align: center;">15</td>
 <td style="text-align: left;"><a name="samplingEffortUnit-field"></a>samplingEffortUnit</td>
 <td style="text-align: left;">Similar to eco:samplingEffortUnit. The units associated with samplingEffortValue.</td>
 <td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with samplingEffortValue</font></strong></td>
@@ -948,8 +965,18 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <p>Changes from Systematic Survey Site Visit Data Template v2.0.0</p>
 <h3 id="changed-fields">CHANGED FIELDS</h3>
 <ul>
+<li>Add field <a href="#existingBDRSiteIRI-field"><code>existingBDRSiteIRI</code></a>.</li>
+</ul>
+<h3 id="changed-validation">CHANGED VALIDATION</h3>
+<ul>
 <li><a href="#surveyID-field"><code>surveyID</code></a> Is now a <strong>mandatory</strong> field, and every row must have a value that matches a <code>surveyID</code>
   in the Systematic Survey Metadata template to indicate which Survey the Site Visit is related to.</li>
+<li><a href="#siteID-field"><code>siteID</code></a> is no longer required on its own, instead;</li>
+<li><a href="#siteID-field"><code>siteID</code></a> and <a href="#siteIDSource-field"><code>siteIDSource</code></a> are conditionally mandatory.
+Must be provided together, or neither provided.</li>
+<li>Either <a href="#siteID-field"><code>siteID</code></a> and <a href="#siteIDSource-field"><code>siteIDSource</code></a>,
+or <a href="#existingBDRSiteIRI-field"><code>existingBDRSiteIRI</code></a>,
+or both, must be provided in each row.</li>
 </ul>
 <h2 id="appendices">APPENDICES</h2>
 <h3 id="appendix-i-vocabulary-list">APPENDIX-I: Vocabulary List</h3>
