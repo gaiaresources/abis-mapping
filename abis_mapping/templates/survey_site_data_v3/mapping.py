@@ -251,12 +251,20 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         """
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site visit and occurrence template mapping, ensuring they will resolve properly.
+        # If existingBDRSiteIRI is specified, just use that as-is for the IRI.
         site_id: str | None = row["siteID"]
-        site = utils.iri_patterns.legacy_site_iri(base_iri, site_id)  # type: ignore[arg-type]  # TODO fix when doing mapping
-
-        # Conditionally create uris dependent on siteIDSource
         site_id_src: str | None = row["siteIDSource"]
-        if site_id_src:
+        existing_site_iri: str | None = row["existingBDRSiteIRI"]
+        if existing_site_iri:
+            site = rdflib.URIRef(existing_site_iri)
+        elif site_id and site_id_src:
+            site = utils.iri_patterns.site_iri(site_id_src, site_id)
+        else:
+            raise ValueError("Invalid row missing SiteID and existingBDRSiteIRI")
+
+        # When both existingBDRSiteIRI and siteID+siteIDSource are provided,
+        # the site gets a schema:identifier with this datatype.
+        if existing_site_iri and site_id and site_id_src:
             site_id_datatype = utils.iri_patterns.datatype_iri("siteID", site_id_src)
             site_id_agent = utils.iri_patterns.agent_iri("org", site_id_src)
             site_id_attribution = utils.iri_patterns.attribution_iri(base_iri, "resourceProvider", site_id_src)
@@ -446,7 +454,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             base_iri: Namespace used to construct IRIs
         """
         # Extract relevant values
-        site_id: str | None = row["siteID"]
         site_name = row["siteName"]
         site_type = row["siteType"]
         site_description = row["siteDescription"]
@@ -455,12 +462,11 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Site))
 
-        # Add dataset
-        graph.add((uri, rdflib.SDO.isPartOf, dataset))
-
-        # Add siteID
-        dt = site_id_datatype if site_id_datatype is not None else rdflib.XSD.string
-        graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(site_id, datatype=dt)))
+        # Add siteID schema:identifier property, only when both existingBDRSiteIRI
+        # and siteID+siteIDSource are provided.
+        site_id: str | None = row["siteID"]
+        if site_id and site_id_datatype is not None:
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(site_id, datatype=site_id_datatype)))
 
         # Add related site if provided
         if related_site is not None and (relationship_to_related_site := row["relationshipToRelatedSite"]):
