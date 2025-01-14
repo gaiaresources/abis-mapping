@@ -46,11 +46,6 @@
     skos:prefLabel "Gaia Resources recordID" ;
     prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Gaia-Resources/resourceProvider> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> a tern:FeatureOfInterest,
-        tern:Site ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
-
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Gaia-Resources/resourceProvider> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/org/Gaia-Resources> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
@@ -72,9 +67,13 @@
 <https://linked.data.gov.au/dataset/bdr/org/Gaia-Resources> a prov:Agent ;
     schema:name "Gaia Resources" .
 
+<https://linked.data.gov.au/dataset/bdr/site/TERN/P1> a tern:FeatureOfInterest,
+        tern:Site ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
+
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/A0010> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
+    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/site/TERN/P1> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:spatial _:Nb0c3d4fa822b88b4d3f8743700000000 ;
