@@ -10,7 +10,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisitCollection/samplingEffort/10-sifts> a schema:Collection ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-02> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P2-01> ;
     schema:name "Site Visit Collection - Sampling Effort - 10 sifts" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/samplingEffort/10-sifts> .
 
@@ -22,13 +22,13 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisitCollection/targetTaxonomicScope/bird> a schema:Collection ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-03> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P3-01> ;
     schema:name "Site Visit Collection - Target Taxonomic Scope - bird" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/bird> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisitCollection/targetTaxonomicScope/invertebrate> a schema:Collection ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-02> ;
+    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P2-01> ;
     schema:name "Site Visit Collection - Target Taxonomic Scope - invertebrate" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/invertebrate> .
 
@@ -43,17 +43,22 @@
     skos:prefLabel "WAM Site ID" ;
     prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-03> a tern:SiteVisit ;
+<https://example.com/site/P1> a tern:Site ;
+    schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> .
+
+<https://example.com/site/P2> a tern:Site .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P3-01> a tern:SiteVisit ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2024-03-12"^^xsd:date ] ] ;
-    prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-03> ;
+    prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P3-01> ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/WAM>,
         <https://linked.data.gov.au/dataset/bdr/person/ORCID00003> ;
-    schema:identifier "TIS-24-03-P1-03" ;
+    schema:identifier "TIS-24-03-P3-01" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> ;
-    tern:hasSite <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> .
+    tern:hasSite <https://linked.data.gov.au/dataset/bdr/site/WAM/P3> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/samplingEffort/10-sifts> a tern:Attribute ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
@@ -136,12 +141,12 @@
     schema:description "10 x square buckets of size 20 x 20 x 15 cm. Propylene glycol." ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-02> a prov:Plan ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P2-01> a prov:Plan ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/protocolName/litter-sifting> ;
     schema:description "50 cm diameter sifter with 5 mm mesh. Litter samles taken ~1 metre from each pitfall trap" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-03> a prov:Plan ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P3-01> a prov:Plan ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
@@ -157,6 +162,8 @@
         prov:Person ;
     schema:name "ORCID00003" .
 
+<https://linked.data.gov.au/dataset/bdr/site/WAM/P3> a tern:Site .
+
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-01> a tern:SiteVisit ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -171,31 +178,27 @@
     schema:identifier "TIS-24-03-P1-01" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> ;
-    tern:hasSite <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
+    tern:hasSite <https://example.com/site/P1> ;
     tern:siteDescription "dry" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-02> a tern:SiteVisit ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P2-01> a tern:SiteVisit ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2024-03-12"^^xsd:date ] ;
             time:hasEnd [ a time:Instant ;
                     time:inXSDDate "2024-03-12"^^xsd:date ] ] ;
-    prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-02> ;
+    prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P2-01> ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/WAM>,
         <https://linked.data.gov.au/dataset/bdr/person/ORCID00001> ;
-    schema:identifier "TIS-24-03-P1-02" ;
+    schema:identifier "TIS-24-03-P2-01" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> ;
-    tern:hasSite <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
+    tern:hasSite <https://example.com/site/P2> ;
     tern:siteDescription "moist leaf litter after recent rain" .
 
 <https://linked.data.gov.au/dataset/bdr/person/ORCID00001> a prov:Agent,
         prov:Person ;
     schema:name "ORCID00001" .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> a tern:Site ;
-    schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> a tern:Survey ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .

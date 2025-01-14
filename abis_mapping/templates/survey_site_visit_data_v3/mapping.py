@@ -243,11 +243,8 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # variables starting with uri_ are constructed URIs.
 
         row_site_visit_id: str | None = row["siteVisitID"]
-        row_site_id: str | None = row["siteID"]
         # should always have these mandatory fields, skip if not
         if not row_site_visit_id:
-            return
-        if not row_site_id:
             return
 
         # Part 1: Construct URIs from Row
@@ -258,7 +255,16 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site and occurrence template mapping, ensuring they will resolve properly.
-        uri_site = utils.iri_patterns.legacy_site_iri(base_iri, row_site_id)
+        # If existingBDRSiteIRI is specified, just use that as-is for the IRI.
+        row_site_id: str | None = row["siteID"]
+        row_site_id_source: str | None = row["siteIDSource"]
+        row_existing_site_iri: str | None = row["existingBDRSiteIRI"]
+        if row_existing_site_iri:
+            uri_site = rdflib.URIRef(row_existing_site_iri)
+        elif row_site_id and row_site_id_source:
+            uri_site = utils.iri_patterns.site_iri(row_site_id_source, row_site_id)
+        else:
+            raise ValueError("Invalid row missing SiteID and existingBDRSiteIRI")
 
         # Create TERN survey IRI from surveyID field
         row_survey_id: str = row["surveyID"]
@@ -267,9 +273,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # URI for the Site Visit Plan
         uri_site_visit_plan = utils.iri_patterns.plan_iri(base_iri, "visit", row_site_visit_id)
 
-        # URIs based on the siteIDSource
-        row_site_id_source: str | None = row["siteIDSource"]
-        if row_site_id_source:
+        # When both existingBDRSiteIRI and siteID+siteIDSource are provided,
+        # the site gets a schema:identifier with this datatype.
+        if row_existing_site_iri and row_site_id and row_site_id_source:
             uri_site_id_datatype = utils.iri_patterns.datatype_iri("siteID", row_site_id_source)
             uri_site_id_datatype_attribution = utils.iri_patterns.attribution_iri(
                 base_iri, "resourceProvider", row_site_id_source
@@ -372,7 +378,6 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         self.add_site(
             uri=uri_site,
             uri_site_id_datatype=uri_site_id_datatype,
-            dataset=dataset,
             row=row,
             graph=graph,
         )
@@ -560,7 +565,6 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         *,
         uri: rdflib.URIRef,
         uri_site_id_datatype: rdflib.URIRef | None,
-        dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
@@ -576,12 +580,11 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Add class
         graph.add((uri, a, utils.namespaces.TERN.Site))
 
-        # Add siteID literal
-        dt = uri_site_id_datatype or rdflib.XSD.string
-        graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(row["siteID"], datatype=dt)))
-
-        # Add to dataset
-        graph.add((uri, rdflib.SDO.isPartOf, dataset))
+        # Add siteID schema:identifier property, only when both existingBDRSiteIRI
+        # and siteID+siteIDSource are provided.
+        row_site_id: str | None = row["siteID"]
+        if row_site_id and uri_site_id_datatype is not None:
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(row_site_id, datatype=uri_site_id_datatype)))
 
     def add_site_id_datatype(
         self,
