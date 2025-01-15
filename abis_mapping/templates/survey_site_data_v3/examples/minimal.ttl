@@ -9,18 +9,18 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1>,
-        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2>,
-        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
+    schema:member <https://example.com/site/WAM/P1>,
+        <https://linked.data.gov.au/dataset/bdr/site/WAM/P2>,
+        <https://linked.data.gov.au/dataset/bdr/site/WAM/P3> ;
     schema:name "Site Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteCollection/habitat/Closed-forest> a schema:Collection ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0>,
-        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1>,
-        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2>,
-        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
+    schema:member <https://example.com/site/WAM/P0>,
+        <https://example.com/site/WAM/P1>,
+        <https://linked.data.gov.au/dataset/bdr/site/WAM/P2>,
+        <https://linked.data.gov.au/dataset/bdr/site/WAM/P3> ;
     schema:name "Site Collection - Habitat - Closed forest" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/Closed-forest> .
 
@@ -57,53 +57,46 @@
 <https://linked.data.gov.au/dataset/bdr/org/WAM> a prov:Agent ;
     schema:name "WAM" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> a tern:Site ;
+<https://example.com/site/WAM/P0> a tern:Site ;
     geo:hasGeometry _:N9466fd6e9e4c9aa92b83d28000000000 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     schema:description "Footprint of study area" ;
     schema:identifier "P0"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "ParentSite" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> a tern:Site ;
+<https://example.com/site/WAM/P1> a tern:Site ;
     geo:hasGeometry _:N3bba75fe5be4a400a5af80dd00000000,
         _:N9466fd6e9e4c9aa92b83d28000000001 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
-    schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
-        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> ;
     schema:name "Plot 1" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2> a tern:Site ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a tern:Dataset .
+
+<https://linked.data.gov.au/dataset/bdr/site/WAM/P2> a tern:Site ;
     geo:hasGeometry _:N3bba75fe5be4a400a5af80dd00000001,
         _:N9466fd6e9e4c9aa92b83d28000000002 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
-    schema:identifier "P2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Plot 2" ;
     schema:sameAs "S0" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> a tern:Site ;
+<https://linked.data.gov.au/dataset/bdr/site/WAM/P3> a tern:Site ;
     geo:hasGeometry _:N3bba75fe5be4a400a5af80dd00000002,
         _:N9466fd6e9e4c9aa92b83d28000000003 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
-    schema:identifier "P3"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Plot 3" ;
     schema:sameAs "http://example.com/site/S0"^^xsd:anyURI ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a tern:Dataset .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
@@ -111,7 +104,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N9466fd6e9e4c9aa92b83d28000000000 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P0> ;
+    rdf:subject <https://example.com/site/WAM/P0> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -120,7 +113,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N9466fd6e9e4c9aa92b83d28000000001 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
+    rdf:subject <https://example.com/site/WAM/P1> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -129,7 +122,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N9466fd6e9e4c9aa92b83d28000000002 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/site/WAM/P2> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -138,7 +131,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N9466fd6e9e4c9aa92b83d28000000003 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/site/WAM/P3> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -147,7 +140,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N3bba75fe5be4a400a5af80dd00000000 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
+    rdf:subject <https://example.com/site/WAM/P1> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -156,7 +149,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N3bba75fe5be4a400a5af80dd00000001 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P2> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/site/WAM/P2> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
@@ -165,7 +158,7 @@
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N3bba75fe5be4a400a5af80dd00000002 ;
     rdf:predicate geo:hasGeometry ;
-    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P3> ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/site/WAM/P3> ;
     rdfs:comment "supplied as" .
 
 _:N3bba75fe5be4a400a5af80dd00000000 a geo:Geometry ;

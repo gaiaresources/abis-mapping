@@ -561,12 +561,29 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         else:
             survey = None
 
-        # Create Tern Site IRI, depending on the siteID field
+        # Create Tern Site IRI, depending on the site fields
         site_id: str | None = row["siteID"]
-        if site_id:
-            site = utils.iri_patterns.site_iri(base_iri, site_id)
+        site_id_source: str | None = row["siteIDSource"]
+        existing_site_iri: str | None = row["existingBDRSiteIRI"]
+        if existing_site_iri:
+            site = rdflib.URIRef(existing_site_iri)
+        elif site_id and site_id_source:
+            site = utils.iri_patterns.site_iri(site_id_source, site_id)
         else:
             site = None
+
+        # When both existingBDRSiteIRI and siteID+siteIDSource are provided,
+        # the site gets a schema:identifier with this datatype.
+        if existing_site_iri and site_id and site_id_source:
+            site_id_datatype = utils.iri_patterns.datatype_iri("siteID", site_id_source)
+            site_id_datatype_attribution = utils.iri_patterns.attribution_iri(
+                base_iri, "resourceProvider", site_id_source
+            )
+            site_id_datatype_agent = utils.iri_patterns.agent_iri("org", site_id_source)
+        else:
+            site_id_datatype = None
+            site_id_datatype_attribution = None
+            site_id_datatype_agent = None
 
         # Conditionally create uri dependent on siteVisitID field.
         site_visit_id: str | None = row["siteVisitID"]
@@ -1207,7 +1224,26 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add site
         self.add_site(
             uri=site,
-            dataset=dataset,
+            site_id=site_id,
+            site_id_datatype=site_id_datatype,
+            graph=graph,
+        )
+
+        self.add_site_id_datatype(
+            uri=site_id_datatype,
+            site_id_source=site_id_source,
+            site_id_datatype_attribution=site_id_datatype_attribution,
+            graph=graph,
+        )
+        self.add_attribution(
+            uri=site_id_datatype_attribution,
+            provider=site_id_datatype_agent,
+            provider_role_type=DATA_ROLE_RESOURCE_PROVIDER,
+            graph=graph,
+        )
+        self.add_site_id_datatype_agent(
+            uri=site_id_datatype_agent,
+            site_id_source=site_id_source,
             graph=graph,
         )
 
@@ -4116,15 +4152,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
     def add_site(
         self,
+        *,
         uri: rdflib.URIRef | None,
-        dataset: rdflib.URIRef,
+        site_id: str | None,
+        site_id_datatype: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds site to the graph.
 
         Args:
             uri (rdflib.URIRef | None): URI to use if site provided else None.
-            dataset (rdflib.URIRef): The dataset which the data belongs.
+            site_id: Value of siteID field from the Row.
+            site_id_datatype: Datatype to use for the site id literal.
             graph (rdflib.URIRef): Graph to be modified.
         """
         # Check site uri exists
@@ -4134,8 +4173,63 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add site information to graph
         graph.add((uri, a, utils.namespaces.TERN.Site))
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
-        graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
+
+        if site_id_datatype is not None and site_id:
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(site_id, datatype=site_id_datatype)))
+
+    def add_site_id_datatype(
+        self,
+        *,
+        uri: rdflib.URIRef | None,
+        site_id_source: str | None,
+        site_id_datatype_attribution: rdflib.URIRef | None,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds site id datatype to the graph.
+
+        Args:
+            uri: Subject of the node.
+            site_id_source: The siteIDSource value from the row.
+            site_id_datatype_attribution: The datatype attribution node.
+            graph: Graph to be modified.
+        """
+        # Check subject was provided
+        if uri is None:
+            return
+        # Add type
+        graph.add((uri, a, rdflib.RDFS.Datatype))
+        # Add definition
+        graph.add((uri, rdflib.SKOS.definition, rdflib.Literal("An identifier for the site")))
+        # Add label
+        if site_id_source:
+            graph.add((uri, rdflib.SKOS.prefLabel, rdflib.Literal(f"{site_id_source} Site ID")))
+        # Add attribution link
+        if site_id_datatype_attribution:
+            graph.add((uri, rdflib.PROV.qualifiedAttribution, site_id_datatype_attribution))
+
+    def add_site_id_datatype_agent(
+        self,
+        *,
+        uri: rdflib.URIRef | None,
+        site_id_source: str | None,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Adds the site id datatype agent to the graph.
+
+        Args:
+            uri: Subject of the node.
+            site_id_source: The siteIDSource value from the row.
+            graph: Graph to be modified.
+        """
+        # Check subject provided
+        if uri is None:
+            return
+        # Add type
+        graph.add((uri, a, rdflib.PROV.Agent))
+        # Add name
+        if site_id_source:
+            graph.add((uri, rdflib.SDO.name, rdflib.Literal(site_id_source)))
 
     def add_sensitivity_category_attribute(
         self,

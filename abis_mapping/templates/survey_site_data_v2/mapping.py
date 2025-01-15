@@ -236,7 +236,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site visit and occurrence template mapping, ensuring they will resolve properly.
         site_id: str = row["siteID"]
-        site = utils.iri_patterns.site_iri(base_iri, site_id)
+        site = utils.iri_patterns.legacy_site_iri(base_iri, site_id)
 
         # Conditionally create uris dependent on siteIDSource
         site_id_src: str | None = row["siteIDSource"]
@@ -258,7 +258,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             rtor_site_vocab = self.fields()["relationshipToRelatedSite"].get_vocab()
             if rtor_site_vocab().get(relationship_to_related_site) == rdflib.SDO.isPartOf:
                 # Related site is defined internal to the dataset
-                related_site = utils.iri_patterns.site_iri(base_iri, related_site_id)
+                related_site = utils.iri_patterns.legacy_site_iri(base_iri, related_site_id)
             else:
                 # Related site is defined outside the dataset
                 related_site = utils.rdf.uri_or_string_literal(related_site_id)

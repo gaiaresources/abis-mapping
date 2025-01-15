@@ -16,6 +16,7 @@ bdrsh:DatatypeShape
     a rdfs:Class, sh:NodeShape ;
     sh:targetClass rdfs:Datatype ;
     sh:xone (
+        bdrsh:SiteIDDatatypeShape
         bdrsh:RecordIDDatatypeShape 
         bdrsh:RecordNumberDatatypeShape
         bdrsh:CatalogNumberDatatypeShape
@@ -83,6 +84,32 @@ bdrsh:RecordIDDatatypeShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:pattern "^An identifier for the record$" ;
+    ] ;
+    sh:property [
+        sh:path prov:qualifiedAttribution ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node bdrsh:AttributionShape ;
+        sh:class prov:Attribution ;
+    ] .
+
+bdrsh:SiteIDDatatypeShape
+    a sh:NodeShape ;
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern " Site ID$" ;
+    ] ;
+    sh:property [
+        sh:path skos:definition ;
+        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^An identifier for the site$" ;
     ] ;
     sh:property [
         sh:path prov:qualifiedAttribution ;

@@ -770,6 +770,16 @@
     skos:prefLabel "Stream Environment and Water Pty Ltd recordNumber" ;
     prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> .
 
+<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> a rdfs:Datatype ;
+    skos:definition "An identifier for the site" ;
+    skos:prefLabel "WAM Site ID" ;
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> .
+
+<https://example.com/site/WAM-MR-S1> a tern:FeatureOfInterest,
+        tern:Site ;
+    schema:identifier "MR-S1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
+
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/MR-R1-V1> a tern:SiteVisit ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
@@ -896,10 +906,6 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Stream-Environment-and-Water-Pty-Ltd/owner> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/owner> .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/org/WAM> ;
-    prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/basisOfRecord/new-basis-of-record> a skos:Concept ;
     skos:broader <http://example.com/bdr-cv/attribute/basisOfRecord> ;
@@ -1309,13 +1315,16 @@
 <https://linked.data.gov.au/dataset/bdr/org/WA-BIO> a prov:Agent ;
     schema:name "WA-BIO" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/MR-S1> a tern:FeatureOfInterest,
+<https://linked.data.gov.au/dataset/bdr/site/WAM/MR-S1> a tern:FeatureOfInterest,
         tern:Site ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/MR-R1> a tern:Survey ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> a prov:Attribution ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/org/WAM> ;
+    prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> a skos:Concept ;
     skos:broader <http://example.com/bdr-cv/methods/identificationMethod> ;
@@ -1689,7 +1698,7 @@
     dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
     dwc:collectionCode "32237" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/MR-S1> ;
+    sosa:isSampleOf <https://example.com/site/WAM-MR-S1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:identifier "BHP2012-7521"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
         "M12378"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
@@ -1710,7 +1719,7 @@
     dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
     dwc:collectionCode "32238" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
-    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/MR-S1> ;
+    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/site/WAM/MR-S1> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/samplingProtocol/new-sampling-protocol> ;
     schema:identifier "BHP2012-7522"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
         "M12379"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,

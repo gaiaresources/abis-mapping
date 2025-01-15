@@ -237,7 +237,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site and occurrence template mapping, ensuring they will resolve properly.
-        uri_site = utils.iri_patterns.site_iri(base_iri, row_site_id)
+        uri_site = utils.iri_patterns.legacy_site_iri(base_iri, row_site_id)
 
         # Create TERN survey IRI from surveyID field
         row_survey_id: str | None = row["surveyID"]
