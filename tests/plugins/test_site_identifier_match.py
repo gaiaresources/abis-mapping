@@ -103,6 +103,6 @@ def test_site_identifier_match_with_invalid_data() -> None:
         'values in the survey_site_visit_data template at the row with siteVisitID "V5".'
     )
     assert report.tasks[0].errors[2].message == (
-        "The row at position 4 has an error: existingBDRSiteIRI must match their "
-        'values in the survey_site_visit_data template at the row with siteVisitID "V6".'
+        "The row at position 4 has an error: existingBDRSiteIRI must match its "
+        'value in the survey_site_visit_data template at the row with siteVisitID "V6".'
     )
