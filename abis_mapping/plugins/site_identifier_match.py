@@ -78,13 +78,13 @@ class SiteIdentifierMatches(frictionless.Check):
         # both templates have SiteIdentifiers, check if they don't match.
         if expected_site_identifier != identifier:
             if expected_site_identifier.existing_bdr_site_iri:
-                fields = "existingBDRSiteIRI"
+                fields_note = "existingBDRSiteIRI must match its value"
             else:
-                fields = "siteID and siteIDSource"
+                fields_note = "siteID and siteIDSource must match their values"
             yield frictionless.errors.RowConstraintError.from_row(
                 row=row,
                 note=(
-                    f'{fields} must match their values in the survey_site_visit_data template at the row with siteVisitID "{site_visit_id}".'
+                    f'{fields_note} in the survey_site_visit_data template at the row with siteVisitID "{site_visit_id}".'
                 ),
             )
             return
