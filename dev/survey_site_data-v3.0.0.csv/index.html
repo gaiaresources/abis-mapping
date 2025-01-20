@@ -912,21 +912,37 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <tr>
 <td style="text-align: center;">8</td>
 <td style="text-align: left;"><a name="relatedSiteID-field"></a>relatedSiteID</td>
-<td style="text-align: left;">Identifier of a related site to the specified site e.g. parent site, same site with different identifier.</td>
-<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with relationshipToRelatedSite</font></strong></td>
+<td style="text-align: left;">Identifier of a related site to the specified site e.g. parent site, same site with different identifier. This site must be included in this dataset.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with relatedSiteIDSource</font></strong></td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Same as within dataset or existing URI</td>
+<td style="text-align: left;">P1</td>
 </tr>
 <tr>
 <td style="text-align: center;">9</td>
-<td style="text-align: left;"><a name="relationshipToRelatedSite-field"></a>relationshipToRelatedSite</td>
-<td style="text-align: left;">Relationship between the site and the related site. This field can be used to record Site identifiers for the same site from different custodians through the use of URIs.</td>
+<td style="text-align: left;"><a name="relatedSiteIDSource-field"></a>relatedSiteIDSource</td>
+<td style="text-align: left;">The organisation that assigned the relatedSiteID to the related site.</td>
 <td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with relatedSiteID</font></strong></td>
 <td style="text-align: center;">String</td>
-<td style="text-align: left;">Same as within dataset or existing URI<br>(<a href="#relationshipToRelatedSite-vocabularies">Vocabulary link</a>)</td>
+<td style="text-align: left;">TERN</td>
 </tr>
 <tr>
 <td style="text-align: center;">10</td>
+<td style="text-align: left;"><a name="relatedSiteIRI-field"></a>relatedSiteIRI</td>
+<td style="text-align: left;">Verbatim IRI of of a related site to the specified site e.g. parent site, same site with different identifier.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">https://linked.data.gov.au/dataset/bdr/site/TERN/P1</td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td style="text-align: left;"><a name="relationshipToRelatedSite-field"></a>relationshipToRelatedSite</td>
+<td style="text-align: left;">Relationship between the site and the related site. This field can be used to record Site identifiers for the same site from different custodians through the use of URIs.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">PART OF<br>(<a href="#relationshipToRelatedSite-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
 <td style="text-align: left;"><a name="locality-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:locality">locality</a></td>
 <td style="text-align: left;">The specific description of the place.</td>
 <td style="text-align: center;">Optional</td>
@@ -934,7 +950,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">Cowaramup Bay Road</td>
 </tr>
 <tr>
-<td style="text-align: center;">11</td>
+<td style="text-align: center;">13</td>
 <td style="text-align: left;"><a name="decimalLatitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLatitude">decimalLatitude</a></td>
 <td style="text-align: left;">The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are north of the Equator, negative values are south of it. Legal values lie between -90 and 0, inclusive for Southern hemisphere.</td>
 <td style="text-align: center;">Optional</td>
@@ -942,7 +958,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">-34.036</td>
 </tr>
 <tr>
-<td style="text-align: center;">12</td>
+<td style="text-align: center;">14</td>
 <td style="text-align: left;"><a name="decimalLongitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLongitude">decimalLongitude</a></td>
 <td style="text-align: left;">The geographic longitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic origin of a Site. Positive values are east of the Greenwich Meridian, negative values are west of it. Legal values lie between 0 and 180, inclusive for the BDR use case.</td>
 <td style="text-align: center;">Optional</td>
@@ -950,7 +966,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">146.363</td>
 </tr>
 <tr>
-<td style="text-align: center;">13</td>
+<td style="text-align: center;">15</td>
 <td style="text-align: left;"><a name="footprintWKT-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:footprintWKT">footprintWKT</a></td>
 <td style="text-align: left;">A Well-Known Text (WKT) representation of the shape (footprint, geometry) that defines the Site. A Site may have both a point-radius representation and a footprint representation, and they may differ from each other.</td>
 <td style="text-align: center;">Optional</td>
@@ -958,7 +974,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">LINESTRING (146.363 -34.036, 146.363 -34.037)<br>(<a href="#appendix-ii-well-known-text-wkt">WKT notes</a>)</td>
 </tr>
 <tr>
-<td style="text-align: center;">14</td>
+<td style="text-align: center;">16</td>
 <td style="text-align: left;"><a name="geodeticDatum-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
 <td style="text-align: left;">The geodetic datum, or spatial reference system (SRS) upon which the geographic coordinates given for the Site are based.</td>
 <td style="text-align: center;">Optional</td>
@@ -966,7 +982,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">WGS84<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
 </tr>
 <tr>
-<td style="text-align: center;">15</td>
+<td style="text-align: center;">17</td>
 <td style="text-align: left;"><a name="coordinateUncertaintyInMeters-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:coordinateUncertaintyInMeters">coordinateUncertaintyInMeters</a></td>
 <td style="text-align: left;">The horizontal distance (in metres) from the given decimalLatitude and decimalLongitude describing the smallest circle containing the whole of the Site. Leave the value empty if the uncertainty is unknown, cannot be estimated, or is not applicable (because there are no coordinates). Zero is not a valid value for this term.</td>
 <td style="text-align: center;">Optional</td>
@@ -974,7 +990,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <td style="text-align: left;">50</td>
 </tr>
 <tr>
-<td style="text-align: center;">16</td>
+<td style="text-align: center;">18</td>
 <td style="text-align: left;"><a name="dataGeneralizations-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:dataGeneralizations">dataGeneralizations</a></td>
 <td style="text-align: left;">Actions taken to make the shared data less specific or complete than in its original form.</td>
 <td style="text-align: center;">Optional</td>
@@ -989,6 +1005,8 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <ul>
 <li>Add field <a href="#existingBDRSiteIRI-field"><code>existingBDRSiteIRI</code></a>. Type is URI, can be blank.
 Rows with values must be unique within a template.</li>
+<li>Add field <a href="#relatedSiteIDSource-field"><code>relatedSiteIDSource</code></a>. Type is string, can be blank.</li>
+<li>Add field <a href="#relatedSiteIRI-field"><code>relatedSiteIRI</code></a>. Type is IRI, can be blank.</li>
 </ul>
 <h3 id="changed-validation">CHANGED VALIDATION</h3>
 <ul>
@@ -1000,6 +1018,13 @@ i.e. each row with these fields must have a unique combination.</li>
 <li>Either <a href="#siteID-field"><code>siteID</code></a> and <a href="#siteIDSource-field"><code>siteIDSource</code></a>,
 or <a href="#existingBDRSiteIRI-field"><code>existingBDRSiteIRI</code></a>,
 or both, must be provided in each row.</li>
+<li>Fields <a href="#relatedSiteID-field"><code>relatedSiteID</code></a> and <a href="#relatedSiteIDSource-field"><code>relatedSiteIDSource</code></a>
+are conditionally mandatory together, both must be provided, or neither must be provided.</li>
+<li>When provided, fields <a href="#relatedSiteID-field"><code>relatedSiteID</code></a> and <a href="#relatedSiteIDSource-field"><code>relatedSiteIDSource</code></a> must match
+a <a href="#siteID-field"><code>siteID</code></a> and <a href="#siteIDSource-field"><code>siteIDSource</code></a> in the template.</li>
+<li>When either <a href="#relatedSiteIRI-field"><code>relatedSiteIRI</code></a>, 
+or <a href="#relatedSiteID-field"><code>relatedSiteID</code></a> and <a href="#relatedSiteIDSource-field"><code>relatedSiteIDSource</code></a>,
+are provided, <a href="#relationshipToRelatedSite-field"><code>relationshipToRelatedSite</code></a> must be provided.</li>
 </ul>
 <h2 id="appendices">APPENDICES</h2>
 <h3 id="appendix-i-vocabulary-list">APPENDIX-I: Vocabulary List</h3>
