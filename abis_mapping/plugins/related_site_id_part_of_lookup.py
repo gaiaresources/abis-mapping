@@ -10,6 +10,7 @@ import frictionless.errors
 from typing import Iterable
 
 
+# TODO remove once SSD v2 is removed
 @attrs.define(kw_only=True, repr=False)
 class RelatedSiteIDPartOfLookup(frictionless.Check):
     """Specific check confirming relationshipToRelatedSite is a valid siteID when relationship is `partOf`.

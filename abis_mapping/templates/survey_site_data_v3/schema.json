@@ -87,9 +87,9 @@
     },
     {
       "name": "relatedSiteID",
-      "title": "Related SiteID",
-      "description": "Identifier of a related site to the specified site e.g. parent site, same site with different identifier.",
-      "example": "Same as within dataset or existing URI",
+      "title": "Related Site ID",
+      "description": "Identifier of a related site to the specified site e.g. parent site, same site with different identifier. This site must be included in this dataset.",
+      "example": "P1",
       "type": "string",
       "format": "default",
       "constraints": {
@@ -97,15 +97,40 @@
       }
     },
     {
+      "name": "relatedSiteIDSource",
+      "title": "Related Site ID Source",
+      "description": "The organisation that assigned the relatedSiteID to the related site.",
+      "example": "TERN",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "relatedSiteIRI",
+      "title": "Related Site IRI",
+      "description": "Verbatim IRI of of a related site to the specified site e.g. parent site, same site with different identifier.",
+      "example": "https://linked.data.gov.au/dataset/bdr/site/TERN/P1",
+      "type": "string",
+      "format": "uri",
+      "constraints": {
+        "required": false,
+        "unique": true
+      }
+    },
+    {
       "name": "relationshipToRelatedSite",
       "title": "Relationship To Related Site",
       "description": "Relationship between the site and the related site. This field can be used to record Site identifiers for the same site from different custodians through the use of URIs.",
-      "example": "Same as within dataset or existing URI",
+      "example": "PART OF",
       "type": "string",
       "format": "default",
       "constraints": {
         "required": false,
         "enum": [
+          "PART OF",
+          "SAME AS",
           "partOf",
           "sameAs",
           "part of",

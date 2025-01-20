@@ -1,2 +1,2 @@
-siteID,siteIDSource,existingBDRSiteIRI,siteType,siteName,siteDescription,habitat,relatedSiteID,relationshipToRelatedSite,locality,decimalLatitude,decimalLongitude,footprintWKT,geodeticDatum,coordinateUncertaintyInMeters,dataGeneralizations
-P1,WAM,,Plot,Plot 1,Fine woody debris.,,,part of,Cowaramup Bay Road,-34.036,146.363,"LINESTRING (146.363 -34.036, 146.363 -34.037)","",50,
+siteID,siteIDSource,existingBDRSiteIRI,siteType,siteName,siteDescription,habitat,relatedSiteID,relatedSiteIDSource,relatedSiteIRI,relationshipToRelatedSite,locality,decimalLatitude,decimalLongitude,footprintWKT,geodeticDatum,coordinateUncertaintyInMeters,dataGeneralizations
+P1,WAM,,Plot,Plot 1,Fine woody debris.,,,,,part of,Cowaramup Bay Road,-34.036,146.363,"LINESTRING (146.363 -34.036, 146.363 -34.037)","",50,
