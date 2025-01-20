@@ -12,6 +12,7 @@ from . import lookup_match
 from . import mutual_exclusion
 from . import mutual_inclusion
 from . import related_site_id_part_of_lookup
+from . import related_site_validation
 from . import required
 from . import site_id_or_iri_validation
 from . import site_identifier_match

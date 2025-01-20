@@ -99,6 +99,8 @@ Changes from Systematic Survey Site Data Template v2.0.0
 
 * Add field [`existingBDRSiteIRI`](#existingBDRSiteIRI-field). Type is URI, can be blank.
 Rows with values must be unique within a template.
+* Add field [`relatedSiteIDSource`](#relatedSiteIDSource-field). Type is string, can be blank.
+* Add field [`relatedSiteIRI`](#relatedSiteIRI-field). Type is IRI, can be blank.
 
 ### CHANGED VALIDATION
 
@@ -110,6 +112,13 @@ i.e. each row with these fields must have a unique combination.
 * Either [`siteID`](#siteID-field) and [`siteIDSource`](#siteIDSource-field),
 or [`existingBDRSiteIRI`](#existingBDRSiteIRI-field),
 or both, must be provided in each row.
+* Fields [`relatedSiteID`](#relatedSiteID-field) and [`relatedSiteIDSource`](#relatedSiteIDSource-field)
+are conditionally mandatory together, both must be provided, or neither must be provided.
+* When provided, fields [`relatedSiteID`](#relatedSiteID-field) and [`relatedSiteIDSource`](#relatedSiteIDSource-field) must match
+a [`siteID`](#siteID-field) and [`siteIDSource`](#siteIDSource-field) in the template.
+* When either [`relatedSiteIRI`](#relatedSiteIRI-field), 
+or [`relatedSiteID`](#relatedSiteID-field) and [`relatedSiteIDSource`](#relatedSiteIDSource-field),
+are provided, [`relationshipToRelatedSite`](#relationshipToRelatedSite-field) must be provided.
 
 ## APPENDICES
 ### APPENDIX-I: Vocabulary List

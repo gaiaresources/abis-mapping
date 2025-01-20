@@ -87,6 +87,9 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             encoding="utf-8",
         )
 
+        # Extract SiteIdentifiers present in this template.
+        site_identifiers = self.extract_site_identifiers(data)
+
         # Validate
         report = resource.validate(
             checklist=frictionless.Checklist(
@@ -112,12 +115,12 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                         occurrence_site_identifiers=site_id_map,
                     ),
                     plugins.mutual_inclusion.MutuallyInclusive(
-                        field_names=["relatedSiteID", "relationshipToRelatedSite"],
+                        field_names=["relatedSiteID", "relatedSiteIDSource"],
                     ),
-                    # When relationshipToRelatedSite is 'partOf'
-                    # then the relatedSiteID must exist as a siteID in the same template.
-                    plugins.related_site_id_part_of_lookup.RelatedSiteIDPartOfLookup(
-                        site_ids=set(self.extract_site_ids(data))
+                    # Check that related site and relationship are provided together,
+                    # also check that relatedSiteID+Source matches a site in the template.
+                    plugins.related_site_validation.RelatedSiteValidation(
+                        site_identifiers=site_identifiers,
                     ),
                 ],
             )
@@ -126,11 +129,11 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Return validation report
         return report
 
-    def extract_site_ids(
+    def extract_site_identifiers(
         self,
         data: base.types.ReadableType,
-    ) -> dict[str, Literal[True]]:
-        """Constructs a key mapped 'set' of all ids.
+    ) -> dict[models.identifier.SiteIdentifier, Literal[True]]:
+        """Constructs a key mapped 'set' of all SiteIdentifier in the template.
 
         Args:
             data: Raw data to be mapped
@@ -143,13 +146,13 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         with resource.open() as r:
             # Create empty dictionary to hold mapping values
-            result: dict[str, Literal[True]] = {}
+            result: dict[models.identifier.SiteIdentifier, Literal[True]] = {}
             for row in r.row_stream:
                 # Extract value
-                site_id: str | None = row["siteID"]
+                site_identifier = models.identifier.SiteIdentifier.from_row(row)
 
-                if site_id:
-                    result[site_id] = True
+                if site_identifier:
+                    result[site_identifier] = True
 
             return result
 
@@ -273,19 +276,15 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             site_id_agent = None
             site_id_attribution = None
 
-        # Conditionally create uri dependent on relatedSiteID
+        # Conditionally create related site URI
         related_site_id: str | None = row["relatedSiteID"]
-        relationship_to_related_site: str | None = row["relationshipToRelatedSite"]
-        related_site: rdflib.URIRef | rdflib.Literal | None
-        if related_site_id and relationship_to_related_site:
-            # Get vocab to conditionally create related site
-            rtor_site_vocab = self.fields()["relationshipToRelatedSite"].get_vocab()
-            if rtor_site_vocab().get(relationship_to_related_site) == rdflib.SDO.isPartOf:
-                # Related site is defined internal to the dataset
-                related_site = utils.iri_patterns.legacy_site_iri(base_iri, related_site_id)
-            else:
-                # Related site is defined outside the dataset
-                related_site = utils.rdf.uri_or_string_literal(related_site_id)
+        related_site_id_source: str | None = row["relatedSiteIDSource"]
+        related_site_iri: str | None = row["relatedSiteIRI"]
+        related_site: rdflib.URIRef | None
+        if related_site_iri:
+            related_site = rdflib.URIRef(related_site_iri)
+        elif related_site_id and related_site_id_source:
+            related_site = utils.iri_patterns.site_iri(related_site_id_source, related_site_id)
         else:
             related_site = None
 
@@ -434,7 +433,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
         site_id_datatype: rdflib.URIRef | None,
-        related_site: rdflib.URIRef | rdflib.Literal | None,
+        related_site: rdflib.URIRef | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
@@ -447,8 +446,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             site_id_datatype: Datatype to use for
                 the site id literal.
             related_site: Either the internal site uri that
-                this site relates to or a literal representation
-                from outside the dataset
+                this site relates to or a URI for an external site.
             row: Row to retrieve data from.
             graph: Graph to be modified.
             base_iri: Namespace used to construct IRIs
