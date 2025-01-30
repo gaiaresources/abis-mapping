@@ -252,6 +252,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             graph (rdflib.URIRef): Graph to map row into.
             extra_schema (frictionless.Schema): Schema of extra fields.
             base_iri (rdflib.Namespace): Optional base IRI to use for mapping.
+            submission_iri: Optional submission IRI
         """
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site visit and occurrence template mapping, ensuring they will resolve properly.
@@ -661,6 +662,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             site: The uri for the site node.
             dataset: The uri for the dateset node.
             graph: The graph.
+            submission_iri: Optional submission IRI
         """
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))

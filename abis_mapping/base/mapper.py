@@ -64,6 +64,7 @@ class ABISMapper(abc.ABC):
             chunk_size: Size of chunks to split raw data into. None to disabled chunking.
             dataset_iri: IRI of the Dataset this raw data is part of.
             base_iri: Namespace to use when generating new IRIs as part of this mapping.
+            submission_iri: Optional submission IRI
             **kwargs: Additional keyword arguments.
 
         Yields:
@@ -163,6 +164,7 @@ class ABISMapper(abc.ABC):
             extra_schema: Template schema including any extra fields.
             base_iri: Base IRI namespace to use for mapping.
             kwargs: Additional keyword arguments.
+            submission_iri: Optional submission IRI
         """
 
     def add_geometry_supplied_as(
