@@ -109,7 +109,7 @@ class ABISMapper(abc.ABC):
                     extra_schema=extra_schema,
                     base_iri=base_iri,
                     submission_iri=submission_iri,
-                **kwargs,
+                    **kwargs,
                 )
                 graph_has_rows = True
 

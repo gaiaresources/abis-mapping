@@ -380,7 +380,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 site=site,
                 dataset=dataset,
                 graph=graph,
-                submission_iri=submission_iri
+                submission_iri=submission_iri,
             )
 
         # Add data generalizations attribute
