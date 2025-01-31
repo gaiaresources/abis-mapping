@@ -192,7 +192,7 @@ def datatype_iri(
 
 
 def agent_iri(
-    agent_type: Literal["org", "person"],
+    agent_type: Literal["org", "person", "software"],
     agent: str,
     /,
 ) -> rdflib.URIRef:
@@ -352,7 +352,17 @@ def plan_iri(
 
 def attribution_iri(
     base_iri: rdflib.Namespace,
-    role: Literal["resourceProvider", "owner", "rightsHolder", "creator", "principalInvestigator"],
+    role: Literal[
+        "contributor",
+        "creator",
+        "custodian",
+        "funder",
+        "originator",
+        "owner",
+        "principalInvestigator",
+        "resourceProvider",
+        "rightsHolder",
+    ],
     source: str,
 ) -> rdflib.URIRef:
     """Get the IRI to use for a prov:Attribution node.
