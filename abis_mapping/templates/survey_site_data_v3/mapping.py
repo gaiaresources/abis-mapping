@@ -362,7 +362,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 dataset=dataset,
                 raw=habitat_object.raw,
                 graph=graph,
-                submission_iri=submission_iri
+                submission_iri=submission_iri,
             )
 
             # Add habitat value
@@ -392,7 +392,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             dataset=dataset,
             row=row,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add data generalizations value
