@@ -29,7 +29,7 @@ class FieldTableRow(pydantic.BaseModel):
     """Standard Field table row."""
 
     field: Annotated[models.schema.Field, pydantic.Field(exclude=True)]
-    checklist: Annotated[frictionless.Checklist | None, pydantic.Field(exclude=True)]
+    checklist: Annotated[frictionless.Checklist, pydantic.Field(exclude=True)]
 
     # Where the field appears in the schema and template columns beginning at 1
     field_no: Annotated[int, pydantic.Field(exclude=True)]
@@ -79,12 +79,8 @@ class FieldTableRow(pydantic.BaseModel):
                     f"Mandatory if {skip_condition}siteID and siteIDSource are not provided.\nOtherwise Optional."
                 )
 
-        # Create blank list
-        mi_fields: list[str] = []
-
         # Check for any mutual inclusivity checks
-        if self.checklist is not None:
-            mi_fields = mutual_inclusivity(self.field.name, self.checklist)
+        mi_fields = mutual_inclusivity(self.field.name, self.checklist)
 
         # Conditionally return corresponding text
         if self.field.constraints.required:
@@ -236,7 +232,7 @@ class FieldTabler(tables.base.BaseTabler):
     def checklist(
         self,
         **kwargs: Any,
-    ) -> frictionless.Checklist | None:
+    ) -> frictionless.Checklist:
         """Determines frictionless checklist being performed as part of a template's validation.
 
         Args:
@@ -255,11 +251,13 @@ class FieldTabler(tables.base.BaseTabler):
 
             # Retrieve checklist and return
             if mocked_validate.called:
-                checklist: frictionless.Checklist = mocked_validate.call_args.kwargs.get("checklist")
+                checklist = mocked_validate.call_args.kwargs.get("checklist")
+                if not isinstance(checklist, frictionless.Checklist):
+                    raise ValueError("checklist is not a frictionless checklist")
                 return checklist
 
             # Else
-            return None
+            raise Exception("Resource.validate() not called by apply_validation()")
 
 
 class OccurrenceField(models.schema.Field):

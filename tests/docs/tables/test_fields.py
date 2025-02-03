@@ -154,7 +154,6 @@ def mocked_vocab(mocked_vocab: unittest.mock.MagicMock) -> unittest.mock.MagicMo
                 "example": "SOME EXAMPLE",
                 "type": "string",
                 "format": "default",
-                "checklist": frictionless.Checklist(),
                 "constraints": {
                     "required": True,
                     "enum": [
@@ -186,7 +185,7 @@ def test_field_table_row(field: dict[str, Any], expected: dict[str, Any]) -> Non
     f = models.schema.Field.model_validate(field)
 
     # Create field table row
-    ftr = tables.fields.FieldTableRow(field=f, checklist=None, field_no=1)
+    ftr = tables.fields.FieldTableRow(field=f, checklist=frictionless.Checklist(), field_no=1)
 
     # Assert
     assert ftr.model_dump(by_alias=True) == expected
