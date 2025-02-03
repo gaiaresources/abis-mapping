@@ -2,6 +2,7 @@
 
 # Standard
 import argparse
+import enum
 import sys
 from unittest import mock
 
@@ -16,6 +17,12 @@ from docs import tables
 
 # Typing
 from typing import IO, Annotated, Any
+
+
+class MandatoryType(enum.Enum):
+    OPTIONAL = enum.auto()
+    CONDITIONALLY_MANDATORY = enum.auto()
+    MANDATORY = enum.auto()
 
 
 class FieldTableRow(pydantic.BaseModel):
@@ -45,10 +52,8 @@ class FieldTableRow(pydantic.BaseModel):
         """Derive from supplied field."""
         return self.field.description
 
-    @pydantic.computed_field(alias="Mandatory / Optional")  # type: ignore[prop-decorator]
-    @property
-    def mandatory_optional(self) -> str:
-        """Output text for mandatorinessness."""
+    def _get_mandatory_optional(self) -> tuple[MandatoryType, str]:
+        """Which "type" of mandatoryness, plus the text description."""
         # Create blank list
         mi_fields: list[str] = []
 
@@ -58,13 +63,24 @@ class FieldTableRow(pydantic.BaseModel):
 
         # Conditionally return corresponding text
         if self.field.constraints.required:
-            return "Mandatory"
+            return MandatoryType.MANDATORY, "Mandatory"
         elif len(mi_fields) == 1:
-            return f"Conditionally mandatory with {mi_fields.pop()}"
+            return MandatoryType.CONDITIONALLY_MANDATORY, f"Conditionally mandatory with {mi_fields.pop()}"
         elif len(mi_fields) > 1:
             last_field = mi_fields.pop()
-            return f"Conditionally mandatory with {', '.join(mi_fields)} and {last_field}"
-        return "Optional"
+            return (
+                MandatoryType.CONDITIONALLY_MANDATORY,
+                f"Conditionally mandatory with {', '.join(mi_fields)} and {last_field}",
+            )
+        return MandatoryType.OPTIONAL, "Optional"
+
+    @pydantic.computed_field(alias="Mandatory / Optional")  # type: ignore[prop-decorator]
+    @property
+    def mandatory_optional(self) -> str:
+        """Output text for mandatoryness."""
+        _, text = self._get_mandatory_optional()
+        text = text.strip().replace("\n", " ")
+        return text
 
     @pydantic.computed_field(alias="Datatype Format")  # type: ignore[prop-decorator]
     @property
@@ -99,27 +115,19 @@ class MarkdownFieldTableRow(FieldTableRow):
     @pydantic.computed_field(alias="Mandatory / Optional")  # type: ignore[prop-decorator]
     @property
     def mandatory_optional(self) -> str:
-        """Output text for mandatorinessness."""
-        # Create blank list
-        mi_fields: list[str] = []
+        """Output text for mandatoryness, in Markdown format."""
+        mandatory, text = self._get_mandatory_optional()
 
-        # Check for any mutual inclusivity checks
-        if self.checklist is not None:
-            mi_fields = mutual_inclusivity(self.field.name, self.checklist)
+        # Can't use an actual \n in the middle of a Markdown table
+        text = text.strip().replace("\n", "<br>")
 
-        # Conditionally return corresponding text
-        if self.field.constraints.required:
-            return '**<font color="Crimson">Mandatory</font>**'
-        elif len(mi_fields) == 1:
-            return f'**<font color="DarkGoldenRod">Conditionally mandatory with {mi_fields.pop()}</font>**'
-        elif len(mi_fields) > 1:
-            last_field = mi_fields.pop()
-            return (
-                '**<font color="DarkGoldenRod">'
-                f'Conditionally mandatory with {", ".join(mi_fields)} and {last_field}'
-                '</font>**'
-            )
-        return "Optional"
+        # Return text wrapped in color if needed.
+        if mandatory == MandatoryType.MANDATORY:
+            return f'**<font color="Crimson">{text}</font>**'
+        elif mandatory == MandatoryType.CONDITIONALLY_MANDATORY:
+            return f'**<font color="DarkGoldenRod">{text}</font>**'
+        else:
+            return text
 
     @pydantic.computed_field(alias="Examples")  # type: ignore[prop-decorator]
     @property
