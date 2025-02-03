@@ -54,6 +54,31 @@ class FieldTableRow(pydantic.BaseModel):
 
     def _get_mandatory_optional(self) -> tuple[MandatoryType, str]:
         """Which "type" of mandatoryness, plus the text description."""
+        # If this field+template is one of the "site identifier" fields, use a custom
+        # conditionally mandatory message, rather than the usual logic.
+        if is_site_identifier_field(self.field.name, self.checklist):
+            skip_when_missing = site_identifier_skip_field(self.checklist)
+            if skip_when_missing:
+                skip_condition = f"{skip_when_missing} is provided and "
+            else:
+                skip_condition = ""
+            if self.field.name == "siteID":
+                return MandatoryType.CONDITIONALLY_MANDATORY, (
+                    f"Mandatory if {skip_condition}existingBDRSiteIRI is not provided.\n"
+                    "Mandatory if siteIDSource is provided.\n"
+                    "Otherwise Optional."
+                )
+            elif self.field.name == "siteIDSource":
+                return MandatoryType.CONDITIONALLY_MANDATORY, (
+                    f"Mandatory if {skip_condition}existingBDRSiteIRI is not provided.\n"
+                    "Mandatory if siteID is provided.\n"
+                    "Otherwise Optional."
+                )
+            elif self.field.name == "existingBDRSiteIRI":
+                return MandatoryType.CONDITIONALLY_MANDATORY, (
+                    f"Mandatory if {skip_condition}siteID and siteIDSource are not provided.\nOtherwise Optional."
+                )
+
         # Create blank list
         mi_fields: list[str] = []
 
@@ -306,6 +331,25 @@ def mutual_inclusivity(field_name: str, checklist: frictionless.Checklist) -> li
 
     # Return
     return sorted(fields)
+
+
+def is_site_identifier_field(
+    field_name: str,
+    checklist: frictionless.Checklist,
+) -> bool:
+    """Check is the field is a "site identifier" field,
+    and the template uses SiteIdentifierCheck plugin."""
+    return field_name in ("siteID", "siteIDSource", "existingBDRSiteIRI") and any(
+        isinstance(check, plugins.site_id_or_iri_validation.SiteIdentifierCheck) for check in checklist.checks
+    )
+
+
+def site_identifier_skip_field(checklist: frictionless.Checklist) -> str | None:
+    """Get the field the SiteIdentifierCheck is skipped for."""
+    for check in checklist.checks:
+        if isinstance(check, plugins.site_id_or_iri_validation.SiteIdentifierCheck):
+            return check.skip_when_missing
+    raise Exception("Could not find SiteIdentifierCheck in checklist")
 
 
 if __name__ == "__main__":
