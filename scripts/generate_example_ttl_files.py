@@ -87,7 +87,7 @@ def main() -> None:
                 chunk_size=None,
                 dataset_iri=tests.helpers.TEST_DATASET_IRI,
                 base_iri=tests.helpers.TEST_BASE_NAMESPACE,
-                submission_iri=None,
+                submission_iri=tests.helpers.TEST_SUBMISSION_IRI
             )
         )
         if len(graphs) != 1:
