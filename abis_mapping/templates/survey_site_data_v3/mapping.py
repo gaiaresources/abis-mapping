@@ -683,8 +683,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SDO.member, site))
         # Add link to attribute
         graph.add((uri, utils.namespaces.TERN.hasAttribute, attribute))
-        if submission_iri:
-            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
     def add_data_generalizations_attribute(
         self,
