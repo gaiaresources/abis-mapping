@@ -17,7 +17,9 @@ from abis_mapping import settings
 # Whenever a test needs to call apply_mapping(), use these for dataset_iri and base_iri.
 TEST_DATASET_IRI = rdflib.URIRef("https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000")
 TEST_BASE_NAMESPACE = rdflib.Namespace("https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/")
-TEST_SUBMISSION_IRI = rdflib.URIRef("https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000")
+TEST_SUBMISSION_IRI = rdflib.URIRef(
+    "https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000"
+)
 
 
 @contextlib.contextmanager
