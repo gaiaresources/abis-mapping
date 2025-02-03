@@ -241,7 +241,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
         base_iri: rdflib.Namespace,
-        submission_iri: rdflib.URIRef | None = None,
+        submission_iri: rdflib.URIRef | None,
         **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the `survey_site_data.csv` template.
@@ -362,6 +362,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 dataset=dataset,
                 raw=habitat_object.raw,
                 graph=graph,
+                submission_iri=submission_iri
             )
 
             # Add habitat value
@@ -391,6 +392,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             dataset=dataset,
             row=row,
             graph=graph,
+            submission_iri=submission_iri
         )
 
         # Add data generalizations value
@@ -591,6 +593,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         raw: str,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds a habitat attribute to the graph.
 
@@ -603,6 +606,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         """
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
         # Add dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
@@ -651,7 +656,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         site: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None = None,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a habitat attribute Collection to the graph
 
@@ -684,6 +689,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add the data generalizations attribute node to the graph.
 
@@ -700,6 +706,8 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
         # Add dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))

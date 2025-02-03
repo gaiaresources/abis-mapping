@@ -290,6 +290,7 @@ class TestDefaultGeometryMap:
                 chunk_size=None,
                 dataset_iri=tests.helpers.TEST_DATASET_IRI,
                 base_iri=tests.helpers.TEST_BASE_NAMESPACE,
+                submission_iri=None
             )
         )
         assert len(graphs) == 1
@@ -312,6 +313,7 @@ class TestDefaultGeometryMap:
                 dataset_iri=tests.helpers.TEST_DATASET_IRI,
                 base_iri=tests.helpers.TEST_BASE_NAMESPACE,
                 site_id_geometry_map=default_map,
+                submission_iri=None
             )
         )
         assert len(graphs) == 1
@@ -436,6 +438,7 @@ class TestDefaultTemporalMap:
             dataset_iri=tests.helpers.TEST_DATASET_IRI,
             base_iri=tests.helpers.TEST_BASE_NAMESPACE,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
+            submission_iri=None
         )
         res_g = next(graphs)
         # Ensure temporal entity added to graph

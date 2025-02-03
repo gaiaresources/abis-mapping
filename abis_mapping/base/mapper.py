@@ -54,7 +54,7 @@ class ABISMapper(abc.ABC):
         chunk_size: int | None,
         dataset_iri: rdflib.URIRef,
         base_iri: rdflib.Namespace,
-        submission_iri: rdflib.URIRef | None = None,
+        submission_iri: rdflib.URIRef | None,
         **kwargs: Any,
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping from Raw Data to ABIS conformant RDF.
@@ -152,7 +152,7 @@ class ABISMapper(abc.ABC):
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
         base_iri: rdflib.Namespace,
-        submission_iri: rdflib.URIRef | None = None,
+        submission_iri: rdflib.URIRef | None,
         **kwargs: Any,
     ) -> None:
         """Applies Mapping for a Row in the template by mutating the passed Graph.
