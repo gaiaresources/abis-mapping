@@ -49,6 +49,9 @@
     skos:prefLabel "WAM Site ID" ;
     prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> .
 
+<https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> a tern:RDFDataset ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
 <https://example.com/site/P1> a tern:Site ;
     schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> .
 
