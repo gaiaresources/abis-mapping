@@ -679,7 +679,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             provider_record_id_occurrence=provider_record_id_occurrence,
             graph=graph,
             base_iri=base_iri,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add catalog number datatype
@@ -739,7 +739,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             id_qualifier_value=id_qualifier_value,
             dataset=dataset,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Identification Qualifier Value
@@ -768,7 +768,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             id_remarks_value=id_remarks_value,
             dataset=dataset,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Identification Remarks Value
@@ -806,7 +806,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
             base_iri=base_iri,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Observation for Verbatim ID
@@ -821,7 +821,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
             base_iri=base_iri,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Data Generalizations Attribute
@@ -831,7 +831,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             data_generalizations_value=data_generalizations_value,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Data Generalizations Value
@@ -858,7 +858,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             taxon_rank_value=taxon_rank_value,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Taxon Rank Value
@@ -889,7 +889,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             individual_count_value=individual_count_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Individual Count Value
@@ -908,7 +908,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             organism_remarks_value=organism_remarks_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Organism Remarks Value
@@ -925,7 +925,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             habitat_value=habitat_value,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Habitat Value
@@ -954,7 +954,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             basis_value=basis_value,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Basis of Record Value
@@ -994,7 +994,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             occurrence_status_value=occurrence_status_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Occurrence Status Value
@@ -1013,7 +1013,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             preparations_value=preparations_value,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Preparations Value
@@ -1044,7 +1044,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             establishment_means_value=establishment_means_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Establishment Means Value
@@ -1088,7 +1088,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             sex_value=sex_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Sex Value
@@ -1110,7 +1110,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             reproductive_condition_value=reproductive_condition_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Reproductive Condition Value
@@ -1131,7 +1131,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             accepted_name_usage_value=accepted_name_usage_value,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Accepted Name Usage Value
@@ -1163,7 +1163,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             feature_of_interest=sample_specimen,
             sampling_sequencing=sampling_sequencing,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Provider Threat Status Determined By
@@ -1184,7 +1184,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
             base_iri=base_iri,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Threat Status Value
@@ -1203,7 +1203,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             conservation_authority_value=conservation_authority_value,
             dataset=dataset,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Conservation Authority Value
@@ -1231,7 +1231,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add organism quantity value
@@ -1246,11 +1246,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add site
         self.add_site(
-            uri=site,
-            site_id=site_id,
-            site_id_datatype=site_id_datatype,
-            graph=graph,
-            submission_iri=submission_iri
+            uri=site, site_id=site_id, site_id_datatype=site_id_datatype, graph=graph, submission_iri=submission_iri
         )
 
         self.add_site_id_datatype(
@@ -1278,7 +1274,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             sensitivity_category_value=sensitivity_category_value,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Sensitivity Category Value
@@ -1301,12 +1297,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add Survey
-        self.add_survey(
-            uri=survey,
-            dataset=dataset,
-            graph=graph,
-            submission_iri=submission_iri
-        )
+        self.add_survey(uri=survey, dataset=dataset, graph=graph, submission_iri=submission_iri)
 
         # Add biodiversity record
         self.add_biodiversity_record(
@@ -1316,7 +1307,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             row=row,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add occurrence
@@ -1335,7 +1326,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             graph=graph,
             base_iri=base_iri,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add site visit
@@ -1451,7 +1442,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Observation Scientific Name to the Graph
 
@@ -1533,7 +1524,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Observation Verbatim ID to the Graph
 
@@ -1741,7 +1732,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         id_qualifier_value: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Identification Qualifier Attribute to the Graph
 
@@ -1854,7 +1845,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         id_remarks_value: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Identification Remarks Attribute to the Graph
 
@@ -2239,7 +2230,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         provider_record_id_occurrence: rdflib.URIRef,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Sample Specimen to the Graph
 
@@ -2283,7 +2274,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         data_generalizations_value: rdflib.URIRef | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Data Generalizations Attribute to the Graph
 
@@ -2384,7 +2375,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         taxon_rank_value: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Taxon Rank Attribute to the Graph
 
@@ -2498,7 +2489,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         individual_count_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Individual Count Observation to the Graph
 
@@ -2598,7 +2589,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         organism_remarks_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Organism Remarks Observation to the Graph
 
@@ -2695,7 +2686,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         habitat_value: rdflib.URIRef | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Habitat Attribute to the Graph
 
@@ -2800,7 +2791,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         basis_value: rdflib.URIRef | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Basis of Record Attribute to the Graph
 
@@ -2945,7 +2936,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         occurrence_status_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Occurrence Status Observation to the Graph
 
@@ -3049,7 +3040,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         preparations_value: rdflib.URIRef | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Preparations Attribute to the Graph
 
@@ -3161,7 +3152,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         establishment_means_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Establishment Means Observation to the Graph
 
@@ -3271,7 +3262,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         life_stage_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Life Stage Observation to the Graph
 
@@ -3389,7 +3380,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         sex_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Sex Observation to the Graph
 
@@ -3505,7 +3496,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         reproductive_condition_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Reproductive Condition Observation to the Graph
 
@@ -3621,7 +3612,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         accepted_name_usage_value: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Accepted Name Usage Observation to the Graph
 
@@ -3838,7 +3829,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         feature_of_interest: rdflib.URIRef,
         sampling_sequencing: rdflib.URIRef,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Sample Sequence to the Graph
 
@@ -3905,7 +3896,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Threat Status Observation to the Graph
 
@@ -4035,7 +4026,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         conservation_authority_value: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Conservation Authority Attribute to the Graph
 
@@ -4145,7 +4136,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds observation organism quantity to the graph.
 
@@ -4273,7 +4264,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_id: str | None,
         site_id_datatype: rdflib.URIRef | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds site to the graph.
 
@@ -4358,7 +4349,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         sensitivity_category_value: rdflib.URIRef | None,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Sensitivity Category Attribute to the Graph
 
@@ -4478,7 +4469,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds the basics of the Survey node to the graph.
 
@@ -4508,7 +4499,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds biodiversity record node to graph.
 
@@ -4552,7 +4543,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
-        submission_iri: rdflib.URIRef | None
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds occurrence node to the graph.
 
