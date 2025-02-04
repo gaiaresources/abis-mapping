@@ -4138,7 +4138,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         threat_status_observation: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a conservation authority Collection to the graph
 
