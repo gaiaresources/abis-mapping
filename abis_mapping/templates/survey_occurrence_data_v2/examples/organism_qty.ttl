@@ -46,6 +46,9 @@
     skos:prefLabel "Gaia Resources recordID" ;
     prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Gaia-Resources/resourceProvider> .
 
+<https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> a tern:RDFDataset ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> a tern:FeatureOfInterest,
         tern:Site ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;

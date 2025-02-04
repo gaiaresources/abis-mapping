@@ -52,6 +52,9 @@
             prov:agent <https://linked.data.gov.au/dataset/bdr/org/NSW-Department-of-Planning-Industry-and-Environment> ;
             prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> ] .
 
+<https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> a tern:RDFDataset ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/surveyType/Wet-pitfall-trapping> a tern:Attribute ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:attribute <http://example.com/concept/surveyType> ;
