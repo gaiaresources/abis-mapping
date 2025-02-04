@@ -96,7 +96,11 @@ class ABISMapper(abc.ABC):
         graph = utils.rdf.create_graph()
         graph_has_rows: bool = False
         # Add per-chunk mapping for first chunk
-        self.apply_mapping_chunk(dataset=dataset_iri, graph=graph)
+        self.apply_mapping_chunk(
+            dataset=dataset_iri,
+            submission_iri=submission_iri,
+            graph=graph,
+        )
 
         # Open the Resource to allow row streaming
         with resource.open() as r:
@@ -120,7 +124,11 @@ class ABISMapper(abc.ABC):
                     # Initialise New Graph for next chunk
                     graph = utils.rdf.create_graph()
                     graph_has_rows = False
-                    self.apply_mapping_chunk(dataset=dataset_iri, graph=graph)
+                    self.apply_mapping_chunk(
+                        dataset=dataset_iri,
+                        submission_iri=submission_iri,
+                        graph=graph,
+                    )
 
             # yield final chunk, or whole graph if not chunking.
             if graph_has_rows or chunk_size is None:
@@ -130,6 +138,7 @@ class ABISMapper(abc.ABC):
         self,
         *,
         dataset: rdflib.URIRef,
+        submission_iri: rdflib.URIRef | None,
         graph: rdflib.Graph,
     ) -> None:
         """Applies mapping for RDF that should be present in every chunk.
@@ -138,10 +147,15 @@ class ABISMapper(abc.ABC):
 
         Args:
             dataset: The Dataset URI
+            submission_iri: The Submission IRI
             graph: The graph for the chunk to add the mapping to.
         """
         # This should be in every chunk, so the type of the dataset can be resolved.
         graph.add((dataset, a, utils.namespaces.TERN.Dataset))
+        # Also add the type of the submission, and link it to the dataset
+        if submission_iri:
+            graph.add((submission_iri, a, utils.namespaces.TERN.RDFDataset))
+            graph.add((submission_iri, rdflib.SDO.isPartOf, dataset))
 
     @abc.abstractmethod
     def apply_mapping_row(
