@@ -43,17 +43,9 @@
     schema:name "Survey Collection - Target Taxonomic Scope - Insecta" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/Insecta> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/project/SSD-Survey-Project/1> a abis:Project ;
-    schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> ;
-    schema:identifier "COL1" ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/project/SSD-Survey-Project/2> a abis:Project ;
-    schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL2> ;
-    schema:identifier "COL2" ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Winter" .
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/project> a abis:Project ;
+    schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1>,
+        <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL2> .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO> a rdfs:Datatype ;
     skos:prefLabel "surveyID source" ;
