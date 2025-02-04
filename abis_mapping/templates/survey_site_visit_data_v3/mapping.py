@@ -228,6 +228,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         extra_schema: frictionless.Schema,
         base_iri: rdflib.Namespace,
+        submission_iri: rdflib.URIRef | None,
         **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the Survey Site Visit Data template.
@@ -238,6 +239,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             graph: Graph to map row into.
             extra_schema: Schema of extra fields.
             base_iri: Base IRI to use for mapping.
+            submission_iri: Submission IRI to use for mapping.
         """
         # variables starting with row_ are values from the row.
         # variables starting with uri_ are constructed URIs.
@@ -365,6 +367,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri
         )
 
         # Add survey
@@ -372,6 +375,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             uri=uri_survey,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri
         )
 
         # Add site
@@ -432,6 +436,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             uri_target_taxonomic_scope_value=uri_target_taxonomic_scope_value,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri
         )
         self.add_target_taxonomic_scope_value(
             uri=uri_target_taxonomic_scope_value,
@@ -447,6 +452,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             uri_site_visit_activity=uri_site_visit_activity,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri
         )
 
         # Add samplingEffort Attribute, Value and Collection
@@ -456,6 +462,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             uri_sampling_effort_value=uri_sampling_effort_value,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri
         )
         self.add_sampling_effort_value(
             uri=uri_sampling_effort_value,
@@ -472,6 +479,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             uri_site_visit_activity=uri_site_visit_activity,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri
         )
 
         # Add extra fields
@@ -495,9 +503,13 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None
     ) -> None:
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.SiteVisit))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add dataset link
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # Add survey link
@@ -545,6 +557,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None
     ) -> None:
         """Adds the basics of the Survey node to the graph.
 
@@ -557,6 +570,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         """
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Survey))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add dataset link
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
@@ -751,6 +767,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         uri_target_taxonomic_scope_value: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None
     ) -> None:
         """Add the target taxonomic scope Attribute node.
 
@@ -767,6 +784,8 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
         # Add dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
@@ -823,6 +842,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         uri_site_visit_activity: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a target taxonomic scope Collection to the graph
 
@@ -839,6 +859,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if row_target_taxonomic_scope:
             graph.add(
@@ -864,6 +887,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         uri_sampling_effort_value: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None
     ) -> None:
         """Adds sampling effort Attribute node.
 
@@ -880,6 +904,8 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Attribute))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
         # Add dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
@@ -941,6 +967,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         uri_site_visit_activity: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None
     ) -> None:
         """Add a sampling effort Collection to the graph
 
@@ -957,6 +984,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if row_sampling_effort:
             graph.add(
