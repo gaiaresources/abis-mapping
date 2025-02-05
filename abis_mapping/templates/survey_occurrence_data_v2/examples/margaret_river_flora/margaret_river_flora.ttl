@@ -911,6 +911,20 @@
     skos:prefLabel "new basis of record" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a skos:Concept ;
+    skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
+    skos:definition "A type of habitat" ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/habitat/new-habitat> a skos:Concept ;
+    skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
+    skos:definition "A type of habitat" ;
+    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:prefLabel "new habitat" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/identificationQualifier/> a skos:Concept ;
     skos:broader <http://example.com/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
@@ -945,20 +959,6 @@
     skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
     skos:prefLabel "Category 1" ;
     skos:scopeNote "Under the authority of Department of Biodiversity and Conservation" ;
-    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetHabitatScope/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a skos:Concept ;
-    skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
-    skos:definition "A type of targetHabitatScope" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
-    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetHabitatScope/new-habitat> a skos:Concept ;
-    skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
-    skos:definition "A type of targetHabitatScope" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "new habitat" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/taxonRank/new-taxon-rank> a skos:Concept ;
@@ -1240,12 +1240,12 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a tern:IRI,
         tern:Value ;
     rdfs:label "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
-    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetHabitatScope/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> .
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/habitat/new-habitat> a tern:IRI,
         tern:Value ;
     rdfs:label "new habitat" ;
-    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetHabitatScope/new-habitat> .
+    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/habitat/new-habitat> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/> a tern:IRI,
         tern:Value ;

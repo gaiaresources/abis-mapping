@@ -1,4 +1,7 @@
-"""Provides target habitat scope vocabulary for the package."""
+"""Provides "HABITAT" and "TARGET_HABITAT_SCOPE" vocabularies for the package.
+
+These share the same Terms, but are different vocabs.
+"""
 
 # Third-party
 import rdflib
@@ -984,6 +987,133 @@ WOODLAND = utils.vocabs.Term(
 )
 
 
+class Habitat(utils.vocabs.FlexibleVocabulary):
+    vocab_id = "HABITAT"
+    definition = rdflib.Literal("A type of habitat")
+    base = "bdr-cv/attribute/habitat/"
+    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
+    broader = rdflib.URIRef("https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f")
+    default = None
+    terms = (
+        BEACH,
+        BILLABONG_OR_SWAMP,
+        CAVE,
+        CHENOPOD_SHRUBLAND,
+        CLOSED_CHENOPOD_SHRUBLAND,
+        CLOSED_FERNLAND,
+        CLOSED_FORBLAND,
+        CLOSED_FOREST,
+        CLOSED_HEATHLAND,
+        CLOSED_HUMMOCK_GRASSLAND,
+        CLOSED_LICHENLAND,
+        CLOSED_LIVERWORTLAND,
+        CLOSED_MALLEE_FOREST,
+        CLOSED_MALLEE_SHRUBLAND,
+        CLOSED_MOSSLAND,
+        CLOSED_RUSHLAND,
+        CLOSED_SEDGELAND,
+        CLOSED_SHRUBLAND,
+        CLOSED_SOD_GRASSLAND,
+        CLOSED_TUSSOCK_GRASSLAND,
+        CLOSED_VINELAND,
+        COASTAL_WATERS,
+        CROP_LAND,
+        ESTUARY,
+        FERNLAND,
+        FORBLAND,
+        FRESHWATER_LAKE,
+        GRAZING_LAND,
+        HEATHLAND,
+        HUMMOCK_GRASSLAND,
+        ISOLATED_CHENOPOD_SHRUBS,
+        ISOLATED_CLUMP_OF_CHENOPOD_SHRUBS,
+        ISOLATED_CLUMP_OF_HEATH_SHRUBS,
+        ISOLATED_CLUMP_OF_HUMMOCK_GRASSES,
+        ISOLATED_CLUMP_OF_LIVERWORTS,
+        ISOLATED_CLUMP_OF_MALLEE_SHRUBS,
+        ISOLATED_CLUMP_OF_MALLEE_TREES,
+        ISOLATED_CLUMP_OF_MOSSES,
+        ISOLATED_CLUMP_OF_RUSHES,
+        ISOLATED_CLUMP_OF_SEDGES,
+        ISOLATED_CLUMP_OF_SHRUBS,
+        ISOLATED_CLUMP_OF_SOD_GRASSES,
+        ISOLATED_CLUMP_OF_TREES,
+        ISOLATED_CLUMP_OF_TUSSOCK_GRASSES,
+        ISOLATED_CLUMP_OF_VINES,
+        ISOLATED_CLUMPS_OF_FERNS,
+        ISOLATED_CLUMPS_OF_FORBS,
+        ISOLATED_CLUP_OF_LICHENS,
+        ISOLATED_FERNS,
+        ISOLATED_FORBS,
+        ISOLATED_HEATH_SHRUBS,
+        ISOLATED_HUMMOCK_GRASSES,
+        ISOLATED_LICHENS,
+        ISOLATED_LIVERWORTS,
+        ISOLATED_MALLEE_SHRUBS,
+        ISOLATED_MALLEE_TREES,
+        ISOLATED_MOSSES,
+        ISOLATED_RUSHES,
+        ISOLATED_SEDGES,
+        ISOLATED_SHRUBS,
+        ISOLATED_SOD_GRASSES,
+        ISOLATED_TREES,
+        ISOLATED_TUSSOCK_GRASSES,
+        ISOLATED_VINES,
+        LICHENLAND,
+        LIVERWORTLAND,
+        MALLEE_SHRUBLAND,
+        MALLEE_WOODLAND,
+        MOSSLAND,
+        MUDFLAT,
+        OPEN_OCEAN,
+        OPEN_CHENOPOD_SHRUBLAND,
+        OPEN_FERNLAND,
+        OPEN_FORBLAND,
+        OPEN_FOREST,
+        OPEN_HEATH,
+        OPEN_HUMMOCK_GRASSLAND,
+        OPEN_LICHENLAND,
+        OPEN_LIVERWORTLAND,
+        OPEN_MALLEE_FOREST,
+        OPEN_MALLEE_SHRUBLAND,
+        OPEN_MALLEE_WOODLAND,
+        OPEN_MOSSLAND,
+        OPEN_RUSHLAND,
+        OPEN_SEDGELAND,
+        OPEN_SHRUBLAND,
+        OPEN_SOD_GRASSLAND,
+        OPEN_TUSSOCK_GRASSLAND,
+        OPEN_VINELAND,
+        OPEN_WOODLAND,
+        ROCK_OUTCROP,
+        RUSHLAND,
+        SALTWATER_LAKE,
+        SEDGELAND,
+        SHRUBLAND,
+        SOD_GRASSLAND,
+        SPARSE_CHENOPOD_SHRUBLAND,
+        SPARSE_FERNLAND,
+        SPARSE_FORBLAND,
+        SPARSE_GRASSLAND,
+        SPARSE_HEATH,
+        SPARSE_LICHENLAND,
+        SPARSE_LIVERWORTLAND,
+        SPARSE_MALLEE_SHRUBLAND,
+        SPARSE_MOSSLAND,
+        SPARSE_RUSHLAND,
+        SPARSE_SEDGELAND,
+        SPARSE_SHRUBLAND,
+        SPARSE_SOD_GRASSLAND,
+        SPARSE_TUSSOCK_GRASSLAND,
+        SPARSE_VINELAND,
+        STREAM_OR_RIVER,
+        TUSSOCK_GRASSLAND,
+        URBAN,
+        VINELAND,
+        WOODLAND,
+    )
+
+
 class TargetHabitatScope(utils.vocabs.FlexibleVocabulary):
     vocab_id = "TARGET_HABITAT_SCOPE"
     definition = rdflib.Literal("A type of targetHabitatScope")
@@ -1112,4 +1242,5 @@ class TargetHabitatScope(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
+utils.vocabs.register(Habitat)
 utils.vocabs.register(TargetHabitatScope)
