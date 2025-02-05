@@ -275,9 +275,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # URI for the Site Visit Plan
         uri_site_visit_plan = utils.iri_patterns.plan_iri(base_iri, "visit", row_site_visit_id)
 
-        # When both existingBDRSiteIRI and siteID+siteIDSource are provided,
+        # When siteID+siteIDSource are provided,
         # the site gets a schema:identifier with this datatype.
-        if row_existing_site_iri and row_site_id and row_site_id_source:
+        if row_site_id and row_site_id_source:
             uri_site_id_datatype = utils.iri_patterns.datatype_iri("siteID", row_site_id_source)
             uri_site_id_datatype_attribution = utils.iri_patterns.attribution_iri(
                 base_iri, "resourceProvider", row_site_id_source
@@ -587,8 +587,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Add class
         graph.add((uri, a, utils.namespaces.TERN.Site))
 
-        # Add siteID schema:identifier property, only when both existingBDRSiteIRI
-        # and siteID+siteIDSource are provided.
+        # Add siteID schema:identifier property, when siteID+siteIDSource are provided.
         row_site_id: str | None = row["siteID"]
         if row_site_id and uri_site_id_datatype is not None:
             graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(row_site_id, datatype=uri_site_id_datatype)))

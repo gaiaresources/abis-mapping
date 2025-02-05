@@ -86,6 +86,7 @@
         _:N9466fd6e9e4c9aa92b83d28000000003 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
+    schema:identifier "P3"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
     schema:name "Plot 3" ;
     schema:sameAs <https://linked.data.gov.au/dataset/bdr/site/WAM/P2> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
@@ -101,6 +102,7 @@
         _:N9466fd6e9e4c9aa92b83d28000000002 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
+    schema:identifier "P2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
     schema:name "Plot 2" ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     tern:locationDescription "Cowaramup Bay Road" .
