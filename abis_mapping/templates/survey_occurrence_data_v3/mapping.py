@@ -2060,6 +2060,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_id_geometry_map: dict[str, str] | None,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Sampling Specimen to the Graph
 
@@ -2076,6 +2077,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map (dict[str, str] | None): Map with default
                 rdf string for a given site visit id.
             graph (rdflib.Graph): Graph to add to
+            submission_iri: IRI of submission
         """
         # Check if Row has a Specimen
         if not has_specimen(row):
@@ -2110,6 +2112,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
@@ -3757,6 +3762,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Sampling Sequencing to the Graph
 
@@ -3774,6 +3780,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 id to default temporal entity rdf.
             graph (rdflib.Graph): Graph to add to
             base_iri (rdflib.Namespace): Namespace used to construct IRIs
+            submission_iri (rdflib.URIRef): Submission IRI
         """
         # Check Existence
         if not row["associatedSequences"]:
@@ -3810,6 +3817,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Sampling))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequencing-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
