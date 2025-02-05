@@ -26,7 +26,7 @@
       "name": "existingBDRSiteIRI",
       "title": "Existing BDR Site IRI",
       "description": "Verbatim IRI of an existing Site in the BDR that new information is being added to. The IRI will typically start with https://linked.data.gov.au/dataset/bdr/. This field can be supplied as an alternative, or in addition, to siteID + siteIDSource when a Site already exists in the BDR.",
-      "example": "https://linked.data.gov.au/dataset/bdr/site/TERN/P1",
+      "example": "https://linked.data.gov.au/dataset/bdr/sites/TERN/P1",
       "type": "string",
       "format": "uri",
       "constraints": {
@@ -111,7 +111,7 @@
       "name": "relatedSiteIRI",
       "title": "Related Site IRI",
       "description": "Verbatim IRI of of a related site to the specified site e.g. parent site, same site with different identifier.",
-      "example": "https://linked.data.gov.au/dataset/bdr/site/TERN/P1",
+      "example": "https://linked.data.gov.au/dataset/bdr/sites/TERN/P1",
       "type": "string",
       "format": "uri",
       "constraints": {

@@ -84,8 +84,7 @@
 <https://linked.data.gov.au/dataset/bdr/org/TERN> a prov:Agent ;
     schema:name "TERN" .
 
-<https://linked.data.gov.au/dataset/bdr/site/TERN/P1> a tern:FeatureOfInterest,
-        tern:Site ;
+<https://linked.data.gov.au/dataset/bdr/sites/TERN/P1> a tern:Site ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:identifier "P1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/TERN> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
@@ -93,7 +92,7 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/A0010> a dwc:Occurrence,
         tern:FeatureOfInterest ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/site/TERN/P1> ;
+    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/sites/TERN/P1> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:spatial _:Nb0c3d4fa822b88b4d3f8743700000000 ;

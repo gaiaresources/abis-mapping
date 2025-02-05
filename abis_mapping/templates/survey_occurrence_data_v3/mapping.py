@@ -4341,7 +4341,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add site information to graph
         graph.add((uri, a, utils.namespaces.TERN.Site))
-        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
+
         if submission_iri:
             graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
