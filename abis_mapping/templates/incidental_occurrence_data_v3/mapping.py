@@ -2845,9 +2845,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
-
         if submission_iri:
             graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if preparations:
             graph.add(
