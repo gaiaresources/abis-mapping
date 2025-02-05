@@ -722,7 +722,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_id_geometry_map=site_id_geometry_map,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Text for Scientific Name
@@ -1155,7 +1155,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
             base_iri=base_iri,
-            submission_iri=submission_iri
+            submission_iri=submission_iri,
         )
 
         # Add Sample Sequence
