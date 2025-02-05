@@ -267,9 +267,9 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         else:
             raise ValueError("Invalid row missing SiteID and existingBDRSiteIRI")
 
-        # When both existingBDRSiteIRI and siteID+siteIDSource are provided,
+        # When siteID+siteIDSource are provided,
         # the site gets a schema:identifier with this datatype.
-        if existing_site_iri and site_id and site_id_src:
+        if site_id and site_id_src:
             site_id_datatype = utils.iri_patterns.datatype_iri("siteID", site_id_src)
             site_id_agent = utils.iri_patterns.agent_iri("org", site_id_src)
             site_id_attribution = utils.iri_patterns.attribution_iri(base_iri, "resourceProvider", site_id_src)
@@ -466,8 +466,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Site))
 
-        # Add siteID schema:identifier property, only when both existingBDRSiteIRI
-        # and siteID+siteIDSource are provided.
+        # Add siteID schema:identifier property, when siteID+siteIDSource are provided.
         site_id: str | None = row["siteID"]
         if site_id and site_id_datatype is not None:
             graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(site_id, datatype=site_id_datatype)))
