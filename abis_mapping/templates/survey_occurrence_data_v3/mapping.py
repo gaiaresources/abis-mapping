@@ -613,9 +613,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             geometry = models.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
 
         else:
-            # Should not reach here since validated data provided, however if
-            # it does come to it the corresponding node will be omitted
-            return
+            # Should not reach here since validated data provided
+            raise Exception(f"Could not determine geometry for occurrence with providerRecordID={provider_record_id}")
 
         # Add Provider Identified By
         self.add_provider_identified(
