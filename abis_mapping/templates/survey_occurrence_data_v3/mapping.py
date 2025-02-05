@@ -595,6 +595,28 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         else:
             site_visit = None
 
+        # Get the geometry to use for the specimen tern:Sampling,
+        # the sequencing tern:Sampling, and the dwc:Occurrence.
+        latitude = row["decimalLatitude"]
+        longitude = row["decimalLongitude"]
+        geodetic_datum = row["geodeticDatum"]
+        # Check to see if lat long provided
+        if latitude is not None and longitude is not None:
+            # Create geometry
+            geometry = models.spatial.Geometry(
+                raw=models.spatial.LatLong(latitude, longitude),
+                datum=geodetic_datum,
+            )
+        # If not then use default geometry map
+        elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
+            # Create geometry from geosparql wkt literal
+            geometry = models.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
+
+        else:
+            # Should not reach here since validated data provided, however if
+            # it does come to it the corresponding node will be omitted
+            return
+
         # Add Provider Identified By
         self.add_provider_identified(
             uri=provider_identified,
@@ -719,7 +741,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             provider_record_id_occurrence=provider_record_id_occurrence,
             sample_specimen=sample_specimen,
-            site_id_geometry_map=site_id_geometry_map,
+            geometry=geometry,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
             submission_iri=submission_iri,
@@ -1151,7 +1173,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset=dataset,
             feature_of_interest=sample_specimen,
             sample_sequence=sample_sequence,
-            site_id_geometry_map=site_id_geometry_map,
+            geometry=geometry,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
             base_iri=base_iri,
@@ -1327,7 +1349,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site=site,
             site_visit=site_visit,
             dataset=dataset,
-            site_id_geometry_map=site_id_geometry_map,
+            geometry=geometry,
             row=row,
             graph=graph,
             base_iri=base_iri,
@@ -2059,7 +2081,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
-        site_id_geometry_map: dict[str, str] | None,
+        geometry: models.spatial.Geometry,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
@@ -2074,8 +2096,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
                 this node
-            site_id_geometry_map (dict[str, str] | None): Map with default wkt
-                string for a given site id.
+            geometry: The geometry from this template or the Site template.
             site_visit_id_temporal_map (dict[str, str] | None): Map with default
                 rdf string for a given site visit id.
             graph (rdflib.Graph): Graph to add to
@@ -2083,30 +2104,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         """
         # Check if Row has a Specimen
         if not has_specimen(row):
-            return
-
-        # Extract values
-        latitude = row["decimalLatitude"]
-        longitude = row["decimalLongitude"]
-        geodetic_datum = row["geodeticDatum"]
-        site_id = row["siteID"]
-
-        # Check to see if lat long provided
-        if latitude is not None and longitude is not None:
-            # Create geometry
-            geometry = models.spatial.Geometry(
-                raw=models.spatial.LatLong(latitude, longitude),
-                datum=geodetic_datum,
-            )
-
-        # If not then use default geometry map
-        elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
-            # Create geometry from geosparql wkt literal
-            geometry = models.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
-
-        else:
-            # Should not reach here since validated data provided, however if
-            # it does come to it the corresponding node will be omitted
             return
 
         # Get Timestamp
@@ -3760,7 +3757,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
         sample_sequence: rdflib.URIRef,
-        site_id_geometry_map: dict[str, str] | None,
+        geometry: models.spatial.Geometry,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
@@ -3776,8 +3773,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 with this node
             sample_sequence (rdflib.URIRef): Sample Sequence associated with
                 this node
-            site_id_geometry_map (dict[str, str] | None): Map of default geometry
-                string values for a given site id.
+            geometry: The geometry from this template or the Site template.
             site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
                 id to default temporal entity rdf.
             graph (rdflib.Graph): Graph to add to
@@ -3789,27 +3785,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Extract values
-        latitude = row["decimalLatitude"]
-        longitude = row["decimalLongitude"]
-        geodetic_datum = row["geodeticDatum"]
-        site_id = row["siteID"]
         event_date: models.temporal.Timestamp | None = row["eventDateStart"]
-
-        if latitude is not None and longitude is not None:
-            # Create geometry
-            geometry = models.spatial.Geometry(
-                raw=models.spatial.LatLong(latitude, longitude),
-                datum=geodetic_datum,
-            )
-
-        elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
-            # Create geometry from wkt literal
-            geometry = models.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
-
-        else:
-            # Should not be able to reach here if validated data provided,
-            # but if it does then node will be ommitted from graph.
-            return
 
         # Retrieve vocab for field
         vocab = self.fields()["sequencingMethod"].get_flexible_vocab()
@@ -4605,7 +4581,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site: rdflib.URIRef | None,
         site_visit: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
-        site_id_geometry_map: dict[str, str] | None,
+        geometry: models.spatial.Geometry,
         row: frictionless.Row,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
@@ -4624,36 +4600,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             site: Designated site that occurrence happened.
             site_visit: Visit associated with occurrence and site.
             dataset: The uri for the dateset node.
-            site_id_geometry_map: Map for default geometry for a given siteID.
+            geometry: The geometry from this template or the Site template.
             row: Raw data from the row.
             graph: Graph to be modified.
             base_iri: Namespace used to construct IRIs
         """
-        # Create geometry
-        # Extract values
-        latitude = row["decimalLatitude"]
-        longitude = row["decimalLongitude"]
-        geodetic_datum = row["geodeticDatum"]
-        site_id = row["siteID"]
-
-        # Check to see if lat long provided
-        if latitude is not None and longitude is not None:
-            # Create geometry
-            geometry = models.spatial.Geometry(
-                raw=models.spatial.LatLong(latitude, longitude),
-                datum=geodetic_datum,
-            )
-
-        # If not then use default geometry map
-        elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
-            # Create geometry from geosparql wkt literal
-            geometry = models.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
-
-        else:
-            # Should not reach here since validated data provided, however if
-            # it does come to it the corresponding node will be omitted
-            return
-
         # Class
         graph.add((uri, a, utils.namespaces.DWC.Occurrence))
         if submission_iri:
