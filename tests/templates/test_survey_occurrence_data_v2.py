@@ -291,6 +291,7 @@ class TestDefaultGeometryMap:
                 dataset_iri=tests.helpers.TEST_DATASET_IRI,
                 base_iri=tests.helpers.TEST_BASE_NAMESPACE,
                 submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
+                project_iri=tests.helpers.TEST_PROJECT_IRI,
             )
         )
         assert len(graphs) == 1
@@ -313,6 +314,7 @@ class TestDefaultGeometryMap:
                 dataset_iri=tests.helpers.TEST_DATASET_IRI,
                 base_iri=tests.helpers.TEST_BASE_NAMESPACE,
                 submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
+                project_iri=tests.helpers.TEST_PROJECT_IRI,
                 site_id_geometry_map=default_map,
             )
         )
@@ -438,6 +440,7 @@ class TestDefaultTemporalMap:
             dataset_iri=tests.helpers.TEST_DATASET_IRI,
             base_iri=tests.helpers.TEST_BASE_NAMESPACE,
             submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
+            project_iri=tests.helpers.TEST_PROJECT_IRI,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
         )
         res_g = next(graphs)

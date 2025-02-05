@@ -145,6 +145,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         extra_schema: frictionless.Schema,
         base_iri: rdflib.Namespace,
         submission_iri: rdflib.URIRef | None,
+        project_iri: rdflib.URIRef | None,
         **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the `survey_metadata.csv` template.
@@ -156,12 +157,17 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             extra_schema (frictionless.Schema): Schema of extra fields.
             base_iri (rdflib.Namespace): Base IRI to use for mapping.
             submission_iri: The Submission IRI to use for mapping.
+            project_iri: The abis:Project IRI if there is one.
         """
         # Set the row number to start from the data, excluding header
         row_num = row.row_number - 1
 
-        # Create BDR project IRI
-        project = utils.rdf.uri(f"project/SSD-Survey-Project/{row_num}", base_iri)
+        if submission_iri is None:
+            # Legacy: When using the metadata form v1, Create BDR project IRI
+            project_iri = utils.rdf.uri(f"project/SSD-Survey-Project/{row_num}", base_iri)
+        else:
+            # When using metadata form v2, Use project_iri as-is, Can be None when no Project in Form.
+            pass
 
         # Create TERN survey IRI from surveyID field
         survey_id: str = row["surveyID"]
@@ -232,9 +238,10 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         # Add BDR project
         self.add_project(
-            uri=project,
+            uri=project_iri,
             survey=survey,
             dataset=dataset,
+            submission_iri=submission_iri,
             graph=graph,
             row=row,
         )
@@ -398,35 +405,42 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
     def add_project(
         self,
-        uri: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
         survey: rdflib.URIRef,
         dataset: rdflib.URIRef,
+        submission_iri: rdflib.URIRef | None,
         graph: rdflib.Graph,
         row: frictionless.Row,
     ) -> None:
         """Adds the ABIS project to the graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node.
-            survey (rdflib.URIRef): BDR survey uri.
-            dataset (rdflib.URIRef): Dataset uri.
-            graph (rdflib.Graph): Graph to add to.
-            row (frictionless.Row): Row to be processed in dataset.
+            uri: URI to use for this node, None if the node should not be created.
+            survey: BDR survey uri.
+            dataset: Dataset uri.
+            submission_iri: The Submission IRI to use for mapping.
+            graph: Graph to add to.
+            row: Row to be processed in dataset.
         """
-        # Extract relevant values from row
-        project_id: str = row["surveyID"]
-        project_name = row["surveyName"]
+        # Check if Project should be created
+        if uri is None:
+            return
 
-        # Add type and attach to dataset
+        # Add type and attach to Survey
         graph.add((uri, a, utils.namespaces.ABIS.Project))
-        graph.add((uri, rdflib.SDO.isPartOf, dataset))
-
-        # Add (required) project name, id (not required) and purpose (not required).
-        graph.add((uri, rdflib.SDO.name, rdflib.Literal(project_name)))
-        graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(project_id)))
-
-        # Attach survey
         graph.add((uri, rdflib.SDO.hasPart, survey))
+
+        # Legacy: If using the metadata form v1, Also map these properties.
+        # When using the v2 metadata form, these properties are added by the form's mapping.
+        if submission_iri is None:
+            # Extract relevant values from row
+            project_id: str = row["surveyID"]
+            project_name: str = row["surveyName"]
+            # Attach to dataset
+            graph.add((uri, rdflib.SDO.isPartOf, dataset))
+            # Add project name and identifier
+            graph.add((uri, rdflib.SDO.name, rdflib.Literal(project_name)))
+            graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(project_id)))
 
     def add_survey(
         self,

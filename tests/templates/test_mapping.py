@@ -41,6 +41,7 @@ def test_apply_mapping(template_id: str, test_params: conftest.MappingParameters
             dataset_iri=tests.helpers.TEST_DATASET_IRI,
             base_iri=tests.helpers.TEST_BASE_NAMESPACE,
             submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
+            project_iri=tests.helpers.TEST_PROJECT_IRI,
         )
     )
 
@@ -96,6 +97,7 @@ def test_against_shacl(template_id: str, test_params: conftest.MappingParameters
             dataset_iri=tests.helpers.TEST_DATASET_IRI,
             base_iri=tests.helpers.TEST_BASE_NAMESPACE,
             submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
+            project_iri=tests.helpers.TEST_PROJECT_IRI,
         )
     )
 
@@ -143,6 +145,7 @@ def test_apply_mapping_chunking(template_id: str, test_params: conftest.Chunking
             dataset_iri=tests.helpers.TEST_DATASET_IRI,
             base_iri=tests.helpers.TEST_BASE_NAMESPACE,
             submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
+            project_iri=tests.helpers.TEST_PROJECT_IRI,
         )
     )
 
