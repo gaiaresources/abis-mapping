@@ -13,12 +13,14 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/basisOfRecord/HumanObservation> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
     schema:name "Occurrence Collection - Basis Of Record - HumanObservation" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/HumanObservation> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/basisOfRecord/PreservedSpecimen> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/13>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
@@ -26,12 +28,14 @@
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/PreservedSpecimen> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/basisOfRecord/new-basis-of-record> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     schema:name "Occurrence Collection - Basis Of Record - new basis of record" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/new-basis-of-record> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/conservationAuthority/WA> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/8022FSJMJ079c5cf>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/ABC123> ;
@@ -39,12 +43,14 @@
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/conservationAuthority/WA> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/dataGeneralizations/Coordinates-generalised> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     schema:name "Occurrence Collection - Data Generalizations - Coordinates generalised" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-generalised> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
@@ -52,18 +58,21 @@
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     schema:name "Occurrence Collection - Habitat - Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/habitat/new-habitat> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     schema:name "Occurrence Collection - Habitat - new habitat" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/new-habitat> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationQualifier/> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/11>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/14> ;
@@ -71,66 +80,77 @@
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationQualifier/new-identification-qualifier> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/ABC123> ;
     schema:name "Occurrence Collection - Identification Qualifier - new identification qualifier" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/new-identification-qualifier> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationQualifier/species-incerta> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8022FSJMJ079c5cf> ;
     schema:name "Occurrence Collection - Identification Qualifier - species incerta" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/species-incerta> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationRemarks/Could-not-confirm-the-ID-due-to-damaged-flower> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/14> ;
     schema:name "Occurrence Collection - Identification Remarks - Could not confirm the ID due to damaged flower" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/Could-not-confirm-the-ID-due-to-damaged-flower> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationRemarks/One-unopened-flower-when-recorded-and-one-leaf-only-ID-not-confirmed> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/11> ;
     schema:name "Occurrence Collection - Identification Remarks - One unopened flower when recorded and one leaf only. ID not confirmed" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/One-unopened-flower-when-recorded-and-one-leaf-only-ID-not-confirmed> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationRemarks/new-remarks> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/ABC123> ;
     schema:name "Occurrence Collection - Identification Remarks - new remarks" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/new-remarks> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/identificationRemarks/no-flowers-present> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8022FSJMJ079c5cf> ;
     schema:name "Occurrence Collection - Identification Remarks - no flowers present" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationRemarks/no-flowers-present> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/preparations/Wet-in-ethanol-or-some-other-preservative> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     schema:name "Occurrence Collection - Preparations - Wet (in ethanol or some other preservative)" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/preparations/new-preparations> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     schema:name "Occurrence Collection - Preparations - new preparations" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/preparations/new-preparations> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/sensitivityCategory/Category-1> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/biodiversityRecord/ABC123> ;
     schema:name "Occurrence Collection - Sensitivity Category - Category 1" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/sensitivityCategory/Category-1> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/taxonRank/new-taxon-rank> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/ABC123> ;
     schema:name "Occurrence Collection - Taxon Rank - new taxon rank" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/taxonRank/new-taxon-rank> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/taxonRank/species> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8022FSJMJ079c5cf> ;
     schema:name "Occurrence Collection - Taxon Rank - species" ;

@@ -562,6 +562,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             observation_scientific_name=observation_scientific_name,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri,
         )
 
         # Add Identification Remarks Attribute
@@ -589,6 +590,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             observation_scientific_name=observation_scientific_name,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri,
         )
 
         # Add Text for Verbatim ID
@@ -650,6 +652,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             provider_record_id_occurrence=provider_record_id_occurrence,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri,
         )
 
         # Add Taxon Rank Attribute
@@ -679,6 +682,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             observation_scientific_name=observation_scientific_name,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri,
         )
 
         # Add Individual Count Observation
@@ -764,6 +768,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             provider_record_id_occurrence=provider_record_id_occurrence,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri,
         )
 
         # Add Basis of Record Attribute
@@ -795,6 +800,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri,
         )
 
         # Add Owner Institution Provider
@@ -851,6 +857,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             sample_specimen=sample_specimen,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri,
         )
 
         # Add Establishment Means Observation
@@ -1029,6 +1036,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             threat_status_observation=threat_status_observation,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri,
         )
 
         # Add Sensitivity Category Attribute
@@ -1058,6 +1066,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             provider_record_id_biodiversity_record=provider_record_id_biodiversity_record,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri,
         )
 
         # Add biodiversity record
@@ -1458,6 +1467,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         observation_scientific_name: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a identification qualifier Collection to the graph
 
@@ -1474,6 +1484,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if id_qualifier:
             graph.add(
@@ -1559,6 +1572,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         observation_scientific_name: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a identification remarks Collection to the graph
 
@@ -1575,6 +1589,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if id_remarks:
             graph.add(
@@ -1960,6 +1977,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         provider_record_id_occurrence: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a data generalizations attribute Sample Collection to the graph
 
@@ -1977,6 +1995,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if data_generalizations:
             graph.add(
@@ -2077,6 +2098,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         observation_scientific_name: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a taxon rank Collection to the graph
 
@@ -2093,6 +2115,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if taxon_rank:
             graph.add(
@@ -2459,6 +2484,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         provider_record_id_occurrence: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a habitat attribute Sample Collection to the graph
 
@@ -2476,6 +2502,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if habitat:
             graph.add((uri, rdflib.SDO.name, rdflib.Literal(f"Occurrence Collection - Habitat - {habitat}")))
@@ -2566,6 +2595,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a basisOfRecord attribute Sample Collection to the graph
 
@@ -2588,6 +2618,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if basis_of_record:
             graph.add(
@@ -2794,6 +2827,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         sample_specimen: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a preparations attribute Sample Collection to the graph
 
@@ -2803,13 +2837,17 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             preparations_attribute: The uri for the attribute node.
             sample_specimen: The sample specimen node that should be a member of the collection.
             dataset: The uri for the dateset node.
-            graph: The graph.
+            graph: The graph
+            submission_iri: The submission IRI
         """
         if uri is None:
             return
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
         # Add identifier
         if preparations:
             graph.add(
@@ -3635,6 +3673,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         threat_status_observation: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a conservation authority Collection to the graph
 
@@ -3651,6 +3690,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if conservation_authority:
             graph.add(
@@ -3757,6 +3799,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         provider_record_id_biodiversity_record: rdflib.URIRef,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Add a sensitivity category Collection to the graph
 
@@ -3773,6 +3816,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, rdflib.SDO.Collection))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add identifier
         if sensitivity_category:
             graph.add(
