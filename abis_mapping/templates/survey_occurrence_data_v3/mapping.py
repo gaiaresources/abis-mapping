@@ -1333,12 +1333,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add site visit
-        self.add_site_visit(
-            uri=site_visit,
-            dataset=dataset,
-            graph=graph,
-            submission_iri=submission_iri
-        )
+        self.add_site_visit(uri=site_visit, dataset=dataset, graph=graph, submission_iri=submission_iri)
 
         # Add extra fields JSON
         self.add_extra_fields_json(
