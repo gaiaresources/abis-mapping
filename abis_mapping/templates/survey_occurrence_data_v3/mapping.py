@@ -573,9 +573,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         else:
             site = None
 
-        # When both existingBDRSiteIRI and siteID+siteIDSource are provided,
+        # When siteID+siteIDSource are provided,
         # the site gets a schema:identifier with this datatype.
-        if existing_site_iri and site_id and site_id_source:
+        if site_id and site_id_source:
             site_id_datatype = utils.iri_patterns.datatype_iri("siteID", site_id_source)
             site_id_datatype_attribution = utils.iri_patterns.attribution_iri(
                 base_iri, "resourceProvider", site_id_source
