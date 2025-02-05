@@ -726,10 +726,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add Text for Scientific Name
         self.add_text_scientific_name(
-            uri=text_scientific_name,
-            dataset=dataset,
-            row=row,
-            graph=graph,
+            uri=text_scientific_name, dataset=dataset, row=row, graph=graph, submission_iri=submission_iri
         )
 
         # Add Identification Qualifier Attribute
@@ -1143,10 +1140,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add Accepted Name Usage Value
         self.add_accepted_name_usage_value(
-            uri=accepted_name_usage_value,
-            dataset=dataset,
-            row=row,
-            graph=graph,
+            uri=accepted_name_usage_value, dataset=dataset, row=row, graph=graph, submission_iri=submission_iri
         )
 
         # Add Sampling Sequencing
@@ -1961,6 +1955,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Text Scientific Name to the Graph
 
@@ -1969,11 +1964,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset this belongs to
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
+            submission_iri (rdflib.URIRef): URI of submission
         """
         # Add to Graph
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("scientificName")))
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["scientificName"])))
@@ -3724,6 +3723,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         row: frictionless.Row,
         graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
     ) -> None:
         """Adds Accepted Name Usage Value to the Graph
 
@@ -3732,6 +3732,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset this belongs to
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
+            submission_iri (rdflib.URIRef): URI to use for this node's submission
         """
         # Check Existence
         if not row["acceptedNameUsage"]:
@@ -3741,6 +3742,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, a, utils.namespaces.TERN.Text))
         graph.add((uri, a, utils.namespaces.TERN.Value))
         graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         graph.add((uri, rdflib.RDFS.label, rdflib.Literal("acceptedNameUsage-value")))
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDF.value, rdflib.Literal(row["acceptedNameUsage"])))
@@ -4760,30 +4764,36 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if site_visit is not None:
             graph.add((uri, utils.namespaces.TERN.hasSiteVisit, site_visit))
 
-    def add_site_visit(
-        self,
-        uri: rdflib.URIRef | None,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
-    ) -> None:
-        """Adds the basics of the SiteVisit node to the graph.
 
-        Only applicable when the occurrence has a siteVisitID.
-        The other properties for the node come from the site visit template.
+def add_site_visit(
+    self,
+    uri: rdflib.URIRef | None,
+    dataset: rdflib.URIRef,
+    graph: rdflib.Graph,
+    submission_iri: rdflib.URIRef | None,
+) -> None:
+    """Adds the basics of the SiteVisit node to the graph.
 
-        Args:
-            uri: The URI for the Site visit node
-            dataset: The dataset URI
-            graph: The graph to update
-        """
-        # Check site visit exists
-        if uri is None:
-            return
+    Only applicable when the occurrence has a siteVisitID.
+    The other properties for the node come from the site visit template.
 
-        # Add type
-        graph.add((uri, a, utils.namespaces.TERN.SiteVisit))
-        # Add dataset link
-        graph.add((uri, rdflib.SDO.isPartOf, dataset))
+    Args:
+        uri: The URI for the Site visit node
+        dataset: The dataset URI
+        graph: The graph to update
+        submission_iri: The URI for the Site visit node's submission
+    """
+    # Check site visit exists
+    if uri is None:
+        return
+
+    # Add type
+    graph.add((uri, a, utils.namespaces.TERN.SiteVisit))
+    if submission_iri:
+        graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
+    # Add dataset link
+    graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
 
 # Helper Functions
