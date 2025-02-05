@@ -1337,6 +1337,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri=site_visit,
             dataset=dataset,
             graph=graph,
+            submission_iri=submission_iri
         )
 
         # Add extra fields JSON
@@ -4764,36 +4765,35 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if site_visit is not None:
             graph.add((uri, utils.namespaces.TERN.hasSiteVisit, site_visit))
 
+    def add_site_visit(
+        self,
+        uri: rdflib.URIRef | None,
+        dataset: rdflib.URIRef,
+        graph: rdflib.Graph,
+        submission_iri: rdflib.URIRef | None,
+    ) -> None:
+        """Adds the basics of the SiteVisit node to the graph.
 
-def add_site_visit(
-    self,
-    uri: rdflib.URIRef | None,
-    dataset: rdflib.URIRef,
-    graph: rdflib.Graph,
-    submission_iri: rdflib.URIRef | None,
-) -> None:
-    """Adds the basics of the SiteVisit node to the graph.
+        Only applicable when the occurrence has a siteVisitID.
+        The other properties for the node come from the site visit template.
 
-    Only applicable when the occurrence has a siteVisitID.
-    The other properties for the node come from the site visit template.
+        Args:
+            uri: The URI for the Site visit node
+            dataset: The dataset URI
+            graph: The graph to update
+            submission_iri: The URI for the Site visit node's submission
+        """
+        # Check site visit exists
+        if uri is None:
+            return
 
-    Args:
-        uri: The URI for the Site visit node
-        dataset: The dataset URI
-        graph: The graph to update
-        submission_iri: The URI for the Site visit node's submission
-    """
-    # Check site visit exists
-    if uri is None:
-        return
+        # Add type
+        graph.add((uri, a, utils.namespaces.TERN.SiteVisit))
+        if submission_iri:
+            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
-    # Add type
-    graph.add((uri, a, utils.namespaces.TERN.SiteVisit))
-    if submission_iri:
-        graph.add((uri, rdflib.VOID.inDataset, submission_iri))
-
-    # Add dataset link
-    graph.add((uri, rdflib.SDO.isPartOf, dataset))
+        # Add dataset link
+        graph.add((uri, rdflib.SDO.isPartOf, dataset))
 
 
 # Helper Functions

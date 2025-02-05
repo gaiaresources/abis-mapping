@@ -859,6 +859,7 @@
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/MR-R1-V1> a tern:SiteVisit ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/HumanObservation> a tern:Attribute ;
@@ -1246,6 +1247,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdf:value "Calothamnus lateralis var. crassus" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://example.com/concept/scientificName> .
@@ -1478,6 +1480,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "acceptedNameUsage-value" ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://example.com/concept/acceptedNameUsage> .
@@ -1596,6 +1599,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdf:value "Boronia anceps" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://example.com/concept/scientificName> .
@@ -1751,6 +1755,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdf:value "Banksia sessilis var. cordata" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://example.com/concept/scientificName> .
@@ -1816,6 +1821,7 @@
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdf:value "Caladenia excelsa" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://example.com/concept/scientificName> .
