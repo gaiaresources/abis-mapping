@@ -65,7 +65,7 @@
     schema:identifier "TIS-24-03-P3-01" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> ;
-    tern:hasSite <https://linked.data.gov.au/dataset/bdr/site/WAM/P3> .
+    tern:hasSite <https://linked.data.gov.au/dataset/bdr/sites/WAM/P3> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/samplingEffort/10-sifts> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
@@ -174,7 +174,7 @@
         prov:Person ;
     schema:name "ORCID00003" .
 
-<https://linked.data.gov.au/dataset/bdr/site/WAM/P3> a tern:Site ;
+<https://linked.data.gov.au/dataset/bdr/sites/WAM/P3> a tern:Site ;
     schema:identifier "P3"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/TIS-24-03-P1-01> a tern:SiteVisit ;

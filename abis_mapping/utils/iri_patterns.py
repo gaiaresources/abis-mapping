@@ -83,7 +83,7 @@ def site_iri(
     """
     return utils.rdf.uri_quoted(
         utils.namespaces.DATASET_BDR,
-        "site/{site_id_source}/{site_id}",
+        "sites/{site_id_source}/{site_id}",
         site_id_source=site_id_source,
         site_id=site_id,
     )

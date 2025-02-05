@@ -754,7 +754,7 @@
       "name": "existingBDRSiteIRI",
       "title": "Existing BDR Site IRI",
       "description": "Corresponds to a unique site IRI, provided within accompanying survey_site_data.csv template.",
-      "example": "https://linked.data.gov.au/dataset/bdr/site/TERN/P1",
+      "example": "https://linked.data.gov.au/dataset/bdr/sites/TERN/P1",
       "type": "string",
       "format": "uri",
       "constraints": {
