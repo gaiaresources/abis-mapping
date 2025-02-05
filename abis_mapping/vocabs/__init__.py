@@ -6,6 +6,7 @@ from . import check_protocol
 from . import conservation_authority
 from . import establishment_means
 from . import geodetic_datum
+from . import habitat
 from . import identification_method
 from . import identification_qualifier
 from . import kingdom
@@ -23,7 +24,6 @@ from . import sequencing_method
 from . import sex
 from . import site_type
 from . import survey_type
-from . import target_habitat_scope
 from . import target_taxonomic_scope
 from . import taxon_rank
 from . import threat_status

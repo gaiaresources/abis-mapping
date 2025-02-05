@@ -71,7 +71,7 @@
         "required": false
       },
       "vocabularies": [
-        "TARGET_HABITAT_SCOPE"
+        "HABITAT"
       ]
     },
     {
