@@ -3,8 +3,12 @@
 This is important when the exact same IRI needs to be constructed from multiple template
 mappings so that the output RDF links together on these IRIs."""
 
+# Standard Library
+import urllib.parse
+
 # third party
 import rdflib
+import slugify
 
 # local
 from abis_mapping import utils
@@ -81,12 +85,11 @@ def site_iri(
     Returns:
         The IRI for the tern:Survey node.
     """
-    return utils.rdf.uri_quoted(
-        utils.namespaces.DATASET_BDR,
-        "sites/{site_id_source}/{site_id}",
-        site_id_source=site_id_source,
-        site_id=site_id,
-    )
+    # Note: the site_id_source (typically an organisation name) is slugified for readability,
+    # But the site_id is url-quoted, to preserve any special characters with their representation.
+    site_id_source = slugify.slugify(site_id_source, lowercase=False)
+    site_id = urllib.parse.quote(site_id, safe="")
+    return utils.namespaces.DATASET_BDR[f"sites/{site_id_source}/{site_id}"]
 
 
 def site_visit_iri(
