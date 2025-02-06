@@ -187,7 +187,7 @@ class TestDefaultGeometryMap:
                 ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
             default_map={},
-            expected_error_codes=["row-constraint"],
+            expected_error_codes=["row-constraint", "row-constraint"],
         ),
         Scenario(
             name="invalid_missing_geodetic_datum",
@@ -211,7 +211,7 @@ class TestDefaultGeometryMap:
                 ["R3", "site2", "ORG", "", "-38.94", "115.21", "WGS84"],
             ],
             default_map={},
-            expected_error_codes=["row-constraint"],
+            expected_error_codes=["row-constraint", "row-constraint"],
         ),
     ]
 

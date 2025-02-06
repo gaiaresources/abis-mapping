@@ -181,22 +181,15 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Modify schema and checklist in the event default geometry map provided
         if site_id_geometry_map is not None:
-            # We need to make sure that required is false from the lat long fields
-            # since this would override the default lookup checks
+            # When default geometry map not provided, these fields are simply mandatory.
+            # When it is provided, make them not mandatory so fallback to the default map is possible.
             for field_name in ["decimalLatitude", "decimalLongitude", "geodeticDatum"]:
                 schema.get_field(field_name).constraints["required"] = False
 
-            # Perform a default lookup check based on passed in map.
+            # Check that either geometry fields are provided, or there is fallback in the default map.
             checklist.add_check(
-                plugins.default_lookup.DefaultLookup(
-                    key_field=models.identifier.SiteIdentifier.from_row,
-                    value_field="decimalLatitude",
-                    default_map=site_id_geometry_map,
-                    no_key_error_template=(
-                        "decimalLatitude, decimalLongitude and geodeticDatum must be provided, "
-                        "or siteID and siteIDSource, or existingBDRSiteIRI, must be provided to use the geometry of a Site."
-                    ),
-                    no_default_error_template="Could not find a Site with {key_value} to use for geometry.",
+                plugins.geometry_validation.GeometryValidation(
+                    site_id_geometry_map=site_id_geometry_map,
                 )
             )
             # Mutual inclusion check to close out the possibility of one missing.

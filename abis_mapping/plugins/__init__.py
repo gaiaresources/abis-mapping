@@ -6,6 +6,7 @@ from . import chronological
 from . import coordinates
 from . import default_lookup
 from . import empty
+from . import geometry_validation
 from . import list_field
 from . import logical_or
 from . import lookup_match
