@@ -729,12 +729,12 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             base_iri: Namespace used to construct IRIs
         """
         if not (
-                row["targetTaxonomicScope"]
-                or row["targetHabitatScope"]
-                or row["surveyType"]
-                or row["surveyMethodCitation"]
-                or row["surveyMethodDescription"]
-                or row["surveyMethodURL"]
+            row["targetTaxonomicScope"]
+            or row["targetHabitatScope"]
+            or row["surveyType"]
+            or row["surveyMethodCitation"]
+            or row["surveyMethodDescription"]
+            or row["surveyMethodURL"]
         ):
             return
 
