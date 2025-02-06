@@ -169,6 +169,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                     key_field="siteVisitID",
                     value_field="eventDateStart",
                     default_map=site_visit_id_temporal_map,
+                    no_key_error_template=(
+                        "eventDateStart must be provided, "
+                        "or siteVisitID must be provided to use the start/end time of a Site Visit."
+                    ),
+                    no_default_error_template=(
+                        'Could not find a Site Visit with siteVisitID "{key_value}" to use for start/end time.'
+                    ),
                 )
             )
 
