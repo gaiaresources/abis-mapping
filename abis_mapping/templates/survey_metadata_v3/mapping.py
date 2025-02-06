@@ -17,7 +17,6 @@ from abis_mapping import utils
 # Typing
 from typing import Any, Literal
 
-
 # Constants / shortcuts
 a = rdflib.RDF.type
 PRINCIPAL_INVESTIGATOR = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/principalInvestigator")
@@ -645,6 +644,18 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             dataset: URI for the dataset node.
             graph: Graph to be modified.
         """
+
+        # If all these fields are missing, do not add a PROV.Plan
+        if not (
+            row["targetTaxonomicScope"]
+            or row["targetHabitatScope"]
+            or row["surveyType"]
+            or row["surveyMethodCitation"]
+            or row["surveyMethodDescription"]
+            or row["surveyMethodURL"]
+        ):
+            return
+
         # Add type
         graph.add((uri, a, rdflib.PROV.Plan))
 
