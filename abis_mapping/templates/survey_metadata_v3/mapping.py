@@ -645,6 +645,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph: Graph to be modified.
         """
 
+        # If all these fields are missing, do not add a PROV.Plan
         if not (
             row["targetTaxonomicScope"]
             or row["targetHabitatScope"]

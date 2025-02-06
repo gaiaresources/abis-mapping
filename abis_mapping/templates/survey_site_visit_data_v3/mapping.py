@@ -728,16 +728,6 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             graph: The graph to be modified.
             base_iri: Namespace used to construct IRIs
         """
-        if not (
-            row["targetTaxonomicScope"]
-            or row["targetHabitatScope"]
-            or row["surveyType"]
-            or row["surveyMethodCitation"]
-            or row["surveyMethodDescription"]
-            or row["surveyMethodURL"]
-        ):
-            return
-
         # Add subject type
         graph.add((uri, a, rdflib.PROV.Plan))
 
