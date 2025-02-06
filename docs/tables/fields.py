@@ -2,6 +2,7 @@
 
 # Standard
 import argparse
+import enum
 import sys
 from unittest import mock
 
@@ -18,11 +19,17 @@ from docs import tables
 from typing import IO, Annotated, Any
 
 
+class MandatoryType(enum.Enum):
+    OPTIONAL = enum.auto()
+    CONDITIONALLY_MANDATORY = enum.auto()
+    MANDATORY = enum.auto()
+
+
 class FieldTableRow(pydantic.BaseModel):
     """Standard Field table row."""
 
     field: Annotated[models.schema.Field, pydantic.Field(exclude=True)]
-    checklist: Annotated[frictionless.Checklist | None, pydantic.Field(exclude=True)]
+    checklist: Annotated[frictionless.Checklist, pydantic.Field(exclude=True)]
 
     # Where the field appears in the schema and template columns beginning at 1
     field_no: Annotated[int, pydantic.Field(exclude=True)]
@@ -45,26 +52,57 @@ class FieldTableRow(pydantic.BaseModel):
         """Derive from supplied field."""
         return self.field.description
 
+    def _get_mandatory_optional(self) -> tuple[MandatoryType, str]:
+        """Which "type" of mandatoryness, plus the text description."""
+        # First check if field is Mandatory
+        if self.field.constraints.required:
+            return MandatoryType.MANDATORY, "Mandatory"
+
+        # If this field+template is one of the "site identifier" fields, use a custom
+        # conditionally mandatory message, rather than the usual logic.
+        if is_site_identifier_field(self.field.name, self.checklist):
+            skip_when_missing = site_identifier_skip_field(self.checklist)
+            if skip_when_missing:
+                skip_condition = f"{skip_when_missing} is provided and "
+            else:
+                skip_condition = ""
+            if self.field.name == "siteID":
+                return MandatoryType.CONDITIONALLY_MANDATORY, (
+                    f"Mandatory if {skip_condition}existingBDRSiteIRI is not provided.\n"
+                    "Mandatory if siteIDSource is provided.\n"
+                )
+            elif self.field.name == "siteIDSource":
+                return MandatoryType.CONDITIONALLY_MANDATORY, (
+                    f"Mandatory if {skip_condition}existingBDRSiteIRI is not provided.\n"
+                    "Mandatory if siteID is provided.\n"
+                )
+            elif self.field.name == "existingBDRSiteIRI":
+                return MandatoryType.CONDITIONALLY_MANDATORY, (
+                    f"Mandatory if {skip_condition}siteID and siteIDSource are not provided.\n"
+                )
+
+        # Otherwise, Check for any mutual inclusivity checks
+        mi_fields = mutual_inclusivity(self.field.name, self.checklist)
+        # Conditionally return corresponding text
+        if len(mi_fields) == 1:
+            return MandatoryType.CONDITIONALLY_MANDATORY, f"Conditionally mandatory with {mi_fields.pop()}"
+        elif len(mi_fields) > 1:
+            last_field = mi_fields.pop()
+            return (
+                MandatoryType.CONDITIONALLY_MANDATORY,
+                f"Conditionally mandatory with {', '.join(mi_fields)} and {last_field}",
+            )
+
+        # Otherwise, field is optional.
+        return MandatoryType.OPTIONAL, "Optional"
+
     @pydantic.computed_field(alias="Mandatory / Optional")  # type: ignore[prop-decorator]
     @property
     def mandatory_optional(self) -> str:
-        """Output text for mandatorinessness."""
-        # Create blank list
-        mi_fields: list[str] = []
-
-        # Check for any mutual inclusivity checks
-        if self.checklist is not None:
-            mi_fields = mutual_inclusivity(self.field.name, self.checklist)
-
-        # Conditionally return corresponding text
-        if self.field.constraints.required:
-            return "Mandatory"
-        elif len(mi_fields) == 1:
-            return f"Conditionally mandatory with {mi_fields.pop()}"
-        elif len(mi_fields) > 1:
-            last_field = mi_fields.pop()
-            return f"Conditionally mandatory with {', '.join(mi_fields)} and {last_field}"
-        return "Optional"
+        """Output text for mandatoryness."""
+        _, text = self._get_mandatory_optional()
+        text = text.strip().replace("\n", " ")
+        return text
 
     @pydantic.computed_field(alias="Datatype Format")  # type: ignore[prop-decorator]
     @property
@@ -99,27 +137,19 @@ class MarkdownFieldTableRow(FieldTableRow):
     @pydantic.computed_field(alias="Mandatory / Optional")  # type: ignore[prop-decorator]
     @property
     def mandatory_optional(self) -> str:
-        """Output text for mandatorinessness."""
-        # Create blank list
-        mi_fields: list[str] = []
+        """Output text for mandatoryness, in Markdown format."""
+        mandatory, text = self._get_mandatory_optional()
 
-        # Check for any mutual inclusivity checks
-        if self.checklist is not None:
-            mi_fields = mutual_inclusivity(self.field.name, self.checklist)
+        # Can't use an actual \n in the middle of a Markdown table
+        text = text.strip().replace("\n", "<br>")
 
-        # Conditionally return corresponding text
-        if self.field.constraints.required:
-            return '**<font color="Crimson">Mandatory</font>**'
-        elif len(mi_fields) == 1:
-            return f'**<font color="DarkGoldenRod">Conditionally mandatory with {mi_fields.pop()}</font>**'
-        elif len(mi_fields) > 1:
-            last_field = mi_fields.pop()
-            return (
-                '**<font color="DarkGoldenRod">'
-                f'Conditionally mandatory with {", ".join(mi_fields)} and {last_field}'
-                '</font>**'
-            )
-        return "Optional"
+        # Return text wrapped in color if needed.
+        if mandatory == MandatoryType.MANDATORY:
+            return f'**<font color="Crimson">{text}</font>**'
+        elif mandatory == MandatoryType.CONDITIONALLY_MANDATORY:
+            return f'**<font color="DarkGoldenRod">{text}</font>**'
+        else:
+            return text
 
     @pydantic.computed_field(alias="Examples")  # type: ignore[prop-decorator]
     @property
@@ -203,7 +233,7 @@ class FieldTabler(tables.base.BaseTabler):
     def checklist(
         self,
         **kwargs: Any,
-    ) -> frictionless.Checklist | None:
+    ) -> frictionless.Checklist:
         """Determines frictionless checklist being performed as part of a template's validation.
 
         Args:
@@ -222,11 +252,13 @@ class FieldTabler(tables.base.BaseTabler):
 
             # Retrieve checklist and return
             if mocked_validate.called:
-                checklist: frictionless.Checklist = mocked_validate.call_args.kwargs.get("checklist")
+                checklist = mocked_validate.call_args.kwargs.get("checklist")
+                if not isinstance(checklist, frictionless.Checklist):
+                    raise ValueError("checklist is not a frictionless checklist")
                 return checklist
 
             # Else
-            return None
+            raise Exception("Resource.validate() not called by apply_validation()")
 
 
 class OccurrenceField(models.schema.Field):
@@ -298,6 +330,25 @@ def mutual_inclusivity(field_name: str, checklist: frictionless.Checklist) -> li
 
     # Return
     return sorted(fields)
+
+
+def is_site_identifier_field(
+    field_name: str,
+    checklist: frictionless.Checklist,
+) -> bool:
+    """Check is the field is a "site identifier" field,
+    and the template uses SiteIdentifierCheck plugin."""
+    return field_name in ("siteID", "siteIDSource", "existingBDRSiteIRI") and any(
+        isinstance(check, plugins.site_id_or_iri_validation.SiteIdentifierCheck) for check in checklist.checks
+    )
+
+
+def site_identifier_skip_field(checklist: frictionless.Checklist) -> str | None:
+    """Get the field the SiteIdentifierCheck is skipped for."""
+    for check in checklist.checks:
+        if isinstance(check, plugins.site_id_or_iri_validation.SiteIdentifierCheck):
+            return check.skip_when_missing
+    raise Exception("Could not find SiteIdentifierCheck in checklist")
 
 
 if __name__ == "__main__":
