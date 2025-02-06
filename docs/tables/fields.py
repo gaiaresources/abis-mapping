@@ -54,6 +54,10 @@ class FieldTableRow(pydantic.BaseModel):
 
     def _get_mandatory_optional(self) -> tuple[MandatoryType, str]:
         """Which "type" of mandatoryness, plus the text description."""
+        # First check if field is Mandatory
+        if self.field.constraints.required:
+            return MandatoryType.MANDATORY, "Mandatory"
+
         # If this field+template is one of the "site identifier" fields, use a custom
         # conditionally mandatory message, rather than the usual logic.
         if is_site_identifier_field(self.field.name, self.checklist):
@@ -66,26 +70,21 @@ class FieldTableRow(pydantic.BaseModel):
                 return MandatoryType.CONDITIONALLY_MANDATORY, (
                     f"Mandatory if {skip_condition}existingBDRSiteIRI is not provided.\n"
                     "Mandatory if siteIDSource is provided.\n"
-                    "Otherwise Optional."
                 )
             elif self.field.name == "siteIDSource":
                 return MandatoryType.CONDITIONALLY_MANDATORY, (
                     f"Mandatory if {skip_condition}existingBDRSiteIRI is not provided.\n"
                     "Mandatory if siteID is provided.\n"
-                    "Otherwise Optional."
                 )
             elif self.field.name == "existingBDRSiteIRI":
                 return MandatoryType.CONDITIONALLY_MANDATORY, (
-                    f"Mandatory if {skip_condition}siteID and siteIDSource are not provided.\nOtherwise Optional."
+                    f"Mandatory if {skip_condition}siteID and siteIDSource are not provided.\n"
                 )
 
-        # Check for any mutual inclusivity checks
+        # Otherwise, Check for any mutual inclusivity checks
         mi_fields = mutual_inclusivity(self.field.name, self.checklist)
-
         # Conditionally return corresponding text
-        if self.field.constraints.required:
-            return MandatoryType.MANDATORY, "Mandatory"
-        elif len(mi_fields) == 1:
+        if len(mi_fields) == 1:
             return MandatoryType.CONDITIONALLY_MANDATORY, f"Conditionally mandatory with {mi_fields.pop()}"
         elif len(mi_fields) > 1:
             last_field = mi_fields.pop()
@@ -93,6 +92,8 @@ class FieldTableRow(pydantic.BaseModel):
                 MandatoryType.CONDITIONALLY_MANDATORY,
                 f"Conditionally mandatory with {', '.join(mi_fields)} and {last_field}",
             )
+
+        # Otherwise, field is optional.
         return MandatoryType.OPTIONAL, "Optional"
 
     @pydantic.computed_field(alias="Mandatory / Optional")  # type: ignore[prop-decorator]
