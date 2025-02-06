@@ -851,7 +851,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: center;">2</td>
 <td style="text-align: left;"><a name="siteID-field"></a>siteID</td>
 <td style="text-align: left;">Corresponds to a unique site identifier, provided within accompanying survey_site_data.csv template.</td>
-<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with siteIDSource</font></strong></td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if existingBDRSiteIRI is not provided.<br>Mandatory if siteIDSource is provided.</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">P1</td>
 </tr>
@@ -859,7 +859,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: center;">3</td>
 <td style="text-align: left;"><a name="siteIDSource-field"></a>siteIDSource</td>
 <td style="text-align: left;">The organisation that assigned the SiteID to this Site</td>
-<td style="text-align: center;"><strong><font color="DarkGoldenRod">Conditionally mandatory with siteID</font></strong></td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if existingBDRSiteIRI is not provided.<br>Mandatory if siteID is provided.</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">TERN</td>
 </tr>
@@ -867,7 +867,7 @@ For example, <code>instrumentType</code>, <code>instrumentIdentifier</code>, <co
 <td style="text-align: center;">4</td>
 <td style="text-align: left;"><a name="existingBDRSiteIRI-field"></a>existingBDRSiteIRI</td>
 <td style="text-align: left;">Corresponds to a unique site IRI, provided within accompanying survey_site_data.csv template.</td>
-<td style="text-align: center;">Optional</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if siteID and siteIDSource are not provided.</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">https://linked.data.gov.au/dataset/bdr/sites/TERN/P1</td>
 </tr>
