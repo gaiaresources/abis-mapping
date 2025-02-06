@@ -281,50 +281,45 @@ class TestDefaultGeometryMap:
         # Build a dataframe from an existing csv
         df = pd.read_csv("abis_mapping/templates/survey_occurrence_data_v3/examples/organism_qty.csv")
 
-        # Modify and preserve first entry
         col_names = ["decimalLongitude", "decimalLatitude", "geodeticDatum"]
-        s_geo_vals = df[[*col_names, "siteID"]].iloc[0]
-        df.loc[0] = df.loc[0].drop(col_names)
+        # Preserve geometry and site field values from first (only) row
+        s_geo_vals = df[[*col_names, "siteID", "siteIDSource", "existingBDRSiteIRI"]].iloc[0]
 
+        # Set all geometry fields to null
+        df.loc[0] = df.loc[0].drop(col_names)
         # Proving the values null for first row
         assert df[col_names].loc[0].isna().all()
 
-        # Write out to memory
-        output = io.StringIO()
-        # Write dataframe to memory as csv
-        df.to_csv(output, index=False)
-
         # Assign csv data to variable
-        csv_data = output.getvalue().encode("utf-8")
+        csv_data = df.to_csv(index=False).encode("utf-8")
 
-        expected = pathlib.Path(
-            "abis_mapping/templates/survey_occurrence_data_v3/examples/organism_qty.ttl"
-        ).read_text()
-
-        # Resulting graph doesn't match expected when no lat/long provided
-        graphs = list(
-            mapper.apply_mapping(
-                data=csv_data,
-                chunk_size=None,
-                dataset_iri=tests.helpers.TEST_DATASET_IRI,
-                base_iri=tests.helpers.TEST_BASE_NAMESPACE,
-                submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
-                project_iri=tests.helpers.TEST_PROJECT_IRI,
+        # Resulting CSV fails to map when no lat/long, and no default from site, provided
+        with pytest.raises(Exception, match=r"Could not determine geometry for occurrence with providerRecordID=A0010"):
+            list(
+                mapper.apply_mapping(
+                    data=csv_data,
+                    chunk_size=None,
+                    dataset_iri=tests.helpers.TEST_DATASET_IRI,
+                    base_iri=tests.helpers.TEST_BASE_NAMESPACE,
+                    submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
+                    project_iri=tests.helpers.TEST_PROJECT_IRI,
+                )
             )
-        )
-        assert len(graphs) == 1
-        assert not tests.helpers.compare_graphs(graphs[0], expected)
 
-        # Make site id geo default map using values extracted previously
+        # Make site identifier geometry default map using values extracted previously
         val = str(
             models.spatial.Geometry(
                 raw=models.spatial.LatLong(s_geo_vals["decimalLatitude"], s_geo_vals["decimalLongitude"]),
                 datum=s_geo_vals["geodeticDatum"],
             ).to_rdf_literal()
         )
-        default_map = {s_geo_vals["siteID"]: val}
+        default_map = {
+            models.identifier.SiteIdentifier(
+                site_id=s_geo_vals["siteID"], site_id_source=s_geo_vals["siteIDSource"], existing_bdr_site_iri=None
+            ): val
+        }
 
-        # Create graph
+        # Map CSV again, this time with site identifier->geometry default map provided.
         graphs = list(
             mapper.apply_mapping(
                 data=csv_data,
@@ -337,6 +332,10 @@ class TestDefaultGeometryMap:
             )
         )
         assert len(graphs) == 1
+
+        expected = pathlib.Path(
+            "abis_mapping/templates/survey_occurrence_data_v3/examples/organism_qty.ttl"
+        ).read_text()
 
         # Now with the provided default map values the graph should match.
         assert tests.helpers.compare_graphs(graphs[0], expected)

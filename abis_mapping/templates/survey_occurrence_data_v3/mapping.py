@@ -1,5 +1,8 @@
 """Provides ABIS Mapper for `survey_occurrence_data.csv` Template v3"""
 
+# Standard Library
+import decimal
+
 # Third-Party
 import frictionless
 import rdflib
@@ -293,8 +296,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             base_iri (rdflib.Namespace): Optional base IRI namespace to use for mapping.
 
         Keyword Args:
-            site_id_geometry_map (dict[str, str] | None): Optional site id to geometry
-                default map.
+            site_id_geometry_map (dict[models.identifier.SiteIdentifier, str] | None):
+                Optional site identifier to geometry default map.
             site_visit_id_temporal_map (dict[str, str] | None): Optional site visit id
                 to temporal entity rdf default map.
 
@@ -597,18 +600,23 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Get the geometry to use for the specimen tern:Sampling,
         # the sequencing tern:Sampling, and the dwc:Occurrence.
-        latitude = row["decimalLatitude"]
-        longitude = row["decimalLongitude"]
-        geodetic_datum = row["geodeticDatum"]
-        # Check to see if lat long provided
-        if latitude is not None and longitude is not None:
+        latitude: decimal.Decimal | None = row["decimalLatitude"]
+        longitude: decimal.Decimal | None = row["decimalLongitude"]
+        geodetic_datum: str | None = row["geodeticDatum"]
+        site_identifier = models.identifier.SiteIdentifier.from_row(row)
+        # Check to see if lat long and datum provided
+        if latitude is not None and longitude is not None and geodetic_datum is not None:
             # Create geometry
             geometry = models.spatial.Geometry(
                 raw=models.spatial.LatLong(latitude, longitude),
                 datum=geodetic_datum,
             )
         # If not then use default geometry map
-        elif site_id_geometry_map is not None and (default_geometry := site_id_geometry_map.get(site_id)) is not None:
+        elif (
+            site_id_geometry_map is not None
+            and site_identifier is not None
+            and (default_geometry := site_id_geometry_map.get(site_identifier)) is not None
+        ):
             # Create geometry from geosparql wkt literal
             geometry = models.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
 
