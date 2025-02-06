@@ -117,10 +117,18 @@ class TestDefaultGeometryMap:
             name="invalid_missing_from_default_map",
             raws=[
                 ["R2", "site1", "ORG", "", "", "", ""],
+            ],
+            default_map={},
+            expected_error_codes=["row-constraint"],
+        ),
+        Scenario(
+            name="valid_existing_site_missing_from_default_map",
+            raws=[
+                # This row with existingBDRSiteIRI is allowed to be missing.
                 ["R3", "", "", "https://example.com/SITE-IRI", "", "", ""],
             ],
             default_map={},
-            expected_error_codes=["row-constraint", "row-constraint"],
+            expected_error_codes=None,
         ),
         Scenario(
             name="invalid_no_site_occurrence_requires_latlong",

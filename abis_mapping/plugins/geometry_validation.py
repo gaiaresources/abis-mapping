@@ -60,6 +60,12 @@ class GeometryValidation(frictionless.Check):
             )
             return
 
+        # If the Site is referenced by existingBDRSiteIRI, then don't validate any further,
+        # the geometry is allowed to be missing, because it should already exist on an existing Site.
+        # i.e. The Site can be omitted from the site template, or present in the site template with no geometry.
+        if site_identifier.existing_bdr_site_iri is not None:
+            return
+
         # Determine if default geometry exists for site, if so, all good
         if site_identifier in self.site_id_geometry_map:
             return

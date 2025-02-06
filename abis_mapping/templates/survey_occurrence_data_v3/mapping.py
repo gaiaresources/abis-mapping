@@ -620,6 +620,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             # Create geometry from geosparql wkt literal
             geometry = models.spatial.Geometry.from_geosparql_wkt_literal(default_geometry)
 
+        # Else if Site is an existing Site, then allow no geometry.
+        elif site_identifier is not None and site_identifier.existing_bdr_site_iri is not None:
+            geometry = None
+
         else:
             # Should not reach here since validated data provided
             raise Exception(f"Could not determine geometry for occurrence with providerRecordID={provider_record_id}")
@@ -2091,7 +2095,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
-        geometry: models.spatial.Geometry,
+        geometry: models.spatial.Geometry | None,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
@@ -2157,22 +2161,23 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add geometry
-        geometry_node = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
-        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+        if geometry:
+            geometry_node = rdflib.BNode()
+            graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+            graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+            graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
 
-        self.add_geometry_supplied_as(
-            subj=uri,
-            pred=utils.namespaces.GEO.hasGeometry,
-            obj=geometry_node,
-            geom=geometry,
-            graph=graph,
-        )
+            self.add_geometry_supplied_as(
+                subj=uri,
+                pred=utils.namespaces.GEO.hasGeometry,
+                obj=geometry_node,
+                geom=geometry,
+                graph=graph,
+            )
 
-        # Add comment to geometry
-        spatial_comment = "Location unknown, location of field sampling used as proxy"
-        graph.add((geometry_node, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
+            # Add comment to geometry
+            spatial_comment = "Location unknown, location of field sampling used as proxy"
+            graph.add((geometry_node, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
 
         # Check for coordinateUncertaintyInMeters
         if row["coordinateUncertaintyInMeters"]:
@@ -3767,7 +3772,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
         sample_sequence: rdflib.URIRef,
-        geometry: models.spatial.Geometry,
+        geometry: models.spatial.Geometry | None,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
@@ -3839,28 +3844,29 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Add geometry
-        geometry_node = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
-        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+        if geometry:
+            geometry_node = rdflib.BNode()
+            graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+            graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+            graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
 
-        self.add_geometry_supplied_as(
-            subj=uri,
-            pred=utils.namespaces.GEO.hasGeometry,
-            obj=geometry_node,
-            geom=geometry,
-            graph=graph,
-        )
+            self.add_geometry_supplied_as(
+                subj=uri,
+                pred=utils.namespaces.GEO.hasGeometry,
+                obj=geometry_node,
+                geom=geometry,
+                graph=graph,
+            )
+
+            # Add comment to geometry
+            spatial_comment = "Location unknown, location of field sampling used as proxy"
+            graph.add((geometry_node, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
 
         # Check for coordinateUncertaintyInMeters
         if row["coordinateUncertaintyInMeters"]:
             # Add Spatial Accuracy
             accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
             graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
-
-        # Add comment to geometry
-        spatial_comment = "Location unknown, location of field sampling used as proxy"
-        graph.add((geometry_node, rdflib.RDFS.comment, rdflib.Literal(spatial_comment)))
 
     def add_sample_sequence(
         self,
@@ -4591,7 +4597,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site: rdflib.URIRef | None,
         site_visit: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
-        geometry: models.spatial.Geometry,
+        geometry: models.spatial.Geometry | None,
         site_visit_id_temporal_map: dict[str, str] | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
@@ -4648,27 +4654,28 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add geometry
-        geometry_node = rdflib.BNode()
-        graph.add((uri, rdflib.SDO.spatial, geometry_node))
-        graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
-        graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
+        if geometry:
+            geometry_node = rdflib.BNode()
+            graph.add((uri, rdflib.SDO.spatial, geometry_node))
+            graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
+            graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
 
-        # Check for coordinateUncertaintyInMeters
-        accuracy: rdflib.Literal | None = None
-        if coordinate_uncertainty := row["coordinateUncertaintyInMeters"]:
-            # Add Spatial Accuracy
-            accuracy = rdflib.Literal(coordinate_uncertainty, datatype=rdflib.XSD.double)
-            graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
+            # Check for coordinateUncertaintyInMeters
+            accuracy: rdflib.Literal | None = None
+            if coordinate_uncertainty := row["coordinateUncertaintyInMeters"]:
+                # Add Spatial Accuracy
+                accuracy = rdflib.Literal(coordinate_uncertainty, datatype=rdflib.XSD.double)
+                graph.add((geometry_node, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
 
-        # Add 'supplied as' geometry
-        self.add_geometry_supplied_as(
-            subj=uri,
-            pred=rdflib.SDO.spatial,
-            obj=geometry_node,
-            geom=geometry,
-            graph=graph,
-            spatial_accuracy=accuracy,
-        )
+            # Add 'supplied as' geometry
+            self.add_geometry_supplied_as(
+                subj=uri,
+                pred=rdflib.SDO.spatial,
+                obj=geometry_node,
+                geom=geometry,
+                graph=graph,
+                spatial_accuracy=accuracy,
+            )
 
         # Add temporal entity
         event_date_start: models.temporal.Timestamp | None = row["eventDateStart"]
