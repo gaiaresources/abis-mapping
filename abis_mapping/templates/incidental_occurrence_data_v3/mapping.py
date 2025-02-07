@@ -3586,14 +3586,15 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if not row["threatStatus"]:
             return
 
-        # Combine conservationAuthority and threatStatus
-        value = f"{row['conservationAuthority']}/{row['threatStatus']}"
-
         # Retrieve vocab for field
         vocab = self.fields()["threatStatus"].get_flexible_vocab()
+        if not issubclass(vocab, vocabs.threat_status.ThreatStatus):
+            raise RuntimeError("threatStatus vocabulary is expected to be ThreatStatus")
 
         # Retrieve term or Create on the Fly
-        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(value)
+        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get_threat_status(
+            conservation_authority=row["conservationAuthority"], threat_status=row["threatStatus"]
+        )
 
         # Threat Status Value
         graph.add((uri, a, utils.namespaces.TERN.IRI))

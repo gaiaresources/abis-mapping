@@ -844,6 +844,55 @@ class ThreatStatus(utils.vocabs.FlexibleVocabulary):
     )
     publish = False
 
+    def get(self, value: str | None) -> rdflib.URIRef:
+        raise RuntimeError("Use get_threat_status() instead of get() for the ThreatStatus vocab")
+
+    def get_threat_status(
+        self,
+        *,
+        conservation_authority: str | None,
+        threat_status: str | None,
+    ) -> rdflib.URIRef:
+        """Retrieves an IRI from the Vocabulary, or creates one on-the fly.
+
+        Does the same thing as FlexibleVocab.get() but takes the two values
+        (conservationAuthority and threatStatus) used in this vocab,
+        and combines them as appropriate.
+
+        Args:
+            conservation_authority: conservationAuthority value from the row
+            threat_status: threatStatus value from the row
+
+        Returns:
+            IRI for the Term.
+        """
+        # Combine conservationAuthority and threatStatus
+        combined_value = f"{conservation_authority}/{threat_status}"
+
+        # Sanitise Value if provided
+        sanitised_value = utils.strings.sanitise(combined_value) if conservation_authority and threat_status else None
+
+        # Retrieve if Applicable
+        if iri := self._mapping.get(sanitised_value):
+            # Return
+            return iri
+
+        # Check for Value
+        if not (conservation_authority and threat_status):
+            # Raise Error
+            raise utils.vocabs.VocabularyError("Value not supplied for vocabulary with no default")
+
+        # Create our Own Concept IRI
+        iri = utils.rdf.uri_slugified(
+            self.base_iri,
+            self.base + "{conservation_authority}/{threat_status}",
+            conservation_authority=conservation_authority,
+            threat_status=threat_status,
+        )
+        self.create(iri=iri, preferred_label=combined_value)
+        # Return
+        return iri
+
 
 # Register
 utils.vocabs.register(ThreatStatus)
