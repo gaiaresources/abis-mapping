@@ -59,6 +59,9 @@ class SitesGeometry(frictionless.Check):
         # it doesn't matter the location here is missing.
         # On the other hand, if any of the Occurrences don't have their own valid location,
         # An error will be raised on them when they fail to fall back to this Site's location.
+        # Also, when the Occurrence reference a Site by existingBDRSiteIRI,
+        # then both the Occurrence and Site are allowed to have no geometry,
+        # because the Site should already exist with geometry.
         if site_used_by_occurrences:
             return
 
