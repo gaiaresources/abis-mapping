@@ -123,3 +123,10 @@ def test_slugify_for_uri() -> None:
     assert utils.rdf.slugify_for_uri("Hëllõ 👋 Wőrľd 🌏") == "Hello-World"
     # Test RDF injection
     assert utils.rdf.slugify_for_uri("hello> .\n <evil-iri> a <hello> .\n") == "hello-evil-iri-a-hello"
+
+
+def test_quote_for_uri() -> None:
+    """Tests the quote_for_uri function"""
+    assert utils.rdf.quote_for_uri("hello world") == "hello%20world"
+    # test quotes slashes
+    assert utils.rdf.quote_for_uri("hello/world") == "hello%2Fworld"

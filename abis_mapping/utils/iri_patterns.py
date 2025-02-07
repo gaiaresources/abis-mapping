@@ -3,9 +3,6 @@
 This is important when the exact same IRI needs to be constructed from multiple template
 mappings so that the output RDF links together on these IRIs."""
 
-# Standard Library
-import urllib.parse
-
 # third party
 import rdflib
 
@@ -87,7 +84,7 @@ def site_iri(
     # Note: the site_id_source (typically an organisation name) is slugified for readability,
     # But the site_id is url-quoted, to preserve any special characters with their representation.
     site_id_source = utils.rdf.slugify_for_uri(site_id_source)
-    site_id = urllib.parse.quote(site_id, safe="")
+    site_id = utils.rdf.quote_for_uri(site_id)
     return utils.namespaces.DATASET_BDR[f"sites/{site_id_source}/{site_id}"]
 
 

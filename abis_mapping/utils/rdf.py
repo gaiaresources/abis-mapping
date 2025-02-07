@@ -80,6 +80,14 @@ def slugify_for_uri(string: str, /) -> str:
     return slugify.slugify(string, lowercase=False)
 
 
+def quote_for_uri(string: str, /) -> str:
+    """The standard way to URL-quote a string for use in an RDF URI.
+
+    URL-quoting is used when preserving the exact value is important.
+    """
+    return urllib.parse.quote(string, safe="")
+
+
 def uri_quoted(
     namespace: rdflib.Namespace,
     path: str,
@@ -117,7 +125,7 @@ def uri_quoted(
         KeyError: When the path string contains a field not specified in kwargs.
     """
     # fill in any {field} names in path with url-quoted kwargs.
-    path = path.format_map({field: urllib.parse.quote(value, safe="") for field, value in kwargs.items()})
+    path = path.format_map({field: quote_for_uri(value) for field, value in kwargs.items()})
 
     # Create URIRef and Return
     return namespace[path]
