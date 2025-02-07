@@ -256,7 +256,7 @@ class FlexibleVocabulary(Vocabulary):
             raise VocabularyError("Value not supplied for vocabulary with no default")
 
         # Create our Own Concept IRI
-        iri = rdf.uri(self.base + value, namespace=self.base_iri)
+        iri = rdf.uri_slugified(self.base_iri, self.base + "{value}", value=value)
         self.create(iri=iri, preferred_label=value)
         # Return
         return iri
