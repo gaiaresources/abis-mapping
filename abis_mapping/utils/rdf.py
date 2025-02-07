@@ -50,10 +50,9 @@ def create_graph() -> rdflib.Graph:
 def uri(
     internal_id: str,
     namespace: rdflib.Namespace,
+    /,
 ) -> rdflib.URIRef:
     """Generates an rdflib.URIRef using the supplied namespace
-
-    The internal id is sanitised (slugified).
 
     Args:
         internal_id: ID to add to the namespace.
@@ -62,12 +61,6 @@ def uri(
     Returns:
         rdflib.URIRef: Generated URI for internal usage.
     """
-    # Slugify
-    # We split and re-join on the `/`, as forward-slashes are valid for our
-    # internal URIs, but python-slugify removes them. This is the recommended
-    # way to keep the slashes as per python-slugify GitHub issues.
-    internal_id = "/".join(slugify_for_uri(part) for part in internal_id.split("/"))
-
     # Create URIRef and Return
     return namespace[internal_id]
 

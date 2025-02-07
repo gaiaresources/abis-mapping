@@ -29,7 +29,7 @@ def test_rdf_uri() -> None:
     namespace = rdflib.Namespace("http://hello.org/")
 
     # Create URI
-    result = utils.rdf.uri(internal_id="world", namespace=namespace)
+    result = utils.rdf.uri("world", namespace)
 
     # Asserts
     assert isinstance(result, rdflib.URIRef)
