@@ -177,8 +177,12 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         provider_record_id_attribution = utils.iri_patterns.attribution_iri(
             base_iri, "resourceProvider", provider_record_id_source
         )
-        provider_record_id_occurrence = utils.rdf.uri(f"occurrence/{provider_record_id}", base_iri)
-        provider_record_id_biodiversity_record = utils.rdf.uri(f"biodiversityRecord/{provider_record_id}", base_iri)
+        provider_record_id_occurrence = utils.rdf.uri_slugified(
+            base_iri, "occurrence/{provider_record_id}", provider_record_id=provider_record_id
+        )
+        provider_record_id_biodiversity_record = utils.rdf.uri_slugified(
+            base_iri, "biodiversityRecord/{provider_record_id}", provider_record_id=provider_record_id
+        )
 
         # Create URIs for Observations and Observation Values
         observation_scientific_name = utils.iri_patterns.observation_iri(base_iri, "scientificName", provider_record_id)

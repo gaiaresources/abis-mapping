@@ -124,7 +124,7 @@ def attribute_iri(
     Returns:
         IRI for the tern:Attribute node.
     """
-    return utils.rdf.uri(f"attribute/{attribute}/{value}", namespace=base_iri)
+    return utils.rdf.uri_slugified(base_iri, "attribute/{attribute}/{value}", attribute=attribute, value=value)
 
 
 def attribute_value_iri(
@@ -143,7 +143,7 @@ def attribute_value_iri(
     Returns:
         IRI for the tern:Value node.
     """
-    return utils.rdf.uri(f"value/{attribute}/{value}", namespace=base_iri)
+    return utils.rdf.uri_slugified(base_iri, "value/{attribute}/{value}", attribute=attribute, value=value)
 
 
 def attribute_collection_iri(
@@ -164,7 +164,13 @@ def attribute_collection_iri(
     Returns:
         IRI for the schema:Collection node.
     """
-    return utils.rdf.uri(f"{collection_type}Collection/{attribute}/{value}", namespace=base_iri)
+    return utils.rdf.uri_slugified(
+        base_iri,
+        "{collection_type}Collection/{attribute}/{value}",
+        collection_type=collection_type,
+        attribute=attribute,
+        value=value,
+    )
 
 
 def datatype_iri(
@@ -184,15 +190,17 @@ def datatype_iri(
     Returns:
         URIRef for the rdfs:Datatype node.
     """
-    return utils.rdf.uri(
-        f"{identifier_type}/{identifier_source}",
-        namespace=utils.namespaces.BDR_DATATYPES,
+    return utils.rdf.uri_slugified(
+        utils.namespaces.BDR_DATATYPES,
+        "{identifier_type}/{identifier_source}",
+        identifier_type=identifier_type,
+        identifier_source=identifier_source,
     )
 
 
 def agent_iri(
     agent_type: Literal["org", "person", "software"],
-    agent: str,
+    agent: str | None,
     /,
 ) -> rdflib.URIRef:
     """Get the IRI to use for a prov:Agent node.
@@ -204,9 +212,13 @@ def agent_iri(
     Returns:
         URIRef for the prov:Agent node.
     """
-    return utils.rdf.uri(
-        f"{agent_type}/{agent}",
-        namespace=utils.namespaces.DATASET_BDR,
+    return utils.rdf.uri_slugified(
+        utils.namespaces.DATASET_BDR,
+        "{agent_type}/{agent}",
+        agent_type=agent_type,
+        # Should probably be refactored to return None when agent is None
+        # but that would need lots of changes to mapping.
+        agent=str(agent),
     )
 
 
@@ -226,7 +238,12 @@ def observation_iri(
     Returns:
         The IRI for the tern:Observation node.
     """
-    return utils.rdf.uri(f"observation/{observation_type}/{provider_record_id}", namespace=base_iri)
+    return utils.rdf.uri_slugified(
+        base_iri,
+        "observation/{observation_type}/{provider_record_id}",
+        observation_type=observation_type,
+        provider_record_id=provider_record_id,
+    )
 
 
 def observation_value_iri(
@@ -245,7 +262,14 @@ def observation_value_iri(
     Returns:
         The IRI for the tern:Value node.
     """
-    return utils.rdf.uri(f"result/{observation_type}/{observation_value}", namespace=base_iri)
+    return utils.rdf.uri_slugified(
+        base_iri,
+        "result/{observation_type}/{observation_value}",
+        observation_type=observation_type,
+        # Should probably be refactored to return None when observation_value is None
+        # but that would need lots of changes to mapping.
+        observation_value=str(observation_value),
+    )
 
 
 def specimen_observation_iri(
@@ -264,7 +288,12 @@ def specimen_observation_iri(
     Returns:
         The IRI for the tern:Observation node.
     """
-    return utils.rdf.uri(f"observation/specimen/{observation_type}/{provider_record_id}", namespace=base_iri)
+    return utils.rdf.uri_slugified(
+        base_iri,
+        "observation/specimen/{observation_type}/{provider_record_id}",
+        observation_type=observation_type,
+        provider_record_id=provider_record_id,
+    )
 
 
 def specimen_observation_value_iri(
@@ -283,7 +312,14 @@ def specimen_observation_value_iri(
     Returns:
         The IRI for the tern:Value node.
     """
-    return utils.rdf.uri(f"result/specimen/{observation_type}/{observation_value}", namespace=base_iri)
+    return utils.rdf.uri_slugified(
+        base_iri,
+        "result/specimen/{observation_type}/{observation_value}",
+        observation_type=observation_type,
+        # Should probably be refactored to return None when observation_value is None
+        # but that would need lots of changes to mapping.
+        observation_value=str(observation_value),
+    )
 
 
 def sample_iri(
@@ -302,7 +338,12 @@ def sample_iri(
     Returns:
         The IRI for the tern:Sample node.
     """
-    return utils.rdf.uri(f"sample/{sample_type}/{provider_record_id}", namespace=base_iri)
+    return utils.rdf.uri_slugified(
+        base_iri,
+        "sample/{sample_type}/{provider_record_id}",
+        sample_type=sample_type,
+        provider_record_id=provider_record_id,
+    )
 
 
 def sampling_iri(
@@ -321,7 +362,12 @@ def sampling_iri(
     Returns:
         The IRI for the tern:Sampling node.
     """
-    return utils.rdf.uri(f"sampling/{sampling_type}/{provider_record_id}", namespace=base_iri)
+    return utils.rdf.uri_slugified(
+        base_iri,
+        "sampling/{sampling_type}/{provider_record_id}",
+        sampling_type=sampling_type,
+        provider_record_id=provider_record_id,
+    )
 
 
 def plan_iri(
@@ -374,4 +420,4 @@ def attribution_iri(
     Returns:
         The IRI for the prov:Attribution node.
     """
-    return utils.rdf.uri(f"attribution/{source}/{role}", namespace=base_iri)
+    return utils.rdf.uri_slugified(base_iri, "attribution/{source}/{role}", source=source, role=role)

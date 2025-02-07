@@ -130,7 +130,9 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
 
         if submission_iri is None:
             # Legacy: When using the metadata form v1, Create BDR project IRI
-            project_iri = utils.rdf.uri(f"project/SSD-Survey-Project/{row_num}", base_iri)
+            project_iri = utils.rdf.uri_slugified(
+                base_iri, "project/SSD-Survey-Project/{row_num}", row_num=str(row_num)
+            )
         else:
             # When using metadata form v2, Use project_iri as-is, Can be None when no Project in Form.
             pass
