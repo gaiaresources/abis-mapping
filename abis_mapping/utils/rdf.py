@@ -158,6 +158,9 @@ def uri_quoted(
         KeyError: When the path string contains a field not specified in kwargs.
     """
     # fill in any {field} names in path with url-quoted kwargs.
+    # By url-quoting each value individually, and then formatting into the path,
+    # Any slashes (/) in the path are kept, but any slashes in each value are
+    # removed as part of the url-quoting process.
     path = path.format_map({field: quote_for_uri(value) for field, value in kwargs.items()})
 
     # Create URIRef and Return
