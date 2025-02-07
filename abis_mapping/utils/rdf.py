@@ -80,6 +80,46 @@ def slugify_for_uri(string: str, /) -> str:
     return slugify.slugify(string, lowercase=False)
 
 
+def uri_slugified(
+    namespace: rdflib.Namespace,
+    path: str,
+    /,
+    **kwargs: str,
+) -> rdflib.URIRef:
+    """Generates a rdflib.URIRef using the supplied namespace and path.
+
+    The path string can contain fields to be replaced in braces, e.g "org/{org_name}"
+    These fields are replaced by the contents of kwargs.
+    Each kwarg value is sanitised by being slugified before being inserted in the path.
+    Then the resulting path is then appended to the namespace to get the URI.
+
+    Some examples:
+    >>> uri_slugified(namespaces.EXAMPLE, "someField/{the_value}", the_value="foo")
+    rdflib.URIRef("http://example.com/someField/foo")
+    >>> uri_slugified(namespaces.EXAMPLE, "Type/{field}/{value}", field="foo", value="Hello There!")
+    rdflib.URIRef("http://example.com/Type/foo/Hello-There")
+
+    Args:
+        namespace: Namespace for the uri.
+        path: Path to append to the namespace.
+            Can contain fields to be replaced, e.g. "org/{org_name}".
+        kwargs: Fields and values to replace in the path string.
+
+    Returns:
+        Generated URI.
+    Raises:
+        KeyError: When the path string contains a field not specified in kwargs.
+    """
+    # fill in any {field} names in path with slugified kwargs.
+    # By slugifying each value individually, and then formatting into the path,
+    # Any slashes (/) in the path are kept, but any slashes in each value are
+    # removed as part of the slugification process.
+    path = path.format_map({field: slugify_for_uri(value) for field, value in kwargs.items()})
+
+    # Create URIRef and Return
+    return namespace[path]
+
+
 def quote_for_uri(string: str, /) -> str:
     """The standard way to URL-quote a string for use in an RDF URI.
 
