@@ -257,12 +257,27 @@ class FlexibleVocabulary(Vocabulary):
 
         # Create our Own Concept IRI
         iri = rdf.uri(self.base + value, namespace=self.base_iri)
+        self.create(iri=iri, preferred_label=value)
+        # Return
+        return iri
 
+    def create(
+        self,
+        *,
+        iri: rdflib.URIRef,
+        preferred_label: str,
+    ) -> None:
+        """Create a new vocabulary term and add it to the graph.
+
+        Args:
+            iri: The IRI for the new vocabulary term.
+            preferred_label: The preffered label for the new vocabulary term.
+        """
         # Add to Graph
         self.graph.add((iri, a, rdflib.SKOS.Concept))
         self.graph.add((iri, rdflib.SKOS.definition, self.definition))
         self.graph.add((iri, rdflib.SKOS.inScheme, self.scheme))
-        self._add_pref_label(iri, value)
+        self._add_pref_label(iri, preferred_label)
 
         # Check for Broader IRI
         if self.broader:
@@ -279,9 +294,6 @@ class FlexibleVocabulary(Vocabulary):
 
         if self.scope_note is not None:
             self.graph.add((iri, rdflib.SKOS.scopeNote, self.scope_note))
-
-        # Return
-        return iri
 
 
 class VocabularyError(Exception):
