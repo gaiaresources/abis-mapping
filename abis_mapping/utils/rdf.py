@@ -66,10 +66,18 @@ def uri(
     # We split and re-join on the `/`, as forward-slashes are valid for our
     # internal URIs, but python-slugify removes them. This is the recommended
     # way to keep the slashes as per python-slugify GitHub issues.
-    internal_id = "/".join(slugify.slugify(part, lowercase=False) for part in internal_id.split("/"))
+    internal_id = "/".join(slugify_for_uri(part) for part in internal_id.split("/"))
 
     # Create URIRef and Return
     return namespace[internal_id]
+
+
+def slugify_for_uri(string: str, /) -> str:
+    """The standard way to slugify a string for use in an RDF URI.
+
+    Slugify-ing is used when readability is more important than preserving the exact value.
+    """
+    return slugify.slugify(string, lowercase=False)
 
 
 def uri_quoted(

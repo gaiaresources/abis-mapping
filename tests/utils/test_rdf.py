@@ -103,3 +103,23 @@ def test_rdf_uri_or_string_literal(raw: str, expected: rdflib.Literal) -> None:
     """
     # Call and assert
     assert utils.rdf.uri_or_string_literal(raw) == expected
+
+
+def test_slugify_for_uri() -> None:
+    """Tests the slugify_for_uri function"""
+    assert utils.rdf.slugify_for_uri("hello world") == "hello-world"
+    # test case maintained
+    assert utils.rdf.slugify_for_uri("Hello World") == "Hello-World"
+    assert utils.rdf.slugify_for_uri("HeLLo wOrLd") == "HeLLo-wOrLd"
+    # test whitespace
+    assert utils.rdf.slugify_for_uri("  Hello  World  ") == "Hello-World"
+    assert utils.rdf.slugify_for_uri("\tHello\tWorld\t") == "Hello-World"
+    assert utils.rdf.slugify_for_uri("\r\nHello\r\nWorld\r\n") == "Hello-World"
+    # test special chars
+    assert utils.rdf.slugify_for_uri("'Hello'@World!?") == "Hello-World"
+    assert utils.rdf.slugify_for_uri("<Hello>=[World]") == "Hello-World"
+    assert utils.rdf.slugify_for_uri("Hello/World") == "Hello-World"
+    # test Unicode
+    assert utils.rdf.slugify_for_uri("Hëllõ 👋 Wőrľd 🌏") == "Hello-World"
+    # Test RDF injection
+    assert utils.rdf.slugify_for_uri("hello> .\n <evil-iri> a <hello> .\n") == "hello-evil-iri-a-hello"

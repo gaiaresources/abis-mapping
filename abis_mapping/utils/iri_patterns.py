@@ -8,7 +8,6 @@ import urllib.parse
 
 # third party
 import rdflib
-import slugify
 
 # local
 from abis_mapping import utils
@@ -87,7 +86,7 @@ def site_iri(
     """
     # Note: the site_id_source (typically an organisation name) is slugified for readability,
     # But the site_id is url-quoted, to preserve any special characters with their representation.
-    site_id_source = slugify.slugify(site_id_source, lowercase=False)
+    site_id_source = utils.rdf.slugify_for_uri(site_id_source)
     site_id = urllib.parse.quote(site_id, safe="")
     return utils.namespaces.DATASET_BDR[f"sites/{site_id_source}/{site_id}"]
 
