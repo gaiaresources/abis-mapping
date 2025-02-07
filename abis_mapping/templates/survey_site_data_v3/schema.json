@@ -115,8 +115,7 @@
       "type": "string",
       "format": "uri",
       "constraints": {
-        "required": false,
-        "unique": true
+        "required": false
       }
     },
     {
