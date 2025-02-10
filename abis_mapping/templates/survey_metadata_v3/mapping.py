@@ -762,7 +762,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         row_survey_type: str | None,
         survey_type_attribute: rdflib.URIRef | None,
-        survey_plan: rdflib.URIRef,
+        survey_plan: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         submission_iri: rdflib.URIRef | None,
         graph: rdflib.Graph,
@@ -802,7 +802,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         if survey_type_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, survey_type_attribute))
         # add link to the Survey Plan node
-        graph.add((uri, rdflib.SDO.member, survey_plan))
+        if survey_plan:
+            graph.add((uri, rdflib.SDO.member, survey_plan))
 
     def add_target_habitat_attribute(
         self,
@@ -876,7 +877,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         raw_value: str,
         target_habitat_attribute: rdflib.URIRef,
-        survey_plan: rdflib.URIRef,
+        survey_plan: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         submission_iri: rdflib.URIRef | None,
         graph: rdflib.Graph,
@@ -910,7 +911,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add link to attribute
         graph.add((uri, utils.namespaces.TERN.hasAttribute, target_habitat_attribute))
         # add link to the Survey Plan node
-        graph.add((uri, rdflib.SDO.member, survey_plan))
+        if survey_plan:
+            graph.add((uri, rdflib.SDO.member, survey_plan))
 
     def add_target_taxonomic_attribute(
         self,
@@ -985,7 +987,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         raw_value: str,
         target_taxon_attribute: rdflib.URIRef,
-        survey_plan: rdflib.URIRef,
+        survey_plan: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         submission_iri: rdflib.URIRef | None,
         graph: rdflib.Graph,
@@ -1019,7 +1021,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add link to attribute
         graph.add((uri, utils.namespaces.TERN.hasAttribute, target_taxon_attribute))
         # add link to the Survey Plan node
-        graph.add((uri, rdflib.SDO.member, survey_plan))
+        if survey_plan:
+            graph.add((uri, rdflib.SDO.member, survey_plan))
 
 
 # Register Mapper
