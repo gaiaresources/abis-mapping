@@ -648,7 +648,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-    ) -> bool:
+    ) -> None:
         """Adds plan to graph.
 
         Args:
