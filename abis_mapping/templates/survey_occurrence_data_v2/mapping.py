@@ -289,12 +289,18 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         provider_record_id_source: str = row["providerRecordIDSource"]
 
         # Create URIs
-        provider_identified = utils.iri_patterns.agent_iri("org", row["identifiedBy"])
+        if identified_by := row["identifiedBy"]:
+            provider_identified = utils.iri_patterns.agent_iri("org", identified_by)
+        else:
+            provider_identified = None
         sample_specimen = utils.iri_patterns.sample_iri(base_iri, "specimen", provider_record_id)
         sampling_specimen = utils.iri_patterns.sampling_iri(base_iri, "specimen", provider_record_id)
         sample_sequence = utils.iri_patterns.sample_iri(base_iri, "sequence", provider_record_id)
         sampling_sequencing = utils.iri_patterns.sampling_iri(base_iri, "sequencing", provider_record_id)
-        provider_determined_by = utils.iri_patterns.agent_iri("org", row["threatStatusDeterminedBy"])
+        if threat_status_determined_by := row["threatStatusDeterminedBy"]:
+            provider_determined_by = utils.iri_patterns.agent_iri("org", threat_status_determined_by)
+        else:
+            provider_determined_by = None
 
         provider_record_id_datatype = utils.iri_patterns.datatype_iri("recordID", provider_record_id_source)
         provider_record_id_agent = utils.iri_patterns.agent_iri("org", provider_record_id_source)
@@ -1273,19 +1279,19 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
     def add_provider_identified(
         self,
-        uri: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Identified By Provider to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node.
+            uri: URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
         # Check for identifiedBy
-        if not row["identifiedBy"]:
+        if not uri:
             return
 
         # Add to Graph
@@ -1363,7 +1369,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        provider: rdflib.URIRef,
+        provider: rdflib.URIRef | None,
         provider_record_id_occurrence: rdflib.URIRef,
         scientific_name: rdflib.URIRef,
         site_visit_id_temporal_map: dict[str, str] | None,
@@ -1376,7 +1382,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            provider (rdflib.URIRef): Provider associated with this node
+            provider: Provider associated with this node
             provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             scientific_name (rdflib.URIRef): Scientific Name associated with
@@ -1432,7 +1438,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Check for identifiedBy
-        if row["identifiedBy"]:
+        if provider:
             graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
 
     def add_observation_verbatim_id(
@@ -1440,7 +1446,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         row: frictionless.Row,
         dataset: rdflib.URIRef,
-        provider: rdflib.URIRef,
+        provider: rdflib.URIRef | None,
         provider_record_id_occurrence: rdflib.URIRef,
         sample_specimen: rdflib.URIRef,
         verbatim_id: rdflib.URIRef,
@@ -1454,7 +1460,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             dataset (rdflib.URIRef): Dataset this belongs to
-            provider (rdflib.URIRef): Provider associated with this node
+            provider: Provider associated with this node
             provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
                 node
             sample_specimen (rdflib.URIRef): Sample Specimen associated with
@@ -1520,7 +1526,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
         # Check for identifiedBy
-        if row["identifiedBy"]:
+        if provider:
             graph.add((uri, rdflib.PROV.wasAssociatedWith, provider))
 
     def add_provider_recorded_by_agent(
@@ -3717,19 +3723,19 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
     def add_provider_determined_by(
         self,
-        uri: rdflib.URIRef,
+        uri: rdflib.URIRef | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
     ) -> None:
         """Adds Determined By Provider to the Graph
 
         Args:
-            uri (rdflib.URIRef): URI to use for this node.
+            uri: URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
             graph (rdflib.Graph): Graph to add to
         """
         # Check for threatStatusDeterminedBy
-        if not row["threatStatusDeterminedBy"]:
+        if not uri:
             return
 
         # Add to Graph
@@ -3743,7 +3749,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         provider_record_id_occurrence: rdflib.URIRef,
         threat_status_value: rdflib.URIRef,
-        determined_by: rdflib.URIRef,
+        determined_by: rdflib.URIRef | None,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
         base_iri: rdflib.Namespace,
@@ -3758,8 +3764,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 node
             threat_status_value (rdflib.URIRef): Threat Status Value associated
                 with this node
-            determined_by (rdflib.URIRef): Determined By Provider associated
-                with this node
+            determined_by: Determined By Provider associated with this node
             site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
                 id to default temporal entity as rdf.
             graph (rdflib.Graph): Graph to add to
@@ -3800,7 +3805,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, date_determined.rdf_in_xsd, date_determined.to_rdf_literal()))
             # Check for threatStatusDeterminedBy
-            if row["threatStatusDeterminedBy"]:
+            if determined_by:
                 # Add wasAssociatedWith
                 graph.add((uri, rdflib.PROV.wasAssociatedWith, determined_by))
             # Check for threatStatusDateDetermined

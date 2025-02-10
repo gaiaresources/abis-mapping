@@ -200,7 +200,7 @@ def datatype_iri(
 
 def agent_iri(
     agent_type: Literal["org", "person", "software"],
-    agent: str | None,
+    agent: str,
     /,
 ) -> rdflib.URIRef:
     """Get the IRI to use for a prov:Agent node.
@@ -216,9 +216,7 @@ def agent_iri(
         utils.namespaces.DATASET_BDR,
         "{agent_type}/{agent}",
         agent_type=agent_type,
-        # Should probably be refactored to return None when agent is None
-        # but that would need lots of changes to mapping.
-        agent=str(agent),
+        agent=agent,
     )
 
 
