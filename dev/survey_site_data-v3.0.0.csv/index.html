@@ -872,7 +872,7 @@ For example, <code>fieldNotes</code>, <code>continent</code>, <code>country</cod
 <tr>
 <td style="text-align: center;">3</td>
 <td style="text-align: left;"><a name="existingBDRSiteIRI-field"></a>existingBDRSiteIRI</td>
-<td style="text-align: left;">Verbatim IRI of an existing Site in the BDR that new information is being added to. The IRI will typically start with https://linked.data.gov.au/dataset/bdr/. This field can be supplied as an alternative, or in addition, to siteID + siteIDSource when a Site already exists in the BDR.</td>
+<td style="text-align: left;">Verbatim IRI of an existing Site in the BDR that new information is being added to. The IRI will typically start with https://linked.data.gov.au/dataset/bdr/sites/. This field should ONLY be used in a delta update workflow where properties of an existing BDR Site need updating.</td>
 <td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if siteID and siteIDSource are not provided.</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">https://linked.data.gov.au/dataset/bdr/sites/TERN/P1</td>
