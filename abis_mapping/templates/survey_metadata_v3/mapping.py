@@ -175,11 +175,20 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         survey = utils.iri_patterns.survey_iri(base_iri, survey_id)
 
         # Create survey plan IRI
-        survey_plan = utils.iri_patterns.plan_iri(
-            base_iri,
-            "survey",
-            survey_id,
-        )
+        survey_plan = None
+        if (
+            row["targetTaxonomicScope"]
+            or row["targetHabitatScope"]
+            or row["surveyType"]
+            or row["surveyMethodCitation"]
+            or row["surveyMethodDescription"]
+            or row["surveyMethodURL"]
+        ):
+            survey_plan = utils.iri_patterns.plan_iri(
+                base_iri,
+                "survey",
+                survey_id,
+            )
 
         # Conditionally create survey type attribute, value and collection IRIs
         row_survey_type: str | None = row["surveyType"]
@@ -295,12 +304,13 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             )
 
         # Add plan
-        self.add_plan(
-            uri=survey_plan,
-            row=row,
-            dataset=dataset,
-            graph=graph,
-        )
+        if survey_plan:
+            self.add_plan(
+                uri=survey_plan,
+                row=row,
+                dataset=dataset,
+                graph=graph,
+            )
 
         # Add survey type attribute node
         self.add_survey_type_attribute(
@@ -446,7 +456,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
     def add_survey(
         self,
         uri: rdflib.URIRef,
-        survey_plan: rdflib.URIRef,
+        survey_plan: rdflib.URIRef | None,
         survey_org_objects: list[SurveyIDDatatype],
         submission_iri: rdflib.URIRef | None,
         row: frictionless.Row,
@@ -495,7 +505,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.BDR.purpose, rdflib.Literal(purpose)))
 
         # Add plan
-        graph.add((uri, rdflib.PROV.hadPlan, survey_plan))
+        if survey_plan:
+            graph.add((uri, rdflib.PROV.hadPlan, survey_plan))
 
         # Add keywords
         if keywords := row["keywords"]:
@@ -647,17 +658,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph: Graph to be modified.
         """
 
-        # If all these fields are missing, do not add a PROV.Plan
-        if not (
-            row["targetTaxonomicScope"]
-            or row["targetHabitatScope"]
-            or row["surveyType"]
-            or row["surveyMethodCitation"]
-            or row["surveyMethodDescription"]
-            or row["surveyMethodURL"]
-        ):
-            return
-
         # Add type
         graph.add((uri, a, rdflib.PROV.Plan))
 
@@ -677,6 +677,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         if method_urls := row["surveyMethodURL"]:
             for method_url in method_urls:
                 graph.add((uri, rdflib.SDO.url, rdflib.Literal(method_url, datatype=rdflib.XSD.anyURI)))
+        return
 
     def add_survey_type_attribute(
         self,
@@ -761,7 +762,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         row_survey_type: str | None,
         survey_type_attribute: rdflib.URIRef | None,
-        survey_plan: rdflib.URIRef,
+        survey_plan: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         submission_iri: rdflib.URIRef | None,
         graph: rdflib.Graph,
@@ -801,7 +802,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         if survey_type_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, survey_type_attribute))
         # add link to the Survey Plan node
-        graph.add((uri, rdflib.SDO.member, survey_plan))
+        if survey_plan:
+            graph.add((uri, rdflib.SDO.member, survey_plan))
 
     def add_target_habitat_attribute(
         self,
@@ -875,7 +877,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         raw_value: str,
         target_habitat_attribute: rdflib.URIRef,
-        survey_plan: rdflib.URIRef,
+        survey_plan: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         submission_iri: rdflib.URIRef | None,
         graph: rdflib.Graph,
@@ -909,7 +911,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add link to attribute
         graph.add((uri, utils.namespaces.TERN.hasAttribute, target_habitat_attribute))
         # add link to the Survey Plan node
-        graph.add((uri, rdflib.SDO.member, survey_plan))
+        if survey_plan:
+            graph.add((uri, rdflib.SDO.member, survey_plan))
 
     def add_target_taxonomic_attribute(
         self,
@@ -984,7 +987,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef,
         raw_value: str,
         target_taxon_attribute: rdflib.URIRef,
-        survey_plan: rdflib.URIRef,
+        survey_plan: rdflib.URIRef | None,
         dataset: rdflib.URIRef,
         submission_iri: rdflib.URIRef | None,
         graph: rdflib.Graph,
@@ -1018,7 +1021,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         # Add link to attribute
         graph.add((uri, utils.namespaces.TERN.hasAttribute, target_taxon_attribute))
         # add link to the Survey Plan node
-        graph.add((uri, rdflib.SDO.member, survey_plan))
+        if survey_plan:
+            graph.add((uri, rdflib.SDO.member, survey_plan))
 
 
 # Register Mapper
