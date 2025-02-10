@@ -36,7 +36,7 @@
         {
             "name": "existingBDRSiteIRI",
             "title": "Existing BDR Site IRI",
-            "description": "Corresponds to a unique site IRI, provided within accompanying survey_site_data.csv template.",
+            "description": "Corresponds to a unique Site IRI that is registered in the BDR. Using this field overrides entries in the siteID and siteIDSource fields and utilises the properties that are associated with the registered Site.",
             "example": "https://linked.data.gov.au/dataset/bdr/sites/TERN/P1",
             "type": "string",
             "format": "uri",
