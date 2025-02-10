@@ -85,12 +85,12 @@ class FieldTableRow(pydantic.BaseModel):
         mi_fields = mutual_inclusivity(self.field.name, self.checklist)
         # Conditionally return corresponding text
         if len(mi_fields) == 1:
-            return MandatoryType.CONDITIONALLY_MANDATORY, f"Conditionally mandatory with {mi_fields.pop()}"
+            return MandatoryType.CONDITIONALLY_MANDATORY, f"Mandatory if {mi_fields[0]} is provided."
         elif len(mi_fields) > 1:
             last_field = mi_fields.pop()
             return (
                 MandatoryType.CONDITIONALLY_MANDATORY,
-                f"Conditionally mandatory with {', '.join(mi_fields)} and {last_field}",
+                f"Mandatory if {', '.join(mi_fields)} or {last_field} are provided.",
             )
 
         # Otherwise, field is optional.
@@ -311,7 +311,7 @@ def mutual_inclusivity(field_name: str, checklist: frictionless.Checklist) -> li
             validation method.
 
     Returns:
-        set[str]: Field's mutually inclusive with named field.
+        list[str]: Field's mutually inclusive with named fields, sorted.
     """
     # Filter out mutually inclusive checks from the checklist
     mutual_inclusive_checks: list[plugins.mutual_inclusion.MutuallyInclusive] = [

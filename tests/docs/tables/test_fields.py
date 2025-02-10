@@ -230,8 +230,8 @@ def test_determine_checklist() -> None:
                 "Field #,Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
                 "1,someName,Some description,Mandatory,String,SOME EXAMPLE\r\n"
                 "2,anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n"
-                '3,abc,Alphabet,"Conditionally mandatory with 123, FakeField and NotAField",String,Alphabet EXAMPLE\r\n'
-                "4,123,Numbers,Conditionally mandatory with abc,String,Numbers EXAMPLE\r\n"
+                '3,abc,Alphabet,"Mandatory if 123, FakeField or NotAField are provided.",String,Alphabet EXAMPLE\r\n'
+                "4,123,Numbers,Mandatory if abc is provided.,String,Numbers EXAMPLE\r\n"
                 "5,threatStatus,The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.,Optional,String,VU\r\n\n"
             ),
             id="FieldTabler",
@@ -242,8 +242,8 @@ def test_determine_checklist() -> None:
                 "Field #,Name,Description,Mandatory / Optional,Datatype Format,Examples\r\n"
                 "1,someName,Some description,Mandatory,String,SOME EXAMPLE\r\n"
                 "2,anotherName,Another description,Mandatory,String,ANOTHER EXAMPLE\r\n"
-                '3,abc,Alphabet,"Conditionally mandatory with 123, FakeField and NotAField",String,Alphabet EXAMPLE\r\n'
-                "4,123,Numbers,Conditionally mandatory with abc,String,Numbers EXAMPLE\r\n"
+                '3,abc,Alphabet,"Mandatory if 123, FakeField or NotAField are provided.",String,Alphabet EXAMPLE\r\n'
+                "4,123,Numbers,Mandatory if abc is provided.,String,Numbers EXAMPLE\r\n"
                 "5,threatStatus,The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.,Optional,String,VU\r\n\n"
             ),
             id="OccurrenceFieldTabler",
@@ -297,8 +297,8 @@ def test_generate_table(
                 "|:---:|:---|:---|:---:|:---:|:---|\n"
                 '|1|<a name="someName-field"></a>someName|Some description|**<font color="Crimson">Mandatory</font>**|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
                 '|2|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|**<font color="Crimson">Mandatory</font>**|String|ANOTHER EXAMPLE|\n'
-                '|3|<a name="abc-field"></a>[abc](http://example.com/abc)|Alphabet|**<font color="DarkGoldenRod">Conditionally mandatory with 123, FakeField and NotAField</font>**|String|Alphabet EXAMPLE|\n'
-                '|4|<a name="123-field"></a>[123](http://example.com/123)|Numbers|**<font color="DarkGoldenRod">Conditionally mandatory with abc</font>**|String|Numbers EXAMPLE|\n'
+                '|3|<a name="abc-field"></a>[abc](http://example.com/abc)|Alphabet|**<font color="DarkGoldenRod">Mandatory if 123, FakeField or NotAField are provided.</font>**|String|Alphabet EXAMPLE|\n'
+                '|4|<a name="123-field"></a>[123](http://example.com/123)|Numbers|**<font color="DarkGoldenRod">Mandatory if abc is provided.</font>**|String|Numbers EXAMPLE|\n'
                 '|5|<a name="threatStatus-field"></a>threatStatus|The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.|Optional|String|VU<br>([Vocabulary link](#threatStatus-vocabularies))|\n'
             ),
             id="FieldTabler",
@@ -310,8 +310,8 @@ def test_generate_table(
                 "|:---:|:---|:---|:---:|:---:|:---|\n"
                 '|1|<a name="someName-field"></a>someName|Some description|**<font color="Crimson">Mandatory</font>**|String|SOME EXAMPLE<br>([Vocabulary link](#someName-vocabularies))|\n'
                 '|2|<a name="anotherName-field"></a>[anotherName](http://example.com/)|Another description|**<font color="Crimson">Mandatory</font>**|String|ANOTHER EXAMPLE|\n'
-                '|3|<a name="abc-field"></a>[abc](http://example.com/abc)|Alphabet|**<font color="DarkGoldenRod">Conditionally mandatory with 123, FakeField and NotAField</font>**|String|Alphabet EXAMPLE|\n'
-                '|4|<a name="123-field"></a>[123](http://example.com/123)|Numbers|**<font color="DarkGoldenRod">Conditionally mandatory with abc</font>**|String|Numbers EXAMPLE|\n'
+                '|3|<a name="abc-field"></a>[abc](http://example.com/abc)|Alphabet|**<font color="DarkGoldenRod">Mandatory if 123, FakeField or NotAField are provided.</font>**|String|Alphabet EXAMPLE|\n'
+                '|4|<a name="123-field"></a>[123](http://example.com/123)|Numbers|**<font color="DarkGoldenRod">Mandatory if abc is provided.</font>**|String|Numbers EXAMPLE|\n'
                 '|5|<a name="threatStatus-field"></a>threatStatus|The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.|Optional|String|VU<br>([Vocabulary link](#threatStatus-vocabularies))|\n'
             ),
             id="OccurrenceFieldTabler",
