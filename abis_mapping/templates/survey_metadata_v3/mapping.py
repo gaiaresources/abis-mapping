@@ -175,7 +175,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         survey = utils.iri_patterns.survey_iri(base_iri, survey_id)
 
         # Create survey plan IRI
-        if not (
+        survey_plan = None
+        if (
             row["targetTaxonomicScope"]
             or row["targetHabitatScope"]
             or row["surveyType"]
@@ -183,8 +184,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             or row["surveyMethodDescription"]
             or row["surveyMethodURL"]
         ):
-            survey_plan = None
-        else:
             survey_plan = utils.iri_patterns.plan_iri(
                 base_iri,
                 "survey",
