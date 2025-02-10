@@ -104,6 +104,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                     ),
                     plugins.unique_together.UniqueTogether(
                         fields=["siteID", "siteIDSource"],
+                        slugified_fields=["siteIDSource"],
                         null_handling="skip",
                         error_message_template=(
                             "siteID and siteIDSource must be unique for each Row. "
