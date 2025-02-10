@@ -247,10 +247,18 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             row=row,
         )
 
+        # Add plan
+        plan = self.add_plan(
+            uri=survey_plan,
+            row=row,
+            dataset=dataset,
+            graph=graph,
+        )
+
         # Add BDR survey
         self.add_survey(
             uri=survey,
-            survey_plan=survey_plan,
+            survey_plan=survey_plan if plan else None,
             survey_org_objects=survey_org_objects,
             submission_iri=submission_iri,
             row=row,
@@ -293,14 +301,6 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
                 name=so_obj.name,
                 graph=graph,
             )
-
-        # Add plan
-        self.add_plan(
-            uri=survey_plan,
-            row=row,
-            dataset=dataset,
-            graph=graph,
-        )
 
         # Add survey type attribute node
         self.add_survey_type_attribute(
@@ -446,7 +446,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
     def add_survey(
         self,
         uri: rdflib.URIRef,
-        survey_plan: rdflib.URIRef,
+        survey_plan: rdflib.URIRef | None,
         survey_org_objects: list[SurveyIDDatatype],
         submission_iri: rdflib.URIRef | None,
         row: frictionless.Row,
@@ -495,7 +495,8 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.BDR.purpose, rdflib.Literal(purpose)))
 
         # Add plan
-        graph.add((uri, rdflib.PROV.hadPlan, survey_plan))
+        if survey_plan:
+            graph.add((uri, rdflib.PROV.hadPlan, survey_plan))
 
         # Add keywords
         if keywords := row["keywords"]:
@@ -637,7 +638,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-    ) -> None:
+    ) -> bool:
         """Adds plan to graph.
 
         Args:
@@ -656,7 +657,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             or row["surveyMethodDescription"]
             or row["surveyMethodURL"]
         ):
-            return
+            return False
 
         # Add type
         graph.add((uri, a, rdflib.PROV.Plan))
@@ -677,6 +678,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         if method_urls := row["surveyMethodURL"]:
             for method_url in method_urls:
                 graph.add((uri, rdflib.SDO.url, rdflib.Literal(method_url, datatype=rdflib.XSD.anyURI)))
+        return True
 
     def add_survey_type_attribute(
         self,
