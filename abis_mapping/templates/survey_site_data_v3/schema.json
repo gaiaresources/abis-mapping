@@ -25,7 +25,7 @@
     {
       "name": "existingBDRSiteIRI",
       "title": "Existing BDR Site IRI",
-      "description": "Verbatim IRI of an existing Site in the BDR that new information is being added to. The IRI will typically start with https://linked.data.gov.au/dataset/bdr/. This field can be supplied as an alternative, or in addition, to siteID + siteIDSource when a Site already exists in the BDR.",
+      "description": "Verbatim IRI of an existing Site in the BDR that new information is being added to. The IRI will typically start with https://linked.data.gov.au/dataset/bdr/sites/. This field should ONLY be used in a delta update workflow where properties of an existing BDR Site need updating.",
       "example": "https://linked.data.gov.au/dataset/bdr/sites/TERN/P1",
       "type": "string",
       "format": "uri",
