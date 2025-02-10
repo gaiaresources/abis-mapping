@@ -186,3 +186,80 @@ def test_unique_together_invalid_custom_template() -> None:
     assert report.tasks[0].errors[0].message == (
         'Row at position "3" violates the unique together constraint: FIELDS: ID, source VALUES: A1, Z1 ROW: 2'
     )
+
+
+def test_unique_together_valid_with_slug_field() -> None:
+    """Tests the UniqueTogether Checker with valid data and a slugified field"""
+    # Construct Fake Resource
+    resource = frictionless.Resource(
+        source=[
+            # unique rows
+            {"rowID": "1", "ID": "A1", "source": "Org Foo"},
+            {"rowID": "2", "ID": "A2", "source": "Org Foo"},
+            {"rowID": "3", "ID": "A1", "source": "Org Bar"},
+            {"rowID": "4", "ID": "A2", "source": "Org Bar"},
+        ],
+    )
+
+    # Validate
+    report: frictionless.Report = resource.validate(
+        checklist=frictionless.Checklist(
+            checks=[
+                plugins.unique_together.UniqueTogether(
+                    fields=["ID", "source"],
+                    slugified_fields=["source"],
+                    null_handling="skip",
+                ),
+            ],
+        ),
+    )
+
+    # Check
+    assert report.valid
+
+
+def test_unique_together_invalid_with_slug_field() -> None:
+    """Tests the UniqueTogether Checker with invalid data and a slugified field"""
+    # Construct Fake Resource
+    resource = frictionless.Resource(
+        source=[
+            # rows with unique raw values, but are the same after slugification.
+            {"rowID": "1", "ID": "A1", "source": "Org Foo"},
+            {"rowID": "2", "ID": "A1", "source": "Org/Foo"},
+            {"rowID": "3", "ID": "A1", "source": "Org-Foo"},
+            {"rowID": "4", "ID": "A1", "source": "Org,Foo"},
+        ],
+    )
+
+    # Validate
+    report: frictionless.Report = resource.validate(
+        checklist=frictionless.Checklist(
+            checks=[
+                plugins.unique_together.UniqueTogether(
+                    fields=["ID", "source"],
+                    slugified_fields=["source"],
+                    null_handling="skip",
+                ),
+            ],
+        ),
+    )
+
+    # Check
+    assert not report.valid
+    assert len(report.tasks) == 1
+    assert len(report.tasks[0].errors) == 3
+    assert report.tasks[0].errors[0].message == (
+        'Row at position "3" violates the unique together constraint: '
+        "The unique together fields [ID, source] contain the values [A1, Org/Foo] "
+        'that have already been used in the row at position "2"'
+    )
+    assert report.tasks[0].errors[1].message == (
+        'Row at position "4" violates the unique together constraint: '
+        "The unique together fields [ID, source] contain the values [A1, Org-Foo] "
+        'that have already been used in the row at position "2"'
+    )
+    assert report.tasks[0].errors[2].message == (
+        'Row at position "5" violates the unique together constraint: '
+        "The unique together fields [ID, source] contain the values [A1, Org,Foo] "
+        'that have already been used in the row at position "2"'
+    )
