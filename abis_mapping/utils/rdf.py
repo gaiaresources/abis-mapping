@@ -1,6 +1,7 @@
 """Provides rdf utilities for the package"""
 
 # Standard
+import functools
 import urllib.parse
 
 # Third-Party
@@ -65,6 +66,7 @@ def uri(
     return namespace[internal_id]
 
 
+@functools.lru_cache()
 def slugify_for_uri(string: str, /) -> str:
     """The standard way to slugify a string for use in an RDF URI.
 
