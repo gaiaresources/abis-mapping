@@ -1291,7 +1291,12 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add site
         self.add_site(
-            uri=site, site_id=site_id, site_id_datatype=site_id_datatype, graph=graph, submission_iri=submission_iri
+            uri=site,
+            site_id=site_id,
+            site_id_datatype=site_id_datatype,
+            existing_site_iri=existing_site_iri,
+            graph=graph,
+            submission_iri=submission_iri,
         )
 
         self.add_site_id_datatype(
@@ -4324,6 +4329,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         uri: rdflib.URIRef | None,
         site_id: str | None,
         site_id_datatype: rdflib.URIRef | None,
+        existing_site_iri: str | None,
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
     ) -> None:
@@ -4333,7 +4339,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             uri (rdflib.URIRef | None): URI to use if site provided else None.
             site_id: Value of siteID field from the Row.
             site_id_datatype: Datatype to use for the site id literal.
+            existing_site_iri: existingBDRSiteIRI field from the template.
             graph (rdflib.URIRef): Graph to be modified.
+            submission_iri: IRI of the submission being mapped.
         """
         # Check site uri exists
         if uri is None:
@@ -4342,8 +4350,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add site information to graph
         graph.add((uri, a, utils.namespaces.TERN.Site))
 
-        if submission_iri:
-            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+        # Add link to submission only when the Site is not an existing Site.
+        if not existing_site_iri:
+            if submission_iri:
+                graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
         graph.add((uri, utils.namespaces.TERN.featureType, vocabs.site_type.SITE.iri))
 
