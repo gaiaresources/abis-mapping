@@ -3,7 +3,7 @@
     {
       "name": "surveyID",
       "title": "Survey ID",
-      "description": "The identifier for the survey. Important if more there is more than one survey in the project.",
+      "description": "A unique identifier for the survey. Important if more there is more than one survey in the project or the dataset.",
       "example": "COL1",
       "type": "string",
       "format": "default",
