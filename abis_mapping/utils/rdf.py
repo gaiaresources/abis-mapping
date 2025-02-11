@@ -115,6 +115,7 @@ def uri_slugified(
     return namespace[path]
 
 
+@functools.lru_cache()
 def quote_for_uri(string: str, /) -> str:
     """The standard way to URL-quote a string for use in an RDF URI.
 
