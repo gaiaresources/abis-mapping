@@ -108,6 +108,50 @@ def site_visit_iri(
     return utils.rdf.uri_quoted(base_iri, "SiteVisit/{site_visit_id}", site_visit_id=site_visit_id)
 
 
+def occurrence_iri(
+    base_iri: rdflib.Namespace,
+    provider_record_id: str,
+    /,
+) -> rdflib.URIRef:
+    """
+    Get the IRI to use for a dwc:Occurrence node.
+
+    Args:
+        base_iri: The Namespace to construct the IRI from.
+        provider_record_id: The providerRecordID field from the template.
+
+    Returns:
+        The IRI for the dwc:Occurrence node.
+    """
+    return utils.rdf.uri_quoted(
+        base_iri,
+        "occurrence/{provider_record_id}",
+        provider_record_id=provider_record_id,
+    )
+
+
+def biodiversity_record_iri(
+    base_iri: rdflib.Namespace,
+    provider_record_id: str,
+    /,
+) -> rdflib.URIRef:
+    """
+    Get the IRI to use for an abis:BiodiversityRecord node.
+
+    Args:
+        base_iri: The Namespace to construct the IRI from.
+        provider_record_id: The providerRecordID field from the template.
+
+    Returns:
+        The IRI for the abis:BiodiversityRecord node.
+    """
+    return utils.rdf.uri_quoted(
+        base_iri,
+        "biodiversityRecord/{provider_record_id}",
+        provider_record_id=provider_record_id,
+    )
+
+
 def attribute_iri(
     base_iri: rdflib.Namespace,
     attribute: str,
@@ -236,7 +280,7 @@ def observation_iri(
     Returns:
         The IRI for the tern:Observation node.
     """
-    return utils.rdf.uri_slugified(
+    return utils.rdf.uri_quoted(
         base_iri,
         "observation/{observation_type}/{provider_record_id}",
         observation_type=observation_type,
@@ -286,7 +330,7 @@ def specimen_observation_iri(
     Returns:
         The IRI for the tern:Observation node.
     """
-    return utils.rdf.uri_slugified(
+    return utils.rdf.uri_quoted(
         base_iri,
         "observation/specimen/{observation_type}/{provider_record_id}",
         observation_type=observation_type,
@@ -322,7 +366,7 @@ def specimen_observation_value_iri(
 
 def sample_iri(
     base_iri: rdflib.Namespace,
-    sample_type: str,
+    sample_type: Literal["specimen", "sequence"],
     provider_record_id: str,
     /,
 ) -> rdflib.URIRef:
@@ -336,7 +380,7 @@ def sample_iri(
     Returns:
         The IRI for the tern:Sample node.
     """
-    return utils.rdf.uri_slugified(
+    return utils.rdf.uri_quoted(
         base_iri,
         "sample/{sample_type}/{provider_record_id}",
         sample_type=sample_type,
@@ -346,7 +390,7 @@ def sample_iri(
 
 def sampling_iri(
     base_iri: rdflib.Namespace,
-    sampling_type: str,
+    sampling_type: Literal["specimen", "sequencing"],
     provider_record_id: str,
     /,
 ) -> rdflib.URIRef:
@@ -360,7 +404,7 @@ def sampling_iri(
     Returns:
         The IRI for the tern:Sampling node.
     """
-    return utils.rdf.uri_slugified(
+    return utils.rdf.uri_quoted(
         base_iri,
         "sampling/{sampling_type}/{provider_record_id}",
         sampling_type=sampling_type,
