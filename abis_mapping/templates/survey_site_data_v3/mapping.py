@@ -325,6 +325,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         self.add_site(
             uri=site,
             dataset=dataset,
+            submission_iri=submission_iri,
             site_id_datatype=site_id_datatype,
             related_site=related_site,
             row=row,
@@ -439,6 +440,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         self,
         uri: rdflib.URIRef,
         dataset: rdflib.URIRef,
+        submission_iri: rdflib.URIRef | None,
         site_id_datatype: rdflib.URIRef | None,
         related_site: rdflib.URIRef | None,
         row: frictionless.Row,
@@ -450,6 +452,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         Args:
             uri: URI to use for this node.
             dataset: Dataset to which data belongs.
+            submission_iri: IRI of the Submission being mapped.
             site_id_datatype: Datatype to use for
                 the site id literal.
             related_site: Either the internal site uri that
@@ -459,6 +462,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             base_iri: Namespace used to construct IRIs
         """
         # Extract relevant values
+        existing_site_iri: str | None = row["existingBDRSiteIRI"]
         site_name = row["siteName"]
         site_type = row["siteType"]
         site_description = row["siteDescription"]
@@ -466,6 +470,11 @@ class SurveySiteMapper(base.mapper.ABISMapper):
 
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.Site))
+
+        # Add link to submission only when the Site is not an existing Site.
+        if not existing_site_iri:
+            if submission_iri:
+                graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
         # Add siteID schema:identifier property, when siteID+siteIDSource are provided.
         site_id: str | None = row["siteID"]

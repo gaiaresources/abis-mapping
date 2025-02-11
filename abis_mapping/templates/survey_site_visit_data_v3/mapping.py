@@ -377,7 +377,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         self.add_site(
             uri=uri_site,
             uri_site_id_datatype=uri_site_id_datatype,
-            row=row,
+            submission_iri=submission_iri,
+            row_site_id=row_site_id,
+            row_existing_site_iri=row_existing_site_iri,
             graph=graph,
         )
 
@@ -572,7 +574,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         *,
         uri: rdflib.URIRef,
         uri_site_id_datatype: rdflib.URIRef | None,
-        row: frictionless.Row,
+        submission_iri: rdflib.URIRef | None,
+        row_site_id: str | None,
+        row_existing_site_iri: str | None,
         graph: rdflib.Graph,
     ) -> None:
         """Adds site to the graph.
@@ -581,14 +585,20 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             uri: Subject of the node.
             uri_site_id_datatype: Datatype of the site
                 id source.
-            row: Raw data for row.
+            submission_iri: IRI of the submission being mapped.
+            row_site_id: siteID field from the template.
+            row_existing_site_iri: existingBDRSiteIRI field from the template.
             graph: Graph to be modified.
         """
         # Add class
         graph.add((uri, a, utils.namespaces.TERN.Site))
 
+        # Add link to submission only when the Site is not an existing Site.
+        if not row_existing_site_iri:
+            if submission_iri:
+                graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+
         # Add siteID schema:identifier property, when siteID+siteIDSource are provided.
-        row_site_id: str | None = row["siteID"]
         if row_site_id and uri_site_id_datatype is not None:
             graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(row_site_id, datatype=uri_site_id_datatype)))
 
