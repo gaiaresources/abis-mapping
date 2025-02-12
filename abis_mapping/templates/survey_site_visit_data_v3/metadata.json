@@ -7,5 +7,5 @@
 	"spatial_type": "Point, line, polygon",
 	"file_type": "CSV",
 	"sampling_type": "systematic survey",
-	"template_lifecycle_status": "beta"
+	"template_lifecycle_status": "current"
 }
