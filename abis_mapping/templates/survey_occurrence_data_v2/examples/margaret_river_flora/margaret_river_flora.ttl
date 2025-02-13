@@ -758,12 +758,12 @@
 <https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Stream-Environment-and-Water-Pty-Ltd> a rdfs:Datatype ;
     skos:definition "An identifier for the record" ;
     skos:prefLabel "Stream Environment and Water Pty Ltd recordID" ;
-    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Stream-Environment-and-Water-Pty-Ltd/owner> .
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/attribution/Stream-Environment-and-Water-Pty-Ltd/owner> .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> a rdfs:Datatype ;
     skos:definition "An identifier for the record" ;
     skos:prefLabel "WAM recordID" ;
-    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> .
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/attribution/WAM/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Stream-Environment-and-Water-Pty-Ltd> a rdfs:Datatype ;
     skos:definition "The record number of the original observation from the original observer of the organism" ;
@@ -895,14 +895,6 @@
     tern:attribute <http://example.com/concept/taxonRank> ;
     tern:hasSimpleValue "species" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/taxonRank/species> .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Stream-Environment-and-Water-Pty-Ltd/owner> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
-    prov:hadRole <https://linked.data.gov.au/def/data-roles/owner> .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/WAM/resourceProvider> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/org/WAM> ;
-    prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/basisOfRecord/new-basis-of-record> a skos:Concept ;
     skos:broader <http://example.com/bdr-cv/attribute/basisOfRecord> ;
@@ -1302,6 +1294,14 @@
         tern:Value ;
     rdfs:label "species" ;
     rdf:value <http://example.com/species> .
+
+<https://linked.data.gov.au/dataset/bdr/attribution/Stream-Environment-and-Water-Pty-Ltd/owner> a prov:Attribution ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:hadRole <https://linked.data.gov.au/def/data-roles/owner> .
+
+<https://linked.data.gov.au/dataset/bdr/attribution/WAM/resourceProvider> a prov:Attribution ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/org/WAM> ;
+    prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/org/BHP> a prov:Agent ;
     schema:name "BHP" .

@@ -438,7 +438,6 @@ def plan_iri(
 
 
 def attribution_iri(
-    base_iri: rdflib.Namespace,
     role: Literal[
         "contributor",
         "creator",
@@ -451,15 +450,20 @@ def attribution_iri(
         "rightsHolder",
     ],
     source: str,
+    /,
 ) -> rdflib.URIRef:
     """Get the IRI to use for a prov:Attribution node.
 
     Args:
-        base_iri: The Namespace to construct the IRI from.
         role: Corresponds to the Object of the PROV:hadRole predicate on the prov:Attribution node.
         source: Who the attribution is for, e.g. "providerRecordIDSource" value.
 
     Returns:
         The IRI for the prov:Attribution node.
     """
-    return utils.rdf.uri_slugified(base_iri, "attribution/{source}/{role}", source=source, role=role)
+    return utils.rdf.uri_slugified(
+        utils.namespaces.DATASET_BDR,
+        "attribution/{source}/{role}",
+        source=source,
+        role=role,
+    )

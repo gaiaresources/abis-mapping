@@ -48,20 +48,12 @@
 <https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Gaia-Resources> a rdfs:Datatype ;
     skos:definition "An identifier for the record" ;
     skos:prefLabel "Gaia Resources recordID" ;
-    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Gaia-Resources/resourceProvider> .
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/attribution/Gaia-Resources/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/siteID/TERN> a rdfs:Datatype ;
     skos:definition "An identifier for the site" ;
     skos:prefLabel "TERN Site ID" ;
-    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/TERN/resourceProvider> .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/Gaia-Resources/resourceProvider> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/org/Gaia-Resources> ;
-    prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribution/TERN/resourceProvider> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/org/TERN> ;
-    prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
+    prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/attribution/TERN/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismQuantity/0-05> a tern:Float,
         tern:Value ;
@@ -77,6 +69,14 @@
     rdf:value "Calothamnus lateralis var. crassus" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://example.com/concept/scientificName> .
+
+<https://linked.data.gov.au/dataset/bdr/attribution/Gaia-Resources/resourceProvider> a prov:Attribution ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/org/Gaia-Resources> ;
+    prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
+
+<https://linked.data.gov.au/dataset/bdr/attribution/TERN/resourceProvider> a prov:Attribution ;
+    prov:agent <https://linked.data.gov.au/dataset/bdr/org/TERN> ;
+    prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/org/Gaia-Resources> a prov:Agent ;
     schema:name "Gaia Resources" .
