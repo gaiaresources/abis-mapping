@@ -251,7 +251,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         if row_site_id_source:
             uri_site_id_datatype = utils.iri_patterns.datatype_iri("siteID", row_site_id_source)
             uri_site_id_datatype_attribution = utils.iri_patterns.attribution_iri(
-                base_iri, "resourceProvider", row_site_id_source
+                "resourceProvider", row_site_id_source
             )
             uri_site_id_datatype_agent = utils.iri_patterns.agent_iri("org", row_site_id_source)
         else:

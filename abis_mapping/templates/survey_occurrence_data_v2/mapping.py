@@ -305,7 +305,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         provider_record_id_datatype = utils.iri_patterns.datatype_iri("recordID", provider_record_id_source)
         provider_record_id_agent = utils.iri_patterns.agent_iri("org", provider_record_id_source)
         provider_record_id_attribution = utils.iri_patterns.attribution_iri(
-            base_iri, "resourceProvider", provider_record_id_source
+            "resourceProvider", provider_record_id_source
         )
         provider_record_id_occurrence = utils.iri_patterns.occurrence_iri(base_iri, provider_record_id)
         provider_record_id_biodiversity_record = utils.iri_patterns.biodiversity_record_iri(
@@ -430,7 +430,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if owner_record_id_source := row["ownerRecordIDSource"]:
             owner_record_id_datatype = utils.iri_patterns.datatype_iri("recordID", owner_record_id_source)
             owner_record_id_provider = utils.iri_patterns.agent_iri("org", owner_record_id_source)
-            owner_record_id_attribution = utils.iri_patterns.attribution_iri(base_iri, "owner", owner_record_id_source)
+            owner_record_id_attribution = utils.iri_patterns.attribution_iri("owner", owner_record_id_source)
         else:
             owner_record_id_datatype = None
             owner_record_id_provider = None
