@@ -337,7 +337,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Calothamnus-lateralis-var-crassus> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
@@ -350,7 +350,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
@@ -375,7 +375,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
@@ -388,7 +388,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
@@ -401,7 +401,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
@@ -414,7 +414,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
@@ -427,7 +427,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
@@ -440,7 +440,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
@@ -453,7 +453,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
@@ -466,7 +466,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
@@ -479,7 +479,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
@@ -569,7 +569,7 @@
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
@@ -581,7 +581,7 @@
     rdfs:comment "verbatimID-observation" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
@@ -594,7 +594,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Calothamnus-lateralis-var-crassus> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
@@ -607,7 +607,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
@@ -620,7 +620,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
@@ -633,7 +633,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
@@ -646,7 +646,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
@@ -659,7 +659,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
@@ -672,7 +672,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
@@ -685,7 +685,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
@@ -698,7 +698,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
@@ -711,7 +711,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
@@ -724,7 +724,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
@@ -737,7 +737,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
@@ -768,7 +768,7 @@
 <https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Stream-Environment-and-Water-Pty-Ltd> a rdfs:Datatype ;
     skos:definition "The record number of the original observation from the original observer of the organism" ;
     skos:prefLabel "Stream Environment and Water Pty Ltd recordNumber" ;
-    prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> .
+    prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> .
 
 <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> a tern:RDFDataset ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
@@ -1077,7 +1077,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/WA-BIO> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/d6d0af046ed077d6> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU> ;
     sosa:hasSimpleResult "VU" ;
@@ -1306,10 +1306,13 @@
 <https://linked.data.gov.au/dataset/bdr/org/BHP> a prov:Agent ;
     schema:name "BHP" .
 
-<https://linked.data.gov.au/dataset/bdr/org/Test-Pty-Ltd> a prov:Agent ;
+<https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
+    schema:name "Stream Environment and Water Pty Ltd" .
+
+<https://linked.data.gov.au/dataset/bdr/person/c6c0efa61d3303c1> a prov:Agent ;
     schema:name "Test Pty Ltd" .
 
-<https://linked.data.gov.au/dataset/bdr/org/WA-BIO> a prov:Agent ;
+<https://linked.data.gov.au/dataset/bdr/person/d6d0af046ed077d6> a prov:Agent ;
     schema:name "WA-BIO" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/MR-S1> a tern:FeatureOfInterest,
@@ -1339,7 +1342,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
@@ -1352,7 +1355,7 @@
     time:hasTime [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
@@ -1444,7 +1447,7 @@
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
@@ -1456,7 +1459,7 @@
     rdfs:comment "scientificName-observation" ;
     time:hasTime [ a time:Instant ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
@@ -1489,7 +1492,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1502,7 +1505,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1515,7 +1518,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1541,7 +1544,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Test-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/c6c0efa61d3303c1> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1554,7 +1557,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1567,7 +1570,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1580,7 +1583,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1593,7 +1596,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1606,7 +1609,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1619,7 +1622,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> a dwc:Occurrence,
         tern:FeatureOfInterest ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1651,7 +1654,7 @@
         tern:FeatureOfInterest ;
     dwc:catalogNumber "CC123"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
     dwc:collectionCode "C01" ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1666,7 +1669,7 @@
         tern:FeatureOfInterest ;
     dwc:catalogNumber "CC456"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
     dwc:collectionCode "C01" ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> ;
@@ -1705,7 +1708,7 @@
         tern:FeatureOfInterest ;
     dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
     dwc:collectionCode "32237" ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/MR-S1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:identifier "BHP2012-7521"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
@@ -1726,7 +1729,7 @@
         tern:FeatureOfInterest ;
     dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
     dwc:collectionCode "32238" ;
-    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/MR-S1> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/methods/samplingProtocol/new-sampling-protocol> ;
     schema:identifier "BHP2012-7522"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
@@ -1745,7 +1748,7 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/1> a tern:Survey ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
-<https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
+<https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> a prov:Agent ;
     schema:name "Stream Environment and Water Pty Ltd" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a tern:Dataset .

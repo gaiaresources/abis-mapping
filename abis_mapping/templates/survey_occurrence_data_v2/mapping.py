@@ -290,7 +290,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Create URIs
         if identified_by := row["identifiedBy"]:
-            provider_identified = utils.iri_patterns.agent_iri("org", identified_by)
+            provider_identified = utils.iri_patterns.agent_iri("person", identified_by)
         else:
             provider_identified = None
         sample_specimen = utils.iri_patterns.sample_iri(base_iri, "specimen", provider_record_id)
@@ -298,7 +298,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         sample_sequence = utils.iri_patterns.sample_iri(base_iri, "sequence", provider_record_id)
         sampling_sequencing = utils.iri_patterns.sampling_iri(base_iri, "sequencing", provider_record_id)
         if threat_status_determined_by := row["threatStatusDeterminedBy"]:
-            provider_determined_by = utils.iri_patterns.agent_iri("org", threat_status_determined_by)
+            provider_determined_by = utils.iri_patterns.agent_iri("person", threat_status_determined_by)
         else:
             provider_determined_by = None
 
@@ -411,7 +411,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Conditionally create uris dependent on recordedBy field.
         if recorded_by := row["recordedBy"]:
             record_number_datatype = utils.iri_patterns.datatype_iri("recordNumber", recorded_by)
-            provider_recorded_by = utils.iri_patterns.agent_iri("org", recorded_by)
+            provider_recorded_by = utils.iri_patterns.agent_iri("person", recorded_by)
         else:
             record_number_datatype = None
             provider_recorded_by = None

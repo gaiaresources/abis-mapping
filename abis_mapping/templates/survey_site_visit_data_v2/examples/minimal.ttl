@@ -52,7 +52,7 @@
                     time:inXSDDate "2024-03-12"^^xsd:date ] ] ;
     prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-03> ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/WAM>,
-        <https://linked.data.gov.au/dataset/bdr/person/ORCID00003> ;
+        <https://linked.data.gov.au/dataset/bdr/person/79c9d6f294444fab> ;
     schema:identifier "TIS-24-03-P1-03" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> ;
@@ -152,11 +152,11 @@
         prov:Organization ;
     schema:name "DBCA" .
 
-<https://linked.data.gov.au/dataset/bdr/person/ORCID00002> a prov:Agent,
+<https://linked.data.gov.au/dataset/bdr/person/0edec39c5a0a1bda> a prov:Agent,
         prov:Person ;
     schema:name "ORCID00002" .
 
-<https://linked.data.gov.au/dataset/bdr/person/ORCID00003> a prov:Agent,
+<https://linked.data.gov.au/dataset/bdr/person/79c9d6f294444fab> a prov:Agent,
         prov:Person ;
     schema:name "ORCID00003" .
 
@@ -169,8 +169,8 @@
     prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-01> ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/DBCA>,
         <https://linked.data.gov.au/dataset/bdr/org/WAM>,
-        <https://linked.data.gov.au/dataset/bdr/person/ORCID00001>,
-        <https://linked.data.gov.au/dataset/bdr/person/ORCID00002> ;
+        <https://linked.data.gov.au/dataset/bdr/person/0edec39c5a0a1bda>,
+        <https://linked.data.gov.au/dataset/bdr/person/2109fa10948f08ba> ;
     schema:identifier "TIS-24-03-P1-01" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> ;
@@ -185,14 +185,14 @@
                     time:inXSDDate "2024-03-12"^^xsd:date ] ] ;
     prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-02> ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/org/WAM>,
-        <https://linked.data.gov.au/dataset/bdr/person/ORCID00001> ;
+        <https://linked.data.gov.au/dataset/bdr/person/2109fa10948f08ba> ;
     schema:identifier "TIS-24-03-P1-02" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/TIS-24-03> ;
     tern:hasSite <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Site/P1> ;
     tern:siteDescription "moist leaf litter after recent rain" .
 
-<https://linked.data.gov.au/dataset/bdr/person/ORCID00001> a prov:Agent,
+<https://linked.data.gov.au/dataset/bdr/person/2109fa10948f08ba> a prov:Agent,
         prov:Person ;
     schema:name "ORCID00001" .
 
