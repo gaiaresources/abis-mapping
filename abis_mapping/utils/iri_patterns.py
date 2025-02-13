@@ -3,6 +3,10 @@
 This is important when the exact same IRI needs to be constructed from multiple template
 mappings so that the output RDF links together on these IRIs."""
 
+# Standard library
+import functools
+import hashlib
+
 # third party
 import rdflib
 
@@ -242,6 +246,12 @@ def datatype_iri(
     )
 
 
+@functools.lru_cache()
+def _hash_person_for_iri(agent: str, /) -> str:
+    """Standard function for hashing an agent string to use in an IRI."""
+    return hashlib.blake2b(agent.encode("utf-8"), digest_size=8, person=b"person_iri_hash").hexdigest()
+
+
 def agent_iri(
     agent_type: Literal["org", "person", "software"],
     agent: str,
@@ -256,6 +266,10 @@ def agent_iri(
     Returns:
         URIRef for the prov:Agent node.
     """
+    # For person IRIs, use a hash of the name, instead of the name itself.
+    if agent_type == "person":
+        agent = _hash_person_for_iri(agent)
+
     return utils.rdf.uri_slugified(
         utils.namespaces.DATASET_BDR,
         "{agent_type}/{agent}",
