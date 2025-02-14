@@ -7,7 +7,7 @@ import pydantic
 from abis_mapping import utils
 
 # Typing
-from typing import Any, Type, Annotated
+from typing import Any, Type, Annotated, Sequence
 
 
 class Constraints(pydantic.BaseModel):
@@ -15,6 +15,13 @@ class Constraints(pydantic.BaseModel):
 
     Currently all defined below are a subset of those available from [frictionless](https://specs.frictionlessdata.io/table-schema/#constraints).
     """
+
+    model_config = pydantic.ConfigDict(
+        # Frozen because this class is returned by the cached ABISMapper.fields() method
+        frozen=True,
+        # Forbid extra fields to catch typos in json.
+        extra="forbid",
+    )
 
     required: Annotated[
         bool,
@@ -38,7 +45,7 @@ class Constraints(pydantic.BaseModel):
         float | int | None, pydantic.Field(description="As for `minimum`, but specifies a maximum value for a field.")
     ] = None
     enum: Annotated[
-        list[str] | None,
+        Sequence[str] | None,
         pydantic.Field(description="The value of the field must exactly match a value in the enum array."),
     ] = None
 
@@ -51,6 +58,13 @@ class Field(pydantic.BaseModel):
     of instruction documentation.
     [Frictionless reference](https://specs.frictionlessdata.io/table-schema).
     """
+
+    model_config = pydantic.ConfigDict(
+        # Frozen because this class is returned by the cached ABISMapper.fields() method
+        frozen=True,
+        # Forbid extra fields to catch typos in json.
+        extra="forbid",
+    )
 
     name: Annotated[
         str,
@@ -91,15 +105,12 @@ class Field(pydantic.BaseModel):
     url: Annotated[pydantic.AnyUrl | None, pydantic.Field(description="The IRI of the field's concept.")] = None
     constraints: Constraints
     vocabularies: Annotated[
-        list[str],
+        Sequence[str],
         pydantic.Field(
             description="Optional list of vocabulary IDs, defined internally within the project. Provided IDs need to have been registered to be valid. See [`abis_mapping.vocabs`](/abis_mapping/vocabs/).",
             default_factory=list,
         ),
     ]
-
-    # Allow extra fields to be captured mainly to catch errors in json
-    model_config = pydantic.ConfigDict(extra="allow")
 
     @pydantic.field_serializer("url")
     def serialize_url(self, url: pydantic.AnyUrl) -> str:
@@ -115,7 +126,7 @@ class Field(pydantic.BaseModel):
 
     @pydantic.field_validator("vocabularies", mode="after")
     @classmethod
-    def check_vocabularies(cls, values: list[str]) -> list[str]:
+    def check_vocabularies(cls, values: Sequence[str]) -> Sequence[str]:
         """Custom validation of the vocabularies field.
 
         Args:

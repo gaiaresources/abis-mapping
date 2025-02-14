@@ -7,6 +7,7 @@ import functools
 import inspect
 import json
 import pathlib
+import types
 
 # Third-Party
 import frictionless
@@ -21,7 +22,7 @@ from abis_mapping import utils
 
 
 # Typing
-from collections.abc import Iterator, Set
+from collections.abc import Iterator, Set, Mapping
 from typing import Any, Final, Optional, final
 
 
@@ -428,7 +429,8 @@ class ABISMapper(abc.ABC):
 
     @final
     @classmethod
-    def fields(cls) -> dict[str, models.schema.Field]:
+    @functools.cache
+    def fields(cls) -> Mapping[str, models.schema.Field]:
         """Indexed dictionary of all fields' metadata.
 
         Returns:
@@ -438,8 +440,8 @@ class ABISMapper(abc.ABC):
         # Get schema
         schema = models.schema.Schema.model_validate(cls.schema())
 
-        # Return dictionary of fields
-        return {f.name: f for f in schema.fields}
+        # Return read-only dictionary of fields
+        return types.MappingProxyType({f.name: f for f in schema.fields})
 
     @final
     def root_dir(self) -> pathlib.Path:
