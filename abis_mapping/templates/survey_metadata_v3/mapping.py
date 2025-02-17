@@ -115,7 +115,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             The set of surveyID values, as a dict.
         """
         # Construct schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.regular_fields_schema()
 
         # Construct resource
         resource = frictionless.Resource(

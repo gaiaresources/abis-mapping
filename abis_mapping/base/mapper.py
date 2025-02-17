@@ -280,6 +280,22 @@ class ABISMapper(abc.ABC):
 
     @final
     @classmethod
+    def regular_fields_schema(cls) -> frictionless.Schema:
+        """Construct a frictionless.Schema for the regular fields in this Template.
+
+        i.e. not including any extra fields.
+        Not cached, since the frictionless.Schema class is mutable.
+
+        NOTE: different to the schema() method, which returns our internal
+        abis_mapping.models.schema.Schema class.
+
+        Returns:
+            The frictionless.Schema for this Template.
+        """
+        return frictionless.Schema.from_descriptor(cls.schema())
+
+    @final
+    @classmethod
     def extra_fields_schema(
         cls,
         data: frictionless.Row | base_types.ReadableType,
@@ -304,7 +320,7 @@ class ABISMapper(abc.ABC):
                 any fields that are duplicated within the labels of the supplied data.
         """
         # Construct schema
-        existing_schema: frictionless.Schema = frictionless.Schema.from_descriptor(cls.schema())
+        existing_schema = cls.regular_fields_schema()
 
         if isinstance(data, frictionless.Row):
             # Get list of fieldnames of row

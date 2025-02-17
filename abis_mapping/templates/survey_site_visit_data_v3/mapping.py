@@ -113,7 +113,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             or None for value if there is no identifier.
         """
         # Construct schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.regular_fields_schema()
 
         # Construct resource
         resource = frictionless.Resource(source=data, format="csv", schema=schema, encoding="utf-8")
@@ -153,7 +153,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
                 RDF (turtle) containing the default temporal entity.
         """
         # Construct schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.regular_fields_schema()
 
         # Construct resource
         resource = frictionless.Resource(source=data, format="csv", schema=schema, encoding="utf-8")
