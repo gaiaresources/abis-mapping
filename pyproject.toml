@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "abis-mapping"
-version = "6.0.0-rc3"
+version = "6.0.0-rc4"
 description = "Provides templates and mappings to translate tabular data to ABIS rdf"
 authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
 
