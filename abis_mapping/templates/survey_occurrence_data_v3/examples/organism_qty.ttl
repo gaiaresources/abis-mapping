@@ -96,9 +96,8 @@
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:spatial _:Nb0c3d4fa822b88b4d3f8743700000000 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-24"^^xsd:date ] ] ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 

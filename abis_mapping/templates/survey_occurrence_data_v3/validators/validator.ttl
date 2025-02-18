@@ -243,7 +243,14 @@ bdrsh:SurveyOccurrenceShape
 		sh:nodeKind sh:BlankNode ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-		sh:class time:TemporalEntity ;
+		sh:or (
+		    [
+		        sh:class time:TemporalEntity ;
+		    ]
+		    [
+		        sh:class time:Instant ;
+		    ]
+		)
 	] ;
 	sh:property [
 		sh:path sosa:usedProcedure ;
