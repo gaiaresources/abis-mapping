@@ -3961,23 +3961,27 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add temporal entity
-        event_date_start: models.temporal.Timestamp | None = row["eventDateStart"]
+        event_date_start: models.temporal.Timestamp = row["eventDateStart"]
         event_date_end: models.temporal.Timestamp | None = row["eventDateEnd"]
-        # Check any event dates provided
-        if event_date_start is not None or event_date_end is not None:
-            temporal_entity = rdflib.BNode()
-            graph.add((temporal_entity, a, rdflib.TIME.TemporalEntity))
-            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
-            if event_date_start is not None:
-                start_instant = rdflib.BNode()
-                graph.add((start_instant, a, rdflib.TIME.Instant))
-                graph.add((start_instant, event_date_start.rdf_in_xsd, event_date_start.to_rdf_literal()))
-                graph.add((temporal_entity, rdflib.TIME.hasBeginning, start_instant))
-            if event_date_end is not None:
-                end_instant = rdflib.BNode()
-                graph.add((end_instant, a, rdflib.TIME.Instant))
-                graph.add((end_instant, event_date_end.rdf_in_xsd, event_date_end.to_rdf_literal()))
-                graph.add((temporal_entity, rdflib.TIME.hasEnd, end_instant))
+        temporal_node = rdflib.BNode()
+        graph.add((uri, rdflib.SDO.temporal, temporal_node))
+        # When end date is provided, give temporal node a start/end
+        if event_date_end is not None:
+            graph.add((temporal_node, a, rdflib.TIME.TemporalEntity))
+            # Start date
+            start_instant = rdflib.BNode()
+            graph.add((start_instant, a, rdflib.TIME.Instant))
+            graph.add((start_instant, event_date_start.rdf_in_xsd, event_date_start.to_rdf_literal()))
+            graph.add((temporal_node, rdflib.TIME.hasBeginning, start_instant))
+            # End date
+            end_instant = rdflib.BNode()
+            graph.add((end_instant, a, rdflib.TIME.Instant))
+            graph.add((end_instant, event_date_end.rdf_in_xsd, event_date_end.to_rdf_literal()))
+            graph.add((temporal_node, rdflib.TIME.hasEnd, end_instant))
+        # Else only start date, make temporal node an Instant
+        else:
+            graph.add((temporal_node, a, rdflib.TIME.Instant))
+            graph.add((temporal_node, event_date_start.rdf_in_xsd, event_date_start.to_rdf_literal()))
 
         # Add procedure from vocab
         protocol_vocab = self.fields()["samplingProtocol"].get_flexible_vocab()

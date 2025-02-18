@@ -1592,10 +1592,9 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000021 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd2200000016 ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> a tern:FeatureOfInterest,
@@ -1618,9 +1617,8 @@
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:spatial _:N489292b7f1191795326ddd2200000000 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1630,10 +1628,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd220000001b ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd2200000012 ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1643,10 +1640,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd220000001e ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd2200000014 ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1656,10 +1652,9 @@
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:identifier "PE:12:8831" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000003 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd2200000002 ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1669,10 +1664,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/c6c0efa61d3303c1> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000006 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd2200000004 ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1682,10 +1676,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000009 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd2200000006 ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1695,10 +1688,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd220000000c ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd2200000008 ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1708,10 +1700,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd220000000f ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd220000000a ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1721,10 +1712,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000012 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd220000000c ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1734,10 +1724,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000015 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd220000000e ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1747,10 +1736,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000018 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd2200000010 ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1780,10 +1768,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000024 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd2200000018 ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1795,10 +1782,9 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd2200000027 ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd220000001a ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1841,10 +1827,9 @@
         "MR-456"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Stream-Environment-and-Water-Pty-Ltd>,
         "PE:12:8832"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Stream-Environment-and-Water-Pty-Ltd> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd220000002a ;
-    schema:temporal [ a time:TemporalEntity ;
-            time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2019-09-26"^^xsd:date ] ] ;
+    schema:spatial _:N489292b7f1191795326ddd220000001c ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1860,7 +1845,7 @@
         "MR-457"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Stream-Environment-and-Water-Pty-Ltd>,
         "PE:12:8833"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Stream-Environment-and-Water-Pty-Ltd> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N489292b7f1191795326ddd220000002d ;
+    schema:spatial _:N489292b7f1191795326ddd220000001e ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1888,7 +1873,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd2200000003 ;
+    rdf:object _:N489292b7f1191795326ddd2200000002 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
     rdfs:comment "supplied as" .
@@ -1896,7 +1881,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd2200000006 ;
+    rdf:object _:N489292b7f1191795326ddd2200000004 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
     rdfs:comment "supplied as" .
@@ -1904,7 +1889,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd2200000009 ;
+    rdf:object _:N489292b7f1191795326ddd2200000006 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
     rdfs:comment "supplied as" .
@@ -1912,7 +1897,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd220000000c ;
+    rdf:object _:N489292b7f1191795326ddd2200000008 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
     rdfs:comment "supplied as" .
@@ -1920,7 +1905,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd220000000f ;
+    rdf:object _:N489292b7f1191795326ddd220000000a ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
     rdfs:comment "supplied as" .
@@ -1928,7 +1913,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd2200000012 ;
+    rdf:object _:N489292b7f1191795326ddd220000000c ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
     rdfs:comment "supplied as" .
@@ -1936,7 +1921,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd2200000015 ;
+    rdf:object _:N489292b7f1191795326ddd220000000e ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
     rdfs:comment "supplied as" .
@@ -1944,7 +1929,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd2200000018 ;
+    rdf:object _:N489292b7f1191795326ddd2200000010 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
     rdfs:comment "supplied as" .
@@ -1952,7 +1937,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd220000001b ;
+    rdf:object _:N489292b7f1191795326ddd2200000012 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
     rdfs:comment "supplied as" .
@@ -1960,7 +1945,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd220000001e ;
+    rdf:object _:N489292b7f1191795326ddd2200000014 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
     rdfs:comment "supplied as" .
@@ -1968,7 +1953,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd2200000021 ;
+    rdf:object _:N489292b7f1191795326ddd2200000016 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/12> ;
     rdfs:comment "supplied as" .
@@ -1976,7 +1961,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
-    rdf:object _:N489292b7f1191795326ddd2200000024 ;
+    rdf:object _:N489292b7f1191795326ddd2200000018 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
     rdfs:comment "supplied as" .
@@ -1985,7 +1970,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 2e+01 ] ;
-    rdf:object _:N489292b7f1191795326ddd2200000027 ;
+    rdf:object _:N489292b7f1191795326ddd220000001a ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
     rdfs:comment "supplied as" .
@@ -1994,7 +1979,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
-    rdf:object _:N489292b7f1191795326ddd220000002a ;
+    rdf:object _:N489292b7f1191795326ddd220000001c ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     rdfs:comment "supplied as" .
@@ -2003,7 +1988,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 3e+01 ] ;
-    rdf:object _:N489292b7f1191795326ddd220000002d ;
+    rdf:object _:N489292b7f1191795326ddd220000001e ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     rdfs:comment "supplied as" .
@@ -2059,51 +2044,51 @@ _:N3bb12ed5a66f4695174d6bd600000003 a geo:Geometry ;
 _:N489292b7f1191795326ddd2200000000 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral .
 
-_:N489292b7f1191795326ddd2200000003 a geo:Geometry ;
+_:N489292b7f1191795326ddd2200000002 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.01)"^^geo:wktLiteral .
+
+_:N489292b7f1191795326ddd2200000004 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.01)"^^geo:wktLiteral .
 
 _:N489292b7f1191795326ddd2200000006 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.01)"^^geo:wktLiteral .
 
-_:N489292b7f1191795326ddd2200000009 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.01)"^^geo:wktLiteral .
+_:N489292b7f1191795326ddd2200000008 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
+
+_:N489292b7f1191795326ddd220000000a a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
 
 _:N489292b7f1191795326ddd220000000c a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
 
-_:N489292b7f1191795326ddd220000000f a geo:Geometry ;
+_:N489292b7f1191795326ddd220000000e a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
+
+_:N489292b7f1191795326ddd2200000010 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
 
 _:N489292b7f1191795326ddd2200000012 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
 
-_:N489292b7f1191795326ddd2200000015 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
+_:N489292b7f1191795326ddd2200000014 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
+
+_:N489292b7f1191795326ddd2200000016 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral .
 
 _:N489292b7f1191795326ddd2200000018 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
 
-_:N489292b7f1191795326ddd220000001b a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
-
-_:N489292b7f1191795326ddd220000001e a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
-
-_:N489292b7f1191795326ddd2200000021 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral .
-
-_:N489292b7f1191795326ddd2200000024 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
-
-_:N489292b7f1191795326ddd2200000027 a geo:Geometry ;
+_:N489292b7f1191795326ddd220000001a a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 2e+01 .
 
-_:N489292b7f1191795326ddd220000002a a geo:Geometry ;
+_:N489292b7f1191795326ddd220000001c a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
-_:N489292b7f1191795326ddd220000002d a geo:Geometry ;
+_:N489292b7f1191795326ddd220000001e a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 3e+01 .
 
