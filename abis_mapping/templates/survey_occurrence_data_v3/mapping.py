@@ -1464,7 +1464,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         temp_graph = rdflib.Graph().parse(data=site_visit_id_temporal_map[row["siteVisitID"]])
 
         # Obtain reference to subject node
-        top_node = next(temp_graph.subjects(a, rdflib.TIME.TemporalEntity))
+        # First look for time: TemporalEntity, then fallback to time:Instant
+        top_node = next(temp_graph.subjects(a, rdflib.TIME.TemporalEntity), None) or next(
+            temp_graph.subjects(a, rdflib.TIME.Instant)
+        )
 
         # Merge with main graph using addition assignment (modify inplace).
         # NOTE: Be aware that BNode IDs are not modified or checked during this process
