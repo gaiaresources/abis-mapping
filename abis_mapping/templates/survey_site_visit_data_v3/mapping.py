@@ -517,21 +517,28 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Add identifier
         graph.add((uri, rdflib.SDO.identifier, rdflib.Literal(row_site_visit_id)))
 
-        # Add temporal entity for start/end time
-        temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
-        graph.add((temporal_entity, a, rdflib.TIME.TemporalEntity))
         row_site_visit_start: models.temporal.Timestamp = row["siteVisitStart"]
         row_site_visit_end: models.temporal.Timestamp | None = row["siteVisitEnd"]
-        start_instant = rdflib.BNode()
-        graph.add((start_instant, a, rdflib.TIME.Instant))
-        graph.add((start_instant, row_site_visit_start.rdf_in_xsd, row_site_visit_start.to_rdf_literal()))
-        graph.add((temporal_entity, rdflib.TIME.hasBeginning, start_instant))
+        # Add temporal node for start/end time
+        temporal_node = rdflib.BNode()
+        graph.add((uri, rdflib.TIME.hasTime, temporal_node))
+        # When siteVisitEnd is provided, give temporal node a start/end
         if row_site_visit_end:
+            graph.add((temporal_node, a, rdflib.TIME.TemporalEntity))
+            # Start instant
+            start_instant = rdflib.BNode()
+            graph.add((start_instant, a, rdflib.TIME.Instant))
+            graph.add((start_instant, row_site_visit_start.rdf_in_xsd, row_site_visit_start.to_rdf_literal()))
+            graph.add((temporal_node, rdflib.TIME.hasBeginning, start_instant))
+            # End instant
             end_instant = rdflib.BNode()
             graph.add((end_instant, a, rdflib.TIME.Instant))
             graph.add((end_instant, row_site_visit_end.rdf_in_xsd, row_site_visit_end.to_rdf_literal()))
-            graph.add((temporal_entity, rdflib.TIME.hasEnd, end_instant))
+            graph.add((temporal_node, rdflib.TIME.hasEnd, end_instant))
+        # Else only siteVisitStart, make temporal node an Instant
+        else:
+            graph.add((temporal_node, a, rdflib.TIME.Instant))
+            graph.add((temporal_node, row_site_visit_start.rdf_in_xsd, row_site_visit_start.to_rdf_literal()))
 
         # Add link(s) to visitOrgs
         for visit_org_agent in visit_org_agents:
