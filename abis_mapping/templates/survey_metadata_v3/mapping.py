@@ -568,23 +568,27 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         """
         # Determine if any dates are present in the row
         start_date: models.temporal.Timestamp = row["surveyStart"]
-        end_date: models.temporal.Timestamp = row["surveyEnd"]
-        if not start_date and not end_date:
-            return
+        end_date: models.temporal.Timestamp | None = row["surveyEnd"]
 
         # Create temporal coverage node
         temporal_coverage = rdflib.BNode()
-        graph.add((temporal_coverage, a, rdflib.TIME.TemporalEntity))
-        if start_date:
+        # If both dates supplied, use an TemporalEntity with start/end
+        if end_date is not None:
+            graph.add((temporal_coverage, a, rdflib.TIME.TemporalEntity))
+            # Start instant
             begin = rdflib.BNode()
             graph.add((temporal_coverage, rdflib.TIME.hasBeginning, begin))
             graph.add((begin, a, rdflib.TIME.Instant))
             graph.add((begin, start_date.rdf_in_xsd, start_date.to_rdf_literal()))
-        if end_date:
+            # End instant
             end = rdflib.BNode()
             graph.add((temporal_coverage, rdflib.TIME.hasEnd, end))
             graph.add((end, a, rdflib.TIME.Instant))
             graph.add((end, end_date.rdf_in_xsd, end_date.to_rdf_literal()))
+        # Else use an Instant with just start
+        else:
+            graph.add((temporal_coverage, a, rdflib.TIME.Instant))
+            graph.add((temporal_coverage, start_date.rdf_in_xsd, start_date.to_rdf_literal()))
 
         # Attach to survey node
         graph.add((uri, rdflib.TIME.hasTime, temporal_coverage))
