@@ -163,9 +163,7 @@
     geo:hasGeometry _:N27fdbd9c9077333e51ac0d0600000001 ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
-                    time:inXSDDate "2015-06-21"^^xsd:date ] ;
-            time:hasEnd [ a time:Instant ;
-                    time:inXSDDate "2015-07-03"^^xsd:date ] ] ;
+                    time:inXSDDate "2015-06-21"^^xsd:date ] ] ;
     prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
     schema:identifier "COL2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO>,
         "COL2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> ;
