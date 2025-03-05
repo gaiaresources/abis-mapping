@@ -1,5 +1,5 @@
 @prefix abis: <https://linked.data.gov.au/def/abis/> .
-@prefix bdr: <http://example.com/bdr-schema/> .
+@prefix bdr: <https://linked.data.gov.au/def/bdr/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -117,9 +117,6 @@
     schema:name "NSW Department of Planning, Industry and Environment" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> a tern:Survey ;
-    bdr:purpose "Summer sampling for peak insect diversity." ;
-    bdr:target "Coleoptera",
-        "Insecta" ;
     geo:hasGeometry _:N52d3d4f338b894a95032d27200000000 ;
     time:hasTime [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
@@ -127,6 +124,9 @@
             time:hasEnd [ a time:Instant ;
                     time:inXSDDate "2015-02-03"^^xsd:date ] ] ;
     prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    bdr:purpose "Summer sampling for peak insect diversity." ;
+    bdr:target "Coleoptera",
+        "Insecta" ;
     schema:identifier "COL1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO>,
         "COL1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> ;
     schema:keywords "farmland",

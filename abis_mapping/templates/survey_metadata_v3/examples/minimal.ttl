@@ -1,5 +1,5 @@
 @prefix abis: <https://linked.data.gov.au/def/abis/> .
-@prefix bdr: <http://example.com/bdr-schema/> .
+@prefix bdr: <https://linked.data.gov.au/def/bdr/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -132,9 +132,6 @@
     schema:name "NSW Department of Planning, Industry and Environment" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> a tern:Survey ;
-    bdr:purpose "Summer sampling for peak insect diversity." ;
-    bdr:target "Coleoptera",
-        "Insecta" ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     geo:hasGeometry _:N27fdbd9c9077333e51ac0d0600000000 ;
     time:hasTime [ a time:TemporalEntity ;
@@ -143,6 +140,9 @@
             time:hasEnd [ a time:Instant ;
                     time:inXSDDate "2015-02-03"^^xsd:date ] ] ;
     prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
+    bdr:purpose "Summer sampling for peak insect diversity." ;
+    bdr:target "Coleoptera",
+        "Insecta" ;
     schema:identifier "COL1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO>,
         "COL1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> ;
     schema:keywords "farmland",
@@ -156,14 +156,14 @@
     schema:name "Disentangling the effects of farmland use, habitat edges, and vegetation structure on ground beetle morphological traits - Summer" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL2> a tern:Survey ;
-    bdr:purpose "Winter sampling for peak insect diversity." ;
-    bdr:target "Coleoptera",
-        "Insecta" ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     geo:hasGeometry _:N27fdbd9c9077333e51ac0d0600000001 ;
     time:hasTime [ a time:Instant ;
             time:inXSDDate "2015-06-21"^^xsd:date ] ;
     prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
+    bdr:purpose "Winter sampling for peak insect diversity." ;
+    bdr:target "Coleoptera",
+        "Insecta" ;
     schema:identifier "COL2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/CSIRO>,
         "COL2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/surveyID/NSW-Department-of-Planning-Industry-and-Environment> ;
     schema:keywords "farmland",
