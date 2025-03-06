@@ -8,25 +8,6 @@ from abis_mapping import utils
 
 
 # Terms
-# Kingdom
-ANIMALIA = utils.vocabs.Term(
-    labels=("ANIMALIA",),
-    iri=utils.rdf.uri("kingdom/animalia", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="Kingdom Animalia",
-)
-PLANTAE = utils.vocabs.Term(
-    labels=(
-        "PLANTAE",
-        "PLANTAE HAECKEL",
-    ),
-    iri=utils.rdf.uri("kingdom/plantae", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="Kingdom (taxonRank: Regnum) Fungi",
-)
-FUNGI = utils.vocabs.Term(
-    labels=("FUNGI",),
-    iri=utils.rdf.uri("kingdom/fungi", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="Kingdom (taxonRank: Regnum) Fungi",
-)
 # Kingdom Occurrences
 ANIMALIA_OCCURRENCE = utils.vocabs.Term(
     labels=("ANIMALIA",),
@@ -68,16 +49,6 @@ FUNGI_SPECIMEN = utils.vocabs.Term(
 
 
 # Vocabularies
-class Kingdom(utils.vocabs.FlexibleVocabulary):
-    """DEPRECATED: Do not use this vocabulary for new templates."""
-
-    vocab_id = "KINGDOM"
-    definition = rdflib.Literal("A type of kingdom.")
-    base = "bdr-cv/attribute/kingdom/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = utils.rdf.uri("bdr-cv/attribute/kingdom", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-    default = None  # No default, kingdom is required in the CSV
-    terms = (ANIMALIA, PLANTAE, FUNGI)
 
 
 class KingdomOccurrence(utils.vocabs.FlexibleVocabulary):
@@ -131,6 +102,5 @@ class KingdomSpecimen(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.register(Kingdom)
 utils.vocabs.register(KingdomOccurrence)
 utils.vocabs.register(KingdomSpecimen)
