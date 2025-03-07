@@ -330,7 +330,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             related_site=related_site,
             row=row,
             graph=graph,
-            base_iri=base_iri,
         )
 
         # Add site id datatype
@@ -373,7 +372,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 dataset=dataset,
                 raw=habitat_object.raw,
                 graph=graph,
-                base_iri=base_iri,
             )
 
             # Add habitat attribute Collection
@@ -445,7 +443,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         related_site: rdflib.URIRef | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace,
     ) -> None:
         """Adds site to the graph.
 
@@ -459,7 +456,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 this site relates to or a URI for an external site.
             row: Row to retrieve data from.
             graph: Graph to be modified.
-            base_iri: Namespace used to construct IRIs
         """
         # Extract relevant values
         existing_site_iri: str | None = row["existingBDRSiteIRI"]
@@ -497,7 +493,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             site_type_vocab = self.fields()["siteType"].get_flexible_vocab()
 
             # Retrieve term or create on the fly
-            site_type_term = site_type_vocab(graph=graph, source=dataset, base_iri=base_iri).get(site_type)
+            site_type_term = site_type_vocab(graph=graph, source=dataset).get(site_type)
 
             # Add to site type graph
             graph.add((uri, rdflib.SDO.additionalType, site_type_term))
@@ -633,7 +629,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         raw: str,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace,
     ) -> None:
         """Add a habitat value node to graph.
 
@@ -642,7 +637,6 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset data belongs.
             raw (str): Raw data provided.
             graph (rdflib.Graph): Graph to be modified.
-            base_iri (rdflib.Namespace): Namespace used to construct IRIs
         """
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -655,7 +649,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         vocab = self.fields()["habitat"].get_flexible_vocab()
 
         # Add flexible vocab term
-        term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(raw)
+        term = vocab(graph=graph, source=dataset).get(raw)
         graph.add((uri, rdflib.RDF.value, term))
 
     def add_habitat_collection(

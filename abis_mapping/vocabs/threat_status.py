@@ -884,7 +884,7 @@ class ThreatStatus(utils.vocabs.FlexibleVocabulary):
 
         # Create our Own Concept IRI
         iri = utils.rdf.uri_slugified(
-            self.base_iri,
+            utils.namespaces.DATASET_BDR,
             self.base + "{conservation_authority}/{threat_status}",
             conservation_authority=conservation_authority,
             threat_status=threat_status,

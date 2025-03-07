@@ -9,6 +9,7 @@ import rdflib
 # Local
 from abis_mapping.utils import rdf
 from abis_mapping.utils import strings
+from abis_mapping.utils import namespaces
 
 # Typing
 from typing import Optional, Iterable, Final, Type
@@ -179,14 +180,12 @@ class FlexibleVocabulary(Vocabulary):
         self,
         *,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace,
         source: Optional[rdflib.URIRef] = None,
     ):
         """Flexible Vocabulary constructor.
 
         Args:
             graph: Graph to add a new vocabulary term to.
-            base_iri: Namespace to use when creating the IRI for a new vocabulary term.
             source: Optional source URI to attribute a new vocabulary term to.
         """
         # Call parent constructor
@@ -195,7 +194,6 @@ class FlexibleVocabulary(Vocabulary):
         # Assign instance variables
         self.graph = graph
         self.source: Optional[rdflib.URIRef] = source
-        self.base_iri = base_iri
 
         # Add Default mapping if Applicable
         if self.default:
@@ -256,7 +254,7 @@ class FlexibleVocabulary(Vocabulary):
             raise VocabularyError("Value not supplied for vocabulary with no default")
 
         # Create our Own Concept IRI
-        iri = rdf.uri_slugified(self.base_iri, self.base + "{value}", value=value)
+        iri = rdf.uri_slugified(namespaces.DATASET_BDR, self.base + "{value}", value=value)
         self.create(iri=iri, preferred_label=value)
         # Return
         return iri
