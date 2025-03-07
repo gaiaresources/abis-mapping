@@ -4,6 +4,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reg: <http://purl.org/linked-data/registry#> .
 @prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
@@ -112,6 +113,7 @@
     prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     skos:definition "A type of targetTaxonomicScope" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -120,6 +122,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/Insecta> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     skos:definition "A type of targetTaxonomicScope" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;

@@ -4,6 +4,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reg: <http://purl.org/linked-data/registry#> .
 @prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
@@ -1253,6 +1254,7 @@
     prov:hadRole <https://linked.data.gov.au/def/data-roles/owner> .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/basisOfRecord/new-basis-of-record> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/basisOfRecord> ;
     skos:definition "A type of basisOfRecord." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1261,6 +1263,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
     skos:definition "A type of habitat" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1269,6 +1272,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/habitat/new-habitat> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
     skos:definition "A type of habitat" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1277,6 +1281,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier/> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1285,6 +1290,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier/new-identification-qualifier> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1293,6 +1299,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations> ;
     skos:definition "A type of preparations." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1301,6 +1308,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations/new-preparations> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations> ;
     skos:definition "A type of preparations." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1309,6 +1317,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/sensitivityCategory/Category-1> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/sensitivityCategory> ;
     skos:definition "A type of sensitivityCategory." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1318,6 +1327,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/taxonRank/new-taxon-rank> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/taxonRank> ;
     skos:definition "A type of taxonRank." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1326,12 +1336,14 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/featureType/occurrence/kingdom/new-kingdom> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:definition "The existence of the organism from this kingdom sampled at a particular place at a particular time." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new kingdom occurrence" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d" .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/featureType/specimen/kingdom/new-kingdom> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:definition "A specimen sampled from an organism of this kingdom." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new kingdom specimen" ;
@@ -1339,6 +1351,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/samplingProtocol/new-sampling-protocol> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766> ;
     skos:definition "A type of samplingProtocol." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1346,6 +1359,7 @@
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod> ;
     skos:definition "A type of sequencingMethod." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1354,6 +1368,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/new-sequencing-method> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod> ;
     skos:definition "A type of sequencingMethod." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1362,6 +1377,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https-www-dpaw-wa-gov-au-plants-and-animals-threatened-species-and-communities-threatened-animals-Last-updated-13-June-2022> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol> ;
     skos:definition "A type of threatStatusCheckProtocol." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1370,6 +1386,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol> ;
     skos:definition "A type of threatStatusCheckProtocol." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1378,6 +1395,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/establishmentMeans/new-establishment-means> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/establishmentMeans> ;
     skos:definition "A type of establishmentMeans." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1386,6 +1404,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/lifeStage/new-life-stage> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/lifeStage> ;
     skos:definition "A type of lifeStage." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1394,6 +1413,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/occurrenceStatus/new-occurrence-status> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/occurrenceStatus> ;
     skos:definition "A type of occurrenceStatus." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1402,6 +1422,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition/No-breeding-evident> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition> ;
     skos:definition "A type of reproductiveCondition." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1410,6 +1431,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition/new-reproductiveCondition> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition> ;
     skos:definition "A type of reproductiveCondition." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1418,6 +1440,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/sex/new-sex> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/sex> ;
     skos:definition "A type of sex." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1426,6 +1449,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/threatStatus/WA/new-threat-status> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/threatStatus> ;
     skos:definition "A type of threatStatus." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1571,6 +1595,7 @@
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1579,6 +1604,7 @@
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/new-identification-method> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;

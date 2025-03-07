@@ -10,6 +10,7 @@ import rdflib
 # Local
 import abis_mapping.utils.namespaces
 import abis_mapping.utils.vocabs
+import abis_mapping.utils.rdf
 
 # Typing
 from typing import assert_type
@@ -98,7 +99,7 @@ def test_vocabs_flexible_vocab() -> None:
         )
 
     # Create graph
-    graph = rdflib.Graph()
+    graph = abis_mapping.utils.rdf.create_graph()
 
     # Initialize vocab
     vocab = Vocab(graph=graph)
@@ -116,11 +117,13 @@ def test_vocabs_flexible_vocab() -> None:
         graph.serialize(format="ttl").strip()
         == textwrap.dedent(
             """
+        @prefix reg: <http://purl.org/linked-data/registry#> .
         @prefix schema: <https://schema.org/> .
         @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
         @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
         <https://linked.data.gov.au/dataset/bdr/base/C> a skos:Concept ;
+            reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
             skos:broader <broader> ;
             skos:definition "definition" ;
             skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;

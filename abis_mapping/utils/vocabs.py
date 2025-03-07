@@ -18,6 +18,7 @@ from typing import Optional, Iterable, Final, Type
 # Constants
 a = rdflib.RDF.type
 PENDING_SCHEME = rdf.uri("bdr-cv/pending", namespaces.BDR)
+STATUS_SUBMITTED = rdflib.URIRef("https://linked.data.gov.au/def/reg-statuses/submitted")
 
 
 class Term:
@@ -275,6 +276,7 @@ class FlexibleVocabulary(Vocabulary):
         # Add to Graph
         self.graph.add((iri, a, rdflib.SKOS.Concept))
         self.graph.add((iri, rdflib.SKOS.definition, self.definition))
+        self.graph.add((iri, namespaces.REG.status, STATUS_SUBMITTED))
 
         # Add scheme and note for proposed scheme
         self.graph.add((iri, rdflib.SKOS.inScheme, PENDING_SCHEME))
