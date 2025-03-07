@@ -19,7 +19,7 @@ from typing import Literal
 
 def survey_iri(
     base_iri: rdflib.Namespace,
-    survey_id: str | None,
+    survey_id: str,
     /,
 ) -> rdflib.URIRef:
     """Get the IRI for the tern:Survey node, constructed from the surveyID field.
@@ -37,35 +37,8 @@ def survey_iri(
     return utils.rdf.uri_quoted(
         base_iri,
         "Survey/{survey_id}",
-        # surveyID is an optional field. When missing fallback to the row number.
-        # (which is always 1 for a Survey, since metadata template must have 1 row)
-        # TODO remove this fallback once SSD v2 templates are removed,
-        # since surveyID is a required field from v3+
-        survey_id=(survey_id or "1"),
+        survey_id=survey_id,
     )
-
-
-# TODO: Remove once SSD v2 is removed.
-def legacy_site_iri(
-    base_iri: rdflib.Namespace,
-    site_id: str,
-    /,
-) -> rdflib.URIRef:
-    """Get the IRI for the tern:Site node, constructed from the siteID field.
-
-    # NOTE this pattern is deprecated, is no longer used from SSD v3 onwards.
-
-    This IRI is used in mapping multiple Systematic Survey template,
-    and needs to be the same for all of them.
-
-    Args:
-        base_iri: The namespace to construct the IRI from.
-        site_id: The siteID field from the template.
-
-    Returns:
-        The IRI for the tern:Survey node.
-    """
-    return utils.rdf.uri_quoted(base_iri, "Site/{site_id}", site_id=site_id)
 
 
 def site_iri(
