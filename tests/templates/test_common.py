@@ -21,13 +21,9 @@ def test_registered_templates() -> None:
     """Test to check/document which templates are registered."""
     assert sorted(abis_mapping.registered_ids()) == [
         "incidental_occurrence_data-v3.0.0.csv",
-        "survey_metadata-v2.0.0.csv",
         "survey_metadata-v3.0.0.csv",
-        "survey_occurrence_data-v2.0.0.csv",
         "survey_occurrence_data-v3.0.0.csv",
-        "survey_site_data-v2.0.0.csv",
         "survey_site_data-v3.0.0.csv",
-        "survey_site_visit_data-v2.0.0.csv",
         "survey_site_visit_data-v3.0.0.csv",
     ]
 

@@ -1,5 +1,0 @@
-siteID,siteIDSource,siteType,siteName,siteDescription,habitat,relatedSiteID,relationshipToRelatedSite,locality,decimalLatitude,decimalLongitude,footprintWKT,geodeticDatum,coordinateUncertaintyInMeters,dataGeneralizations
-P0,WAM,Site,ParentSite,Footprint of study area,Closed forest,,,Cowaramup Bay Road,,,"POLYGON ((114.98 -33.85, 115.01 -33.85, 115.01 -33.87, 114.98 -33.87, 114.98 -33.85))",WGS84,50,
-P1,WAM,Plot,Plot 1,Fine woody debris.,Closed forest,P0,partOf,Cowaramup Bay Road,-33.85,114.99,"LINESTRING (114.99 -33.85, 115.00 -33.85)",WGS84,50,Coordinates rounded to the nearest 10 km for conservation concern
-P2,WAM,Plot,Plot 2,Fine woody debris.,Closed forest,S0,sameAs,Cowaramup Bay Road,-33.85,114.99,"LINESTRING (114.99 -33.85, 115.00 -33.85)",WGS84,50,Coordinates rounded to the nearest 10 km for conservation concern
-P3,WAM,Plot,Plot 3,Fine woody debris.,Closed forest,http://example.com/site/S0,sameAs,Cowaramup Bay Road,-33.85,114.99,"LINESTRING (114.99 -33.85, 115.00 -33.85)",WGS84,50,Coordinates rounded to the nearest 10 km for conservation concern
