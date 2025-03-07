@@ -146,7 +146,7 @@ class OrganismQuantityType(utils.vocabs.FlexibleVocabulary):
     vocab_id = "ORGANISM_QUANTITY_TYPE"
     definition = rdflib.Literal("A type of organism quantity.")
     base = "bdr-cv/concept/organismQuantityType/"
-    scheme = rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType")
+    proposed_scheme = rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType")
     broader = utils.rdf.uri("bdr-cv/concept/organismQuantityType", utils.namespaces.DATASET_BDR)
     default = None  # No default, ommitted if not provided.
     terms = (

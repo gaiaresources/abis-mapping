@@ -214,7 +214,7 @@ class LifeStage(utils.vocabs.FlexibleVocabulary):
     vocab_id = "LIFE_STAGE"
     definition = rdflib.Literal("A type of lifeStage.")
     base = "bdr-cv/parameter/lifeStage/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e")
+    proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e")
     broader = utils.rdf.uri("bdr-cv/parameter/lifeStage", utils.namespaces.DATASET_BDR)
     default = None  # No default, omitted if not provided
     terms = (

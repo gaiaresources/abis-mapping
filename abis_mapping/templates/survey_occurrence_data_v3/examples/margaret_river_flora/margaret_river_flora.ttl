@@ -1255,159 +1255,182 @@
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/basisOfRecord/new-basis-of-record> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/basisOfRecord> ;
     skos:definition "A type of basisOfRecord." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new basis of record" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/habitat/Closed-forest-of-Melaleuca-lanceolata-White-grey-or-brown-sand-sandy-loam> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
     skos:definition "A type of habitat" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/habitat/new-habitat> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
     skos:definition "A type of habitat" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new habitat" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier/> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "?" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier/new-identification-qualifier> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new identification qualifier" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations> ;
     skos:definition "A type of preparations." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Wet (in ethanol or some other preservative)" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations/new-preparations> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations> ;
     skos:definition "A type of preparations." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new preparations" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/sensitivityCategory/Category-1> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/sensitivityCategory> ;
     skos:definition "A type of sensitivityCategory." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Category 1" ;
-    skos:scopeNote "Under the authority of Department of Biodiversity and Conservation" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924",
+        "Under the authority of Department of Biodiversity and Conservation" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/taxonRank/new-taxon-rank> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/taxonRank> ;
     skos:definition "A type of taxonRank." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new taxon rank" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/featureType/occurrence/kingdom/new-kingdom> a skos:Concept ;
     skos:definition "The existence of the organism from this kingdom sampled at a particular place at a particular time." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d> ;
-    skos:prefLabel "new kingdom occurrence" .
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
+    skos:prefLabel "new kingdom occurrence" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d" .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/featureType/specimen/kingdom/new-kingdom> a skos:Concept ;
     skos:definition "A specimen sampled from an organism of this kingdom." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new kingdom specimen" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/samplingProtocol/new-sampling-protocol> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766> ;
     skos:definition "A type of samplingProtocol." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
-    skos:prefLabel "new sampling protocol" .
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
+    skos:prefLabel "new sampling protocol" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod> ;
     skos:definition "A type of sequencingMethod." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Sanger dideoxy sequencing" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/new-sequencing-method> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod> ;
     skos:definition "A type of sequencingMethod." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new sequencing method" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https-www-dpaw-wa-gov-au-plants-and-animals-threatened-species-and-communities-threatened-animals-Last-updated-13-June-2022> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol> ;
     skos:definition "A type of threatStatusCheckProtocol." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Check against Threatened and Priority Fauna List WA available from https://www.dpaw.wa.gov.au/plants-and-animals/threatened-species-and-communities/threatened-animals. Last updated 13 June 2022" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol> ;
     skos:definition "A type of threatStatusCheckProtocol." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "a random selection" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/establishmentMeans/new-establishment-means> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/establishmentMeans> ;
     skos:definition "A type of establishmentMeans." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new establishment means" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/lifeStage/new-life-stage> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/lifeStage> ;
     skos:definition "A type of lifeStage." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new life stage" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/occurrenceStatus/new-occurrence-status> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/occurrenceStatus> ;
     skos:definition "A type of occurrenceStatus." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new occurrence status" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition/No-breeding-evident> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition> ;
     skos:definition "A type of reproductiveCondition." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "No breeding evident" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition/new-reproductiveCondition> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition> ;
     skos:definition "A type of reproductiveCondition." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new reproductiveCondition" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/sex/new-sex> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/sex> ;
     skos:definition "A type of sex." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new sex" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/threatStatus/WA/new-threat-status> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/threatStatus> ;
     skos:definition "A type of threatStatus." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "WA/new threat status" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/org/BHP> a prov:Agent ;
@@ -1550,15 +1573,17 @@
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Visually identified in the field (sighting)" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/new-identification-method> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new identification method" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/org/WAM> a prov:Agent ;

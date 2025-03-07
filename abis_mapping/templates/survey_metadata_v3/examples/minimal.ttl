@@ -114,15 +114,17 @@
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     skos:definition "A type of targetTaxonomicScope" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Coleoptera" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/Insecta> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
     skos:definition "A type of targetTaxonomicScope" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Insecta" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/org/CSIRO> a prov:Agent ;

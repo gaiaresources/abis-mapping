@@ -81,7 +81,7 @@ def test_vocabs_flexible_vocab() -> None:
         vocab_id = "TEST_FLEX"
         definition = rdflib.Literal("definition")
         base = "base/"
-        scheme = rdflib.URIRef("scheme")
+        proposed_scheme = rdflib.URIRef("http://proposed_scheme")
         broader = rdflib.URIRef("broader")
         default = None
         terms = (
@@ -123,8 +123,9 @@ def test_vocabs_flexible_vocab() -> None:
         <https://linked.data.gov.au/dataset/bdr/base/C> a skos:Concept ;
             skos:broader <broader> ;
             skos:definition "definition" ;
-            skos:inScheme <scheme> ;
+            skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
             skos:prefLabel "C" ;
+            skos:scopeNote "This concept is proposed as a member of this scheme: http://proposed_scheme" ;
             schema:citation "D"^^xsd:anyURI .
         """
         ).strip()

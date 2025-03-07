@@ -17,6 +17,7 @@ from typing import Optional, Iterable, Final, Type
 
 # Constants
 a = rdflib.RDF.type
+PENDING_SCHEME = rdf.uri("bdr-cv/pending", namespaces.BDR)
 
 
 class Term:
@@ -156,8 +157,8 @@ class FlexibleVocabulary(Vocabulary):
             vocabulary term 'on the fly'.
         base (str): Base of the path to use when creating a new
             vocabulary term 'on the fly'.
-        scheme (rdflib.URIRef): Scheme IRI to use when creating a new
-            vocabulary term 'on the fly'.
+        proposed_scheme (rdflib.URIRef): Proposed Scheme IRI to use for the scope note
+            when creating a new vocabulary term 'on the fly'.
         broader (Optional[rdflib.URIRef]): Optional broader IRI to use when
             creating a new vocabulary term 'on the fly'.
         scope_note (Optional[rdflib.Literal]): Optional scope note to use when
@@ -171,7 +172,7 @@ class FlexibleVocabulary(Vocabulary):
     # Declare attributes applicable to a flexible vocab
     definition: rdflib.Literal
     base: str
-    scheme: rdflib.URIRef
+    proposed_scheme: rdflib.URIRef
     broader: Optional[rdflib.URIRef]
     scope_note: Optional[rdflib.Literal] = None
     default: Optional[Term]
@@ -274,7 +275,17 @@ class FlexibleVocabulary(Vocabulary):
         # Add to Graph
         self.graph.add((iri, a, rdflib.SKOS.Concept))
         self.graph.add((iri, rdflib.SKOS.definition, self.definition))
-        self.graph.add((iri, rdflib.SKOS.inScheme, self.scheme))
+
+        # Add scheme and note for proposed scheme
+        self.graph.add((iri, rdflib.SKOS.inScheme, PENDING_SCHEME))
+        self.graph.add(
+            (
+                iri,
+                rdflib.SKOS.scopeNote,
+                rdflib.Literal(f"This concept is proposed as a member of this scheme: {self.proposed_scheme}"),
+            )
+        )
+
         self._add_pref_label(iri, preferred_label)
 
         # Check for Broader IRI

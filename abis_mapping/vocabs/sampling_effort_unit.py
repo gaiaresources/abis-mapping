@@ -68,7 +68,7 @@ class SamplingEffortUnit(utils.vocabs.FlexibleVocabulary):
         ),
     )
     base = "bdr-cv/attribute/samplingEffortUnit/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
+    proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
     broader = None
     default = None
     terms = (
