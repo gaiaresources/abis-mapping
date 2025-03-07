@@ -237,7 +237,7 @@ class TaxonRank(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of taxonRank.")
     base = "bdr-cv/attribute/taxonRank/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = utils.rdf.uri("bdr-cv/attribute/taxonRank", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+    broader = utils.rdf.uri("bdr-cv/attribute/taxonRank", utils.namespaces.DATASET_BDR)
     default = None  # No default, ommitted if not provided
     terms = (
         CLASS,

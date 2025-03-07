@@ -57,7 +57,7 @@ class BasisOfRecord(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of basisOfRecord.")
     base = "bdr-cv/attribute/basisOfRecord/"
     scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = utils.rdf.uri("bdr-cv/attribute/basisOfRecord", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+    broader = utils.rdf.uri("bdr-cv/attribute/basisOfRecord", utils.namespaces.DATASET_BDR)
     default = None  # No default, omitted if not provided
     terms = (
         HUMAN_OBSERVATION,
