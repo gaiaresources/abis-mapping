@@ -38,6 +38,8 @@ def test_default_lookup() -> None:
                     key_field="a",
                     value_field="b",
                     default_map=default_map,
+                    no_key_error_template="",
+                    no_default_error_template="",
                 )
             ]
         )

@@ -1,7 +1,6 @@
 """Exports sub-package interface"""
 
 # Local
-from . import chained_inclusion
 from . import chronological
 from . import coordinates
 from . import default_lookup
@@ -9,10 +8,8 @@ from . import empty
 from . import geometry_validation
 from . import list_field
 from . import logical_or
-from . import lookup_match
 from . import mutual_exclusion
 from . import mutual_inclusion
-from . import related_site_id_part_of_lookup
 from . import related_site_validation
 from . import required
 from . import site_id_or_iri_validation
