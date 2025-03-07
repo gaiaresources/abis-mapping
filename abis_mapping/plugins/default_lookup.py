@@ -12,12 +12,6 @@ import frictionless.errors
 from typing import Callable, Iterator
 
 
-# TODO remove once SSD v2 removed.
-_default_error_template = (
-    "'{key_field}': '{key_value}' has no default value for field '{value_field}' and no other value provided."
-)
-
-
 @attrs.define(kw_only=True, repr=False)
 class DefaultLookup(frictionless.Check):
     """Checks whether default value is provided for keyed value in other field."""
@@ -35,9 +29,9 @@ class DefaultLookup(frictionless.Check):
     default_map: Mapping[object, object]
     # error message templates,
     # used when key_field doesn't get a value from the row.
-    no_key_error_template: str = _default_error_template
+    no_key_error_template: str
     # used when the default_map doesn't provide a value.
-    no_default_error_template: str = _default_error_template
+    no_default_error_template: str
 
     def validate_row(self, row: frictionless.Row) -> Iterator[frictionless.Error]:
         """Called to validate given row (on every row)

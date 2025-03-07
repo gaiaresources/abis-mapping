@@ -69,7 +69,7 @@ The resulting markdown documents will be stored in [`docs/models/markdown`](/doc
 To generate an instruction document, perform the following
 ```sh
 poetry shell
-python docs/instructions.py incidental_occurrence_data-v2.0.0.csv [-o] <output_file>
+python docs/instructions.py incidental_occurrence_data-v3.0.0.csv [-o] <output_file>
 ```
 This is normally done as part of the `scripts/generate_instructions.sh` script.
 
