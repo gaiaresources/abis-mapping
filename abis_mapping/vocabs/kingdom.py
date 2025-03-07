@@ -57,7 +57,7 @@ class KingdomOccurrence(utils.vocabs.FlexibleVocabulary):
         "The existence of the organism from this kingdom sampled at a particular place at a particular time."
     )
     base = "bdr-cv/featureType/occurrence/kingdom/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
+    proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
     broader = None  # No broader, top level concept
     default = None  # No default, kingdom is required in the CSV
     terms = (ANIMALIA_OCCURRENCE, PLANTAE_OCCURRENCE, FUNGI_OCCURRENCE)
@@ -81,7 +81,7 @@ class KingdomSpecimen(utils.vocabs.FlexibleVocabulary):
     vocab_id = "KINGDOM_SPECIMEN"
     definition = rdflib.Literal("A specimen sampled from an organism of this kingdom.")
     base = "bdr-cv/featureType/specimen/kingdom/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
+    proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
     broader = None  # No broader, top level concept
     default = None  # No default, kingdom is required in the CSV
     terms = (ANIMALIA_SPECIMEN, PLANTAE_SPECIMEN, FUNGI_SPECIMEN)

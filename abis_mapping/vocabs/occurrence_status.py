@@ -25,7 +25,7 @@ class OccurrenceStatus(utils.vocabs.FlexibleVocabulary):
     vocab_id = "OCCURRENCE_STATUS"
     definition = rdflib.Literal("A type of occurrenceStatus.")
     base = "bdr-cv/parameter/occurrenceStatus/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e")
+    proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e")
     broader = utils.rdf.uri("bdr-cv/parameter/occurrenceStatus", utils.namespaces.DATASET_BDR)
     default = None  # No default, ommitted if not provided
     terms = (PRESENT, ABSENT)

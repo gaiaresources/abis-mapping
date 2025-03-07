@@ -84,7 +84,7 @@ class TargetTaxonomicScope(utils.vocabs.FlexibleVocabulary):
     vocab_id = "TARGET_TAXONOMIC_SCOPE"
     definition = rdflib.Literal("A type of targetTaxonomicScope")
     base = "bdr-cv/attribute/targetTaxonomicScope/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
+    proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
     broader = rdflib.URIRef("https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec")
     default = None
     terms = (
