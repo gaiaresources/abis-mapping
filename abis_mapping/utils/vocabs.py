@@ -9,6 +9,7 @@ import rdflib
 # Local
 from abis_mapping.utils import rdf
 from abis_mapping.utils import strings
+from abis_mapping.utils import namespaces
 
 # Typing
 from typing import Optional, Iterable, Final, Type
@@ -16,6 +17,8 @@ from typing import Optional, Iterable, Final, Type
 
 # Constants
 a = rdflib.RDF.type
+PENDING_SCHEME = rdf.uri("bdr-cv/pending", namespaces.BDR)
+STATUS_SUBMITTED = rdflib.URIRef("https://linked.data.gov.au/def/reg-statuses/submitted")
 
 
 class Term:
@@ -155,8 +158,8 @@ class FlexibleVocabulary(Vocabulary):
             vocabulary term 'on the fly'.
         base (str): Base of the path to use when creating a new
             vocabulary term 'on the fly'.
-        scheme (rdflib.URIRef): Scheme IRI to use when creating a new
-            vocabulary term 'on the fly'.
+        proposed_scheme (rdflib.URIRef): Proposed Scheme IRI to use for the scope note
+            when creating a new vocabulary term 'on the fly'.
         broader (Optional[rdflib.URIRef]): Optional broader IRI to use when
             creating a new vocabulary term 'on the fly'.
         scope_note (Optional[rdflib.Literal]): Optional scope note to use when
@@ -170,7 +173,7 @@ class FlexibleVocabulary(Vocabulary):
     # Declare attributes applicable to a flexible vocab
     definition: rdflib.Literal
     base: str
-    scheme: rdflib.URIRef
+    proposed_scheme: rdflib.URIRef
     broader: Optional[rdflib.URIRef]
     scope_note: Optional[rdflib.Literal] = None
     default: Optional[Term]
@@ -179,14 +182,12 @@ class FlexibleVocabulary(Vocabulary):
         self,
         *,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace,
         source: Optional[rdflib.URIRef] = None,
     ):
         """Flexible Vocabulary constructor.
 
         Args:
             graph: Graph to add a new vocabulary term to.
-            base_iri: Namespace to use when creating the IRI for a new vocabulary term.
             source: Optional source URI to attribute a new vocabulary term to.
         """
         # Call parent constructor
@@ -195,7 +196,6 @@ class FlexibleVocabulary(Vocabulary):
         # Assign instance variables
         self.graph = graph
         self.source: Optional[rdflib.URIRef] = source
-        self.base_iri = base_iri
 
         # Add Default mapping if Applicable
         if self.default:
@@ -256,7 +256,7 @@ class FlexibleVocabulary(Vocabulary):
             raise VocabularyError("Value not supplied for vocabulary with no default")
 
         # Create our Own Concept IRI
-        iri = rdf.uri_slugified(self.base_iri, self.base + "{value}", value=value)
+        iri = rdf.uri_slugified(namespaces.DATASET_BDR, self.base + "{value}", value=value)
         self.create(iri=iri, preferred_label=value)
         # Return
         return iri
@@ -276,7 +276,18 @@ class FlexibleVocabulary(Vocabulary):
         # Add to Graph
         self.graph.add((iri, a, rdflib.SKOS.Concept))
         self.graph.add((iri, rdflib.SKOS.definition, self.definition))
-        self.graph.add((iri, rdflib.SKOS.inScheme, self.scheme))
+        self.graph.add((iri, namespaces.REG.status, STATUS_SUBMITTED))
+
+        # Add scheme and note for proposed scheme
+        self.graph.add((iri, rdflib.SKOS.inScheme, PENDING_SCHEME))
+        self.graph.add(
+            (
+                iri,
+                rdflib.SKOS.scopeNote,
+                rdflib.Literal(f"This concept is proposed as a member of this scheme: {self.proposed_scheme}"),
+            )
+        )
+
         self._add_pref_label(iri, preferred_label)
 
         # Check for Broader IRI

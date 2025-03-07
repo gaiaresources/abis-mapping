@@ -85,8 +85,8 @@ class Preparations(utils.vocabs.FlexibleVocabulary):
     vocab_id = "PREPARATIONS"
     definition = rdflib.Literal("A type of preparations.")
     base = "bdr-cv/attribute/preparations/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = utils.rdf.uri("bdr-cv/attribute/preparations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+    proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
+    broader = utils.rdf.uri("bdr-cv/attribute/preparations", utils.namespaces.DATASET_BDR)
     default = None  # No default, ommitted if not provided
     terms = (
         ALCOHOL,

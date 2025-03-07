@@ -15,7 +15,7 @@ def test_get_percentage_biomass() -> None:
     # Get vocab
     vocab = utils.vocabs.get_flexible_vocab("ORGANISM_QUANTITY_TYPE")
     assert vocab is not None
-    iri = vocab(graph=graph, base_iri=utils.namespaces.EXAMPLE).get("% of biomass")
+    iri = vocab(graph=graph).get("% of biomass")
 
     # Assert
     assert iri == rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/percentageOfBiomass")

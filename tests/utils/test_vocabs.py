@@ -81,7 +81,7 @@ def test_vocabs_flexible_vocab() -> None:
         vocab_id = "TEST_FLEX"
         definition = rdflib.Literal("definition")
         base = "base/"
-        scheme = rdflib.URIRef("scheme")
+        proposed_scheme = rdflib.URIRef("http://proposed_scheme")
         broader = rdflib.URIRef("broader")
         default = None
         terms = (
@@ -101,7 +101,7 @@ def test_vocabs_flexible_vocab() -> None:
     graph = rdflib.Graph()
 
     # Initialize vocab
-    vocab = Vocab(graph=graph, base_iri=abis_mapping.utils.namespaces.EXAMPLE)
+    vocab = Vocab(graph=graph)
 
     # Assert Existing Values
     assert vocab.get("a") == rdflib.URIRef("A")
@@ -111,7 +111,7 @@ def test_vocabs_flexible_vocab() -> None:
 
     # Assert New Values
     vocab.source = rdflib.URIRef("D")
-    assert vocab.get("C") == rdflib.URIRef("http://example.com/base/C")
+    assert vocab.get("C") == rdflib.URIRef("https://linked.data.gov.au/dataset/bdr/base/C")
     assert (
         graph.serialize(format="ttl").strip()
         == textwrap.dedent(
@@ -120,11 +120,12 @@ def test_vocabs_flexible_vocab() -> None:
         @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
         @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-        <http://example.com/base/C> a skos:Concept ;
+        <https://linked.data.gov.au/dataset/bdr/base/C> a skos:Concept ;
             skos:broader <broader> ;
             skos:definition "definition" ;
-            skos:inScheme <scheme> ;
+            skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
             skos:prefLabel "C" ;
+            skos:scopeNote "This concept is proposed as a member of this scheme: http://proposed_scheme" ;
             schema:citation "D"^^xsd:anyURI .
         """
         ).strip()
