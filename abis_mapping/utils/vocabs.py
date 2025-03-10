@@ -2,6 +2,7 @@
 
 # Standard
 import abc
+import datetime
 
 # Third-Party
 import rdflib
@@ -183,12 +184,14 @@ class FlexibleVocabulary(Vocabulary):
         *,
         graph: rdflib.Graph,
         source: rdflib.URIRef,
+        submitted_on_date: datetime.date,
     ):
         """Flexible Vocabulary constructor.
 
         Args:
             graph: Graph to add a new vocabulary term to.
             source: Source URI to attribute a new vocabulary term to. Typically, the dataset IRI.
+            submitted_on_date: The date the data was submitted.
         """
         # Call parent constructor
         super().__init__()
@@ -196,6 +199,7 @@ class FlexibleVocabulary(Vocabulary):
         # Assign instance variables
         self.graph = graph
         self.source = source
+        self.submitted_on_date = submitted_on_date
 
         # Add Default mapping if Applicable
         if self.default:
@@ -302,6 +306,17 @@ class FlexibleVocabulary(Vocabulary):
 
         if self.scope_note is not None:
             self.graph.add((iri, rdflib.SKOS.scopeNote, self.scope_note))
+
+        # Add history note
+        self.graph.add(
+            (
+                iri,
+                rdflib.SKOS.historyNote,
+                rdflib.Literal(
+                    f"This concept was used in data submitted to the BDR on {self.submitted_on_date.isoformat()}"
+                ),
+            )
+        )
 
 
 class VocabularyError(Exception):

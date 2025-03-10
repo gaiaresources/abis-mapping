@@ -103,7 +103,7 @@ def test_vocabs_flexible_vocab() -> None:
     graph = abis_mapping.utils.rdf.create_graph()
 
     # Initialize vocab
-    vocab = Vocab(graph=graph, source=helpers.TEST_DATASET_IRI)
+    vocab = Vocab(graph=graph, source=helpers.TEST_DATASET_IRI, submitted_on_date=helpers.TEST_SUBMITTED_ON_DATE)
 
     # Assert Existing Values
     assert vocab.get("a") == rdflib.URIRef("A")
@@ -126,6 +126,7 @@ def test_vocabs_flexible_vocab() -> None:
             reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
             skos:broader <broader> ;
             skos:definition "definition" ;
+            skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
             skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
             skos:prefLabel "C" ;
             skos:scopeNote "This concept is proposed as a member of this scheme: http://proposed_scheme" ;

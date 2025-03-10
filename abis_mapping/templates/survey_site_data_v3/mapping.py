@@ -2,6 +2,7 @@
 
 # Standard
 import dataclasses
+import datetime
 import decimal
 
 # Third-party
@@ -243,6 +244,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         extra_schema: frictionless.Schema,
         base_iri: rdflib.Namespace,
         submission_iri: rdflib.URIRef | None,
+        submitted_on_date: datetime.date,
         **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the `survey_site_data.csv` template.
@@ -254,6 +256,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             extra_schema (frictionless.Schema): Schema of extra fields.
             base_iri (rdflib.Namespace): Optional base IRI to use for mapping.
             submission_iri: Optional submission IRI
+            submitted_on_date: The date the data was submitted.
         """
         # TERN.Site subject IRI - Note this needs to match the iri construction of the
         # survey site visit and occurrence template mapping, ensuring they will resolve properly.
@@ -330,6 +333,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             related_site=related_site,
             row=row,
             graph=graph,
+            submitted_on_date=submitted_on_date,
         )
 
         # Add site id datatype
@@ -372,6 +376,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 dataset=dataset,
                 raw=habitat_object.raw,
                 graph=graph,
+                submitted_on_date=submitted_on_date,
             )
 
             # Add habitat attribute Collection
@@ -443,6 +448,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         related_site: rdflib.URIRef | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
+        submitted_on_date: datetime.date,
     ) -> None:
         """Adds site to the graph.
 
@@ -456,6 +462,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
                 this site relates to or a URI for an external site.
             row: Row to retrieve data from.
             graph: Graph to be modified.
+            submitted_on_date: The date the data was submitted.
         """
         # Extract relevant values
         existing_site_iri: str | None = row["existingBDRSiteIRI"]
@@ -493,7 +500,9 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             site_type_vocab = self.fields()["siteType"].get_flexible_vocab()
 
             # Retrieve term or create on the fly
-            site_type_term = site_type_vocab(graph=graph, source=dataset).get(site_type)
+            site_type_term = site_type_vocab(graph=graph, source=dataset, submitted_on_date=submitted_on_date).get(
+                site_type
+            )
 
             # Add to site type graph
             graph.add((uri, rdflib.SDO.additionalType, site_type_term))
@@ -629,6 +638,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         dataset: rdflib.URIRef,
         raw: str,
         graph: rdflib.Graph,
+        submitted_on_date: datetime.date,
     ) -> None:
         """Add a habitat value node to graph.
 
@@ -637,6 +647,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset data belongs.
             raw (str): Raw data provided.
             graph (rdflib.Graph): Graph to be modified.
+            submitted_on_date: The date the data was submitted.
         """
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.IRI))
@@ -649,7 +660,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         vocab = self.fields()["habitat"].get_flexible_vocab()
 
         # Add flexible vocab term
-        term = vocab(graph=graph, source=dataset).get(raw)
+        term = vocab(graph=graph, source=dataset, submitted_on_date=submitted_on_date).get(raw)
         graph.add((uri, rdflib.RDF.value, term))
 
     def add_habitat_collection(

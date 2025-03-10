@@ -1267,6 +1267,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/basisOfRecord> ;
     skos:definition "A type of basisOfRecord." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new basis of record" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
@@ -1276,6 +1277,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
     skos:definition "A type of habitat" ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam." ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
@@ -1285,6 +1287,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/def/nrm/c19a0098-1f3f-4bc2-b84d-fdb6d4e24d6f> ;
     skos:definition "A type of habitat" ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new habitat" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
@@ -1294,6 +1297,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "?" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
@@ -1303,6 +1307,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier> ;
     skos:definition "A type of identificationQualifier." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new identification qualifier" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
@@ -1312,6 +1317,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations> ;
     skos:definition "A type of preparations." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Wet (in ethanol or some other preservative)" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
@@ -1321,6 +1327,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations> ;
     skos:definition "A type of preparations." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new preparations" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
@@ -1330,6 +1337,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/sensitivityCategory> ;
     skos:definition "A type of sensitivityCategory." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Category 1" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924",
@@ -1340,6 +1348,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/taxonRank> ;
     skos:definition "A type of taxonRank." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new taxon rank" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
@@ -1348,6 +1357,7 @@
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/featureType/occurrence/kingdom/new-kingdom> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:definition "The existence of the organism from this kingdom sampled at a particular place at a particular time." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new kingdom occurrence" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d" ;
@@ -1356,6 +1366,7 @@
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/featureType/specimen/kingdom/new-kingdom> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:definition "A specimen sampled from an organism of this kingdom." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new kingdom specimen" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d" ;
@@ -1365,6 +1376,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766> ;
     skos:definition "A type of samplingProtocol." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new sampling protocol" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
@@ -1374,6 +1386,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod> ;
     skos:definition "A type of sequencingMethod." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Sanger dideoxy sequencing" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
@@ -1383,6 +1396,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod> ;
     skos:definition "A type of sequencingMethod." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new sequencing method" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
@@ -1392,6 +1406,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol> ;
     skos:definition "A type of threatStatusCheckProtocol." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Check against Threatened and Priority Fauna List WA available from https://www.dpaw.wa.gov.au/plants-and-animals/threatened-species-and-communities/threatened-animals. Last updated 13 June 2022" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
@@ -1401,6 +1416,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol> ;
     skos:definition "A type of threatStatusCheckProtocol." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "a random selection" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
@@ -1410,6 +1426,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/establishmentMeans> ;
     skos:definition "A type of establishmentMeans." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new establishment means" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
@@ -1419,6 +1436,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/lifeStage> ;
     skos:definition "A type of lifeStage." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new life stage" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
@@ -1428,6 +1446,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/occurrenceStatus> ;
     skos:definition "A type of occurrenceStatus." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new occurrence status" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
@@ -1437,6 +1456,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition> ;
     skos:definition "A type of reproductiveCondition." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "No breeding evident" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
@@ -1446,6 +1466,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition> ;
     skos:definition "A type of reproductiveCondition." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new reproductiveCondition" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
@@ -1455,6 +1476,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/sex> ;
     skos:definition "A type of sex." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new sex" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
@@ -1464,6 +1486,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/threatStatus> ;
     skos:definition "A type of threatStatus." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "WA/new threat status" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
@@ -1597,6 +1620,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Visually identified in the field (sighting)" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
@@ -1606,6 +1630,7 @@
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
     skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod> ;
     skos:definition "A type of identificationMethod." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new identification method" ;
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
