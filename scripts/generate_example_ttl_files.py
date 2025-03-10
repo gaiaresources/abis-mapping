@@ -89,6 +89,7 @@ def main() -> None:
                 base_iri=tests.helpers.TEST_BASE_NAMESPACE,
                 submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
                 project_iri=tests.helpers.TEST_PROJECT_IRI,
+                submitted_on_date=tests.helpers.TEST_SUBMITTED_ON_DATE,
             )
         )
         if len(graphs) != 1:

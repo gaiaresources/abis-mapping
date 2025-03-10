@@ -2,6 +2,7 @@
 
 # Standard
 import abc
+import datetime
 import functools
 import inspect
 import json
@@ -56,6 +57,7 @@ class ABISMapper(abc.ABC):
         base_iri: rdflib.Namespace,
         submission_iri: rdflib.URIRef | None,
         project_iri: rdflib.URIRef | None,
+        submitted_on_date: datetime.date,
         **kwargs: Any,
     ) -> Iterator[rdflib.Graph]:
         """Applies Mapping from Raw Data to ABIS conformant RDF.
@@ -67,6 +69,7 @@ class ABISMapper(abc.ABC):
             base_iri: Namespace to use when generating new IRIs as part of this mapping.
             submission_iri: Optional submission IRI
             project_iri: The abis:Project IRI if there is one.
+            submitted_on_date: The date the data was submitted.
             **kwargs: Additional keyword arguments.
 
         Yields:
@@ -117,6 +120,7 @@ class ABISMapper(abc.ABC):
                     base_iri=base_iri,
                     submission_iri=submission_iri,
                     project_iri=project_iri,
+                    submitted_on_date=submitted_on_date,
                     **kwargs,
                 )
                 graph_has_rows = True
@@ -171,6 +175,7 @@ class ABISMapper(abc.ABC):
         base_iri: rdflib.Namespace,
         submission_iri: rdflib.URIRef | None,
         project_iri: rdflib.URIRef | None,
+        submitted_on_date: datetime.date,
         **kwargs: Any,
     ) -> None:
         """Applies Mapping for a Row in the template by mutating the passed Graph.
@@ -184,6 +189,7 @@ class ABISMapper(abc.ABC):
             kwargs: Additional keyword arguments.
             submission_iri: Optional submission IRI
             project_iri: The abis:Project IRI if there is one.
+            submitted_on_date: The date the data was submitted.
         """
 
     def add_geometry_supplied_as(

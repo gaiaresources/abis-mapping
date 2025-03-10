@@ -1,6 +1,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reg: <http://purl.org/linked-data/registry#> .
 @prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
@@ -101,30 +102,10 @@
     tern:hasSimpleValue "new_taxon" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/new-taxon> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/protocolName/litter-sifting> a skos:Concept ;
-    skos:broader <https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766> ;
-    skos:definition "A type of protocolName" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c> ;
-    skos:prefLabel "litter sifting" ;
-    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/samplingEffortUnit/sifts> a skos:Concept ;
-    skos:definition "In conjunction with the sampling effort value, the sampling effort unit gives an indication of the effort applied to the specified protocol." ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "sifts" ;
-    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/new-taxon> a skos:Concept ;
-    skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
-    skos:definition "A type of targetTaxonomicScope" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "new_taxon" ;
-    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
-
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/samplingEffort/10-sifts> a tern:Float,
         tern:Value ;
     rdf:value "10.0"^^xsd:float ;
-    tern:unit <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/samplingEffortUnit/sifts> .
+    tern:unit <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/samplingEffortUnit/sifts> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/samplingEffort/240-trap-nights> a tern:Float,
         tern:Value ;
@@ -141,7 +122,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/new-taxon> a tern:IRI,
         tern:Value ;
-    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/new-taxon> .
+    rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/new-taxon> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P1-01> a prov:Plan ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/4caf0cde-9ffb-56c2-bdc6-17c4c2a7275a> ;
@@ -149,7 +130,7 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/visit/plan/TIS-24-03-P2-01> a prov:Plan ;
-    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/protocolName/litter-sifting> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/protocolName/litter-sifting> ;
     schema:description "50 cm diameter sifter with 5 mm mesh. Litter samles taken ~1 metre from each pitfall trap" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
@@ -160,6 +141,35 @@
 <https://linked.data.gov.au/dataset/bdr/attribution/WAM/resourceProvider> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/org/WAM> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
+
+<https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/protocolName/litter-sifting> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
+    skos:broader <https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766> ;
+    skos:definition "A type of protocolName" ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
+    skos:prefLabel "litter sifting" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/samplingEffortUnit/sifts> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
+    skos:definition "In conjunction with the sampling effort value, the sampling effort unit gives an indication of the effort applied to the specified protocol." ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
+    skos:prefLabel "sifts" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/new-taxon> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
+    skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    skos:definition "A type of targetTaxonomicScope" ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
+    skos:prefLabel "new_taxon" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/org/DBCA> a prov:Agent,
         prov:Organization ;

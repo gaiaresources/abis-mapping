@@ -320,6 +320,7 @@ class TestDefaultGeometryMap:
                     base_iri=tests.helpers.TEST_BASE_NAMESPACE,
                     submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
                     project_iri=tests.helpers.TEST_PROJECT_IRI,
+                    submitted_on_date=tests.helpers.TEST_SUBMITTED_ON_DATE,
                 )
             )
 
@@ -345,6 +346,7 @@ class TestDefaultGeometryMap:
                 base_iri=tests.helpers.TEST_BASE_NAMESPACE,
                 submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
                 project_iri=tests.helpers.TEST_PROJECT_IRI,
+                submitted_on_date=tests.helpers.TEST_SUBMITTED_ON_DATE,
                 site_id_geometry_map=default_map,
             )
         )
@@ -474,6 +476,7 @@ class TestDefaultTemporalMap:
             base_iri=tests.helpers.TEST_BASE_NAMESPACE,
             submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
             project_iri=tests.helpers.TEST_PROJECT_IRI,
+            submitted_on_date=tests.helpers.TEST_SUBMITTED_ON_DATE,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
         )
         res_g = next(graphs)

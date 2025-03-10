@@ -10,6 +10,8 @@ import rdflib
 # Local
 import abis_mapping.utils.namespaces
 import abis_mapping.utils.vocabs
+import abis_mapping.utils.rdf
+from tests import helpers
 
 # Typing
 from typing import assert_type
@@ -81,7 +83,7 @@ def test_vocabs_flexible_vocab() -> None:
         vocab_id = "TEST_FLEX"
         definition = rdflib.Literal("definition")
         base = "base/"
-        scheme = rdflib.URIRef("scheme")
+        proposed_scheme = rdflib.URIRef("http://proposed_scheme")
         broader = rdflib.URIRef("broader")
         default = None
         terms = (
@@ -98,10 +100,10 @@ def test_vocabs_flexible_vocab() -> None:
         )
 
     # Create graph
-    graph = rdflib.Graph()
+    graph = abis_mapping.utils.rdf.create_graph()
 
     # Initialize vocab
-    vocab = Vocab(graph=graph, base_iri=abis_mapping.utils.namespaces.EXAMPLE)
+    vocab = Vocab(graph=graph, source=helpers.TEST_DATASET_IRI, submitted_on_date=helpers.TEST_SUBMITTED_ON_DATE)
 
     # Assert Existing Values
     assert vocab.get("a") == rdflib.URIRef("A")
@@ -110,22 +112,25 @@ def test_vocabs_flexible_vocab() -> None:
     assert vocab.get("B") == rdflib.URIRef("B")
 
     # Assert New Values
-    vocab.source = rdflib.URIRef("D")
-    assert vocab.get("C") == rdflib.URIRef("http://example.com/base/C")
+    assert vocab.get("C") == rdflib.URIRef("https://linked.data.gov.au/dataset/bdr/base/C")
     assert (
         graph.serialize(format="ttl").strip()
         == textwrap.dedent(
             """
+        @prefix reg: <http://purl.org/linked-data/registry#> .
         @prefix schema: <https://schema.org/> .
         @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
         @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-        <http://example.com/base/C> a skos:Concept ;
+        <https://linked.data.gov.au/dataset/bdr/base/C> a skos:Concept ;
+            reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
             skos:broader <broader> ;
             skos:definition "definition" ;
-            skos:inScheme <scheme> ;
+            skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
+            skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
             skos:prefLabel "C" ;
-            schema:citation "D"^^xsd:anyURI .
+            skos:scopeNote "This concept is proposed as a member of this scheme: http://proposed_scheme" ;
+            schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
         """
         ).strip()
     )

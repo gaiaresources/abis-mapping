@@ -4,6 +4,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reg: <http://purl.org/linked-data/registry#> .
 @prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix tern: <https://w3id.org/tern/ontologies/tern/> .
@@ -83,20 +84,6 @@
     tern:hasSimpleValue "Insecta" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/Insecta> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
-    skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
-    skos:definition "A type of targetTaxonomicScope" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "Coleoptera" ;
-    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Insecta> a skos:Concept ;
-    skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
-    skos:definition "A type of targetTaxonomicScope" ;
-    skos:inScheme <http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924> ;
-    skos:prefLabel "Insecta" ;
-    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
-
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/surveyType/Wet-pitfall-trapping> a tern:IRI,
         tern:Value ;
     rdfs:label "Wet pitfall trapping" ;
@@ -110,12 +97,12 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/Coleoptera> a tern:IRI,
         tern:Value ;
     rdfs:label "Coleoptera" ;
-    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> .
+    rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/Insecta> a tern:IRI,
         tern:Value ;
     rdfs:label "Insecta" ;
-    rdf:value <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
+    rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
 
 <https://linked.data.gov.au/dataset/bdr/attribution/CSIRO/principalInvestigator> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/org/CSIRO> ;
@@ -124,6 +111,26 @@
 <https://linked.data.gov.au/dataset/bdr/attribution/NSW-Department-of-Planning-Industry-and-Environment/principalInvestigator> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/org/NSW-Department-of-Planning-Industry-and-Environment> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> .
+
+<https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
+    skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    skos:definition "A type of targetTaxonomicScope" ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
+    skos:prefLabel "Coleoptera" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
+
+<https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/Insecta> a skos:Concept ;
+    reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
+    skos:broader <https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec> ;
+    skos:definition "A type of targetTaxonomicScope" ;
+    skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
+    skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
+    skos:prefLabel "Insecta" ;
+    skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
+    schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
 <https://linked.data.gov.au/dataset/bdr/org/CSIRO> a prov:Agent ;
     schema:name "CSIRO" .
