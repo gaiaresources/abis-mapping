@@ -3871,7 +3871,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add feature type from vocab
         kingdom_vocab = self.fields()["kingdom"].get_flexible_vocab("KINGDOM_OCCURRENCE")
-        kingdom_term = kingdom_vocab(graph=graph).get(row["kingdom"])
+        kingdom_term = kingdom_vocab(graph=graph, source=dataset).get(row["kingdom"])
         graph.add((uri, utils.namespaces.TERN.featureType, kingdom_term))
 
         # Create geometry
@@ -3928,7 +3928,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add procedure from vocab
         protocol_vocab = self.fields()["samplingProtocol"].get_flexible_vocab()
-        protocol_term = protocol_vocab(graph=graph).get(row["samplingProtocol"])
+        protocol_term = protocol_vocab(graph=graph, source=dataset).get(row["samplingProtocol"])
         graph.add((uri, rdflib.SOSA.usedProcedure, protocol_term))
 
         # Add location description if provided

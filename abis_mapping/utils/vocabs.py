@@ -182,20 +182,20 @@ class FlexibleVocabulary(Vocabulary):
         self,
         *,
         graph: rdflib.Graph,
-        source: Optional[rdflib.URIRef] = None,
+        source: rdflib.URIRef,
     ):
         """Flexible Vocabulary constructor.
 
         Args:
             graph: Graph to add a new vocabulary term to.
-            source: Optional source URI to attribute a new vocabulary term to.
+            source: Source URI to attribute a new vocabulary term to. Typically, the dataset IRI.
         """
         # Call parent constructor
         super().__init__()
 
         # Assign instance variables
         self.graph = graph
-        self.source: Optional[rdflib.URIRef] = source
+        self.source = source
 
         # Add Default mapping if Applicable
         if self.default:
@@ -295,13 +295,10 @@ class FlexibleVocabulary(Vocabulary):
             # Add Broader
             self.graph.add((iri, rdflib.SKOS.broader, self.broader))
 
-        # Check for Source URI
-        if self.source:
-            # Construct Source URI Literal
-            uri = rdflib.Literal(self.source, datatype=rdflib.XSD.anyURI)
-
-            # Add Source
-            self.graph.add((iri, rdflib.SDO.citation, uri))
+        # Construct Source URI Literal
+        source_literal = rdflib.Literal(self.source, datatype=rdflib.XSD.anyURI)
+        # Add Source
+        self.graph.add((iri, rdflib.SDO.citation, source_literal))
 
         if self.scope_note is not None:
             self.graph.add((iri, rdflib.SKOS.scopeNote, self.scope_note))

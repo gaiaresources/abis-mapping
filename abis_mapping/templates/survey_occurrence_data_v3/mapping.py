@@ -4610,7 +4610,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             (
                 uri,
                 utils.namespaces.TERN.featureType,
-                kingdom_vocab(graph=graph).get(row["kingdom"]),
+                kingdom_vocab(graph=graph, source=dataset).get(row["kingdom"]),
             )
         )
 
@@ -4683,7 +4683,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             (
                 uri,
                 rdflib.SOSA.usedProcedure,
-                protocol_vocab(graph=graph).get(row["samplingProtocol"]),
+                protocol_vocab(graph=graph, source=dataset).get(row["samplingProtocol"]),
             )
         )
 

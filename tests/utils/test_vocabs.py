@@ -11,6 +11,7 @@ import rdflib
 import abis_mapping.utils.namespaces
 import abis_mapping.utils.vocabs
 import abis_mapping.utils.rdf
+from tests import helpers
 
 # Typing
 from typing import assert_type
@@ -102,7 +103,7 @@ def test_vocabs_flexible_vocab() -> None:
     graph = abis_mapping.utils.rdf.create_graph()
 
     # Initialize vocab
-    vocab = Vocab(graph=graph)
+    vocab = Vocab(graph=graph, source=helpers.TEST_DATASET_IRI)
 
     # Assert Existing Values
     assert vocab.get("a") == rdflib.URIRef("A")
@@ -111,7 +112,6 @@ def test_vocabs_flexible_vocab() -> None:
     assert vocab.get("B") == rdflib.URIRef("B")
 
     # Assert New Values
-    vocab.source = rdflib.URIRef("D")
     assert vocab.get("C") == rdflib.URIRef("https://linked.data.gov.au/dataset/bdr/base/C")
     assert (
         graph.serialize(format="ttl").strip()
@@ -129,7 +129,7 @@ def test_vocabs_flexible_vocab() -> None:
             skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
             skos:prefLabel "C" ;
             skos:scopeNote "This concept is proposed as a member of this scheme: http://proposed_scheme" ;
-            schema:citation "D"^^xsd:anyURI .
+            schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
         """
         ).strip()
     )
