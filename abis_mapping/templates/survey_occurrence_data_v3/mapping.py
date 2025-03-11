@@ -3719,7 +3719,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, scientific_name))
         graph.add((uri, rdflib.SOSA.hasResult, accepted_name_usage_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["acceptedNameUsage"])))
-        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SCIENTIFIC_NAME))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_NAME_CHECK_METHOD))
 
         # Declare temporal entity to allow correct assignment typechecks
