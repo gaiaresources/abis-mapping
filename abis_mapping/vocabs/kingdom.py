@@ -8,25 +8,6 @@ from abis_mapping import utils
 
 
 # Terms
-# Kingdom
-ANIMALIA = utils.vocabs.Term(
-    labels=("ANIMALIA",),
-    iri=utils.rdf.uri("kingdom/animalia", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="Kingdom Animalia",
-)
-PLANTAE = utils.vocabs.Term(
-    labels=(
-        "PLANTAE",
-        "PLANTAE HAECKEL",
-    ),
-    iri=utils.rdf.uri("kingdom/plantae", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="Kingdom (taxonRank: Regnum) Fungi",
-)
-FUNGI = utils.vocabs.Term(
-    labels=("FUNGI",),
-    iri=utils.rdf.uri("kingdom/fungi", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
-    description="Kingdom (taxonRank: Regnum) Fungi",
-)
 # Kingdom Occurrences
 ANIMALIA_OCCURRENCE = utils.vocabs.Term(
     labels=("ANIMALIA",),
@@ -68,16 +49,6 @@ FUNGI_SPECIMEN = utils.vocabs.Term(
 
 
 # Vocabularies
-class Kingdom(utils.vocabs.FlexibleVocabulary):
-    """DEPRECATED: Do not use this vocabulary for new templates."""
-
-    vocab_id = "KINGDOM"
-    definition = rdflib.Literal("A type of kingdom.")
-    base = "bdr-cv/attribute/kingdom/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = utils.rdf.uri("bdr-cv/attribute/kingdom", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-    default = None  # No default, kingdom is required in the CSV
-    terms = (ANIMALIA, PLANTAE, FUNGI)
 
 
 class KingdomOccurrence(utils.vocabs.FlexibleVocabulary):
@@ -86,7 +57,7 @@ class KingdomOccurrence(utils.vocabs.FlexibleVocabulary):
         "The existence of the organism from this kingdom sampled at a particular place at a particular time."
     )
     base = "bdr-cv/featureType/occurrence/kingdom/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
+    proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
     broader = None  # No broader, top level concept
     default = None  # No default, kingdom is required in the CSV
     terms = (ANIMALIA_OCCURRENCE, PLANTAE_OCCURRENCE, FUNGI_OCCURRENCE)
@@ -110,7 +81,7 @@ class KingdomSpecimen(utils.vocabs.FlexibleVocabulary):
     vocab_id = "KINGDOM_SPECIMEN"
     definition = rdflib.Literal("A specimen sampled from an organism of this kingdom.")
     base = "bdr-cv/featureType/specimen/kingdom/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
+    proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/68af3d25-c801-4089-afff-cf701e2bd61d")
     broader = None  # No broader, top level concept
     default = None  # No default, kingdom is required in the CSV
     terms = (ANIMALIA_SPECIMEN, PLANTAE_SPECIMEN, FUNGI_SPECIMEN)
@@ -131,6 +102,5 @@ class KingdomSpecimen(utils.vocabs.FlexibleVocabulary):
 
 
 # Register
-utils.vocabs.register(Kingdom)
 utils.vocabs.register(KingdomOccurrence)
 utils.vocabs.register(KingdomSpecimen)

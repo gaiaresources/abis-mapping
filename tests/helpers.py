@@ -3,6 +3,7 @@
 # Standard Library
 import collections.abc
 import contextlib
+import datetime
 import json
 
 # Third-party
@@ -21,6 +22,7 @@ TEST_SUBMISSION_IRI = rdflib.URIRef(
     "https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000"
 )
 TEST_PROJECT_IRI = rdflib.URIRef("https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/project")
+TEST_SUBMITTED_ON_DATE = datetime.date(2025, 5, 4)
 
 
 @contextlib.contextmanager

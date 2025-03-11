@@ -25,8 +25,8 @@ class SurveyType(utils.vocabs.FlexibleVocabulary):
     vocab_id = "SURVEY_TYPE"
     definition = rdflib.Literal("A type of surveyType")
     base = "bdr-cv/attribute/surveyType/"
-    scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = utils.rdf.uri("bdr-cv/concept/surveyType", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+    proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
+    broader = utils.rdf.uri("bdr-cv/concept/surveyType", utils.namespaces.DATASET_BDR)
     default = None
     terms = (WET_PITFALL_TRAPPING,)
 

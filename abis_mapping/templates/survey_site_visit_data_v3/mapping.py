@@ -2,6 +2,7 @@
 
 # Standard
 import dataclasses
+import datetime
 
 # Third-party
 import frictionless
@@ -234,6 +235,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         extra_schema: frictionless.Schema,
         base_iri: rdflib.Namespace,
         submission_iri: rdflib.URIRef | None,
+        submitted_on_date: datetime.date,
         **kwargs: Any,
     ) -> None:
         """Applies mapping for a row in the Survey Site Visit Data template.
@@ -245,6 +247,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             extra_schema: Schema of extra fields.
             base_iri: Base IRI to use for mapping.
             submission_iri: Submission IRI to use for mapping.
+            submitted_on_date: The date the data was submitted.
         """
         # variables starting with row_ are values from the row.
         # variables starting with uri_ are constructed URIs.
@@ -428,7 +431,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             graph=graph,
-            base_iri=base_iri,
+            submitted_on_date=submitted_on_date,
         )
 
         # Add targetTaxonomicScope Attribute, Value and Collection
@@ -445,7 +448,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row_target_taxonomic_scope=row_target_taxonomic_scope,
             dataset=dataset,
             graph=graph,
-            base_iri=base_iri,
+            submitted_on_date=submitted_on_date,
         )
         self.add_target_taxonomic_scope_collection(
             uri=uri_target_taxonomic_scope_collection,
@@ -472,7 +475,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row_sampling_effort_unit=row_sampling_effort_unit,
             dataset=dataset,
             graph=graph,
-            base_iri=base_iri,
+            submitted_on_date=submitted_on_date,
         )
         self.add_sampling_effort_collection(
             uri=uri_sampling_effort_collection,
@@ -739,7 +742,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace,
+        submitted_on_date: datetime.date,
     ) -> None:
         """Add a site visit prov:Plan node to the graph.
 
@@ -748,7 +751,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row: Raw row from the template.
             dataset: Dataset raw data belongs to.
             graph: The graph to be modified.
-            base_iri: Namespace used to construct IRIs
+            submitted_on_date: The date the data was submitted.
         """
         # Add subject type
         graph.add((uri, a, rdflib.PROV.Plan))
@@ -767,7 +770,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             # Retrieve vocab for field
             vocab = self.fields()["protocolName"].get_flexible_vocab()
             # get or create term IRI
-            term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row_protocol_name)
+            term = vocab(graph=graph, source=dataset, submitted_on_date=submitted_on_date).get(row_protocol_name)
             # Add link to term
             graph.add((uri, rdflib.SOSA.usedProcedure, term))
 
@@ -818,7 +821,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_target_taxonomic_scope: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace,
+        submitted_on_date: datetime.date,
     ) -> None:
         """Adds the target taxonomic scope Attribute Value node.
 
@@ -827,7 +830,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row_target_taxonomic_scope: Raw data in the targetTaxonomicScope field.
             dataset: Dataset raw data belongs.
             graph: Graph to be modified.
-            base_iri: Namespace used to construct IRIs
+            submitted_on_date: The date the data was submitted.
         """
         # check subject is provided
         if uri is None:
@@ -842,7 +845,9 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             vocab = self.fields()["targetTaxonomicScope"].get_flexible_vocab()
 
             # Add value
-            term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row_target_taxonomic_scope)
+            term = vocab(graph=graph, source=dataset, submitted_on_date=submitted_on_date).get(
+                row_target_taxonomic_scope
+            )
             graph.add((uri, rdflib.RDF.value, term))
 
     def add_target_taxonomic_scope_collection(
@@ -939,7 +944,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_sampling_effort_unit: str | None,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
-        base_iri: rdflib.Namespace,
+        submitted_on_date: datetime.date,
     ) -> None:
         """Adds sampling effort Attribute Value node.
 
@@ -949,7 +954,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row_sampling_effort_unit: Value from the samplingEffortUnit field.
             dataset (rdflib.URIRef): URI of the dataset this belongs to.
             graph (rdflib.Graph): Graph to be modified.
-            base_iri (rdflib.Namespace): Namespace used to construct IRIs
+            submitted_on_date: The date the data was submitted.
         """
         if uri is None:
             return
@@ -967,7 +972,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             # Retrieve vocab for field
             vocab = self.fields()["samplingEffortUnit"].get_flexible_vocab()
             # Add value
-            term = vocab(graph=graph, source=dataset, base_iri=base_iri).get(row_sampling_effort_unit)
+            term = vocab(graph=graph, source=dataset, submitted_on_date=submitted_on_date).get(row_sampling_effort_unit)
             graph.add((uri, utils.namespaces.TERN.unit, term))
 
     def add_sampling_effort_collection(
