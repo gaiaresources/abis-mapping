@@ -68,7 +68,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdf:value "Calothamnus lateralis var. crassus" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:featureType <http://example.com/concept/scientificName> .
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> .
 
 <https://linked.data.gov.au/dataset/bdr/attribution/Gaia-Resources/resourceProvider> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/dataset/bdr/org/Gaia-Resources> ;
