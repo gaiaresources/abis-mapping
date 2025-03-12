@@ -27,6 +27,8 @@ Currently all defined below are a subset of those available from [frictionless](
 
 #### Type: `object`
 
+> ⚠️ Additional properties are not allowed.
+
 | Property | Type | Required | Possible values | Description |
 | -------- | ---- | -------- | --------------- | ----------- |
 | required | `boolean` | ✅ | boolean | Indicates whether this field cannot be null. If required is false (the default), then null is allowed. |
@@ -45,6 +47,8 @@ of instruction documentation.
 [Frictionless reference](https://specs.frictionlessdata.io/table-schema).
 
 #### Type: `object`
+
+> ⚠️ Additional properties are not allowed.
 
 | Property | Type | Required | Possible values | Description |
 | -------- | ---- | -------- | --------------- | ----------- |

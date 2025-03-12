@@ -16,6 +16,9 @@ import abis_mapping.base
 import abis_mapping.models
 from tests.templates import conftest
 
+# Typing
+from collections.abc import Mapping
+
 
 def test_registered_templates() -> None:
     """Test to check/document which templates are registered."""
@@ -165,9 +168,20 @@ class TestTemplateBasicSuite:
         for field in descriptor["fields"]:
             valid_field = abis_mapping.models.schema.Field.model_validate(field, strict=True)
             assert valid_field
-            # Should have no extra fields defined but if it does then needs to
-            # be reviewed and decided to be added to model
-            assert valid_field.__pydantic_extra__ == {}
+
+    def test_fields(self, test_params: conftest.TemplateTestParameters) -> None:
+        """Test that the fields() method works"""
+        # Get mapper
+        mapper = abis_mapping.get_mapper(test_params.template_id)
+        assert mapper
+
+        # This should raise an error if there are any errors in the field json.
+        fields = mapper.fields()
+        assert isinstance(fields, Mapping)
+
+        for key, field in fields.items():
+            assert isinstance(key, str)
+            assert isinstance(field, abis_mapping.models.schema.Field)
 
     def test_validation_empty_template(self, test_params: conftest.TemplateTestParameters) -> None:
         """Tests validation fails for empty template."""

@@ -7,6 +7,7 @@ import functools
 import inspect
 import json
 import pathlib
+import types
 
 # Third-Party
 import frictionless
@@ -21,7 +22,7 @@ from abis_mapping import utils
 
 
 # Typing
-from collections.abc import Iterator, Set
+from collections.abc import Iterator, Set, Mapping
 from typing import Any, Final, Optional, final
 
 
@@ -279,6 +280,22 @@ class ABISMapper(abc.ABC):
 
     @final
     @classmethod
+    def regular_fields_schema(cls) -> frictionless.Schema:
+        """Construct a frictionless.Schema for the regular fields in this Template.
+
+        i.e. not including any extra fields.
+        Not cached, since the frictionless.Schema class is mutable.
+
+        NOTE: different to the schema() method, which returns our internal
+        abis_mapping.models.schema.Schema class.
+
+        Returns:
+            The frictionless.Schema for this Template.
+        """
+        return frictionless.Schema.from_descriptor(cls.schema())
+
+    @final
+    @classmethod
     def extra_fields_schema(
         cls,
         data: frictionless.Row | base_types.ReadableType,
@@ -303,7 +320,7 @@ class ABISMapper(abc.ABC):
                 any fields that are duplicated within the labels of the supplied data.
         """
         # Construct schema
-        existing_schema: frictionless.Schema = frictionless.Schema.from_descriptor(cls.schema())
+        existing_schema = cls.regular_fields_schema()
 
         if isinstance(data, frictionless.Row):
             # Get list of fieldnames of row
@@ -428,7 +445,8 @@ class ABISMapper(abc.ABC):
 
     @final
     @classmethod
-    def fields(cls) -> dict[str, models.schema.Field]:
+    @functools.cache
+    def fields(cls) -> Mapping[str, models.schema.Field]:
         """Indexed dictionary of all fields' metadata.
 
         Returns:
@@ -438,8 +456,8 @@ class ABISMapper(abc.ABC):
         # Get schema
         schema = models.schema.Schema.model_validate(cls.schema())
 
-        # Return dictionary of fields
-        return {f.name: f for f in schema.fields}
+        # Return read-only dictionary of fields
+        return types.MappingProxyType({f.name: f for f in schema.fields})
 
     @final
     def root_dir(self) -> pathlib.Path:

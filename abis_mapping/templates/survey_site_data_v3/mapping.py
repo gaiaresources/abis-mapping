@@ -141,7 +141,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             data: Raw data to be mapped
         """
         # Construct schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.regular_fields_schema()
 
         # Construct resource
         resource = frictionless.Resource(source=data, format="csv", schema=schema, encoding="utf-8")
@@ -177,7 +177,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
             datum uri.
         """
         # Construct schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.regular_fields_schema()
 
         # Construct resource
         resource = frictionless.Resource(

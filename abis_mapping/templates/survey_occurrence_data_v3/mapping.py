@@ -228,7 +228,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 in the data, values are all 'True',
         """
         # Construct schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.regular_fields_schema()
 
         # Construct resource
         resource = frictionless.Resource(
@@ -261,7 +261,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 in the data, values are all 'True',
         """
         # Construct schema
-        schema = frictionless.Schema.from_descriptor(self.schema())
+        schema = self.regular_fields_schema()
 
         # Construct resource
         resource = frictionless.Resource(

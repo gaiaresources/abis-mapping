@@ -23,17 +23,6 @@ from typing import Any
 from abis_mapping.base import types as base_types
 
 
-class ContextualStringIO(io.StringIO):
-    """An implementation to allow examining the final value of a StringIO prior to close."""
-
-    final_buffer: str
-
-    def close(self) -> None:
-        """Sets the final_buffer prior to close."""
-        self.final_buffer = self.getvalue()
-        super().close()
-
-
 class StubMapper(base.mapper.ABISMapper):
     def apply_mapping_row(
         self,
