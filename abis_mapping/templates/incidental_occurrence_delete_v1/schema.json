@@ -1,0 +1,38 @@
+{
+  "fields": [
+    {
+      "name": "providerRecordID",
+      "title": "Provider Record ID",
+      "description": "Unique (within provider) identifier for the record.",
+      "example": "8022FSJMJ079c5cf",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true,
+        "unique": true
+      }
+    },
+    {
+      "name": "providerRecordIDSource",
+      "title": "Provider Record ID Source",
+      "description": "Person or Organisation that generated the providerRecordID.",
+      "example": "Western Australian Biodiversity Information Office",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": true
+      }
+    },
+    {
+      "name": "datasetIRI",
+      "title": "Dataset IRI",
+      "description": "The IRI of the Dataset the Record belongs to.",
+      "example": "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000",
+      "type": "string",
+      "format": "default",
+      "constraints": {
+        "required": false
+      }
+    }
+  ]
+}
