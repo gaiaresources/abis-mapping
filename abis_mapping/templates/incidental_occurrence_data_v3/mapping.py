@@ -1990,10 +1990,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
     ) -> None:
-        """Add a data generalizations attribute Sample Collection to the graph
+        """Add a data generalizations attribute Collection to the graph
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             data_generalizations: dataGeneralizations value from template.
             data_generalizations_attribute: The uri for the attribute node.
             provider_record_id_occurrence: Occurrence associated with this
@@ -2497,10 +2497,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
     ) -> None:
-        """Add a habitat attribute Sample Collection to the graph
+        """Add a habitat attribute Collection to the graph
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             habitat: Habitat value from template.
             habitat_attribute: The uri for the attribute node.
             provider_record_id_occurrence (rdflib.URIRef): Occurrence associated with this
@@ -2608,13 +2608,13 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
     ) -> None:
-        """Add a basisOfRecord attribute Sample Collection to the graph
+        """Add a basisOfRecord attribute Collection to the graph
 
         Either the sample_specimen node or the sample_field node should be a member
         of this collection, depending on if the row has a specimen.
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             basis_of_record: basisOfRecord value from template.
             basis_attribute: The uri for the attribute node.
             sample_specimen: The sample specimen node.
@@ -2840,10 +2840,10 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
     ) -> None:
-        """Add a preparations attribute Sample Collection to the graph
+        """Add a preparations attribute Collection to the graph
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             preparations: preparations value from template.
             preparations_attribute: The uri for the attribute node.
             sample_specimen: The sample specimen node that should be a member of the collection.
@@ -3691,7 +3691,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         """Add a conservation authority Collection to the graph
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             conservation_authority: conservationAuthority value from template.
             conservation_authority_attribute: The uri for the attribute node.
             threat_status_observation: The node that should be a member of the collection.
