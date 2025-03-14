@@ -1891,7 +1891,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the scientific name observation node
-        graph.add((uri, rdflib.SDO.member, observation_scientific_name))
+        graph.add((uri, rdflib.SDO.hasPart, observation_scientific_name))
         # Add link to attribute
         if id_qualifier_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, id_qualifier_attribute))
@@ -1995,7 +1995,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the scientific name observation node
-        graph.add((uri, rdflib.SDO.member, observation_scientific_name))
+        graph.add((uri, rdflib.SDO.hasPart, observation_scientific_name))
         # Add link to attribute
         if id_remarks_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, id_remarks_attribute))
@@ -2382,10 +2382,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
     ) -> None:
-        """Add a data generalizations attribute Sample Collection to the graph
+        """Add a data generalizations attribute Collection to the graph
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             data_generalizations: dataGeneralizations value from template.
             data_generalizations_attribute: The uri for the attribute node.
             provider_record_id_occurrence: Occurrence associated with this
@@ -2416,7 +2416,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the sample field
-        graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
+        graph.add((uri, rdflib.SDO.hasPart, provider_record_id_occurrence))
         # Add link to attribute
         if data_generalizations_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, data_generalizations_attribute))
@@ -2534,7 +2534,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the scientific name observation node
-        graph.add((uri, rdflib.SDO.member, observation_scientific_name))
+        graph.add((uri, rdflib.SDO.hasPart, observation_scientific_name))
         # Add link to attribute
         if taxon_rank_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, taxon_rank_attribute))
@@ -2817,10 +2817,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
     ) -> None:
-        """Add a habitat attribute Sample Collection to the graph
+        """Add a habitat attribute Collection to the graph
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             habitat: Habitat value from template.
             habitat_attribute: The uri for the attribute node.
             provider_record_id_occurrence: Occurrence associated with this
@@ -2843,7 +2843,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the sample field
-        graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
+        graph.add((uri, rdflib.SDO.hasPart, provider_record_id_occurrence))
         # Add link to attribute
         if habitat_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, habitat_attribute))
@@ -2929,13 +2929,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
     ) -> None:
-        """Add a basisOfRecord attribute Sample Collection to the graph
+        """Add a basisOfRecord attribute Collection to the graph
 
         Either the sample_specimen node or the provider_record_id_occurrence node
         should be a member of this collection, depending on if the row has a specimen.
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             basis_of_record: basisOfRecord value from template.
             basis_attribute: The uri for the attribute node.
             sample_specimen: The sample specimen node.
@@ -2967,9 +2967,9 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the appropriate sample node
         if has_specimen(row):
-            graph.add((uri, rdflib.SDO.member, sample_specimen))
+            graph.add((uri, rdflib.SDO.hasPart, sample_specimen))
         else:
-            graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
+            graph.add((uri, rdflib.SDO.hasPart, provider_record_id_occurrence))
         # Add link to attribute
         if basis_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis_attribute))
@@ -3181,10 +3181,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
     ) -> None:
-        """Add a preparations attribute Sample Collection to the graph
+        """Add a preparations attribute Collection to the graph
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             preparations: preparations value from template.
             preparations_attribute: The uri for the attribute node.
             sample_specimen: The sample specimen node that should be a member of the collection.
@@ -3212,7 +3212,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the sample_specimen node
-        graph.add((uri, rdflib.SDO.member, sample_specimen))
+        graph.add((uri, rdflib.SDO.hasPart, sample_specimen))
         # Add link to attribute
         if preparations_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, preparations_attribute))
@@ -4165,7 +4165,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         """Add a conservation authority Collection to the graph
 
         Args:
-            uri: The uri for the SampleCollection.
+            uri: The uri for the Collection.
             conservation_authority: conservationAuthority value from template.
             conservation_authority_attribute: The uri for the attribute node.
             threat_status_observation: The node that should be a member of the collection.
@@ -4193,7 +4193,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the threat status observation node
-        graph.add((uri, rdflib.SDO.member, threat_status_observation))
+        graph.add((uri, rdflib.SDO.hasPart, threat_status_observation))
         # Add link to attribute
         if conservation_authority_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, conservation_authority_attribute))
@@ -4543,7 +4543,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         if sensitivity_category_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, sensitivity_category_attribute))
         # Add link to the biodiversity record
-        graph.add((uri, rdflib.SDO.member, provider_record_id_biodiversity_record))
+        graph.add((uri, rdflib.SDO.hasPart, provider_record_id_biodiversity_record))
 
     def add_survey(
         self,

@@ -891,7 +891,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the SiteVisit node
-        graph.add((uri, rdflib.SDO.member, uri_site_visit_activity))
+        graph.add((uri, rdflib.SDO.hasPart, uri_site_visit_activity))
         # Add link to attribute
         if uri_target_taxonomic_scope_attribute is not None:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, uri_target_taxonomic_scope_attribute))
@@ -1016,7 +1016,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the SiteVisit node
-        graph.add((uri, rdflib.SDO.member, uri_site_visit_activity))
+        graph.add((uri, rdflib.SDO.hasPart, uri_site_visit_activity))
         # Add link to attribute
         if uri_sampling_effort_attribute is not None:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, uri_sampling_effort_attribute))

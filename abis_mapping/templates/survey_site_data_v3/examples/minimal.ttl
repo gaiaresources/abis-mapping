@@ -10,20 +10,20 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteCollection/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a schema:Collection ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://example.com/site/WAM/P1>,
+    schema:hasPart <https://example.com/site/WAM/P1>,
         <https://linked.data.gov.au/dataset/bdr/sites/WAM/P2>,
         <https://linked.data.gov.au/dataset/bdr/sites/WAM/P3> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Site Collection - Data Generalizations - Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteCollection/habitat/Closed-forest> a schema:Collection ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://example.com/site/WAM/P0>,
+    schema:hasPart <https://example.com/site/WAM/P0>,
         <https://example.com/site/WAM/P1>,
         <https://linked.data.gov.au/dataset/bdr/sites/WAM/P2>,
         <https://linked.data.gov.au/dataset/bdr/sites/WAM/P3> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Site Collection - Habitat - Closed forest" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/habitat/Closed-forest> .
 
