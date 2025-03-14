@@ -117,7 +117,7 @@ class MarkdownDialect(csv.excel):
 
 
 # Register the dialect with the csv module
-csv.register_dialect("markdown", MarkdownDialect)  # type: ignore[arg-type]
+csv.register_dialect("markdown", MarkdownDialect)
 
 
 class MarkdownDictWriter(csv.DictWriter):  # type: ignore[type-arg]
