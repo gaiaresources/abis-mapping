@@ -810,7 +810,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph.add((uri, utils.namespaces.TERN.hasAttribute, survey_type_attribute))
         # add link to the Survey Plan node
         if survey_plan:
-            graph.add((uri, rdflib.SDO.member, survey_plan))
+            graph.add((uri, rdflib.SDO.hasPart, survey_plan))
 
     def add_target_habitat_attribute(
         self,
@@ -919,7 +919,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasAttribute, target_habitat_attribute))
         # add link to the Survey Plan node
         if survey_plan:
-            graph.add((uri, rdflib.SDO.member, survey_plan))
+            graph.add((uri, rdflib.SDO.hasPart, survey_plan))
 
     def add_target_taxonomic_attribute(
         self,
@@ -1029,7 +1029,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
         graph.add((uri, utils.namespaces.TERN.hasAttribute, target_taxon_attribute))
         # add link to the Survey Plan node
         if survey_plan:
-            graph.add((uri, rdflib.SDO.member, survey_plan))
+            graph.add((uri, rdflib.SDO.hasPart, survey_plan))
 
 
 # Register Mapper

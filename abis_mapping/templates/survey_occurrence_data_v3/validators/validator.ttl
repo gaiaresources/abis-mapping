@@ -210,7 +210,7 @@ bdrsh:SensitivityCategoryCollectionShape
 		sh:maxCount 1;
 	] ;
 	sh:property [
-		sh:path schema:member ;
+		sh:path schema:hasPart ;
 		sh:nodeKind sh:IRI ;
 		sh:class abis:BiodiversityRecord ;
 		sh:minCount 1;

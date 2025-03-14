@@ -1510,7 +1510,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the scientific name observation node
-        graph.add((uri, rdflib.SDO.member, observation_scientific_name))
+        graph.add((uri, rdflib.SDO.hasPart, observation_scientific_name))
         # Add link to attribute
         if id_qualifier_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, id_qualifier_attribute))
@@ -1615,7 +1615,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the scientific name observation node
-        graph.add((uri, rdflib.SDO.member, observation_scientific_name))
+        graph.add((uri, rdflib.SDO.hasPart, observation_scientific_name))
         # Add link to attribute
         if id_remarks_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, id_remarks_attribute))
@@ -2023,7 +2023,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the sample field
-        graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
+        graph.add((uri, rdflib.SDO.hasPart, provider_record_id_occurrence))
         # Add link to attribute
         if data_generalizations_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, data_generalizations_attribute))
@@ -2141,7 +2141,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the scientific name observation node
-        graph.add((uri, rdflib.SDO.member, observation_scientific_name))
+        graph.add((uri, rdflib.SDO.hasPart, observation_scientific_name))
         # Add link to attribute
         if taxon_rank_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, taxon_rank_attribute))
@@ -2522,7 +2522,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the sample field
-        graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
+        graph.add((uri, rdflib.SDO.hasPart, provider_record_id_occurrence))
         # Add link to attribute
         if habitat_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, habitat_attribute))
@@ -2645,9 +2645,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the appropriate sample node
         if has_specimen(row):
-            graph.add((uri, rdflib.SDO.member, sample_specimen))
+            graph.add((uri, rdflib.SDO.hasPart, sample_specimen))
         else:
-            graph.add((uri, rdflib.SDO.member, provider_record_id_occurrence))
+            graph.add((uri, rdflib.SDO.hasPart, provider_record_id_occurrence))
         # Add link to attribute
         if basis_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, basis_attribute))
@@ -2871,7 +2871,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the sample_specimen node
-        graph.add((uri, rdflib.SDO.member, sample_specimen))
+        graph.add((uri, rdflib.SDO.hasPart, sample_specimen))
         # Add link to attribute
         if preparations_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, preparations_attribute))
@@ -3718,7 +3718,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add link to dataset
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         # add link to the threat status observation node
-        graph.add((uri, rdflib.SDO.member, threat_status_observation))
+        graph.add((uri, rdflib.SDO.hasPart, threat_status_observation))
         # Add link to attribute
         if conservation_authority_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, conservation_authority_attribute))
@@ -3847,7 +3847,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         if sensitivity_category_attribute:
             graph.add((uri, utils.namespaces.TERN.hasAttribute, sensitivity_category_attribute))
         # Add link to the biodiversity record
-        graph.add((uri, rdflib.SDO.member, provider_record_id_biodiversity_record))
+        graph.add((uri, rdflib.SDO.hasPart, provider_record_id_biodiversity_record))
 
     def add_biodiversity_record(
         self,
