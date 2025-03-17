@@ -1474,7 +1474,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/threatStatus/WA/new-threat-status> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/threatStatus> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919> ;
     skos:definition "A type of threatStatus." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
