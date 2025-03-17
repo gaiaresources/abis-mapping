@@ -364,7 +364,7 @@ QLD_E = utils.vocabs.Term(
 QLD_EX = utils.vocabs.Term(
     labels=(
         "QLD/EX",
-        "QLD/EXTINCT WILDLIFE",
+        "QLD/EXTINCT",
         "QUEENSLAND/EX",
         "QUEENSLAND/EXTINCT",
     ),
