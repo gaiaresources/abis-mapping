@@ -841,10 +841,10 @@ class ThreatStatus(utils.vocabs.FlexibleVocabulary):
         raise RuntimeError("Use get_threat_status() instead of get() for the ThreatStatus vocab")
 
     def get_threat_status(
-            self,
-            *,
-            conservation_authority: str | None,
-            threat_status: str | None,
+        self,
+        *,
+        conservation_authority: str | None,
+        threat_status: str | None,
     ) -> rdflib.URIRef:
         """Retrieves an IRI from the Vocabulary, or creates one on-the fly.
 
