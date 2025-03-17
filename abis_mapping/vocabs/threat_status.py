@@ -348,7 +348,9 @@ QLD_CR = utils.vocabs.Term(
         "QUEENSLAND/CR",
         "QUEENSLAND/CRITICALLY ENDANGERED WILDLIFE",
     ),
-    iri=rdflib.URIRef("https://www.data.qld.gov.au/dataset/conservation-status-of-queensland-wildlife"),  # TODO -> Need real URI
+    iri=rdflib.URIRef(
+        "https://www.data.qld.gov.au/dataset/conservation-status-of-queensland-wildlife"
+    ),  # TODO -> Need real URI
     description="Queensland, critically endangered wildlife.",
 )
 QLD_E = utils.vocabs.Term(
@@ -378,7 +380,7 @@ QLD_I = utils.vocabs.Term(
         "QUEENSLAND/I",
         "QUEENSLAND/INTERNATIONAL WILDLIFE",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b903a418-610b-4097-a848-d902b09583ee")
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b903a418-610b-4097-a848-d902b09583ee"),
     description="Queensland, international wildlife.",
 )
 QLD_NT = utils.vocabs.Term(
@@ -841,10 +843,10 @@ class ThreatStatus(utils.vocabs.FlexibleVocabulary):
         raise RuntimeError("Use get_threat_status() instead of get() for the ThreatStatus vocab")
 
     def get_threat_status(
-            self,
-            *,
-            conservation_authority: str | None,
-            threat_status: str | None,
+        self,
+        *,
+        conservation_authority: str | None,
+        threat_status: str | None,
     ) -> rdflib.URIRef:
         """Retrieves an IRI from the Vocabulary, or creates one on-the fly.
 
