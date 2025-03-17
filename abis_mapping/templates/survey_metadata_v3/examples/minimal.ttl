@@ -14,33 +14,33 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/surveyType/Wet-pitfall-trapping> a schema:Collection ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
+    schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Survey Collection - Survey Type - Wet pitfall trapping" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/surveyType/Wet-pitfall-trapping> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/targetHabitatScope/Woodland> a schema:Collection ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
+    schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Survey Collection - Target Habitat Scope - Woodland" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetHabitatScope/Woodland> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/targetTaxonomicScope/Coleoptera> a schema:Collection ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
+    schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Survey Collection - Target Taxonomic Scope - Coleoptera" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/Coleoptera> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SurveyCollection/targetTaxonomicScope/Insecta> a schema:Collection ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:member <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
+    schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:name "Survey Collection - Target Taxonomic Scope - Insecta" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetTaxonomicScope/Insecta> .
 
