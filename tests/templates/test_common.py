@@ -24,6 +24,7 @@ def test_registered_templates() -> None:
     """Test to check/document which templates are registered."""
     assert sorted(abis_mapping.registered_ids()) == [
         "incidental_occurrence_data-v3.0.0.csv",
+        "incidental_occurrence_delete-v1.0.0.csv",
         "survey_metadata-v3.0.0.csv",
         "survey_occurrence_data-v3.0.0.csv",
         "survey_site_data-v3.0.0.csv",
@@ -234,12 +235,19 @@ class TestTemplateBasicSuite:
         # Patch validate
         mocked_resource = mocker.patch("frictionless.Resource")
         mocked_validate: unittest.mock.Mock = mocked_resource.return_value.validate
+
+        # Mock both methods for getting schema
         mocked_extra_fields_schema = mocker.patch.object(
             target=abis_mapping.base.mapper.ABISMapper,
             attribute="extra_fields_schema",
         )
+        mocked_regular_fields_schema = mocker.patch.object(
+            target=abis_mapping.base.mapper.ABISMapper,
+            attribute="regular_fields_schema",
+        )
         schema = frictionless.Schema()
         mocked_extra_fields_schema.return_value = schema
+        mocked_regular_fields_schema.return_value = schema
 
         # Load data
         data = test_params.mapping_cases[0].data.read_bytes()
@@ -254,6 +262,12 @@ class TestTemplateBasicSuite:
         # Assert called
         mocked_resource.assert_called()
         mocked_validate.assert_called_once()
+
         # The following asserts determine that the extra fields schema was used in creating the resource
-        mocked_extra_fields_schema.assert_called_once()
+        if test_params.allows_extra_cols:
+            mocked_extra_fields_schema.assert_called_once()
+        # Or if the template doesn't allow extra, check the regular method was called
+        else:
+            mocked_regular_fields_schema.assert_called_once()
+
         mocked_resource.assert_any_call(source=data, schema=schema, format="csv", encoding="utf-8")
