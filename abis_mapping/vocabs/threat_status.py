@@ -758,7 +758,7 @@ class ThreatStatus(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of threatStatus.")
     base = "bdr-cv/parameter/threatStatus/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e")
-    broader = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")
+    broader = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919")
     default = None  # No default, omitted if not provided
     terms = (
         ACT_CRITICALLY_ENDANGERED,
