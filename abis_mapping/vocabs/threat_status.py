@@ -344,9 +344,9 @@ QLD_C = utils.vocabs.Term(
 QLD_CR = utils.vocabs.Term(
     labels=(
         "QLD/CR",
-        "QLD/CRITICALLY ENDANGERED WILDLIFE",
+        "QLD/CRITICALLY ENDANGERED",
         "QUEENSLAND/CR",
-        "QUEENSLAND/CRITICALLY ENDANGERED WILDLIFE",
+        "QUEENSLAND/CRITICALLY ENDANGERED",
     ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/0be6c2f6-a0b2-4585-b185-22f7abe323f2"),
     description="Queensland, critically endangered wildlife.",
@@ -394,9 +394,9 @@ QLD_NT = utils.vocabs.Term(
 QLD_PE = utils.vocabs.Term(
     labels=(
         "QLD/PE",
-        "QLD/EXTINCT IN THE WILD WILDLIFE",
+        "QLD/EXTINCT IN THE WILD",
         "QUEENSLAND/PE",
-        "QUEENSLAND/EXTINCT IN THE WILD WILDLIFE",
+        "QUEENSLAND/EXTINCT IN THE WILD",
     ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/49a13322-a137-4606-82b2-d8b36a24856c"),
     description="Queensland, extinct in the wild wildlife.",
@@ -404,9 +404,9 @@ QLD_PE = utils.vocabs.Term(
 QLD_SL = utils.vocabs.Term(
     labels=(
         "QLD/SL",
-        "QLD/SPECIAL LEAST CONCERN WILDLIFE",
+        "QLD/SPECIAL LEAST CONCERN",
         "QUEENSLAND/SL",
-        "QUEENSLAND/SPECIAL LEAST CONCERN WILDLIFE",
+        "QUEENSLAND/SPECIAL LEAST CONCERN",
     ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/a1a9fac0-f7d5-4396-a1b5-9aa6637ff750"),
     description="Queensland, special least-concern wildlife.",
