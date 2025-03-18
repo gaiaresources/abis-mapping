@@ -4006,7 +4006,13 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, threat_status_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["threatStatus"])))
-        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
+        graph.add(
+            (
+                uri,
+                rdflib.SOSA.observedProperty,
+                rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919"),
+            )
+        )
         graph.add((uri, rdflib.SOSA.usedProcedure, term))
 
         # Declare temporal entity to allow correct assignment typechecks
