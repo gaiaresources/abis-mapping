@@ -19,7 +19,6 @@ from abis_mapping import vocabs
 # Typing
 from typing import Any
 
-
 # Constants and Shortcuts
 # These constants and shortcuts are specific to this template, and as such are defined here
 # rather than in a common `utils` module.
@@ -58,7 +57,7 @@ CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri(
 )  # TODO -> Need real URI
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_CONSERVATION_STATUS = rdflib.URIRef(
-    "http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6"
+    "http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919"
 )
 CONCEPT_CONSERVATION_AUTHORITY = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7"
@@ -4006,13 +4005,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, threat_status_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["threatStatus"])))
-        graph.add(
-            (
-                uri,
-                rdflib.SOSA.observedProperty,
-                rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919"),
-            )
-        )
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
         graph.add((uri, rdflib.SOSA.usedProcedure, term))
 
         # Declare temporal entity to allow correct assignment typechecks

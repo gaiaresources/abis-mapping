@@ -56,7 +56,7 @@ CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri(
 )  # TODO -> Need real URI
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_CONSERVATION_STATUS = rdflib.URIRef(
-    "http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6"
+    "http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919"
 )
 # TODO: Concept uri still to be created, for now leaving as the conservation jurisdiction uri.
 CONCEPT_CONSERVATION_AUTHORITY = rdflib.URIRef(
@@ -3546,13 +3546,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, threat_status_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["threatStatus"])))
-        graph.add(
-            (
-                uri,
-                rdflib.SOSA.observedProperty,
-                rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919"),
-            )
-        )
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
         graph.add((uri, rdflib.SOSA.usedProcedure, term))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
