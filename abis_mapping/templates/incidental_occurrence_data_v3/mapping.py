@@ -56,7 +56,7 @@ CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri(
 )  # TODO -> Need real URI
 CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
 CONCEPT_CONSERVATION_STATUS = rdflib.URIRef(
-    "http://linked.data.gov.au/def/tern-cv/1466cc29-350d-4a23-858b-3da653fd24a6"
+    "http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919"
 )
 # TODO: Concept uri still to be created, for now leaving as the conservation jurisdiction uri.
 CONCEPT_CONSERVATION_AUTHORITY = rdflib.URIRef(
