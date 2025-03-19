@@ -258,6 +258,31 @@ TEST_CASES_ALL: list[TemplateTestParameters] = [
             ),
         ],
     ),
+    # Incidental Delete templates
+    TemplateTestParameters(
+        template_id="incidental_occurrence_delete-v1.0.0.csv",
+        empty_template=pathlib.Path(
+            "abis_mapping/templates/incidental_occurrence_delete_v1/incidental_occurrence_delete.csv"
+        ),
+        mapping_cases=[
+            MappingParameters(
+                data=pathlib.Path("abis_mapping/templates/incidental_occurrence_delete_v1/examples/example.csv"),
+                expected=pathlib.Path("abis_mapping/templates/incidental_occurrence_delete_v1/examples/example.ttl"),
+                shacl=[
+                    pathlib.Path("abis_mapping/base/validators/shapes.ttl"),
+                ],
+            ),
+        ],
+        metadata_sampling_type="incidental",
+        allows_extra_cols=False,
+        chunking_parameters=[
+            ChunkingParameters(
+                data=pathlib.Path("abis_mapping/templates/incidental_occurrence_delete_v1/examples/example.csv"),
+                chunk_size=2,
+                yield_count=2,
+            ),
+        ],
+    ),
 ]
 
 # Filter out only those templates that are registered
