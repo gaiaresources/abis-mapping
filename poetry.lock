@@ -279,13 +279,13 @@ files = [
 
 [[package]]
 name = "frictionless"
-version = "5.18.0"
+version = "5.18.1"
 description = "Data management framework for Python that provides functionality to describe, extract, validate, and transform tabular data"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "frictionless-5.18.0-py3-none-any.whl", hash = "sha256:a82433b81cfcfae21328aad6b93854feb86d5d054b22ac147672eb9c254b6a3d"},
-    {file = "frictionless-5.18.0.tar.gz", hash = "sha256:4b21a10d3ac67e46a4a58a1e8a8a27c6882af4d1608eadfb6ccbfde0b5eef6b9"},
+    {file = "frictionless-5.18.1-py3-none-any.whl", hash = "sha256:3f4c87469a89bdb88e9cc318088553a26f3d14839098f95c183ea01fc89628dd"},
+    {file = "frictionless-5.18.1.tar.gz", hash = "sha256:daeaf55f896eeb52b43e62600466af9528fe0aeeebd28b1b917e13322f370a8b"},
 ]
 
 [package.dependencies]
@@ -305,7 +305,6 @@ pyyaml = ">=5.3"
 requests = ">=2.10"
 rfc3986 = ">=1.4"
 simpleeval = ">=0.9.11"
-stringcase = ">=1.2"
 tableschema-to-template = {version = ">=0.0", optional = true, markers = "extra == \"excel\""}
 tabulate = ">=0.8.10"
 typer = ">=0.12"
@@ -320,7 +319,7 @@ bigquery = ["google-api-python-client (>=1.12.1)"]
 ckan = ["frictionless-ckan-mapper (>=1.0)"]
 datasette = ["datasette (>=0.64.2)"]
 dev = ["hatch", "httpx", "ipython", "livemark", "moto", "neovim", "oauth2client", "pyright (==1.1.317)", "pytest", "pytest-cov", "pytest-dotenv", "pytest-lazy-fixtures", "pytest-mock", "pytest-timeout", "pytest-vcr", "requests-mock", "ruff", "yattag"]
-duckdb = ["duckdb (>=0.8)", "duckdb-engine (>=0.7)", "sqlalchemy (>=1.4)"]
+duckdb = ["duckdb (>=0.8)", "duckdb-engine (>=0.7)", "sqlalchemy (>=1.4,<=2.0.35)"]
 excel = ["openpyxl (>=3.0)", "tableschema-to-template (>=0.0)", "xlrd (>=1.2)", "xlwt (>=1.2)"]
 github = ["pygithub (>=1.50)"]
 gsheets = ["pygsheets (>=2.0)"]
@@ -2186,16 +2185,6 @@ files = [
 ]
 
 [[package]]
-name = "stringcase"
-version = "1.2.0"
-description = "String case converter."
-optional = false
-python-versions = "*"
-files = [
-    {file = "stringcase-1.2.0.tar.gz", hash = "sha256:48a06980661908efe8d9d34eab2b6c13aefa2163b3ced26972902e3bdfd87008"},
-]
-
-[[package]]
 name = "tableschema-to-template"
 version = "0.0.13"
 description = "Given a Frictionless Table Schema, generates an Excel template with input validation"
@@ -2458,4 +2447,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "a8f7bc3cac10fc47a18d627e8c89715f23994b2d633e23640ad2c7d520119909"
+content-hash = "dd53df257d561371a650a38190cb346a17a6a54013dc5a5de8dd85295a344c00"

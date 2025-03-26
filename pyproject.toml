@@ -8,7 +8,7 @@ authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
 python = "^3.11"
 rdflib = "^7.1.1"
 python-slugify = "^8.0.4"
-frictionless = {extras = ["excel"], version = "^5.18.0"}
+frictionless = {extras = ["excel"], version = "^5.18.1"}
 python-dateutil = "^2.9.0.post0"
 shapely = "^2.0.6"
 pyproj = "^3.7.0"
