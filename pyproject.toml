@@ -49,6 +49,14 @@ test = "pytest tests --cov=abis_mapping --cov=docs --cov-report=term-missing"
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.pytest.ini_options]
+filterwarnings = [
+    # Treat any warnings in tests as errors.
+    'error',
+    # If certain warning should be allowed/ignored add them here.
+    # https://docs.pytest.org/en/stable/how-to/capture-warnings.html#controlling-warnings
+]
+
 [tool.ruff]
 target-version = "py311"
 line-length = 120
