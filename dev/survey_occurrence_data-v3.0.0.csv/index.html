@@ -897,7 +897,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: center;">4</td>
 <td style="text-align: left;"><a name="decimalLatitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLatitude">decimalLatitude</a></td>
 <td style="text-align: left;">The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic centre of a Location. Positive values are north of the Equator, negative values are south of it. Valid coordinate ranges for the BDR system are within and inclusive of -90 to 0.</td>
-<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if spatial information not provided by either, a validated linked siteID and siteIDSource, or existingBDRSiteIRI.</font></strong></td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">-33.812314</td>
 </tr>
@@ -905,7 +905,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: center;">5</td>
 <td style="text-align: left;"><a name="decimalLongitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLongitude">decimalLongitude</a></td>
 <td style="text-align: left;">The geographic longitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic centre of a Location. Positive values are east of the Greenwich Meridian, negative values are west of it. Valid coordinate ranges for the BDR system are within and inclusive of 0 to 180.</td>
-<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if spatial information not provided by either, a validated linked siteID and siteIDSource, or existingBDRSiteIRI.</font></strong></td>
 <td style="text-align: center;">Number</td>
 <td style="text-align: left;">115.231512</td>
 </tr>
@@ -913,7 +913,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: center;">6</td>
 <td style="text-align: left;"><a name="geodeticDatum-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
 <td style="text-align: left;">The acronym for the ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geographic (non-projected) coordinates given in decimalLatitude and decimalLongitude as based.</td>
-<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if spatial information not provided by either, a validated linked siteID and siteIDSource, or existingBDRSiteIRI.</font></strong></td>
 <td style="text-align: center;">String</td>
 <td style="text-align: left;">WGS84<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
 </tr>
@@ -937,7 +937,7 @@ datatype format, and examples.</ins></p>
 <td style="text-align: center;">9</td>
 <td style="text-align: left;"><a name="eventDateStart-field"></a>eventDateStart</td>
 <td style="text-align: left;">The start date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone (in ISO 8601 format for example 2022-05-20T06:23:00+08:00) of the period during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context.</td>
-<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if temporal information not provided by a validated linked siteVisitID.</font></strong></td>
 <td style="text-align: center;">Timestamp</td>
 <td style="text-align: left;">2019-09-23T14:03+08:00</td>
 </tr>
