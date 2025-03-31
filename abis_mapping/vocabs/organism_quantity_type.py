@@ -74,7 +74,7 @@ BRAUN_BLANQUET_SCALE = utils.vocabs.Term(
     labels=("BRAUN BLANQUET SCALE",),
     iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/braunBlanquetScale"),
     description=(
-        "A measurement type where the cover of a species in a sample is recorded " "using the Braun-Blanquet scale."
+        "A measurement type where the cover of a species in a sample is recorded using the Braun-Blanquet scale."
     ),
 )
 

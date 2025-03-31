@@ -30,8 +30,7 @@ TRAP_NIGHTS = utils.vocabs.Term(
     labels=("Trap Nights",),
     iri=utils.rdf.uri("sampling-effort/trap-nights", utils.namespaces.EXAMPLE),  # TODO -> Need real IRI
     description=(
-        "The total number of nights traps are left in the field. "
-        "One trap night refers to one trap set for one night."
+        "The total number of nights traps are left in the field. One trap night refers to one trap set for one night."
     ),
 )
 KHZ = utils.vocabs.Term(

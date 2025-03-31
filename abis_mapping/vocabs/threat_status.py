@@ -473,8 +473,7 @@ SA_SSP = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri("threatStatus/SA/ssp", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
-        "South Australia, indicates that at least one subspecies for this species "
-        "has been given a conservation rating."
+        "South Australia, indicates that at least one subspecies for this species has been given a conservation rating."
     ),
 )
 TAS_E = utils.vocabs.Term(

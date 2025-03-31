@@ -79,7 +79,7 @@ def test_generate_table_unpublishable_vocab(
     actual = tabler.generate_table()
 
     # Assert
-    assert actual == ("|Template field name|Preferred label|Definition|Alternate label|\n" "|:---|:---|:---|:---|\n")
+    assert actual == "|Template field name|Preferred label|Definition|Alternate label|\n|:---|:---|:---|:---|\n"
 
 
 class TestTBC:
@@ -128,7 +128,7 @@ class TestTBC:
 
         # Assert
         assert dest.getvalue() == (
-            "Template field name,Preferred label,Definition,Alternate label\r\n" "someName,TBC,TBC,\r\n" "\n"
+            "Template field name,Preferred label,Definition,Alternate label\r\nsomeName,TBC,TBC,\r\n\n"
         )
 
     def test_generate_table_markdown(
