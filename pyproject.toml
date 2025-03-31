@@ -23,7 +23,7 @@ pytest-cov = "^6.0.0"
 pytest-mock = "^3.14.0"
 mypy = "==1.15.0"
 types-python-dateutil = "==2.9.0.20241003"  # keep version synced with actual library
-ruff = "==0.8.4"
+ruff = "==0.11.2"
 import-linter = "^2.1"
 pandas = "^2.2.3"
 pyshacl = "^0.29.1"

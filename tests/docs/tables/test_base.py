@@ -57,7 +57,7 @@ class TestMarkdownDictWriter:
         writer.writeheader()
 
         # Assert
-        assert output.getvalue() == ("|Some|Header|Fields|\n" "|:---|:---|:---|\n")
+        assert output.getvalue() == "|Some|Header|Fields|\n|:---|:---|:---|\n"
 
     def test_writeheader_with_alignment(self) -> None:
         """Tests writeheader method with alignment."""
@@ -75,7 +75,7 @@ class TestMarkdownDictWriter:
         writer.writeheader()
 
         # Assert
-        assert output.getvalue() == ("|Some|Header|Fields|\n" "|:---|:---:|---:|\n")
+        assert output.getvalue() == "|Some|Header|Fields|\n|:---|:---:|---:|\n"
 
     def test_writeheader_invalid_alignment_length(self) -> None:
         """Tests writeheader method with invalid alignment length."""

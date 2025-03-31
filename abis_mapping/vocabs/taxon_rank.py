@@ -102,8 +102,7 @@ SECTION = utils.vocabs.Term(
     labels=("SECTION",),
     iri=utils.rdf.uri("section", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
-        "Section within a genus. In Zoology a section sometimes refers to a group "
-        "above family level, this is NOT meant"
+        "Section within a genus. In Zoology a section sometimes refers to a group above family level, this is NOT meant"
     ),
 )
 SERIES = utils.vocabs.Term(

@@ -112,7 +112,7 @@ class Geometry:
             return vocab().get(self.original_datum_name)
         except utils.vocabs.VocabularyError as exc:
             raise GeometryError(
-                f"CRS {self.original_datum_name} is " "not defined for the GEODETIC_DATUM fixed vocabulary."
+                f"CRS {self.original_datum_name} is not defined for the GEODETIC_DATUM fixed vocabulary."
             ) from exc
 
     @property

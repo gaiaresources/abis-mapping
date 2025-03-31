@@ -16,7 +16,7 @@ FEMALE = utils.vocabs.Term(
     ),
     iri=utils.rdf.uri("sex/female", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
     description=(
-        "Female (♀) is the sex of an organism, or a part of an organism, which " "produces mobile ova (egg cells)."
+        "Female (♀) is the sex of an organism, or a part of an organism, which produces mobile ova (egg cells)."
     ),
 )
 HERMAPHRODITE = utils.vocabs.Term(
