@@ -34,6 +34,8 @@ class FieldTableRow(pydantic.BaseModel):
     # Where the field appears in the schema and template columns beginning at 1
     field_no: Annotated[int, pydantic.Field(exclude=True)]
 
+    template_id: Annotated[str, pydantic.Field(exclude=True)]
+
     @pydantic.computed_field(alias="Field #")  # type: ignore[prop-decorator]
     @property
     def field_number(self) -> str:
@@ -54,7 +56,23 @@ class FieldTableRow(pydantic.BaseModel):
 
     def _get_mandatory_optional(self) -> tuple[MandatoryType, str]:
         """Which "type" of mandatoryness, plus the text description."""
-        # First check if field is Mandatory
+        # Check some Survey occurrence fields which are marked as Mandatory in the schema,
+        # But are actually Conditionally Mandatory in our custom validation.
+        if "survey_occurrence" in self.template_id and self.field.name in (
+            "decimalLatitude",
+            "decimalLongitude",
+            "geodeticDatum",
+        ):
+            return MandatoryType.CONDITIONALLY_MANDATORY, (
+                "Mandatory if spatial information not provided by either, a validated "
+                "linked siteID and siteIDSource, or existingBDRSiteIRI.\n"
+            )
+        if "survey_occurrence" in self.template_id and self.field.name == "eventDateStart":
+            return MandatoryType.CONDITIONALLY_MANDATORY, (
+                "Mandatory if temporal information not provided by a validated linked siteVisitID.\n"
+            )
+
+        # Check if field is Mandatory
         if self.field.constraints.required:
             return MandatoryType.MANDATORY, "Mandatory"
 
@@ -215,9 +233,19 @@ class FieldTabler(tables.base.BaseTabler):
         for i, field in enumerate(self.fields, start=1):
             # Create row
             if self.format == "markdown":
-                field_table_row: FieldTableRow = MarkdownFieldTableRow(field=field, checklist=checklist, field_no=i)
+                field_table_row: FieldTableRow = MarkdownFieldTableRow(
+                    field=field,
+                    checklist=checklist,
+                    field_no=i,
+                    template_id=self.template_id,
+                )
             else:
-                field_table_row = FieldTableRow(field=field, checklist=checklist, field_no=i)
+                field_table_row = FieldTableRow(
+                    field=field,
+                    checklist=checklist,
+                    field_no=i,
+                    template_id=self.template_id,
+                )
 
             # Write row to csv
             row_d = field_table_row.model_dump(by_alias=True)
