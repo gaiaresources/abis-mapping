@@ -10,9 +10,16 @@ import rdflib
 # Local
 from abis_mapping import base
 from abis_mapping import plugins
+from abis_mapping import utils
 
 # Typing
 from typing import Any
+
+
+# Constants and Shortcuts
+# These constants are specific to this template, and as such are defined here
+# rather than in a common `utils` module.
+a = rdflib.RDF.type
 
 
 class IncidentalOccurrenceDeleteMapper(base.mapper.ABISMapper):
@@ -57,6 +64,25 @@ class IncidentalOccurrenceDeleteMapper(base.mapper.ABISMapper):
         # Return Validation Report
         return report
 
+    def apply_mapping_chunk(
+        self,
+        *,
+        dataset: rdflib.URIRef,
+        submission_iri: rdflib.URIRef | None,
+        graph: rdflib.Graph,
+    ) -> None:
+        """Applies mapping for RDF that should be present in every chunk.
+
+        Args:
+            dataset: The Dataset URI
+            submission_iri: The Submission IRI
+            graph: The graph for the chunk to add the mapping to.
+        """
+        # This should be in every chunk, so the type of the dataset can be resolved.
+        graph.add((dataset, a, utils.namespaces.TERN.Dataset))
+        # Unlike parent class method, do not add Submission type.
+        # This is not needed for this template.
+
     def apply_mapping_row(
         self,
         *,
@@ -82,8 +108,14 @@ class IncidentalOccurrenceDeleteMapper(base.mapper.ABISMapper):
         Returns:
             rdflib.Graph: Graph with row mapped into it.
         """
-        # TODO mapping
-        # TODO might need to get rid of per-chunk mapping for this template?
+        # Construct IRI of Biodiversity Record to be deleted
+        provider_record_id: str = row["providerRecordID"]
+        biodiversity_record_iri = utils.iri_patterns.biodiversity_record_iri(base_iri, provider_record_id)
+
+        # Add to graph
+        graph.add((biodiversity_record_iri, a, utils.namespaces.ABIS.BiodiversityRecord))
+        graph.add((biodiversity_record_iri, rdflib.SDO.isPartOf, dataset))
+        graph.add((biodiversity_record_iri, rdflib.RDFS.comment, rdflib.Literal("to be deleted")))
 
 
 # Register mapper
