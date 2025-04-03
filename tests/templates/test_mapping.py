@@ -140,17 +140,18 @@ def test_apply_mapping_chunking(template_id: str, test_params: conftest.Chunking
     assert mapper
 
     # Map
-    graphs = list(
-        mapper().apply_mapping(
-            data=data,
-            chunk_size=test_params.chunk_size,
-            dataset_iri=tests.helpers.TEST_DATASET_IRI,
-            base_iri=tests.helpers.TEST_BASE_NAMESPACE,
-            submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
-            project_iri=tests.helpers.TEST_PROJECT_IRI,
-            submitted_on_date=tests.helpers.TEST_SUBMITTED_ON_DATE,
-        )
-    )
+    num_chunks = 0
+    for chunk in mapper().apply_mapping(
+        data=data,
+        chunk_size=test_params.chunk_size,
+        dataset_iri=tests.helpers.TEST_DATASET_IRI,
+        base_iri=tests.helpers.TEST_BASE_NAMESPACE,
+        submission_iri=tests.helpers.TEST_SUBMISSION_IRI,
+        project_iri=tests.helpers.TEST_PROJECT_IRI,
+        submitted_on_date=tests.helpers.TEST_SUBMITTED_ON_DATE,
+    ):
+        num_chunks += 1
+        del chunk
 
     # Assert
-    assert len(graphs) == test_params.yield_count
+    assert num_chunks == test_params.yield_count

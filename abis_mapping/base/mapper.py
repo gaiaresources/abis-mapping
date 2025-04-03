@@ -4,10 +4,13 @@
 import abc
 import datetime
 import functools
+import gc
 import inspect
 import json
 import pathlib
 import types
+import warnings
+import weakref
 
 # Third-Party
 import frictionless
@@ -129,6 +132,24 @@ class ABISMapper(abc.ABC):
                 # yield chunk if required
                 if chunk_size is not None and row_num % chunk_size == 0:
                     yield graph
+
+                    # Get weakref to graph so we can detect if it has been garbage collected.
+                    graph_weakref = weakref.ref(graph)
+                    # attempt to garbage collect graph before creating next one
+                    del graph
+                    gc.collect()
+                    # If graph has not been garbage collected, warn the user.
+                    if graph_weakref() is not None:
+                        warnings.warn(
+                            (
+                                "apply_mapping() chunk graph was not garbage collected "
+                                "before creating the next one. This can lead to "
+                                "increased memory usage."
+                            ),
+                            stacklevel=1,
+                        )
+                    del graph_weakref
+
                     # Initialise New Graph for next chunk
                     graph = utils.rdf.create_graph()
                     graph_has_rows = False
@@ -141,6 +162,9 @@ class ABISMapper(abc.ABC):
             # yield final chunk, or whole graph if not chunking.
             if graph_has_rows or chunk_size is None:
                 yield graph
+                # Try to garbage collect graph before continuing
+                del graph
+                gc.collect()
 
     def apply_mapping_chunk(
         self,
