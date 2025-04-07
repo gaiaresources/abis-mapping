@@ -23,3 +23,10 @@ def test_association_iri_for_person() -> None:
     assert result == rdflib.URIRef(
         "https://linked.data.gov.au/dataset/bdr/association/d64b38038ac0eb40/resourceProvider"
     )
+
+
+def test_hash_person_for_iri() -> None:
+    """Test the _hash_person_for_iri function"""
+    # This test should never change, or it means everyone will get new IRIs.
+    assert iri_patterns._hash_person_for_iri("Some Person") == "d64b38038ac0eb40"
+    assert iri_patterns._hash_person_for_iri("person@example.com") == "cf9fc50ba9c93e55"
