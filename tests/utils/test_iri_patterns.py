@@ -30,3 +30,10 @@ def test_hash_person_for_iri() -> None:
     # This test should never change, or it means everyone will get new IRIs.
     assert iri_patterns._hash_person_for_iri("Some Person") == "d64b38038ac0eb40"
     assert iri_patterns._hash_person_for_iri("person@example.com") == "cf9fc50ba9c93e55"
+
+
+def test_delegation_iri() -> None:
+    result = iri_patterns.delegation_iri("resourceProvider", "Some Person", "Some Org")
+    assert result == rdflib.URIRef(
+        "https://linked.data.gov.au/dataset/bdr/delegation/d64b38038ac0eb40/Some-Org/resourceProvider"
+    )

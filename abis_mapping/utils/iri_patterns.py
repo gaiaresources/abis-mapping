@@ -487,3 +487,33 @@ def association_iri(
         source=source,
         role=role,
     )
+
+
+def delegation_iri(
+    role: Literal[
+        "processor",
+        "resourceProvider",
+    ],
+    person: str,
+    org: str,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a prov:Delegation node.
+
+    Args:
+        role: What Role the person had.
+        person: The person acting on behalf of an Organization.
+        org: The organization.
+
+    Returns:
+        The IRI for the prov:Association node.
+    """
+    person = _hash_person_for_iri(person)
+
+    return utils.rdf.uri_slugified(
+        utils.namespaces.DATASET_BDR,
+        "delegation/{person}/{org}/{role}",
+        person=person,
+        org=org,
+        role=role,
+    )
