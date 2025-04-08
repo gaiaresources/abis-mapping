@@ -454,3 +454,66 @@ def attribution_iri(
         source=source,
         role=role,
     )
+
+
+def association_iri(
+    role: Literal[
+        "processor",
+        "resourceProvider",
+    ],
+    source: str,
+    /,
+    *,
+    source_type: Literal["org", "person", "software"],
+) -> rdflib.URIRef:
+    """Get the IRI to use for a prov:Association node.
+
+    Args:
+        role: Corresponds to the Object of the prov:hadRole predicate on the prov:Association node.
+        source: Who/what the association is for, e.g. the submitting organization.
+        source_type: Either "org" "person", or "software".
+
+    Returns:
+        The IRI for the prov:Association node.
+    """
+    # If source is a person, hash before using them in the IRI.
+    # Same as for the prov:Agent IRIs.
+    if source_type == "person":
+        source = _hash_person_for_iri(source)
+
+    return utils.rdf.uri_slugified(
+        utils.namespaces.DATASET_BDR,
+        "association/{source}/{role}",
+        source=source,
+        role=role,
+    )
+
+
+def delegation_iri(
+    role: Literal[
+        "processor",
+        "resourceProvider",
+    ],
+    person: str,
+    org: str,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a prov:Delegation node.
+
+    Args:
+        role: What Role the person had.
+        person: The person acting on behalf of an Organization.
+        org: The organization.
+
+    Returns:
+        The IRI for the prov:Association node.
+    """
+    person = _hash_person_for_iri(person)
+
+    return utils.rdf.uri_slugified(
+        utils.namespaces.DATASET_BDR,
+        "delegation/{person}/{org}/{role}",
+        person=person,
+        org=org,
+        role=role,
+    )
