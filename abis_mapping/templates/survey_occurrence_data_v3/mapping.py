@@ -320,7 +320,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             provider_identified = None
         sample_specimen = utils.iri_patterns.sample_iri(base_iri, "specimen", provider_record_id)
         sampling_specimen = utils.iri_patterns.sampling_iri(base_iri, "specimen", provider_record_id)
-        sample_sequence = utils.iri_patterns.sample_iri(base_iri, "sequence", provider_record_id)
+        result_sequence = utils.iri_patterns.result_iri(base_iri, "sequence", provider_record_id)
         sampling_sequencing = utils.iri_patterns.sampling_iri(base_iri, "sequencing", provider_record_id)
         if threat_status_determined_by := row["threatStatusDeterminedBy"]:
             provider_determined_by = utils.iri_patterns.agent_iri("person", threat_status_determined_by)
@@ -1191,7 +1191,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             row=row,
             dataset=dataset,
             feature_of_interest=sample_specimen,
-            sample_sequence=sample_sequence,
+            result_sequence=result_sequence,
             geometry=geometry,
             site_visit_id_temporal_map=site_visit_id_temporal_map,
             graph=graph,
@@ -1200,14 +1200,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         )
 
         # Add Sample Sequence
-        self.add_sample_sequence(
-            uri=sample_sequence,
+        self.add_result_sequence(
+            uri=result_sequence,
             row=row,
-            dataset=dataset,
-            feature_of_interest=sample_specimen,
-            sampling_sequencing=sampling_sequencing,
             graph=graph,
-            submission_iri=submission_iri,
         )
 
         # Add Provider Threat Status Determined By
@@ -3787,7 +3783,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         feature_of_interest: rdflib.URIRef,
-        sample_sequence: rdflib.URIRef,
+        result_sequence: rdflib.URIRef,
         geometry: models.spatial.Geometry | None,
         site_visit_id_temporal_map: dict[str, str] | None,
         graph: rdflib.Graph,
@@ -3802,7 +3798,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             dataset (rdflib.URIRef): Dataset this belongs to
             feature_of_interest (rdflib.URIRef): Feature of Interest associated
                 with this node
-            sample_sequence (rdflib.URIRef): Sample Sequence associated with
+            result_sequence (rdflib.URIRef): Result Sequence associated with
                 this node
             geometry: The geometry from this template or the Site template.
             site_visit_id_temporal_map (dict[str, str] | None): Map of site visit
@@ -3832,7 +3828,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequencing-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
-        graph.add((uri, rdflib.SOSA.hasResult, sample_sequence))
+        graph.add((uri, rdflib.SOSA.hasResult, result_sequence))
 
         # Declare temporal entity to allow correct assignment typechecks
         temporal_entity: rdflib.term.Node | None = None
@@ -3884,26 +3880,17 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             accuracy = rdflib.Literal(row["coordinateUncertaintyInMeters"], datatype=rdflib.XSD.double)
             graph.add((uri, utils.namespaces.GEO.hasMetricSpatialAccuracy, accuracy))
 
-    def add_sample_sequence(
+    def add_result_sequence(
         self,
         uri: rdflib.URIRef,
         row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        feature_of_interest: rdflib.URIRef,
-        sampling_sequencing: rdflib.URIRef,
         graph: rdflib.Graph,
-        submission_iri: rdflib.URIRef | None,
     ) -> None:
-        """Adds Sample Sequence to the Graph
+        """Adds Result Sequence to the Graph
 
         Args:
             uri (rdflib.URIRef): URI to use for this node.
             row (frictionless.Row): Row to retrieve data from
-            dataset (rdflib.URIRef): Dataset this belongs to
-            feature_of_interest (rdflib.URIRef): Feature of Interest associated
-                with this node
-            sampling_sequencing (rdflib.URIRef): Sampling Sequencing associated
-                with this node
             graph (rdflib.Graph): Graph to add to
         """
         # Check Existence
@@ -3911,16 +3898,10 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             return
 
         # Add to Graph
-        graph.add((uri, a, utils.namespaces.TERN.FeatureOfInterest))
-        if submission_iri:
-            graph.add((uri, rdflib.VOID.inDataset, submission_iri))
+        graph.add((uri, a, utils.namespaces.TERN.Result))
 
-        graph.add((uri, a, utils.namespaces.TERN.Sample))
-        graph.add((uri, rdflib.SDO.isPartOf, dataset))
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("sequence-sample")))
-        graph.add((uri, rdflib.SOSA.isResultOf, sampling_sequencing))
-        graph.add((uri, rdflib.SOSA.isSampleOf, feature_of_interest))
-        graph.add((uri, utils.namespaces.TERN.featureType, CONCEPT_SEQUENCE))
+        # Add Label
+        graph.add((uri, rdflib.RDFS.label, rdflib.Literal("sequence-result")))
 
         # Loop Through Associated Sequences
         for identifier in row["associatedSequences"]:

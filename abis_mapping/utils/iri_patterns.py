@@ -375,6 +375,30 @@ def sample_iri(
     )
 
 
+def result_iri(
+    base_iri: rdflib.Namespace,
+    result_type: Literal["specimen", "sequence"],
+    provider_record_id: str,
+    /,
+) -> rdflib.URIRef:
+    """Get the IRI to use for a tern:Result node.
+
+    Args:
+        base_iri: Namespace to construct the IRI from.
+        result_type: The result type, e.g. "sequence"
+        provider_record_id: The providerRecordID field from the template.
+
+    Returns:
+        The IRI for the tern:Result node.
+    """
+    return utils.rdf.uri_quoted(
+        base_iri,
+        "result/{result_type}/{provider_record_id}",
+        result_type=result_type,
+        provider_record_id=provider_record_id,
+    )
+
+
 def sampling_iri(
     base_iri: rdflib.Namespace,
     sampling_type: Literal["specimen", "sequencing"],
