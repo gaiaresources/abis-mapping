@@ -1089,6 +1089,16 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> .
 
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/sequence/8022FSJMJ079c5cf> a tern:Result ;
+    rdfs:label "sequence-result" ;
+    schema:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
+        "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/sequence/ABC123> a tern:Result ;
+    rdfs:label "sequence-result" ;
+    schema:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
+        "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" .
+
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/adult> a tern:IRI,
         tern:Value ;
     rdfs:label "lifeStage-value" ;
@@ -1133,27 +1143,31 @@
         tern:Value ;
     rdf:value "Calothamnus lateralis var. crassus" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/sequence/8022FSJMJ079c5cf> a tern:FeatureOfInterest,
-        tern:Sample ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/8022FSJMJ079c5cf> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    rdfs:comment "sequence-sample" ;
-    sosa:isResultOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/8022FSJMJ079c5cf> ;
-    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
-    schema:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
-        "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:featureType <http://example.com/concept/sequence> .
+    geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000001 ;
+    geo:hasMetricSpatialAccuracy 5e+01 ;
+    rdfs:comment "sequencing-sampling" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/sequence/8022FSJMJ079c5cf> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/sequence/ABC123> a tern:FeatureOfInterest,
-        tern:Sample ;
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    rdfs:comment "sequence-sample" ;
-    sosa:isResultOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> ;
-    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
-    schema:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
-        "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:featureType <http://example.com/concept/sequence> .
+    geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000003 ;
+    geo:hasMetricSpatialAccuracy 3e+01 ;
+    rdfs:comment "sequencing-sampling" ;
+    time:hasTime [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/sequence/ABC123> ;
+    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/HumanObservation> a tern:IRI,
         tern:Value ;
@@ -1552,32 +1566,6 @@
     sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/2e122e23-881c-43fa-a921-a8745f016ceb> .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/8022FSJMJ079c5cf> a tern:Sampling ;
-    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000001 ;
-    geo:hasMetricSpatialAccuracy 5e+01 ;
-    rdfs:comment "sequencing-sampling" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/sequence/8022FSJMJ079c5cf> ;
-    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> a tern:Sampling ;
-    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000003 ;
-    geo:hasMetricSpatialAccuracy 3e+01 ;
-    rdfs:comment "sequencing-sampling" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
-    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/sequence/ABC123> ;
-    sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/13> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
