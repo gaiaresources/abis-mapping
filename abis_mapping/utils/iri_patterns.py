@@ -212,8 +212,8 @@ def datatype_iri(
         URIRef for the rdfs:Datatype node.
     """
     return utils.rdf.uri_slugified(
-        utils.namespaces.BDR_DATATYPES,
-        "{identifier_type}/{identifier_source}",
+        utils.namespaces.DATASET_BDR,
+        "datatypes/{identifier_type}/{identifier_source}",
         identifier_type=identifier_type,
         identifier_source=identifier_source,
     )

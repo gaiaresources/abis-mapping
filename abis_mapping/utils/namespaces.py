@@ -17,5 +17,4 @@ ABIS = rdflib.Namespace("https://linked.data.gov.au/def/abis/")
 
 # Namespaces used for IRIs, but not bound to the graph
 LINKED_DATA = rdflib.Namespace("https://linked.data.gov.au/")
-BDR_DATATYPES = rdflib.Namespace("https://linked.data.gov.au/dataset/bdr/datatypes/")
 DATASET_BDR = rdflib.Namespace("https://linked.data.gov.au/dataset/bdr/")
