@@ -89,6 +89,7 @@ site/
 !/docs/pages/archived_templates/*.md
 !/docs/pages/index.md
 /docs/pages/index.html
+!/docs/pages/submission_properties.md
 
 # dotenv settings file
 abis_mapping.env
