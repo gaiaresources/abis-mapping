@@ -826,12 +826,12 @@
 <https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP> a rdfs:Datatype ;
     skos:definition "A catalog number for the sample" ;
     skos:prefLabel "BHP catalogNumber" ;
-    prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/org/BHP> .
+    prov:wasAttributedTo <https://linked.data.gov.au/org/BHP> .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> a rdfs:Datatype ;
     skos:definition "A catalog number for the sample" ;
     skos:prefLabel "WAM catalogNumber" ;
-    prov:wasAttributedTo <https://linked.data.gov.au/dataset/bdr/org/WAM> .
+    prov:wasAttributedTo <https://linked.data.gov.au/org/WAM> .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Stream-Environment-and-Water-Pty-Ltd> a rdfs:Datatype ;
     skos:definition "An identifier for the record" ;
@@ -1264,7 +1264,7 @@
     rdf:value <http://example.com/species> .
 
 <https://linked.data.gov.au/dataset/bdr/attribution/Stream-Environment-and-Water-Pty-Ltd/owner> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> ;
+    prov:agent <https://linked.data.gov.au/org/Stream-Environment-and-Water-Pty-Ltd> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/owner> .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/basisOfRecord/new-basis-of-record> a skos:Concept ;
@@ -1496,12 +1496,6 @@
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
-<https://linked.data.gov.au/dataset/bdr/org/BHP> a prov:Agent ;
-    schema:name "BHP" .
-
-<https://linked.data.gov.au/dataset/bdr/org/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
-    schema:name "Stream Environment and Water Pty Ltd" .
-
 <https://linked.data.gov.au/dataset/bdr/person/c6c0efa61d3303c1> a prov:Agent ;
     schema:name "Test Pty Ltd" .
 
@@ -1512,6 +1506,12 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:identifier "MR-S1"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> .
+
+<https://linked.data.gov.au/org/BHP> a prov:Agent ;
+    schema:name "BHP" .
+
+<https://linked.data.gov.au/org/Stream-Environment-and-Water-Pty-Ltd> a prov:Agent ;
+    schema:name "Stream Environment and Water Pty Ltd" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/MR-R1> a tern:Survey ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
@@ -1604,7 +1604,7 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
 <https://linked.data.gov.au/dataset/bdr/attribution/WAM/resourceProvider> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/org/WAM> ;
+    prov:agent <https://linked.data.gov.au/org/WAM> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> a skos:Concept ;
@@ -1627,7 +1627,7 @@
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
-<https://linked.data.gov.au/dataset/bdr/org/WAM> a prov:Agent ;
+<https://linked.data.gov.au/org/WAM> a prov:Agent ;
     schema:name "WAM" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8022FSJMJ079c5cf> a tern:Observation ;

@@ -105,11 +105,11 @@
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/Insecta> .
 
 <https://linked.data.gov.au/dataset/bdr/attribution/CSIRO/principalInvestigator> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/org/CSIRO> ;
+    prov:agent <https://linked.data.gov.au/org/CSIRO> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> .
 
 <https://linked.data.gov.au/dataset/bdr/attribution/NSW-Department-of-Planning-Industry-and-Environment/principalInvestigator> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/org/NSW-Department-of-Planning-Industry-and-Environment> ;
+    prov:agent <https://linked.data.gov.au/org/NSW-Department-of-Planning-Industry-and-Environment> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/principalInvestigator> .
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/targetTaxonomicScope/Coleoptera> a skos:Concept ;
@@ -132,10 +132,10 @@
     skos:scopeNote "This concept is proposed as a member of this scheme: http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924" ;
     schema:citation "https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000"^^xsd:anyURI .
 
-<https://linked.data.gov.au/dataset/bdr/org/CSIRO> a prov:Agent ;
+<https://linked.data.gov.au/org/CSIRO> a prov:Agent ;
     schema:name "CSIRO" .
 
-<https://linked.data.gov.au/dataset/bdr/org/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
+<https://linked.data.gov.au/org/NSW-Department-of-Planning-Industry-and-Environment> a prov:Agent ;
     schema:name "NSW Department of Planning, Industry and Environment" .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> a tern:Survey ;
