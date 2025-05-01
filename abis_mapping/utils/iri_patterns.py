@@ -212,8 +212,8 @@ def datatype_iri(
         URIRef for the rdfs:Datatype node.
     """
     return utils.rdf.uri_slugified(
-        utils.namespaces.BDR_DATATYPES,
-        "{identifier_type}/{identifier_source}",
+        utils.namespaces.DATASET_BDR,
+        "datatypes/{identifier_type}/{identifier_source}",
         identifier_type=identifier_type,
         identifier_source=identifier_source,
     )
@@ -243,8 +243,13 @@ def agent_iri(
     if agent_type == "person":
         agent = _hash_person_for_iri(agent)
 
+    if agent_type == "org":
+        namespace = utils.namespaces.LINKED_DATA
+    else:
+        namespace = utils.namespaces.DATASET_BDR
+
     return utils.rdf.uri_slugified(
-        utils.namespaces.DATASET_BDR,
+        namespace,
         "{agent_type}/{agent}",
         agent_type=agent_type,
         agent=agent,

@@ -56,10 +56,10 @@
     rdf:value <https://linked.data.gov.au/def/nrm/ac2238c8-b7bc-5a89-8cc3-774bc3a53064> .
 
 <https://linked.data.gov.au/dataset/bdr/attribution/WAM/resourceProvider> a prov:Attribution ;
-    prov:agent <https://linked.data.gov.au/dataset/bdr/org/WAM> ;
+    prov:agent <https://linked.data.gov.au/org/WAM> ;
     prov:hadRole <https://linked.data.gov.au/def/data-roles/resourceProvider> .
 
-<https://linked.data.gov.au/dataset/bdr/org/WAM> a prov:Agent ;
+<https://linked.data.gov.au/org/WAM> a prov:Agent ;
     schema:name "WAM" .
 
 <https://example.com/site/WAM/P0> a tern:Site ;
