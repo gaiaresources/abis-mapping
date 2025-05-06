@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://gaiaresources.github.io/abis-mappping/latest/incidental_occurrence_delete-v1.0.0.csv/">
+        <link rel="canonical" href="https://gaiaresources.github.io/abis-mappping/latest/submission_properties/">
       
       
-        <link rel="prev" href="../incidental_occurrence_data-v3.0.0.csv/">
+        <link rel="prev" href="../incidental_occurrence_delete-v1.0.0.csv/">
       
       
-        <link rel="next" href="../submission_properties/">
+        <link rel="next" href="../survey_metadata-v3.0.0.csv/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,8 +22,7 @@
     
     
       
-        <title>Incidental Occurrence Delete Template - v1.0.0
-- Beta - BDR ABIS Mapping</title>
+        <title>Submission Properties Form - BDR ABIS Mapping</title>
       
     
     
@@ -65,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#incidental-occurrence-delete-template-instructions" class="md-skip">
+        <a href="#submission-properties-form-instructions" class="md-skip">
           Skip to content
         </a>
       
@@ -105,8 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Incidental Occurrence Delete Template - v1.0.0
-- Beta
+              Submission Properties Form
             
           </span>
         </div>
@@ -205,6 +203,27 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../incidental_occurrence_delete-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Delete Template - v1.0.0
+- Beta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -221,8 +240,7 @@
           
   
   <span class="md-ellipsis">
-    Incidental Occurrence Delete Template - v1.0.0
-- Beta
+    Submission Properties Form
   </span>
   
 
@@ -233,8 +251,7 @@
         
   
   <span class="md-ellipsis">
-    Incidental Occurrence Delete Template - v1.0.0
-- Beta
+    Submission Properties Form
   </span>
   
 
@@ -265,77 +282,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-validation-requirements" class="md-nav__link">
+  <a href="#form-fields" class="md-nav__link">
     <span class="md-ellipsis">
-      Data Validation Requirements:
+      Form Fields
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Data Validation Requirements:">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#file-format" class="md-nav__link">
-    <span class="md-ellipsis">
-      FILE FORMAT
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#file-name" class="md-nav__link">
-    <span class="md-ellipsis">
-      FILE NAME
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#file-size" class="md-nav__link">
-    <span class="md-ellipsis">
-      FILE SIZE
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#template-fields" class="md-nav__link">
-    <span class="md-ellipsis">
-      TEMPLATE FIELDS
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#appendices" class="md-nav__link">
-    <span class="md-ellipsis">
-      APPENDICES
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="APPENDICES">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#appendix-i-utf-8" class="md-nav__link">
-    <span class="md-ellipsis">
-      APPENDIX-I: UTF-8
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -343,26 +294,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../submission_properties/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Submission Properties Form
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -730,129 +661,346 @@
   
 
 
-<p><small>
-<strong>abis-mapping</strong> v8.0.0rc1 &emsp; <strong>incidental_occurrence_delete</strong> v1.0.0
-</small></p>
-<div class="admonition warning">
-<p class="admonition-title">Template In Beta</p>
-<p>This Template is in Beta, and may not be ready for use.
-Changes to the Template may be made before it is ready for use.</p>
-</div>
-<h1 id="incidental-occurrence-delete-template-instructions">INCIDENTAL OCCURRENCE DELETE TEMPLATE INSTRUCTIONS</h1>
+<h1 id="submission-properties-form-instructions">SUBMISSION PROPERTIES FORM INSTRUCTIONS</h1>
 <h2 id="intended-usage">Intended Usage</h2>
-<p>This Incidental Occurrence Delete template should be used to delete occurrence data.</p>
-<h2 id="data-validation-requirements">Data Validation Requirements:</h2>
-<p>For data validation, you will need your data file to:</p>
+<p>This submission properties form must be filled by data providers to provide the
+BDR (Biodiversity Data Repository) with provenance metadata (i.e. dataset and
+project related information) about their datasets.
+This ensures proper documentation, licensing, and contextual understanding of
+the datasets contributed to the BDR.
+The form is a requirement for successful upload of data to the BDR.</p>
+<h2 id="form-fields">Form Fields</h2>
+<p>The tables below will assist you in filling different sections of the submission properties form.</p>
+<p>Table column definitions:</p>
 <ul>
-<li>be the correct <strong>file format,</strong></li>
-<li>have <strong>fields that match the template downloaded</strong> (do not remove, or change the order of fields),</li>
-<li>have extant values in <strong>mandatory fields</strong> (see Table 1),</li>
-</ul>
-<h3 id="file-format">FILE FORMAT</h3>
-<ul>
-<li>The incidental occurrence data template is a <a href="#appendix-i-utf-8">UTF-8</a> encoded csv (not Microsoft
-Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8) as follows,
-otherwise it will not pass the csv validation step upon upload.
-<br><code>[MS Excel: Save As &gt; More options &gt; Tools &gt; Web options &gt; Save this document as &gt;
-Unicode (UTF-8)]</code></li>
-<li><strong>Do not include empty rows</strong>.</li>
-</ul>
-<h3 id="file-name">FILE NAME</h3>
-<p>When making a manual submission to the Biodiversity Data Repository,
-the file name must include the version number
-of this biodiversity data template (<code>v1.0.0</code>).
-The following format is an example of a valid file name:</p>
-<p><code>data_descripion-v1.0.0-additional_description.csv</code></p>
-<p>where:</p>
-<ul>
-<li><code>data_description</code>: A short description of the data (e.g. <code>incidental_occ</code>, <code>test_data</code>).</li>
-<li><code>v1.0.0</code>: The version number of this template.</li>
-<li><code>additional_description</code>: (Optional) Additional description of the data, if needed (e.g. <code>test_data</code>).</li>
-<li><code>.csv</code>: Ensure the file name ends with <code>.csv</code>.</li>
-</ul>
-<p>For example, <code>incidental_occ_delete-v1.0.0-test_data.csv</code> or <code>test_data-v1.0.0.csv</code></p>
-<h3 id="file-size">FILE SIZE</h3>
-<p>MS Excel imposes a limit of 1,048,576 rows on a spreadsheet, limiting a CSV file to the
-header row followed by 1,048,575 occurrences. Furthermore, MS Excel has a 32,767 character
-limit on individual cells in a spreadsheet. These limits may be overcome by using or
-editing CSV files with other software.</p>
-<p>Larger datasets may be more readily ingested using the API interface. Please contact
-<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
-<h2 id="template-fields">TEMPLATE FIELDS</h2>
-<p>The template contains the field names in the top row. Table 1 will assist you in transferring
-your data to the template indicating:</p>
-<ul>
-<li><strong>Field name</strong> in the template;</li>
+<li><strong>Front-End Field name</strong> in the form;</li>
+<li><strong>Back-End Field name</strong> in the API;</li>
 <li><strong>Description</strong> of the field;</li>
-<li><strong>Required</strong> i.e. whether the field is <strong><font color="Crimson">mandatory</font>,
-<font color="DarkGoldenRod">conditionally mandatory</font>, or optional</strong>;</li>
-<li><strong>Format</strong> (datatype) required for the data values for example text (string), number
-  (integer, float), or date;</li>
-<li><strong>Example</strong> of an entry or entries for that field;</li>
+<li><strong>Required</strong> i.e. whether the field is <font color="Crimson">mandatory</font> or optional; and</li>
+<li><strong>Example</strong> of an entry for the field;</li>
 </ul>
-<p><ins>Table 1: Incidental occurrence delete template fields with descriptions, conditions,
-datatype format, and examples.</ins></p>
+<p><ins>Provider details</ins></p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">Field #</th>
-<th style="text-align: left;">Name</th>
-<th style="text-align: left;">Description</th>
-<th style="text-align: center;">Mandatory / Optional</th>
-<th style="text-align: center;">Datatype Format</th>
-<th style="text-align: left;">Examples</th>
+<th>Front-End Field Name</th>
+<th>Back-End Field Name</th>
+<th>Description</th>
+<th>Mandatory / Optional</th>
+<th>Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">1</td>
-<td style="text-align: left;"><a name="providerRecordID-field"></a>providerRecordID</td>
-<td style="text-align: left;">Unique (within provider) identifier for the record.</td>
-<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
-<td style="text-align: center;">String</td>
-<td style="text-align: left;">8022FSJMJ079c5cf</td>
+<td>Your name</td>
+<td>provider_name</td>
+<td>The name of the person or team submitting the dataset. This helps identify the provider for communication regarding the data submission.</td>
+<td><strong><font color="Crimson">Mandatory</font></strong></td>
+<td>DCCEEW BDR team</td>
 </tr>
 <tr>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;"><a name="providerRecordIDSource-field"></a>providerRecordIDSource</td>
-<td style="text-align: left;">Person or Organisation that generated the providerRecordID.</td>
-<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
-<td style="text-align: center;">String</td>
-<td style="text-align: left;">Western Australian Biodiversity Information Office</td>
+<td>Your organisation</td>
+<td>provider_organisation</td>
+<td>The name of the organisation responsible for submitting the dataset. This could be a government department, private company, or academic institution. Please use your organisation’s registered name with the BDR if it exists.</td>
+<td><strong><font color="Crimson">Mandatory</font></strong></td>
+<td>DCCEEW</td>
+</tr>
+<tr>
+<td>Your organisation's website address</td>
+<td>provider_organisation_url</td>
+<td>The website address for your organisation. This helps data users find additional information about the dataset provider.</td>
+<td>Optional</td>
+<td>https://www.dcceew.gov.au/</td>
 </tr>
 </tbody>
 </table>
-<h2 id="appendices">APPENDICES</h2>
-<h3 id="appendix-i-utf-8">APPENDIX-I: UTF-8</h3>
-<p>UTF-8 encoding is considered a best practice for handling character encoding, especially in
-the context of web development, data exchange, and modern software systems. UTF-8
-(Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
-encoding all possible characters (code points) in Unicode.<br/>
-Here are some reasons why UTF-8 is recommended:</p>
-<ul>
-<li><strong>Universal Character Support:</strong> UTF-8 can represent almost all characters from all writing 
-  systems in use today. This includes characters from various languages, mathematical symbols, 
-  and other special characters.</li>
-<li><strong>Backward Compatibility:</strong> UTF-8 is backward compatible with ASCII (American
-Standard Code for Information Interchange). The first 128 characters in UTF-8 are
-identical to ASCII, making it easy to work with systems that use ASCII.</li>
-<li><strong>Efficiency:</strong> UTF-8 is space-efficient for Latin-script characters (common in English
-and many other languages). It uses one byte for ASCII characters and up to four
-bytes for other characters. This variable-length encoding minimises storage and
-bandwidth requirements.</li>
-<li><strong>Web Standards:</strong> UTF-8 is the dominant character encoding for web content. It is
-widely supported by browsers, servers, and web-related technologies.</li>
-<li><strong>Globalisation:</strong> As software applications become more globalised, supporting a wide
-range of languages and scripts becomes crucial. UTF-8 is well-suited for
-internationalisation and multilingual support.</li>
-<li><strong>Compatibility with Modern Systems:</strong> UTF-8 is the default encoding for many
-programming languages, databases, and operating systems. Choosing UTF-8 helps
-ensure compatibility across different platforms and technologies.</li>
-</ul>
-<p>When working with text data, it's generally a good idea to use UTF-8 encoding to avoid
-issues related to character representation and ensure that your software can handle a
-diverse set of characters and languages.</p>
-<p>For assistance, please contact: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a></p>
+<p><ins>Dataset information</ins></p>
+<table>
+<thead>
+<tr>
+<th>Front-End Field Name</th>
+<th>Back-End Field Name</th>
+<th>Description</th>
+<th>Mandatory / Optional</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Your name for the dataset</td>
+<td>dataset_name</td>
+<td>Provide a short, descriptive title for your dataset. This will be displayed in the system and should help users understand the nature of the data at a glance.</td>
+<td><strong><font color="Crimson">Mandatory</font></strong></td>
+<td>Pilot Monitoring Evaluation and Research Network: fire and weeds project - Vegetation composition and structure data</td>
+</tr>
+<tr>
+<td>Your dataset identifier (if you have one)</td>
+<td>dataset_identifier</td>
+<td>A unique identifier for your dataset, if available. This could be an internal code, accession number, or a reference used within your organisation to track this data.</td>
+<td>Optional</td>
+<td>MER-SSD-plot-PI-dataset-001</td>
+</tr>
+<tr>
+<td>A short description of your dataset</td>
+<td>dataset_description</td>
+<td>Write a brief summary describing the dataset's contents, purpose, and significance. This helps users determine the relevance of the data for their needs.</td>
+<td>Optional</td>
+<td>Vegetation data collected using the MER pilot network's Vegetation Composition and Structure Module</td>
+</tr>
+</tbody>
+</table>
+<p><ins>Dataset custodian information</ins></p>
+<table>
+<thead>
+<tr>
+<th>Front-End Field Name</th>
+<th>Back-End Field Name</th>
+<th>Description</th>
+<th>Mandatory / Optional</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dataset custodian organisation</td>
+<td>dataset_custodian_organisation</td>
+<td>The organisation that accepts accountability and responsibility for the dataset and ensures appropriate care and maintenance of the dataset. Please use your organisation’s registered name with the BDR if it exists.</td>
+<td><strong><font color="Crimson">Mandatory</font></strong></td>
+<td>Department of Environment</td>
+</tr>
+<tr>
+<td>Dataset custodian organisation URL</td>
+<td>dataset_custodian_organisation_url</td>
+<td>Website of the dataset custodian organisation.</td>
+<td><strong><font color="Crimson">Mandatory</font></strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Custodian contact email</td>
+<td>dataset_custodian_organisation_email</td>
+<td>Email that will reach the dataset custodian organisation if there are queries about the dataset. Preferably a generic email address.</td>
+<td><strong><font color="Crimson">Mandatory</font></strong></td>
+<td>info@environment.xxx.gov.au</td>
+</tr>
+<tr>
+<td>Custodian contact position</td>
+<td>dataset_custodian_organisation_contact_position</td>
+<td>The position held by the contact point for the dataset.</td>
+<td>Optional</td>
+<td>Data manager</td>
+</tr>
+<tr>
+<td>Name of the individual or organisation that holds the rights to the data (if different to the custodian)</td>
+<td>dataset_data_rights_holder</td>
+<td>The organisation that is owning or managing rights over the dataset. Provide if different to the Dataset custodian organisation. Please use the organisation’s registered name with the BDR if it exists.</td>
+<td>Optional</td>
+<td>Department of Environment</td>
+</tr>
+</tbody>
+</table>
+<p><ins>Embargoes</ins></p>
+<table>
+<thead>
+<tr>
+<th>Front-End Field Name</th>
+<th>Back-End Field Name</th>
+<th>Description</th>
+<th>Mandatory / Optional</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does this dataset need to be embargoed?</td>
+<td>dataset_needs_to_be_embargoed</td>
+<td>Indicate whether the dataset should be restricted from public access for a specified period (Yes/No).</td>
+<td><strong><font color="Crimson">Mandatory</font></strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Reasons for embargo</td>
+<td>dataset_reasons_for_embargo</td>
+<td>Provide a reason for why the dataset needs to be embargoed. For example, pending publication, legal reasons, or financial reasons. <br/><br/> Reasons for embargo may include sensitive data, ongoing analysis, or legal restrictions. Categorical list of reasons are provided from the BDR’s controlled vocabulary.</td>
+<td>Optional</td>
+<td>The data is unpublished and I wish to embargo until publication.</td>
+</tr>
+<tr>
+<td>Embargo until</td>
+<td>dataset_embargo_end_date</td>
+<td>Specify the date until which the dataset should remain embargoed. After this date, the dataset will be publicly accessible.</td>
+<td>Optional</td>
+<td>2025-02-28</td>
+</tr>
+</tbody>
+</table>
+<p><ins>Conservation-listed and trade-sensitive taxa</ins></p>
+<table>
+<thead>
+<tr>
+<th>Front-End Field Name</th>
+<th>Back-End Field Name</th>
+<th>Description</th>
+<th>Mandatory / Optional</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I have generalised records of some species. These are indicated in the template.</td>
+<td>dataset_has_generalised_records</td>
+<td>Confirm whether the dataset includes records that have been obfuscated/generalised (Yes/No).</td>
+<td>Optional</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Data generalisation description</td>
+<td>dataset_data_generalisations</td>
+<td>A text description of how records have been obfuscated/generalised in this dataset compared to a complete version of the dataset.</td>
+<td>Optional</td>
+<td>The specific location of some sightings are obfuscated to a 10 km squared bounding box, as indicated in the record.</td>
+</tr>
+<tr>
+<td>Information withheld</td>
+<td>dataset_information_withheld</td>
+<td>A text description of any portion of the data that has been withheld in this dataset compared to a complete version of the dataset.</td>
+<td>Optional</td>
+<td>Location descriptions have been withheld for some sites and sightings.</td>
+</tr>
+</tbody>
+</table>
+<p><ins>Privacy and licensing</ins></p>
+<table>
+<thead>
+<tr>
+<th>Front-End Field Name</th>
+<th>Back-End Field Name</th>
+<th>Description</th>
+<th>Mandatory / Optional</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Terms and conditions</td>
+<td>sharing_agreement</td>
+<td>Agree to the terms and conditions for data sharing as specified by the system. This agreement ensures that the data provider understands and consents to the platform's data use policies.</td>
+<td><strong><font color="Crimson">Mandatory</font></strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>I provide these data under the following licence</td>
+<td>dataset_license</td>
+<td>Specify the licensing conditions under which the dataset is being shared. For example, CC BY 4.0 allows users to share and adapt the data with attribution. Data providers must choose between the following options: CC0, CC BY 4.0, Data Licence Agreement via Reference Number, Standard License via URL, Standard License via email, License described via Access Rights and Use Restrictions. Some options require additional input.</td>
+<td><strong><font color="Crimson">Mandatory</font></strong></td>
+<td>CC BY 4.0</td>
+</tr>
+<tr>
+<td>Reference number</td>
+<td>dataset_license_reference_number</td>
+<td>The reference number for the license if 'Data Licence Agreement via Reference Number' is chosen for dataset_license.</td>
+<td>Optional</td>
+<td>Intergovt-Biodiversity-MOU-202506</td>
+</tr>
+<tr>
+<td>License URL</td>
+<td>dataset_license_url</td>
+<td>The URL that describes the license conditions if 'Standard License via URL' is chosen for dataset_license.</td>
+<td>Optional</td>
+<td>https://www.tern.org.au/datalicence/</td>
+</tr>
+<tr>
+<td>Data access rights</td>
+<td>dataset_access_rights</td>
+<td>A text description of any restrictions on access to this dataset. Required when 'License described via Access Rights and Use Restrictions' is chosen for dataset_license.</td>
+<td>Optional</td>
+<td>Open access. To access the full dataset a data licence must be obtained from BioEnviroNet see https://bioenvironet.xxx.gov.au/data-licence-application</td>
+</tr>
+<tr>
+<td>Data use restrictions</td>
+<td>dataset_use_restrictions</td>
+<td>A text description of any specific use constraints on this dataset. Required when 'License described via Access Rights and Use Restrictions' is chosen for dataset_license.</td>
+<td>Optional</td>
+<td>There are no additional restrictions on this dataset.</td>
+</tr>
+</tbody>
+</table>
+<p><ins>Project information (optional)</ins></p>
+<table>
+<thead>
+<tr>
+<th>Front-End Field Name</th>
+<th>Back-End Field Name</th>
+<th>Description</th>
+<th>Mandatory / Optional</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project identifier</td>
+<td>project_identifier</td>
+<td>Identifier for the Project. The Project can include multiple individual surveys. It has a strategic plan in pursuit of a big picture objective.</td>
+<td>Optional</td>
+<td>K-23</td>
+</tr>
+<tr>
+<td>Project referral identifier</td>
+<td>project_referral_identifier</td>
+<td>If applicable (or other Department project or funding ID)</td>
+<td>Optional</td>
+<td>FD-K-23</td>
+</tr>
+<tr>
+<td>Project title</td>
+<td>project_title</td>
+<td>The title of the Project.</td>
+<td>Optional</td>
+<td>Long term North East Reserve koala monitoring.</td>
+</tr>
+<tr>
+<td>Principal investigator organisation</td>
+<td>project_principal_investigator</td>
+<td>Key party responsible for gathering information and conducting research.</td>
+<td>Optional</td>
+<td>Koala Watch</td>
+</tr>
+<tr>
+<td>Contributor Organisation</td>
+<td>project_contributor_organisation</td>
+<td>Party contributing to the Project.</td>
+<td>Optional</td>
+<td>Friends of the North East Reserve</td>
+</tr>
+<tr>
+<td>Funding Organisation</td>
+<td>project_funding_organisation</td>
+<td>One or more parties that have funded the Project.</td>
+<td>Optional</td>
+<td>DCCEEW</td>
+</tr>
+<tr>
+<td>Project description</td>
+<td>project_description</td>
+<td>A description of the Project.</td>
+<td>Optional</td>
+<td>Long term monitoring of koalas from the North East Reserve. Official surveys are conducted seasonally, four times per year. Ad hoc sightings are also recorded and shared by local residents and friends of the reserve.</td>
+</tr>
+<tr>
+<td>Project start date</td>
+<td>project_start_date</td>
+<td>Date the project started. This date may precede the first survey.</td>
+<td>Optional</td>
+<td>2023-02-01</td>
+</tr>
+<tr>
+<td>Project end date</td>
+<td>project_end_date</td>
+<td>End date of the project. Leave blank if the Project is still in progress.</td>
+<td>Optional</td>
+<td>2025-02-01</td>
+</tr>
+</tbody>
+</table>
 
 
 
