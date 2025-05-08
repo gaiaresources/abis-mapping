@@ -22,28 +22,28 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "organismQuantity-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/A0010> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismQuantity/0-05> ;
     sosa:hasSimpleResult "0.05 percentageCoverage" ;
     sosa:observedProperty <http://example.com/concept/organismQuantity> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/A0010> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-24"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/A0010> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Calothamnus-lateralis-var-crassus> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-24"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/recordID/Gaia-Resources> a rdfs:Datatype ;
     skos:definition "An identifier for the record" ;

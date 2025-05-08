@@ -1436,7 +1436,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         site_visit_id_temporal_map: dict[str, str] | None,
         row: frictionless.Row,
         graph: rdflib.Graph,
-        predicate: rdflib.URIRef = rdflib.TIME.hasTime,
     ) -> rdflib.term.Node | None:
         """Adds a default temporal entity BNode to the graph.
 
@@ -1448,7 +1447,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 temporal entity.
             row (frictionless.Row): Raw data.
             graph (rdflib.Graph): The graph to be modified.
-            predicate: The predicate to link the uri with the temporal entity.
 
         Returns:
             rdflib.BNode | None: Reference to the top level blank node of the
@@ -1474,8 +1472,8 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Refer to https://rdflib.readthedocs.io/en/stable/merging.html for more information.
         graph += temp_graph
 
-        # Add property to uri node, using predicate specified or time:hasTime.
-        graph.add((uri, predicate, top_node))
+        # Add property to uri node
+        graph.add((uri, rdflib.SDO.temporal, top_node))
 
         # Return reference to TemporalEntity
         return top_node
@@ -1535,7 +1533,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         temporal_entity: rdflib.term.Node | None = None
         if date_identified is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
             graph.add((uri, rdflib.SOSA.usedProcedure, term))
@@ -1627,7 +1625,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check to see if date provided from own template
         if date_identified is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
             graph.add((uri, rdflib.SOSA.usedProcedure, term))
@@ -2151,7 +2149,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check to see date already found
         if timestamp is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, timestamp.rdf_in_xsd, timestamp.to_rdf_literal()))
             # Check for preparedDate
@@ -2587,7 +2585,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check event date supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment
@@ -2687,7 +2685,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check for eventDateStart
         if event_date is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment to temporal entity
@@ -3044,7 +3042,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check event date supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         else:
@@ -3265,7 +3263,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check eventDateStart supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment to temporal entity
@@ -3382,7 +3380,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check eventDateStart supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
@@ -3499,7 +3497,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check eventDateStart provided
         if event_date is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment to temporal entity
@@ -3616,7 +3614,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check eventDateStart provided
         if event_date is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment to temporal entity
@@ -3722,7 +3720,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check date supplied within template
         if date_identified is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
             # Add comment to temporal entity
@@ -3835,7 +3833,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Determine eventDateStart supplied
         if event_date is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             graph.add((uri, rdflib.SOSA.usedProcedure, term))
@@ -3994,7 +3992,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check date provided within template
         if date_determined is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, date_determined.rdf_in_xsd, date_determined.to_rdf_literal()))
             # Check for threatStatusDeterminedBy
@@ -4227,7 +4225,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Check eventDateStart provided
         if event_date is not None:
             temporal_entity = rdflib.BNode()
-            graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+            graph.add((uri, rdflib.SDO.temporal, temporal_entity))
             graph.add((temporal_entity, a, rdflib.TIME.Instant))
             graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
             # Add comment to temporal entity
@@ -4712,7 +4710,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 site_visit_id_temporal_map=site_visit_id_temporal_map,
                 row=row,
                 graph=graph,
-                predicate=rdflib.SDO.temporal,
             )
             # Add comment to temporal entity
             if default_temporal_node is not None:

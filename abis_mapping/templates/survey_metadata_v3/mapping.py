@@ -594,7 +594,7 @@ class SurveyMetadataMapper(base.mapper.ABISMapper):
             graph.add((temporal_coverage, start_date.rdf_in_xsd, start_date.to_rdf_literal()))
 
         # Attach to survey node
-        graph.add((uri, rdflib.TIME.hasTime, temporal_coverage))
+        graph.add((uri, rdflib.SDO.temporal, temporal_coverage))
 
     def add_survey_id_source_datatypes(
         self,

@@ -245,583 +245,583 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/acceptedNameUsage/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "acceptedNameUsage-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
-            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://example.com/methods/name-check-method> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/acceptedNameUsage/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "acceptedNameUsage-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
-            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://example.com/methods/name-check-method> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/establishmentMeans/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "establishmentMeans-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/native> ;
     sosa:hasSimpleResult "native" ;
     sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/establishmentMeans/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "establishmentMeans-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/new-establishment-means> ;
     sosa:hasSimpleResult "new establishment means" ;
     sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/individualCount/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "individualCount-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/2> ;
     sosa:hasSimpleResult 2 ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/individualCount/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "individualCount-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/6> ;
     sosa:hasSimpleResult 6 ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/occurrenceStatus/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "occurrenceStatus-observation" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/present> ;
     sosa:hasSimpleResult "present" ;
     sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/occurrenceStatus/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "occurrenceStatus-observation" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/new-occurrence-status> ;
     sosa:hasSimpleResult "new occurrence status" ;
     sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/organismRemarks/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "organismRemarks-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Dried-out-leaf-tips> ;
     sosa:hasSimpleResult "Dried out leaf tips" ;
     sosa:observedProperty <http://example.com/concept/organismRemarks> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/organismRemarks/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "organismRemarks-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Leaves-brown> ;
     sosa:hasSimpleResult "Leaves brown" ;
     sosa:observedProperty <http://example.com/concept/organismRemarks> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/1> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Calothamnus-lateralis-var-crassus> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/10> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/12> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/12> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/13> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/2> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/3> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/4> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/5> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/6> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/7> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/9> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/lifeStage/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "lifeStage-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/adult> ;
     sosa:hasSimpleResult "adult" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/lifeStage/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "lifeStage-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/new-life-stage> ;
     sosa:hasSimpleResult "new life stage" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/reproductiveCondition/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "reproductiveCondition-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/No-breeding-evident> ;
     sosa:hasSimpleResult "No breeding evident" ;
     sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/reproductiveCondition/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "reproductiveCondition-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/new-reproductiveCondition> ;
     sosa:hasSimpleResult "new reproductiveCondition" ;
     sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/sex/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "sex-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/male> ;
     sosa:hasSimpleResult "male" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/sex/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "Observation method unknown, 'human observation' used as proxy",
         "sex-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/new-sex> ;
     sosa:hasSimpleResult "new sex" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/verbatimIdentification/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/specimen/verbatimIdentification/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/new-identification-method> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/1> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Calothamnus-lateralis-var-crassus> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/10> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/11> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/14> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/2> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/3> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/4> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia-anceps> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/5> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/6> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/7> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/8> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia-sessilis-var-cordata> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/verbatimIdentification/9> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "verbatimID-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP> a rdfs:Datatype ;
     skos:definition "A catalog number for the sample" ;
@@ -1016,29 +1016,29 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "threatStatus-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
-            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/d6d0af046ed077d6> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU> ;
     sosa:hasSimpleResult "VU" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https-www-dpaw-wa-gov-au-plants-and-animals-threatened-species-and-communities-threatened-animals-Last-updated-13-June-2022> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "threatStatus-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
-            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/new-threat-status> ;
     sosa:hasSimpleResult "new threat status" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/native> a tern:IRI,
         tern:Value ;
@@ -1148,26 +1148,26 @@
     geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000001 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "sequencing-sampling" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/sequence/8022FSJMJ079c5cf> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000003 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "sequencing-sampling" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/sequence/ABC123> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/HumanObservation> a tern:IRI,
         tern:Value ;
@@ -1520,30 +1520,30 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/11> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/14> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> a tern:FeatureOfInterest,
         tern:Text,
@@ -1571,37 +1571,37 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000001 ;
     rdfs:comment "specimen-sampling" ;
-    time:hasTime [ a time:Instant ;
-            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/13> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/8022FSJMJ079c5cf> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000003 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "specimen-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2019-09-26"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/ABC123> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000005 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "specimen-sampling" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDate "2019-09-27"^^xsd:date ] ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDate "2019-09-27"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/attribution/WAM/resourceProvider> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/org/WAM> ;
@@ -1633,28 +1633,28 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/scientificName/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
-    time:hasTime [ a time:Instant ;
-            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia-excelsa> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/new-identification-method> ;
-    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/12> a dwc:Occurrence,
         tern:FeatureOfInterest ;

@@ -1179,7 +1179,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["scientificName"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, term))
@@ -1253,7 +1253,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["verbatimIdentification"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, term))
@@ -1770,7 +1770,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, timestamp.rdf_in_xsd, timestamp.to_rdf_literal()))
 
@@ -2188,7 +2188,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_INDIVIDUAL_COUNT))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
@@ -2269,7 +2269,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ORGANISM_REMARKS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
@@ -2345,7 +2345,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ORGANISM_QUANTITY))
 
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         # Add comment to temporal entity
@@ -2716,7 +2716,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_OCCURRENCE_STATUS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
@@ -2917,7 +2917,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ESTABLISHMENT_MEANS))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
@@ -3015,7 +3015,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_LIFE_STAGE))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
@@ -3112,7 +3112,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SEX))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
@@ -3210,7 +3210,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_REPRODUCTIVE_CONDITION))
         graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
 
@@ -3297,7 +3297,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SCIENTIFIC_NAME))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_NAME_CHECK_METHOD))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_identified.rdf_in_xsd, date_identified.to_rdf_literal()))
 
@@ -3391,7 +3391,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, feature_of_interest))
         graph.add((uri, rdflib.SOSA.hasResult, result_sequence))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, event_date.rdf_in_xsd, event_date.to_rdf_literal()))
         graph.add((uri, rdflib.SOSA.usedProcedure, term))
@@ -3530,7 +3530,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_CONSERVATION_STATUS))
         graph.add((uri, rdflib.SOSA.usedProcedure, term))
         temporal_entity = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_entity))
+        graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
         graph.add((temporal_entity, date_determined.rdf_in_xsd, date_determined.to_rdf_literal()))
 
