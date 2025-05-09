@@ -183,7 +183,7 @@ class ABISMapper(abc.ABC):
             graph: The graph for the chunk to add the mapping to.
         """
         # This should be in every chunk, so the type of the dataset can be resolved.
-        graph.add((dataset, a, utils.namespaces.TERN.Dataset))
+        graph.add((dataset, a, rdflib.SDO.Dataset))
         # Also add the type of the submission, and link it to the dataset
         if submission_iri:
             graph.add((submission_iri, a, utils.namespaces.TERN.RDFDataset))

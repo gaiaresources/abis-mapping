@@ -79,7 +79,7 @@ class IncidentalOccurrenceDeleteMapper(base.mapper.ABISMapper):
             graph: The graph for the chunk to add the mapping to.
         """
         # This should be in every chunk, so the type of the dataset can be resolved.
-        graph.add((dataset, a, utils.namespaces.TERN.Dataset))
+        graph.add((dataset, a, rdflib.SDO.Dataset))
         # Unlike parent class method, do not add Submission type.
         # This is not needed for this template.
 

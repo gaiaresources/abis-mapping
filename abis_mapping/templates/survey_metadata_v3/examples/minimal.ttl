@@ -200,7 +200,7 @@
 <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> a tern:RDFDataset ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a tern:Dataset .
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a schema:Dataset .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;

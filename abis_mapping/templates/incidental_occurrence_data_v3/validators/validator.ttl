@@ -140,7 +140,7 @@ bdrsh:GeneralCollectionShape
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:nodeKind sh:IRI ;
-		sh:class tern:Dataset ;
+		sh:class schema:Dataset ;
 	] ;
 	sh:property [
 		sh:path schema:name ;
@@ -166,7 +166,7 @@ bdrsh:SensitivityCategoryCollectionShape
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:nodeKind sh:IRI ;
-		sh:class tern:Dataset ;
+		sh:class schema:Dataset ;
 	] ;
 	sh:property [
 		sh:path schema:name ;
@@ -199,7 +199,7 @@ bdrsh:IncidentalOccurrenceShape
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:nodeKind sh:IRI ;
-		sh:class tern:Dataset ;
+		sh:class schema:Dataset ;
 	] ;
 	sh:property [
 		sh:path schema:identifier ;
