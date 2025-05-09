@@ -1931,7 +1931,7 @@
 <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> a prov:Agent ;
     schema:name "Stream Environment and Water Pty Ltd" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a tern:Dataset .
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> a schema:Dataset .
 
 <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> a tern:RDFDataset ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .

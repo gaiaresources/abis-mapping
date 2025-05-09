@@ -167,7 +167,7 @@ bdrsh:GeneralCollectionShape
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:nodeKind sh:IRI ;
-		sh:class tern:Dataset ;
+		sh:class schema:Dataset ;
 	] ;
 	sh:property [
 		sh:path schema:name ;
@@ -193,7 +193,7 @@ bdrsh:SensitivityCategoryCollectionShape
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		sh:nodeKind sh:IRI ;
-		sh:class tern:Dataset ;
+		sh:class schema:Dataset ;
 	] ;
 	sh:property [
 		sh:path schema:name ;
@@ -270,7 +270,7 @@ bdrsh:SurveyOccurrenceShape
 		sh:maxCount 1 ;
 		sh:class prov:Agent ;
 	] ;
-	# dwc:Occurrence always has 1 schema:isPartOf triple for the tern:Dataset,
+	# dwc:Occurrence always has 1 schema:isPartOf triple for the schema:Dataset,
 	# and optionally a second one for the tern:Survey.
 	sh:property [
 		sh:path schema:isPartOf ;
@@ -291,7 +291,7 @@ bdrsh:SurveyOccurrenceShape
 		sh:path schema:isPartOf ;
 		sh:qualifiedValueShape [
 		    sh:nodeKind sh:IRI ;
-		    sh:class tern:Dataset ;
+		    sh:class schema:Dataset ;
 		] ;
 		sh:qualifiedMinCount 1 ;
 		sh:qualifiedMaxCount 1 ;
