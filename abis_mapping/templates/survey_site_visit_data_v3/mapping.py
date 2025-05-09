@@ -529,7 +529,7 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_site_visit_end: models.temporal.Timestamp | None = row["siteVisitEnd"]
         # Add temporal node for start/end time
         temporal_node = rdflib.BNode()
-        graph.add((uri, rdflib.TIME.hasTime, temporal_node))
+        graph.add((uri, rdflib.SDO.temporal, temporal_node))
         # When siteVisitEnd is provided, give temporal node a start/end
         if row_site_visit_end:
             graph.add((temporal_node, a, rdflib.TIME.TemporalEntity))
