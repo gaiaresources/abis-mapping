@@ -10,7 +10,7 @@ from abis_mapping import utils
 # Terms
 UNSPECIFIED = utils.vocabs.Term(
     labels=("UNSPECIFIED",),
-    iri=utils.rdf.uri("threatStatusCheckProtocol/default", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b"),  # real URI
     description="Unspecified",
 )
 
