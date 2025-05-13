@@ -10,17 +10,17 @@ from abis_mapping import utils
 # Terms
 HOURS = utils.vocabs.Term(
     labels=("Hours",),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/936cbae5-5d16-4d98-89c9-315cc3f88f8d"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/936cbae5-5d16-4d98-89c9-315cc3f88f8d"),  # real URI
     description="The total time spent actively surveying using the specified protocol, expressed in hours.",
 )
 MINUTES = utils.vocabs.Term(
     labels=("Minutes",),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/91ac9f1f-be73-40a0-b652-c06b289885e0"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/91ac9f1f-be73-40a0-b652-c06b289885e0"),  # real URI
     description="The total time spent actively surveying using the specified protocol, expressed in minutes.",
 )
 PERSON_HOURS = utils.vocabs.Term(
     labels=("Person Hours",),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/8aeac7d6-39fe-4ce9-b25b-e694a08d3516"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/8aeac7d6-39fe-4ce9-b25b-e694a08d3516"),  # real URI
     description=(
         "The cumulative amount of time spent by individuals conducting the survey using the specified protocol. "
         "For example, if two people survey for 2 hours each, the total would be 4 person-hours."
@@ -28,14 +28,14 @@ PERSON_HOURS = utils.vocabs.Term(
 )
 TRAP_NIGHTS = utils.vocabs.Term(
     labels=("Trap Nights",),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/772b070d-10c0-42f4-8abb-8981b4708861"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/772b070d-10c0-42f4-8abb-8981b4708861"),  # real URI
     description=(
         "The total number of nights traps are left in the field. One trap night refers to one trap set for one night."
     ),
 )
 METRE_HOURS = utils.vocabs.Term(
     labels=("Metre Hours",),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/796b12df-925f-4341-a4d3-c27259d2571f"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/796b12df-925f-4341-a4d3-c27259d2571f"),  # real URI
     description=(
         "The distance (metres) and time (hours) of specific survey activities such as walking or transect surveys "
         "(measure of effort across both space and time)."
@@ -48,7 +48,7 @@ METRES = utils.vocabs.Term(
 )
 HECTARES = utils.vocabs.Term(
     labels=("Hectares",),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/67455483-1389-4666-aea1-77162ec149d8"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/67455483-1389-4666-aea1-77162ec149d8"),  # real URI
     description="The total area surveyed or sampled, measured in hectares.",
 )
 

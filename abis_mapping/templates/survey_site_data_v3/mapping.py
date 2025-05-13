@@ -26,7 +26,9 @@ from typing import Any, Literal
 # Constants and shortcuts
 a = rdflib.RDF.type
 HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99")
-CONCEPT_DATA_GENERALIZATIONS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/77f30c7d-4642-45a4-ab91-1400bf2bc652")
+CONCEPT_DATA_GENERALIZATIONS = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/77f30c7d-4642-45a4-ab91-1400bf2bc652"
+)
 DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/resourceProvider")
 
 

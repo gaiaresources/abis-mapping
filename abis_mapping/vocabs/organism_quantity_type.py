@@ -12,7 +12,7 @@ PERCENTAGE_OF_SPECIES = utils.vocabs.Term(
         "PERCENTAGE OF SPECIES",
         "% OF SPECIES",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/6a4642d8-516c-4b7f-a413-d1bfa9bf5d82"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/6a4642d8-516c-4b7f-a413-d1bfa9bf5d82"),  # real URI
     description=(
         "A measurement type where the quantity of a species in a sample is recorded as "
         "a percentage of the total individual count of all species."
@@ -24,7 +24,7 @@ PERCENTAGE_OF_BIOVOLUME = utils.vocabs.Term(
         "PERCENTAGE OF BIOVOLUME",
         "% OF BIOVOLUME",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/78ed8b0f-453c-4c76-b02c-adb5cb1bef8c"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/78ed8b0f-453c-4c76-b02c-adb5cb1bef8c"),  # real URI
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
         "as a percentage of the total biovolume of all species."
@@ -36,7 +36,7 @@ PERCENTAGE_OF_BIOMASS = utils.vocabs.Term(
         "PERCENTAGE OF BIOMASS",
         "% OF BIOMASS",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/369c3d2c-fcf7-4fda-b0b1-3ca10ab4809c"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/369c3d2c-fcf7-4fda-b0b1-3ca10ab4809c"),  # real URI
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
         "as a percentage of the total biomass of all species."
@@ -48,7 +48,7 @@ PERCENTAGE_COVERAGE = utils.vocabs.Term(
         "PERCENTAGE COVERAGE",
         "% COVERAGE",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b50a5896-8561-4b0c-b489-b1ffcc64f2d1"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b50a5896-8561-4b0c-b489-b1ffcc64f2d1"),  # real URI
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
         "as the percentage coverage of the total area being sampled."
@@ -57,7 +57,7 @@ PERCENTAGE_COVERAGE = utils.vocabs.Term(
 
 INDIVIDUALS = utils.vocabs.Term(
     labels=("INDIVIDUALS",),
-    iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/individuals"), # TODO -> Need real URI
+    iri=rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/individuals"),  # TODO -> Need real URI
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
         "as the number of individuals (e.g.per litre, per square metre, per cubic metre, per hour, per day)."
@@ -66,7 +66,7 @@ INDIVIDUALS = utils.vocabs.Term(
 
 DOMIN_SCALE = utils.vocabs.Term(
     labels=("DOMIN SCALE",),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/34587ea2-99dd-4362-b5c2-d2f5e567f1fe"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/34587ea2-99dd-4362-b5c2-d2f5e567f1fe"),  # real URI
     description=("A measurement type where the cover of a species in a sample is recorded using the Domin scale."),
 )
 
@@ -84,7 +84,7 @@ BIOMASS_AFDG = utils.vocabs.Term(
         "BIOMASS ASH FREE DRY WEIGHT IN GRAMS",
         "BIOMASS ASH FREE DRY WEIGHT GRAMS",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/bd5262cb-e741-4634-b555-2880fa80d910"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/bd5262cb-e741-4634-b555-2880fa80d910"),  # real URI
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
         "as the ash free dry weight biomass in grams (g)."
@@ -97,7 +97,7 @@ BIOMASS_G = utils.vocabs.Term(
         "BIOMASS IN GRAMS",
         "BIOMASS GRAMS",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/e0831c45-e14a-42e1-9bc0-edb1f6892ce4"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/e0831c45-e14a-42e1-9bc0-edb1f6892ce4"),  # real URI
     description=(
         "A measurement type where the quantity of a species in a sample is recorded as the biomass in grams (g)."
     ),
@@ -109,7 +109,7 @@ BIOMASS_KG = utils.vocabs.Term(
         "BIOMASS IN KILOGRAMS",
         "BIOMASS KILOGRAMS",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/953a274c-d1ce-4515-8c6a-9e2424ea67eb"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/953a274c-d1ce-4515-8c6a-9e2424ea67eb"),  # real URI
     description=(
         "A measurement type where the quantity of a species in a sample is recorded as the biomass in kilograms (kg)."
     ),
@@ -120,7 +120,7 @@ BIOVOLUME_CUBIC_MICRONS = utils.vocabs.Term(
         "BIOVOLUME CUBIC MICRONS",
         "BIOVOLUME IN CUBIC MICRONS",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/85cf64d9-1ee6-456b-bba2-d24ee4be6812"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/85cf64d9-1ee6-456b-bba2-d24ee4be6812"),  # real URI
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
         "as the biovolume in cubic microns (µ ^ 3)."
@@ -133,7 +133,7 @@ BIOVOLUME_ML = utils.vocabs.Term(
         "BIOVOLUME IN MILLILITRES",
         "BIOVOLUME MILLILITRES",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/e95e5513-3153-4d8e-b64b-846fb60730a2"), # real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/e95e5513-3153-4d8e-b64b-846fb60730a2"),  # real URI
     description=(
         "A measurement type where the quantity of a species in a sample is recorded "
         "as the biovolume in millilitres (ml)."

@@ -22,7 +22,9 @@ from typing import Any, Literal
 a = rdflib.RDF.type
 PRINCIPAL_INVESTIGATOR = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/principalInvestigator")
 CONCEPT_SURVEY_TYPE = utils.rdf.uri("concept/surveyType", utils.namespaces.EXAMPLE)
-CONCEPT_TARGET_HABITAT_SCOPE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/602de488-eb66-4e59-a2e7-64386caa6948") # updated
+CONCEPT_TARGET_HABITAT_SCOPE = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/602de488-eb66-4e59-a2e7-64386caa6948"
+)  # updated
 CONCEPT_TARGET_TAXONOMIC_SCOPE = rdflib.URIRef(
     "https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec",
 )

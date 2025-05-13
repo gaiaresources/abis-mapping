@@ -226,7 +226,7 @@ class IdentificationQualifier(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of identificationQualifier.")
     base = "bdr-cv/attribute/identificationQualifier/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e")
+    broader = iri = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e")
     default = None  # No default, ommitted if not provided
     terms = (
         ANIMALIA_CETERA,
