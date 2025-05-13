@@ -236,7 +236,7 @@ class TaxonRank(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of taxonRank.")
     base = "bdr-cv/attribute/taxonRank/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = iri = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/1e4d7110-5f07-45ec-98e7-738236a8d8e0")
+    broader = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/1e4d7110-5f07-45ec-98e7-738236a8d8e0")
     default = None  # No default, ommitted if not provided
     terms = (
         CLASS,
