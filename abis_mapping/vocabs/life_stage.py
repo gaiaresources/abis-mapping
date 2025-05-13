@@ -13,7 +13,7 @@ ADULT = utils.vocabs.Term(
         "ADULT",
         "IMAGO",
     ),
-    iri=utils.rdf.uri("lifeStage/adult", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/c50013ae-1f32-4560-92d0-848acbc0da3f"),  # real URI
     description=(
         "An adult is a plant, animal, or person who has reached full growth or "
         "alternatively is capable of reproduction."
@@ -25,7 +25,7 @@ EMBRYO = utils.vocabs.Term(
         "EGG",
         "SEED",
     ),
-    iri=utils.rdf.uri("lifeStage/embryo", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/c63e6dd2-250c-430d-8bde-63760d8e5164"),  # real URI
     description=(
         "An embryo is a multicellular diploid eukaryote in its earliest stage of "
         "development, from the time of first cell division until birth, hatching, or "
@@ -39,7 +39,7 @@ GAMETE = utils.vocabs.Term(
         "SPERM",
         "POLLEN",
     ),
-    iri=utils.rdf.uri("lifeStage/gamete", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ce36620f-4a9a-40e5-876a-0ab35459669e"),  # real URI
     description=(
         "A gamete is a cell that fuses with another gamete during fertilisation in "
         "organisms that reproduce sexually. In species that produce two "
@@ -62,7 +62,7 @@ GAMETOPHYTE = utils.vocabs.Term(
         "POLLEN",
         "OVULE",
     ),
-    iri=utils.rdf.uri("lifeStage/gametophyte", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5aabcbc6-ddbb-4d96-9b45-59b71a6e2c54"),  # real URI
     description=(
         "In plants and algae that undergo alternation of generations, a "
         "gametophyte is the multicellular structure, or phase, that is haploid, "
@@ -97,7 +97,7 @@ JUVENILE = utils.vocabs.Term(
         "ELVER",
         "FRY",
     ),
-    iri=utils.rdf.uri("lifeStage/juvenile", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/d22c90e2-301b-47b7-bef2-23496aef8313"),  # real URI
     description=(
         "A juvenile is an individual organism that has not yet reached its adult "
         "form, sexual maturity or size. Juveniles sometimes look very different "
@@ -121,7 +121,7 @@ LARVA = utils.vocabs.Term(
         "NYMPH",
         "CATERPILLAR",
     ),
-    iri=utils.rdf.uri("lifeStage/larva", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/d22c90e2-301b-47b7-bef2-23496aef8313"),  # real URI
     description=(
         "A larva (Latin; plural larvae) is a young (juvenile) form of animal with "
         "indirect development, going through or undergoing metamorphosis (for "
@@ -144,7 +144,7 @@ PUPA = utils.vocabs.Term(
         "PUPA",
         "PUPPE",
     ),
-    iri=utils.rdf.uri("lifeStage/pupa", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/41cfec6b-049f-470d-b26d-eaee80e09f2b"),  # real URI
     description=(
         "A pupa is the life stage of some insects undergoing transformation "
         "between immature and mature stages. The pupal stage is found only in "
@@ -154,7 +154,7 @@ PUPA = utils.vocabs.Term(
 )
 SPORE = utils.vocabs.Term(
     labels=("SPORE",),
-    iri=utils.rdf.uri("lifeStage/spore", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/e839f161-0b40-4294-8bcb-8c1eb2af13f9"),  # real URI
     description=(
         "A spore is a reproductive structure that is adapted for dispersal and "
         "surviving for extended periods of time in unfavorable conditions. Spores "
@@ -177,7 +177,7 @@ SPOROPHYTE = utils.vocabs.Term(
         "SPOROPHYTE",
         "AGAMONT",
     ),
-    iri=utils.rdf.uri("lifeStage/sporophyte", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/31b4eee4-5326-460c-8c47-9dcd1e073a5c"),  # real URI
     description=(
         "All land plants, and some algae, have life cycles in which a haploid "
         "gametophyte generation alternates with a diploid sporophyte, the "
@@ -194,7 +194,7 @@ ZYGOTE = utils.vocabs.Term(
         "ZYGOTE",
         "BLASTOMERE",
     ),
-    iri=utils.rdf.uri("lifeStage/zygote", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/faaf7d96-fb87-4ce3-87b4-6d1aec4c4b3c"),  # real URI
     description=(
         "A zygote (or zygocyte) describes the first stage of a new unique organism blastomere "
         "when it consists of just a single cell. The term is also used more loosely to "
@@ -215,7 +215,7 @@ class LifeStage(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of lifeStage.")
     base = "bdr-cv/parameter/lifeStage/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e")
-    broader = utils.rdf.uri("bdr-cv/parameter/lifeStage", utils.namespaces.DATASET_BDR)
+    broader = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7e142859-c559-417e-a725-4b547f7e722c")
     default = None  # No default, omitted if not provided
     terms = (
         ADULT,
