@@ -86,7 +86,7 @@ class Preparations(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of preparation.")
     base = "bdr-cv/attribute/preparations/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = iri = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/9694c614-7bb5-4403-bba4-fd01d40bf5c3")
+    broader = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/9694c614-7bb5-4403-bba4-fd01d40bf5c3")
     default = None  # No default, ommitted if not provided
     terms = (
         ALCOHOL,
