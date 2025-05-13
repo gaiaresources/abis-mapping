@@ -10,12 +10,12 @@ from abis_mapping import utils
 # Terms
 PRESENT = utils.vocabs.Term(
     labels=("PRESENT",),
-    iri=utils.rdf.uri("occurrenceStatus/present", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/a2fb93cd-ad72-4c15-b23b-14882c2418c2"),  # real URI
     description="The occurrence was present at the location and time of the observation.",
 )
 ABSENT = utils.vocabs.Term(
     labels=("ABSENT",),
-    iri=utils.rdf.uri("occurrenceStatus/absent", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2ca99992-75ff-4b48-b426-ca86a0b5d40f"),  # real URI
     description="The occurrence was not present at the location and time of the observation.",
 )
 
@@ -26,7 +26,7 @@ class OccurrenceStatus(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of occurrenceStatus.")
     base = "bdr-cv/parameter/occurrenceStatus/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e")
-    broader = utils.rdf.uri("bdr-cv/parameter/occurrenceStatus", utils.namespaces.DATASET_BDR)
+    broader = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/835d7166-2a4d-4335-9d39-8082ff201811")
     default = None  # No default, ommitted if not provided
     terms = (PRESENT, ABSENT)
 
