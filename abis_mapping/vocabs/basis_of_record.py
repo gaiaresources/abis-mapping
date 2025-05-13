@@ -57,7 +57,7 @@ class BasisOfRecord(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of basisOfRecord.")
     base = "bdr-cv/attribute/basisOfRecord/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = iri = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/633119a9-6c8a-46ae-a78a-23a4fd371eb2")
+    broader = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/633119a9-6c8a-46ae-a78a-23a4fd371eb2")
     default = None  # No default, omitted if not provided
     terms = (
         HUMAN_OBSERVATION,
