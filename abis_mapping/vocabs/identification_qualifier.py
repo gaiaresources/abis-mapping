@@ -13,7 +13,7 @@ ANIMALIA_CETERA = utils.vocabs.Term(
         "ANIMALIA CETERA",
         "A.C.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/animalia-cetera", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/86586db3-6e5e-4e3f-8e67-9e9c39161fe3"),  # real URI
     description=(
         "It groups all the unidentified specimens that are not listed as separate "
         "taxa. The term cetera (abbreviated c. or cet.) may be applied to a given "
@@ -30,7 +30,7 @@ CONFER = utils.vocabs.Term(
         "CONF.",
         "SP. CF.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/confer", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/4b2f5fc9-3dc9-499c-b334-3563f757cf0a"),  # real URI
     description=(
         '"Compare with". Specimens should be compared to reference material, '
         "since most of the diagnostic characters correspond to a given species but "
@@ -44,7 +44,7 @@ EX_GREGE = utils.vocabs.Term(
         "EX GR.",
         "GR.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/ex-grege", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/3af18778-ea6e-4e5e-8ec0-da9d59f4d075"),  # real URI
     description=(
         '"Of the group including". The specimen has some affinity to a known '
         "species or it belongs to a species group or species complex; see also "
@@ -56,9 +56,7 @@ FAMILIA_GENUS_SPECIES = utils.vocabs.Term(
         "FAMILIA GENUS SPECIES",
         "FAM. GEN. SP.",
     ),
-    iri=utils.rdf.uri(
-        "identificationQualifier/familia-genus-species", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/3af18778-ea6e-4e5e-8ec0-da9d59f4d075"),  # real URI
     description="The specimen has not been attributed to any known species nor family; see also species.",
 )
 GENUS_ET_SPECIES_NOVA = utils.vocabs.Term(
@@ -69,9 +67,7 @@ GENUS_ET_SPECIES_NOVA = utils.vocabs.Term(
         "SP. NOV.",
         "NOV. GEN. ET SP.",
     ),
-    iri=utils.rdf.uri(
-        "identificationQualifier/genus-et-species-nova", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/a7239472-6773-4ba0-b420-4b233fc7c13a"),  # real URI
     description=(
         "The specimen is considered to belong to a new species and a new genus; for more details, see species nova."
     ),
@@ -85,7 +81,7 @@ GENUS_NOVUM = utils.vocabs.Term(
         "G. N.",
         "NOV. GEN",
     ),
-    iri=utils.rdf.uri("identificationQualifier/genus-novum", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/4e24b030-b2a2-476a-9c9b-bac2b636eb98"),  # real URI
     description=(
         "The specimen is considered to belong to a new species and a new genus; for more details, see species nova"
     ),
@@ -96,7 +92,7 @@ GENUS_SPECIES = utils.vocabs.Term(
         "GEN. SP.",
         "G. SP.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/genus-species", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/591a8af1-dd89-4b79-a663-2ef18d3a5258"),  # real URI
     description="The specimen has not been related to any known species nor genus; also species.",
 )
 SP = utils.vocabs.Term(
@@ -104,7 +100,7 @@ SP = utils.vocabs.Term(
         "SPECIES",
         "SP",
     ),
-    iri=utils.rdf.uri("identificationQualifier/sp", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/0325eb2d-e89d-4976-8e3e-9a6ff8c0d460"),  # real URI
     description=(
         "The specimen has not been identified, nor it has been related to any "
         "known species; the uncertainty is potentially provisional: it could be due to "
@@ -119,7 +115,7 @@ SPECIES_PL = utils.vocabs.Term(
         "SPP.",
         "SP. PL.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/species-pl", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/681bb140-cbbb-4f4a-a572-9364e9ccd99d"),  # real URI
     description="More than one species belonging to the same genus (or higher-rank taxon) are included.",
 )
 SPECIES_AFFINIS = utils.vocabs.Term(
@@ -128,7 +124,7 @@ SPECIES_AFFINIS = utils.vocabs.Term(
         "AFF.",
         "SP. AFF.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/species-affinis", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/f17e64f8-02c1-40c5-9ad2-51155c92e0a3"),  # real URI
     description=(
         '"Has affinity with". The specimen has some affinity to a known species but '
         "it is not identical to it; it generally implies distinction more than a possible "
@@ -142,7 +138,7 @@ SPECIES_INCERTA = utils.vocabs.Term(
         "SPECIES INCERTA",
         "SP. INC.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/species-incerta", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/1eca8b2f-0d8a-4638-ba85-6f380005901b"),  # real URI
     description=(
         "The identification is uncertain; it usually indicates a higher reliability with ?, sp. Inc "
         'respect to confer. The sign "sp. inc." is also used in the sense of species, '
@@ -158,9 +154,7 @@ SPECIES_INDETERMINABILIS = utils.vocabs.Term(
         "SP. INDET.",
         "SP. IND.",
     ),
-    iri=utils.rdf.uri(
-        "identificationQualifier/species-indeterminabilis", utils.namespaces.EXAMPLE
-    ),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/81f8cfa5-f4f5-4434-b140-04402835d346"),  # real URI
     description=(
         "The specimen is indeterminable beyond a certain taxonomic level due to "
         "the deterioration or lack of diagnostic characters. Also used in the sense "
@@ -177,7 +171,7 @@ SPECIES_NOVA = utils.vocabs.Term(
         "NOV. SPEC.",
         "N. SP.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/species-nova", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2586fc89-269d-468a-9f43-87de53408519"),  # real URI
     description=(
         "The specimen is considered to belong to a new, previously undescribed "
         "(1) When describing a new species, the use of the qualifier is required by "
@@ -194,7 +188,7 @@ SPECIES_PROXIMA = utils.vocabs.Term(
         "NR.",
         "SP.NR.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/species-proxima", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/e09b5da0-8a77-4b33-b051-a616a3ccf087"),  # real URI
     description=(
         "The specimen is near to a known species but it is not identical to it; see also affinis and ex grege."
     ),
@@ -204,7 +198,7 @@ STETIT = utils.vocabs.Term(
         "STETIT",
         "STET.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/stetit", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/8ff9701a-af67-435b-a1bf-030125235fc2"),  # real URI
     description=(
         "Identification at a lower taxonomic level has not been attempted, even if "
         "allowed by the sample conditions. It may also be used when more records "
@@ -217,7 +211,7 @@ SUBSPECIES = utils.vocabs.Term(
         "SSP.",
         "SUBSP.",
     ),
-    iri=utils.rdf.uri("identificationQualifier/subspecies", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/aa8f0f92-83d1-4b54-9a09-16b26a407f70"),  # real URI
     description=(
         "The only infraspecific rank regulated by the ICZN (1999). As ON qualifier, "
         "it indicates that the specimen probably belongs to a subspecies but it has "
@@ -232,7 +226,7 @@ class IdentificationQualifier(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of identificationQualifier.")
     base = "bdr-cv/attribute/identificationQualifier/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/dd085299-ae86-4371-ae15-61dfa432f924")
-    broader = utils.rdf.uri("bdr-cv/attribute/identificationQualifier", utils.namespaces.DATASET_BDR)
+    broader = iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e")
     default = None  # No default, ommitted if not provided
     terms = (
         ANIMALIA_CETERA,
