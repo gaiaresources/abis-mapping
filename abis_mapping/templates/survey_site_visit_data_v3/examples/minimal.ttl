@@ -70,14 +70,14 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/samplingEffort/10-sifts> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/samplingEffort> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/489792e5-39ae-44b6-9a6f-d1ef895f9c19> ;
     tern:hasSimpleValue "10 sifts" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/samplingEffort/10-sifts> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/samplingEffort/240-trap-nights> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/samplingEffort> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/489792e5-39ae-44b6-9a6f-d1ef895f9c19> ;
     tern:hasSimpleValue "240 trap nights" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/samplingEffort/240-trap-nights> .
 
@@ -110,7 +110,7 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/samplingEffort/240-trap-nights> a tern:Float,
         tern:Value ;
     rdf:value "240.0"^^xsd:float ;
-    tern:unit <http://example.com/sampling-effort/trap-nights> .
+    tern:unit <http://linked.data.gov.au/def/tern-cv/772b070d-10c0-42f4-8abb-8981b4708861> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetTaxonomicScope/bird> a tern:IRI,
         tern:Value ;
@@ -154,6 +154,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/samplingEffortUnit/sifts> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/e473bcb9-64b8-409e-a764-fea8bbb92c9c> ;
     skos:definition "In conjunction with the sampling effort value, the sampling effort unit gives an indication of the effort applied to the specified protocol." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;

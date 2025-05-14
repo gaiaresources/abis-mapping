@@ -66,7 +66,7 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/targetHabitatScope/Woodland> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <https://linked.data.gov.au/def/nrm/ae2c88be-63d5-44d3-95ac-54b14c4a4b28> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/602de488-eb66-4e59-a2e7-64386caa6948> ;
     tern:hasSimpleValue "Woodland" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/targetHabitatScope/Woodland> .
 
@@ -140,7 +140,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> a tern:Survey ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:N27fdbd9c9077333e51ac0d0600000000 ;
+    geo:hasGeometry _:N9ccb189beb09dc137aaa1fb400000000 ;
     prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL1> ;
     bdr:purpose "Summer sampling for peak insect diversity." ;
     bdr:target "Coleoptera",
@@ -164,7 +164,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL2> a tern:Survey ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:N27fdbd9c9077333e51ac0d0600000001 ;
+    geo:hasGeometry _:N9ccb189beb09dc137aaa1fb400000001 ;
     prov:hadPlan <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/survey/plan/COL2> ;
     bdr:purpose "Winter sampling for peak insect diversity." ;
     bdr:target "Coleoptera",
@@ -205,7 +205,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral ] ;
-    rdf:object _:N27fdbd9c9077333e51ac0d0600000000 ;
+    rdf:object _:N9ccb189beb09dc137aaa1fb400000000 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL1> ;
     rdfs:comment "supplied as" .
@@ -213,14 +213,14 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral ] ;
-    rdf:object _:N27fdbd9c9077333e51ac0d0600000001 ;
+    rdf:object _:N9ccb189beb09dc137aaa1fb400000001 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/COL2> ;
     rdfs:comment "supplied as" .
 
-_:N27fdbd9c9077333e51ac0d0600000000 a geo:Geometry ;
+_:N9ccb189beb09dc137aaa1fb400000000 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral .
 
-_:N27fdbd9c9077333e51ac0d0600000001 a geo:Geometry ;
+_:N9ccb189beb09dc137aaa1fb400000001 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.826 146.363, -33.826 148.499, -34.411 148.499, -33.826 146.363))"^^geo:wktLiteral .
 
