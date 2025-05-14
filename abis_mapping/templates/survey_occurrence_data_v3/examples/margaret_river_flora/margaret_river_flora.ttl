@@ -249,7 +249,7 @@
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
-    sosa:usedProcedure <http://example.com/methods/name-check-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
             rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
@@ -262,7 +262,7 @@
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
-    sosa:usedProcedure <http://example.com/methods/name-check-method> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
             rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
@@ -275,7 +275,7 @@
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/native> ;
     sosa:hasSimpleResult "native" ;
-    sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/58eaac1c-4c8b-4a95-897f-86dfc83e660f> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
@@ -289,7 +289,7 @@
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/new-establishment-means> ;
     sosa:hasSimpleResult "new establishment means" ;
-    sosa:observedProperty <http://example.com/concept/establishmentMeans> ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/58eaac1c-4c8b-4a95-897f-86dfc83e660f> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
@@ -331,7 +331,7 @@
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/present> ;
     sosa:hasSimpleResult "present" ;
-    sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/835d7166-2a4d-4335-9d39-8082ff201811> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
@@ -344,7 +344,7 @@
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/new-occurrence-status> ;
     sosa:hasSimpleResult "new occurrence status" ;
-    sosa:observedProperty <http://example.com/concept/occurrenceStatus> ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/835d7166-2a4d-4335-9d39-8082ff201811> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
@@ -357,7 +357,7 @@
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Dried-out-leaf-tips> ;
     sosa:hasSimpleResult "Dried out leaf tips" ;
-    sosa:observedProperty <http://example.com/concept/organismRemarks> ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/54137592-31ab-4de2-98b5-9677274ff93c> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
@@ -371,7 +371,7 @@
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Leaves-brown> ;
     sosa:hasSimpleResult "Leaves brown" ;
-    sosa:observedProperty <http://example.com/concept/organismRemarks> ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/54137592-31ab-4de2-98b5-9677274ff93c> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
@@ -580,7 +580,7 @@
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/No-breeding-evident> ;
     sosa:hasSimpleResult "No breeding evident" ;
-    sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/4b2e788d-260b-4cfc-91f4-99e7c2ad2c42> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
@@ -594,7 +594,7 @@
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/new-reproductiveCondition> ;
     sosa:hasSimpleResult "new reproductiveCondition" ;
-    sosa:observedProperty <http://example.com/concept/reproductiveCondition> ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/4b2e788d-260b-4cfc-91f4-99e7c2ad2c42> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
@@ -864,21 +864,21 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/HumanObservation> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/basisOfRecord> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/633119a9-6c8a-46ae-a78a-23a4fd371eb2> ;
     tern:hasSimpleValue "HumanObservation" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/HumanObservation> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/PreservedSpecimen> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/basisOfRecord> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/633119a9-6c8a-46ae-a78a-23a4fd371eb2> ;
     tern:hasSimpleValue "PreservedSpecimen" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/PreservedSpecimen> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/new-basis-of-record> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/basisOfRecord> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/633119a9-6c8a-46ae-a78a-23a4fd371eb2> ;
     tern:hasSimpleValue "new basis of record" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/new-basis-of-record> .
 
@@ -892,14 +892,14 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-generalised> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/data-generalizations> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/77f30c7d-4642-45a4-ab91-1400bf2bc652> ;
     tern:hasSimpleValue "Coordinates generalised" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-generalised> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/data-generalizations> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/77f30c7d-4642-45a4-ab91-1400bf2bc652> ;
     tern:hasSimpleValue "Coordinates rounded to the nearest 10 km for conservation concern" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/dataGeneralizations/Coordinates-rounded-to-the-nearest-10-km-for-conservation-concern> .
 
@@ -969,14 +969,14 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/preparations> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/9694c614-7bb5-4403-bba4-fd01d40bf5c3> ;
     tern:hasSimpleValue "Wet (in ethanol or some other preservative)" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/preparations/Wet-in-ethanol-or-some-other-preservative> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/preparations/new-preparations> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/preparations> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/9694c614-7bb5-4403-bba4-fd01d40bf5c3> ;
     tern:hasSimpleValue "new preparations" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/preparations/new-preparations> .
 
@@ -990,14 +990,14 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/taxonRank/new-taxon-rank> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/taxonRank> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/1e4d7110-5f07-45ec-98e7-738236a8d8e0> ;
     tern:hasSimpleValue "new taxon rank" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/taxonRank/new-taxon-rank> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/taxonRank/species> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <http://example.com/concept/taxonRank> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/1e4d7110-5f07-45ec-98e7-738236a8d8e0> ;
     tern:hasSimpleValue "species" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/taxonRank/species> .
 
@@ -1043,7 +1043,7 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/native> a tern:IRI,
         tern:Value ;
     rdfs:label "establishmentMeans-value" ;
-    rdf:value <http://example.com/establishmentMeans/native> .
+    rdf:value <http://linked.data.gov.au/def/tern-cv/0b910634-3f24-4a8c-a7a8-7508c0549a1c> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/new-establishment-means> a tern:IRI,
         tern:Value ;
@@ -1068,7 +1068,7 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/present> a tern:IRI,
         tern:Value ;
     rdfs:label "occurrenceStatus = present" ;
-    rdf:value <http://example.com/occurrenceStatus/present> .
+    rdf:value <http://linked.data.gov.au/def/tern-cv/a2fb93cd-ad72-4c15-b23b-14882c2418c2> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Dried-out-leaf-tips> a tern:Text,
         tern:Value ;
@@ -1102,7 +1102,7 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/adult> a tern:IRI,
         tern:Value ;
     rdfs:label "lifeStage-value" ;
-    rdf:value <http://example.com/lifeStage/adult> .
+    rdf:value <http://linked.data.gov.au/def/tern-cv/c50013ae-1f32-4560-92d0-848acbc0da3f> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/new-life-stage> a tern:IRI,
         tern:Value ;
@@ -1122,7 +1122,7 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/male> a tern:IRI,
         tern:Value ;
     rdfs:label "sex-value" ;
-    rdf:value <http://example.com/sex/male> .
+    rdf:value <http://linked.data.gov.au/def/tern-cv/b3b56ae7-bd42-46e3-9391-cac2352a306f> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/new-sex> a tern:IRI,
         tern:Value ;
@@ -1145,7 +1145,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/8022FSJMJ079c5cf> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000001 ;
+    geo:hasGeometry _:Nc9e80a8065e2af27e3990a2c00000001 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "sequencing-sampling" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
@@ -1158,7 +1158,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000003 ;
+    geo:hasGeometry _:Nc9e80a8065e2af27e3990a2c00000003 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "sequencing-sampling" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
@@ -1172,12 +1172,12 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/HumanObservation> a tern:IRI,
         tern:Value ;
     rdfs:label "HumanObservation" ;
-    rdf:value <http://example.com/basisOfRecord/HumanObservation> .
+    rdf:value <http://linked.data.gov.au/def/tern-cv/d8a47898-e5cb-45f5-be87-e4a7dc5d053e> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/PreservedSpecimen> a tern:IRI,
         tern:Value ;
     rdfs:label "PreservedSpecimen" ;
-    rdf:value <http://example.com/basisOfRecord/PreservedSpecimen> .
+    rdf:value <http://linked.data.gov.au/def/tern-cv/1644f015-216f-4691-bb42-44d3a93bb277> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/new-basis-of-record> a tern:IRI,
         tern:Value ;
@@ -1220,7 +1220,7 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/species-incerta> a tern:IRI,
         tern:Value ;
     rdfs:label "species incerta" ;
-    rdf:value <http://example.com/identificationQualifier/species-incerta> .
+    rdf:value <http://linked.data.gov.au/def/tern-cv/1eca8b2f-0d8a-4638-ba85-6f380005901b> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationRemarks/Could-not-confirm-the-ID-due-to-damaged-flower> a tern:Text,
         tern:Value ;
@@ -1261,7 +1261,7 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/taxonRank/species> a tern:IRI,
         tern:Value ;
     rdfs:label "species" ;
-    rdf:value <http://example.com/species> .
+    rdf:value <http://linked.data.gov.au/def/tern-cv/2b6fae57-f28e-4f24-b6f9-19f114dbb61e> .
 
 <https://linked.data.gov.au/dataset/bdr/attribution/Stream-Environment-and-Water-Pty-Ltd/owner> a prov:Attribution ;
     prov:agent <https://linked.data.gov.au/org/Stream-Environment-and-Water-Pty-Ltd> ;
@@ -1269,7 +1269,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/basisOfRecord/new-basis-of-record> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/basisOfRecord> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/633119a9-6c8a-46ae-a78a-23a4fd371eb2> ;
     skos:definition "A type of basisOfRecord." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1299,7 +1299,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier/> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e> ;
     skos:definition "A type of identificationQualifier." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1309,7 +1309,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier/new-identification-qualifier> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/identificationQualifier> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e> ;
     skos:definition "A type of identificationQualifier." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1319,8 +1319,8 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations/Wet-in-ethanol-or-some-other-preservative> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations> ;
-    skos:definition "A type of preparations." ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/9694c614-7bb5-4403-bba4-fd01d40bf5c3> ;
+    skos:definition "A type of preparation." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "Wet (in ethanol or some other preservative)" ;
@@ -1329,8 +1329,8 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations/new-preparations> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/preparations> ;
-    skos:definition "A type of preparations." ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/9694c614-7bb5-4403-bba4-fd01d40bf5c3> ;
+    skos:definition "A type of preparation." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
     skos:prefLabel "new preparations" ;
@@ -1350,7 +1350,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/taxonRank/new-taxon-rank> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/taxonRank> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/1e4d7110-5f07-45ec-98e7-738236a8d8e0> ;
     skos:definition "A type of taxonRank." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1428,7 +1428,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/establishmentMeans/new-establishment-means> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/establishmentMeans> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/58eaac1c-4c8b-4a95-897f-86dfc83e660f> ;
     skos:definition "A type of establishmentMeans." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1438,7 +1438,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/lifeStage/new-life-stage> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/lifeStage> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/7e142859-c559-417e-a725-4b547f7e722c> ;
     skos:definition "A type of lifeStage." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1448,7 +1448,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/occurrenceStatus/new-occurrence-status> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/occurrenceStatus> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/835d7166-2a4d-4335-9d39-8082ff201811> ;
     skos:definition "A type of occurrenceStatus." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1458,7 +1458,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition/No-breeding-evident> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/4b2e788d-260b-4cfc-91f4-99e7c2ad2c42> ;
     skos:definition "A type of reproductiveCondition." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1468,7 +1468,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition/new-reproductiveCondition> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/4b2e788d-260b-4cfc-91f4-99e7c2ad2c42> ;
     skos:definition "A type of reproductiveCondition." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1478,7 +1478,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/sex/new-sex> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/sex> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
     skos:definition "A type of sex." ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
@@ -1552,7 +1552,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdf:value "Caladenia excelsa Hopper & A.P.Br." ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:featureType <http://example.com/concept/acceptedNameUsage> .
+    tern:featureType <http://linked.data.gov.au/def/tern-cv/e11cc022-7368-435b-96c5-a7f8c7f61a50> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia-excelsa> a tern:Text,
         tern:Value ;
@@ -1569,7 +1569,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/13> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000001 ;
+    geo:hasGeometry _:Ne577c38a66af45121bf5425100000001 ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/13> ;
@@ -1581,7 +1581,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/8022FSJMJ079c5cf> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000003 ;
+    geo:hasGeometry _:Ne577c38a66af45121bf5425100000003 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
@@ -1593,7 +1593,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/ABC123> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000005 ;
+    geo:hasGeometry _:Ne577c38a66af45121bf5425100000005 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
@@ -1661,7 +1661,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc575500000016 ;
+    schema:spatial _:Na409e7548401ac9b4eb79d5500000016 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
@@ -1685,7 +1685,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc575500000000 ;
+    schema:spatial _:Na409e7548401ac9b4eb79d5500000000 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1697,7 +1697,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc575500000012 ;
+    schema:spatial _:Na409e7548401ac9b4eb79d5500000012 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1709,7 +1709,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc575500000014 ;
+    schema:spatial _:Na409e7548401ac9b4eb79d5500000014 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1721,7 +1721,7 @@
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:identifier "PE:12:8831" ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc575500000002 ;
+    schema:spatial _:Na409e7548401ac9b4eb79d5500000002 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1733,7 +1733,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/c6c0efa61d3303c1> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc575500000004 ;
+    schema:spatial _:Na409e7548401ac9b4eb79d5500000004 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1745,7 +1745,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc575500000006 ;
+    schema:spatial _:Na409e7548401ac9b4eb79d5500000006 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1757,7 +1757,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc575500000008 ;
+    schema:spatial _:Na409e7548401ac9b4eb79d5500000008 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1769,7 +1769,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc57550000000a ;
+    schema:spatial _:Na409e7548401ac9b4eb79d550000000a ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1781,7 +1781,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc57550000000c ;
+    schema:spatial _:Na409e7548401ac9b4eb79d550000000c ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1793,7 +1793,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc57550000000e ;
+    schema:spatial _:Na409e7548401ac9b4eb79d550000000e ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1805,7 +1805,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc575500000010 ;
+    schema:spatial _:Na409e7548401ac9b4eb79d5500000010 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1837,7 +1837,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc575500000018 ;
+    schema:spatial _:Na409e7548401ac9b4eb79d5500000018 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1851,7 +1851,7 @@
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    schema:spatial _:N7bfc9936b099cf9353fc57550000001a ;
+    schema:spatial _:Na409e7548401ac9b4eb79d550000001a ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1898,7 +1898,7 @@
         "PE:12:8832"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Stream-Environment-and-Water-Pty-Ltd> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/MR-R1> ;
-    schema:spatial _:N7bfc9936b099cf9353fc57550000001c ;
+    schema:spatial _:Na409e7548401ac9b4eb79d550000001c ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
@@ -1919,7 +1919,7 @@
         "PE:12:8833"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordNumber/Stream-Environment-and-Water-Pty-Ltd> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000>,
         <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/Survey/MR-R1> ;
-    schema:spatial _:N7bfc9936b099cf9353fc57550000001e ;
+    schema:spatial _:Na409e7548401ac9b4eb79d550000001e ;
     schema:temporal [ a time:TemporalEntity ;
             time:hasBeginning [ a time:Instant ;
                     time:inXSDDate "2019-09-26"^^xsd:date ] ;
@@ -1939,7 +1939,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
-    rdf:object _:Nbaf38917362852ca9a9a0d2500000001 ;
+    rdf:object _:Nc9e80a8065e2af27e3990a2c00000001 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/8022FSJMJ079c5cf> ;
     rdfs:comment "supplied as" .
@@ -1947,15 +1947,39 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
-    rdf:object _:Nbaf38917362852ca9a9a0d2500000003 ;
+    rdf:object _:Nc9e80a8065e2af27e3990a2c00000003 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> ;
     rdfs:comment "supplied as" .
 
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
+    rdf:object _:Ne577c38a66af45121bf5425100000001 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/13> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc575500000000 ;
+    rdf:object _:Ne577c38a66af45121bf5425100000003 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/8022FSJMJ079c5cf> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
+    rdf:object _:Ne577c38a66af45121bf5425100000005 ;
+    rdf:predicate geo:hasGeometry ;
+    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/ABC123> ;
+    rdfs:comment "supplied as" .
+
+[] a rdf:Statement ;
+    geo:hasGeometry [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
+    rdf:object _:Na409e7548401ac9b4eb79d5500000000 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
     rdfs:comment "supplied as" .
@@ -1963,7 +1987,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc575500000002 ;
+    rdf:object _:Na409e7548401ac9b4eb79d5500000002 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
     rdfs:comment "supplied as" .
@@ -1971,7 +1995,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc575500000004 ;
+    rdf:object _:Na409e7548401ac9b4eb79d5500000004 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
     rdfs:comment "supplied as" .
@@ -1979,7 +2003,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc575500000006 ;
+    rdf:object _:Na409e7548401ac9b4eb79d5500000006 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
     rdfs:comment "supplied as" .
@@ -1987,7 +2011,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc575500000008 ;
+    rdf:object _:Na409e7548401ac9b4eb79d5500000008 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
     rdfs:comment "supplied as" .
@@ -1995,7 +2019,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc57550000000a ;
+    rdf:object _:Na409e7548401ac9b4eb79d550000000a ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
     rdfs:comment "supplied as" .
@@ -2003,7 +2027,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc57550000000c ;
+    rdf:object _:Na409e7548401ac9b4eb79d550000000c ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
     rdfs:comment "supplied as" .
@@ -2011,7 +2035,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc57550000000e ;
+    rdf:object _:Na409e7548401ac9b4eb79d550000000e ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
     rdfs:comment "supplied as" .
@@ -2019,7 +2043,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc575500000010 ;
+    rdf:object _:Na409e7548401ac9b4eb79d5500000010 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
     rdfs:comment "supplied as" .
@@ -2027,7 +2051,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc575500000012 ;
+    rdf:object _:Na409e7548401ac9b4eb79d5500000012 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
     rdfs:comment "supplied as" .
@@ -2035,7 +2059,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc575500000014 ;
+    rdf:object _:Na409e7548401ac9b4eb79d5500000014 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
     rdfs:comment "supplied as" .
@@ -2043,7 +2067,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc575500000016 ;
+    rdf:object _:Na409e7548401ac9b4eb79d5500000016 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/12> ;
     rdfs:comment "supplied as" .
@@ -2051,7 +2075,7 @@
 [] a rdf:Statement ;
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
-    rdf:object _:N7bfc9936b099cf9353fc575500000018 ;
+    rdf:object _:Na409e7548401ac9b4eb79d5500000018 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
     rdfs:comment "supplied as" .
@@ -2060,7 +2084,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 2e+01 ] ;
-    rdf:object _:N7bfc9936b099cf9353fc57550000001a ;
+    rdf:object _:Na409e7548401ac9b4eb79d550000001a ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
     rdfs:comment "supplied as" .
@@ -2069,7 +2093,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
-    rdf:object _:N7bfc9936b099cf9353fc57550000001c ;
+    rdf:object _:Na409e7548401ac9b4eb79d550000001c ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     rdfs:comment "supplied as" .
@@ -2078,103 +2102,79 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 3e+01 ] ;
-    rdf:object _:N7bfc9936b099cf9353fc57550000001e ;
+    rdf:object _:Na409e7548401ac9b4eb79d550000001e ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     rdfs:comment "supplied as" .
 
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
-    rdf:object _:Nfcd8f1042640aeab2a686b1700000001 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/13> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
-    rdf:object _:Nfcd8f1042640aeab2a686b1700000003 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/8022FSJMJ079c5cf> ;
-    rdfs:comment "supplied as" .
-
-[] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
-    rdf:object _:Nfcd8f1042640aeab2a686b1700000005 ;
-    rdf:predicate geo:hasGeometry ;
-    rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/ABC123> ;
-    rdfs:comment "supplied as" .
-
-_:N7bfc9936b099cf9353fc575500000000 a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d5500000000 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc575500000002 a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d5500000002 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.01)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc575500000004 a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d5500000004 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.01)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc575500000006 a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d5500000006 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.01)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc575500000008 a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d5500000008 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc57550000000a a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d550000000a a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc57550000000c a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d550000000c a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc57550000000e a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d550000000e a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 114.99)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc575500000010 a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d5500000010 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc575500000012 a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d5500000012 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc575500000014 a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d5500000014 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc575500000016 a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d5500000016 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc575500000018 a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d5500000018 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral .
 
-_:N7bfc9936b099cf9353fc57550000001a a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d550000001a a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 2e+01 .
 
-_:N7bfc9936b099cf9353fc57550000001c a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d550000001c a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
-_:N7bfc9936b099cf9353fc57550000001e a geo:Geometry ;
+_:Na409e7548401ac9b4eb79d550000001e a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 3e+01 .
 
-_:Nbaf38917362852ca9a9a0d2500000001 a geo:Geometry ;
+_:Nc9e80a8065e2af27e3990a2c00000001 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
     rdfs:comment "Location unknown, location of field sampling used as proxy" .
 
-_:Nbaf38917362852ca9a9a0d2500000003 a geo:Geometry ;
+_:Nc9e80a8065e2af27e3990a2c00000003 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
     rdfs:comment "Location unknown, location of field sampling used as proxy" .
 
-_:Nfcd8f1042640aeab2a686b1700000001 a geo:Geometry ;
+_:Ne577c38a66af45121bf5425100000001 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.86 115.02)"^^geo:wktLiteral ;
     rdfs:comment "Location unknown, location of field sampling used as proxy" .
 
-_:Nfcd8f1042640aeab2a686b1700000003 a geo:Geometry ;
+_:Ne577c38a66af45121bf5425100000003 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
     rdfs:comment "Location unknown, location of field sampling used as proxy" .
 
-_:Nfcd8f1042640aeab2a686b1700000005 a geo:Geometry ;
+_:Ne577c38a66af45121bf5425100000005 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral ;
     rdfs:comment "Location unknown, location of field sampling used as proxy" .
 

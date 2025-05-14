@@ -31,31 +31,43 @@ CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715")
-CONCEPT_DATA_GENERALIZATIONS = utils.rdf.uri(
-    "concept/data-generalizations", utils.namespaces.EXAMPLE
-)  # TODO -> Need real URI
-CONCEPT_TAXON_RANK = utils.rdf.uri("concept/taxonRank", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_DATA_GENERALIZATIONS = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/77f30c7d-4642-45a4-ab91-1400bf2bc652"
+)  # real URI
+CONCEPT_TAXON_RANK = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/1e4d7110-5f07-45ec-98e7-738236a8d8e0"
+)  # real URI
 CONCEPT_INDIVIDUAL_COUNT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1")
-CONCEPT_ORGANISM_REMARKS = utils.rdf.uri("concept/organismRemarks", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_ORGANISM_REMARKS = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/54137592-31ab-4de2-98b5-9677274ff93c"
+)  # real URI
 CONCEPT_HABITAT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2090cfd9-8b6b-497b-9512-497456a18b99")
-CONCEPT_BASIS_OF_RECORD = utils.rdf.uri("concept/basisOfRecord", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_OCCURRENCE_STATUS = utils.rdf.uri("concept/occurrenceStatus", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_PREPARATIONS = utils.rdf.uri("concept/preparations", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
-CONCEPT_ESTABLISHMENT_MEANS = utils.rdf.uri(
-    "concept/establishmentMeans", utils.namespaces.EXAMPLE
-)  # TODO -> Need real URI
+CONCEPT_BASIS_OF_RECORD = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/633119a9-6c8a-46ae-a78a-23a4fd371eb2"
+)  # real URI
+CONCEPT_OCCURRENCE_STATUS = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/835d7166-2a4d-4335-9d39-8082ff201811"
+)  # real URI
+CONCEPT_PREPARATIONS = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/9694c614-7bb5-4403-bba4-fd01d40bf5c3"
+)  # real URI
+CONCEPT_ESTABLISHMENT_MEANS = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/58eaac1c-4c8b-4a95-897f-86dfc83e660f"
+)  # real URI
 CONCEPT_LIFE_STAGE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3")
 CONCEPT_SEX = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36")
-CONCEPT_REPRODUCTIVE_CONDITION = utils.rdf.uri(
-    "concept/reproductiveCondition", utils.namespaces.EXAMPLE
-)  # TODO -> Need real URI
-CONCEPT_ACCEPTED_NAME_USAGE = utils.rdf.uri(
-    "concept/acceptedNameUsage", utils.namespaces.EXAMPLE
-)  # TODO -> Need real URI
-CONCEPT_NAME_CHECK_METHOD = utils.rdf.uri(
-    "methods/name-check-method", utils.namespaces.EXAMPLE
-)  # TODO -> Need real URI
-CONCEPT_SEQUENCE = utils.rdf.uri("concept/sequence", utils.namespaces.EXAMPLE)  # TODO -> Need real URI
+CONCEPT_REPRODUCTIVE_CONDITION = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/4b2e788d-260b-4cfc-91f4-99e7c2ad2c42"
+)  # real URI
+CONCEPT_ACCEPTED_NAME_USAGE = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/e11cc022-7368-435b-96c5-a7f8c7f61a50"
+)  # real URI
+CONCEPT_NAME_CHECK_METHOD = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653"
+)  # real URI
+CONCEPT_SEQUENCE = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/28d76c6c-6ee0-4bec-8adf-634cadb52aef"
+)  # real URI
 CONCEPT_CONSERVATION_STATUS = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919"
 )
@@ -65,7 +77,9 @@ CONCEPT_CONSERVATION_AUTHORITY = rdflib.URIRef(
 CONCEPT_SENSITIVITY_CATEGORY = utils.rdf.uri(
     "concept/sensitiveCategory", utils.namespaces.EXAMPLE
 )  # TODO Need real URI
-CONCEPT_ORGANISM_QUANTITY = utils.rdf.uri("concept/organismQuantity", utils.namespaces.EXAMPLE)  # TODO Need real URI
+CONCEPT_ORGANISM_QUANTITY = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/36b0f572-7215-42c0-a904-88619d23b4d0"
+)  # real URI
 
 # Roles
 DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/resourceProvider")

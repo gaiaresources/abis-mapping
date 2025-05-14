@@ -14,7 +14,7 @@ FEMALE = utils.vocabs.Term(
         "F",
         "♀",
     ),
-    iri=utils.rdf.uri("sex/female", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/647cc9ca-3d55-4336-840d-d0a0b6d36231"),  # real URI
     description=(
         "Female (♀) is the sex of an organism, or a part of an organism, which produces mobile ova (egg cells)."
     ),
@@ -24,7 +24,7 @@ HERMAPHRODITE = utils.vocabs.Term(
         "HERMAPHRODITE",
         "ZWITTER",
     ),
-    iri=utils.rdf.uri("sex/hermaphrodite", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/fe3b31bf-43af-4735-9d7d-8830fa27e559"),  # real URI
     description=(
         "One organism having both male and female sexual characteristics and "
         "organs; at birth an unambiguous assignment of male or female cannot be "
@@ -37,7 +37,7 @@ MALE = utils.vocabs.Term(
         "M",
         "♂",
     ),
-    iri=utils.rdf.uri("sex/male", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/b3b56ae7-bd42-46e3-9391-cac2352a306f"),  # real URI
     description=(
         "Male (♂) refers to the sex of an organism, or part of an organism, which "
         "produces small mobile gametes, called spermatozoa."
@@ -49,7 +49,7 @@ UNDETERMINED = utils.vocabs.Term(
         "UNDET.",
         "UNKNOWN",
     ),
-    iri=utils.rdf.uri("sex/undetermined", utils.namespaces.EXAMPLE),  # TODO -> Need real URI
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/8d116443-a711-4c47-816c-71a099e113e9"),  # real URI
     description="If the sex of an organism can't be determined for some reason.",
 )
 
@@ -60,7 +60,7 @@ class Sex(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of sex.")
     base = "bdr-cv/parameter/sex/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5699eca7-9ef0-47a6-bcfb-9306e0e2b85e")
-    broader = utils.rdf.uri("bdr-cv/parameter/sex", utils.namespaces.DATASET_BDR)
+    broader = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36")
     default = None  # No default, ommitted if not provided
     terms = (FEMALE, HERMAPHRODITE, MALE, UNDETERMINED)
 

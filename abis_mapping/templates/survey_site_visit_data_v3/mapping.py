@@ -24,7 +24,7 @@ DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data
 CONCEPT_TARGET_TAXONOMIC_SCOPE = rdflib.URIRef(
     "https://linked.data.gov.au/def/nrm/7ea12fed-6b87-4c20-9ab4-600b32ce15ec",
 )
-CONCEPT_SAMPLING_EFFORT = utils.rdf.uri("concept/samplingEffort", utils.namespaces.EXAMPLE)
+CONCEPT_SAMPLING_EFFORT = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/489792e5-39ae-44b6-9a6f-d1ef895f9c19")
 
 
 @dataclasses.dataclass

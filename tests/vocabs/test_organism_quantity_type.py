@@ -24,4 +24,4 @@ def test_get_percentage_biomass() -> None:
     iri = vocab_instance.get("% of biomass")
 
     # Assert
-    assert iri == rdflib.URIRef("http://rs.gbif.org/vocabulary/gbif/quantityType/percentageOfBiomass")
+    assert iri == rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/369c3d2c-fcf7-4fda-b0b1-3ca10ab4809c")
