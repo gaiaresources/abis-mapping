@@ -254,7 +254,7 @@
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/526319d0-0210-42b0-bd4c-fa18585ab6f2> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
             rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
@@ -267,7 +267,7 @@
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia-excelsa-Hopper-A-P-Br> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
-    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/526319d0-0210-42b0-bd4c-fa18585ab6f2> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
             rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
