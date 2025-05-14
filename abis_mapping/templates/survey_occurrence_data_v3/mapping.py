@@ -63,7 +63,7 @@ CONCEPT_ACCEPTED_NAME_USAGE = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/e11cc022-7368-435b-96c5-a7f8c7f61a50"
 )  # real URI
 CONCEPT_NAME_CHECK_METHOD = rdflib.URIRef(
-    "http://linked.data.gov.au/def/tern-cv/526319d0-0210-42b0-bd4c-fa18585ab6f2"
+    "http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653"
 )  # real URI
 CONCEPT_SEQUENCE = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/28d76c6c-6ee0-4bec-8adf-634cadb52aef"
