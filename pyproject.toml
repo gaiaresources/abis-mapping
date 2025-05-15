@@ -117,7 +117,7 @@ exhaustive = true
 containers = ["abis_mapping"]
 layers = [
     # top-level modules
-    "templates",
+    "templates | documentation",
     # mid-level modules
     "base | plugins | vocabs",
     "models",
