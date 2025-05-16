@@ -23,7 +23,7 @@ import tests.templates.conftest
 
 # Global vars
 COUNTERS: collections.abc.Mapping[bytes, collections.abc.Iterator[int]] = collections.defaultdict(itertools.count)
-TTL_FILE_PATH: str = ""
+TTL_FILE_PATH: pathlib.Path = pathlib.Path()
 
 
 def main() -> None:
@@ -73,7 +73,7 @@ def main() -> None:
         print(f"Generating {output_ttl_file_path}...")
 
         # set global var
-        TTL_FILE_PATH = str(output_ttl_file_path)
+        TTL_FILE_PATH = output_ttl_file_path
 
         # Get Mapper
         mapper = abis_mapping.get_mapper(template_id)
@@ -112,8 +112,10 @@ def _custom_sn_gen() -> str:
     # i.e. when the same hash occurs, they will be numbered 0,1,2,etc. at the end of the ID.
     # This ensures each ID should be globally unique.
     code_path_hash = hashlib.blake2b(digest_size=12, person=b"gen_b_node_id")
-    # hash ttl file path.
-    code_path_hash.update(TTL_FILE_PATH.encode("utf-8"))
+    # hash ttl file path;
+    # Cast path to PurePosixPath before getting a str representation,
+    # So that the string representation is the same on linux and windows.
+    code_path_hash.update(str(pathlib.PurePosixPath(TTL_FILE_PATH)).encode("utf-8"))
     # Hash functions in the abis_mapping module called to make this BNode()
     for frame in inspect.stack():
         # NOTE "abis_mapping" with underscore is the module name.

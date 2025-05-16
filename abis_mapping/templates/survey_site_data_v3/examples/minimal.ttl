@@ -63,7 +63,7 @@
     schema:name "WAM" .
 
 <https://example.com/site/WAM/P0> a tern:Site ;
-    geo:hasGeometry _:N5d102da50a40cbfd9a88c4a700000000 ;
+    geo:hasGeometry _:N9466fd6e9e4c9aa92b83d28000000000 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4> ;
     schema:description "Footprint of study area" ;
     schema:identifier "P0"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
@@ -72,8 +72,8 @@
     tern:locationDescription "Cowaramup Bay Road" .
 
 <https://example.com/site/WAM/P1> a tern:Site ;
-    geo:hasGeometry _:N5d102da50a40cbfd9a88c4a700000001,
-        _:Na5a70e7930f8a7b79ec1dd3200000000 ;
+    geo:hasGeometry _:N3bba75fe5be4a400a5af80dd00000000,
+        _:N9466fd6e9e4c9aa92b83d28000000001 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:isPartOf <https://example.com/site/WAM/P0> ;
@@ -83,8 +83,8 @@
 
 <https://linked.data.gov.au/dataset/bdr/sites/WAM/P3> a tern:Site ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:N5d102da50a40cbfd9a88c4a700000003,
-        _:Na5a70e7930f8a7b79ec1dd3200000002 ;
+    geo:hasGeometry _:N3bba75fe5be4a400a5af80dd00000002,
+        _:N9466fd6e9e4c9aa92b83d28000000003 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:identifier "P3"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
@@ -97,8 +97,8 @@
 
 <https://linked.data.gov.au/dataset/bdr/sites/WAM/P2> a tern:Site ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:N5d102da50a40cbfd9a88c4a700000002,
-        _:Na5a70e7930f8a7b79ec1dd3200000001 ;
+    geo:hasGeometry _:N3bba75fe5be4a400a5af80dd00000001,
+        _:N9466fd6e9e4c9aa92b83d28000000002 ;
     schema:additionalType <http://linked.data.gov.au/def/tern-cv/8cadf069-01d7-4420-b454-cae37740c2a2> ;
     schema:description "Fine woody debris." ;
     schema:identifier "P2"^^<https://linked.data.gov.au/dataset/bdr/datatypes/siteID/WAM> ;
@@ -113,7 +113,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POLYGON ((-33.85 114.98, -33.85 115.01, -33.87 115.01, -33.87 114.98, -33.85 114.98))"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
-    rdf:object _:N5d102da50a40cbfd9a88c4a700000000 ;
+    rdf:object _:N9466fd6e9e4c9aa92b83d28000000000 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://example.com/site/WAM/P0> ;
     rdfs:comment "supplied as" .
@@ -122,7 +122,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
-    rdf:object _:N5d102da50a40cbfd9a88c4a700000001 ;
+    rdf:object _:N9466fd6e9e4c9aa92b83d28000000001 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://example.com/site/WAM/P1> ;
     rdfs:comment "supplied as" .
@@ -131,7 +131,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
-    rdf:object _:N5d102da50a40cbfd9a88c4a700000002 ;
+    rdf:object _:N9466fd6e9e4c9aa92b83d28000000002 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/sites/WAM/P2> ;
     rdfs:comment "supplied as" .
@@ -140,7 +140,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
-    rdf:object _:N5d102da50a40cbfd9a88c4a700000003 ;
+    rdf:object _:N9466fd6e9e4c9aa92b83d28000000003 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/sites/WAM/P3> ;
     rdfs:comment "supplied as" .
@@ -149,7 +149,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.85 114.99)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
-    rdf:object _:Na5a70e7930f8a7b79ec1dd3200000000 ;
+    rdf:object _:N3bba75fe5be4a400a5af80dd00000000 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://example.com/site/WAM/P1> ;
     rdfs:comment "supplied as" .
@@ -158,7 +158,7 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.85 114.99)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
-    rdf:object _:Na5a70e7930f8a7b79ec1dd3200000001 ;
+    rdf:object _:N3bba75fe5be4a400a5af80dd00000001 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/sites/WAM/P2> ;
     rdfs:comment "supplied as" .
@@ -167,36 +167,36 @@
     geo:hasGeometry [ a geo:Geometry ;
             geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.85 114.99)"^^geo:wktLiteral ;
             geo:hasMetricSpatialAccuracy 5e+01 ] ;
-    rdf:object _:Na5a70e7930f8a7b79ec1dd3200000002 ;
+    rdf:object _:N3bba75fe5be4a400a5af80dd00000002 ;
     rdf:predicate geo:hasGeometry ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/sites/WAM/P3> ;
     rdfs:comment "supplied as" .
 
-_:N5d102da50a40cbfd9a88c4a700000000 a geo:Geometry ;
+_:N3bba75fe5be4a400a5af80dd00000000 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N3bba75fe5be4a400a5af80dd00000001 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N3bba75fe5be4a400a5af80dd00000002 a geo:Geometry ;
+    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
+    geo:hasMetricSpatialAccuracy 5e+01 .
+
+_:N9466fd6e9e4c9aa92b83d28000000000 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POLYGON ((-33.85 114.98, -33.85 115.01, -33.87 115.01, -33.87 114.98, -33.85 114.98))"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
-_:N5d102da50a40cbfd9a88c4a700000001 a geo:Geometry ;
+_:N9466fd6e9e4c9aa92b83d28000000001 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
-_:N5d102da50a40cbfd9a88c4a700000002 a geo:Geometry ;
+_:N9466fd6e9e4c9aa92b83d28000000002 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
-_:N5d102da50a40cbfd9a88c4a700000003 a geo:Geometry ;
+_:N9466fd6e9e4c9aa92b83d28000000003 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> LINESTRING (-33.85 114.99, -33.85 115)"^^geo:wktLiteral ;
-    geo:hasMetricSpatialAccuracy 5e+01 .
-
-_:Na5a70e7930f8a7b79ec1dd3200000000 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
-    geo:hasMetricSpatialAccuracy 5e+01 .
-
-_:Na5a70e7930f8a7b79ec1dd3200000001 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
-    geo:hasMetricSpatialAccuracy 5e+01 .
-
-_:Na5a70e7930f8a7b79ec1dd3200000002 a geo:Geometry ;
-    geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.85 114.99)"^^geo:wktLiteral ;
     geo:hasMetricSpatialAccuracy 5e+01 .
 
