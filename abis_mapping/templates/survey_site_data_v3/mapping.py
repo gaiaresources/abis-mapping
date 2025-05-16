@@ -834,7 +834,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         geometry_node = rdflib.BNode()
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((uri, rdflib.SDO.spatial, geometry_node))
 
         # Add coordinate uncertainty if available
         coordinate_uncertainty = row["coordinateUncertaintyInMeters"]
@@ -847,7 +847,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add original geometry supplied as statement
         self.add_geometry_supplied_as(
             subj=uri,
-            pred=utils.namespaces.GEO.hasGeometry,
+            pred=rdflib.SDO.spatial,
             obj=geometry_node,
             geom=geometry,
             graph=graph,
@@ -885,7 +885,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         geometry_node = rdflib.BNode()
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((uri, rdflib.SDO.spatial, geometry_node))
 
         # Add coordinate uncertainty if available
         coordinate_uncertainty = row["coordinateUncertaintyInMeters"]
@@ -898,7 +898,7 @@ class SurveySiteMapper(base.mapper.ABISMapper):
         # Add original geometry supplied as statement
         self.add_geometry_supplied_as(
             subj=uri,
-            pred=utils.namespaces.GEO.hasGeometry,
+            pred=rdflib.SDO.spatial,
             obj=geometry_node,
             geom=geometry,
             graph=graph,
