@@ -231,7 +231,7 @@ def add_site_shape(g: rdflib.Graph, dataset_shape: rdflib.term.Node) -> rdflib.t
 
     # Add geometry prop
     site_geometry_prop = rdflib.BNode()
-    g.add((site_geometry_prop, SH.path, utils.namespaces.GEO.hasGeometry))
+    g.add((site_geometry_prop, SH.path, rdflib.SDO.spatial))
     g.add((site_geometry_prop, SH["class"], utils.namespaces.GEO.Geometry))
     g.add((site_geometry_prop, SH.maxCount, rdflib.Literal(2)))  # Both point and footprintWKT supplied
     wkt_prop = rdflib.BNode()
