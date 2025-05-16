@@ -1145,26 +1145,26 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/8022FSJMJ079c5cf> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000001 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "sequencing-sampling" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/sequence/8022FSJMJ079c5cf> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/Sanger-dideoxy-sequencing> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:spatial _:Nbaf38917362852ca9a9a0d2500000001 ;
     schema:temporal [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nbaf38917362852ca9a9a0d2500000003 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "sequencing-sampling" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/sequence/ABC123> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/sequencingMethod/new-sequencing-method> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:spatial _:Nbaf38917362852ca9a9a0d2500000003 ;
     schema:temporal [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] .
@@ -1569,37 +1569,37 @@
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/13> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000001 ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/13> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:spatial _:Nfcd8f1042640aeab2a686b1700000001 ;
     schema:temporal [ a time:Instant ;
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/8022FSJMJ079c5cf> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000003 ;
     geo:hasMetricSpatialAccuracy 5e+01 ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:spatial _:Nfcd8f1042640aeab2a686b1700000003 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/ABC123> a tern:Sampling ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
-    geo:hasGeometry _:Nfcd8f1042640aeab2a686b1700000005 ;
     geo:hasMetricSpatialAccuracy 3e+01 ;
     rdfs:comment "specimen-sampling" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:spatial _:Nfcd8f1042640aeab2a686b1700000005 ;
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-27"^^xsd:date ] .
 
@@ -1937,175 +1937,175 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
     rdf:object _:Nbaf38917362852ca9a9a0d2500000001 ;
-    rdf:predicate geo:hasGeometry ;
+    rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/8022FSJMJ079c5cf> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
     rdf:object _:Nbaf38917362852ca9a9a0d2500000003 ;
-    rdf:predicate geo:hasGeometry ;
+    rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/sequencing/ABC123> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc575500000000 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc575500000002 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc575500000004 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc575500000006 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.01)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc575500000008 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc57550000000a ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc57550000000c ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc57550000000e ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 114.99)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc575500000010 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc575500000012 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc575500000014 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc575500000016 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/12> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
     rdf:object _:N7bfc9936b099cf9353fc575500000018 ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ;
-            geo:hasMetricSpatialAccuracy 2e+01 ] ;
     rdf:object _:N7bfc9936b099cf9353fc57550000001a ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 2e+01 ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ;
-            geo:hasMetricSpatialAccuracy 5e+01 ] ;
     rdf:object _:N7bfc9936b099cf9353fc57550000001c ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 5e+01 ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ;
-            geo:hasMetricSpatialAccuracy 3e+01 ] ;
     rdf:object _:N7bfc9936b099cf9353fc57550000001e ;
     rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ;
+            geo:hasMetricSpatialAccuracy 3e+01 ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] ;
     rdf:object _:Nfcd8f1042640aeab2a686b1700000001 ;
-    rdf:predicate geo:hasGeometry ;
+    rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/13> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.86 115.02)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
     rdf:object _:Nfcd8f1042640aeab2a686b1700000003 ;
-    rdf:predicate geo:hasGeometry ;
+    rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/8022FSJMJ079c5cf> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] .
 
 [] a rdf:Statement ;
-    geo:hasGeometry [ a geo:Geometry ;
-            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] ;
     rdf:object _:Nfcd8f1042640aeab2a686b1700000005 ;
-    rdf:predicate geo:hasGeometry ;
+    rdf:predicate schema:spatial ;
     rdf:subject <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sampling/specimen/ABC123> ;
-    rdfs:comment "supplied as" .
+    rdfs:comment "supplied as" ;
+    schema:spatial [ a geo:Geometry ;
+            geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/4326> POINT (-33.8 115.21)"^^geo:wktLiteral ] .
 
 _:N7bfc9936b099cf9353fc575500000000 a geo:Geometry ;
     geo:asWKT "<http://www.opengis.net/def/crs/EPSG/0/7844> POINT (-33.8 115.21)"^^geo:wktLiteral .

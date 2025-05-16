@@ -253,7 +253,7 @@ class ABISMapper(abc.ABC):
         graph.add((supplied_as, utils.namespaces.GEO.asWKT, geom.to_rdf_literal()))
         if spatial_accuracy is not None:
             graph.add((supplied_as, utils.namespaces.GEO.hasMetricSpatialAccuracy, spatial_accuracy))
-        graph.add((top_node, utils.namespaces.GEO.hasGeometry, supplied_as))
+        graph.add((top_node, rdflib.SDO.spatial, supplied_as))
 
     @classmethod
     def add_extra_fields_json(
