@@ -1792,7 +1792,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add geometry
         geometry_node = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((uri, rdflib.SDO.spatial, geometry_node))
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
         spatial_comment = "Location unknown, location of field sampling used as proxy"
@@ -1801,7 +1801,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         # Add 'supplied as' geometry
         self.add_geometry_supplied_as(
             subj=uri,
-            pred=utils.namespaces.GEO.hasGeometry,
+            pred=rdflib.SDO.spatial,
             obj=geometry_node,
             geom=geometry,
             graph=graph,
@@ -3414,14 +3414,14 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add geometry
         geometry_node = rdflib.BNode()
-        graph.add((uri, utils.namespaces.GEO.hasGeometry, geometry_node))
+        graph.add((uri, rdflib.SDO.spatial, geometry_node))
         graph.add((geometry_node, a, utils.namespaces.GEO.Geometry))
         graph.add((geometry_node, utils.namespaces.GEO.asWKT, geometry.to_transformed_crs_rdf_literal()))
 
         # Add 'supplied as' geometry
         self.add_geometry_supplied_as(
             subj=uri,
-            pred=utils.namespaces.GEO.hasGeometry,
+            pred=rdflib.SDO.spatial,
             obj=geometry_node,
             geom=geometry,
             graph=graph,
