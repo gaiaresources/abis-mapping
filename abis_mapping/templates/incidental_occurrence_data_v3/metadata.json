@@ -3,7 +3,7 @@
     "label": "Incidental Occurrence Data Template",
     "version": "3.0.0",
     "description": "A template to translate some Darwin Core fields",
-    "biodiversity_type": "Species Occurrences",
+    "biodiversity_type": "Species Occurrences - Use this template to create a new incidental occurrence dataset or change an existing dataset (insert new record/s or update existing record/s)",
     "spatial_type": "Point",
     "file_type": "CSV",
     "sampling_type": "incidental",
