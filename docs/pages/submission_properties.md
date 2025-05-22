@@ -2,8 +2,7 @@
 title: Submission Properties Form
 ---
 
-# SUBMISSION PROPERTIES FORM INSTRUCTIONS
-
+# DATASET PROPERTIES FORM INSTRUCTIONS
 ## Intended Usage
 
 This dataset properties form must be filled by data providers to provide the
