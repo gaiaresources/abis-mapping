@@ -302,7 +302,7 @@ class SamplingProtocol(utils.vocabs.FlexibleVocabulary):
     base = "bdr-cv/methods/samplingProtocol/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c")
     broader = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/4c489862-0348-4ed8-afae-ed5bb296b034")
-    default = "UNSPECIFIED_METHOD"
+    default = UNSPECIFIED_METHOD
     terms = (
         ACOUSTIC_RECORDING,
         ANIMAL_CARCASS_WHOLE,
