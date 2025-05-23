@@ -56,7 +56,7 @@ FAMILIA_GENUS_SPECIES = utils.vocabs.Term(
         "FAMILIA GENUS SPECIES",
         "FAM. GEN. SP.",
     ),
-    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/3af18778-ea6e-4e5e-8ec0-da9d59f4d075"),  # real URI
+    iri=rdflib.URIRef("hhttp://linked.data.gov.au/def/tern-cv/b9a121e0-591f-4f49-9004-1ff46523bf26"),  # real URI
     description="The specimen has not been attributed to any known species nor family; see also species.",
 )
 GENUS_ET_SPECIES_NOVA = utils.vocabs.Term(
@@ -98,7 +98,7 @@ GENUS_SPECIES = utils.vocabs.Term(
 SP = utils.vocabs.Term(
     labels=(
         "SPECIES",
-        "SP",
+        "SP.",
     ),
     iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/0325eb2d-e89d-4976-8e3e-9a6ff8c0d460"),  # real URI
     description=(
