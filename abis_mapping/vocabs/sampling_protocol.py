@@ -154,10 +154,7 @@ NEST = utils.vocabs.Term(
     description="A nest is a place of refuge to hold an animal's eggs or provide a place to live or raise offspring.",
 )
 NO_STATED_METHOD = utils.vocabs.Term(
-    labels=(
-        "NO STATED METHOD",
-        "UNSPECIFIED",
-    ),
+    labels=("NO STATED METHOD",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39"),
     description="Refers to NO recognised method of observation stated for a target fauna.",
 )
@@ -276,6 +273,11 @@ UNKNOWN_TRAP_TYPE = utils.vocabs.Term(
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/f6b0f6d8-16d8-5dd7-b1b7-66b0c020b96f"),
     description="Refers to the fire history of the plot, unknown., Unknown (unable to be determined)., Unknown capture status., Unknown position., Unknown, unable to be determined., Unknown/unable to be determined.",
 )
+UNSPECIFIED_METHOD = utils.vocabs.Term(
+    labels=("UNSPECIFIED",),
+    iri=rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b"),
+    description="The method used was not included in the data.",
+)
 WALLOW = utils.vocabs.Term(
     labels=("WALLOW",),
     iri=rdflib.URIRef("https://linked.data.gov.au/def/nrm/950726bd-1334-524b-89d2-3ed65f63b2a1"),
@@ -299,8 +301,8 @@ class SamplingProtocol(utils.vocabs.FlexibleVocabulary):
     definition = rdflib.Literal("A type of samplingProtocol.")
     base = "bdr-cv/methods/samplingProtocol/"
     proposed_scheme = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/2fd44aca-168f-4177-b393-0688ce38102c")
-    broader = rdflib.URIRef("https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766")
-    default = NO_STATED_METHOD
+    broader = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/4c489862-0348-4ed8-afae-ed5bb296b034")
+    default = "UNSPECIFIED_METHOD"
     terms = (
         ACOUSTIC_RECORDING,
         ANIMAL_CARCASS_WHOLE,
@@ -355,6 +357,7 @@ class SamplingProtocol(utils.vocabs.FlexibleVocabulary):
         ULTRASONIC_RECORDING_DEVICE,
         UNKNOWN,
         UNKNOWN_TRAP_TYPE,
+        UNSPECIFIED_METHOD,
         WALLOW,
         WATER_SAMPLE,
         WET_PITFALL_TRAP,
