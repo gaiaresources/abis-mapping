@@ -3,7 +3,7 @@
     "label": "Incidental Occurrence Delete Template",
     "version": "1.0.0",
     "description": "A template to delete some Incidental Occurrence Records.",
-    "biodiversity_type": "Species Occurrences",
+    "biodiversity_type": "Species Occurrences - Use this template to delete existing record/s in an incidental occurrence dataset",
     "spatial_type": "Point",
     "file_type": "CSV",
     "sampling_type": "incidental",
