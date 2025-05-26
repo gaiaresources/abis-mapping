@@ -4276,7 +4276,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         """Adds site to the graph.
 
         Args:
-            https://linkeddata.tern.org.au/viewers/tern-instruments
             uri (rdflib.URIRef | None): URI to use if site provided else None.
             site_id: Value of siteID field from the Row.
             site_id_datatype: Datatype to use for the site id literal.
