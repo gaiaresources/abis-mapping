@@ -27,7 +27,9 @@ a = rdflib.RDF.type
 CONCEPT_AUSTRALIA = rdflib.URIRef("https://sws.geonames.org/2077456/")
 CONCEPT_TAXON = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")
 CONCEPT_SITE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4")
-CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e")
+CONCEPT_IDENTIFICATION_QUALIFIER = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e"
+)
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
 CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b")
 CONCEPT_SCIENTIFIC_NAME = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715")
@@ -1815,7 +1817,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
-        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_ID_UNCERTAINTY))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_IDENTIFICATION_QUALIFIER))
         if id_qualifier:
             graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(id_qualifier)))
         if id_qualifier_value:
