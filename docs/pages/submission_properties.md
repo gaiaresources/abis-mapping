@@ -1,5 +1,5 @@
 ---
-title: Submission Properties Form
+title: Dataset Properties Form
 ---
 
 # DATASET PROPERTIES FORM INSTRUCTIONS
