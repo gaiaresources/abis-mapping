@@ -1,16 +1,15 @@
 ---
-title: Submission Properties Form
+title: Dataset Properties Form
 ---
 
-# SUBMISSION PROPERTIES FORM INSTRUCTIONS
-
+# DATASET PROPERTIES FORM INSTRUCTIONS
 ## Intended Usage
 
-This submission properties form must be filled by data providers to provide the
-BDR (Biodiversity Data Repository) with provenance metadata (i.e. dataset and
-project related information) about their datasets.
+This dataset properties form must be filled by data providers to provide the
+BDR (Biodiversity Data Repository) with provenance metadata (i.e. dataset
+and project related information) about their datasets during data submission.
 This ensures proper documentation, licensing, and contextual understanding of
-the datasets contributed to the BDR.
+the datasets submitted to the BDR. 
 The form is a requirement for successful upload of data to the BDR.
 
 ## Form Fields

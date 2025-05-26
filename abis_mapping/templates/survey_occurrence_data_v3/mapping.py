@@ -80,6 +80,7 @@ CONCEPT_SENSITIVITY_CATEGORY = utils.rdf.uri(
 CONCEPT_ORGANISM_QUANTITY = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/36b0f572-7215-42c0-a904-88619d23b4d0"
 )  # real URI
+CONCEPT_UNSPECIFIED_METHOD = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b")
 
 # Roles
 DATA_ROLE_RESOURCE_PROVIDER = rdflib.URIRef("https://linked.data.gov.au/def/data-roles/resourceProvider")
@@ -2578,9 +2579,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Get Timestamp
         event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
-
         # Individual Count Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         if submission_iri:
@@ -2592,7 +2590,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, individual_count_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["individualCount"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_INDIVIDUAL_COUNT))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_UNSPECIFIED_METHOD))
 
         # Declare temporal entity to allow correct assignment typechecks
         temporal_entity: rdflib.term.Node | None = None
@@ -2618,10 +2616,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # ASsert temporal_entity type and add
         if temporal_entity is not None:
             graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
-
-        # Add method comment to node
-        method_comment = "Observation method unknown, 'human observation' used as proxy"
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_individual_count_value(
         self,
@@ -2678,9 +2672,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Get Timestamp
         event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
-
         # Organism Remarks Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         if submission_iri:
@@ -2692,7 +2683,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, organism_remarks_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["organismRemarks"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ORGANISM_REMARKS))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_UNSPECIFIED_METHOD))
 
         # Declare temporal entity to allow correct assignment typechecks
         temporal_entity: rdflib.term.Node | None = None
@@ -2717,10 +2708,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             if temporal_entity is not None:
                 comment = "Date unknown, site visit dates used as proxy."
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
-
-        # Add method comment to node
-        method_comment = "Observation method unknown, 'human observation' used as proxy"
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_organism_remarks_value(
         self,
@@ -3035,9 +3022,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Get Timestamp
         event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
-
         # Occurrence Status Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         if submission_iri:
@@ -3049,7 +3033,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, occurrence_status_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["occurrenceStatus"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_OCCURRENCE_STATUS))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_UNSPECIFIED_METHOD))
 
         # Declare temporal entity to allow correct assignment typechecks
         temporal_entity: rdflib.term.Node | None = None
@@ -3071,10 +3055,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             if temporal_entity is not None:
                 comment = "Date unknown, site visit dates used as proxy."
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
-
-        # Add method comment to node
-        method_comment = "Observation method unknown, 'human observation' used as proxy"
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_occurrence_status_value(
         self,
@@ -3256,9 +3236,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # Get Timestamp
         event_date: models.temporal.Timestamp | None = row["eventDateStart"]
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
-
         # Establishment Means Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         if submission_iri:
@@ -3270,7 +3247,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, establishment_means_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["establishmentMeans"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ESTABLISHMENT_MEANS))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_UNSPECIFIED_METHOD))
 
         # Declare temporal entity to allow correct assignment typechecks
         temporal_entity: rdflib.term.Node | None = None
@@ -3295,10 +3272,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             if temporal_entity is not None:
                 comment = "Date unknown, site visit dates used as proxy."
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
-
-        # Add method comment to node
-        method_comment = "Observation method unknown, 'human observation' used as proxy"
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_establishment_means_value(
         self,
@@ -3373,9 +3346,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # that this row has a specimen, otherwise it is Field Sample
         foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
-
         # Life Stage Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         if submission_iri:
@@ -3387,7 +3357,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, life_stage_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["lifeStage"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_LIFE_STAGE))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_UNSPECIFIED_METHOD))
 
         # Declare temporal entity to allow correct assignment typechecks
         temporal_entity: rdflib.term.Node | None = None
@@ -3413,10 +3383,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             if temporal_entity is not None:
                 comment = "Date unknown, site visit dates used as proxy."
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
-
-        # Add method comment to node
-        method_comment = "Observation method unknown, 'human observation' used as proxy"
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_life_stage_value(
         self,
@@ -3490,9 +3456,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # that this row has a specimen, otherwise it is Field Sample
         foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
-
         # Sex Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         if submission_iri:
@@ -3504,7 +3467,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, sex_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["sex"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SEX))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_UNSPECIFIED_METHOD))
 
         # Declare temporal entity to allow correct assignment typechecks
         temporal_entity: rdflib.term.Node | None = None
@@ -3529,10 +3492,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             if temporal_entity is not None:
                 comment = "Date unknown, site visit dates used as proxy."
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
-
-        # Add method comment to node
-        method_comment = "Observation method unknown, 'human observation' used as proxy"
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_sex_value(
         self,
@@ -3607,9 +3566,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         # that this row has a specimen, otherwise it is Field Sample
         foi = sample_specimen if has_specimen(row) else provider_record_id_occurrence
 
-        # Retrieve Vocab or Create on the Fly
-        vocab = vocabs.sampling_protocol.HUMAN_OBSERVATION.iri  # Always Human Observation
-
         # Reproductive Condition Observation
         graph.add((uri, a, utils.namespaces.TERN.Observation))
         if submission_iri:
@@ -3621,7 +3577,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasResult, reproductive_condition_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["reproductiveCondition"])))
         graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_REPRODUCTIVE_CONDITION))
-        graph.add((uri, rdflib.SOSA.usedProcedure, vocab))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_UNSPECIFIED_METHOD))
 
         # Declare temporal entity to allow correct assignment typechecks
         temporal_entity: rdflib.term.Node | None = None
@@ -3646,10 +3602,6 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
             if temporal_entity is not None:
                 comment = "Date unknown, site visit dates used as proxy."
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
-
-        # Add method comment to node
-        method_comment = "Observation method unknown, 'human observation' used as proxy"
-        graph.add((uri, rdflib.RDFS.comment, rdflib.Literal(method_comment)))
 
     def add_reproductive_condition_value(
         self,
@@ -4263,21 +4215,11 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
                 comment = "Date unknown, site visit dates used as proxy."
                 graph.add((temporal_entity, rdflib.RDFS.comment, rdflib.Literal(comment)))
 
-        # Add Human observation as proxy for observation method
-        human_observation = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157")
-        graph.add((uri, rdflib.SOSA.usedProcedure, human_observation))
+        # Add usedProcedure - unspecified
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_UNSPECIFIED_METHOD))
 
         # Add organism quantity and type values
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(f"{organism_qty} {organism_qty_type}")))
-
-        # Add method comment to node
-        graph.add(
-            (
-                uri,
-                rdflib.RDFS.comment,
-                rdflib.Literal("Observation method unknown, 'human observation' used as proxy"),
-            )
-        )
 
     def add_organism_quantity_value(
         self,
