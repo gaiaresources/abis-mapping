@@ -31,7 +31,6 @@ CONCEPT_IDENTIFICATION_QUALIFIER = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e"
 )
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
-CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b")
 CONCEPT_SCIENTIFIC_NAME = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715")
 CONCEPT_DATA_GENERALIZATIONS = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/77f30c7d-4642-45a4-ab91-1400bf2bc652"
@@ -2159,7 +2158,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
-        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_UNSPECIFIED_METHOD))
 
         # Declare temporal entity allowing for correct assignment types
         temporal_entity: rdflib.term.Node | None = None
