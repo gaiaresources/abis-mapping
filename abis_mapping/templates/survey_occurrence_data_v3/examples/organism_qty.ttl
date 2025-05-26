@@ -37,7 +37,7 @@
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/A0010> ;
     sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Calothamnus-lateralis-var-crassus> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
-    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:temporal [ a time:Instant ;
@@ -92,7 +92,7 @@
         tern:FeatureOfInterest ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/sites/TERN/P1> ;
-    sosa:usedProcedure <https://linked.data.gov.au/def/nrm/a8db263e-7a39-5b85-a5d2-8e1af7ce1e39> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     schema:spatial _:Nb0c3d4fa822b88b4d3f8743700000000 ;
     schema:temporal [ a time:Instant ;

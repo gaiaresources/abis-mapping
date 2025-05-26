@@ -26,9 +26,10 @@ a = rdflib.RDF.type
 CONCEPT_AUSTRALIA = rdflib.URIRef("https://sws.geonames.org/2077456/")
 CONCEPT_TAXON = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0")
 CONCEPT_SITE = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/5bf7ae21-a454-440b-bdd7-f2fe982d8de4")
-CONCEPT_ID_UNCERTAINTY = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/54e40f12-8c13-495a-9f8d-838d78faa5a7")
+CONCEPT_IDENTIFICATION_QUALIFIER = rdflib.URIRef(
+    "http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e"
+)
 CONCEPT_ID_REMARKS = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/45a86abc-43c7-4a30-ac73-fc8d62538140")
-CONCEPT_PROCEDURE_SAMPLING = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/7930424c-f2e1-41fa-9128-61524b67dbd5")
 CONCEPT_SCIENTIFIC_NAME = rdflib.URIRef("http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715")
 CONCEPT_DATA_GENERALIZATIONS = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/77f30c7d-4642-45a4-ab91-1400bf2bc652"
@@ -77,7 +78,7 @@ CONCEPT_CONSERVATION_AUTHORITY = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7"
 )
 CONCEPT_SENSITIVITY_CATEGORY = utils.rdf.uri(
-    "concept/sensitiveCategory", utils.namespaces.EXAMPLE
+    "concept/sensitivityCategory", utils.namespaces.EXAMPLE
 )  # TODO Need real URI
 CONCEPT_ORGANISM_QUANTITY = rdflib.URIRef(
     "http://linked.data.gov.au/def/tern-cv/36b0f572-7215-42c0-a904-88619d23b4d0"
@@ -1194,7 +1195,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, scientific_name))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["scientificName"])))
-        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_TAXON))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SCIENTIFIC_NAME))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
@@ -1440,7 +1441,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             graph.add((uri, rdflib.VOID.inDataset, submission_iri))
 
         graph.add((uri, rdflib.SDO.isPartOf, dataset))
-        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_ID_UNCERTAINTY))
+        graph.add((uri, utils.namespaces.TERN.attribute, CONCEPT_IDENTIFICATION_QUALIFIER))
         if id_qualifier:
             graph.add((uri, utils.namespaces.TERN.hasSimpleValue, rdflib.Literal(id_qualifier)))
         if id_qualifier_value:
@@ -1785,7 +1786,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.RDFS.comment, rdflib.Literal("specimen-sampling")))
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, provider_record_id_occurrence))
         graph.add((uri, rdflib.SOSA.hasResult, sample_specimen))
-        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_PROCEDURE_SAMPLING))
+        graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_UNSPECIFIED_METHOD))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.SDO.temporal, temporal_entity))
         graph.add((temporal_entity, a, rdflib.TIME.Instant))
@@ -3252,7 +3253,7 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
         graph.add((uri, rdflib.SOSA.hasFeatureOfInterest, scientific_name))
         graph.add((uri, rdflib.SOSA.hasResult, accepted_name_usage_value))
         graph.add((uri, rdflib.SOSA.hasSimpleResult, rdflib.Literal(row["acceptedNameUsage"])))
-        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_SCIENTIFIC_NAME))
+        graph.add((uri, rdflib.SOSA.observedProperty, CONCEPT_ACCEPTED_NAME_USAGE))
         graph.add((uri, rdflib.SOSA.usedProcedure, CONCEPT_NAME_CHECK_METHOD))
         temporal_entity = rdflib.BNode()
         graph.add((uri, rdflib.SDO.temporal, temporal_entity))

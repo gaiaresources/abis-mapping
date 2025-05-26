@@ -144,7 +144,7 @@
 
 <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/protocolName/litter-sifting> a skos:Concept ;
     reg:status <https://linked.data.gov.au/def/reg-statuses/submitted> ;
-    skos:broader <https://linked.data.gov.au/def/nrm/f1592e71-cc16-4b81-90c4-06b418a5a766> ;
+    skos:broader <http://linked.data.gov.au/def/tern-cv/4c489862-0348-4ed8-afae-ed5bb296b034> ;
     skos:definition "A type of protocolName" ;
     skos:historyNote "This concept was used in data submitted to the BDR on 2025-05-04" ;
     skos:inScheme <https://linked.data.gov.au/def/bdr/bdr-cv/pending> ;
