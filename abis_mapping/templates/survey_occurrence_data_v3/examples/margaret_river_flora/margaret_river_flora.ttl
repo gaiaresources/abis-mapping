@@ -906,21 +906,21 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <hhttp://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e> ;
     tern:hasSimpleValue "?" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/new-identification-qualifier> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <hhttp://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e> ;
     tern:hasSimpleValue "new identification qualifier" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/new-identification-qualifier> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/identificationQualifier/species-incerta> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
-    tern:attribute <hhttp://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/88f031cb-fed1-46fd-985d-f31ba0fd603e> ;
     tern:hasSimpleValue "species incerta" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/identificationQualifier/species-incerta> .
 
