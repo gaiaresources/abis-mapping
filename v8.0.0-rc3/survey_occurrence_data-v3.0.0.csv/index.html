@@ -1,0 +1,3682 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://gaiaresources.github.io/abis-mappping/latest/survey_occurrence_data-v3.0.0.csv/">
+      
+      
+        <link rel="prev" href="../survey_metadata-v3.0.0.csv/">
+      
+      
+        <link rel="next" href="../survey_site_data-v3.0.0.csv/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.13">
+    
+    
+      
+        <title>Systematic Survey Occurrence Data Template - v3.0.0 - BDR ABIS Mapping</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#systematic-survey-occurrences-data-template-instructions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BDR ABIS Mapping" class="md-header__button md-logo" aria-label="BDR ABIS Mapping" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BDR ABIS Mapping
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Systematic Survey Occurrence Data Template - v3.0.0
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gaiaresources/abis-mapping/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    gaiaresources/abis-mapping
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BDR ABIS Mapping" class="md-nav__button md-logo" aria-label="BDR ABIS Mapping" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BDR ABIS Mapping
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gaiaresources/abis-mapping/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    gaiaresources/abis-mapping
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dataset_properties/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dataset Properties Form
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incidental_occurrence_data-v3.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Data Template - v3.0.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incidental_occurrence_delete-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Delete Template - v1.0.0
+- Beta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_metadata-v3.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Metadata Template - v3.0.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Occurrence Data Template - v3.0.0
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Occurrence Data Template - v3.0.0
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intended-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intended Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-validation-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Validation Requirements:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Validation Requirements:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      FILE FORMAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FILE NAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      FILE SIZE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEMPLATE FIELDS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TEMPLATE FIELDS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADDITIONAL FIELDS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGELOG
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CHANGELOG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGED FIELDS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      CHANGED VALIDATION
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDICES
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="APPENDICES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#appendix-i-vocabulary-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDIX-I: Vocabulary List
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-ii-timestamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDIX-II: Timestamp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-iii-utf-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPENDIX-III: UTF-8
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_site_data-v3.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Data Template - v3.0.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../survey_site_visit_data-v3.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Visit Data Template - v3.0.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../archived_templates/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Archived templates
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Archived templates
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/incidental_occurrence_data-v1.0.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Data Template - v1.0.0 - Archived
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/incidental_occurrence_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Incidental Occurrence Data Template - v2.0.0 - Archived
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/survey_metadata-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Metadata Template - v1.0.0 - Archived
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/survey_metadata-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Metadata Template - v2.0.0 - Archived
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/survey_occurrence_data-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Occurrence Data Template - v1.0.0 - Archived
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/survey_occurrence_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Occurrence Data Template - v2.0.0 - Archived
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/survey_site_data-v1.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Data Template - v1.0.0 - Archived
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/survey_site_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Data Template - v2.0.0 - Archived
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archived_templates/survey_site_visit_data-v2.0.0.csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Systematic Survey Site Visit Data Template - v2.0.0 - Archived
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<p><small>
+<strong>abis-mapping</strong> v8.0.0rc3 &emsp; <strong>survey_occurrence_data</strong> v3.0.0
+</small></p>
+<h1 id="systematic-survey-occurrences-data-template-instructions">SYSTEMATIC SURVEY OCCURRENCES DATA TEMPLATE INSTRUCTIONS</h1>
+<h2 id="intended-usage">Intended Usage</h2>
+<p>This Systematic Survey Occurrences Data template is used to record occurrence data;
+that is, the presence or absence of an organism
+at a particular site locality at a point in time.</p>
+<p>This Systematic Survey Occurrences Data template <strong>must be used in combination</strong> with the
+Systematic Survey Metadata template, or with the Systematic Survey Metadata and the Systematic Survey Sites Data
+template, or with the Systematic Survey Metadata, the Systematic Survey Site Data and the Systematic Survey Site Visit
+Data template.</p>
+<p>Templates have been provided to facilitate integration of your data into the Biodiversity
+Data Repository database. Not all types of data have been catered for in the available
+templates at this stage; therefore, if you are unable to find a suitable template, please
+contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
+<h2 id="data-validation-requirements">Data Validation Requirements:</h2>
+<p>For data validation, you will need your data file to:</p>
+<ul>
+<li>be in the correct <strong>file format,</strong></li>
+<li>have <strong>fields that match the template downloaded</strong> (do not remove, or 
+  change the order of fields),</li>
+<li>have extant values for <strong>mandatory fields</strong> (see Table 1),</li>
+<li>comply with all <strong>data value constraints</strong>; for example the geographic coordinates are
+  consistent with a <a href="#geodeticDatum-vocabularies">geodeticDatum</a> type of the <strong><em>5</em></strong> available
+  options, and</li>
+<li>align with existing controlled <a href="#appendix-i-vocabulary-list">vocabularies</a> wherever possible (this is mandatory
+  for geodeticDatum), but new terms may be submitted for consideration amd will not cause a
+  validation error.</li>
+</ul>
+<p>Additional fields may be added <strong>after the templated fields</strong> (noting that the data type 
+is not assumed and values will be encoded as strings).</p>
+<h3 id="file-format">FILE FORMAT</h3>
+<ul>
+<li>The systematic survey occurrence data template is a <a href="#appendix-iii-utf-8">UTF-8</a> encoded csv (that is, not Microsoft
+  Excel Spreadsheets). Be sure to save this file with your data as a .csv (UTF-8): 
+  <br><code>[MS Excel: Save As &gt; More options &gt; Tools &gt; Web options &gt; Save this document as &gt;
+  Unicode (UTF-8)]</code><br>
+  otherwise it will not pass the csv validation step upon upload.</li>
+<li><strong>Do not include empty rows</strong>.</li>
+</ul>
+<h3 id="file-name">FILE NAME</h3>
+<p>When making a manual submission to the Biodiversity Data Repository,
+the file name must include the version number
+of this biodiversity data template (<code>v3.0.0</code>).
+The following format is an example of a valid file name:</p>
+<p><code>data_descripion-v3.0.0-additional_description.csv</code></p>
+<p>where:</p>
+<ul>
+<li><code>data_description</code>: A short description of the data (e.g. <code>survey_occ</code>, <code>test_data</code>).</li>
+<li><code>v3.0.0</code>: The version number of this template.</li>
+<li><code>additional_description</code>: (Optional) Additional description of the data, if needed (e.g. <code>test_data</code>).</li>
+<li><code>.csv</code>: Ensure the file name ends with <code>.csv</code>.</li>
+</ul>
+<p>For example, <code>survey_occ-v3.0.0-test_data.csv</code> or <code>test_data-v3.0.0.csv</code></p>
+<h3 id="file-size">FILE SIZE</h3>
+<p>MS Excel imposes a limit of 1,048,576 rows on a spreadsheet, limiting a CSV file to the
+header row followed by 1,048,575 occurrences. Furthermore, MS Excel has a 32,767-character
+limit on individual cells in a spreadsheet. These limits may be overcome by using or
+editing CSV files with other software.</p>
+<p>Larger datasets may be more readily ingested using the API interface. Please contact
+<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a> to make us aware of your data needs.</p>
+<h2 id="template-fields">TEMPLATE FIELDS</h2>
+<p>The template contains the field names in the top row. Table 1 will assist you in transferring
+your data to the template by providing guidance on:</p>
+<ul>
+<li><strong>Field name</strong> in the template (and an external link to the <a href="https://dwc.tdwg.org/terms/">Darwin Core standard</a>
+  for that field where relevant);</li>
+<li><strong>Description</strong> of the field;</li>
+<li><strong>Required</strong> i.e. whether the field is <strong><font color="Crimson">mandatory</font>,
+<font color="DarkGoldenRod">conditionally mandatory</font>, or optional</strong>;</li>
+<li><strong>Format</strong> (datatype) required for the data values for example text (string), number
+  (integer, float), or date;</li>
+<li><strong>Example</strong> of an entry or entries for that field; and</li>
+<li><strong><a href="#appendix-i-vocabulary-list">Vocabulary links</a></strong> within this document (for example pick list values) where
+  relevant. The fields that have suggested values options for the fields in Table 1 are
+  listed in Table 2 in alphabetical order of the field name.</li>
+</ul>
+<h3 id="additional-fields">ADDITIONAL FIELDS</h3>
+<p>Data that does not match the existing template fields may be added as
+additional columns in the CSV files after the templated fields. 
+For example: <code>eventRemarks</code>, <code>associatedTaxa</code>, <code>pathway</code>.</p>
+<p><ins>Table 1: Systematic Survey Occurrence data template fields with descriptions, conditions,
+datatype format, and examples.</ins></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Field #</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: center;">Mandatory / Optional</th>
+<th style="text-align: center;">Datatype Format</th>
+<th style="text-align: left;">Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><a name="providerRecordID-field"></a>providerRecordID</td>
+<td style="text-align: left;">Unique (within provider) identifier for the record.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">8022FSJMJ079c5cf</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><a name="providerRecordIDSource-field"></a>providerRecordIDSource</td>
+<td style="text-align: left;">Person or Organisation that generated the providerRecordID.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Western Australian Biodiversity Information Office</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><a name="locality-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:locality">locality</a></td>
+<td style="text-align: left;">The specific description of the place.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Cowaramup Bay Road</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;"><a name="decimalLatitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLatitude">decimalLatitude</a></td>
+<td style="text-align: left;">The geographic latitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic centre of a Location. Positive values are north of the Equator, negative values are south of it. Valid coordinate ranges for the BDR system are within and inclusive of -90 to 0.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if spatial information not provided by either, a validated linked siteID and siteIDSource, or existingBDRSiteIRI.</font></strong></td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">-33.812314</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><a name="decimalLongitude-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:decimalLongitude">decimalLongitude</a></td>
+<td style="text-align: left;">The geographic longitude (in decimal degrees, using the spatial reference system given in geodeticDatum) of the geographic centre of a Location. Positive values are east of the Greenwich Meridian, negative values are west of it. Valid coordinate ranges for the BDR system are within and inclusive of 0 to 180.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if spatial information not provided by either, a validated linked siteID and siteIDSource, or existingBDRSiteIRI.</font></strong></td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">115.231512</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;"><a name="geodeticDatum-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:geodeticDatum">geodeticDatum</a></td>
+<td style="text-align: left;">The acronym for the ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geographic (non-projected) coordinates given in decimalLatitude and decimalLongitude as based.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if spatial information not provided by either, a validated linked siteID and siteIDSource, or existingBDRSiteIRI.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">WGS84<br>(<a href="#geodeticDatum-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;"><a name="coordinateUncertaintyInMeters-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:coordinateUncertaintyInMeters">coordinateUncertaintyInMeters</a></td>
+<td style="text-align: left;">The horizontal distance (in metres) from the given decimalLatitude and decimalLongitude describing the smallest circle containing the whole of the Location. Leave the value empty if the uncertainty is unknown, cannot be estimated, or is not applicable (because there are no coordinates). Zero is not a valid value for this term.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">50.0</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: left;"><a name="dataGeneralizations-field"></a><a href="https://dwc.tdwg.org/terms/#dwciri:dataGeneralizations">dataGeneralizations</a></td>
+<td style="text-align: left;">Actions taken to make the shared data less specific or complete than in its original form, due to restrictions around identifying locations of particular species. Suggests that alternative data of higher quality may be available on request.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Coordinates rounded to the nearest 10 km for conservation concern</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td style="text-align: left;"><a name="eventDateStart-field"></a>eventDateStart</td>
+<td style="text-align: left;">The start date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone (in ISO 8601 format for example 2022-05-20T06:23:00+08:00) of the period during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if temporal information not provided by a validated linked siteVisitID.</font></strong></td>
+<td style="text-align: center;">Timestamp</td>
+<td style="text-align: left;">2019-09-23T14:03+08:00</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: left;"><a name="eventDateEnd-field"></a>eventDateEnd</td>
+<td style="text-align: left;">The end date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T06:23:00) or date-time with timezone (in ISO 8601 format for example 2022-05-20T06:23:00+08:00) of the period during which a species occurrence was observed. For occurrences, this is the date-time when the event was recorded. Not suitable for a time in a geological context.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Timestamp</td>
+<td style="text-align: left;">2019-09-24</td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td style="text-align: left;"><a name="samplingProtocol-field"></a><a href="https://dwc.tdwg.org/terms/#dwciri:samplingProtocol">samplingProtocol</a></td>
+<td style="text-align: left;">The sampling protocol is the method used to sample the locality to determine the presence (or absence) of the taxon referred to in this record at the indicated time. This may be a collecting method or a method to observe an organism without collection.<br>Recommended best practice is to describe a species occurrence with no more than one sampling protocol. In the case of a summary, in which a specific protocol can not be attributed to specific species occurrences, the recommended best practice is to repeat the property for each IRI that denotes a different sampling protocol that applies to the occurrence.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Human Observation<br>(<a href="#samplingProtocol-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td style="text-align: left;"><a name="basisOfRecord-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:basisOfRecord">basisOfRecord</a></td>
+<td style="text-align: left;">The specific nature of the data record.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Preserved Specimen<br>(<a href="#basisOfRecord-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">13</td>
+<td style="text-align: left;"><a name="recordedBy-field"></a><a href="https://dwc.tdwg.org/terms/#dwciri:recordedBy">recordedBy</a></td>
+<td style="text-align: left;">A person, group, or organisation responsible for recording the original Occurrence.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Stream Environment and Water Pty Ltd</td>
+</tr>
+<tr>
+<td style="text-align: center;">14</td>
+<td style="text-align: left;"><a name="recordNumber-field"></a><a href="http://rs.tdwg.org/dwc/terms/recordNumber">recordNumber</a></td>
+<td style="text-align: left;">An identifier given to the Occurrence at the time it was recorded. Often serves as a link between field notes and an Occurrence record, such as a specimen collector's number.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">PE:12:8832</td>
+</tr>
+<tr>
+<td style="text-align: center;">15</td>
+<td style="text-align: left;"><a name="occurrenceStatus-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:occurrenceStatus">occurrenceStatus</a></td>
+<td style="text-align: left;">A statement about the presence or absence of a Taxon at a Location.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Present<br>(<a href="#occurrenceStatus-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">16</td>
+<td style="text-align: left;"><a name="habitat-field"></a><a href="http://rs.tdwg.org/dwc/terms/habitat">habitat</a></td>
+<td style="text-align: left;">A category or description of the habitat in which the event occurred.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Closed forest of Melaleuca lanceolata. White, grey or brown sand, sandy loam.<br>(<a href="#habitat-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">17</td>
+<td style="text-align: left;"><a name="establishmentMeans-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:establishmentMeans">establishmentMeans</a></td>
+<td style="text-align: left;">Statement about whether an organism or organisms have been introduced to a given place and time through the direct or indirect activity of modern humans.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Native<br>(<a href="#establishmentMeans-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">18</td>
+<td style="text-align: left;"><a name="organismRemarks-field"></a><a href="http://rs.tdwg.org/dwc/terms/organismRemarks">organismRemarks</a></td>
+<td style="text-align: left;">Comments or notes about the Organism instance.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Dried out leaf tips.</td>
+</tr>
+<tr>
+<td style="text-align: center;">19</td>
+<td style="text-align: left;"><a name="individualCount-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:individualCount">individualCount</a></td>
+<td style="text-align: left;">The number of individuals present at the time of the Occurrence. 0 = none, no value = the specific number was not recorded.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: left;">26</td>
+</tr>
+<tr>
+<td style="text-align: center;">20</td>
+<td style="text-align: left;"><a name="organismQuantity-field"></a><a href="https://dwc.tdwg.org/list/#dwc_organismQuantity">organismQuantity</a></td>
+<td style="text-align: left;">A number or enumeration value for the quantity of organisms.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if organismQuantityType is provided.</font></strong></td>
+<td style="text-align: center;">Number</td>
+<td style="text-align: left;">12.5</td>
+</tr>
+<tr>
+<td style="text-align: center;">21</td>
+<td style="text-align: left;"><a name="organismQuantityType-field"></a><a href="https://dwc.tdwg.org/list/#dwc_organismQuantityType">organismQuantityType</a></td>
+<td style="text-align: left;">The type of quantification system used for the quantity organisms.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if organismQuantity is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">% biomass<br>(<a href="#organismQuantityType-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">22</td>
+<td style="text-align: left;"><a name="lifeStage-field"></a><a href="http://rs.tdwg.org/dwc/terms/lifeStage">lifeStage</a></td>
+<td style="text-align: left;">The age class or life stage of the Organism(s) at the time the Occurrence was recorded.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">adult<br>(<a href="#lifeStage-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">23</td>
+<td style="text-align: left;"><a name="sex-field"></a><a href="https://dwc.tdwg.org/terms/#dwciri:sex">sex</a></td>
+<td style="text-align: left;">The sex of the biological individual(s) represented in the Occurrence.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Unspecified<br>(<a href="#sex-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">24</td>
+<td style="text-align: left;"><a name="reproductiveCondition-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:reproductiveCondition">reproductiveCondition</a></td>
+<td style="text-align: left;">The reproductive condition of the biological individual(s) represented in the Occurrence.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">No breeding evident</td>
+</tr>
+<tr>
+<td style="text-align: center;">25</td>
+<td style="text-align: left;"><a name="ownerRecordID-field"></a>ownerRecordID</td>
+<td style="text-align: left;">Identifier given to the occurrence by the owner of the data. Populate this field if the data owner is different to the data provider. Unique (within data owner) identifier for the record.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if ownerRecordIDSource is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">12345NT521mc5h</td>
+</tr>
+<tr>
+<td style="text-align: center;">26</td>
+<td style="text-align: left;"><a name="ownerRecordIDSource-field"></a>ownerRecordIDSource</td>
+<td style="text-align: left;">Person or Organisation that generated the ownerRecordID. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation who owns the data.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if ownerRecordID is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">WAM</td>
+</tr>
+<tr>
+<td style="text-align: center;">27</td>
+<td style="text-align: left;"><a name="collectionCode-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:collectionCode">collectionCode</a></td>
+<td style="text-align: left;">The name, acronym, code, or initialism identifying the collection or data set from which the record was derived. It is associated with the catalogNumber.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">ARACH</td>
+</tr>
+<tr>
+<td style="text-align: center;">28</td>
+<td style="text-align: left;"><a name="catalogNumber-field"></a><a href="http://rs.tdwg.org/dwc/terms/catalogNumber">catalogNumber</a></td>
+<td style="text-align: left;">An identifier (preferably unique) for the record within the data set or collection.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if catalogNumberSource is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">145732, 145732a, 2008.1334, R-4313</td>
+</tr>
+<tr>
+<td style="text-align: center;">29</td>
+<td style="text-align: left;"><a name="catalogNumberSource-field"></a>catalogNumberSource</td>
+<td style="text-align: left;">Organisation that generated the catalogNumber. In the BDR context, this is likely to be a collecting institution where a specimen or material sample is located. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if catalogNumber is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Western Australian Museum</td>
+</tr>
+<tr>
+<td style="text-align: center;">30</td>
+<td style="text-align: left;"><a name="otherCatalogNumbers-field"></a><a href="http://rs.tdwg.org/dwc/terms/otherCatalogNumbers">otherCatalogNumbers</a></td>
+<td style="text-align: left;">A list (concatenated and separated with a space vertical bar space ( | )) of previous or alternate fully qualified catalog numbers or other human-used identifiers for the same Occurrence, whether in the current or any other data set or collection.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if otherCatalogNumbersSource is provided.</font></strong></td>
+<td style="text-align: center;">List</td>
+<td style="text-align: left;">BHP2012-7521 | M12378</td>
+</tr>
+<tr>
+<td style="text-align: center;">31</td>
+<td style="text-align: left;"><a name="otherCatalogNumbersSource-field"></a>otherCatalogNumbersSource</td>
+<td style="text-align: left;">Organisation that generated the otherCatalogNumbers. For organisations registered with the BDR, this field should contain the BDR registrationID. For all others, please provide the name of Person or Organisation.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if otherCatalogNumbers is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">University of Western Australia</td>
+</tr>
+<tr>
+<td style="text-align: center;">32</td>
+<td style="text-align: left;"><a name="preparations-field"></a><a href="http://rs.tdwg.org/dwc/terms/preparations">preparations</a></td>
+<td style="text-align: left;">A list (concatenated and separated with a space vertical bar space ( | )) of preparations and preservation methods for a specimen.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">alcohol<br>(<a href="#preparations-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">33</td>
+<td style="text-align: left;"><a name="preparedDate-field"></a>preparedDate</td>
+<td style="text-align: left;">The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T11:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) representing the date or date-time the specimen was prepared.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Timestamp</td>
+<td style="text-align: left;">2019-09-24</td>
+</tr>
+<tr>
+<td style="text-align: center;">34</td>
+<td style="text-align: left;"><a name="associatedSequences-field"></a><a href="http://rs.tdwg.org/dwc/terms/associatedSequences">associatedSequences</a></td>
+<td style="text-align: left;">A list (concatenated and separated with a space vertical bar space ( | )) of identifiers (publication, global unique identifier, URI) of genetic sequence information associated with the Occurrence.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">List</td>
+<td style="text-align: left;">https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1 | https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1</td>
+</tr>
+<tr>
+<td style="text-align: center;">35</td>
+<td style="text-align: left;"><a name="sequencingMethod-field"></a>sequencingMethod</td>
+<td style="text-align: left;">The method used to obtain sequence data for example DNA, RNA, or protein from the sample.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Sanger-dideoxy-sequencing<br>(<a href="#sequencingMethod-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">36</td>
+<td style="text-align: left;"><a name="verbatimIdentification-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:verbatimIdentification">verbatimIdentification</a></td>
+<td style="text-align: left;">A string representing the taxonomic identification as it appeared in the original record. This term is meant to allow the capture of an unaltered original identification/determination, including identification qualifiers, hybrid formulas, uncertainties, etc. This term is meant to be used in addition to scientificName (and identificationQualifier etc.), not instead of it.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Caladenia ?excelsa</td>
+</tr>
+<tr>
+<td style="text-align: center;">37</td>
+<td style="text-align: left;"><a name="dateIdentified-field"></a><a href="http://rs.tdwg.org/dwc/terms/dateIdentified">dateIdentified</a></td>
+<td style="text-align: left;">The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T11:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) on which the subject was determined as representing the Taxon.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Timestamp</td>
+<td style="text-align: left;">2019-09-24</td>
+</tr>
+<tr>
+<td style="text-align: center;">38</td>
+<td style="text-align: left;"><a name="identifiedBy-field"></a><a href="http://rs.tdwg.org/dwc/terms/identifiedBy">identifiedBy</a></td>
+<td style="text-align: left;">Group of names, organisations who assigned the Taxon to the subject. For multiple names, use the pipe separator ( | ).</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">J. Doe | WAM</td>
+</tr>
+<tr>
+<td style="text-align: center;">39</td>
+<td style="text-align: left;"><a name="identificationMethod-field"></a>identificationMethod</td>
+<td style="text-align: left;">Method used to associate the organism with the scientificName label.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">DNA<br>(<a href="#identificationMethod-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">40</td>
+<td style="text-align: left;"><a name="scientificName-field"></a><a href="http://rs.tdwg.org/dwc/terms/scientificName">scientificName</a></td>
+<td style="text-align: left;">The full scientific name, with authorship and date information if known. When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the identificationQualifier column.<br>NOTE: Phrase names such as Rhagodia sp. Hamersley (M.Trudgen 17794) are permitted in the scientificName field where those are in use.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Caladenia excelsa</td>
+</tr>
+<tr>
+<td style="text-align: center;">41</td>
+<td style="text-align: left;"><a name="identificationQualifier-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:identificationQualifier">identificationQualifier</a></td>
+<td style="text-align: left;">A brief phrase or a standard term ("cf.", "aff.") to express the determiner's doubts about the Identification.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Species incerta<br>(<a href="#identificationQualifier-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">42</td>
+<td style="text-align: left;"><a name="identificationRemarks-field"></a><a href="http://rs.tdwg.org/dwc/terms/identificationRemarks">identificationRemarks</a></td>
+<td style="text-align: left;">Comments or notes about the Identification.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">DNA evidence may indicate a new species. Further analysis required.</td>
+</tr>
+<tr>
+<td style="text-align: center;">43</td>
+<td style="text-align: left;"><a name="acceptedNameUsage-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:acceptedNameUsage">acceptedNameUsage</a></td>
+<td style="text-align: left;">The full name, with authorship and date information if known, of the currently valid (zoological) or accepted (botanical) taxon.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Occiperipatoides gilesii (Spencer, 1909)</td>
+</tr>
+<tr>
+<td style="text-align: center;">44</td>
+<td style="text-align: left;"><a name="kingdom-field"></a><a href="https://dwc.tdwg.org/terms/#dwc:kingdom">kingdom</a></td>
+<td style="text-align: left;">The full scientific name of the kingdom in which the taxon is classified.</td>
+<td style="text-align: center;"><strong><font color="Crimson">Mandatory</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Plantae<br>(<a href="#kingdom-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">45</td>
+<td style="text-align: left;"><a name="taxonRank-field"></a><a href="http://rs.tdwg.org/dwc/terms/verbatimTaxonRank">taxonRank</a></td>
+<td style="text-align: left;">The taxonomic rank of the most specific name in the scientificName.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Species<br>(<a href="#taxonRank-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">46</td>
+<td style="text-align: left;"><a name="threatStatus-field"></a>threatStatus</td>
+<td style="text-align: left;">The conservation status (or code) assigned to an organism that is recognised in conjunction with a specific authority.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if conservationAuthority is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">EN<br>(<a href="#threatStatus-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">47</td>
+<td style="text-align: left;"><a name="conservationAuthority-field"></a>conservationAuthority</td>
+<td style="text-align: left;">The authority under which an organism is recognised to have a specific conservation status applied.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if threatStatus is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">EPBC, WA<br>(<a href="#conservationAuthority-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">48</td>
+<td style="text-align: left;"><a name="threatStatusCheckProtocol-field"></a>threatStatusCheckProtocol</td>
+<td style="text-align: left;">The method used to determine if the organism is listed under the relevant jurisdictional threatened species list.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Species name check of the Department of Climate Change, Energy, the Environment and Water’s Species Profile and Threat Database http://www.environment.gov.au/cgi-bin/sprat/public/sprat.pl<br>(<a href="#threatStatusCheckProtocol-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">49</td>
+<td style="text-align: left;"><a name="threatStatusDateDetermined-field"></a>threatStatusDateDetermined</td>
+<td style="text-align: left;">The date (with precision of year (YYYY), month year (YYYY-MM) or date in the following formats DD/MM/YYYY or YYYY-MM-DD are accepted) or date-time without timezone (in ISO 8601 format for example 2021-07-11T11:23:00) or date-time with timezone(in ISO 8601 format for example 2022-05-20T06:23:00+08:00) on which this record of this organism was assigned to the nominated threatStatus and conservationAuthority</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">Timestamp</td>
+<td style="text-align: left;">30/08/2022</td>
+</tr>
+<tr>
+<td style="text-align: center;">50</td>
+<td style="text-align: left;"><a name="threatStatusDeterminedBy-field"></a>threatStatusDeterminedBy</td>
+<td style="text-align: left;">The person and/organisation responsible for appending the threatStatus and conservationAuthority to this organism’s occurrence record.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">WA-BIO</td>
+</tr>
+<tr>
+<td style="text-align: center;">51</td>
+<td style="text-align: left;"><a name="sensitivityCategory-field"></a>sensitivityCategory</td>
+<td style="text-align: left;">A category that defines a type of data sensitivity or restriction.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if sensitivityAuthority is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Category 2<br>(<a href="#sensitivityCategory-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">52</td>
+<td style="text-align: left;"><a name="sensitivityAuthority-field"></a>sensitivityAuthority</td>
+<td style="text-align: left;">The authority under which a data sensitivity or restriction has been applied.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if sensitivityCategory is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">Department of Environment, Climate Change and Water NSW<br>(<a href="#sensitivityAuthority-vocabularies">Vocabulary link</a>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">53</td>
+<td style="text-align: left;"><a name="surveyID-field"></a>surveyID</td>
+<td style="text-align: left;">The identifier of the Survey that the Occurrence comes from. If this field is left blank, the Occurrence will be treated as incidental.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">AR220-01</td>
+</tr>
+<tr>
+<td style="text-align: center;">54</td>
+<td style="text-align: left;"><a name="siteID-field"></a>siteID</td>
+<td style="text-align: left;">Corresponds to a unique site identifier, provided within accompanying survey_site_data.csv template.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if siteVisitID is provided and existingBDRSiteIRI is not provided.<br>Mandatory if siteIDSource is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">P1</td>
+</tr>
+<tr>
+<td style="text-align: center;">55</td>
+<td style="text-align: left;"><a name="siteIDSource-field"></a>siteIDSource</td>
+<td style="text-align: left;">The organisation that assigned the SiteID to this Site</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if siteVisitID is provided and existingBDRSiteIRI is not provided.<br>Mandatory if siteID is provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">TERN</td>
+</tr>
+<tr>
+<td style="text-align: center;">56</td>
+<td style="text-align: left;"><a name="existingBDRSiteIRI-field"></a>existingBDRSiteIRI</td>
+<td style="text-align: left;">Corresponds to a unique Site IRI that is registered in the BDR. Using this field overrides entries in the siteID and siteIDSource fields and utilises the properties that are associated with the registered Site.</td>
+<td style="text-align: center;"><strong><font color="DarkGoldenRod">Mandatory if siteVisitID is provided and siteID and siteIDSource are not provided.</font></strong></td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">https://linked.data.gov.au/dataset/bdr/sites/TERN/P1</td>
+</tr>
+<tr>
+<td style="text-align: center;">57</td>
+<td style="text-align: left;"><a name="siteVisitID-field"></a>siteVisitID</td>
+<td style="text-align: left;">The identifier of the site visit that the occurrence comes from. This field should be completed if actions taken during a site visit resulted in this occurrence record.</td>
+<td style="text-align: center;">Optional</td>
+<td style="text-align: center;">String</td>
+<td style="text-align: left;">CPXEI0000001</td>
+</tr>
+</tbody>
+</table>
+<h2 id="changelog">CHANGELOG</h2>
+<p>Changes from Systematic Survey Occurrence Data Template v2.0.0</p>
+<h3 id="changed-fields">CHANGED FIELDS</h3>
+<ul>
+<li>Add field <a href="#siteIDSource-field"><code>siteIDSource</code></a>.</li>
+<li>Add field <a href="#existingBDRSiteIRI-field"><code>existingBDRSiteIRI</code></a>.</li>
+</ul>
+<h3 id="changed-validation">CHANGED VALIDATION</h3>
+<ul>
+<li>When <a href="#surveyID-field"><code>surveyID</code></a> is provided, it must have a value that matches a <code>surveyID</code>
+  in the Systematic Survey Metadata template to indicate which Survey the Occurrence belongs to.
+  When <a href="#surveyID-field"><code>surveyID</code></a> is blank, the Occurrence will be treated as incidental.</li>
+<li><a href="#siteID-field"><code>siteID</code></a> and the new field <a href="#siteIDSource-field"><code>siteIDSource</code></a> are conditionally mandatory.
+Must be provided together, or neither provided.</li>
+<li>When <a href="#siteVisitID-field"><code>siteVisitID</code></a> is provided, 
+either <a href="#siteID-field"><code>siteID</code></a> and  <a href="#siteIDSource-field"><code>siteIDSource</code></a>,
+or <a href="#existingBDRSiteIRI-field"><code>existingBDRSiteIRI</code></a>,
+or both, must be provided.</li>
+</ul>
+<h2 id="appendices">APPENDICES</h2>
+<h3 id="appendix-i-vocabulary-list">APPENDIX-I: Vocabulary List</h3>
+<p>With the exception of <code>geodeticDatum</code>, data validation does not require fields to adhere to the
+vocabularies specified for the various vocabularied fields. These vocabularies are merely provided as a
+means of assistance in developing a consistent language within the database. New terms may be added
+to more appropriately describe your data that goes beyond the current list. Table 2 provides some
+suggested values from existing sources such as: <a href="https://dwc.tdwg.org/">Biodiversity Information Standard (TDWG)</a>,
+<a href="https://epsg.io/">EPSG.io Coordinate systems worldwide</a>, the <a href="https://rs.gbif.org/">Global Biodiversity Information
+System</a>, and <a href="https://doi.org/10.1111/2041-210X.12594">Open Nomenclature in the biodiversity
+era</a>.</p>
+<p><ins>Table 2: Suggested values for the controlled vocabulary fields in the template. Each term has
+a preferred label with a definition to aid understanding of its meaning. For some terms, alternative
+labels with similar semantics are provided. Note: <font color="red"><code>geodeticDatum</code> value
+<strong>must</strong> come from one of five options in this table.</font></ins></p>
+<p><a name="vocabulary-list"></a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Template field name</th>
+<th style="text-align: left;">Preferred label</th>
+<th style="text-align: left;">Definition</th>
+<th style="text-align: left;">Alternate label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a name="basisOfRecord-vocabularies"></a>basisOfRecord</td>
+<td style="text-align: left;">FOSSIL SPECIMEN</td>
+<td style="text-align: left;">A preserved specimen that is a fossil.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">basisOfRecord</td>
+<td style="text-align: left;">HUMAN OBSERVATION</td>
+<td style="text-align: left;">An output of a human observation.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">basisOfRecord</td>
+<td style="text-align: left;">LIVING SPECIMEN</td>
+<td style="text-align: left;">A specimen that is alive.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">basisOfRecord</td>
+<td style="text-align: left;">MACHINE OBSERVATION</td>
+<td style="text-align: left;">An output of a machine observation process.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">basisOfRecord</td>
+<td style="text-align: left;">MATERIAL SAMPLE</td>
+<td style="text-align: left;">A physical result of a sampling (or subsampling) event. In biological collections, the material sample is typically collected, and either preserved or destructively processed.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">basisOfRecord</td>
+<td style="text-align: left;">OCCURRENCE</td>
+<td style="text-align: left;">An existence of an Organism (sensu http://rs.tdwg.org/dwc/terms/Organism) at a particular place at a particular time.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">basisOfRecord</td>
+<td style="text-align: left;">PRESERVED SPECIMEN</td>
+<td style="text-align: left;">A specimen that has been preserved.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="establishmentMeans-vocabularies"></a>establishmentMeans</td>
+<td style="text-align: left;">INTRODUCED</td>
+<td style="text-align: left;">Establishment of a taxon by numan agency into an area that is not part of its natural range.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">establishmentMeans</td>
+<td style="text-align: left;">INTRODUCED ASSISTED COLONISATION</td>
+<td style="text-align: left;">Establishment of a taxon specifically with the intention of creating a self-sustaining wild population in an area that is not part of the taxon's natural range.</td>
+<td style="text-align: left;">ASSISTED COLONISATION</td>
+</tr>
+<tr>
+<td style="text-align: left;">establishmentMeans</td>
+<td style="text-align: left;">NATIVE</td>
+<td style="text-align: left;">A taxon occurring within its natural range.</td>
+<td style="text-align: left;">NATIVE (INDIGENOUS)</td>
+</tr>
+<tr>
+<td style="text-align: left;">establishmentMeans</td>
+<td style="text-align: left;">NATIVE REINTRODUCED</td>
+<td style="text-align: left;">A taxon re-established by direct introduction by humans into an area that is not part of its natural range, but from where it had become extinct.</td>
+<td style="text-align: left;">NATIVE: REINTRODUCED</td>
+</tr>
+<tr>
+<td style="text-align: left;">establishmentMeans</td>
+<td style="text-align: left;">UNCERTAIN</td>
+<td style="text-align: left;">The origin of the occurrence of the taxon in an area is obscure.</td>
+<td style="text-align: left;">UNKNOWN, CRYPTOGENIC</td>
+</tr>
+<tr>
+<td style="text-align: left;">establishmentMeans</td>
+<td style="text-align: left;">VAGRANT</td>
+<td style="text-align: left;">The temporary occurrence of a taxon far outside its natural or migratory range.</td>
+<td style="text-align: left;">CASUAL</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="geodeticDatum-vocabularies"></a>geodeticDatum</td>
+<td style="text-align: left;">AGD66</td>
+<td style="text-align: left;">Australian Geodetic Datum 1966</td>
+<td style="text-align: left;">EPSG:4202</td>
+</tr>
+<tr>
+<td style="text-align: left;">geodeticDatum</td>
+<td style="text-align: left;">AGD84</td>
+<td style="text-align: left;">Australian Geodetic Datum 1984</td>
+<td style="text-align: left;">EPSG:4203</td>
+</tr>
+<tr>
+<td style="text-align: left;">geodeticDatum</td>
+<td style="text-align: left;">GDA2020</td>
+<td style="text-align: left;">Geocentric Datum of Australia 2020</td>
+<td style="text-align: left;">EPSG:7844</td>
+</tr>
+<tr>
+<td style="text-align: left;">geodeticDatum</td>
+<td style="text-align: left;">GDA94</td>
+<td style="text-align: left;">Geocentric Datum of Australia 1994</td>
+<td style="text-align: left;">EPSG:4283</td>
+</tr>
+<tr>
+<td style="text-align: left;">geodeticDatum</td>
+<td style="text-align: left;">WGS84</td>
+<td style="text-align: left;">World Geodetic System 1984, used in GPS</td>
+<td style="text-align: left;">EPSG:4326</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="habitat-vocabularies"></a>habitat</td>
+<td style="text-align: left;">BEACH</td>
+<td style="text-align: left;">Type of Landform Element, which is usually short; low; very wide slope; gently or moderately inclined; built up or eroded by waves; forming the shore of a lake or sea.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">BILLABONG OR SWAMP</td>
+<td style="text-align: left;">A swamp is a wetland that features temporary or permanent inundation of large areas of land by shallow bodies of water, generally with a substantial number of hammocks, or dry-land protrusions, and covered by aquatic vegetation, or vegetation that tolerates periodical inundation.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CAVE</td>
+<td style="text-align: left;">The type of habitat representative of a naturally formed, subterranean open area or chamber.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CHENOPOD SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% members of Chenopodiaceae.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED CHENOPOD SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of Chenopodiaceae.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED FERNLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of Fern and Fern-allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED FORBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of Forbs or herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED FOREST</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of Forbs or herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED HEATHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of heath shrubs (e.g., members of Ericaceae, Myrtaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED HUMMOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of hummock (e.g., Triodia) grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED LICHENLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by lichenised tree trunks and rocks.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED LIVERWORTLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by lower plant groups such as moss, liverworts and bryophytes.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED MALLEE FOREST</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of tree mallee (e.g., some members of Eucalyptus).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED MALLEE SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of mallee shrubs (e.g., some members of Eucalyptus).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED MOSSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by lower plant groups such as moss, liverworts and bryophytes.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED RUSHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of Rushes (e.g., Juncaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED SEDGELAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of sedges (e.g., Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of sedges (e.g., Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED SOD GRASSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat representative of a characteristic sod-like (turf) grass.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED TUSSOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &gt;80% members of tussock grasses (e.g., Poa).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CLOSED VINELAND</td>
+<td style="text-align: left;">Refers to the type of habitat represented by a closed vegetation dominated by stragglers and woody climbers.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">COASTAL WATERS</td>
+<td style="text-align: left;">Refers to the type of habitat representative of an aquatic body typically characterized by a shallow continental shelf, gently sloping seaward to a continental slope, which drops relatively abruptly to the deep ocean.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">CROP LAND</td>
+<td style="text-align: left;">Refers to the type of habitat representative of a cultivated land or land on which agricultural crops are grown or land that is set aside or temporarily not being used for crop production.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ESTUARY</td>
+<td style="text-align: left;">Type of Landform Element which has a stream channel close to its junction with a sea or lake; where the action of channelled stream flow is modified by tide and waves. The width typically increases downstream.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">FERNLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% members of Fern and Fern-allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">FORBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% members of Forbs or herbaceous plants other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">FRESHWATER LAKE</td>
+<td style="text-align: left;">Refers to the type of habitat representative of an enclosed aquatic body having a relatively low mineral content, generally less than 500 mg/l of dissolved solids.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">GRAZING LAND</td>
+<td style="text-align: left;">Refers to the type of habitat representative of a land predominantly used for grazing.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">HEATHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% members of Heath (e.g., Ericaceae, Myrtaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">HUMMOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% members of hummock grasses (e.g., Triodia).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CHENOPOD SHRUBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% members of Chenopodiaceae.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF CHENOPOD SHRUBS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of chenopod shrubs.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF HEATH SHRUBS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of heath or heath-like shrubs.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF HUMMOCK GRASSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of hummocky grass (e.g., Triodia spp., Spinifex spp.).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF LIVERWORTS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of bryophytes, moss and liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF MALLEE SHRUBS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of mallee shrubs (members of Eucalyptus spp., multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF MALLEE TREES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of tree mallee (members of Eucalyptus spp., multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF MOSSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of bryophytes, moss and liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF RUSHES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of rushes.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF SEDGES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of sedges.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF SHRUBS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of shrubs.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF SOD GRASSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of sod grass.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF TREES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of trees.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF TUSSOCK GRASSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of tussock grasses (e.g., Poa spp).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMP OF VINES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of vines.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMPS OF FERNS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0-5% members of Fern and Fern-allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUMPS OF FORBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0-5% members of Forbs or herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED CLUP OF LICHENS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated clumps of lichens.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED FERNS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of fern and fern allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED FORBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of forbs or herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED HEATH SHRUBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of heath shrubs (e.g., Ericaceae, Myrtaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED HUMMOCK GRASSES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of hummock grasses (e.g., Triodia).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED LICHENS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated or sparse lichens.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED LIVERWORTS</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated or sparse liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED MALLEE SHRUBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of mallee shrubs (e.g., some multistemmed individuals from base of Eucalyptus).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED MALLEE TREES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of tree mallee (e.g., some multistemmed individuals from base of Eucalyptus).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED MOSSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated mosses, including bryophytes and liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED RUSHES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of rushes (e.g., Juncaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED SEDGES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of sedges (e.g., Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED SHRUBS</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of shrubs including cycads, grass-tree and tree-fern.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED SOD GRASSES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated or sparse sod or turf-like grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED TREES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of trees including palms.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED TUSSOCK GRASSES</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about &lt;0.25% of tussock grass (e.g. Poa species).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ISOLATED VINES</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by isolated or sparse stragglers or climbing woody vines.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">LICHENLAND</td>
+<td style="text-align: left;">Refers to the type of habitat predominated by lichens on rocks, trees or tree stumps, etc.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">LIVERWORTLAND</td>
+<td style="text-align: left;">Refers to the type of habitat predominated by liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">MALLEE SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of shrub mallee (e.g., individuals of some Eucalypts multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">MALLEE WOODLAND</td>
+<td style="text-align: left;">Refers to the dominant vegetation structural formation, with a percent cover of about 20-50% of Tree Mallee.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">MOSSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat dominated by mosses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">MUDFLAT</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by a wetland that forms when mud is deposited by the tides, rivers, sea or oceans.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN CHENOPOD SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of members of Chenopodiaceae.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN FERNLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of ferns and fern allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN FORBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of forbs or herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN FOREST</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of trees including palms.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN HEATH</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of heaths (e.g., Ericaceae, Myrtaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN HUMMOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of hummock grasses (e.g., Triodia).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN LICHENLAND</td>
+<td style="text-align: left;">Refers to the type of habitat represented by open or sparse (i.e., 10-30%) hummocky grasses (e.g., Spinifex spp., Triodia spp.).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN LIVERWORTLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by open or sparse lichenised tree trunks and rocks.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN MALLEE FOREST</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of tree Mallee (e.g., certain individuals of Eucalypts multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN MALLEE SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of Mallee shrubs (e.g., certain individuals of Eucalypts multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN MALLEE WOODLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of tree mallee (e.g., certain individuals of Eucalypts multistemmed from base).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN MOSSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by open or sparse members of lower plant groups such as moss, liverworts and bryophytes.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN OCEAN</td>
+<td style="text-align: left;">Refers to the type of habitat surrounded by ocean, i.e., a continuous saline-water bodies that surround the continents and fill the Earth's great depressions.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN RUSHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of rushes (e.g. Juncaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN SEDGELAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of sedges (e.g. Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of shrubs (e.g. shrubs, cycads, grass-tree, tree-fern).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN SOD GRASSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by open or sparse (10-30% ground cover) of a characteristic sod-like (turf) grass.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN TUSSOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 20-50% of tussock grasses (e.g. Poa species).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN VINELAND</td>
+<td style="text-align: left;">Refers to the type of habitat represented by a closed vegetation dominated by stragglers and woody climbers.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">OPEN WOODLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of trees including palms.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">ROCK OUTCROP</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by rocks, which protrudes through the surface layer.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">RUSHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of rushes (e.g. Juncaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SALTWATER LAKE</td>
+<td style="text-align: left;">Refers to the type of habitat representative of an aquatic body filled with water (with high salinity) of considerable size contained in a depression on a landmass.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SEDGELAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of sedges (e.g., Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of shrubs (e.g., shrub, cycad, grass-tree, tree-fern).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SOD GRASSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by mid-dense (30-70% cover) sod or turf-like grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE CHENOPOD SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of members of Chenopodiaceae.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE FERNLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of members of fern and fern-allies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE FORBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of members of forbs and herbs other than grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE HEATH</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of members of heath (e.g., Ericaceae, Myrtaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE LICHENLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by very sparse (&lt;10% cover) lichens.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE LIVERWORTLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by very sparse (&lt;10% cover) liverworts.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE MALLEE SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of members of shrub Mallee.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE MOSSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by very sparse (&lt;10% cover) mosses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE RUSHLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of rushes (e.g., Juncaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE SEDGELAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of sedges (e.g., Cyperaceae).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE SHRUBLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of shrubs, including cycad, grass-tree, tree-fern.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE SOD GRASSLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by very sparse (&lt;10% cover) sod or turf-like grasses.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE TUSSOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 0.25-20% of tussock grass (e.g., Poa species).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">SPARSE VINELAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by well separated or very sparse crown stragglers or woody vines.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">STREAM OR RIVER</td>
+<td style="text-align: left;">Refers to the type of habitat representative of an aquatic body with a watercourse which is linear and flows across the solid portion of a planetary surface.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">TUSSOCK GRASSLAND</td>
+<td style="text-align: left;">Refers to the NVIS dominant vegetation structural formation class, with a percent cover of about 50-80% of tussock grass (e.g., Poa species).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">URBAN</td>
+<td style="text-align: left;">Refers to the type of habitat relating to, located in, or characteristic of a city or densely populated area.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">VINELAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by woody climbers/straggling vines.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">habitat</td>
+<td style="text-align: left;">WOODLAND</td>
+<td style="text-align: left;">Refers to the type of habitat characterised by a low-density forest forming open habitats with plenty of sunlight and limited shade.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="identificationMethod-vocabularies"></a>identificationMethod</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="identificationQualifier-vocabularies"></a>identificationQualifier</td>
+<td style="text-align: left;">ANIMALIA CETERA</td>
+<td style="text-align: left;">It groups all the unidentified specimens that are not listed as separate taxa. The term cetera (abbreviated c. or cet.) may be applied to a given high-rank taxon, meaning that identification at a lower taxonomic level has not been attempted (see also stetit) but explicitly not including subordinate taxa that may have been identified.</td>
+<td style="text-align: left;">A.C.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">CONFER</td>
+<td style="text-align: left;">"Compare with". Specimens should be compared to reference material, since most of the diagnostic characters correspond to a given species but some are unclear. Also used in the sense of affinis and species incerta (these usages are discouraged).</td>
+<td style="text-align: left;">CF., CFR., CONF., SP. CF.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">EX GREGE</td>
+<td style="text-align: left;">"Of the group including". The specimen has some affinity to a known species or it belongs to a species group or species complex; see also affinis and species proxima.</td>
+<td style="text-align: left;">EX GR., GR.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">FAMILIA GENUS SPECIES</td>
+<td style="text-align: left;">The specimen has not been attributed to any known species nor family; see also species.</td>
+<td style="text-align: left;">FAM. GEN. SP.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">GENUS ET SPECIES NOVA</td>
+<td style="text-align: left;">The specimen is considered to belong to a new species and a new genus; for more details, see species nova.</td>
+<td style="text-align: left;">GEN. ET SP., GEN. NOV., SP. NOV., NOV. GEN. ET SP.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">GENUS NOVUM</td>
+<td style="text-align: left;">The specimen is considered to belong to a new species and a new genus; for more details, see species nova</td>
+<td style="text-align: left;">GEN. NOV., G. NOV., GEN. N., G. N., NOV. GEN</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">GENUS SPECIES</td>
+<td style="text-align: left;">The specimen has not been related to any known species nor genus; also species.</td>
+<td style="text-align: left;">GEN. SP., G. SP.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">SPECIES</td>
+<td style="text-align: left;">The specimen has not been identified, nor it has been related to any known species; the uncertainty is potentially provisional: it could be due to the lack of suitable dichotomous keys, or to the occurrence of a species not previously described. Also used in the sense of species indeterminabilis and stetit (these usages are discouraged.</td>
+<td style="text-align: left;">SP.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">SPECIES AFFINIS</td>
+<td style="text-align: left;">"Has affinity with". The specimen has some affinity to a known species but it is not identical to it; it generally implies distinction more than a possible identity, in contrast with the qualifier confer; see also species Proxima and ex grege. It is often used in combination with the ON qualifier species nova. Also used in the sense of confer (this usage is discouraged).</td>
+<td style="text-align: left;">AFF., SP. AFF.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">SPECIES INCERTA</td>
+<td style="text-align: left;">The identification is uncertain; it usually indicates a higher reliability with ?, sp. Inc respect to confer. The sign "sp. inc." is also used in the sense of species, species indeterminabilis and species inquirenda (these usages are discouraged).</td>
+<td style="text-align: left;">SP. INC.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">SPECIES INDETERMINABILIS</td>
+<td style="text-align: left;">The specimen is indeterminable beyond a certain taxonomic level due to the deterioration or lack of diagnostic characters. Also used in the sense of species and stetit (these usages are discouraged.</td>
+<td style="text-align: left;">INDET., IND., SP. INDET., SP. IND.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">SPECIES NOVA</td>
+<td style="text-align: left;">The specimen is considered to belong to a new, previously undescribed (1) When describing a new species, the use of the qualifier is required by the ICZN (1999) to explicitly indicate the taxa name as intentionally new. (2) Used as ON qualifier to refer to a new, still unnamed species before the formal publication of the description.</td>
+<td style="text-align: left;">SP. NOV., SPEC. NOV., SP. N., NOV. SP., NOV. SPEC., N. SP.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">SPECIES PROXIMA</td>
+<td style="text-align: left;">The specimen is near to a known species but it is not identical to it; see also affinis and ex grege.</td>
+<td style="text-align: left;">PROX., SP. PROX., NR., SP.NR.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">STETIT</td>
+<td style="text-align: left;">Identification at a lower taxonomic level has not been attempted, even if allowed by the sample conditions. It may also be used when more records with different ON qualifiers need to be merged at a safe taxonomic level.</td>
+<td style="text-align: left;">STET.</td>
+</tr>
+<tr>
+<td style="text-align: left;">identificationQualifier</td>
+<td style="text-align: left;">SUBSPECIES</td>
+<td style="text-align: left;">The only infraspecific rank regulated by the ICZN (1999). As ON qualifier, it indicates that the specimen probably belongs to a subspecies but it has not been related to any known one; see also species.</td>
+<td style="text-align: left;">SSP., SUBSP.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="kingdom-vocabularies"></a>kingdom</td>
+<td style="text-align: left;">ANIMALIA</td>
+<td style="text-align: left;">Kingdom Animalia</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kingdom</td>
+<td style="text-align: left;">FUNGI</td>
+<td style="text-align: left;">Kingdom (taxonRank: Regnum) Fungi</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">kingdom</td>
+<td style="text-align: left;">PLANTAE</td>
+<td style="text-align: left;">Kingdom (taxonRank: Regnum) Plantae</td>
+<td style="text-align: left;">PLANTAE HAECKEL</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="lifeStage-vocabularies"></a>lifeStage</td>
+<td style="text-align: left;">ADULT</td>
+<td style="text-align: left;">An adult is a plant, animal, or person who has reached full growth or alternatively is capable of reproduction.</td>
+<td style="text-align: left;">IMAGO</td>
+</tr>
+<tr>
+<td style="text-align: left;">lifeStage</td>
+<td style="text-align: left;">EMBRYO</td>
+<td style="text-align: left;">An embryo is a multicellular diploid eukaryote in its earliest stage of development, from the time of first cell division until birth, hatching, or germination.</td>
+<td style="text-align: left;">EGG, SEED</td>
+</tr>
+<tr>
+<td style="text-align: left;">lifeStage</td>
+<td style="text-align: left;">GAMETE</td>
+<td style="text-align: left;">A gamete is a cell that fuses with another gamete during fertilisation in organisms that reproduce sexually. In species that produce two morphologically distinct types of gametes, and in which each individual produces only one type, a female is any individual that produces the larger type of gamete — called an ovum (or egg) — and a male produces the smaller tadpole-like type — called a sperm. This is an example of anisogamy or heterogamy, the condition wherein females and males produce gametes of different sizes. In contrast, isogamy is the state of gametes from both sexes being the same size and shape, and given arbitrary designators for mating type. Gametes carry half the genetic information of an individual, one chromosome of each type.</td>
+<td style="text-align: left;">OVUM, SPERM, POLLEN</td>
+</tr>
+<tr>
+<td style="text-align: left;">lifeStage</td>
+<td style="text-align: left;">GAMETOPHYTE</td>
+<td style="text-align: left;">In plants and algae that undergo alternation of generations, a gametophyte is the multicellular structure, or phase, that is haploid, containing a single set of chromosomes. The gametophyte produces male or female gametes (or both), by a process of cell division called mitosis. In mosses, liverworts and hornworts (bryophytes), the gametophyte is the commonly known phase of the plant. An early developmental stage in the gametophyte of mosses (immediately following germination of the meiospore) is called the protonema. In most other land plants the gametophyte is very small (as in ferns and their relatives) or even reduced as in flowering plants (angiosperms), where the female gametophyte (ovule) is known as a megagametophyte and the male gametophyte (pollen) is called a microgametophyte.</td>
+<td style="text-align: left;">GAMONT, PROTONEMA, POLLEN, OVULE</td>
+</tr>
+<tr>
+<td style="text-align: left;">lifeStage</td>
+<td style="text-align: left;">JUVENILE</td>
+<td style="text-align: left;">A juvenile is an individual organism that has not yet reached its adult form, sexual maturity or size. Juveniles sometimes look very different from the adult form, particularly in terms of their colour. In many organisms the juvenile has a different name from the adult.</td>
+<td style="text-align: left;">SEEDLING, EFT, CALF, HATCHLING, INFANT, FOAL, KITTEN, KIT, CHICK, NYMPH, FAWN, WHELP, PUP, ELVER, FRY</td>
+</tr>
+<tr>
+<td style="text-align: left;">lifeStage</td>
+<td style="text-align: left;">LARVA</td>
+<td style="text-align: left;">A larva (Latin; plural larvae) is a young (juvenile) form of animal with indirect development, going through or undergoing metamorphosis (for example, insects, amphibians, or cnidarians). The larva can look completely different from the adult form, for example, a caterpillar differs from a butterfly. Larvae often have special (larval) organs which do not occur in the adult form. The larvae of some species can become pubescent and not further develop into the adult form (for example, in some newts). This is a type of neoteny. It is a misunderstanding that the larval form always reflects the group's evolutionary history. It could be the case, but often the larval stage has evolved secondarily, as in insects. In these cases the larval form might differ more from the group's common origin than the adult form. The early life stages of most fish species are considerably different from juveniles and adults of their species and are called larvae.</td>
+<td style="text-align: left;">LARVAE, TADPOLE, POLLIWOG, POLLYWOG, POLLIWIG, POLEWIG, POLWIG, PLANULA, NAUPLIUS, ZOEA, NYMPH, CATERPILLAR</td>
+</tr>
+<tr>
+<td style="text-align: left;">lifeStage</td>
+<td style="text-align: left;">PUPA</td>
+<td style="text-align: left;">A pupa is the life stage of some insects undergoing transformation between immature and mature stages. The pupal stage is found only in holometabolous insects, those that undergo a complete metamorphosis, with four life stages: egg (-&gt; embryo), larva, pupa, and imago (-&gt; adult).</td>
+<td style="text-align: left;">PUPPE</td>
+</tr>
+<tr>
+<td style="text-align: left;">lifeStage</td>
+<td style="text-align: left;">SPORE</td>
+<td style="text-align: left;">A spore is a reproductive structure that is adapted for dispersal and surviving for extended periods of time in unfavorable conditions. Spores form part of the life cycles of many bacteria, plants, algae, fungi and some protozoans. A chief difference between spores and seeds as dispersal units is that spores have very little stored food resources compared with seeds. Spores are usually haploid and unicellular and are produced by meiosis in the sporangium by the sporophyte. Once conditions are favorable, the spore can develop into a new organism using mitotic division, producing a multicellular gametophyte, which eventually goes on to produce gametes. Many ferns, especially those adapted to dry conditions, produce diploid spores. In this case spores are the units of asexual reproduction, because a single spore develops into a new organism. By contrast, gametes are the units of sexual reproduction, as two gametes need to fuse to create a new organism.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">lifeStage</td>
+<td style="text-align: left;">SPOROPHYTE</td>
+<td style="text-align: left;">All land plants, and some algae, have life cycles in which a haploid gametophyte generation alternates with a diploid sporophyte, the generation of a plant or alga that has a double set of chromosomes. A multicellular sporophyte generation or phase is present in the life cycle of all land plants and in some green algae. For common flowering plants (Angiosperms), the sporophyte generation comprises almost their whole life cycle (that is whole green plant, roots etc), except phases of small reproductive structures (pollen and ovule).</td>
+<td style="text-align: left;">AGAMONT</td>
+</tr>
+<tr>
+<td style="text-align: left;">lifeStage</td>
+<td style="text-align: left;">ZYGOTE</td>
+<td style="text-align: left;">A zygote (or zygocyte) describes the first stage of a new unique organism blastomere when it consists of just a single cell. The term is also used more loosely to refer to the group of cells formed by the first few cell divisions, although this is properly referred to as a blastomere. A zygote is usually produced by a fertilisation event between two haploid cells - an ovum from a female and a sperm cell from a male - which combine to form the single diploid cell. Thus the zygote contains DNA originating from both mother and father and this provides all the genetic information necessary to form a new individual</td>
+<td style="text-align: left;">BLASTOMERE</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="occurrenceStatus-vocabularies"></a>occurrenceStatus</td>
+<td style="text-align: left;">ABSENT</td>
+<td style="text-align: left;">The occurrence was not present at the location and time of the observation.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">occurrenceStatus</td>
+<td style="text-align: left;">PRESENT</td>
+<td style="text-align: left;">The occurrence was present at the location and time of the observation.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="organismQuantityType-vocabularies"></a>organismQuantityType</td>
+<td style="text-align: left;">BIOMASS AFDG</td>
+<td style="text-align: left;">A measurement type where the quantity of a species in a sample is recorded as the ash free dry weight biomass in grams (g).</td>
+<td style="text-align: left;">BIOMASS ASH FREE DRY WEIGHT IN GRAMS, BIOMASS ASH FREE DRY WEIGHT GRAMS</td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">BIOMASS G</td>
+<td style="text-align: left;">A measurement type where the quantity of a species in a sample is recorded as the biomass in grams (g).</td>
+<td style="text-align: left;">BIOMASS IN GRAMS, BIOMASS GRAMS</td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">BIOMASS KG</td>
+<td style="text-align: left;">A measurement type where the quantity of a species in a sample is recorded as the biomass in kilograms (kg).</td>
+<td style="text-align: left;">BIOMASS IN KILOGRAMS, BIOMASS KILOGRAMS</td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">BIOVOLUME CUBIC MICRONS</td>
+<td style="text-align: left;">A measurement type where the quantity of a species in a sample is recorded as the biovolume in cubic microns (µ ^ 3).</td>
+<td style="text-align: left;">BIOVOLUME IN CUBIC MICRONS</td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">BIOVOLUME ML</td>
+<td style="text-align: left;">A measurement type where the quantity of a species in a sample is recorded as the biovolume in millilitres (ml).</td>
+<td style="text-align: left;">BIOVOLUME IN MILLILITRES, BIOVOLUME MILLILITRES</td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">BRAUN BLANQUET SCALE</td>
+<td style="text-align: left;">A measurement type where the cover of a species in a sample is recorded using the Braun-Blanquet scale.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">DOMIN SCALE</td>
+<td style="text-align: left;">A measurement type where the cover of a species in a sample is recorded using the Domin scale.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">INDIVIDUALS</td>
+<td style="text-align: left;">A measurement type where the quantity of a species in a sample is recorded as the number of individuals (e.g.per litre, per square metre, per cubic metre, per hour, per day).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">PERCENTAGE COVERAGE</td>
+<td style="text-align: left;">A measurement type where the quantity of a species in a sample is recorded as the percentage coverage of the total area being sampled.</td>
+<td style="text-align: left;">% COVERAGE</td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">PERCENTAGE OF BIOMASS</td>
+<td style="text-align: left;">A measurement type where the quantity of a species in a sample is recorded as a percentage of the total biomass of all species.</td>
+<td style="text-align: left;">% OF BIOMASS</td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">PERCENTAGE OF BIOVOLUME</td>
+<td style="text-align: left;">A measurement type where the quantity of a species in a sample is recorded as a percentage of the total biovolume of all species.</td>
+<td style="text-align: left;">% OF BIOVOLUME</td>
+</tr>
+<tr>
+<td style="text-align: left;">organismQuantityType</td>
+<td style="text-align: left;">PERCENTAGE OF SPECIES</td>
+<td style="text-align: left;">A measurement type where the quantity of a species in a sample is recorded as a percentage of the total individual count of all species.</td>
+<td style="text-align: left;">% OF SPECIES</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="preparations-vocabularies"></a>preparations</td>
+<td style="text-align: left;">ALCOHOL</td>
+<td style="text-align: left;">Alcohol</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">DEEP FROZEN</td>
+<td style="text-align: left;">Deep frozen</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">DRIED</td>
+<td style="text-align: left;">Dried</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">DRIED AND PRESSED</td>
+<td style="text-align: left;">Dried and pressed</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">FORMALIN</td>
+<td style="text-align: left;">Formalin</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">FREEZE DRIED</td>
+<td style="text-align: left;">Freeze-dried</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">GLYCERIN</td>
+<td style="text-align: left;">Glycerin</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">GUM ARABIC</td>
+<td style="text-align: left;">Gum arabic</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">MICROSCOPIC PREPARATION</td>
+<td style="text-align: left;">Microscopic preparation</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">MOUNTED</td>
+<td style="text-align: left;">Mounted</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">NO TREATMENT</td>
+<td style="text-align: left;">No treatment</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">OTHER</td>
+<td style="text-align: left;">Other</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">PINNED</td>
+<td style="text-align: left;">Pinned</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">preparations</td>
+<td style="text-align: left;">REFRIGERATED</td>
+<td style="text-align: left;">Refrigerated</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="samplingProtocol-vocabularies"></a>samplingProtocol</td>
+<td style="text-align: left;">ACOUSTIC RECORDING</td>
+<td style="text-align: left;">An acoustic recorder is a device that emits a soundwave at a range of frequencies, and are used to detect and monitor biodiversity in a given area.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">ANIMAL CARCASS (WHOLE)</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any observations made on a carcass (whole), i.e., dead and or decaying animal., Refers to the type of voucher specimen sample, i.e., an animal carcass (full/complete).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">ANIMAL DIGGINGS</td>
+<td style="text-align: left;">The type of evidence of a pest animal presence in the form of 'diggings'.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">ANIMAL GUT (WITHIN)</td>
+<td style="text-align: left;">Animal gut is the portions of the alimentary canal, particularly the stomach and the intestines.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">ANIMAL HAIR/FUR</td>
+<td style="text-align: left;">Animal fur are densely packed hairs on the skin of mammals.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">ANIMAL PELLET</td>
+<td style="text-align: left;">Pellets are fecal droppings of animals such as goat, rats, rabbits, wombats, etc., and are often used as a sign/evidence of the presence of the species in the environment.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">ANIMAL SKIN</td>
+<td style="text-align: left;">Skin is the outermost protective layer and the largest organ covering the body of vertebrate animal.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">ANIMAL TRACKING (STATELLITE)</td>
+<td style="text-align: left;">A method of tracking the movements of fauna species facilitated by the assistance from satellite (i.e., imagery for example).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">ANIMAL TRACKS</td>
+<td style="text-align: left;">Animal tracks are signs in the form of marks or imprints left behind on soil, ground or any related surface indicating the presence of a fauna species., Refers to the fauna observation method, i.e., any signs of a fauna detected from observations of tracks.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">BONE/TEETH</td>
+<td style="text-align: left;">Bones/teeth are non-perishable remains of mammals that are often divided into skeleton (bones) and dentition (teeth).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">BURROW</td>
+<td style="text-align: left;">A burrow is a hole or tunnel excavated into the ground by an animal to create a space suitable for habitation, temporary refuge, or as a byproduct of locomotion., Burrow is a small tunnel or a hole made by certain ground-dwelling mammals as a place of refuge., Refers to the microhabitat where the targeted fauna was observed. A burrow is a hole or tunnel excavated into the ground by an animal to create a space suitable for habitation, temporary refuge, or as a byproduct of locomotion.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">CAGE TRAP</td>
+<td style="text-align: left;">A cage trap is a trap made of metal or galvanised mesh, normally used for trapping mammals., The equipment/method used during a passive, 'targeted fauna survey'. A cage trap is a trap made of metal or galvanised mesh and used in trapping mammals.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">DNA</td>
+<td style="text-align: left;">DNA, or deoxyribonucleic acid, is the hereditary material in almost all living organisms that carries the genetic instructions used in growth, development, functioning, and reproduction. It consists of two long chains of nucleotides twisted into a double helix, with sequences of four types of nitrogen bases (adenine, thymine, cytosine, and guanine) that encode genetic information.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">EDNA</td>
+<td style="text-align: left;">Environment DNA (eDNA) are the DNA that contains genetic information of living organisms representing a specific environmental and is usually sourced from soil, water, etc. , Refers to the method of identification of Vertebrate fauna. Taxon is identified using DNA sequencing techniques from environmental samples (eDNA).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">EGGS/EGGSHELL</td>
+<td style="text-align: left;">An animal egg, or ovum, is the female reproductive cell (gamete) in many animals and vay in shape, size and structure. Egg shells are outer protctive layer that surrounds the egg of many animals. The animal eggs/egg shells here represent particular life stage of animal and often used as a sign/evidence to detect their presence in its habitat.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">ELLIOTT TRAP</td>
+<td style="text-align: left;">The equipment/method used during a passive, 'fauna survey'. Elliott trapping is a technique used to trap small to medium sized mammals. The are usually hinged design that allows trapping to be conducted by folding into a compact panel and easy transport to field locations and storage., The equipment/method used during a passive, 'targeted fauna survey'. Elliott trapping is a technique used to trap small to medium sized mammals. The are usually hinged design that allows trapping to be conducted by folding into a compact panel and easy transport to field locations and storage.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">EXOSKELETON</td>
+<td style="text-align: left;">Exoskeleton is the outer rigid covering of an invertebrate fauna with its structural features generally intact.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">FEATHER</td>
+<td style="text-align: left;">Feathers are light, upright epidermal outgrowths that form the external covering of the body of birds. Feathers include the smaller down feathers and the larger contour and flight feathers., Refers to the type of voucher specimen sample. Feathers are one of the epidermal growths that form the distinctive outer covering, or plumage, on birds.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">FOSSIL/SUBFOSSIL</td>
+<td style="text-align: left;">Fossils are preserved remains of animal or plant parts, usually of a prehistoric origin. Whereas, a sub-fossil are remains (usually skeletal) of animals that are not ancient enough to qualify as a fossil.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">FUNNEL TRAP</td>
+<td style="text-align: left;">The equipment/method used in a 'fauna survey'. Funnel trap is a trapping method used in trapping insects/invertebrates. Funnel traps are made of nested black funnels (up to as many as 12). Insects fall through the funnels to a cup that is filled with a preservative., The equipment/method used in a 'targeted fauna survey'. Funnel trap is a trapping method used in trapping insects/invertebrates. Funnel traps are made of nested black funnels (up to as many as 12). Insects fall through the funnels to a cup that is filled with a preservative.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">GPS TRACKING</td>
+<td style="text-align: left;">Geospatial tracking devices are portable units designed to monitor and track location. They use satellite navigation to determine movement and establish geographic positions.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">HAIR TUBE</td>
+<td style="text-align: left;">Hair Tubes are short sections of PVC pipe lined with pieces of double-sided sticky-tape and useful to obtain hair/fur samples of animals., Refers to the targeted fauna observation method, i.e., any observations on a fauna made using 'Hair Tubes', which are short sections of PVC pipe lined with pieces of double-sided sticky-tape.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">HARP TRAP</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any observations made on a fauna captured in a 'Harp trap' (especially designed for bats). They are particularly useful in situations where bats in flight can be channeled through a natural funnel such as above a water course, a cave or mine entrance or a clear area within a forest.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">HEARD</td>
+<td style="text-align: left;">The method of bird sighting in the form of calls, or acoustic signals., The method of fauna sighting in the form of calls, or acoustic signals.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">HUMAN OBSERVATION</td>
+<td style="text-align: left;">An observation performed by a human.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">LIGHT TRAP</td>
+<td style="text-align: left;">Light trapping is designed for collecting flying insects attracted to ultra violet light and is useful for sampling insect populations., The equipment/method used during a passive, 'targeted fauna survey'. Light trapping is designed for collecting flying insects attracted to ultra violet light and is useful for sampling insect populations.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">MALAISE TRAP</td>
+<td style="text-align: left;">A Malaise trap is a type of insect trap primarily used to capture invertebrates. They are large, tent-like structure effective in capturing flying insects (e.g., members of Hymenoptera and Diptera)., Refers to the targeted fauna observation method, i.e., any observations on a fauna captured using a malaise trap. A Malaise trap is a type of insect trap primarily used to capture invertebrates. They are large, tent-like structure effective in capturing flying insects (e.g., members of Hymenoptera and Diptera).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">MIST NET</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any observations on a fauna captured using mist nets. The net is made of a very fine diameter cord, which is almost invisible when set up and is often used to capture birds, because they fail to see it, and fly straight into it., Refers to the targeted fauna observation method, i.e., any observations on a fauna captured using mist nets. The net is made of a very fine diameter cord, which is almost invisible when set up and is often used to capture birds, because they fail to see it, and fly straight into it.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">NEST</td>
+<td style="text-align: left;">A nest is a place of refuge to hold an animal's eggs or provide a place to live or raise offspring.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">NO STATED METHOD</td>
+<td style="text-align: left;">Refers to NO recognised method of observation stated for a target fauna.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">NONE</td>
+<td style="text-align: left;">Refers to No observation method of a target fauna., Refers to the targeted fauna observation method, i.e., 'No' standard observation methods were applied.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">OBSERVATION METHOD - AFTER CALL PLAYBACK</td>
+<td style="text-align: left;">After call playback, is a method used for fauna observations (usually birds) and involves pre-recorded call playback to detect the presence of a target species in the survey area.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">OBSERVATION METHOD - ANIMAL DEN</td>
+<td style="text-align: left;">A den is a place of refuge for many mammals and are usually either buried deep underground or built by the animal to create a secret shelter., Refers to the microhabitat where the fauna was observed. A den is a place of refuge for many mammals and are usually either buried deep underground or built by the animal to create a secret shelter.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">OBSERVATION METHOD - ANIMAL ODOUR</td>
+<td style="text-align: left;">Animal odour or pheromones are distinct secretions of animals, often used as a sign/evidence of their presence in its habitat., Refers to the type of fauna observation method, which involves detection of a fauna species via its odour or pheromones.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">OTHER (SPECIFY)</td>
+<td style="text-align: left;">Other types of liquid preservative used to store invertebrate samples., Refers to the any Other type of substrate/s used for fauna signs-based observation., Represents any 'Other' categorical collection NOT listed in the given collection., Represents any 'other' categorical collection NOT listed.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">PAN TRAP</td>
+<td style="text-align: left;">A pan trap is a type of insect trap primarily used to capture small invertebrates (e.g., members of Hymenoptera) and often used to sample the abundance and diversity of insects., Refers to the targeted fauna observation method, i.e., any observations made from fauna captures in a pan trap. A pan trap is a type of insect trap primarily used to capture small invertebrates (e.g., members of Hymenoptera) and often used to sample the abundance and diversity of insects., The type/method of invertebrate fauna sampling implemented. Pan trapping consists of small, coloured bowls placed on the ground, either filled with water and a small amount of dishwashing liquid for sampling over one day, or propylene glycol for sampling over a longer duration.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">PELLET (WITHIN)</td>
+<td style="text-align: left;">Pellets are fecal droppings of animals such as goat, rats, rabbits, wombats, etc., and are often used as a sign/evidence of the presence of the species in the environment. 'Within pellet' here represents an observation method (tier-2) that involves searching for any signs/evidence of a fauna species within a scat.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">PITFALL TRAP</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any observations made from fauna captures in a pitfall trap. A pitfall trap is a simple device used to catch small animals , particularly insects and other invertebrates , that spend most of their time on the ground., Refers to the targeted fauna observation method, i.e., any observations made from fauna captures in a pitfall trap. A pitfall trap is a simple device used to catch small animals , particularly insects and other invertebrates , that spend most of their time on the ground.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">RADIO TRACKING</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any signs of a fauna with the assistance of radio tracking device/s.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">REMOTE CAMERA DEVICE</td>
+<td style="text-align: left;">Remote camera device are special devices that can be programmed to capture media (picture, videos) in places where humans cannot be physically present, and can be controlled remotely over a wireless network.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">SCATS</td>
+<td style="text-align: left;">Faeces/faecal pellets/dung/droppings of animals. Often individual or scattered pellets (e.g. rabbit), or clumped pellet groups (e.g. deer). Their deposition will be influenced by diet (wet diet often causes clumping of pellets) and their size can reflect age (adult/juvenile). Scat surveys provide an estimate of relative abundances suitable for both herbivores and predators.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">SCATS (WITHIN)</td>
+<td style="text-align: left;">Scats are fecal droppings of animals and are often represented by most to mark their territory. 'Within scats' here represents an observation method (tier-2) that involves searching for any signs/evidence of a fauna species within a scat.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">SCENT PAD</td>
+<td style="text-align: left;">Scent pads are specific pads that are used as lures duing fauna observations.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">SCRATCHINGS (ARBOREAL)</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any signs of a fauna detected from observations of scratchings on a tree.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">SCRATCHINGS (GROUND)</td>
+<td style="text-align: left;">Scratchings are common traits of certain mammals leaving scars on trees, rocks etc.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">SHELL</td>
+<td style="text-align: left;">A shell is a hard, rigid outer layer, which has evolved in a very wide variety of different animals, including molluscs, crustaceans, turtles and tortoises.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">SIGHTING</td>
+<td style="text-align: left;">An observation method made by direct sighting of fauna in its habitat.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">SPOTLIGHTING</td>
+<td style="text-align: left;">Spotlighting technique is a method used for fauna observations during the night and assists surveyors target nocturnal animals, using off-road vehicles and high-powered lights, spotlights, lamps or flashlights.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">SWEEP NET</td>
+<td style="text-align: left;">Sweep nets are usually used for capturing insects using a number of sweeps. The net is made of fine diameter mesh fitted to a metal handle to trap invertebrates in air., The equipment/method used during a passive, 'targeted fauna survey'. Sweep nets are usually used for capturing insects using a number of sweeps. The net is made of fine diameter mesh fitted to a metal handle to trap invertebrates in air.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">TRACKING PAD</td>
+<td style="text-align: left;">A tracking pad is an artificial pad made of loose material (such as sand for example) that are used to study and observe animal tracks. These pads are often designed to be delpoyed in habitats where animal activity/movements are high., Refers to the type of substrate used for fauna signs-based observation. A tracking pad is an artificial pad made of loose material (such as sand for example) that are used to study animal tracks in a fauna survey.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">ULTRASONIC RECORDING DEVICE</td>
+<td style="text-align: left;">Ultrasound recorders are devices that send high-frequency sound waves in the environment to create images or detect objects and movements within various mediums, such as a mammalian body or other environments. They are popular for wildlife monitoring, biodiversity surveys, habitat assessments and echolocation studies (e.g., bats).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">UNKNOWN</td>
+<td style="text-align: left;">Refers to the fire history of the plot, unknown., Unknown (unable to be determined)., Unknown capture status., Unknown position., Unknown- unable to be determined., Unknown/unable to be determined.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">UNKNOWN TRAP TYPE</td>
+<td style="text-align: left;">Refers to the fire history of the plot, unknown., Unknown (unable to be determined)., Unknown capture status., Unknown position., Unknown, unable to be determined., Unknown/unable to be determined.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">UNSPECIFIED</td>
+<td style="text-align: left;">The method used was not included in the data.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">WALLOW</td>
+<td style="text-align: left;">A wallow is a depression containing mud or shallow water, formed by wallowing of large mammals., Wallow is a depression containing mud or shallow water, formed by the wallowing of large mammals such as a buffallo for example.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">WATER SAMPLE</td>
+<td style="text-align: left;">Water samples are representative samples of a given habitat that serve as a source to study the chemical composition and detect the presence of fauna species (DNA).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">samplingProtocol</td>
+<td style="text-align: left;">WET PITFALL TRAP</td>
+<td style="text-align: left;">Refers to the fauna observation method, i.e., any observations made from fauna captures using a wet pitfall trap.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sensitivityAuthority-vocabularies"></a>sensitivityAuthority</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sensitivityCategory-vocabularies"></a>sensitivityCategory</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sequencingMethod-vocabularies"></a>sequencingMethod</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;">TBC</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="sex-vocabularies"></a>sex</td>
+<td style="text-align: left;">FEMALE</td>
+<td style="text-align: left;">Female (♀) is the sex of an organism, or a part of an organism, which produces mobile ova (egg cells).</td>
+<td style="text-align: left;">F, ♀</td>
+</tr>
+<tr>
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">HERMAPHRODITE</td>
+<td style="text-align: left;">One organism having both male and female sexual characteristics and organs; at birth an unambiguous assignment of male or female cannot be made</td>
+<td style="text-align: left;">ZWITTER</td>
+</tr>
+<tr>
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">MALE</td>
+<td style="text-align: left;">Male (♂) refers to the sex of an organism, or part of an organism, which produces small mobile gametes, called spermatozoa.</td>
+<td style="text-align: left;">M, ♂</td>
+</tr>
+<tr>
+<td style="text-align: left;">sex</td>
+<td style="text-align: left;">UNDETERMINED</td>
+<td style="text-align: left;">If the sex of an organism can't be determined for some reason.</td>
+<td style="text-align: left;">UNDET., UNKNOWN</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="taxonRank-vocabularies"></a>taxonRank</td>
+<td style="text-align: left;">CLASS</td>
+<td style="text-align: left;">Class</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">CULTIVAR</td>
+<td style="text-align: left;">The epithet is usually output in single quotes and may contain multiple words, see ICBN §28. Examples: Taxus baccata 'Variegata', Juniperus ×pfitzeriana 'Wilhelm Pfitzer'; Magnolia 'Elizabeth' (= a hybrid, no species epithet).</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">CULTIVAR GROUP</td>
+<td style="text-align: left;">Cultivar group</td>
+<td style="text-align: left;">GREX</td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">FAMILY</td>
+<td style="text-align: left;">Family</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">FORM</td>
+<td style="text-align: left;">Form</td>
+<td style="text-align: left;">FORMA</td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">GENUS</td>
+<td style="text-align: left;">Genus</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">INFORMAL</td>
+<td style="text-align: left;">Informal</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">INFRAGENERIC NAME</td>
+<td style="text-align: left;">Used for any other unspecific rank below genera and above species.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">INFRAORDER</td>
+<td style="text-align: left;">Infraorder</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">INFRASPECIFIC NAME</td>
+<td style="text-align: left;">Used for any other unspecific rank below genera and above species.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">INFRASUBSPECIFIC NAME</td>
+<td style="text-align: left;">Used for any other unspecific rank below subspecies.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">KINGDOM</td>
+<td style="text-align: left;">Kingdom</td>
+<td style="text-align: left;">REGNUM</td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">ORDER</td>
+<td style="text-align: left;">Order</td>
+<td style="text-align: left;">ALLIANCE</td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">PHYLUM</td>
+<td style="text-align: left;">Phylum</td>
+<td style="text-align: left;">DIVISION</td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SECTION</td>
+<td style="text-align: left;">Section within a genus. In Zoology a section sometimes refers to a group above family level, this is NOT meant</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SERIES</td>
+<td style="text-align: left;">Series within a genus.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SPECIES</td>
+<td style="text-align: left;">Species</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SPECIES AGGREGATE</td>
+<td style="text-align: left;">A loosely defined group of species. Zoology: 'Aggregate - a group of species, other than a subgenus, within a genus. An aggregate may be denoted by a group name interpolated in parentheses.' -- The Berlin/MoreTax model notes:'[these] aren't taxonomic ranks but circumscriptions because on the one hand they are necessary for the concatenation of the fullname and on the other hand they are necessary for distinguishing the aggregate or species group from the microspecies.' Compare subspecific aggregate for a group of subspecies within a species.</td>
+<td style="text-align: left;">AGGREGATE, SPECIES GROUP, SPECIES COMPLEX</td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBFAMILY</td>
+<td style="text-align: left;">Subfamily</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBFORM</td>
+<td style="text-align: left;">Subform</td>
+<td style="text-align: left;">SUBFORMA</td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBGENUS</td>
+<td style="text-align: left;">Subgenus</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBKINGDOM</td>
+<td style="text-align: left;">Subkingdom</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBORDER</td>
+<td style="text-align: left;">Suborder</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBSECTION</td>
+<td style="text-align: left;">Subsection within a genus.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBSERIES</td>
+<td style="text-align: left;">Subseries within a genus.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBSPECIES</td>
+<td style="text-align: left;">Subspecies</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBSPECIFIC AGGREGATE</td>
+<td style="text-align: left;">A loosely defined group of subspecies. Zoology:'Aggregate - a group of subspecies within a species. An aggregate may be denoted by a group name interpolated in parentheses.'</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBTRIBE</td>
+<td style="text-align: left;">Subtribe</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUBVARIETY</td>
+<td style="text-align: left;">Subvariety</td>
+<td style="text-align: left;">SUBVARIETAS</td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUPERFAMILY</td>
+<td style="text-align: left;">Superfamily</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">SUPRAGENERIC NAME</td>
+<td style="text-align: left;">Used for any other unspecific rank above genera.</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">TRIBE</td>
+<td style="text-align: left;">Tribe</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">UNRANKED</td>
+<td style="text-align: left;">Unranked</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">taxonRank</td>
+<td style="text-align: left;">VARIETY</td>
+<td style="text-align: left;">Variety</td>
+<td style="text-align: left;">VARIETAS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a name="threatStatusCheckProtocol-vocabularies"></a>threatStatusCheckProtocol</td>
+<td style="text-align: left;">UNSPECIFIED</td>
+<td style="text-align: left;">Unspecified</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p><a name="threatStatus-vocabularies"></a><a name="conservationAuthority-vocabularies"></a>
+<ins>Table 2b: Suggested values for conditionally mandatory values for the <code>threatStatus</code> and
+<code>conservationAuthority</code> fields in the template. State and Territory <code>conservationAuthority</code> 
+spelt out as words are also valid. For some <code>threatStatus</code> terms, alternative labels are provided
+that are also valid for that <code>conservationAuthority</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">conservationAuthority</th>
+<th style="text-align: left;">threatStatus</th>
+<th style="text-align: left;">threatStatus alternative labels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">ACT</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ACT</td>
+<td style="text-align: left;">ENDANGERED</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ACT</td>
+<td style="text-align: left;">EXTINCT</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ACT</td>
+<td style="text-align: left;">EXTINCT IN THE WILD</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ACT</td>
+<td style="text-align: left;">REGIONALLY CONSERVATION DEPENDENT</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">ACT</td>
+<td style="text-align: left;">VULNERABLE</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">EPBC</td>
+<td style="text-align: left;">CAMBA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">EPBC</td>
+<td style="text-align: left;">CD</td>
+<td style="text-align: left;">CONSERVATION DEPENDENT</td>
+</tr>
+<tr>
+<td style="text-align: center;">EPBC</td>
+<td style="text-align: left;">CE</td>
+<td style="text-align: left;">CR, CRITICALLY ENDANGERED</td>
+</tr>
+<tr>
+<td style="text-align: center;">EPBC</td>
+<td style="text-align: left;">CITES</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">EPBC</td>
+<td style="text-align: left;">E</td>
+<td style="text-align: left;">EN, ENDANGERED</td>
+</tr>
+<tr>
+<td style="text-align: center;">EPBC</td>
+<td style="text-align: left;">EX</td>
+<td style="text-align: left;">EXTINCT</td>
+</tr>
+<tr>
+<td style="text-align: center;">EPBC</td>
+<td style="text-align: left;">JAMBA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">EPBC</td>
+<td style="text-align: left;">KAMBA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">EPBC</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: left;">VU, VULNERABLE</td>
+</tr>
+<tr>
+<td style="text-align: center;">EPBC</td>
+<td style="text-align: left;">XW</td>
+<td style="text-align: left;">EW, EXTINCT IN THE WILD</td>
+</tr>
+<tr>
+<td style="text-align: center;">NSW</td>
+<td style="text-align: left;">CE</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED</td>
+</tr>
+<tr>
+<td style="text-align: center;">NSW</td>
+<td style="text-align: left;">EN</td>
+<td style="text-align: left;">ENDANGERED</td>
+</tr>
+<tr>
+<td style="text-align: center;">NSW</td>
+<td style="text-align: left;">EX</td>
+<td style="text-align: left;">EXTINCT</td>
+</tr>
+<tr>
+<td style="text-align: center;">NSW</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: left;">VULNERABLE</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">CE</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">DD</td>
+<td style="text-align: left;">DATA DEFICIENT</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">EN</td>
+<td style="text-align: left;">ENDANGERED</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">EN EXTINCT IN NT</td>
+<td style="text-align: left;">ENDANGERED EXTINCT IN NT</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">EN EXTINCT IN WILD IN NT</td>
+<td style="text-align: left;">ENDANGERED EXTINCT IN WILD IN NT</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">EW</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED POSSIBLY EXTINCT</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">EX</td>
+<td style="text-align: left;">EXTINCT</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">LC</td>
+<td style="text-align: left;">LEAST CONCERN</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">LC EXTINCT IN NT</td>
+<td style="text-align: left;">LEAST CONCERN EXTINCT IN NT</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: left;">NOT EVALUATED</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">NT</td>
+<td style="text-align: left;">NEAR THREATENED</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">VU</td>
+<td style="text-align: left;">VULNERABLE</td>
+</tr>
+<tr>
+<td style="text-align: center;">NT</td>
+<td style="text-align: left;">VU EXTINCT IN NT</td>
+<td style="text-align: left;">VULNERABLE EXTINCT IN NT</td>
+</tr>
+<tr>
+<td style="text-align: center;">QLD</td>
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">LEAST CONCERN WILDLIFE</td>
+</tr>
+<tr>
+<td style="text-align: center;">QLD</td>
+<td style="text-align: left;">CR</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED</td>
+</tr>
+<tr>
+<td style="text-align: center;">QLD</td>
+<td style="text-align: left;">E</td>
+<td style="text-align: left;">ENDANGERED WILDLIFE</td>
+</tr>
+<tr>
+<td style="text-align: center;">QLD</td>
+<td style="text-align: left;">EX</td>
+<td style="text-align: left;">EXTINCT</td>
+</tr>
+<tr>
+<td style="text-align: center;">QLD</td>
+<td style="text-align: left;">I</td>
+<td style="text-align: left;">INTERNATIONAL WILDLIFE</td>
+</tr>
+<tr>
+<td style="text-align: center;">QLD</td>
+<td style="text-align: left;">NT</td>
+<td style="text-align: left;">NEAR THREATENED WILDLIFE</td>
+</tr>
+<tr>
+<td style="text-align: center;">QLD</td>
+<td style="text-align: left;">PE</td>
+<td style="text-align: left;">EXTINCT IN THE WILD</td>
+</tr>
+<tr>
+<td style="text-align: center;">QLD</td>
+<td style="text-align: left;">SL</td>
+<td style="text-align: left;">SPECIAL LEAST CONCERN</td>
+</tr>
+<tr>
+<td style="text-align: center;">QLD</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: left;">VULNERABLE WILDLIFE</td>
+</tr>
+<tr>
+<td style="text-align: center;">SA</td>
+<td style="text-align: left;">E</td>
+<td style="text-align: left;">ENDANGERED</td>
+</tr>
+<tr>
+<td style="text-align: center;">SA</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">RARE</td>
+</tr>
+<tr>
+<td style="text-align: center;">SA</td>
+<td style="text-align: left;">SP</td>
+<td style="text-align: left;">INDICATES THAT A RATING HAS BEEN APPLIED TO THE SPECIES LEVEL THE STATUS HAS NOT BEEN ASSESSED AT THE SUBSPECIES LEVEL</td>
+</tr>
+<tr>
+<td style="text-align: center;">SA</td>
+<td style="text-align: left;">SSP</td>
+<td style="text-align: left;">INDICATES THAT AT LEAST ONE SUBSPECIES FOR THIS SPECIES HAS BEEN GIVEN A CONSERVATION RATING</td>
+</tr>
+<tr>
+<td style="text-align: center;">SA</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: left;">VULNERABLE</td>
+</tr>
+<tr>
+<td style="text-align: center;">TAS</td>
+<td style="text-align: left;">E</td>
+<td style="text-align: left;">ENDANGERED</td>
+</tr>
+<tr>
+<td style="text-align: center;">TAS</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">RARE</td>
+</tr>
+<tr>
+<td style="text-align: center;">TAS</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: left;">VULNERABLE</td>
+</tr>
+<tr>
+<td style="text-align: center;">TAS</td>
+<td style="text-align: left;">X</td>
+<td style="text-align: left;">EXTINCT</td>
+</tr>
+<tr>
+<td style="text-align: center;">VIC</td>
+<td style="text-align: left;">CONSERVATION DEPENDENT</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">VIC</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">VIC</td>
+<td style="text-align: left;">ENDANGERED</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">VIC</td>
+<td style="text-align: left;">ENDANGERED EXTINCT IN VICTORIA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">VIC</td>
+<td style="text-align: left;">EXTINCT</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">VIC</td>
+<td style="text-align: left;">EXTINCT IN THE WILD</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">VIC</td>
+<td style="text-align: left;">RESTRICTED</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">VIC</td>
+<td style="text-align: left;">VULNERABLE</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">CD</td>
+<td style="text-align: left;">CONSERVATION DEPENDENT, SPECIES OF SPECIAL CONSERVATION INTEREST CONSERVATION DEPENDENT FAUNA</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">CR</td>
+<td style="text-align: left;">CRITICALLY ENDANGERED, CRITICALLY ENDANGERED SPECIES</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">EN</td>
+<td style="text-align: left;">ENDANGERED, ENDANGERED SPECIES</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">EW</td>
+<td style="text-align: left;">EXTINCT IN THE WILD</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">EX</td>
+<td style="text-align: left;">EXTINCT, EXTINCT SPECIES</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: left;">MIGRATORY, MIGRATORY SPECIES</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">OS</td>
+<td style="text-align: left;">OTHER SPECIFICALLY PROTECTED FAUNA</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">P1</td>
+<td style="text-align: left;">PRIORITY 1 POORLY KNOWN, PRIORITY 1 POORLY KNOWN SPECIES</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">P2</td>
+<td style="text-align: left;">PRIORITY 2 POORLY KNOWN, PRIORITY 2 POORLY KNOWN SPECIES</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">P3</td>
+<td style="text-align: left;">PRIORITY 3 POORLY KNOWN, PRIORITY 3 POORLY KNOWN SPECIES</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">P4</td>
+<td style="text-align: left;">PRIORITY 4 RARE NEAR THREATENED AND OTHER SPECIES IN NEED OF MONITORING</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">SPECIALLY PROTECTED</td>
+<td style="text-align: left;">SPECIALLY PROTECTED SPECIES</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">THREATENED, THREATENED SPECIES</td>
+</tr>
+<tr>
+<td style="text-align: center;">WA</td>
+<td style="text-align: left;">VU</td>
+<td style="text-align: left;">VULNERABLE, VULNERABLE SPECIES</td>
+</tr>
+</tbody>
+</table>
+<h3 id="appendix-ii-timestamp">APPENDIX-II: Timestamp</h3>
+<p>Following date and date-time formats are acceptable within the timestamp:</p>
+<table>
+<thead>
+<tr>
+<th>TYPE</th>
+<th>FORMAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>xsd:dateTimeStamp with timezone</strong></td>
+<td>yyyy-mm-ddThh:mm:ss.sTZD (eg 1997-07-16T19:20:30.45+01:00) OR <br/> yyyy-mm-ddThh:mm:ssTZD (eg 1997-07-16T19:20:30+01:00) OR <br/>  yyyy-mm-ddThh:mmTZD (eg 1997-07-16T19:20+01:00)</td>
+</tr>
+<tr>
+<td><strong>xsd:dateTime</strong></td>
+<td>yyyy-mm-ddThh:mm:ss.s (eg 1997-07-16T19:20:30.45) OR<br/> yyyy-mm-ddThh:mm:ss (eg 1997-07-16T19:20:30) OR<br/> yyyy-mm-ddThh:mm (eg 1997-07-16T19:20)</td>
+</tr>
+<tr>
+<td><strong>xsd:Date</strong></td>
+<td>dd/mm/yyyy OR<br/> d/m/yyyy OR<br/> yyyy-mm-dd OR<br/> yyyy-m-d</td>
+</tr>
+<tr>
+<td><strong>xsd:gYearMonth</strong></td>
+<td>mm/yyyy OR<br/> m/yyyy OR<br/> yyyy-mm</td>
+</tr>
+<tr>
+<td><strong>xsd:gYear</strong></td>
+<td>yyyy</td>
+</tr>
+</tbody>
+</table>
+<p>Where<br/>
+&emsp; <code>yyyy</code>: four-digit year <br/>
+&emsp; <code>mm</code>: two-digit month (01=January, etc.) <br/>
+&emsp; <code>dd</code>: two-digit day of month (01 through 31) <br/>
+&emsp; <code>hh</code>: two digits of hour (00 through 23) (am/pm NOT allowed) <br/>
+&emsp; <code>mm</code>: two digits of minute (00 through 59) <br/>
+&emsp; <code>ss</code>: two digits of second (00 through 59) <br/>
+&emsp; <code>s</code>: one or more digits representing a decimal fraction of a second
+&emsp; <code>TZD</code>: time zone designator (Z or +hh:mm or -hh:mm)</p>
+<h3 id="appendix-iii-utf-8">APPENDIX-III: UTF-8</h3>
+<p>UTF-8 encoding is considered a best practice for handling character encoding, especially in
+the context of web development, data exchange, and modern software systems. UTF-8
+(Unicode Transformation Format, 8-bit) is a variable-width character encoding capable of
+encoding all possible characters (code points) in Unicode.<br/>
+Here are some reasons why UTF-8 is recommended:</p>
+<ul>
+<li><strong>Universal Character Support:</strong> UTF-8 can represent almost all characters from all writing 
+  systems in use today. This includes characters from various languages, mathematical symbols, 
+  and other special characters.</li>
+<li><strong>Backward Compatibility:</strong> UTF-8 is backward compatible with ASCII (American
+  Standard Code for Information Interchange). The first 128 characters in UTF-8 are
+  identical to ASCII, making it easy to work with systems that use ASCII.</li>
+<li><strong>Efficiency:</strong> UTF-8 is space-efficient for Latin-script characters (common in English
+  and many other languages). It uses one byte for ASCII characters and up to four
+  bytes for other characters. This variable-length encoding minimises storage and
+  bandwidth requirements.</li>
+<li><strong>Web Standards:</strong> UTF-8 is the dominant character encoding for web content. It is
+  widely supported by browsers, servers, and web-related technologies.</li>
+<li><strong>Globalisation:</strong> As software applications become more globalised, supporting a wide
+  range of languages and scripts becomes crucial. UTF-8 is well-suited for
+  internationalisation and multilingual support.</li>
+<li><strong>Compatibility with Modern Systems:</strong> UTF-8 is the default encoding for many
+  programming languages, databases, and operating systems. Choosing UTF-8 helps
+  ensure compatibility across different platforms and technologies.</li>
+</ul>
+<p>When working with text data, UTF-8 encoding is recommended to avoid issues related to character
+representation and ensure that a diverse set of characters and languages is supported.</p>
+<p>For assistance, please contact: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;">&#98;&#100;&#114;&#45;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#103;&#97;&#105;&#97;&#114;&#101;&#115;&#111;&#117;&#114;&#99;&#101;&#115;&#46;&#99;&#111;&#109;&#46;&#97;&#117;</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["toc.integrate", "navigation.indexes"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
