@@ -280,9 +280,6 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_survey_id: str = row["surveyID"]
         uri_survey = utils.iri_patterns.survey_iri(base_iri, row_survey_id)
 
-        # URI for the Site Visit Plan
-        uri_site_visit_plan = utils.iri_patterns.plan_iri(base_iri, "visit", row_site_visit_id)
-
         # When siteID+siteIDSource are provided,
         # the site gets a schema:identifier with this datatype.
         if row_site_id and row_site_id_source:
@@ -369,13 +366,13 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
             row_site_visit_id=row_site_visit_id,
             uri_survey=uri_survey,
             uri_site=uri_site,
-            uri_site_visit_plan=uri_site_visit_plan,
             visit_org_agents=visit_org_agents,
             visit_observer_agents=visit_observer_agents,
             row=row,
             dataset=dataset,
             graph=graph,
             submission_iri=submission_iri,
+            submitted_on_date=submitted_on_date,
         )
 
         # Add survey
@@ -424,15 +421,6 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
                 row_visit_observer=visit_observer_agent.row_value,
                 graph=graph,
             )
-
-        # Add site visit plan
-        self.add_site_visit_plan(
-            uri=uri_site_visit_plan,
-            row=row,
-            dataset=dataset,
-            graph=graph,
-            submitted_on_date=submitted_on_date,
-        )
 
         # Add targetTaxonomicScope Attribute, Value and Collection
         self.add_target_taxonomic_scope_attribute(
@@ -502,13 +490,13 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         row_site_visit_id: str,
         uri_survey: rdflib.URIRef,
         uri_site: rdflib.URIRef,
-        uri_site_visit_plan: rdflib.URIRef,
         visit_org_agents: list[Agent],
         visit_observer_agents: list[Agent],
         row: frictionless.Row,
         dataset: rdflib.URIRef,
         graph: rdflib.Graph,
         submission_iri: rdflib.URIRef | None,
+        submitted_on_date: datetime.date,
     ) -> None:
         # Add type
         graph.add((uri, a, utils.namespaces.TERN.SiteVisit))
@@ -561,8 +549,20 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         if row_condition:
             graph.add((uri, utils.namespaces.TERN.siteDescription, rdflib.Literal(row_condition)))
 
-        # Add link to Site Visit Plan
-        graph.add((uri, rdflib.PROV.hadPlan, uri_site_visit_plan))
+        # Add description
+        row_protocol_description: str | None = row["protocolDescription"]
+        if row_protocol_description:
+            graph.add((uri, rdflib.SDO.description, rdflib.Literal(row_protocol_description)))
+
+        # Add used procedure
+        row_protocol_name: str | None = row["protocolName"]
+        if row_protocol_name:
+            # Retrieve vocab for field
+            vocab = self.fields()["protocolName"].get_flexible_vocab()
+            # get or create term IRI
+            term = vocab(graph=graph, source=dataset, submitted_on_date=submitted_on_date).get(row_protocol_name)
+            # Add link to term
+            graph.add((uri, rdflib.SOSA.usedProcedure, term))
 
     def add_survey(
         self, uri: rdflib.URIRef, dataset: rdflib.URIRef, graph: rdflib.Graph, submission_iri: rdflib.URIRef | None
@@ -734,45 +734,6 @@ class SurveySiteVisitMapper(base.mapper.ABISMapper):
         graph.add((uri, a, rdflib.PROV.Person))
         # Add name
         graph.add((uri, rdflib.SDO.name, rdflib.Literal(row_visit_observer)))
-
-    def add_site_visit_plan(
-        self,
-        *,
-        uri: rdflib.URIRef,
-        row: frictionless.Row,
-        dataset: rdflib.URIRef,
-        graph: rdflib.Graph,
-        submitted_on_date: datetime.date,
-    ) -> None:
-        """Add a site visit prov:Plan node to the graph.
-
-        Args:
-            uri: The URI for the site visit plan
-            row: Raw row from the template.
-            dataset: Dataset raw data belongs to.
-            graph: The graph to be modified.
-            submitted_on_date: The date the data was submitted.
-        """
-        # Add subject type
-        graph.add((uri, a, rdflib.PROV.Plan))
-
-        # add link to dataset
-        graph.add((uri, rdflib.SDO.isPartOf, dataset))
-
-        # Add description
-        row_protocol_description: str | None = row["protocolDescription"]
-        if row_protocol_description:
-            graph.add((uri, rdflib.SDO.description, rdflib.Literal(row_protocol_description)))
-
-        # Add used procedure
-        row_protocol_name: str | None = row["protocolName"]
-        if row_protocol_name:
-            # Retrieve vocab for field
-            vocab = self.fields()["protocolName"].get_flexible_vocab()
-            # get or create term IRI
-            term = vocab(graph=graph, source=dataset, submitted_on_date=submitted_on_date).get(row_protocol_name)
-            # Add link to term
-            graph.add((uri, rdflib.SOSA.usedProcedure, term))
 
     def add_target_taxonomic_scope_attribute(
         self,
