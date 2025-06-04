@@ -1876,7 +1876,6 @@
     dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
     dwc:collectionCode "32237" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
-    sosa:isSampleOf <https://example.com/site/WAM-MR-S1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/ea1d6342-1901-4f88-8482-3111286ec157> ;
     schema:identifier "BHP2012-7521"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
         "M12378"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
@@ -1888,6 +1887,7 @@
     schema:temporal [ a time:Instant ;
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
+    tern:hasSite <https://example.com/site/WAM-MR-S1> ;
     tern:hasSiteVisit <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/SiteVisit/MR-R1-V1> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
@@ -1897,7 +1897,6 @@
     dwc:catalogNumber "ARACH"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/WAM> ;
     dwc:collectionCode "32238" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
-    sosa:isSampleOf <https://linked.data.gov.au/dataset/bdr/sites/WAM/MR-S1> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/samplingProtocol/new-sampling-protocol> ;
     schema:identifier "BHP2012-7522"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
         "M12379"^^<https://linked.data.gov.au/dataset/bdr/datatypes/catalogNumber/BHP>,
@@ -1912,6 +1911,7 @@
             time:hasEnd [ a time:Instant ;
                     time:inXSDDate "2019-09-30"^^xsd:date ] ] ;
     tern:featureType <https://linked.data.gov.au/dataset/bdr/bdr-cv/featureType/occurrence/kingdom/new-kingdom> ;
+    tern:hasSite <https://linked.data.gov.au/dataset/bdr/sites/WAM/MR-S1> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
 <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> a prov:Agent ;

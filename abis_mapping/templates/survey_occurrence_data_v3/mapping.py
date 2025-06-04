@@ -4715,7 +4715,7 @@ class SurveyOccurrenceMapper(base.mapper.ABISMapper):
 
         # Add site if provided
         if site is not None:
-            graph.add((uri, rdflib.SOSA.isSampleOf, site))
+            graph.add((uri, utils.namespaces.TERN.hasSite, site))
 
         # Add site visit if provided
         if site_visit is not None:
