@@ -1,8 +1,18 @@
-[tool.poetry]
+[project]
 name = "abis-mapping"
 version = "8.1.0"
 description = "Provides templates and mappings to translate tabular data to ABIS rdf"
-authors = ["Gaia Resources <dev@gaiaresources.com.au>"]
+authors = [
+    {name = "Gaia Resources", email = "dev@gaiaresources.com.au"}
+]
+dynamic = ["requires-python", "dependencies"]
+
+[build-system]
+requires = ["poetry-core >= 2.0.0, <3"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+requires-poetry = ">=2.0.0, <3"
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -44,10 +54,6 @@ generate-instructions = "./scripts/generate_instructions.sh"
 generate-model-docs = "./scripts/generate_model_docs.sh"
 generate-example-ttl-files = "python ./scripts/generate_example_ttl_files.py"
 test = "pytest tests --cov=abis_mapping --cov=docs --cov-report=term-missing"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
 filterwarnings = [

@@ -10,7 +10,7 @@ on:
       - 'release/**'
 env:
   PYTHON_VERSION: "3.11"
-  POETRY_VERSION: "1.8.5"
+  POETRY_VERSION: "2.1.3"
 jobs:
   poetry-lock:
     # Job to check poetry lock file is present, up-to-date with pyproject.toml,
@@ -25,10 +25,10 @@ jobs:
       - name: Install Poetry
         run: pipx install poetry==${{ env.POETRY_VERSION }} --python=${{ env.PYTHON_VERSION }}
       # Do checks
-      - run: poetry check
-      - run: poetry check --lock
+      - run: poetry check --strict
+      - run: poetry check --strict --lock
       - name: Check dependencies can be resolved
-        run: poetry lock --no-update
+        run: poetry lock
       - name: Check resolving dependencies did not change the lock file
         run: |
           echo "Checking if locking dependencies has created any diff in the lock file..."
@@ -38,7 +38,7 @@ jobs:
             echo "No changes to poetry.lock detected"
           else
             echo "Changes to poetry.lock detected!"
-            echo "You probably should run 'poetry lock --no-update' and add the result to your PR"
+            echo "You probably should run 'poetry lock' and add the result to your PR"
             exit 1
           fi
 

@@ -68,7 +68,6 @@ The resulting markdown documents will be stored in [`docs/models/markdown`](/doc
 ### Markdown Instruction Generation
 To generate an instruction document, perform the following
 ```sh
-poetry shell
 python docs/instructions.py incidental_occurrence_data-v3.0.0.csv [-o] <output_file>
 ```
 This is normally done as part of the `scripts/generate_instructions.sh` script.
@@ -76,7 +75,6 @@ This is normally done as part of the `scripts/generate_instructions.sh` script.
 ### Field Schema Table Generation
 To generate a csv of the underlying schema of a template `template_id`
 ```sh
-poetry shell
 python docs/tables/fields.py <template_id> [-o] <output_file>
 ```
 where `output_file` (optional) corresponds to a location to store the resulting csv.
@@ -87,7 +85,6 @@ if no `output_file` argument provided.
 To generate a csv of the underlying controlled vocabularies corresponding  to a template 
 `template_id`
 ```sh
-poetry shell
 python docs/tables/vocabs.py <template_id> [-o] <output_file>
 ```
 where `output_file` (optional) corresponds to a location to store the resulting csv. 
