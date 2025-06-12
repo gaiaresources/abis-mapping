@@ -21,5 +21,5 @@ runs:
     - name: Install project and dependencies
       shell: bash
       run: |
-        poetry install --sync
+        poetry sync
         poetry env info
