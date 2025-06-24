@@ -1,6 +1,6 @@
 [project]
 name = "abis-mapping"
-version = "8.1.0"
+version = "9.0.0"
 description = "Provides templates and mappings to translate tabular data to ABIS rdf"
 authors = [
     {name = "Gaia Resources", email = "dev@gaiaresources.com.au"}
