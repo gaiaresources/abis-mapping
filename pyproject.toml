@@ -16,7 +16,7 @@ requires-poetry = ">=2.0.0, <3"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-rdflib = "^7.1.1"
+rdflib = "==7.1.1"
 python-slugify = "^8.0.4"
 frictionless = {extras = ["excel"], version = "^5.18.1"}
 python-dateutil = "^2.9.0.post0"
