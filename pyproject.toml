@@ -20,11 +20,11 @@ rdflib = "==7.1.1"
 python-slugify = "^8.0.4"
 frictionless = {extras = ["excel"], version = "^5.18.1"}
 python-dateutil = "^2.9.0.post0"
-shapely = "^2.0.6"
-pyproj = "^3.7.0"
+shapely = "^2.1.1"
+pyproj = "^3.7.2"
 pydantic = "^2.11.7"
 pydantic-settings = "^2.10.1"
-numpy = "^2.2.0"
+numpy = "^2.3.2"
 attrs = "^25.3.0"
 
 [tool.poetry.group.dev.dependencies]
