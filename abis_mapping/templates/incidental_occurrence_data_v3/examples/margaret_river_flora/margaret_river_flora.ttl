@@ -35,6 +35,13 @@
     schema:name "Occurrence Collection - Basis Of Record - new basis of record" ;
     tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/basisOfRecord/new-basis-of-record> .
 
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/conservationAuthority/NT> a schema:Collection ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
+    schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/14> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:name "Occurrence Collection - Conservation Authority - NT" ;
+    tern:hasAttribute <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/conservationAuthority/NT> .
+
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/OccurrenceCollection/conservationAuthority/WA> a schema:Collection ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:hasPart <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/8022FSJMJ079c5cf>,
@@ -899,6 +906,13 @@
     tern:hasSimpleValue "new basis of record" ;
     tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/basisOfRecord/new-basis-of-record> .
 
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/conservationAuthority/NT> a tern:Attribute ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    tern:attribute <http://linked.data.gov.au/def/tern-cv/755b1456-b76f-4d54-8690-10e41e25c5a7> ;
+    tern:hasSimpleValue "NT" ;
+    tern:hasValue <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/conservationAuthority/NT> .
+
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/attribute/conservationAuthority/WA> a tern:Attribute ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
@@ -1023,6 +1037,19 @@
     schema:about <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
     schema:identifier "ABC123"^^<https://linked.data.gov.au/dataset/bdr/datatypes/recordID/WAM> ;
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/14> a tern:Observation ;
+    void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
+    rdfs:comment "threatStatus-observation" ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU> ;
+    sosa:hasSimpleResult "VU" ;
+    sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919> ;
+    sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
+    schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
+    schema:temporal [ a time:Instant ;
+            rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
+            time:inXSDDate "2019-09-26"^^xsd:date ] .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/threatStatus/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
@@ -1167,11 +1194,6 @@
     rdfs:label "sex-value" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/sex/new-sex> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU> a tern:IRI,
-        tern:Value ;
-    rdfs:label "Conservation status = VU" ;
-    rdf:value <http://example.com/threatStatus/WA/vulnerable-species> .
-
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/new%20threat%20status> a tern:IRI,
         tern:Value ;
     rdfs:label "Conservation status = new threat status" ;
@@ -1221,6 +1243,11 @@
         tern:Value ;
     rdfs:label "new basis of record" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/attribute/basisOfRecord/new-basis-of-record> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/conservationAuthority/NT> a tern:IRI,
+        tern:Value ;
+    rdfs:label "NT" ;
+    rdf:value <https://sws.geonames.org/2064513/> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/value/conservationAuthority/WA> a tern:IRI,
         tern:Value ;
@@ -1590,6 +1617,12 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia%20%3Fexcelsa> a tern:Text,
         tern:Value ;
     rdf:value "Caladenia ?excelsa" .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU> a tern:IRI,
+        tern:Value ;
+    rdfs:label "Conservation status = VU" ;
+    rdf:value <http://example.com/threatStatus/NT/Vulnerable>,
+        <http://example.com/threatStatus/WA/vulnerable-species> .
 
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia%20%3Fexcelsa> a tern:Text,
         tern:Value ;
