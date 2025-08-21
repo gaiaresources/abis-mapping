@@ -230,7 +230,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             base_iri, "organismQuantity", provider_record_id
         )
         organism_quantity_value = utils.iri_patterns.observation_value_iri(
-            base_iri, "organismQuantity", row["organismQuantity"]
+            base_iri,
+            "organismQuantity",
+            f"{row['organismQuantity']}-{row['organismQuantityType']}",
         )
         occurrence_status_observation = utils.iri_patterns.observation_iri(
             base_iri, "occurrenceStatus", provider_record_id
