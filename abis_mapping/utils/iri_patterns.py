@@ -296,7 +296,7 @@ def observation_value_iri(
     Returns:
         The IRI for the tern:Value node.
     """
-    return utils.rdf.uri_slugified(
+    return utils.rdf.uri_quoted(
         base_iri,
         "result/{observation_type}/{observation_value}",
         observation_type=observation_type,
@@ -346,7 +346,7 @@ def specimen_observation_value_iri(
     Returns:
         The IRI for the tern:Value node.
     """
-    return utils.rdf.uri_slugified(
+    return utils.rdf.uri_quoted(
         base_iri,
         "result/specimen/{observation_type}/{observation_value}",
         observation_type=observation_type,
