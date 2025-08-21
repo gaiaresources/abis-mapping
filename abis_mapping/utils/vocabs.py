@@ -101,7 +101,7 @@ class Vocabulary(abc.ABC):
         """Vocabulary constructor."""
 
         # Generate Dictionary Mapping from Terms
-        self._mapping: dict[str | None, rdflib.URIRef | None] = {}
+        self._mapping: dict[str | None, rdflib.URIRef] = {}
         for term in self.terms:
             self._mapping.update(term.to_mapping().items())
 
