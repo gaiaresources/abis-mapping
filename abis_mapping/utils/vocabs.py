@@ -103,7 +103,7 @@ class Vocabulary(abc.ABC):
         # Generate Dictionary Mapping from Terms
         self._mapping: dict[str | None, rdflib.URIRef | None] = {}
         for term in self.terms:
-            self._mapping.update(**term.to_mapping())
+            self._mapping.update(term.to_mapping().items())
 
     @abc.abstractmethod
     def get(self, value: str | None) -> rdflib.URIRef:
