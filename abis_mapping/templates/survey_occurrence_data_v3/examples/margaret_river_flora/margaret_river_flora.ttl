@@ -1004,7 +1004,7 @@
     rdfs:comment "threatStatus-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/d6d0af046ed077d6> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU-WA> ;
     sosa:hasSimpleResult "VU" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https-www-dpaw-wa-gov-au-plants-and-animals-threatened-species-and-communities-threatened-animals-Last-updated-13-June-2022> ;
@@ -1017,7 +1017,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "threatStatus-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/new%20threat%20status> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/new%20threat%20status-WA> ;
     sosa:hasSimpleResult "new threat status" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> ;
@@ -1115,12 +1115,12 @@
     rdfs:label "sex-value" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/sex/new-sex> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU-WA> a tern:IRI,
         tern:Value ;
     rdfs:label "Conservation status = VU" ;
     rdf:value <http://example.com/threatStatus/WA/vulnerable-species> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/new%20threat%20status> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/new%20threat%20status-WA> a tern:IRI,
         tern:Value ;
     rdfs:label "Conservation status = new threat status" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/threatStatus/WA/new-threat-status> .
