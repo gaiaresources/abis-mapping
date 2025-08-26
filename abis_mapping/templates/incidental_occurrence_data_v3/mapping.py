@@ -230,7 +230,9 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             base_iri, "organismQuantity", provider_record_id
         )
         organism_quantity_value = utils.iri_patterns.observation_value_iri(
-            base_iri, "organismQuantity", row["organismQuantity"]
+            base_iri,
+            "organismQuantity",
+            f"{row['organismQuantity']}-{row['organismQuantityType']}",
         )
         occurrence_status_observation = utils.iri_patterns.observation_iri(
             base_iri, "occurrenceStatus", provider_record_id
@@ -251,7 +253,11 @@ class IncidentalOccurrenceMapper(base.mapper.ABISMapper):
             base_iri, "acceptedNameUsage", row["acceptedNameUsage"]
         )
         threat_status_observation = utils.iri_patterns.observation_iri(base_iri, "threatStatus", provider_record_id)
-        threat_status_value = utils.iri_patterns.observation_value_iri(base_iri, "threatStatus", row["threatStatus"])
+        threat_status_value = utils.iri_patterns.observation_value_iri(
+            base_iri,
+            "threatStatus",
+            f"{row['threatStatus']}-{row['conservationAuthority']}",
+        )
 
         # Create URIs for Observations+Values that depend on if there is a specimen.
         if has_specimen(row):

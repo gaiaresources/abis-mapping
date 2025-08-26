@@ -22,7 +22,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "organismQuantity-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/A0010> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismQuantity/0-05> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismQuantity/c43cfb480e4f0b85bdec5263a6d1f1cb> ;
     sosa:hasSimpleResult "0.05 percentageCoverage" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/36b0f572-7215-42c0-a904-88619d23b4d0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -35,7 +35,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/A0010> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Calothamnus-lateralis-var-crassus> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/f046aaff360e5ceca24c1e44454c5314> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -54,13 +54,13 @@
     skos:prefLabel "TERN Site ID" ;
     prov:qualifiedAttribution <https://linked.data.gov.au/dataset/bdr/attribution/TERN/resourceProvider> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismQuantity/0-05> a tern:Float,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismQuantity/c43cfb480e4f0b85bdec5263a6d1f1cb> a tern:Float,
         tern:Value ;
     rdfs:label "organism-quantity" ;
     rdf:value "0.05"^^xsd:float ;
     tern:unit <http://linked.data.gov.au/def/tern-cv/b50a5896-8561-4b0c-b489-b1ffcc64f2d1> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Calothamnus-lateralis-var-crassus> a tern:FeatureOfInterest,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/f046aaff360e5ceca24c1e44454c5314> a tern:FeatureOfInterest,
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;

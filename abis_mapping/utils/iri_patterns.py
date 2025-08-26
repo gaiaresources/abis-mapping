@@ -280,6 +280,12 @@ def observation_iri(
     )
 
 
+@functools.lru_cache()
+def _hash_observation_value_for_iri(value: str, /) -> str:
+    """Standard function for hashing an Observation Value to use in an IRI."""
+    return hashlib.blake2b(value.encode("utf-8"), digest_size=16, person=b"obs_val_iri_hash").hexdigest()
+
+
 def observation_value_iri(
     base_iri: rdflib.Namespace,
     observation_type: str,
@@ -296,13 +302,14 @@ def observation_value_iri(
     Returns:
         The IRI for the tern:Value node.
     """
-    return utils.rdf.uri_slugified(
+    # Hashing is being used (as opposed to slugifying) to ensure that two different
+    # observation values do not get the same IRI.
+    # This should probably be refactored to return None when observation_value is None
+    # but that would need lots of changes to mapping. Instead we just use str().
+    observation_value_hashed = _hash_observation_value_for_iri(str(observation_value))
+    return utils.rdf.uri(
+        f"result/{observation_type}/{observation_value_hashed}",
         base_iri,
-        "result/{observation_type}/{observation_value}",
-        observation_type=observation_type,
-        # Should probably be refactored to return None when observation_value is None
-        # but that would need lots of changes to mapping.
-        observation_value=str(observation_value),
     )
 
 
@@ -346,13 +353,14 @@ def specimen_observation_value_iri(
     Returns:
         The IRI for the tern:Value node.
     """
-    return utils.rdf.uri_slugified(
+    # Hashing is being used (as opposed to slugifying) to ensure that two different
+    # observation values do not get the same IRI.
+    # This should probably be refactored to return None when observation_value is None
+    # but that would need lots of changes to mapping. Instead we just use str().
+    observation_value_hashed = _hash_observation_value_for_iri(str(observation_value))
+    return utils.rdf.uri(
+        f"result/specimen/{observation_type}/{observation_value_hashed}",
         base_iri,
-        "result/specimen/{observation_type}/{observation_value}",
-        observation_type=observation_type,
-        # Should probably be refactored to return None when observation_value is None
-        # but that would need lots of changes to mapping.
-        observation_value=str(observation_value),
     )
 
 
