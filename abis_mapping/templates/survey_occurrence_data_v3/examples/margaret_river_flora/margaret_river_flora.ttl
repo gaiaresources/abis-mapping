@@ -245,8 +245,8 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/acceptedNameUsage/8022FSJMJ079c5cf> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "acceptedNameUsage-observation" ;
-    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia%20excelsa%20Hopper%20%26%20A.P.Br.> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/442c793d0cd06c3f062207f87d784402> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/e11cc022-7368-435b-96c5-a7f8c7f61a50> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -258,8 +258,8 @@
 <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/observation/acceptedNameUsage/ABC123> a tern:Observation ;
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "acceptedNameUsage-observation" ;
-    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia%20excelsa%20Hopper%20%26%20A.P.Br.> ;
+    sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/442c793d0cd06c3f062207f87d784402> ;
     sosa:hasSimpleResult "Caladenia excelsa Hopper & A.P.Br." ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/e11cc022-7368-435b-96c5-a7f8c7f61a50> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -272,7 +272,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "establishmentMeans-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/native> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/c996c8e043654dfc15d2bf7995ae1a8e> ;
     sosa:hasSimpleResult "native" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/58eaac1c-4c8b-4a95-897f-86dfc83e660f> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -285,7 +285,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "establishmentMeans-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/new%20establishment%20means> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/c713412d60ca8ed6772d6d18d473f33d> ;
     sosa:hasSimpleResult "new establishment means" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/58eaac1c-4c8b-4a95-897f-86dfc83e660f> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -298,7 +298,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "individualCount-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/2> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/7b4d15d32a58cba23833b1d86ccefb44> ;
     sosa:hasSimpleResult 2 ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -311,7 +311,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "individualCount-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/6> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/b23a18ee85eac6321b0126b8442bb12d> ;
     sosa:hasSimpleResult 6 ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/74c71500-0bae-43c9-8db0-bd6940899af1> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -324,7 +324,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "occurrenceStatus-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/present> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/294b9ba8f617b0ef71119e8d8a332430> ;
     sosa:hasSimpleResult "present" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/835d7166-2a4d-4335-9d39-8082ff201811> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -336,7 +336,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "occurrenceStatus-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/new%20occurrence%20status> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/59f9abc0823add4871e0cb14f047d48c> ;
     sosa:hasSimpleResult "new occurrence status" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/835d7166-2a4d-4335-9d39-8082ff201811> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -348,7 +348,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "organismRemarks-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Dried%20out%20leaf%20tips> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/604e595fc9cb011ec0b693b06a3ef2b6> ;
     sosa:hasSimpleResult "Dried out leaf tips" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/54137592-31ab-4de2-98b5-9677274ff93c> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -361,7 +361,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "organismRemarks-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Leaves%20brown> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/8274ac8100384bd25e0484dc51d1850e> ;
     sosa:hasSimpleResult "Leaves brown" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/54137592-31ab-4de2-98b5-9677274ff93c> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -375,7 +375,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Calothamnus%20lateralis%20var.%20crassus> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/f046aaff360e5ceca24c1e44454c5314> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -389,7 +389,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -402,7 +402,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "scientificName-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/12> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -416,7 +416,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/13> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -430,7 +430,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia%20anceps> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/42777f33fa4ff06f1756b31a81a24b43> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -444,7 +444,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia%20anceps> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/42777f33fa4ff06f1756b31a81a24b43> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -458,7 +458,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia%20anceps> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/42777f33fa4ff06f1756b31a81a24b43> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -472,7 +472,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia%20sessilis%20var.%20cordata> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/f54aafa33006dbaedbe372a361a43397> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -486,7 +486,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia%20sessilis%20var.%20cordata> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/f54aafa33006dbaedbe372a361a43397> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -500,7 +500,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia%20sessilis%20var.%20cordata> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/f54aafa33006dbaedbe372a361a43397> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -514,7 +514,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia%20sessilis%20var.%20cordata> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/f54aafa33006dbaedbe372a361a43397> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -528,7 +528,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -541,7 +541,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "lifeStage-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/adult> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/172618e64a9c2536f300cc8fed2c0a1d> ;
     sosa:hasSimpleResult "adult" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -554,7 +554,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "lifeStage-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/new%20life%20stage> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/eddfaa69f7d99ea03abff687c1876890> ;
     sosa:hasSimpleResult "new life stage" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/abb0ee19-b2e8-42f3-8a25-d1f39ca3ebc3> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -567,7 +567,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "reproductiveCondition-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/No%20breeding%20evident> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/bddc1ae259f136bfc8f8537e815846e8> ;
     sosa:hasSimpleResult "No breeding evident" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/4b2e788d-260b-4cfc-91f4-99e7c2ad2c42> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -580,7 +580,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "reproductiveCondition-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/new%20reproductiveCondition> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/e354b89a2c4ebc6c8321435edea94913> ;
     sosa:hasSimpleResult "new reproductiveCondition" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/4b2e788d-260b-4cfc-91f4-99e7c2ad2c42> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -593,7 +593,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "sex-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/male> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/d6da6f4ae20bf50f2eb6e235741d3c3e> ;
     sosa:hasSimpleResult "male" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -606,7 +606,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "sex-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/new%20sex> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/dd36e9629f5d45ad7f9809bd6cf8b3ec> ;
     sosa:hasSimpleResult "new sex" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/05cbf534-c233-4aa8-a08c-00b28976ed36> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/fd083167-3cbf-4f7e-a611-4550a5926a8b> ;
@@ -620,7 +620,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia%20%3Fexcelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/3c47d65b03dde770e21c5d9736582d3a> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> ;
@@ -633,7 +633,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/sample/specimen/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia%20%3Fexcelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/3c47d65b03dde770e21c5d9736582d3a> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/new-identification-method> ;
@@ -646,7 +646,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/1> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Calothamnus%20lateralis%20var.%20crassus> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/f046aaff360e5ceca24c1e44454c5314> ;
     sosa:hasSimpleResult "Calothamnus lateralis var. crassus" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -660,7 +660,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/10> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia%20excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/d993fc3bd7a25ed3a00da48cb1a78054> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -674,7 +674,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia%20%3Fexcelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/3c47d65b03dde770e21c5d9736582d3a> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -688,7 +688,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia%20%3Fexcelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/3c47d65b03dde770e21c5d9736582d3a> ;
     sosa:hasSimpleResult "Caladenia ?excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -702,7 +702,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/2> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia%20anceps> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/42777f33fa4ff06f1756b31a81a24b43> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -716,7 +716,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/3> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia%20anceps> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/42777f33fa4ff06f1756b31a81a24b43> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -730,7 +730,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/4> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia%20anceps> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/42777f33fa4ff06f1756b31a81a24b43> ;
     sosa:hasSimpleResult "Boronia anceps" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -744,7 +744,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/5> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia%20sessilis%20var.%20cordata> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/f54aafa33006dbaedbe372a361a43397> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -758,7 +758,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/6> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia%20sessilis%20var.%20cordata> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/f54aafa33006dbaedbe372a361a43397> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -772,7 +772,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/7> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia%20sessilis%20var.%20cordata> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/f54aafa33006dbaedbe372a361a43397> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -786,7 +786,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia%20sessilis%20var.%20cordata> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/f54aafa33006dbaedbe372a361a43397> ;
     sosa:hasSimpleResult "Banksia sessilis var. cordata" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -800,7 +800,7 @@
     rdfs:comment "verbatimID-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/9> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia%20excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/d993fc3bd7a25ed3a00da48cb1a78054> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/70646576-6dc7-4bc5-a9d8-c4c366850df0> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -1004,7 +1004,7 @@
     rdfs:comment "threatStatus-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/d6d0af046ed077d6> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU-WA> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/0ba61976a7e279b123e69ecc47dddfc9> ;
     sosa:hasSimpleResult "VU" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol/Check-against-Threatened-and-Priority-Fauna-List-WA-available-from-https-www-dpaw-wa-gov-au-plants-and-animals-threatened-species-and-communities-threatened-animals-Last-updated-13-June-2022> ;
@@ -1017,7 +1017,7 @@
     void:inDataset <https://linked.data.gov.au/dataset/bdr/submission/00000000-0000-0000-0000-000000000000> ;
     rdfs:comment "threatStatus-observation" ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/new%20threat%20status-WA> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/661751dca72b4f8b11f2b9877af8c145> ;
     sosa:hasSimpleResult "new threat status" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/ec5eaa36-be28-4aa0-b100-9e7eef459919> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/threatStatusCheckProtocol/a-random-selection> ;
@@ -1026,47 +1026,47 @@
             rdfs:comment "Date unknown, template dateIdentified used as proxy" ;
             time:inXSDDateTimeStamp "2019-09-27T12:34:00+08:00"^^xsd:dateTimeStamp ] .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/native> a tern:IRI,
-        tern:Value ;
-    rdfs:label "establishmentMeans-value" ;
-    rdf:value <http://linked.data.gov.au/def/tern-cv/0b910634-3f24-4a8c-a7a8-7508c0549a1c> .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/new%20establishment%20means> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/c713412d60ca8ed6772d6d18d473f33d> a tern:IRI,
         tern:Value ;
     rdfs:label "establishmentMeans-value" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/establishmentMeans/new-establishment-means> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/2> a tern:Integer,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/establishmentMeans/c996c8e043654dfc15d2bf7995ae1a8e> a tern:IRI,
+        tern:Value ;
+    rdfs:label "establishmentMeans-value" ;
+    rdf:value <http://linked.data.gov.au/def/tern-cv/0b910634-3f24-4a8c-a7a8-7508c0549a1c> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/7b4d15d32a58cba23833b1d86ccefb44> a tern:Integer,
         tern:Value ;
     rdfs:label "individual-count" ;
     rdf:value 2 .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/6> a tern:Integer,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/individualCount/b23a18ee85eac6321b0126b8442bb12d> a tern:Integer,
         tern:Value ;
     rdfs:label "individual-count" ;
     rdf:value 6 .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/new%20occurrence%20status> a tern:IRI,
-        tern:Value ;
-    rdfs:label "occurrenceStatus = new occurrence status" ;
-    rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/occurrenceStatus/new-occurrence-status> .
-
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/present> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/294b9ba8f617b0ef71119e8d8a332430> a tern:IRI,
         tern:Value ;
     rdfs:label "occurrenceStatus = present" ;
     rdf:value <http://linked.data.gov.au/def/tern-cv/a2fb93cd-ad72-4c15-b23b-14882c2418c2> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Dried%20out%20leaf%20tips> a tern:Text,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/occurrenceStatus/59f9abc0823add4871e0cb14f047d48c> a tern:IRI,
+        tern:Value ;
+    rdfs:label "occurrenceStatus = new occurrence status" ;
+    rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/occurrenceStatus/new-occurrence-status> .
+
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/604e595fc9cb011ec0b693b06a3ef2b6> a tern:Text,
         tern:Value ;
     rdfs:label "organism-remarks" ;
     rdf:value "Dried out leaf tips" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/Leaves%20brown> a tern:Text,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/organismRemarks/8274ac8100384bd25e0484dc51d1850e> a tern:Text,
         tern:Value ;
     rdfs:label "organism-remarks" ;
     rdf:value "Leaves brown" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Calothamnus%20lateralis%20var.%20crassus> a tern:FeatureOfInterest,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/f046aaff360e5ceca24c1e44454c5314> a tern:FeatureOfInterest,
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
@@ -1085,47 +1085,47 @@
     schema:identifier "https://www.ncbi.nlm.nih.gov/nuccore/MH040616.1",
         "https://www.ncbi.nlm.nih.gov/nuccore/MH040669.1" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/adult> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/172618e64a9c2536f300cc8fed2c0a1d> a tern:IRI,
         tern:Value ;
     rdfs:label "lifeStage-value" ;
     rdf:value <http://linked.data.gov.au/def/tern-cv/c50013ae-1f32-4560-92d0-848acbc0da3f> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/new%20life%20stage> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/lifeStage/eddfaa69f7d99ea03abff687c1876890> a tern:IRI,
         tern:Value ;
     rdfs:label "lifeStage-value" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/lifeStage/new-life-stage> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/No%20breeding%20evident> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/bddc1ae259f136bfc8f8537e815846e8> a tern:IRI,
         tern:Value ;
     rdfs:label "reproductiveCondition-value" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition/No-breeding-evident> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/new%20reproductiveCondition> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/reproductiveCondition/e354b89a2c4ebc6c8321435edea94913> a tern:IRI,
         tern:Value ;
     rdfs:label "reproductiveCondition-value" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/reproductiveCondition/new-reproductiveCondition> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/male> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/d6da6f4ae20bf50f2eb6e235741d3c3e> a tern:IRI,
         tern:Value ;
     rdfs:label "sex-value" ;
     rdf:value <http://linked.data.gov.au/def/tern-cv/b3b56ae7-bd42-46e3-9391-cac2352a306f> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/new%20sex> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/sex/dd36e9629f5d45ad7f9809bd6cf8b3ec> a tern:IRI,
         tern:Value ;
     rdfs:label "sex-value" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/sex/new-sex> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/VU-WA> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/0ba61976a7e279b123e69ecc47dddfc9> a tern:IRI,
         tern:Value ;
     rdfs:label "Conservation status = VU" ;
     rdf:value <http://example.com/threatStatus/WA/vulnerable-species> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/new%20threat%20status-WA> a tern:IRI,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/threatStatus/661751dca72b4f8b11f2b9877af8c145> a tern:IRI,
         tern:Value ;
     rdfs:label "Conservation status = new threat status" ;
     rdf:value <https://linked.data.gov.au/dataset/bdr/bdr-cv/parameter/threatStatus/WA/new-threat-status> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Calothamnus%20lateralis%20var.%20crassus> a tern:Text,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/f046aaff360e5ceca24c1e44454c5314> a tern:Text,
         tern:Value ;
     rdf:value "Calothamnus lateralis var. crassus" .
 
@@ -1508,7 +1508,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/11> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -1522,7 +1522,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/14> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <http://linked.data.gov.au/def/tern-cv/2eef4e87-beb3-449a-9251-f59f5c07d653> ;
@@ -1531,7 +1531,7 @@
             rdfs:comment "Date unknown, template eventDateStart used as proxy" ;
             time:inXSDDate "2019-09-26"^^xsd:date ] .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/Caladenia%20excelsa%20Hopper%20%26%20A.P.Br.> a tern:FeatureOfInterest,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/acceptedNameUsage/442c793d0cd06c3f062207f87d784402> a tern:FeatureOfInterest,
         tern:Text,
         tern:Value ;
     rdfs:label "acceptedNameUsage-value" ;
@@ -1540,15 +1540,15 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/e11cc022-7368-435b-96c5-a7f8c7f61a50> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/Caladenia%20%3Fexcelsa> a tern:Text,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/specimen/verbatimIdentification/3c47d65b03dde770e21c5d9736582d3a> a tern:Text,
         tern:Value ;
     rdf:value "Caladenia ?excelsa" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia%20%3Fexcelsa> a tern:Text,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/3c47d65b03dde770e21c5d9736582d3a> a tern:Text,
         tern:Value ;
     rdf:value "Caladenia ?excelsa" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Caladenia%20excelsa> a tern:Text,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/d993fc3bd7a25ed3a00da48cb1a78054> a tern:Text,
         tern:Value ;
     rdf:value "Caladenia excelsa" .
 
@@ -1629,7 +1629,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/8022FSJMJ079c5cf> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/Visually-identified-in-the-field-sighting> ;
@@ -1642,7 +1642,7 @@
     rdfs:comment "scientificName-observation" ;
     prov:wasAssociatedWith <https://linked.data.gov.au/dataset/bdr/person/109931be4a60d874> ;
     sosa:hasFeatureOfInterest <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/occurrence/ABC123> ;
-    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> ;
+    sosa:hasResult <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> ;
     sosa:hasSimpleResult "Caladenia excelsa" ;
     sosa:observedProperty <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> ;
     sosa:usedProcedure <https://linked.data.gov.au/dataset/bdr/bdr-cv/methods/identificationMethod/new-identification-method> ;
@@ -1660,7 +1660,7 @@
             time:inXSDDate "2019-09-26"^^xsd:date ] ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Boronia%20anceps> a tern:FeatureOfInterest,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/42777f33fa4ff06f1756b31a81a24b43> a tern:FeatureOfInterest,
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
@@ -1669,7 +1669,7 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Boronia%20anceps> a tern:Text,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/42777f33fa4ff06f1756b31a81a24b43> a tern:Text,
         tern:Value ;
     rdf:value "Boronia anceps" .
 
@@ -1805,7 +1805,7 @@
     tern:featureType <http://linked.data.gov.au/def/tern-cv/b311c0d3-4a1a-4932-a39c-f5cdc1afa611> ;
     tern:locationDescription "Cowaramup Bay Road" .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Banksia%20sessilis%20var.%20cordata> a tern:FeatureOfInterest,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/f54aafa33006dbaedbe372a361a43397> a tern:FeatureOfInterest,
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
@@ -1814,7 +1814,7 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <http://linked.data.gov.au/def/tern-cv/56195246-ec5d-4050-a1c6-af786fbec715> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/Banksia%20sessilis%20var.%20cordata> a tern:Text,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/verbatimIdentification/f54aafa33006dbaedbe372a361a43397> a tern:Text,
         tern:Value ;
     rdf:value "Banksia sessilis var. cordata" .
 
@@ -1864,7 +1864,7 @@
     schema:isPartOf <https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000> ;
     tern:featureType <https://linked.data.gov.au/dataset/bdr/bdr-cv/featureType/specimen/kingdom/new-kingdom> .
 
-<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/Caladenia%20excelsa> a tern:FeatureOfInterest,
+<https://linked.data.gov.au/dataset/bdr/00000000-0000-0000-0000-000000000000/result/scientificName/d993fc3bd7a25ed3a00da48cb1a78054> a tern:FeatureOfInterest,
         tern:Text,
         tern:Value ;
     rdfs:label "scientificName" ;
