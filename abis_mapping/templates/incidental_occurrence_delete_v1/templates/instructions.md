@@ -45,7 +45,7 @@ limit on individual cells in a spreadsheet. These limits may be overcome by usin
 editing CSV files with other software.
 
 Larger datasets may be more readily ingested using the API interface. Please contact
-<bdr-support@gaiaresources.com.au> to make us aware of your data needs.
+<bdr-support@dcceew.gov.au> to make us aware of your data needs.
 
 ## TEMPLATE FIELDS
 The template contains the field names in the top row. Table 1 will assist you in transferring
@@ -98,6 +98,6 @@ When working with text data, it's generally a good idea to use UTF-8 encoding to
 issues related to character representation and ensure that your software can handle a
 diverse set of characters and languages.
 
-For assistance, please contact: <bdr-support@gaiaresources.com.au>
+For assistance, please contact: <bdr-support@dcceew.gov.au>
 
 {% endblock %}

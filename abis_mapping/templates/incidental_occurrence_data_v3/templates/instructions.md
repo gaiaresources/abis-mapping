@@ -9,7 +9,7 @@ that is the presence or absence of an organism at a particular site locality at 
 Templates have been provided to facilitate integration of your data into the Biodiversity
 Data Repository database. Not all types of data have been catered for in the available
 templates at this stage; therefore, if you are unable to find a suitable template, please 
-contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
+contact <bdr-support@dcceew.gov.au> to make us aware of your data needs.
 
 ## Data Validation Requirements:
 For data validation, you will need your data file to:
@@ -60,7 +60,7 @@ limit on individual cells in a spreadsheet. These limits may be overcome by usin
 editing CSV files with other software.
 
 Larger datasets may be more readily ingested using the API interface. Please contact
-<bdr-support@gaiaresources.com.au> to make us aware of your data needs.
+<bdr-support@dcceew.gov.au> to make us aware of your data needs.
 
 ## TEMPLATE FIELDS
 The template contains the field names in the top row. Table 1 will assist you in transferring
@@ -180,6 +180,6 @@ When working with text data, it's generally a good idea to use UTF-8 encoding to
 issues related to character representation and ensure that your software can handle a
 diverse set of characters and languages.
 
-For assistance, please contact: <bdr-support@gaiaresources.com.au>
+For assistance, please contact: <bdr-support@dcceew.gov.au>
 
 {% endblock %}
