@@ -27,7 +27,7 @@ and in some cases the `Systematic Survey Site Visit` template.
 Templates have been provided to facilitate integration of data into the Biodiversity Data
 Repository (BDR) database. Not all types of data have been catered for in the available
 templates at this stage - if you are unable to find a suitable template, please
-contact <bdr-support@gaiaresources.com.au> to make us aware of your data needs.
+contact <bdr-support@dcceew.gov.au> to make us aware of your data needs.
 
 ## Data Validation Requirements:
 For data validation, you will need your data file to:
@@ -77,7 +77,7 @@ limit on individual cells in a spreadsheet. These limits may be overcome by usin
 editing CSV files with other software.
 
 Larger datasets may be more readily ingested using the API interface. Please contact
-<bdr-support@gaiaresources.com.au> to make us aware of your data needs.
+<bdr-support@dcceew.gov.au> to make us aware of your data needs.
 
 ## TEMPLATE FIELDS
 The template contains the field names in the top row. Table 1 will assist you in transferring
@@ -337,5 +337,5 @@ Here are some reasons why UTF-8 is recommended:
 When working with text data, UTF-8 encoding is recommended to avoid issues related to character
 representation and ensure that a diverse set of characters and languages is supported.
 
-For assistance, please contact: <bdr-support@gaiaresources.com.au>
+For assistance, please contact: <bdr-support@dcceew.gov.au>
 
